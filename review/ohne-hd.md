@@ -1,6 +1,5 @@
 # Ohne HD-Bild, Video oder Hörprobe
 
-- 3D Harnesses x Fresh Animations
 - Accelerated Decay
 - Advanced Loot Info (ALI)
 - Animated Ore
@@ -59,8 +58,6 @@
 - Telepistons
 - Timber Tales | Dynamic Tree System 🪓
 - Very Many Players (Fabric)
-- Visual: Armor Trims
 - Voice Chat Interaction
-- Weather Glass
 - Zombified Player
 - fresh block animations
