@@ -14,7 +14,22 @@ nicht gefunden: blur
 nicht gefunden: blockanimations
 nicht gefunden: clear-despawn
 nicht gefunden: mobplaques
-Gewünscht: kerria-opt, animaticam, fresh-block-animations, cpa, animated-gui, exordium, ebe, figura, ears, true-darkness, cave-dust, enhanced-attack-indicator, interactic, no-fade, better-third-person, leawind-third-person, cit-resewn, sodium-dynamic-lights, nyfs-spiders, effective, auditory, euphonium, mixintrace, highlight
+Wunsch ohne 26.3-Treffer: Pogs Fresher Ores
+Wunsch ohne 26.3-Treffer: Timber Tales
+Wunsch: Signpost -> signpost (Signpost)
+Wunsch schon im Katalog: Icy's Better Horse -> icys-better-horses
+Wunsch ohne 26.3-Treffer: Voxy Seedgen
+Wunsch: Inventory Tabs -> frostbytes-improved-inventory (Frostbyte's Improved Inventory)
+Wunsch: Slabbed -> slabbed (Slabbed)
+Wunsch ohne 26.3-Treffer: Weather Glass
+Wunsch: Ping It -> bettertab (Better Tab)
+Wunsch ohne 26.3-Treffer: Soft Leaves
+Wunsch ohne 26.3-Treffer: Portal Glimpse
+Wunsch ohne 26.3-Treffer: Road Weaver
+Wunsch ohne 26.3-Treffer: Rainbow Foliage Vanilla
+Wunsch: Texture Builder -> texture-builder (Texture Builder)
+Wunsch schon im Katalog: Fresh Flower Pots -> fresh-flower-pots
+Gewünscht: fresh-flower-pots-rotated, kerria-opt, animaticam, animated-gui, exordium, ebe, figura, true-darkness, cave-dust, enhanced-attack-indicator, interactic, no-fade, better-third-person, leawind-third-person, cit-resewn, sodium-dynamic-lights, nyfs-spiders, effective, auditory, euphonium, mixintrace, highlight, signpost, frostbytes-improved-inventory, slabbed, bettertab, texture-builder
 keine 26.3-Datei: kerria-opt
 keine 26.3-Datei: animaticam
 keine 26.3-Datei: animated-gui
@@ -37,4 +52,4 @@ keine 26.3-Datei: euphonium
 keine 26.3-Datei: mixintrace
 keine 26.3-Datei: highlight
 CurseForge: 1004 mit 26.3-Fabric-Datei, 185 nicht auf Modrinth, ausgewählt: cinematic-interactions, studious-keybinds
-Neu: 506 Einträge, 508 Dateien
+Neu: 507 Einträge, 495 Dateien
