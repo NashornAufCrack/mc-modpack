@@ -1,3 +1,3 @@
 Modrinth: 502 von 658 Kandidaten passen
-CurseForge: 1004 mit 26.3-Fabric-Datei, 185 nicht auf Modrinth, ausgewählt: cinematic-interactions
-Neu: 503 Einträge, 504 Dateien
+CurseForge: 1004 mit 26.3-Fabric-Datei, 185 nicht auf Modrinth, ausgewählt: cinematic-interactions, studious-keybinds
+Neu: 503 Einträge, 505 Dateien
