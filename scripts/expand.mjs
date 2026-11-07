@@ -38,6 +38,16 @@ const pickMR = cand.modrinth.filter(m => {
   return m.dl >= min;
 });
 log.push(`Modrinth: ${pickMR.length} von ${cand.modrinth.length} Kandidaten passen`);
+// Gezielt gewünschte Modrinth-Projekte (kleine, aber gehypte Mods unter der Download-Schwelle + Leistungs-Kern)
+const WANT_MR = (process.env.WANT_MR || "kerria,kerria-opt,material-rule-compiler,servercore,animaticam,fresh-block-animations,cpa,animated-gui,exordium,ebe,enhancedblockentities,figura,ears,true-darkness,cave-dust,enhanced-attack-indicator,lumina,interactic,no-fade,better-third-person,leawind-third-person,shoulder-surfing-reloaded,cit-resewn,sodium-dynamic-lights,nyfs-spiders,bettermounthud,wavey-capes,do-a-barrel-roll,effective,illuminations,auditory,drip-sounds,euphonium,model-gap-fix,item-borders,raised,leaves-be-gone,sounds,ambientenvironment,immersive-thunder,naturally-trimmed,blur,fancymenu,optigui,mixintrace,camera-utils,better-animations-collection,blockanimations,lambdabettergrass,animated-items,spyglass-improvements,clear-despawn,sodium-shadowy-path-blocks,mobplaques,first-person-model,client-tweaks,trade-cycling,itemswapper,held-item-info,tool-stats,highlight").split(",");
+const pickSet = new Set(pickMR.map(m => m.slug));
+for (const id of WANT_MR) {
+  try { const p = await mr(`/project/${id}`); if (have.has(p.slug) || pickSet.has(p.slug)) continue;
+    pickSet.add(p.slug); pickMR.push({ slug: p.slug, name: p.title, pt: p.project_type, desc: p.description, dl: p.downloads, cats: p.categories, client: p.client_side, server: p.server_side, gallery: (p.gallery || []).sort((a, b) => (b.featured - a.featured) || (a.ordering - b.ordering)).map(g => g.raw_url || g.url), want: true });
+  } catch { log.push("nicht gefunden: " + id); }
+  await sleep(150);
+}
+log.push(`Gewünscht: ${pickMR.filter(m => m.want).map(m => m.slug).join(", ")}`);
 
 // ---------- Modrinth: Dateien für 26.3 ----------
 const depIds = new Set();
