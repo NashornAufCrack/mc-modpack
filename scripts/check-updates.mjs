@@ -15,6 +15,10 @@ const get = async url => { const r = await fetch(url, { headers: UA }); if (!r.o
 const LOADERS = { m: ["fabric"], r: ["minecraft"], s: ["iris", "optifine"], d: ["datapack"] };
 const isMR = s => String(files[s][0]).startsWith("https://cdn.modrinth.com/");
 const today = new Date().toISOString().slice(0, 10);
+// Vom Nutzer festgelegte Versionen: nie automatisch ändern, nur melden
+const PIN = new Set(["sodium", "iris", "voxy", "photon-shader"]);
+const isPre = v => /alpha|beta|pre|rc|snapshot/i.test(String(v));
+const verfuegbar = [];
 
 const updates = [], stand = prev.stand || {};
 for (const [t, loaders] of Object.entries(LOADERS)) {
@@ -24,7 +28,10 @@ for (const [t, loaders] of Object.entries(LOADERS)) {
     const upd = await post(`${A}/version_files/update`, { hashes: part.map(s => files[s][2]), algorithm: "sha1", loaders, game_versions: [MC] });
     for (const s of part) {
       const v = upd[files[s][2]];
-      if (v && v.files?.length && v.version_number !== files[s][6]) {
+      if (v && v.files?.length && v.version_number !== files[s][6] && (PIN.has(s) || (v.version_type !== "release" && !isPre(files[s][6])))) {
+        verfuegbar.push({ slug: s, name: NAME[s] || s, typ: t, aktuell: files[s][6], neu: v.version_number, art: v.version_type, grund: PIN.has(s) ? "festgelegte Version" : "nur als " + v.version_type });
+        if (!stand[s] || stand[s].version !== files[s][6]) stand[s] = { version: files[s][6], seit: stand[s]?.seit || null };
+      } else if (v && v.files?.length && v.version_number !== files[s][6]) {
         const f = v.files.find(x => x.primary) || v.files[0];
         const deps = v.dependencies.filter(d => d.dependency_type === "required" && d.project_id).map(d => d.project_id);
         updates.push({ slug: s, name: NAME[s] || files[s][7] || s, typ: t, von: files[s][6], auf: v.version_number, art: v.version_type, datum: v.date_published.slice(0, 10), deps });
@@ -66,14 +73,15 @@ fs.writeFileSync("data/app-data.json", JSON.stringify(app));
 const verlauf = [...(prev.verlauf || []).filter(x => x.datum !== today), ...(updates.length ? [{ datum: today, updates }] : [])].slice(-60);
 const alt = Object.entries(stand).filter(([, v]) => v.seit).sort((a, b) => a[1].seit.localeCompare(b[1].seit));
 const woche = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
-const ohneNeue = alt.filter(([, v]) => v.seit < woche).map(([s, v]) => ({ slug: s, name: NAME[s] || s, version: v.version, seit: v.seit }));
-fs.writeFileSync("data/updates.json", JSON.stringify({ checked: new Date().toISOString(), mc: MC, updates, verlauf, ohneNeue, stand, next }, null, 0));
+const ohneNeue = alt.filter(([s, v]) => v.seit < woche && NAME[s]).map(([s, v]) => ({ slug: s, name: NAME[s] || s, version: v.version, seit: v.seit }));
+fs.writeFileSync("data/updates.json", JSON.stringify({ checked: new Date().toISOString(), mc: MC, updates, verlauf, ohneNeue, verfuegbar, stand, next }, null, 0));
 
 const T = { m: "Mod", r: "Resource Pack", s: "Shader", d: "Datapack" };
 const md = [`# Update-Stand (${MC})`, "", `Zuletzt geprüft: ${today}`, "",
   `## Neue Versionen in den letzten 7 Tagen (automatisch übernommen)`, "",
   ...(verlauf.filter(x => x.datum >= woche).flatMap(x => x.updates.map(u => `- ${x.datum}: **${u.name}** (${T[u.typ]}) ${u.von} → ${u.auf}${u.art !== "release" ? " (" + u.art + ")" : ""}`)) || []),
   verlauf.some(x => x.datum >= woche) ? "" : "- keine", "",
+  `## Verfügbar, aber nicht automatisch übernommen (${verfuegbar.length})`, "", ...verfuegbar.map(v => `- ${v.name}: ${v.aktuell} → ${v.neu} (${v.grund})`), verfuegbar.length ? "" : "- keine", "",
   `## Ohne neue Version seit über einer Woche (${ohneNeue.length})`, "", "Sortiert nach Alter der aktuellen Datei.", "",
   ...ohneNeue.map(o => `- ${o.name}: ${o.version} (seit ${o.seit})`), "",
   ...(next ? [`## Nächste Minecraft-Version ${next.version}`, "", `${next.ready} von ${next.total} empfohlenen Inhalten sind bereit.`, "", ...next.missing.map(s => `- fehlt noch: ${NAME[s] || s}`)] : [])];
