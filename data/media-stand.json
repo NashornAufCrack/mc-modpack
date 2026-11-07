@@ -1,14 +1,14 @@
 {
- "stand": "2026-11-07T16:59:09.396Z",
+ "stand": "2026-11-07T17:05:47.457Z",
  "eintraege": 684,
  "mitBildern": 605,
- "mitVideoSicher": 270,
- "mitVideoReview": 202,
+ "mitVideoSicher": 304,
+ "mitVideoReview": 280,
  "log": [
   "CurseForge-Key: funktioniert",
   "YouTube-Key: funktioniert",
   "Suche gestoppt bei complete-shield-fixes: 429",
-  "YouTube-Suchen in diesem Lauf: 12, noch offen: 462",
-  "yt-dlp-Suchen: 250, mit Treffer: 164, noch offen: 223"
+  "YouTube-Suchen in diesem Lauf: 1, noch offen: 391",
+  "yt-dlp-Suchen: 223, mit Treffer: 96, noch offen: 0"
  ]
 }
