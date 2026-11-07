@@ -10,8 +10,7 @@ class UI {
   detail = $state<string | null>(null);
   lightbox = $state<{ slug: string; i: number } | null>(null);
   wizard = $state(false);
-  keys = $state(false);
-  tool = $state<"rp" | "base" | "ai" | null>(null);
+  tool = $state<"rp" | "ai" | null>(null);
   conflict = $state<{ x: string; cl: ReturnType<typeof pack.clashes> } | null>(null);
   toast = $state<{ text: string; undo?: boolean } | null>(null);
   theme = $state<"dark" | "light">("dark");

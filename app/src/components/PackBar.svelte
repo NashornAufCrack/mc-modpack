@@ -1,7 +1,6 @@
 <script lang="ts">
   import { pack, PRESETS } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
-  import { conflicts } from "../lib/keys";
   import { exportMrpack, exportPrism, manualList } from "../lib/export";
 
   const r = $derived(pack.resolve());
@@ -11,16 +10,15 @@
   const red = $derived([...r.mods].filter(s => pack.BY[s].ampel === "R" && pack.BY[s].cat !== "S"));
   const probs = $derived(pack.problems());
   const manual = $derived((pack.sel, manualList()));
-  const kc = $derived(conflicts().length);
   const diff = $derived(pack.presetDiff());
   const pname = $derived(PRESETS.find(p => p.id === pack.preset?.id)?.name);
   const open = $derived(pack.data.dec.gruppen.filter(g => g.mods.some(s => pack.BY[s]) && !g.mods.some(s => pack.sel.has(s))).length);
-  let name = $state(pack.cfg._name || "Mein Pack"); let withCfg = $state(true); let st = $state(""); let busy = $state(false);
+  let name = $state(pack.cfg._name || "Mein Pack"); let st = $state(""); let busy = $state(false);
   let showDiff = $state(false);
   async function go(kind: "prism" | "mrpack" | "server") {
     if (probs.length) { st = `Erst die ${probs.length} Konflikte klären. Im fertigen Pack darf nichts doppelt sein.`; return; }
     busy = true; pack.cfg = { ...pack.cfg, _name: name }; pack.save();
-    try { kind === "prism" ? await exportPrism(name, withCfg, t => (st = t)) : await exportMrpack(name, kind === "server", withCfg, t => (st = t)); }
+    try { kind === "prism" ? await exportPrism(name, t => (st = t)) : await exportMrpack(name, kind === "server", t => (st = t)); }
     catch (e) { st = "Fehler beim Export: " + e; } busy = false;
   }
   function share() { const u = pack.shareUrl(); navigator.clipboard?.writeText(u).then(() => ui.say("Link kopiert"), () => ui.say(u)); }
@@ -53,12 +51,9 @@
   {:else}<p class="state ok">Keine Konflikte, keine Doppelungen</p>{/if}
   {#if open}<p class="small muted">{open} Entscheidungen noch offen (optional)</p>{/if}
   <div class="tools">
-    <button class="btn sm" onclick={() => (ui.keys = true)}>⌨ Tasten{#if kc}<span class="badge bad">{kc}</span>{/if}</button>
     <button class="btn sm" onclick={() => (ui.tool = "rp")}>Pack-Reihenfolge</button>
-    <button class="btn sm" onclick={() => (ui.tool = "base")}>Grundeinstellungen</button>
   </div>
   <label class="lbl">Name<input class="field" bind:value={name} /></label>
-  <label class="chk"><input type="checkbox" bind:checked={withCfg} /> Einstellungen und Tasten beilegen</label>
   <button class="btn primary big" disabled={busy} onclick={() => go("prism")}>Für Prism herunterladen</button>
   <div class="two"><button class="btn sm" disabled={busy} onclick={() => go("mrpack")}>.mrpack (Modrinth App)</button><button class="btn sm" disabled={busy} onclick={() => go("server")}>Server-Pack</button></div>
   {#if st}<p class="small" role="status">{st}</p>{/if}

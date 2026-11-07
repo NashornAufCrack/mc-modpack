@@ -1,6 +1,5 @@
 <script lang="ts">
   import Modal from "./Modal.svelte";
-  import ConfigEditor from "./ConfigEditor.svelte";
   import { pack } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
   import { rpTopDown } from "../lib/rp";
@@ -22,7 +21,6 @@
       <ol class="rpo">{#each order as s, i (s)}<li><span class="im">{#if pack.img(s)[0]}<img src={pack.img(s)[0]} alt="" />{/if}</span><span class="nm">{pack.name(s)}</span><button class="btn sm" disabled={!i} onclick={() => move(i, -1)} aria-label="nach oben">↑</button><button class="btn sm" disabled={i === order.length - 1} onclick={() => move(i, 1)} aria-label="nach unten">↓</button></li>{/each}</ol>
       {#if pack.cfg._rpord}<button class="btn" onclick={auto}>Wieder automatisch sortieren</button>{/if}
     {:else}<p class="muted">Noch keine Resource Packs gewählt.</p>{/if}
-  {:else if ui.tool === "base"}<ConfigEditor slug="_base" />
   {:else if ui.tool === "ai"}
     <p class="muted">Füge die Antwort deiner KI ein. Die Website sucht den JSON-Block selbst heraus und zeigt vorher, was sich ändert.</p>
     <textarea class="field" rows="8" bind:value={raw} placeholder={'{"aktionen":[…]}'}></textarea>

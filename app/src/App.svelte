@@ -7,7 +7,6 @@
   import Detail from "./components/Detail.svelte";
   import Lightbox from "./components/Lightbox.svelte";
   import Wizard from "./components/Wizard.svelte";
-  import Keyboard from "./components/Keyboard.svelte";
   import Conflict from "./components/Conflict.svelte";
   import Tools from "./components/Tools.svelte";
   import TestView from "./components/TestView.svelte";
@@ -45,7 +44,7 @@
 </div>
 
 {#if pack.ready}
-  <Detail /><Lightbox /><Wizard /><Keyboard /><Conflict /><Tools />
+  <Detail /><Lightbox /><Wizard /><Conflict /><Tools />
   {#if ui.toast}
     <div class="toast" role="status">{ui.toast.text}{#if ui.toast.undo}<button class="btn sm" onclick={() => { pack.undo(); ui.toast = null; }}>Rückgängig</button>{/if}</div>
   {/if}

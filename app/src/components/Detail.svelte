@@ -1,6 +1,5 @@
 <script lang="ts">
   import Modal from "./Modal.svelte";
-  import ConfigEditor from "./ConfigEditor.svelte";
   import { pack, PT_1, CATS } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
   const ART: Record<string, [string, string]> = { K: ["Konflikt", "bad"], D: ["Nur eins", "warn"], T: ["Testen", "info"], A: ["Gehört zusammen", "ok"], S: ["Passt gut", "ok"] };
@@ -58,7 +57,6 @@
       </ul>
     {/if}
     {#if det.txt}<details class="long"><summary>Ausführliche Beschreibung (Projektseite, Englisch)</summary><p>{det.txt}</p></details>{/if}
-    <ConfigEditor slug={s} />
   {/if}
 </Modal>
 

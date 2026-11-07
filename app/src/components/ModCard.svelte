@@ -2,13 +2,11 @@
   import type { Mod } from "../lib/data";
   import { pack } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
-  import { SETDEF } from "../lib/const";
   let { m, compact = false }: { m: Mod; compact?: boolean } = $props();
   const on = $derived(pack.sel.has(m.slug));
   const lk = $derived(pack.LOCKED.has(m.slug));
   const imgs = $derived(pack.img(m.slug).slice(0, 3));
   const fromPreset = $derived(!!pack.preset && pack.preset.base.includes(m.slug));
-  const settable = $derived(!!((SETDEF as any)[m.slug] || pack.data.x.cfgs[m.slug] || pack.data.x.rpo[m.slug]));
   const vids = $derived(pack.videos(m.slug).length);
 </script>
 
@@ -31,7 +29,6 @@
       {#if m.cf && !pack.data.files[m.slug]}<span class="badge warn">nur manuell</span>{/if}
       {#if m.ampel === "R"}<span class="badge bad">Server nötig</span>{/if}
       {#if pack.cost(m.slug) >= 5}<span class="badge warn">kostet FPS</span>{/if}
-      {#if settable}<span class="badge plain">einstellbar</span>{/if}
     </div>
   </div>
   <span class="check" aria-hidden="true">{on ? "✓" : "+"}</span>

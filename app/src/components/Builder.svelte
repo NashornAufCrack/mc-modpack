@@ -40,7 +40,7 @@
     <h1>Stell dir dein Minecraft-Pack zusammen</h1>
     <p class="muted">Der Assistent fragt deinen PC ab und stellt Leistung und Grafik passend ein. Oder starte mit einer Vorlage und passe sie an.</p>
     <div class="row"><button class="btn primary" onclick={() => (ui.wizard = true)}>✦ Assistent starten</button>
-      <button class="btn ghost" onclick={() => (ui.keys = true)}>⌨ Tastenbelegung</button></div>
+</div>
   </div>
   <div class="presets" role="group" aria-label="Vorlagen">
     {#each PRESETS as p}

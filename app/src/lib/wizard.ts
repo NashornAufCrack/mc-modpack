@@ -1,7 +1,6 @@
 // Assistent: aus Antworten Vorschläge, Grafik-Einstellungen und Leistungs-Mods berechnen
 import { pack } from "./pack.svelte";
 import { BASE } from "./const";
-import { conflicts, bindings, setKey, suggestFree } from "./keys";
 
 export const SHADERS: [string, string, string, number][] = [["photon-shader","Photon","Realistisches Licht, schöne Wolken und Wasser. Ab Oberklasse-Grafikkarte.",2],["complementary-reimagined","Complementary Reimagined","Sehr beliebt, nah an Vanilla, viele Einstellungen. Ab Mittelklasse.",1],["solas-shader","Solas","Stimmungsvoll und schnell. Gut für Mittelklasse.",1],["bsl-shaders","BSL","Klassiker, läuft auf fast jeder Karte.",0],["i-like-vanilla","I Like Vanilla","Ganz leicht: etwas Licht und Schatten, kaum FPS-Verlust.",0],["pegasus","Pegasus","Schnell mit vielen Stil-Optionen.",0],["mellow","Mellow","Gemalter Look, eher künstlerisch.",1],["complementary-unbound","Complementary Unbound","Wie Reimagined, aber kräftiger und moderner.",2],["bliss-shader","Bliss","Sehr realistisch, aber anspruchsvoll. Nur High-End.",3]];
 export function gpuScore(w: Record<string, any>) {
@@ -36,8 +35,5 @@ export function applyPlan(w: Record<string, any>) {
   pack.sel = new Set([...pack.LOCKED, ...p.add]); pack.sug = new Set(p.add); pack.preset = null; pack.wiz = { ...w };
   const opt: any = BASE.items.find((i: any) => i.k === "maxFps"); if (!opt.o.includes(p.fps)) opt.o = [...opt.o, p.fps].sort((a: number, b: number) => a - b);
   pack.cfg = { ...pack.cfg, _base: { ...(pack.cfg._base || {}), maxFps: p.fps, renderDistance: p.rd }, "photon-shader": { ...(pack.cfg["photon-shader"] || {}), shadowMapResolution: p.P.sm, shadowDistance: p.P.sd, COLORED_LIGHTS: p.P.cl, WATER_CAUSTICS: p.P.wc, TAAU: p.P.taau }, voxy: { ...(pack.cfg.voxy || {}), section_render_distance: p.P.vx } };
-  // Doppelbelegungen: nichts ungefragt umlegen – nur freie Taste für Mod-Tasten vorschlagen, Vanilla bleibt
-  for (const c of conflicts()) for (const b of c.items.filter(b => b.mod !== "vanilla").slice(c.items.some(b => b.mod === "vanilla") ? 0 : 1)) { const k = suggestFree(b); if (k) setKey(b.id, k); }
   pack.save(); return p;
 }
-export { bindings };

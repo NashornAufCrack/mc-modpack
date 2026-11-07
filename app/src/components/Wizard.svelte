@@ -3,7 +3,6 @@
   import { pack } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
   import { plan, applyPlan, shaderChoices } from "../lib/wizard";
-  import { conflicts } from "../lib/keys";
   let open = $state(false);
   $effect(() => { open = ui.wizard; });
   let w: Record<string, any> = $state({});
@@ -26,7 +25,6 @@
   const q = $derived(Qs[step]);
   const answered = $derived(step >= N || (q.k === "mon" ? Number(w.w) > 0 && Number(w.h) > 0 && Number(w.hz) > 0 && !!w.sync : !!w[q.k] && (q.k !== "shader" || w.shader === "no" || !!w.shaderpack)));
   const preview = $derived(step >= N ? plan(w) : null);
-  const kc = $derived(conflicts().length);
   function choose(k: string, v: string) { w[k] = v; if (k === "shader" && v === "yes" && !w.shaderpack) w.shaderpack = shaderChoices(w)[0][0]; }
   function finish() { const p = applyPlan(w); ui.wizard = false; ui.filters = new Set(["sug"]); ui.say(`Fertig: ${p.add.length} Vorschläge übernommen, FPS-Limit ${p.fps}`, true); }
 </script>
@@ -64,7 +62,6 @@
       <li>FPS-Limit <b>{preview.fps}</b>, Sichtweite <b>{preview.rd}</b> Chunks, Arbeitsspeicher ca. <b>{Math.min(pack.ramGB(), preview.ram)} GB</b></li>
       {#if w.shader === "yes"}<li>Shader: <b>{pack.name(w.shaderpack)}</b>, Schatten {preview.P.sm} px</li>{/if}
       {#if w.lod !== "none"}<li>Fernsicht Voxy: <b>{preview.P.vx * 32}</b> Chunks</li>{/if}
-      {#if kc}<li>{kc} doppelt belegte Tasten von Mods bekommen eine freie Taste (Vanilla-Tasten bleiben)</li>{/if}
       <li>Deine bisherige Auswahl wird ersetzt (Rückgängig ist möglich).</li>
     </ul>
     <details><summary>Alle {preview.add.length} Vorschläge ansehen</summary><ul class="list">{#each preview.add as s}<li>{pack.name(s)} <span class="muted">– {preview.why[s]}</span></li>{/each}</ul></details>

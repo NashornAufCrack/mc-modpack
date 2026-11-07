@@ -1,6 +1,6 @@
 // KI-Schleife: Prompt aus Pack + Messung erzeugen, JSON-Antwort prüfen und anwenden
 import { pack } from "./pack.svelte";
-import { SETDEF, BASE } from "./const";
+import { BASE } from "./const";
 
 export type Fps = { avg: number; low1: number; low01: number; frames: number; stutter: number };
 export function parseFps(txt: string): Fps | null {
@@ -28,7 +28,7 @@ AUFGABE: Finde die wahrscheinlichsten Ursachen für fehlende FPS oder Ruckler un
 \`\`\`json
 {"aktionen":[{"typ":"entfernen","slug":"…","grund":"…"},{"typ":"hinzufuegen","slug":"…","grund":"…"},{"typ":"einstellung","slug":"_base","key":"renderDistance","wert":12,"grund":"…"}]}
 \`\`\`
-Einstellungen mit slug "_base": renderDistance, simulationDistance, maxFps. Für Mods: Schlüssel aus deren Config-Datei.`;
+Einstellungen mit slug "_base": renderDistance, simulationDistance, maxFps. Andere Einstellungen werden nicht übernommen.`;
 }
 type A = { typ: string; slug: string; key?: string; wert?: any; grund?: string };
 export function aiParse(raw: string): { ok: A[]; bad: number; err?: string } {
@@ -36,7 +36,7 @@ export function aiParse(raw: string): { ok: A[]; bad: number; err?: string } {
   try {
     const j = JSON.parse(m ? m[0] : raw); const ok: A[] = []; let bad = 0;
     for (const a of j.aktionen || []) {
-      const known = a.typ === "einstellung" && (a.slug === "_base" ? BASE.items.some((i: any) => i.k === a.key) : ((SETDEF as any)[a.slug]?.items.some((i: any) => i.k === a.key) || (pack.data.x.cfgs[a.slug] || []).some(f => f.items.some(i => i.k === a.key))));
+      const known = a.typ === "einstellung" && a.slug === "_base" && BASE.items.some((i: any) => i.k === a.key);
       if (((a.typ === "entfernen" || a.typ === "hinzufuegen") && pack.BY[a.slug]) || known) ok.push(a); else bad++;
     }
     return { ok, bad };
@@ -48,9 +48,7 @@ export function aiApply(list: A[]) {
     if (a.typ === "entfernen") { if (!pack.LOCKED.has(a.slug)) { const n = new Set(pack.sel); n.delete(a.slug); pack.sel = n; } }
     else if (a.typ === "hinzufuegen") { const n = new Set(pack.sel); pack.clashes(a.slug).forEach(c => { if (!pack.LOCKED.has(c.y)) n.delete(c.y); }); n.add(a.slug); pack.sel = n; }
     else if (a.typ === "einstellung") {
-      const cur = a.slug !== "_base" && (SETDEF as any)[a.slug]?.items.some((i: any) => i.k === a.key);
-      if (a.slug === "_base" || cur) pack.setCv(a.slug, a.key!, a.wert);
-      else { const f = pack.data.x.cfgs[a.slug].find(f => f.items.some(i => i.k === a.key))!; pack.cfg = { ...pack.cfg, [a.slug]: { ...(pack.cfg[a.slug] || {}), ["@" + f.file + "|" + a.key]: a.wert } }; }
+      if (a.slug === "_base") pack.setCv(a.slug, a.key!, a.wert);
     }
   }
   pack.save();
