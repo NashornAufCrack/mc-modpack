@@ -1,13 +1,14 @@
 {
- "stand": "2026-11-07T13:06:05.228Z",
- "eintraege": 531,
- "mitBildern": 465,
- "mitVideoSicher": 153,
- "mitVideoReview": 60,
+ "stand": "2026-11-07T16:59:09.396Z",
+ "eintraege": 684,
+ "mitBildern": 605,
+ "mitVideoSicher": 270,
+ "mitVideoReview": 202,
  "log": [
   "CurseForge-Key: funktioniert",
   "YouTube-Key: funktioniert",
-  "Suche gestoppt bei fusion-connected-textures: 429",
-  "YouTube-Suchen in diesem Lauf: 1, noch offen: 359"
+  "Suche gestoppt bei complete-shield-fixes: 429",
+  "YouTube-Suchen in diesem Lauf: 12, noch offen: 462",
+  "yt-dlp-Suchen: 250, mit Treffer: 164, noch offen: 223"
  ]
 }
