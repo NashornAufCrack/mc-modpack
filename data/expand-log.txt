@@ -15,14 +15,14 @@ nicht gefunden: blockanimations
 nicht gefunden: clear-despawn
 nicht gefunden: mobplaques
 Wunsch noch nicht für 26.3: Pogs Fresher Ores -> pogs-fresher-ores-glowing (neueste: 26.2)
-Wunsch schon im Katalog (CF): Timber Tales
+Wunsch: Timber Tales -> CurseForge timber-tales-dynamic-tree-system
 Wunsch schon im Katalog: Signpost -> signpost
 Wunsch schon im Katalog: Icy's Better Horse -> icys-better-horses
 Wunsch noch nicht für 26.3: Voxy Seedgen -> voxy-seedgen (neueste: 26.2)
-Wunsch schon im Katalog (CF): Inventory Tabs
+Wunsch: Inventory Tabs -> CurseForge improved-inventory-tabs
 Wunsch schon im Katalog: Slabbed -> slabbed
-Wunsch schon im Katalog (CF): Weather Glass
-Wunsch schon im Katalog (CF): Ping It
+Wunsch: Weather Glass -> CurseForge weather-glass
+Wunsch: Ping It -> CurseForge ping
 Wunsch noch nicht für 26.3: Soft Leaves -> soft-leaves (neueste: 26.2)
 Wunsch noch nicht für 26.3: Portal Glimpse -> portal-glimpse (neueste: 1.21.1)
 Wunsch noch nicht für 26.3: Road Weaver -> roadweaver (neueste: 1.21.11)
@@ -53,5 +53,5 @@ keine 26.3-Datei: auditory
 keine 26.3-Datei: euphonium
 keine 26.3-Datei: mixintrace
 keine 26.3-Datei: highlight
-CurseForge: 1004 mit 26.3-Fabric-Datei, 185 nicht auf Modrinth, ausgewählt: cinematic-interactions, studious-keybinds
-Neu: 502 Einträge, 490 Dateien
+CurseForge: 1004 mit 26.3-Fabric-Datei, 185 nicht auf Modrinth, ausgewählt: cinematic-interactions, studious-keybinds, timber-tales-dynamic-tree-system, improved-inventory-tabs, weather-glass, ping
+Neu: 502 Einträge, 494 Dateien
