@@ -1,3 +1,40 @@
 Modrinth: 502 von 658 Kandidaten passen
+nicht gefunden: kerria
+nicht gefunden: material-rule-compiler
+nicht gefunden: enhancedblockentities
+nicht gefunden: lumina
+nicht gefunden: bettermounthud
+nicht gefunden: illuminations
+nicht gefunden: drip-sounds
+nicht gefunden: model-gap-fix
+nicht gefunden: sounds
+nicht gefunden: ambientenvironment
+nicht gefunden: immersive-thunder
+nicht gefunden: blur
+nicht gefunden: blockanimations
+nicht gefunden: clear-despawn
+nicht gefunden: mobplaques
+Gewünscht: kerria-opt, animaticam, fresh-block-animations, cpa, animated-gui, exordium, ebe, figura, ears, true-darkness, cave-dust, enhanced-attack-indicator, interactic, no-fade, better-third-person, leawind-third-person, cit-resewn, sodium-dynamic-lights, nyfs-spiders, effective, auditory, euphonium, mixintrace, highlight
+keine 26.3-Datei: kerria-opt
+keine 26.3-Datei: animaticam
+keine 26.3-Datei: animated-gui
+keine 26.3-Datei: exordium
+keine 26.3-Datei: ebe
+keine 26.3-Datei: figura
+keine 26.3-Datei: true-darkness
+keine 26.3-Datei: cave-dust
+keine 26.3-Datei: enhanced-attack-indicator
+keine 26.3-Datei: interactic
+keine 26.3-Datei: no-fade
+keine 26.3-Datei: better-third-person
+keine 26.3-Datei: leawind-third-person
+keine 26.3-Datei: cit-resewn
+keine 26.3-Datei: sodium-dynamic-lights
+keine 26.3-Datei: nyfs-spiders
+keine 26.3-Datei: effective
+keine 26.3-Datei: auditory
+keine 26.3-Datei: euphonium
+keine 26.3-Datei: mixintrace
+keine 26.3-Datei: highlight
 CurseForge: 1004 mit 26.3-Fabric-Datei, 185 nicht auf Modrinth, ausgewählt: cinematic-interactions, studious-keybinds
-Neu: 503 Einträge, 505 Dateien
+Neu: 506 Einträge, 508 Dateien
