@@ -11,7 +11,6 @@
   const det = $derived(pack.data.x.details[s] || {});
   const deps = $derived(m ? [...new Set((pack.data.files[s]?.[5] || []).concat(pack.implicit(s)))] : []);
   const rel = $derived(m ? pack.relInfo(s) : []);
-  const auto = $derived(pack.data.x.prules.filter(p => p.slug === s));
   let play = $state<string | null>(null);
   $effect(() => { s; play = null; });
   const fmtK = (k: number) => (k >= 1000 ? (k / 1000).toFixed(k >= 10000 ? 0 : 1).replace(".", ",") + " Mio" : k + " Tsd");
@@ -22,8 +21,8 @@
     <div class="top">
       <div class="media">
         {#if imgs.length}
-          <button class="hero" onclick={() => (ui.lightbox = { slug: s, i: 0 })}><img src={pack.imgHQ(s)[0] || imgs[0]} alt="Bild von {m.name}" /></button>
-          {#if imgs.length > 1}<div class="strip">{#each imgs.slice(1, 9) as u, i}<button onclick={() => (ui.lightbox = { slug: s, i: i + 1 })}><img src={u} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).parentElement!.remove()} /></button>{/each}</div>{/if}
+          <button class="hero" onclick={() => (ui.lightbox = { slug: s, i: 0 })}><img referrerpolicy="no-referrer" src={pack.imgHQ(s)[0] || imgs[0]} alt="Bild von {m.name}" /></button>
+          {#if imgs.length > 1}<div class="strip">{#each imgs.slice(1, 9) as u, i}<button onclick={() => (ui.lightbox = { slug: s, i: i + 1 })}><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).parentElement!.remove()} /></button>{/each}</div>{/if}
         {:else}<div class="noimg muted">Noch keine Bilder – kommen über die Medien-Pipeline.</div>{/if}
       </div>
       <div class="facts">
@@ -50,16 +49,15 @@
       <div class="vids">
         {#each vids as v}
           {#if play === v.id}<iframe class="yt" src="https://www.youtube-nocookie.com/embed/{v.id}?autoplay=1" title={v.titel || m.name} allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-          {:else}<button class="vcard" onclick={() => (play = v.id)}><img src="https://i.ytimg.com/vi/{v.id}/mqdefault.jpg" alt="" loading="lazy" /><span class="pl">▶</span><span class="vt">{v.titel || "Video ansehen"}</span></button>{/if}
+          {:else}<button class="vcard" onclick={() => (play = v.id)}><img referrerpolicy="no-referrer" src="https://i.ytimg.com/vi/{v.id}/mqdefault.jpg" alt="" loading="lazy" /><span class="pl">▶</span><span class="vt">{v.titel || "Video ansehen"}</span></button>{/if}
         {/each}
       </div>
       <p class="small muted">Videos laden erst beim Klick (YouTube ohne Cookies).</p>
     {/if}
-    {#if rel.length || auto.length}
+    {#if rel.length}
       <h3>Verträglichkeit</h3>
       <ul class="rel">
         {#each rel as x}<li><span class="badge {ART[x.art]?.[1] || 'plain'}">{ART[x.art]?.[0] || x.art}</span> {x.others.map(o => pack.name(o)).join(", ")}: <span class="muted">{x.text}</span></li>{/each}
-        {#each auto as a}<li><span class="badge info">automatisch</span> <span class="muted">{a.text}</span></li>{/each}
       </ul>
     {/if}
     {#if det.txt}<details class="long"><summary>Ausführliche Beschreibung (Projektseite, Englisch)</summary><p>{det.txt}</p></details>{/if}

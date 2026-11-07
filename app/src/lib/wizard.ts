@@ -34,6 +34,6 @@ export function applyPlan(w: Record<string, any>) {
   const p = plan(w); pack.snapshot();
   pack.sel = new Set([...pack.LOCKED, ...p.add]); pack.sug = new Set(p.add); pack.preset = null; pack.wiz = { ...w };
   const opt: any = BASE.items.find((i: any) => i.k === "maxFps"); if (!opt.o.includes(p.fps)) opt.o = [...opt.o, p.fps].sort((a: number, b: number) => a - b);
-  pack.cfg = { ...pack.cfg, _base: { ...(pack.cfg._base || {}), maxFps: p.fps, renderDistance: p.rd }, "photon-shader": { ...(pack.cfg["photon-shader"] || {}), shadowMapResolution: p.P.sm, shadowDistance: p.P.sd, COLORED_LIGHTS: p.P.cl, WATER_CAUSTICS: p.P.wc, TAAU: p.P.taau }, voxy: { ...(pack.cfg.voxy || {}), section_render_distance: p.P.vx } };
+  pack.cfg = { ...pack.cfg, _base: { ...(pack.cfg._base || {}), maxFps: p.fps, renderDistance: p.rd } };
   pack.save(); return p;
 }

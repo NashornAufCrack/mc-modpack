@@ -21,7 +21,7 @@
       {@const m = pack.BY[s]}{@const img = pack.img(s)[0]}
       <div class="opt" class:on={chosen === s}>
         <button class="pick" role="radio" aria-checked={chosen === s} onclick={() => choose(s)}>
-          <span class="im">{#if img}<img src={img} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).remove()} />{/if}</span>
+          <span class="im">{#if img}<img referrerpolicy="no-referrer" src={img} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).remove()} />{/if}<span class="ph" aria-hidden="true">{pack.proben(s).length ? "♪" : m.name.slice(0, 1)}</span></span>
           <span class="nm"><span class="dot"></span>{m.name}</span>
           <span class="nt">{m.notiz}</span>
         </button>
@@ -40,7 +40,7 @@
   .opt { position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface-2); }
   .opt.on { border-color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
   .pick { display: flex; flex-direction: column; width: 100%; padding: 0 0 2.2rem; border: 0; background: none; color: var(--fg); text-align: left; cursor: pointer; font: inherit; }
-  .im { height: 5.5rem; background: var(--bg-2); display: block; } .im img { width: 100%; height: 100%; object-fit: cover; }
+  .im { position: relative; height: 5.5rem; background: var(--bg-2); display: grid; place-items: center; overflow: hidden; } .im img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; } .im .ph { font: 700 1.8rem var(--font); color: var(--muted); }
   .nm { display: flex; align-items: center; gap: .4rem; padding: .5rem .6rem 0; font-weight: 600; font-size: .88rem; }
   .dot { width: .85rem; height: .85rem; flex: none; border-radius: 50%; border: 2px solid var(--line-2); }
   .on .dot { border-color: var(--accent); background: radial-gradient(var(--accent) 45%, transparent 50%); }

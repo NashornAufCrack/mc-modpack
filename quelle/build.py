@@ -20,8 +20,8 @@ print('ok')
 # Daten für die neue App
 L=lambda f: json.load(open(f))
 app={'mods':L('mods.json'),'files':L('files.json'),'dec':L('decisions.json'),'settings':L('settings.json'),
- 'x':{'cfgs':L('cfgs.json'),'tpl':L('cfgtpl.json'),'details':L('details.json'),'keys':L('keys.json'),'rpo':L('rpo.json'),'prules':L('prules.json'),
-      'tplS':{f:open('tpl/'+f).read() for f in sorted(os.listdir('tpl'))},
+ 'x':{'details':L('details.json'),'rpo':L('rpo.json'),
+
       'rpbad':sorted(k for k,v in (json.load(open(_R+'rp-check.json')) if os.path.exists(_R+'rp-check.json') else {}).items() if not v['ok'])}}
 open('/home/claude/mc-modpack/data/app-data.json','w').write(json.dumps(app,ensure_ascii=False,separators=(',',':')))
 print('app-data', os.path.getsize('/home/claude/mc-modpack/data/app-data.json'))

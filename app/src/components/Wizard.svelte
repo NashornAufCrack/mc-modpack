@@ -35,7 +35,7 @@
   {#if step < N}
     <h3>{q.t}</h3>
     <p class="ex muted">{q.ex}</p>
-    {#if q.img}{@const im = pack.img(q.img)[0]}{#if im}<img class="exi" src={im} alt="" />{/if}{/if}
+    {#if q.img}{@const im = pack.img(q.img)[0]}{#if im}<img referrerpolicy="no-referrer" class="exi" src={im} alt="" />{/if}{/if}
     {#if q.k === "mon"}
       <div class="mon">
         <label>Breite (Pixel)<input class="field" inputmode="numeric" bind:value={w.w} /></label>
@@ -60,8 +60,8 @@
     <ul class="sum">
       <li><b>{preview.add.length}</b> Mods und Packs werden ausgewählt (Leistung & Pflicht-Mods sind immer dabei)</li>
       <li>FPS-Limit <b>{preview.fps}</b>, Sichtweite <b>{preview.rd}</b> Chunks, Arbeitsspeicher ca. <b>{Math.min(pack.ramGB(), preview.ram)} GB</b></li>
-      {#if w.shader === "yes"}<li>Shader: <b>{pack.name(w.shaderpack)}</b>, Schatten {preview.P.sm} px</li>{/if}
-      {#if w.lod !== "none"}<li>Fernsicht Voxy: <b>{preview.P.vx * 32}</b> Chunks</li>{/if}
+      {#if w.shader === "yes"}<li>Shader: <b>{pack.name(w.shaderpack)}</b> (Qualität stellst du im Spiel im Shader-Menü ein)</li>{/if}
+      {#if w.lod !== "none"}<li>Fernsicht: <b>Voxy</b></li>{/if}
       <li>Deine bisherige Auswahl wird ersetzt (Rückgängig ist möglich).</li>
     </ul>
     <details><summary>Alle {preview.add.length} Vorschläge ansehen</summary><ul class="list">{#each preview.add as s}<li>{pack.name(s)} <span class="muted">– {preview.why[s]}</span></li>{/each}</ul></details>

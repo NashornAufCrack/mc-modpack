@@ -37,6 +37,8 @@ class Pack {
     const bad = new Set(data.x.rpbad || []);
     this.outdated = data.mods.filter(m => bad.has(m.slug)).map(m => m.name);
     if (bad.size) { data.mods = data.mods.filter(m => !bad.has(m.slug)); for (const g of data.dec.gruppen || []) g.mods = g.mods.filter(s => !bad.has(s)); }
+    const avail = (s: string) => data.mods.some(m => m.slug === s) && (!!data.files[s] || !!data.mods.find(m => m.slug === s)?.cf);
+    data.dec.gruppen = (data.dec.gruppen || []).map(g => ({ ...g, mods: g.mods.filter(avail) })).filter(g => g.mods.length >= 2);
     this.data = data; this.media = media;
     for (const m of data.mods) this.BY[m.slug] = m;
     for (const g of data.dec.gruppen || []) g.mods.forEach(s => (this.GROUPOF[s] = g));
@@ -92,7 +94,6 @@ class Pack {
   cv(slug: string, k: string) { const def = (slug === "_base" ? BASE : (SETDEF as any)[slug]).items.find((i: any) => i.k === k); return this.cfg[slug] && k in this.cfg[slug] ? this.cfg[slug][k] : def.d; }
   setCv(slug: string, k: string, v: any) { this.cfg = { ...this.cfg, [slug]: { ...(this.cfg[slug] || {}), [k]: v } }; this.save(); }
   resetCv(slug: string, k: string) { const c = { ...(this.cfg[slug] || {}) }; delete c[k]; this.cfg = { ...this.cfg, [slug]: c }; this.save(); }
-  autoVal(slug: string, file: string, k: string) { return this.data.x.prules.find(p => p.slug === slug && p.file === file && p.k === k && p.wenn.every((s: string) => this.sel.has(s))); }
   ramGB(r = this.resolve()) { const n = r.mods.size + r.libs.size; let g = n < 60 ? 4 : n < 120 ? 6 : n < 250 ? 8 : 10; if (r.mods.has("voxy") || r.mods.has("distanthorizons")) g += 1; if (r.mods.has("faithful-64x")) g += 1; const sys = Number(this.wiz.ram || 0); if (sys) g = Math.min(g, Math.floor(sys / 2)); return Math.max(3, Math.min(g, 12)); }
   load_() { const c = [...this.resolve().mods].filter(s => !this.LOCKED.has(s)).reduce((a, s) => a + this.cost(s), 0); return { c, l: c < 15 ? "Leicht" : c < 30 ? "Mittel" : "Schwer", t: c < 15 ? "ok" : c < 30 ? "warn" : "bad" }; }
   // Speicherung

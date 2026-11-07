@@ -12,8 +12,8 @@ export type Video = { id: string; quelle: string; punkte: number; titel?: string
 export type Media = { bilder?: string[]; hq?: string[]; icon?: string | null; videos?: Video[] };
 export type AppData = {
   mods: Mod[]; files: Record<string, any[]>; dec: { gruppen: Gruppe[]; beziehungen: Beziehung[]; entscheidungen: any[] }; settings: any;
-  x: { cfgs: Record<string, CfgFile[]>; tpl: Record<string, string>; tplS: Record<string, string>; details: Record<string, { txt?: string; yt?: string[] }>;
-       keys: [string, string, string, string][]; rpo: Record<string, { fn: string; data: any }>; prules: any[]; rpbad?: string[] };
+  x: { details: Record<string, { txt?: string; yt?: string[] }>;
+       rpo: Record<string, { fn: string; data: any }>; rpbad?: string[] };
 };
 export const ARTIFACT = import.meta.env.MODE === "artifact";
 const DATA = (import.meta.env.VITE_DATA as string) || "data/";

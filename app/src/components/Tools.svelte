@@ -18,7 +18,7 @@
   {#if ui.tool === "rp"}
     <p class="muted">Oben gewinnt: Ändern zwei Packs dieselbe Datei, zählt das obere. Die Website sortiert nach den Regeln der Pack-Autoren (Erweiterungen über ihrem Basis-Pack, Komplett-Texturen ganz unten). Die Reihenfolge landet beim Export direkt in der options.txt.</p>
     {#if order.length}
-      <ol class="rpo">{#each order as s, i (s)}<li><span class="im">{#if pack.img(s)[0]}<img src={pack.img(s)[0]} alt="" />{/if}</span><span class="nm">{pack.name(s)}</span><button class="btn sm" disabled={!i} onclick={() => move(i, -1)} aria-label="nach oben">↑</button><button class="btn sm" disabled={i === order.length - 1} onclick={() => move(i, 1)} aria-label="nach unten">↓</button></li>{/each}</ol>
+      <ol class="rpo">{#each order as s, i (s)}<li><span class="im">{#if pack.img(s)[0]}<img referrerpolicy="no-referrer" src={pack.img(s)[0]} alt="" />{/if}</span><span class="nm">{pack.name(s)}</span><button class="btn sm" disabled={!i} onclick={() => move(i, -1)} aria-label="nach oben">↑</button><button class="btn sm" disabled={i === order.length - 1} onclick={() => move(i, 1)} aria-label="nach unten">↓</button></li>{/each}</ol>
       {#if pack.cfg._rpord}<button class="btn" onclick={auto}>Wieder automatisch sortieren</button>{/if}
     {:else}<p class="muted">Noch keine Resource Packs gewählt.</p>{/if}
   {:else if ui.tool === "ai"}

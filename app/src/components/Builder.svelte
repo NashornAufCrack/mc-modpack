@@ -33,8 +33,15 @@
     return out;
   });
   const count = (t: string) => { const all = pack.data.mods.filter(m => (m.pt || "m") === t && (pack.data.files[m.slug] || m.cf)); return [all.filter(m => pack.sel.has(m.slug)).length, all.length]; };
+  let search: HTMLInputElement | null = $state(null);
+  function hotkey(e: KeyboardEvent) {
+    const t = e.target as HTMLElement; const typing = t?.closest?.("input, textarea, select, [contenteditable]");
+    if ((e.key === "/" && !typing) || (e.key.toLowerCase() === "k" && (e.ctrlKey || e.metaKey))) { if (document.querySelector("dialog[open]")) return; e.preventDefault(); search?.focus(); search?.select(); }
+  }
   function toggleF(k: string) { const n = new Set(ui.filters); n.has(k) ? n.delete(k) : n.add(k); ui.filters = n; }
 </script>
+
+<svelte:window onkeydown={hotkey} />
 
 <section class="hero">
   <div class="intro">
@@ -63,14 +70,14 @@
       {/each}
     </div>
     <div class="filters">
-      <input class="field search" type="search" placeholder="Suchen: Name, Funktion …" bind:value={ui.q} aria-label="Suchen" />
+      <input class="field search" type="search" placeholder="Suchen: Name, Funktion …  ( / oder Strg+K )" bind:this={search} bind:value={ui.q} aria-label="Suchen" aria-keyshortcuts="/ Control+K" />
       <div class="chips">
         {#if ui.tab === "m"}
           <button class="chip" aria-pressed={!ui.sub} onclick={() => (ui.sub = null)}>Alle</button>
           {#each Object.entries(CATS) as [k, c]}<button class="chip" aria-pressed={ui.sub === k} onclick={() => (ui.sub = ui.sub === k ? null : k)}>{c.t}</button>{/each}
           <span class="sep"></span>
         {/if}
-        {#each XF as [k, l]}{#if k !== "sug" || pack.sug.size}<button class="chip" aria-pressed={ui.filters.has(k)} onclick={() => toggleF(k)}>{l}</button>{/if}{/each}
+        {#each XF as [k, l]}{#if k !== "sug" || pack.sug.size}<button class="chip" class:sugchip={k === "sug"} aria-pressed={ui.filters.has(k)} onclick={() => toggleF(k)}>{l}{#if k === "sug"} ({pack.sug.size}){/if}</button>{/if}{/each}
       </div>
       <p class="note muted">{ui.tab === "m" && ui.sub ? CATS[ui.sub].n : TABNOTE[ui.tab]}</p>
     </div>
@@ -114,5 +121,7 @@
   .dgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr)); gap: .75rem; }
   .empty { padding: 3rem 0; text-align: center; }
   @media (max-width: 1100px) { .layout { grid-template-columns: minmax(0, 1fr); } .hero { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 640px) { .filters { position: static; } }
   @media (max-width: 640px) { .presets { grid-template-columns: minmax(0, 1fr); } .dgrid { grid-template-columns: minmax(0, 1fr); } .grid { grid-template-columns: minmax(0, 1fr); } }
+  .sugchip { border-color: var(--preset); }
 </style>

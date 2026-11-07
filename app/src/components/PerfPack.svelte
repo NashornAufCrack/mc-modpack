@@ -18,7 +18,7 @@
     <button class="btn" aria-expanded={open} onclick={() => (open = !open)}>{open ? "Weniger" : "Alle ansehen"}</button>
   </div>
   <ul class="row" aria-label="Wichtigste Leistungs-Mods">
-    {#each perf.slice(0, 8) as m (m.slug)}<li><button class="pill" onclick={() => (ui.detail = m.slug)}>{#if icon(m.slug)}<img src={icon(m.slug)} alt="" loading="lazy" />{/if}{m.name}</button></li>{/each}
+    {#each perf.slice(0, 8) as m (m.slug)}<li><button class="pill" onclick={() => (ui.detail = m.slug)}>{#if icon(m.slug)}<img referrerpolicy="no-referrer" src={icon(m.slug)} alt="" loading="lazy" />{/if}{m.name}</button></li>{/each}
     {#if perf.length > 8}<li class="more muted">+{perf.length - 8}</li>{/if}
   </ul>
   {#if open}

@@ -14,10 +14,10 @@
   {#if lb}
     <div class="lb">
       <button class="btn nav" onclick={() => go(-1)} aria-label="Vorheriges Bild" disabled={imgs.length < 2}>‹</button>
-      <img src={imgs[lb.i]} alt="Bild {lb.i + 1} von {pack.name(lb.slug)}" />
+      <img referrerpolicy="no-referrer" src={imgs[lb.i]} alt="Bild {lb.i + 1} von {pack.name(lb.slug)}" />
       <button class="btn nav" onclick={() => go(1)} aria-label="Nächstes Bild" disabled={imgs.length < 2}>›</button>
     </div>
-    <div class="thumbs">{#each th as u, i}<button class:on={i === lb.i} onclick={() => (ui.lightbox = { slug: lb.slug, i })} aria-label="Bild {i + 1}"><img src={u} alt="" loading="lazy" /></button>{/each}</div>
+    <div class="thumbs">{#each th as u, i}<button class:on={i === lb.i} onclick={() => (ui.lightbox = { slug: lb.slug, i })} aria-label="Bild {i + 1}"><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" /></button>{/each}</div>
   {/if}
 </Modal>
 

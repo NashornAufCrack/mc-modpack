@@ -53,6 +53,7 @@
   <div class="tools">
     <button class="btn sm" onclick={() => (ui.tool = "rp")}>Pack-Reihenfolge</button>
   </div>
+  <p class="ram"><b>Arbeitsspeicher: {pack.ramGB(r)} GB</b> · Prism stellt ihn automatisch ein. In der Modrinth App musst du ihn nach dem Import selbst setzen (Instanz › Einstellungen › Java), sonst stürzt das Spiel beim Start ab.</p>
   <label class="lbl">Name<input class="field" bind:value={name} /></label>
   <button class="btn primary big" disabled={busy} onclick={() => go("prism")}>Für Prism herunterladen</button>
   <div class="two"><button class="btn sm" disabled={busy} onclick={() => go("mrpack")}>.mrpack (Modrinth App)</button><button class="btn sm" disabled={busy} onclick={() => go("server")}>Server-Pack</button></div>
@@ -81,6 +82,7 @@
   .warnbox { border: 1px solid var(--bad); background: var(--bad-soft); border-radius: 10px; padding: .55rem .65rem; display: grid; gap: .35rem; font-size: .84rem; }
   .prob { display: flex; justify-content: space-between; gap: .5rem; align-items: center; }
   .tools, .two { display: flex; gap: .4rem; flex-wrap: wrap; } .two > * { flex: 1; }
+  .ram { margin: 0; padding: .5rem .6rem; border-radius: 8px; background: var(--warn-soft); border: 1px solid var(--warn); font-size: .8rem; }
   .lbl { display: grid; gap: .25rem; font-size: .8rem; color: var(--muted); }
   .chk { display: flex; gap: .45rem; align-items: center; font-size: .85rem; }
   .big { min-height: 2.8rem; font-size: 1rem; }

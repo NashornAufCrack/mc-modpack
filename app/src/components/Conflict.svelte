@@ -16,7 +16,7 @@
       {#each [c.x, ...ys] as s, i}
         {@const m = pack.BY[s]}{@const im = pack.img(s).slice(0, 2)}
         <div class="opt" class:new={i === 0}>
-          <div class="im">{#each im as u, j}<button class="z" onclick={() => (ui.lightbox = { slug: s, i: j })} aria-label="Bild vergrößern"><img src={u} alt="" loading="lazy" /></button>{:else}<span class="muted">kein Bild</span>{/each}</div>
+          <div class="im">{#each im as u, j}<button class="z" onclick={() => (ui.lightbox = { slug: s, i: j })} aria-label="Bild vergrößern"><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" /></button>{:else}<span class="muted">kein Bild</span>{/each}</div>
           <h3>{m.name} {#if i === 0}<span class="badge info">neu</span>{:else}<span class="badge plain">im Pack</span>{/if}</h3>
           <p>{m.notiz}</p>
           {#if pack.cost(s) >= 5}<span class="badge warn">kostet spürbar FPS</span>{/if}

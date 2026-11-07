@@ -11,14 +11,14 @@
   const vids = $derived(pack.videos(m.slug).length);
   const snd = $derived(pack.proben(m.slug));
   let audio: HTMLAudioElement | null = null; let playing = $state(false);
-  function toggle() { if (!audio) { audio = new Audio(SOUNDBASE + snd[0].datei); audio.onended = () => (playing = false); } if (playing) { audio.pause(); playing = false; } else { audio.currentTime = 0; audio.play(); playing = true; } }
+  function toggle() { if (!audio) { audio = new Audio(SOUNDBASE + snd[0].datei); audio.onended = () => (playing = false); } if (playing) { audio.pause(); playing = false; } else { audio.currentTime = 0; playing = true; audio.play().catch(() => (playing = false)); } }
 </script>
 
 <article class="card" class:on class:lk class:compact>
   <button class="hit" aria-pressed={on} aria-label="{m.name}: {lk ? 'immer dabei, Details zeigen' : on ? 'im Pack, klicken zum Entfernen' : 'klicken zum Hinzufügen'}" onclick={() => (lk ? (ui.detail = m.slug) : ui.pick(m.slug))}></button>
   {#if !compact}
     <div class="thumbs">
-      {#each imgs as u, i}<button class="zoom" onclick={() => (ui.lightbox = { slug: m.slug, i })} aria-label="Bild {i + 1} von {m.name} vergrößern"><img src={u} alt="" loading="lazy" decoding="async" onerror={(e) => (e.currentTarget as HTMLElement).parentElement?.remove()} /></button>{:else}{#if snd.length}<span class="ph sndph" aria-hidden="true">♪</span>{:else}<span class="ph">{m.name.slice(0, 1)}</span>{/if}{/each}
+      {#each imgs as u, i}<button class="zoom" onclick={() => (ui.lightbox = { slug: m.slug, i })} aria-label="Bild {i + 1} von {m.name} vergrößern"><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" decoding="async" onerror={(e) => (e.currentTarget as HTMLElement).parentElement?.remove()} /></button>{:else}{#if snd.length}<span class="ph sndph" aria-hidden="true">♪</span>{:else}<span class="ph">{m.name.slice(0, 1)}</span>{/if}{/each}
       {#if snd.length}<button class="play" onclick={toggle} aria-label="{playing ? 'Hörprobe stoppen' : 'Hörprobe abspielen'}: {m.name}">{playing ? "■" : "▶"} Hörprobe</button>{/if}
       {#if vids}<span class="vid" aria-hidden="true">▶ Video</span>{/if}
     </div>
