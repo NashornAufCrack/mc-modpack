@@ -6,7 +6,7 @@ hash = "9c2add2ebcc269ef72fbae37c3c56b3178d3d800b0b2301873ec829408526f9d"
 
 [[files]]
 file = "config/defaultoptions/options.txt"
-hash = "1180be08b46c3e1646764b229dbb27396e2b6edc6766736346cb2b979bdf0d02"
+hash = "44afc8faaa7066bdddd06b9c251e9cfe4c1ecf2a73f484f9265557dbb750a1ae"
 
 [[files]]
 file = "mods/3dskinlayers.pw.toml"
