@@ -120,7 +120,7 @@ for (let i = 0; i < cfC.length; i += 100) { try { for (const p of await mr(`/pro
 const cfPick = cand.curseforge.filter(c => WANT_CF.has(c.slug) && c.datei);
 for (const c of cfWish) if (!cfPick.some(x => x.slug === c.slug)) cfPick.push(c);
 log.push(`CurseForge: ${cfC.length} mit 26.3-Fabric-Datei, ${cfC.length - onMR.size} nicht auf Modrinth, ausgewählt: ${cfPick.map(c => c.slug).join(", ")}`);
-fs.rmSync("cf", { recursive: true, force: true }); fs.mkdirSync("cf", { recursive: true });
+fs.mkdirSync("cf", { recursive: true }); // vorhandene Spiegel bleiben erhalten (Katalog verweist darauf)
 for (const c of cfPick) {
   const f = c.datei; let url = f.url, sha1 = f.sha1, sha512 = null, size = f.size;
   if (f.url) { // privates Projekt: gewünschte Mods werden immer gespiegelt
