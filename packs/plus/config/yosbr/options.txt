@@ -5,5 +5,5 @@ enableVsync:false
 renderClouds:"false"
 mipmapLevels:4
 biomeBlendRadius:2
-resourcePacks:["vanilla", "file/Luminous Lanterns.zip", "file/LowOnFire v26.2§8.zip", "file/Fresh Food.zip", "file/HyperPunchy-v2.8.zip", "file/Fluid & Foolish 1.0.1.zip", "file/FreshAnimations_v1.11.2_26.1+.zip"]
+resourcePacks:["vanilla", "file/LowOnFire v26.2§8.zip", "file/Fresh Food.zip", "file/Luminous Lanterns.zip", "file/HyperPunchy-v2.8.zip", "file/Fluid & Foolish 1.0.1.zip", "file/FreshAnimations_v1.11.2_26.1+.zip"]
 key_key.saveToolbarActivator:key.keyboard.unknown
