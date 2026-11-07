@@ -76,7 +76,7 @@ for (const q of WANT_Q) {
         const f = (c.latestFiles || []).filter(f => f.gameVersions.includes("26.3") && (c.classId !== 6 || f.gameVersions.includes("Fabric"))).sort((a, b) => b.id - a.id)[0];
         if (f) { cfHit = { slug: c.slug, name: c.name, dl: c.downloadCount, desc: c.summary, url: c.links?.websiteUrl, bilder: (c.screenshots || []).map(x => x.url), verteilen: c.allowModDistribution, pt: c.classId === 12 ? "r" : c.classId === 6552 ? "s" : "m",
           datei: { id: f.id, url: f.downloadUrl, name: f.fileName, sha1: (f.hashes || []).find(x => x.algo === 1)?.value, size: f.fileLength, versionen: f.gameVersions } }; break; } } }
-    if (cfHit) { if (have.has(cfHit.slug)) { log.push(`Wunsch schon im Katalog (CF): ${q}`); continue; } cfWish.push(cfHit); log.push(`Wunsch: ${q} -> CurseForge ${cfHit.slug}`); continue; }
+    if (cfHit) { cfWish.push(cfHit); log.push(`Wunsch: ${q} -> CurseForge ${cfHit.slug}`); continue; }
     // nicht für 26.3: trotzdem melden, welche Versionen es gibt
     const any = (await mr(`/search?limit=10&query=${encodeURIComponent(q)}`)).hits.find(x => fits(q, x.title) || fits(q, x.slug));
     log.push(any ? `Wunsch noch nicht für 26.3: ${q} -> ${any.slug} (neueste: ${(any.versions || []).slice(-1)[0]})` : `Wunsch nicht gefunden: ${q}`);
