@@ -24,7 +24,11 @@ jobs:
               ffmpeg -loglevel error -y -i "$f" -vf "select='gt(scene,0.25)+not(mod(n\,300))',scale=320:-1,tile=4x4" -frames:v 1 -vsync vfr "review/$id.jpg"
               s=$(ls tmp/$id*.srt 2>/dev/null | head -1); [ -n "$s" ] && grep -v -- '-->' "$s" | grep -v '^[0-9]*$' | awk '!seen[$0]++' | head -c 3000 > "review/$id.txt"
               echo "$id ok"
-            else echo "$id FEHLT"; fi
+            else
+              # YouTube sperrt Downloads von Cloud-Servern: öffentliche Vorschau-Bilder (Titelbild + 25/50/75 %) als Kontaktbogen
+              n=0; for k in maxresdefault hq1 hq2 hq3; do curl -sf -o "tmp/$id-$k.jpg" "https://i.ytimg.com/vi/$id/$k.jpg" && n=$((n+1)); done
+              if [ $n -gt 0 ]; then ffmpeg -loglevel error -y $(for k in maxresdefault hq1 hq2 hq3; do [ -f tmp/$id-$k.jpg ] && echo "-i tmp/$id-$k.jpg"; done) -filter_complex "$(i=0; for k in maxresdefault hq1 hq2 hq3; do [ -f tmp/$id-$k.jpg ] && { printf '[%d]scale=480:270,setsar=1[v%d];' $i $i; i=$((i+1)); }; done; for j in $(seq 0 $((i-1))); do printf '[v%d]' $j; done; printf 'xstack=inputs=%d:layout=%s' $i "$( [ $i -eq 4 ] && echo '0_0|w0_0|0_h0|w0_h0' || [ $i -eq 3 ] && echo '0_0|w0_0|0_h0' || [ $i -eq 2 ] && echo '0_0|w0_0' || echo '0_0')")" "review/$id.jpg" && echo "$id bilder"; else echo "$id FEHLT"; fi
+            fi
           done
       - run: |
           git config user.name "video-pruefung"
