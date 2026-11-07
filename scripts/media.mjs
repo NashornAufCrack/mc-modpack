@@ -172,7 +172,7 @@ const DIMS = fs.existsSync("data/media-dims.json") ? JSON.parse(fs.readFileSync(
 for (const m of mods) {
   const e = media[m.slug]; if (!e) continue;
   const list = [...new Set([...(e.hq || []), ...(e.bilder || [])])];
-  for (const url of list.slice(0, 8)) {
+  for (const url of list.slice(0, 16)) {
     if (DIMS[url] || measured > 2500) continue;
     try { const r = await fetch(url, { headers: { Range: "bytes=0-131071", "User-Agent": "mc-modpack media" } }); if (!r.ok) { DIMS[url] = [0, 0]; continue; } DIMS[url] = dims(await r.arrayBuffer()) || [0, 0]; measured++; } catch { DIMS[url] = [0, 0]; }
   }
