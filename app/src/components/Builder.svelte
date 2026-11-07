@@ -10,7 +10,7 @@
   const XF = [["sel", "Ausgewählt"], ["rec", "Empfohlen"], ["van", "Läuft auf Vanilla-Server"], ["sug", "Vom Assistenten"]] as const;
   const TABNOTE: Record<string, string> = {
     m: "Mods verändern das Spiel selbst. Filtere nach Bereich oder suche direkt.",
-    s: "Shader berechnen Licht, Schatten, Wasser und Himmel neu. Es ist immer nur einer aktiv, Iris kommt automatisch mit.",
+    s: "Shader berechnen Licht, Schatten, Wasser und Himmel neu. Du kannst mehrere mitnehmen und im Spiel zwischen ihnen wechseln. Iris kommt automatisch mit.",
     r: "Resource Packs tauschen Texturen, 3D-Modelle und Sounds aus. Die Reihenfolge setzt die Website automatisch richtig.",
     d: "Datapacks ändern Welt-Generierung oder Spielregeln und wirken nur in neuen Welten.",
   };

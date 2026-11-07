@@ -49,6 +49,22 @@ if (CF) {
   }
 } else log.push("CurseForge-Key: fehlt");
 
+// ---------- Stufe B2: CurseForge-Screenshots auch für Modrinth-Einträge ohne gute Bilder (Namensabgleich) ----------
+if (CF) {
+  const nn = x => String(x || "").toLowerCase().replace(/\[.*?\]|\(.*?\)/g, "").replace(/[^a-z0-9]/g, "");
+  let nb = 0, hit = 0;
+  for (const m of mods.filter(m => !m.cf)) {
+    const e = media[m.slug] || {}; if ((e.breite || 0) >= 1280 || e.cfSuche) continue; if (nb >= 300) break; nb++;
+    try { const r = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&searchFilter=${encodeURIComponent(m.name)}&pageSize=10&sortField=2&sortOrder=desc`, { headers: { "x-api-key": CF, Accept: "application/json" } });
+      const ee = (media[m.slug] ||= {}); ee.cfSuche = new Date().toISOString().slice(0, 10); if (!r.ok) continue;
+      const d = (await r.json()).data.find(c => nn(c.name) === nn(m.name) || c.slug === m.slug); if (!d || !(d.screenshots || []).length) continue; hit++;
+      ee.hq = [...new Set([...(ee.hq || []), ...d.screenshots.map(x => x.url)])].slice(0, 16); ee.bilder = [...new Set([...(ee.bilder || []), ...d.screenshots.map(x => x.thumbnailUrl || x.url)])].slice(0, 16);
+    } catch {}
+    await sleep(120);
+  }
+  log.push(`CurseForge-Bildersuche für Modrinth-Einträge: ${nb}, mit Bildern: ${hit}`);
+}
+
 // ---------- Stufe C: YouTube ----------
 const YT = process.env.YOUTUBE_API_KEY;
 function score(m, v) {
@@ -94,20 +110,20 @@ if (YT) {
 import { execFileSync } from "node:child_process";
 const MAX_DLP = Number(process.env.MAX_DLP || 250);
 const has = m => { const e = media[m.slug] || {}; return (e.bilder || []).length || (e.videos || []).length; };
-const todoD = mods.filter(m => { const e = media[m.slug] || {}; return !e.dlp && !(e.videos || []).length; })
+const todoD = mods.filter(m => { const e = media[m.slug] || {}; const ok = (e.videos || []).some(v => v.status === "auto" || v.status === "ok"); return !ok && (!e.dlp || (!e.dlp2 && (e.breite || 0) < 1280)); })
   .sort((a, b) => Number(!!has(a)) - Number(!!has(b)) || Number(a.cat === "P") - Number(b.cat === "P") || (b.downloadsK || 0) - (a.downloadsK || 0));
 let nd = 0, okD = 0;
 for (const m of todoD) {
   if (nd >= MAX_DLP) break; nd++;
-  const q = `${m.name} minecraft ${PT[m.pt || "m"]}`;
+  const zweite = !!(media[m.slug] || {}).dlp; const q = zweite ? `${m.name} ${m.pt === "r" ? "texture pack" : m.pt === "s" ? "shaders" : "mod"} showcase` : `${m.name} minecraft ${PT[m.pt || "m"]}`;
   let j; try { j = JSON.parse(execFileSync("yt-dlp", ["--flat-playlist", "-J", "--no-warnings", `ytsearch8:${q}`], { encoding: "utf8", timeout: 60000, maxBuffer: 1 << 24 })); }
   catch (e) { log.push(`yt-dlp Fehler bei ${m.slug}: ${String(e.stderr || e).slice(0, 160)}`); if (nd > 3 && !okD) break; continue; }
-  const e = (media[m.slug] ||= {}); e.dlp = new Date().toISOString().slice(0, 10);
+  const e = (media[m.slug] ||= {}); e[zweite ? "dlp2" : "dlp"] = new Date().toISOString().slice(0, 10);
   const found = (j.entries || []).filter(v => v.id && v.duration).map(v => { const sv = { snippet: { title: v.title || "", description: v.description || "", channelTitle: v.channel || v.uploader || "" }, contentDetails: { duration: `PT${Math.floor(v.duration / 60)}M` } };
     const s = score(m, sv); return { id: v.id, titel: v.title, kanal: sv.snippet.channelTitle, minuten: s.min, punkte: s.p, warum: s.why, quelle: "yt-dlp" }; })
     .filter(v => v.punkte >= 3).sort((a, b) => b.punkte - a.punkte).slice(0, 3);
   if (found.length) okD++;
-  e.videos = [...(e.videos || []).filter(v => v.quelle !== "yt-dlp"), ...found];
+  e.videos = [...(e.videos || []).filter(v => !found.some(f => f.id === v.id)), ...found];
   await sleep(400);
 }
 log.push(`yt-dlp-Suchen: ${nd}, mit Treffer: ${okD}, noch offen: ${Math.max(0, todoD.length - nd)}`);
