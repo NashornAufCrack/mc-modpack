@@ -1,0 +1,35 @@
+name: Video-Prüfung
+# Lädt Videos in niedriger Auflösung, macht Kontaktbögen (Szenenwechsel) + Untertitel, damit Claude prüfen kann, ob das Video die Mod zeigt.
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: "YouTube-IDs, durch Komma getrennt"
+        required: true
+permissions:
+  contents: write
+concurrency: videocheck
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q yt-dlp && sudo apt-get -qq install -y ffmpeg >/dev/null
+      - run: |
+          mkdir -p review tmp
+          for id in $(echo "${{ inputs.ids }}" | tr ',' ' '); do
+            yt-dlp -q --no-warnings -f "worst[height>=240]/worst" --download-sections "*0-150" -o "tmp/$id.%(ext)s" --write-auto-subs --sub-langs "en.*,de.*" --convert-subs srt "https://www.youtube.com/watch?v=$id" 2>&1 | tail -2 || true
+            f=$(ls tmp/$id.* 2>/dev/null | grep -v srt | head -1)
+            if [ -n "$f" ]; then
+              ffmpeg -loglevel error -y -i "$f" -vf "select='gt(scene,0.25)+not(mod(n\,300))',scale=320:-1,tile=4x4" -frames:v 1 -vsync vfr "review/$id.jpg"
+              s=$(ls tmp/$id*.srt 2>/dev/null | head -1); [ -n "$s" ] && grep -v -- '-->' "$s" | grep -v '^[0-9]*$' | awk '!seen[$0]++' | head -c 3000 > "review/$id.txt"
+              echo "$id ok"
+            else echo "$id FEHLT"; fi
+          done
+      - run: |
+          git config user.name "video-pruefung"
+          git config user.email "actions@users.noreply.github.com"
+          git add review
+          git diff --cached --quiet || git commit -m "Video-Prüfung $(date +%F)"
+          git pull --rebase -q || true
+          git push
