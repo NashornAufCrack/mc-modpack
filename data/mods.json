@@ -5503,5 +5503,155 @@
   "gal": 0,
   "vn": "1.10.187-fabric",
   "img": []
+ },
+ {
+  "slug": "moonrise-opt",
+  "name": "Moonrise",
+  "cat": "P",
+  "sub": "Performance",
+  "ampel": "Y",
+  "rolle": "A",
+  "downloadsK": 248,
+  "notiz": "Optimiert Chunks und Licht im Singleplayer. Nicht zusammen mit C2ME.",
+  "quellen": [
+   "Video"
+  ],
+  "mc": "26.3",
+  "loader": "fabric",
+  "einstellungen": null,
+  "ueberschneidung": "",
+  "pt": "m",
+  "gal": 0,
+  "vn": "1.2.2+35bacce",
+  "img": []
+ },
+ {
+  "slug": "async",
+  "name": "Async",
+  "cat": "P",
+  "sub": "Performance",
+  "ampel": "Y",
+  "rolle": "A",
+  "downloadsK": 793,
+  "notiz": "Verarbeitet Mobs auf mehreren CPU-Kernen. Alpha, nicht zusammen mit Moonrise.",
+  "quellen": [
+   "Video"
+  ],
+  "mc": "26.3",
+  "loader": "fabric",
+  "einstellungen": null,
+  "ueberschneidung": "",
+  "pt": "m",
+  "gal": 0,
+  "vn": "0.2.5+alpha-26.3",
+  "img": []
+ },
+ {
+  "slug": "entity-view-distance",
+  "name": "Entity View Distance",
+  "cat": "P",
+  "sub": "Performance",
+  "ampel": "Y",
+  "rolle": "O",
+  "downloadsK": 4822,
+  "notiz": "Sichtweite für Mobs getrennt einstellbar, spart Leistung bei vielen Tieren.",
+  "quellen": [
+   "Video"
+  ],
+  "mc": "26.3",
+  "loader": "fabric",
+  "einstellungen": null,
+  "ueberschneidung": "",
+  "pt": "m",
+  "gal": 1,
+  "vn": "1.9.0+26.2",
+  "img": [
+   "https://cdn.modrinth.com/data/ihnBJ6on/images/0b7edd283743014baab25cef27c4acd6d2756df5.png"
+  ]
+ },
+ {
+  "slug": "packet-fixer",
+  "name": "Packet Fixer",
+  "cat": "P",
+  "sub": "Basis & Werkzeuge",
+  "ampel": "Y",
+  "rolle": "O",
+  "downloadsK": 31129,
+  "notiz": "Behebt Verbindungsabbrüche durch zu große Datenpakete, nützlich bei großen Packs auf Servern.",
+  "quellen": [
+   "Video"
+  ],
+  "mc": "26.3",
+  "loader": "fabric",
+  "einstellungen": null,
+  "ueberschneidung": "",
+  "pt": "m",
+  "gal": 0,
+  "vn": "3.3.6",
+  "img": []
+ },
+ {
+  "slug": "ixeris",
+  "name": "Ixeris",
+  "cat": "P",
+  "sub": "Performance",
+  "ampel": "G",
+  "rolle": "O",
+  "downloadsK": 15121,
+  "notiz": "Flüssigere Maus- und Tasteneingabe durch gepufferte Eingaben.",
+  "quellen": [
+   "Video"
+  ],
+  "mc": "26.3",
+  "loader": "fabric",
+  "einstellungen": null,
+  "ueberschneidung": "",
+  "pt": "m",
+  "gal": 0,
+  "vn": "4.6.11+26.3-fabric",
+  "img": []
+ },
+ {
+  "slug": "particle-core",
+  "name": "Particle Core",
+  "cat": "P",
+  "sub": "Performance",
+  "ampel": "G",
+  "rolle": "O",
+  "downloadsK": 18418,
+  "notiz": "Partikel-Optimierung mit Culling. Mit Particle Rain Culling-Modus auf „Bounding Box“ stellen.",
+  "quellen": [
+   "Video"
+  ],
+  "mc": "26.3",
+  "loader": "fabric",
+  "einstellungen": null,
+  "ueberschneidung": "",
+  "pt": "m",
+  "gal": 0,
+  "vn": "0.3.3+fix1+26.2",
+  "img": []
+ },
+ {
+  "slug": "studious-keybinds",
+  "name": "Studious Keybinds",
+  "cat": "P",
+  "sub": "Basis & Werkzeuge",
+  "ampel": "G",
+  "rolle": "O",
+  "downloadsK": 65,
+  "notiz": "Zeigt deine Tastatur und alle Belegungen, direkt im Spiel änderbar. Nur auf CurseForge, kommt über das Auto-Update-Pack.",
+  "quellen": [
+   "CF"
+  ],
+  "mc": "26.3",
+  "loader": "fabric",
+  "einstellungen": null,
+  "ueberschneidung": "",
+  "pt": "m",
+  "gal": 2,
+  "vn": "",
+  "img": [],
+  "cf": "https://www.curseforge.com/minecraft/mc-mods/studious-keybinds"
  }
 ]

@@ -1126,6 +1126,72 @@
     "enderscape",
     "nullscape"
    ]
+  },
+  {
+   "id": "chunks",
+   "art": "K",
+   "titel": "Chunk- und Server-Optimierung",
+   "frage": "C2ME, Moonrise und Async beschleunigen alle den internen Server. Moonrise ist laut Modrinth mit C2ME inkompatibel, Async mit Moonrise.",
+   "optionen": [
+    {
+     "id": "c2me",
+     "label": "C2ME + ScalableLux",
+     "behalten": [
+      "c2me-fabric",
+      "scalablelux"
+     ],
+     "weg": [
+      "moonrise-opt",
+      "async"
+     ],
+     "pro": [
+      "Sehr schnelle Chunk-Generierung",
+      "Von Lithium und ScalableLux-Autoren empfohlen"
+     ],
+     "contra": [
+      "Beide noch Alpha-Versionen für 26.3"
+     ]
+    },
+    {
+     "id": "moonrise",
+     "label": "Moonrise",
+     "behalten": [
+      "moonrise-opt"
+     ],
+     "weg": [
+      "c2me-fabric",
+      "scalablelux",
+      "async"
+     ],
+     "pro": [
+      "Stabile Release-Version",
+      "Chunks und Licht in einem Mod"
+     ],
+     "contra": [
+      "Inkompatibel mit C2ME und Async"
+     ]
+    },
+    {
+     "id": "keins",
+     "label": "Keins davon",
+     "behalten": [],
+     "weg": [
+      "c2me-fabric",
+      "scalablelux",
+      "moonrise-opt",
+      "async"
+     ],
+     "pro": [
+      "Kein Risiko, Lithium reicht für Singleplayer meist"
+     ],
+     "contra": [
+      "Langsamere Welterzeugung, besonders mit Voxy-Import"
+     ]
+    }
+   ],
+   "empfehlung": "keins",
+   "quelle": "Modrinth-Abhängigkeiten",
+   "vorschau": []
   }
  ],
  "beziehungen": [
@@ -1407,6 +1473,30 @@
     "fresh-animations"
    ],
    "text": "Objects ist eine offizielle FA-Erweiterung."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "particle-core",
+    "particle-rain"
+   ],
+   "text": "Laut Particle Rain flackern Effekte mit Particle Core. Lösung: Culling-Modus auf „Bounding Box“."
+  },
+  {
+   "art": "K",
+   "mods": [
+    "moonrise-opt",
+    "c2me-fabric"
+   ],
+   "text": "Laut Modrinth inkompatibel."
+  },
+  {
+   "art": "K",
+   "mods": [
+    "async",
+    "moonrise-opt"
+   ],
+   "text": "Laut Modrinth inkompatibel."
   }
  ]
 }
