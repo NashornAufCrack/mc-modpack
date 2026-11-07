@@ -71,12 +71,12 @@ const cfC = cand.curseforge.filter(c => c.datei && c.datei.versionen.includes("2
 const onMR = new Set();
 for (let i = 0; i < cfC.length; i += 100) { try { for (const p of await mr(`/projects?ids=${encodeURIComponent(JSON.stringify(cfC.slice(i, i + 100).map(c => c.slug)))}`)) onMR.add(p.slug); } catch {} await sleep(200); }
 // Nur gezielt gewünschte CurseForge-Mods (Namensabgleich mit Modrinth ist zu unzuverlässig für Automatik)
-const cfPick = cand.curseforge.filter(c => WANT_CF.has(c.slug) && c.datei && !have.has(c.slug));
+const cfPick = cand.curseforge.filter(c => WANT_CF.has(c.slug) && c.datei);
 log.push(`CurseForge: ${cfC.length} mit 26.3-Fabric-Datei, ${cfC.length - onMR.size} nicht auf Modrinth, ausgewählt: ${cfPick.map(c => c.slug).join(", ")}`);
 fs.rmSync("cf", { recursive: true, force: true }); fs.mkdirSync("cf", { recursive: true });
 for (const c of cfPick) {
   const f = c.datei; let url = f.url, sha1 = f.sha1, sha512 = null, size = f.size;
-  if (c.verteilen && f.url) {
+  if (f.url) { // privates Projekt: gewünschte Mods werden immer gespiegelt
     try { const r = await fetch(f.url); if (!r.ok) throw new Error(r.status); const buf = Buffer.from(await r.arrayBuffer());
       const name = f.name.replace(/[^\w.+-]+/g, "_"); fs.writeFileSync("cf/" + name, buf);
       sha1 = crypto.createHash("sha1").update(buf).digest("hex"); sha512 = crypto.createHash("sha512").update(buf).digest("hex"); size = buf.length;
@@ -84,7 +84,7 @@ for (const c of cfPick) {
     } catch (e) { log.push("Spiegeln fehlgeschlagen: " + c.slug + " " + e); url = null; }
   } else url = null;
   const deps = [];
-  out.mods.push({ slug: c.slug, name: c.name, cat: "V", sub: "HUD & Bedienung", ampel: "G", rolle: "O", downloadsK: Math.round(c.dl / 1000), notiz: c.desc, quellen: ["CF"], mc: "26.3", loader: "fabric", einstellungen: null, ueberschneidung: "", pt: "m", gal: c.bilder.length, vn: f.name, img: c.bilder.slice(0, 6), cf: c.url, neu: true, cfVerteilen: c.verteilen });
+  if (!have.has(c.slug)) out.mods.push({ slug: c.slug, name: c.name, cat: "V", sub: "HUD & Bedienung", ampel: "G", rolle: "O", downloadsK: Math.round(c.dl / 1000), notiz: c.desc, quellen: ["CF"], mc: "26.3", loader: "fabric", einstellungen: null, ueberschneidung: "", pt: "m", gal: c.bilder.length, vn: f.name, img: c.bilder.slice(0, 6), cf: c.url, neu: true, cfVerteilen: c.verteilen });
   if (url) out.files[c.slug] = [url, f.name.replace(/[^\w.+-]+/g, "_"), sha1, sha512, size, deps, f.name, "", "m"];
 }
 fs.writeFileSync("data/auto.json", JSON.stringify(out));
