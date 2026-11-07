@@ -1,0 +1,1641 @@
+{
+ "entscheidungen": [
+  {
+   "id": "ego-animation",
+   "art": "D",
+   "titel": "Ego-Animationen",
+   "frage": "Wer bestimmt, wie Hände und Items in der Ego-Sicht aussehen?",
+   "optionen": [
+    {
+     "id": "punchy",
+     "label": "Punchy! + Hyper Punchy",
+     "behalten": [
+      "punchy-fpa",
+      "hyper-punchy"
+     ],
+     "weg": [
+      "first-person-model",
+      "interactivestuff"
+     ],
+     "pro": [
+      "Dein Wunsch: Punchy als Basis",
+      "Sehr flüssige Animationen mit Item-Physik",
+      "Offizielle Collection mit über 70 Kompatibilitäts-Packs"
+     ],
+     "contra": [
+      "Den eigenen Körper sieht man beim Runterschauen nicht"
+     ]
+    },
+    {
+     "id": "fpm",
+     "label": "First-person Model",
+     "behalten": [
+      "first-person-model",
+      "not-enough-animations"
+     ],
+     "weg": [
+      "punchy-fpa",
+      "hyper-punchy"
+     ],
+     "pro": [
+      "Beine und Körper in der Ego-Sicht sichtbar"
+     ],
+     "contra": [
+      "Braucht Not Enough Animations",
+      "Kaum eigene Animationen, keine Punchy-Packs nutzbar"
+     ]
+    }
+   ],
+   "empfehlung": "punchy",
+   "quelle": "Projektseiten Punchy!, First-person Model, InteractiveStuff",
+   "vorschau": [
+    "punchy-fpa",
+    "hyper-punchy",
+    "first-person-model"
+   ]
+  },
+  {
+   "id": "third-person",
+   "art": "D",
+   "titel": "Third-Person-Animationen",
+   "frage": "Wer animiert deinen Spieler, wenn andere dich sehen oder du in die Third-Person-Ansicht wechselst?",
+   "optionen": [
+    {
+     "id": "moves",
+     "label": "Punchy! Moves + Fluid & Foolish",
+     "behalten": [
+      "punchymoves",
+      "fluid-foolish"
+     ],
+     "weg": [
+      "not-enough-animations",
+      "fa-player-extension"
+     ],
+     "pro": [
+      "Gleiche Familie wie Punchy, ein Stil",
+      "Emotes und frei einstellbare Third-Person-Kamera",
+      "Spatial GUI ist ausdrücklich kompatibel"
+     ],
+     "contra": [
+      "Sehr neu (v1.0.7, rund 95.000 Downloads)",
+      "Animationen kommen nur aus einem Pack, Auswahl noch klein"
+     ]
+    },
+    {
+     "id": "nea",
+     "label": "Not Enough Animations",
+     "behalten": [
+      "not-enough-animations"
+     ],
+     "weg": [
+      "punchymoves",
+      "fluid-foolish",
+      "fa-player-extension"
+     ],
+     "pro": [
+      "Bewährt, über 93 Mio. Downloads",
+      "Vanilla-nahe Gesten: Essen, Karten, Leitern",
+      "Punchy-Packs nennen NEA als kompatibel"
+     ],
+     "contra": [
+      "Weniger Persönlichkeit, keine Emotes"
+     ]
+    },
+    {
+     "id": "fa",
+     "label": "Fresh Animations: Player",
+     "behalten": [
+      "fa-player-extension"
+     ],
+     "weg": [
+      "punchymoves",
+      "fluid-foolish",
+      "not-enough-animations"
+     ],
+     "pro": [
+      "Gleicher Stil wie die Mob-Animationen von Fresh Animations"
+     ],
+     "contra": [
+      "Ändert das Spieler-Modell über EMF. 3D Skin Layers warnt vor verschobenen Skin-Teilen bei solchen Packs."
+     ]
+    }
+   ],
+   "empfehlung": "moves",
+   "quelle": "Projektseiten Punchy! Moves, Not Enough Animations, 3D Skin Layers, 3D Held Lanterns for Punchy",
+   "vorschau": [
+    "punchymoves",
+    "not-enough-animations",
+    "fa-player-extension"
+   ]
+  },
+  {
+   "id": "laternen",
+   "art": "D",
+   "titel": "3D-Laternen und Fackeln",
+   "frage": "Mit Punchy sollten Laternen in der Hand Punchy-kompatibel sein.",
+   "optionen": [
+    {
+     "id": "luminous",
+     "label": "Luminous Lanterns x Punchy!",
+     "behalten": [
+      "luminous-lanterns"
+     ],
+     "weg": [
+      "better-lanterns",
+      "drigo-3d-lanterns-x-punchy"
+     ],
+     "pro": [
+      "Inklusive Kupfer-Laternen",
+      "Block, Item und Hand in 3D",
+      "In der offiziellen Punchy-Collection"
+     ],
+     "contra": [
+      "Noch klein (rund 11.000 Downloads)"
+     ]
+    },
+    {
+     "id": "drigo",
+     "label": "Drigo 3D Lanterns x Punchy",
+     "behalten": [
+      "drigo-3d-lanterns-x-punchy"
+     ],
+     "weg": [
+      "better-lanterns",
+      "luminous-lanterns"
+     ],
+     "pro": [
+      "Sehr verbreitet (fast 2 Mio. Downloads)",
+      "In der offiziellen Punchy-Collection"
+     ],
+     "contra": [
+      "Kupfer-Unterstützung nicht erwähnt"
+     ]
+    },
+    {
+     "id": "better",
+     "label": "Better Lanterns (bisher)",
+     "behalten": [
+      "better-lanterns"
+     ],
+     "weg": [
+      "luminous-lanterns",
+      "drigo-3d-lanterns-x-punchy"
+     ],
+     "pro": [
+      "Schöne 3D-Ketten und Laternen"
+     ],
+     "contra": [
+      "Nicht für Punchy gemacht, in der Hand eventuell flach"
+     ]
+    }
+   ],
+   "empfehlung": "luminous",
+   "quelle": "Punchy! Compat Collection",
+   "vorschau": [
+    "luminous-lanterns",
+    "drigo-3d-lanterns-x-punchy",
+    "better-lanterns"
+   ]
+  },
+  {
+   "id": "menues",
+   "art": "D",
+   "titel": "Animierte Menüs",
+   "frage": "Spatial GUI warnt vor Konflikten mit anderen Mods, die die Menüs verändern.",
+   "optionen": [
+    {
+     "id": "spatial",
+     "label": "Spatial GUI",
+     "behalten": [
+      "spatial-gui"
+     ],
+     "weg": [
+      "immersive-ui"
+     ],
+     "pro": [
+      "Hat ausdrücklich Kompatibilität mit Punchy und Punchy! Moves",
+      "Auffälliger, räumlicher Effekt"
+     ],
+     "contra": [
+      "Weniger vanilla, eher ein Hingucker"
+     ]
+    },
+    {
+     "id": "immersive",
+     "label": "Immersive UI",
+     "behalten": [
+      "immersive-ui"
+     ],
+     "weg": [
+      "spatial-gui"
+     ],
+     "pro": [
+      "Dezenter, wirkt wie ein Vanilla-Update"
+     ],
+     "contra": [
+      "Keine Punchy-Kompatibilität erwähnt"
+     ]
+    },
+    {
+     "id": "keins",
+     "label": "Keins von beiden",
+     "behalten": [],
+     "weg": [
+      "spatial-gui",
+      "immersive-ui"
+     ],
+     "pro": [
+      "Null Risiko"
+     ],
+     "contra": [
+      "Menüs bleiben statisch"
+     ]
+    }
+   ],
+   "empfehlung": "spatial",
+   "quelle": "Spatial-GUI-Projektseite",
+   "vorschau": [
+    "spatial-gui",
+    "immersive-ui"
+   ]
+  },
+  {
+   "id": "vollbild",
+   "art": "K",
+   "titel": "Randloser Vollbildmodus",
+   "frage": "Cubes Without Borders und Borderless Fullscreen sind laut Modrinth inkompatibel.",
+   "optionen": [
+    {
+     "id": "borderless",
+     "label": "Borderless Fullscreen",
+     "behalten": [
+      "borderless-fullscreen"
+     ],
+     "weg": [
+      "cubes-without-borders"
+     ],
+     "pro": [
+      "Schlank, macht genau eine Sache"
+     ],
+     "contra": [
+      "Weniger Einstellungen"
+     ]
+    },
+    {
+     "id": "cubes",
+     "label": "Cubes Without Borders",
+     "behalten": [
+      "cubes-without-borders"
+     ],
+     "weg": [
+      "borderless-fullscreen"
+     ],
+     "pro": [
+      "Mehr Optionen, aktiv gepflegt"
+     ],
+     "contra": [
+      "Größer, mehr als nötig"
+     ]
+    }
+   ],
+   "empfehlung": "borderless",
+   "quelle": "Modrinth-Abhängigkeiten",
+   "vorschau": []
+  },
+  {
+   "id": "nether",
+   "art": "K",
+   "titel": "Nether (Vanilla Plus)",
+   "frage": "Incendium ist laut eigener Seite nicht mit Amplified Nether kompatibel.",
+   "optionen": [
+    {
+     "id": "incendium",
+     "label": "Incendium",
+     "behalten": [
+      "incendium"
+     ],
+     "weg": [
+      "amplified-nether"
+     ],
+     "pro": [
+      "Neue Biome und große Strukturen"
+     ],
+     "contra": [
+      "Mehr neuer Inhalt, weniger vanilla"
+     ]
+    },
+    {
+     "id": "amplified",
+     "label": "Amplified Nether",
+     "behalten": [
+      "amplified-nether"
+     ],
+     "weg": [
+      "incendium"
+     ],
+     "pro": [
+      "Nur höheres, dramatischeres Terrain, sonst vanilla"
+     ],
+     "contra": [
+      "Keine neuen Strukturen"
+     ]
+    },
+    {
+     "id": "keins",
+     "label": "Vanilla-Nether",
+     "behalten": [],
+     "weg": [
+      "incendium",
+      "amplified-nether"
+     ],
+     "pro": [
+      "Kein Risiko"
+     ],
+     "contra": [
+      "Nether bleibt, wie er ist"
+     ]
+    }
+   ],
+   "empfehlung": "amplified",
+   "quelle": "Incendium-Projektseite",
+   "vorschau": [
+    "incendium",
+    "amplified-nether"
+   ]
+  },
+  {
+   "id": "crosshair",
+   "art": "K",
+   "titel": "Dynamisches Fadenkreuz",
+   "frage": "Dynamic Crosshair kann laut eigener Seite Probleme mit ImmediatelyFast haben, einer Kern-Mod.",
+   "optionen": [
+    {
+     "id": "ohne",
+     "label": "Weglassen",
+     "behalten": [],
+     "weg": [],
+     "pro": [
+      "ImmediatelyFast bleibt ohne Risiko"
+     ],
+     "contra": [
+      "Normales Fadenkreuz"
+     ]
+    },
+    {
+     "id": "testen",
+     "label": "Trotzdem testen",
+     "behalten": [],
+     "weg": [],
+     "pro": [
+      "Fadenkreuz passt sich an"
+     ],
+     "contra": [
+      "Möglicher Konflikt mit einer Kern-Mod"
+     ]
+    }
+   ],
+   "empfehlung": "ohne",
+   "quelle": "Dynamic-Crosshair-Projektseite",
+   "vorschau": []
+  },
+  {
+   "id": "fussspuren",
+   "art": "D",
+   "titel": "Fußspuren",
+   "frage": "Soft Imprints und FootprintParticle hinterlassen beide Spuren. Auf Schnee und Sand doppelt.",
+   "optionen": [
+    {
+     "id": "imprints",
+     "label": "Soft Imprints",
+     "behalten": [
+      "snow-imprints"
+     ],
+     "weg": [
+      "footprintparticle"
+     ],
+     "pro": [
+      "Echte Abdrücke im Block",
+      "Rein clientseitig"
+     ],
+     "contra": [
+      "Nur Schnee und Sand"
+     ]
+    },
+    {
+     "id": "particle",
+     "label": "FootprintParticle",
+     "behalten": [
+      "footprintparticle"
+     ],
+     "weg": [
+      "snow-imprints"
+     ],
+     "pro": [
+      "Spuren auf vielen weichen Blöcken, auch von Mobs"
+     ],
+     "contra": [
+      "Modrinth sagt „Server nötig“, ungeprüft",
+      "Nur Partikel, verschwinden"
+     ]
+    }
+   ],
+   "empfehlung": "imprints",
+   "quelle": "Projektseiten",
+   "vorschau": [
+    "snow-imprints",
+    "footprintparticle"
+   ]
+  },
+  {
+   "id": "regen-sound",
+   "art": "D",
+   "titel": "Regengeräusche",
+   "frage": "Cool Rain und Gentler Weather Sounds verändern beide den Regen.",
+   "optionen": [
+    {
+     "id": "cool",
+     "label": "Cool Rain",
+     "behalten": [
+      "coolrain"
+     ],
+     "weg": [
+      "gentler-weather-sounds"
+     ],
+     "pro": [
+      "Regen klingt je nach Block anders (Blech, Holz, Laub)"
+     ],
+     "contra": [
+      "Kann bei starkem Regen viel werden"
+     ]
+    },
+    {
+     "id": "gentler",
+     "label": "Gentler Weather Sounds",
+     "behalten": [
+      "gentler-weather-sounds"
+     ],
+     "weg": [
+      "coolrain"
+     ],
+     "pro": [
+      "Ruhigere, angenehmere Vanilla-Sounds"
+     ],
+     "contra": [
+      "Kein Unterschied nach Untergrund"
+     ]
+    }
+   ],
+   "empfehlung": "cool",
+   "quelle": "Projektseiten",
+   "vorschau": []
+  },
+  {
+   "id": "shulker",
+   "art": "D",
+   "titel": "Shulker-Vorschau (Vanilla Plus)",
+   "frage": "Shulker Box Tooltip und Easy Shulker Boxes zeigen beide den Inhalt im Tooltip.",
+   "optionen": [
+    {
+     "id": "tooltip",
+     "label": "Shulker Box Tooltip",
+     "behalten": [
+      "shulkerboxtooltip"
+     ],
+     "weg": [
+      "easy-shulker-boxes"
+     ],
+     "pro": [
+      "Läuft auf Vanilla-Servern"
+     ],
+     "contra": [
+      "Nur Vorschau, kein Öffnen aus dem Inventar"
+     ]
+    },
+    {
+     "id": "easy",
+     "label": "Easy Shulker Boxes",
+     "behalten": [
+      "easy-shulker-boxes"
+     ],
+     "weg": [
+      "shulkerboxtooltip"
+     ],
+     "pro": [
+      "Vorschau und Öffnen aus dem Inventar"
+     ],
+     "contra": [
+      "Braucht die Mod auf dem Server"
+     ]
+    }
+   ],
+   "empfehlung": "tooltip",
+   "quelle": "Easy-Shulker-Boxes-Projektseite",
+   "vorschau": []
+  },
+  {
+   "id": "kontinente",
+   "art": "D",
+   "titel": "Kontinente (Vanilla Plus)",
+   "frage": "Tectonic formt seit v3 selbst kontinentartige Landmassen.",
+   "optionen": [
+    {
+     "id": "tectonic",
+     "label": "Nur Tectonic",
+     "behalten": [
+      "tectonic"
+     ],
+     "weg": [
+      "continents"
+     ],
+     "pro": [
+      "Ein Mod für Berge, Täler und Kontinente",
+      "Offiziell mit Terralith kompatibel"
+     ],
+     "contra": []
+    },
+    {
+     "id": "continents",
+     "label": "Continents statt Tectonic",
+     "behalten": [
+      "continents"
+     ],
+     "weg": [
+      "tectonic"
+     ],
+     "pro": [
+      "Echte große Ozeane zwischen Kontinenten"
+     ],
+     "contra": [
+      "Weniger spektakuläre Berge"
+     ]
+    }
+   ],
+   "empfehlung": "tectonic",
+   "quelle": "Tectonic-Projektseite",
+   "vorschau": [
+    "tectonic",
+    "continents"
+   ]
+  },
+  {
+   "id": "biome",
+   "art": "D",
+   "titel": "Biom-Überarbeitung (Vanilla Plus)",
+   "frage": "Terralith, Geophilic und WWOO überarbeiten alle die Biome.",
+   "optionen": [
+    {
+     "id": "terralith",
+     "label": "Terralith",
+     "behalten": [
+      "terralith"
+     ],
+     "weg": [
+      "geophilic",
+      "wwoo"
+     ],
+     "pro": [
+      "Viele neue Biome nur aus Vanilla-Blöcken",
+      "Mit Tectonic offiziell kompatibel"
+     ],
+     "contra": [
+      "Verändert die Welt deutlich"
+     ]
+    },
+    {
+     "id": "geophilic",
+     "label": "Geophilic",
+     "behalten": [
+      "geophilic"
+     ],
+     "weg": [
+      "terralith",
+      "wwoo"
+     ],
+     "pro": [
+      "Nur dezente Überarbeitung der Vanilla-Biome",
+      "Mit Tectonic kompatibel"
+     ],
+     "contra": [
+      "Weniger Abwechslung"
+     ]
+    },
+    {
+     "id": "wwoo",
+     "label": "WWOO",
+     "behalten": [
+      "wwoo"
+     ],
+     "weg": [
+      "terralith",
+      "geophilic"
+     ],
+     "pro": [
+      "Gute Kompatibilität mit anderen Weltgenerierungs-Mods"
+     ],
+     "contra": [
+      "Weniger verbreitet"
+     ]
+    }
+   ],
+   "empfehlung": "terralith",
+   "quelle": "Projektseiten Geophilic, WWOO, Terralith",
+   "vorschau": [
+    "terralith",
+    "geophilic",
+    "wwoo"
+   ]
+  },
+  {
+   "id": "wolken",
+   "art": "D",
+   "titel": "Wolken und Himmel",
+   "frage": "Photon zeichnet eigene Wolken und einen eigenen Himmel.",
+   "optionen": [
+    {
+     "id": "photon",
+     "label": "Nur Photon",
+     "behalten": [],
+     "weg": [
+      "better-clouds",
+      "dramatic-skys"
+     ],
+     "pro": [
+      "Kein doppeltes Rendern"
+     ],
+     "contra": [
+      "Ohne Shader gibt es nur Vanilla-Wolken"
+     ]
+    },
+    {
+     "id": "ohne-shader",
+     "label": "Better Clouds als Fallback",
+     "behalten": [
+      "better-clouds"
+     ],
+     "weg": [
+      "dramatic-skys"
+     ],
+     "pro": [
+      "Schöne Wolken, falls Freunde ohne Shader spielen"
+     ],
+     "contra": [
+      "Mit Photon wirkungslos, also unnötig im Pack"
+     ]
+    }
+   ],
+   "empfehlung": "photon",
+   "quelle": "Photon-Quellcode",
+   "vorschau": [
+    "photon-shader",
+    "better-clouds"
+   ]
+  },
+  {
+   "id": "minimap",
+   "art": "D",
+   "titel": "Minimap und Weltkarte",
+   "frage": "Drei Karten-Mods machen dasselbe.",
+   "optionen": [
+    {
+     "id": "xaero",
+     "label": "Xaero's Minimap + World Map",
+     "behalten": [
+      "xaeros-minimap",
+      "xaeros-world-map"
+     ],
+     "weg": [
+      "diorama-map",
+      "journeymap"
+     ],
+     "pro": [
+      "Standard seit Jahren, sehr ausgereift",
+      "Wegpunkte, Höhlenkarte"
+     ],
+     "contra": [
+      "Mit Fresh Animations Zusatz-Pack für Mob-Icons nötig",
+      "Optisch flach"
+     ]
+    },
+    {
+     "id": "diorama",
+     "label": "Diorama",
+     "behalten": [
+      "diorama-map"
+     ],
+     "weg": [
+      "xaeros-minimap",
+      "xaeros-world-map",
+      "journeymap"
+     ],
+     "pro": [
+      "Wunderschön: Welt wie ein Modell, Bäume werfen Schatten",
+      "Minimap und Weltkarte in einem"
+     ],
+     "contra": [
+      "Brandneu (20 Tage), weniger Funktionen und Erfahrung"
+     ]
+    },
+    {
+     "id": "journey",
+     "label": "JourneyMap",
+     "behalten": [
+      "journeymap"
+     ],
+     "weg": [
+      "xaeros-minimap",
+      "xaeros-world-map",
+      "diorama-map"
+     ],
+     "pro": [
+      "Auch als Web-Karte im Browser"
+     ],
+     "contra": [
+      "Schwerer, wirkt weniger vanilla"
+     ]
+    }
+   ],
+   "empfehlung": "diorama",
+   "quelle": "Modrinth-Projektseiten, Xaero-FAQ",
+   "vorschau": [
+    "xaeros-minimap",
+    "diorama-map",
+    "journeymap"
+   ]
+  },
+  {
+   "id": "upscaling",
+   "art": "D",
+   "titel": "Upscaling für mehr FPS",
+   "frage": "Photon hat eigenes TAAU, GGTU ist ein Upscaler als Mod. Beides gleichzeitig ergibt keinen Sinn.",
+   "optionen": [
+    {
+     "id": "keins",
+     "label": "Kein Upscaling",
+     "behalten": [],
+     "weg": [
+      "ggtu"
+     ],
+     "pro": [
+      "Volle Schärfe, nichts kann schiefgehen"
+     ],
+     "contra": [
+      "Keine Reserve, falls FPS fehlen"
+     ]
+    },
+    {
+     "id": "photon-taau",
+     "label": "Photons TAAU (nur bei Bedarf)",
+     "behalten": [],
+     "weg": [
+      "ggtu"
+     ],
+     "pro": [
+      "Direkt im Shader, kein zusätzlicher Mod"
+     ],
+     "contra": [
+      "Etwas weicher als native Auflösung"
+     ]
+    },
+    {
+     "id": "ggtu",
+     "label": "GGTU",
+     "behalten": [
+      "ggtu"
+     ],
+     "weg": [],
+     "pro": [
+      "Nennt Photon als empfohlenen Shader",
+      "Eigenes Schärfungsverfahren, laut Autor stark bei schweren Shadern"
+     ],
+     "contra": [
+      "Neu (68.000 Downloads), mit Voxy ungetestet",
+      "In Photon dann TAAU aus lassen"
+     ]
+    }
+   ],
+   "empfehlung": "photon-taau",
+   "quelle": "GGTU-Projektseite, Photon-Quellcode",
+   "vorschau": [
+    "ggtu"
+   ]
+  },
+  {
+   "id": "grasseiten",
+   "art": "D",
+   "titel": "Grasseiten (Better Grass)",
+   "frage": "LambdaBetterGrass und Fast Better Grass färben beide die Grasblock-Seiten grün.",
+   "optionen": [
+    {
+     "id": "lambda",
+     "label": "LambdaBetterGrass",
+     "behalten": [
+      "lambdabettergrass"
+     ],
+     "weg": [
+      "fast-better-grass"
+     ],
+     "pro": [
+      "Verbindet Seiten nur dort, wo Gras angrenzt (wie OptiFine „Fancy“)",
+      "Bessere Schnee-Übergänge"
+     ],
+     "contra": [
+      "Ein Mod mehr"
+     ]
+    },
+    {
+     "id": "fast",
+     "label": "Fast Better Grass",
+     "behalten": [
+      "fast-better-grass"
+     ],
+     "weg": [
+      "lambdabettergrass"
+     ],
+     "pro": [
+      "Nur ein Resource Pack, null Leistung"
+     ],
+     "contra": [
+      "Alle Seiten grün, wirkt einfacher"
+     ]
+    }
+   ],
+   "empfehlung": "lambda",
+   "quelle": "Projektseiten",
+   "vorschau": [
+    "lambdabettergrass",
+    "fast-better-grass"
+   ]
+  },
+  {
+   "id": "gras",
+   "art": "D",
+   "titel": "Gras-Look",
+   "frage": "Grassier Grass und Os' Colorful Grasses ändern beide die Grasmodelle.",
+   "optionen": [
+    {
+     "id": "grassier",
+     "label": "Grassier Grass",
+     "behalten": [
+      "grassier-grass"
+     ],
+     "weg": [
+      "os-colorful-grasses"
+     ],
+     "pro": [
+      "Volleres Gras, unterstützt Photon ausdrücklich"
+     ],
+     "contra": [
+      "Ein Mod statt Resource Pack"
+     ]
+    },
+    {
+     "id": "os",
+     "label": "Os' Colorful Grasses",
+     "behalten": [
+      "os-colorful-grasses"
+     ],
+     "weg": [
+      "grassier-grass"
+     ],
+     "pro": [
+      "Farbige Spitzen, Pampasgras, mehrere Varianten wählbar"
+     ],
+     "contra": [
+      "Stärkere Abweichung vom Vanilla-Look"
+     ]
+    }
+   ],
+   "empfehlung": "grassier",
+   "quelle": "Projektseiten",
+   "vorschau": [
+    "grassier-grass",
+    "os-colorful-grasses"
+   ]
+  },
+  {
+   "id": "essen",
+   "art": "D",
+   "titel": "Ess-Animation",
+   "frage": "Theone's Eating Animation und Fresh Food animieren beide das Essen.",
+   "optionen": [
+    {
+     "id": "fresh",
+     "label": "Fresh Food",
+     "behalten": [
+      "fresh-food"
+     ],
+     "weg": [
+      "theones-eating-animation-pack",
+      "fresh-food-for-hyper-punchy"
+     ],
+     "pro": [
+      "3D-Essen plus Animation",
+      "Punchy-Fix laut Collection schon eingebaut"
+     ],
+     "contra": [
+      "Mehr Veränderung als nur die Animation"
+     ]
+    },
+    {
+     "id": "theone",
+     "label": "Theone's Eating Animation",
+     "behalten": [
+      "theones-eating-animation-pack",
+      "fresh-food-for-hyper-punchy"
+     ],
+     "weg": [
+      "fresh-food"
+     ],
+     "pro": [
+      "Nur die Animation, Items bleiben vanilla"
+     ],
+     "contra": [
+      "Mit Hyper Punchy Zusatz-Fix nötig"
+     ]
+    }
+   ],
+   "empfehlung": "fresh",
+   "quelle": "Punchy Compat Collection",
+   "vorschau": [
+    "fresh-food",
+    "theones-eating-animation-pack"
+   ]
+  },
+  {
+   "id": "end",
+   "art": "D",
+   "titel": "End (Vanilla Plus)",
+   "frage": "Enderscape und Nullscape überarbeiten beide die End-Generierung. Nullscape ist laut eigener Seite mit den meisten End-Mods inkompatibel.",
+   "optionen": [
+    {
+     "id": "enderscape",
+     "label": "Enderscape",
+     "behalten": [
+      "enderscape"
+     ],
+     "weg": [
+      "nullscape"
+     ],
+     "pro": [
+      "Vier neue Biome, neue Strukturen, sehr aktiv"
+     ],
+     "contra": [
+      "Viel neuer Inhalt, weniger vanilla"
+     ]
+    },
+    {
+     "id": "nullscape",
+     "label": "Nullscape",
+     "behalten": [
+      "nullscape"
+     ],
+     "weg": [
+      "enderscape"
+     ],
+     "pro": [
+      "Nur spektakuläres Terrain aus Vanilla-Blöcken"
+     ],
+     "contra": [
+      "Kein neuer Inhalt"
+     ]
+    },
+    {
+     "id": "vanilla",
+     "label": "Vanilla-End",
+     "behalten": [],
+     "weg": [
+      "enderscape",
+      "nullscape"
+     ],
+     "pro": [
+      "Kein Risiko"
+     ],
+     "contra": [
+      "End bleibt leer"
+     ]
+    }
+   ],
+   "empfehlung": "nullscape",
+   "quelle": "Nullscape-Projektseite",
+   "vorschau": [
+    "enderscape",
+    "nullscape"
+   ]
+  },
+  {
+   "id": "chunks",
+   "art": "K",
+   "titel": "Chunk- und Server-Optimierung",
+   "frage": "C2ME, Moonrise und Async beschleunigen alle den internen Server. Moonrise ist laut Modrinth mit C2ME inkompatibel, Async mit Moonrise.",
+   "optionen": [
+    {
+     "id": "c2me",
+     "label": "C2ME + ScalableLux",
+     "behalten": [
+      "c2me-fabric",
+      "scalablelux"
+     ],
+     "weg": [
+      "moonrise-opt",
+      "async"
+     ],
+     "pro": [
+      "Sehr schnelle Chunk-Generierung",
+      "Von Lithium und ScalableLux-Autoren empfohlen"
+     ],
+     "contra": [
+      "Beide noch Alpha-Versionen für 26.3"
+     ]
+    },
+    {
+     "id": "moonrise",
+     "label": "Moonrise",
+     "behalten": [
+      "moonrise-opt"
+     ],
+     "weg": [
+      "c2me-fabric",
+      "scalablelux",
+      "async"
+     ],
+     "pro": [
+      "Stabile Release-Version",
+      "Chunks und Licht in einem Mod"
+     ],
+     "contra": [
+      "Inkompatibel mit C2ME und Async"
+     ]
+    },
+    {
+     "id": "keins",
+     "label": "Keins davon",
+     "behalten": [],
+     "weg": [
+      "c2me-fabric",
+      "scalablelux",
+      "moonrise-opt",
+      "async"
+     ],
+     "pro": [
+      "Kein Risiko, Lithium reicht für Singleplayer meist"
+     ],
+     "contra": [
+      "Langsamere Welterzeugung, besonders mit Voxy-Import"
+     ]
+    }
+   ],
+   "empfehlung": "keins",
+   "quelle": "Modrinth-Abhängigkeiten",
+   "vorschau": []
+  }
+ ],
+ "beziehungen": [
+  {
+   "art": "T",
+   "mods": [
+    "chunks-fade-in",
+    "voxy"
+   ],
+   "text": "Chunks fade in nennt nur Distant Horizons und Iris als „größtenteils“ unterstützt."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "wakes",
+    "photon-shader"
+   ],
+   "text": "Wakes nennt bekannte Probleme mit Iris-Shadern."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "better-block-entities",
+    "entity-model-features"
+   ],
+   "text": "Better Block Entities ist nur teilweise mit EMF kompatibel."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "xaeros-minimap",
+    "fresh-animations"
+   ],
+   "text": "Mob-Icons werden falsch angezeigt. Zusatz-Pack „Xaero Minimap X Fresh Animations“ nötig."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "punchymoves",
+    "not-enough-animations"
+   ],
+   "text": "Falls beide drin sind: beide animieren den Spieler in Third Person."
+  },
+  {
+   "art": "K",
+   "mods": [
+    "voxy",
+    "distanthorizons"
+   ],
+   "text": "Zwei LOD-Mods. Entschieden: Voxy."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "nvidium",
+    "iris"
+   ],
+   "text": "Nvidium schaltet sich bei aktiven Shadern selbst ab und wirkt nur ohne Shader."
+  },
+  {
+   "art": "D",
+   "mods": [
+    "photon-shader",
+    "lambdynamiclights"
+   ],
+   "text": "Beide machen Licht in der Hand. In Photon ausgeschaltet.",
+   "erledigt": true
+  },
+  {
+   "art": "D",
+   "mods": [
+    "photon-shader",
+    "particle-rain"
+   ],
+   "text": "Beide machen Sandsturm und Nebel. Je eine Seite ausgeschaltet.",
+   "erledigt": true
+  },
+  {
+   "art": "D",
+   "mods": [
+    "particle-rain",
+    "immersive-storms"
+   ],
+   "text": "Immersive Storms schaltet seine Sandstürme selbst ab.",
+   "erledigt": true
+  },
+  {
+   "art": "A",
+   "mods": [
+    "fresh-animations",
+    "entity-model-features",
+    "entitytexturefeatures"
+   ],
+   "text": "Fresh Animations braucht EMF und ETF."
+  },
+  {
+   "art": "A",
+   "mods": [
+    "first-person-model",
+    "not-enough-animations"
+   ],
+   "text": "First-person Model braucht NEA."
+  },
+  {
+   "art": "A",
+   "mods": [
+    "punchymoves",
+    "fluid-foolish"
+   ],
+   "text": "Punchy! Moves braucht Fluid & Foolish für Animationen."
+  },
+  {
+   "art": "A",
+   "mods": [
+    "hyper-punchy",
+    "punchy-fpa"
+   ],
+   "text": "Hyper Punchy ist ein Pack für Punchy!."
+  },
+  {
+   "art": "A",
+   "mods": [
+    "fresh-food-for-hyper-punchy",
+    "hyper-punchy",
+    "theones-eating-animation-pack"
+   ],
+   "text": "Mit Hyper Punchy plus Ess-Animations-Pack den Fix dazunehmen."
+  },
+  {
+   "art": "A",
+   "mods": [
+    "new-glowing-ores",
+    "continuity"
+   ],
+   "text": "Leuchtende Erze brauchen Continuity."
+  },
+  {
+   "art": "A",
+   "mods": [
+    "streams-reflowing",
+    "chunky"
+   ],
+   "text": "Streams Reflowing empfiehlt Vorgenerieren mit Chunky."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "terralith",
+    "tectonic"
+   ],
+   "text": "Offiziell kompatibel (Mod-Versionen)."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "tectonic",
+    "clifftree"
+   ],
+   "text": "Seit Tectonic 3.0 ohne Zusatz kompatibel."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "c2me-fabric",
+    "lithium",
+    "scalablelux"
+   ],
+   "text": "Von C2ME empfohlen."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "modernfix-mvus",
+    "ferrite-core"
+   ],
+   "text": "Von ModernFix empfohlen."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "subtle-effects",
+    "visuality"
+   ],
+   "text": "Laut Subtle-Effects-FAQ kompatibel."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "particle-rain",
+    "photon-shader"
+   ],
+   "text": "Particle Rain empfiehlt Photon."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "spatial-gui",
+    "punchy-fpa",
+    "punchymoves"
+   ],
+   "text": "Spatial GUI hat eigene Punchy-Kompatibilität."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "glowing-glints",
+    "punchy-fpa"
+   ],
+   "text": "Enchantment Outlines ist Punchy-kompatibel."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "ct-overhaul-village",
+    "towns-and-towers"
+   ],
+   "text": "Beide bestätigen Kompatibilität."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "living-horizon",
+    "voxy"
+   ],
+   "text": "Living Horizon zeichnet Mobs und Spieler direkt auf das Voxy-Gelände."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "ggtu",
+    "photon-shader"
+   ],
+   "text": "GGTU nennt Photon als empfohlenen Shader."
+  },
+  {
+   "art": "A",
+   "mods": [
+    "connected-paths",
+    "continuity"
+   ],
+   "text": "Connected Paths braucht Continuity."
+  },
+  {
+   "art": "D",
+   "mods": [
+    "sunbathing-godrays",
+    "photon-shader"
+   ],
+   "text": "Photon hat eigene Sonnenstrahlen."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "just-expressions",
+    "punchymoves"
+   ],
+   "text": "Beide verändern den Spieler. Zusammen ungetestet."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "particle-core",
+    "particle-rain"
+   ],
+   "text": "Laut Particle Rain flackern Effekte mit Particle Core. Lösung: Culling-Modus auf „Bounding Box“."
+  },
+  {
+   "art": "K",
+   "mods": [
+    "moonrise-opt",
+    "c2me-fabric"
+   ],
+   "text": "Laut Modrinth inkompatibel."
+  },
+  {
+   "art": "K",
+   "mods": [
+    "async",
+    "moonrise-opt"
+   ],
+   "text": "Laut Modrinth inkompatibel."
+  },
+  {
+   "art": "D",
+   "mods": [
+    "fresh-armor-bar",
+    "detail-armor-bar-reconstructed"
+   ],
+   "text": "Beide ersetzen die Rüstungsleiste."
+  },
+  {
+   "art": "D",
+   "mods": [
+    "beautiful-enchanted-books",
+    "enchanted-books-re-covered"
+   ],
+   "text": "Beide geben verzauberten Büchern neue Texturen; das obere Pack gewinnt."
+  },
+  {
+   "art": "D",
+   "mods": [
+    "easegui",
+    "immersive-ui"
+   ],
+   "text": "Beide animieren Menüs. Zusammen können Animationen doppelt oder ruckelig wirken."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "asyncparticles",
+    "photon-shader"
+   ],
+   "text": "AsyncParticles rendert Partikel selbst; mit Iris-Shadern auf Grafikfehler achten."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "asyncparticles",
+    "particle-rain"
+   ],
+   "text": "AsyncParticles greift in die Partikel-Pipeline ein, die Partikel-Mods nutzen. Zusammen testen."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "fusion-connected-textures",
+    "continuity"
+   ],
+   "text": "Beide liefern verbundene Texturen. Funktionieren meist nebeneinander, Packs nutzen aber oft nur eins."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "raised",
+    "immersive-hotbar"
+   ],
+   "text": "Beide ändern die Hotbar-Darstellung."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "achievement-style",
+    "better-advancements"
+   ],
+   "text": "Beide ändern das Fortschritts-Design (Meldung vs. Bildschirm). Kombination prüfen."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "emissive-trims",
+    "visual-armor-trims"
+   ],
+   "text": "Beide ändern Rüstungsbesatz-Texturen; Reihenfolge entscheidet."
+  },
+  {
+   "art": "D",
+   "mods": [
+    "pegasus",
+    "photon-shader"
+   ],
+   "text": "Nur ein Shader gleichzeitig aktiv. Photon ist Standard, Pegasus die schnellere Alternative."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "fwa",
+    "stupid-block-animations"
+   ],
+   "text": "Ergänzen sich: FWA animiert Türen, Hebel und Laternen, Stupid Block Animations das Platzieren und Abbauen."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "cpa",
+    "punchymoves"
+   ],
+   "text": "Custom Player Animations und Punchy! Moves animieren beide den Spieler. Zusammen ungetestet."
+  }
+ ],
+ "gruppen": [
+  {
+   "id": "lod",
+   "titel": "Fernsicht-Engine",
+   "mods": [
+    "voxy",
+    "distanthorizons"
+   ],
+   "text": "Beide zeichnen die Landschaft hinter der Sichtweite. Zusammen rechnen sie doppelt."
+  },
+  {
+   "id": "books",
+   "titel": "Verzauberte Bücher",
+   "mods": [
+    "even-better-enchants",
+    "bray-cyber-3d-enchanted-books",
+    "beautiful-enchanted-books",
+    "enchanted-books-re-covered"
+   ],
+   "text": "Alle ersetzen dieselben Buch-Texturen. Nur das oberste Pack wäre sichtbar."
+  },
+  {
+   "id": "faithful",
+   "titel": "Komplett-Texturen",
+   "mods": [
+    "faithful-32x",
+    "faithful-64x"
+   ],
+   "text": "Beide ersetzen alle Texturen. Ohne Auswahl bleibt Vanilla-16x."
+  },
+  {
+   "id": "ladders",
+   "titel": "3D-Leitern",
+   "mods": [
+    "3d-ladders",
+    "rays-3d-ladders"
+   ],
+   "text": "Beide ersetzen das Leiter-Modell."
+  },
+  {
+   "id": "buckets",
+   "titel": "3D-Eimer",
+   "mods": [
+    "fresh-buckets",
+    "refined-buckets",
+    "findreks-3d-buckets-and-fish"
+   ],
+   "text": "Alle ersetzen das Eimer-Modell."
+  },
+  {
+   "id": "torches",
+   "titel": "Fackeln",
+   "mods": [
+    "torches-reimagined",
+    "weskersons-torches"
+   ],
+   "text": "Beide ersetzen Fackel-Modelle."
+  },
+  {
+   "id": "crops",
+   "titel": "Getreide",
+   "mods": [
+    "3d-crops",
+    "fancy-crops"
+   ],
+   "text": "Beide ersetzen Pflanzen-Modelle der Felder."
+  },
+  {
+   "id": "guianim",
+   "titel": "Menü-Animationen",
+   "mods": [
+    "smooth-gui",
+    "easegui",
+    "immersive-ui",
+    "eclipseui"
+   ],
+   "text": "Alle animieren das Öffnen von Menüs; zusammen doppeln sich die Effekte."
+  },
+  {
+   "id": "fog",
+   "titel": "Nebel",
+   "mods": [
+    "fog",
+    "clear-fog"
+   ],
+   "text": "Fog verschönert Nebel, Clear Fog entfernt ihn. Das widerspricht sich."
+  },
+  {
+   "id": "shot",
+   "titel": "Screenshots",
+   "mods": [
+    "fabrishot",
+    "pixelshot"
+   ],
+   "text": "Beide machen hochaufgelöste Screenshots per Taste."
+  },
+  {
+   "id": "ambient",
+   "titel": "Umgebungsgeräusche",
+   "mods": [
+    "atmosfera",
+    "ambientsounds"
+   ],
+   "text": "Beide spielen Wind-, Wald- und Höhlenklänge; zusammen doppelt."
+  },
+  {
+   "id": "armoricons",
+   "titel": "Rüstungs-Icons",
+   "mods": [
+    "armor-hud",
+    "simple-armor-hud"
+   ],
+   "text": "Beide zeigen die getragene Rüstung als Icons."
+  },
+  {
+   "id": "armorbar",
+   "titel": "Rüstungsleiste",
+   "mods": [
+    "detail-armor-bar-reconstructed",
+    "fresh-armor-bar"
+   ],
+   "text": "Beide ersetzen die Rüstungsleiste."
+  },
+  {
+   "id": "creeper",
+   "titel": "Creeper-Aussehen",
+   "mods": [
+    "als-creepers-revamped",
+    "fresh-animations-extensions"
+   ],
+   "text": "AL's Creepers und FA+All Extensions ersetzen beide das Creeper-Modell."
+  },
+  {
+   "id": "playeranim",
+   "titel": "Spieler-Animationen (Third Person)",
+   "mods": [
+    "punchymoves",
+    "detailed-animations",
+    "fa-player-extension"
+   ],
+   "text": "Alle animieren den Spieler-Körper in Third Person. Standard: Punchy! Moves."
+  },
+  {
+   "id": "particleperf",
+   "titel": "Partikel-Optimierung",
+   "mods": [
+    "smart-particles",
+    "asyncparticles",
+    "particle-core"
+   ],
+   "text": "Alle greifen in die Partikel-Berechnung ein. Welcher bleibt, entscheidet der Test."
+  },
+  {
+   "id": "leaves",
+   "titel": "Blätter",
+   "mods": [
+    "better-leaves",
+    "fancyfast-bushy-leaves"
+   ],
+   "text": "Beide ersetzen das Blätter-Modell; nur eins wäre sichtbar."
+  },
+  {
+   "id": "guitex",
+   "titel": "Menü-Texturen",
+   "mods": [
+    "default-dark-mode",
+    "shrimps-immersive-interfaces",
+    "recolourful-containers-gui"
+   ],
+   "text": "Alle färben bzw. ersetzen die Menü-Texturen; zusammen überdecken sie sich."
+  }
+ ]
+}

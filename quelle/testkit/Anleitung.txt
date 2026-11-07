@@ -1,0 +1,18 @@
+TEST-KIT Mod-Katalog 26.3
+
+Einmalig vorbereiten
+1. Pack in Prism/Modrinth importieren und einmal starten (bis ins Hauptmenue), dann beenden.
+2. Neue Welt anlegen: Einzelspieler > Neue Welt > Weitere Optionen
+   Seed: -4172144997902289642   Spielmodus: Kreativ   Cheats: an
+   Datenpakete > Benchmark-Datapack.zip in das Fenster ziehen und aktivieren.
+3. Welt erstellen und 1-2 Minuten stehen bleiben (Voxy laedt die Fernsicht).
+
+Messen (immer gleich, damit Tests vergleichbar sind)
+4. FPS-Messung.bat doppelklicken (Adminrechte bestaetigen).
+5. Im Spiel in den Chat: /function bench:start
+   und:                    /sparkc profiler start --timeout 180
+6. Im Fenster der .bat eine Taste druecken. Der Flug (Tag, Nacht, Regen) und die Messung laufen 3 Minuten automatisch.
+
+Auswerten
+7. Website > Testen: fps.csv hochladen und den spark-Link (erscheint im Chat) einfuegen.
+   Die Website rechnet Durchschnitt und 1%-Tiefs selbst aus und erstellt einen Text fuer deine KI.

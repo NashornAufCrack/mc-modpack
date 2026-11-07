@@ -1,0 +1,364 @@
+[
+ {
+  "art": "K",
+  "mods": [
+   "cubes-without-borders",
+   "borderless-fullscreen"
+  ],
+  "text": "Beide machen randlosen Vollbildmodus. Modrinth führt sie als inkompatibel.",
+  "loesung": "Nur Borderless Fullscreen behalten.",
+  "quelle": "Modrinth-Abhängigkeiten"
+ },
+ {
+  "art": "K",
+  "mods": [
+   "voxy",
+   "distanthorizons"
+  ],
+  "text": "Zwei LOD-Mods für dieselbe Aufgabe.",
+  "loesung": "Voxy (entschieden).",
+  "quelle": "Eigene Prüfung"
+ },
+ {
+  "art": "K",
+  "mods": [
+   "nvidium",
+   "iris"
+  ],
+  "text": "Nvidium funktioniert nicht zusammen mit Iris.",
+  "loesung": "Nvidium weglassen. Voxy hat eine eigene NVIDIA-Option.",
+  "quelle": "voxy-mod.com"
+ },
+ {
+  "art": "K",
+  "mods": [
+   "incendium",
+   "amplified-nether"
+  ],
+  "text": "Incendium ist laut eigener Seite nicht mit Amplified Nether kompatibel.",
+  "loesung": "Für die Vanilla-Plus-Schicht eins wählen.",
+  "quelle": "Incendium-Projektseite"
+ },
+ {
+  "art": "K",
+  "mods": [
+   "dynamiccrosshair",
+   "immediatelyfast"
+  ],
+  "text": "Dynamic Crosshair kann laut eigener Seite Probleme mit ImmediatelyFast haben, und ImmediatelyFast ist Kern.",
+  "loesung": "Dynamic Crosshair weglassen.",
+  "quelle": "Dynamic-Crosshair-Projektseite"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "photon-shader",
+   "better-clouds"
+  ],
+  "text": "Photon zeichnet eigene volumetrische Wolken.",
+  "loesung": "Better Clouds weglassen, Vanilla-Wolken aus.",
+  "quelle": "Photon-Quellcode"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "photon-shader",
+   "dramatic-skys"
+  ],
+  "text": "Dramatic Skys braucht einen benutzerdefinierten Himmel, Photon nutzt standardmäßig den eigenen.",
+  "loesung": "Dramatic Skys weglassen.",
+  "quelle": "Photon-Quellcode"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "photon-shader",
+   "lambdynamiclights"
+  ],
+  "text": "Beide lassen Licht in der Hand leuchten.",
+  "loesung": "LambDynamicLights behalten (beleuchtet auch andere Spieler und Items). In Photon „Licht in der Hand“ aus.",
+  "quelle": "Photon-Quellcode"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "photon-shader",
+   "particle-rain"
+  ],
+  "text": "Beide bringen Sandsturm und Nebel mit.",
+  "loesung": "In Photon Sandsturm aus, in Particle Rain Nebel aus. Particle Rain empfiehlt Photon ausdrücklich.",
+  "quelle": "Particle-Rain-Projektseite"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "particle-rain",
+   "immersive-storms"
+  ],
+  "text": "Beide machen Sandstürme.",
+  "loesung": "Erledigt sich selbst: Immersive Storms schaltet seine Sandstürme ab, wenn Particle Rain installiert ist.",
+  "quelle": "Immersive-Storms-Projektseite"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "snow-imprints",
+   "footprintparticle"
+  ],
+  "text": "Beide hinterlassen Fußspuren, auf Schnee und Sand doppelt.",
+  "loesung": "Soft Imprints behalten (rein clientseitig, echte Abdrücke).",
+  "quelle": "Projektseiten"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "coolrain",
+   "gentler-weather-sounds"
+  ],
+  "text": "Beide verändern Regengeräusche.",
+  "loesung": "Eins wählen. Cool Rain: Regen klingt je nach Block anders. Gentler: ruhigere Vanilla-Sounds.",
+  "quelle": "Projektseiten"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "tectonic",
+   "continents"
+  ],
+  "text": "Tectonic formt seit v3 selbst kontinentartige Landmassen.",
+  "loesung": "Nur Tectonic, Continents weglassen.",
+  "quelle": "Tectonic-Projektseite"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "terralith",
+   "geophilic"
+  ],
+  "text": "Geophilic überarbeitet Vanilla-Biome, Terralith ersetzt viele davon. Geht nur mit Kompatibilitäts-Anpassung.",
+  "loesung": "Mit Terralith Geophilic weglassen.",
+  "quelle": "Geophilic-Projektseite"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "terralith",
+   "wwoo"
+  ],
+  "text": "Beide überarbeiten die Biome komplett.",
+  "loesung": "Terralith + Tectonic, WWOO nur als Alternative.",
+  "quelle": "WWOO-Projektseite"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "immersive-ui",
+   "spatial-gui"
+  ],
+  "text": "Spatial GUI warnt vor Konflikten mit anderen Mods, die die Menüs verändern.",
+  "loesung": "Eins von beiden wählen.",
+  "quelle": "Spatial-GUI-Projektseite"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "shulkerboxtooltip",
+   "easy-shulker-boxes"
+  ],
+  "text": "Beide zeigen den Inhalt von Shulkerkisten im Tooltip.",
+  "loesung": "Visual-Pack: Shulker Box Tooltip. Vanilla Plus: Easy Shulker Boxes kann es selbst.",
+  "quelle": "Easy-Shulker-Boxes-Projektseite"
+ },
+ {
+  "art": "D",
+  "mods": [
+   "subtle-effects",
+   "better-smoke"
+  ],
+  "text": "Subtle Effects ersetzt den Vanilla-Rauch, Better Smoke den Lagerfeuer-Rauch.",
+  "loesung": "Erst nur Subtle Effects. Better Smoke nur dazu, wenn Lagerfeuer noch schöner sein sollen.",
+  "quelle": "Projektseiten"
+ },
+ {
+  "art": "T",
+  "mods": [
+   "fa-player-extension",
+   "not-enough-animations"
+  ],
+  "text": "Beide animieren den Spieler neu.",
+  "loesung": "Im Test schauen, ob sich Animationen überlagern. Sonst NEA behalten.",
+  "quelle": "Eigene Prüfung"
+ },
+ {
+  "art": "T",
+  "mods": [
+   "fa-player-extension",
+   "first-person-model"
+  ],
+  "text": "FA Player bringt eigene Ego-Animationen mit, First-person Model zeigt den Körper in der Ego-Sicht.",
+  "loesung": "Zusammen testen. Bei Darstellungsfehlern First-person Model weglassen.",
+  "quelle": "Eigene Prüfung"
+ },
+ {
+  "art": "T",
+  "mods": [
+   "3dskinlayers",
+   "fa-player-extension"
+  ],
+  "text": "3D Skin Layers: Schwebende Skin-Teile kommen laut FAQ von veralteten EMF-Resource-Packs.",
+  "loesung": "FA Player immer passend zur MC-Version halten.",
+  "quelle": "3D-Skin-Layers-Projektseite"
+ },
+ {
+  "art": "T",
+  "mods": [
+   "xaeros-minimap",
+   "fresh-animations"
+  ],
+  "text": "Fresh Animations verändert die Mob-Modelle. Dadurch zeigt die Minimap Mob-Icons falsch oder nur als Punkte.",
+  "loesung": "Zusatz-Pack „Xaero Minimap X Fresh Animations“ dazunehmen.",
+  "quelle": "Xaero-Projektseite"
+ },
+ {
+  "art": "T",
+  "mods": [
+   "chunks-fade-in",
+   "voxy"
+  ],
+  "text": "Chunks fade in nennt nur Distant Horizons und Iris als „größtenteils“ unterstützt, Voxy gar nicht.",
+  "loesung": "Mit Voxy + Photon testen, sonst weglassen.",
+  "quelle": "Chunks-fade-in-Projektseite"
+ },
+ {
+  "art": "T",
+  "mods": [
+   "wakes",
+   "photon-shader"
+  ],
+  "text": "Wakes nennt bekannte Probleme mit Iris-Shadern.",
+  "loesung": "Mit Photon-Wasser testen.",
+  "quelle": "Wakes-Projektseite"
+ },
+ {
+  "art": "T",
+  "mods": [
+   "better-block-entities",
+   "entity-model-features"
+  ],
+  "text": "Better Block Entities ist nur teilweise mit EMF kompatibel, nicht alle EMF-Packs funktionieren.",
+  "loesung": "Betrifft vor allem Truhen und Schilder in Resource Packs. Im Test prüfen.",
+  "quelle": "Better-Block-Entities-Projektseite"
+ },
+ {
+  "art": "A",
+  "mods": [
+   "fresh-animations",
+   "entity-model-features",
+   "entitytexturefeatures"
+  ],
+  "text": "Fresh Animations funktioniert nur mit EMF und ETF.",
+  "loesung": "Immer zusammen installieren.",
+  "quelle": "Fresh-Animations-Projektseite"
+ },
+ {
+  "art": "A",
+  "mods": [
+   "first-person-model",
+   "not-enough-animations"
+  ],
+  "text": "First-person Model braucht Not Enough Animations.",
+  "loesung": "Wird automatisch mitgeladen.",
+  "quelle": "Modrinth-Abhängigkeiten"
+ },
+ {
+  "art": "A",
+  "mods": [
+   "new-glowing-ores",
+   "continuity"
+  ],
+  "text": "Leuchtende Erze funktionieren auf Fabric nur mit Continuity.",
+  "loesung": "Continuity ist sowieso Kern.",
+  "quelle": "New-Glowing-Ores-Projektseite"
+ },
+ {
+  "art": "A",
+  "mods": [
+   "streams-reflowing",
+   "chunky"
+  ],
+  "text": "Streams Reflowing empfiehlt, die Welt vorher mit Chunky vorzugenerieren.",
+  "loesung": "Bei neuen Vanilla-Plus-Welten Chunky laufen lassen.",
+  "quelle": "Streams-Reflowing-Projektseite"
+ },
+ {
+  "art": "S",
+  "mods": [
+   "terralith",
+   "tectonic"
+  ],
+  "text": "Terralith ist mit der Mod-Version von Tectonic voll kompatibel.",
+  "loesung": "Mod-Versionen nehmen, nicht die Datapacks.",
+  "quelle": "Terralith- und Tectonic-Projektseiten"
+ },
+ {
+  "art": "S",
+  "mods": [
+   "tectonic",
+   "clifftree"
+  ],
+  "text": "Seit Tectonic 3.0 funktionieren beide ohne Zusatz zusammen.",
+  "loesung": "",
+  "quelle": ""
+ },
+ {
+  "art": "S",
+  "mods": [
+   "c2me-fabric",
+   "lithium",
+   "scalablelux"
+  ],
+  "text": "C2ME empfiehlt selbst die Kombination mit Lithium und ScalableLux.",
+  "loesung": "",
+  "quelle": ""
+ },
+ {
+  "art": "S",
+  "mods": [
+   "modernfix-mvus",
+   "ferrite-core"
+  ],
+  "text": "ModernFix empfiehlt, FerriteCore immer dazuzunehmen.",
+  "loesung": "",
+  "quelle": ""
+ },
+ {
+  "art": "S",
+  "mods": [
+   "subtle-effects",
+   "visuality"
+  ],
+  "text": "Subtle Effects bestätigt im FAQ: funktioniert zusammen mit Visuality.",
+  "loesung": "",
+  "quelle": ""
+ },
+ {
+  "art": "S",
+  "mods": [
+   "particle-rain",
+   "photon-shader"
+  ],
+  "text": "Particle Rain empfiehlt Photon als realistischen Shader.",
+  "loesung": "",
+  "quelle": ""
+ },
+ {
+  "art": "S",
+  "mods": [
+   "ct-overhaul-village",
+   "towns-and-towers"
+  ],
+  "text": "Beide Projektseiten bestätigen, dass sie zusammen funktionieren.",
+  "loesung": "",
+  "quelle": ""
+ }
+]

@@ -1,0 +1,978 @@
+<div class="wrap" lang="de">
+<header>
+  <h1>Mod-Katalog 26.3</h1>
+  <p>Unsere Packs für Fabric 26.3: Mods mit Server-Ampel, Entscheidungen bei Überschneidungen, Einstellungen und Crash-Analyse an einem Ort.</p>
+  <div class="meta">Stand 07.11.2026 · Fernsicht: Voxy · Shader: Photon · Spieler-Animation: Punchy · Ziel: 1440p mit 144 FPS</div>
+</header>
+<nav class="views" aria-label="Ansicht">
+  <a href="#katalog" id="v-katalog">Katalog</a>
+  <a href="#entscheidungen" id="v-entscheidungen">Entscheidungen <span class="badge" id="open-count"></span></a>
+  <a href="#bauen" id="v-bauen">Pack bauen</a>
+  <a href="#einstellungen" id="v-einstellungen">Einstellungen</a>
+  <a href="#testen" id="v-testen">Testen</a>
+  <a href="#logs" id="v-logs">Crash-Analyse</a>
+</nav>
+<div class="sync" id="sync" hidden></div>
+
+<div id="view-catalog">
+  <div class="summary" id="summary"></div>
+  <div class="legend">
+    <span><span class="dot G"></span> Nur Client · läuft auf jedem Vanilla-Server</span>
+    <span><span class="dot Y"></span> Server optional · läuft auch ohne Server-Mod</span>
+    <span><span class="dot R"></span> Server nötig · nur Singleplayer oder eigener Server</span>
+    <span><span class="dot Q"></span> Prüfen · Modrinth sagt „Server nötig“, wirkt aber rein visuell</span>
+  </div>
+  <div class="bar" role="toolbar" aria-label="Filter">
+    <input type="search" id="q" placeholder="Mod suchen …" aria-label="Mod suchen">
+    <button class="chip" id="f-core" aria-pressed="false">Nur Kern-Empfehlungen</button>
+    <button class="chip" id="f-vanilla" aria-pressed="false"><span class="dot G"></span>Vanilla-Server-tauglich</button>
+    <button class="chip" id="f-hide" aria-pressed="false">Abgewählte ausblenden</button>
+  </div>
+  <main id="out"></main>
+</div>
+
+<section id="view-decisions" hidden>
+  <p class="catnote lead">Überall, wo zwei Mods dasselbe tun oder sich beißen, steht hier eine Entscheidung mit Vor- und Nachteilen. Deine Wahl wird gespeichert und im Katalog sofort übernommen: abgewählte Mods werden ausgegraut. Grundlage: Inkompatibilitäts-Angaben auf Modrinth, die Projektseiten aller Mods und unsere Festlegungen.</p>
+  <div class="bar" role="toolbar" aria-label="Entscheidungen filtern">
+    <button class="chip" id="d-open" aria-pressed="true">Nur offene</button>
+    <span class="progress" id="d-progress"></span>
+  </div>
+  <div id="dec-list"></div>
+  <h2>Bekannte Beziehungen<small>ohne Entscheidung</small></h2>
+  <p class="catnote">Was zusammengehört, was gut zusammenpasst und was wir im Test noch prüfen.</p>
+  <div id="rel-list"></div>
+</section>
+
+<section id="view-build" hidden>
+  <div class="bhead">
+    <p class="catnote lead">So geht's: 1. Assistent starten, er fragt deinen PC ab und stellt Leistung und Grafik automatisch ein. 2. Oben durch Mods, Shader, Resource Packs und Datapacks gehen: Karte anklicken = rein oder raus, „Details“ zeigt Erklärung, Bilder und Einstellungen. 3. Rechts herunterladen.</p>    <details class="auto"><summary><b>Fertige Packs mit Auto-Update</b> für Prism, ideal für Freunde: einmal importieren, Updates kommen bei jedem Start automatisch.</summary>
+      <div class="autogrid"><a class="btn" href="https://nashornaufcrack.github.io/mc-modpack/downloads/Prism-Vanilla-Visual-AutoUpdate.zip">Vanilla Visual herunterladen</a><a class="btn" href="https://nashornaufcrack.github.io/mc-modpack/downloads/Prism-Vanilla-Plus-AutoUpdate.zip">Vanilla Plus herunterladen</a></div>
+      <ol class="ladder"><li>Prism öffnen → <b>Instanz hinzufügen</b> → <b>Importieren</b> → die .zip wählen.</li><li>Instanz starten. Beim ersten Start lädt ein kleines Fenster alle Mods (dauert 1–2 Minuten).</li><li>Fertig. Wenn wir das Pack ändern, holt Prism die Änderungen beim nächsten Start von selbst.</li></ol>
+      <p class="hint">Inhalt: unsere Empfehlungen und die getroffenen Entscheidungen. Für ein eigenes Pack unten selbst zusammenstellen.</p></details>
+
+    <div class="row-actions"><button class="btn primary" id="wiz-open">Assistent starten</button><span class="hint">oder eine Vorlage:</span><button class="btn" data-preset="perf">Nur Performance</button><button class="btn" data-preset="visual">Vanilla Visual</button><button class="btn" data-preset="plus">Vanilla Plus</button></div>
+    <div class="row-actions"><button class="btn" id="share">Auswahl teilen</button><button class="btn" id="reset-all">Alles zurücksetzen</button><span class="hint" id="share-out"></span></div>
+  </div>
+  <div id="upd-banner"></div>
+  <nav class="btabs" id="btabs" aria-label="Art"></nav>
+  <div class="buildgrid">
+    <div class="buildlist">
+      <div class="fbar" role="toolbar" aria-label="Filter">
+        <input type="search" id="bq" placeholder="Suchen …" aria-label="Suchen">
+        <div class="fgroup" id="fg"></div>
+      </div>
+      <p class="catnote" id="tabnote"></p>
+      <div id="blist"></div>
+    </div>
+    <aside class="buildside" id="bside"></aside>
+  </div>
+  <a class="mbar" id="mbar" href="#bauen"></a>
+</section>
+<dialog id="ask" aria-labelledby="ask-title"><div class="dhead"><h2 id="ask-title">Überschneidung</h2><button class="btn" data-close>Schließen</button></div><div id="ask-body"></div><div class="row-actions" id="ask-btns"></div></dialog>
+<dialog id="lightbox" class="lb" aria-label="Bild"><div class="dhead"><span id="lb-cap"></span><button class="btn" data-close>Schließen</button></div><div class="lbwrap"><button class="btn" id="lb-prev" aria-label="Vorheriges Bild">‹</button><img id="lb-img" alt=""><button class="btn" id="lb-next" aria-label="Nächstes Bild">›</button></div><a id="lb-link" class="hint" target="_blank" rel="noopener">Alle Bilder auf Modrinth</a></dialog>
+<dialog id="tool" aria-labelledby="tool-title"><div class="dhead"><h2 id="tool-title"></h2><button class="btn" data-close>Schließen</button></div><div id="tool-body"></div></dialog>
+<dialog id="wiz" aria-labelledby="wiz-title"><div class="dhead"><h2 id="wiz-title">Assistent</h2><button class="btn" id="wiz-close">Schließen</button></div><div id="wiz-body"></div></dialog>
+
+<section id="view-settings" hidden></section>
+
+<section id="view-test" hidden></section>
+<section id="view-logs" hidden>
+  <p class="catnote lead">Lade eine <code>latest.log</code> oder einen Crash-Report hoch, oder füge den Text ein. Die Seite sucht sofort nach bekannten Mustern (Mixin-Fehler, fehlende Abhängigkeiten, auffällige Mods). Mit „Von Claude analysieren lassen“ bekommst du eine Einschätzung, die unsere Mod-Liste und Überschneidungen kennt.</p>
+  <div class="logbox">
+    <label class="file" for="log-file">Datei wählen<input type="file" id="log-file" accept=".log,.txt,text/plain"></label>
+    <span class="hint" id="log-name">Typisch: .minecraft/crash-reports/… oder logs/latest.log</span>
+    <textarea id="log-text" rows="9" placeholder="Oder Log-Text hier einfügen …" aria-label="Log-Text"></textarea>
+    <div class="row-actions">
+      <button class="btn" id="log-quick">Schnell prüfen</button>
+      <button class="btn primary" id="log-ai" hidden>Von Claude analysieren lassen</button>
+      <span class="hint" id="log-status"></span>
+    </div>
+  </div>
+  <div id="log-quick-out"></div>
+  <div class="analysis" id="log-ai-out" hidden></div>
+  <h2 id="log-hist-h" hidden>Frühere Analysen</h2>
+  <div id="log-hist"></div>
+</section>
+
+<dialog id="detail" aria-labelledby="detail-title">
+  <div class="dhead"><h2 id="detail-title"></h2><button class="btn" id="detail-close" aria-label="Schließen">Schließen</button></div>
+  <div id="detail-body"></div>
+</dialog>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+const MODS = __DATA__;
+const SET = __SETTINGS__;
+const DEC = __DECISIONS__;
+const FILES = __FILES__;
+const X = __EXTRA__;
+const BY = Object.fromEntries(MODS.map(m=>[m.slug,m]));
+const NAME = s => (BY[s]&&BY[s].name)||s;
+const CATS = {
+  P:{t:"Performance & Basis",n:"Unsichtbar, aber Pflicht: macht das Spiel schneller und bringt die Werkzeuge mit, die jedes Pack braucht."},
+  V:{t:"Nur Visuell",n:"Verändert, wie das Spiel aussieht, klingt und sich anfühlt, aber nicht, wie es funktioniert. Basis für das Vanilla-Visual-Pack."},
+  G:{t:"Gameplay verändert",n:"Ändert Regeln oder fügt Inhalte hinzu. Fast alles davon braucht die Mod auch auf dem Server: Schicht „Vanilla Plus“."},
+  T:{t:"Terrain & Welt",n:"Verändert die Weltgenerierung. Nur in eigenen Welten oder auf eigenem Server."},
+  S:{t:"Server & Technik",n:"Werkzeuge für Server-Betreiber und Technik-Spieler. Kommen beim Export eines Server-Packs automatisch dazu."}
+};
+const AMP = {G:"Nur Client",Y:"Server optional",R:"Server nötig",Q:"Prüfen"};
+const ROLE = {K:"Kern",O:"Option",A:"Alternative"};
+const SRC = {J:"Jakka",D:"demonjoeTV",VP:"Vanilla Perfected",PC:"Punchy-Collection",SA:"Studious Additions",DU:"Dein Pack"};
+const ART = {K:"Konflikt",D:"Doppelt",T:"Testen",A:"Gehört zusammen",S:"Passt gut"};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=k=>k>=1000?(k/1000).toFixed(k>=10000?0:1).replace(".",",")+" Mio":k+" Tsd";
+
+/* ---------- state ---------- */
+const st={cat:null,q:"",core:false,vanilla:false,hide:false,openOnly:true};
+try{const s=JSON.parse(localStorage.getItem("mk-filter")||"null"); if(s) Object.assign(st,s,{q:""});}catch(e){}
+const saveFilter=()=>{try{localStorage.setItem("mk-filter",JSON.stringify(st));}catch(e){}};
+let choices={};            // id -> {choice, by, at}
+let db=null, user=null, sample=null, myId=null, names={};
+let mode="loading";        // loading | shared | local
+
+function localLoad(){ try{ choices=JSON.parse(localStorage.getItem("mk-choices")||"{}"); }catch(e){ choices={}; } }
+function localSave(){ try{ localStorage.setItem("mk-choices",JSON.stringify(choices)); }catch(e){} }
+
+/* mod status from decisions: chosen -> definitive, else recommendation -> provisional */
+function modStatus(){
+  const s={};
+  for(const d of DEC.entscheidungen){
+    const c=choices[d.id]; const oid=c?c.choice:d.empfehlung; const o=d.optionen.find(x=>x.id===oid); if(!o) continue;
+    for(const m of o.weg) s[m]={state:"weg",final:!!c,dec:d.id};
+    for(const m of o.behalten) if(!s[m]||s[m].state!=="weg") s[m]={state:"drin",final:!!c,dec:d.id};
+  }
+  return s;
+}
+function decisionsFor(slug){ return DEC.entscheidungen.filter(d=>d.optionen.some(o=>o.behalten.includes(slug)||o.weg.includes(slug))); }
+function relationsFor(slug){ return DEC.beziehungen.filter(r=>r.mods.includes(slug)); }
+
+/* ---------- catalog ---------- */
+function match(m,ms){
+  if(st.cat && m.cat!==st.cat) return false;
+  if(st.core && m.rolle!=="K") return false;
+  if(st.vanilla && !(m.ampel==="G"||m.ampel==="Y")) return false;
+  if(st.hide && ms[m.slug]&&ms[m.slug].state==="weg") return false;
+  if(st.q){ const q=st.q.toLowerCase(); if(!(m.name+" "+m.notiz+" "+m.sub).toLowerCase().includes(q)) return false; }
+  return true;
+}
+function renderSummary(){
+  $("summary").innerHTML=Object.entries(CATS).map(([k,c])=>{const all=MODS.filter(m=>m.cat===k),core=all.filter(m=>m.rolle==="K").length;
+    return `<button class="sum" data-cat="${k}" aria-pressed="${st.cat===k}"><b>${all.length}</b><span>${c.t}</span><small>${core} Kern-Empfehlung${core===1?"":"en"}</small></button>`;}).join("");
+}
+function renderCatalog(){
+  renderSummary();
+  ["core","vanilla","hide"].forEach(k=>$("f-"+k).setAttribute("aria-pressed",st[k]));
+  const ms=modStatus(); let html="",total=0;
+  for(const [k,c] of Object.entries(CATS)){
+    const list=MODS.filter(m=>m.cat===k&&match(m,ms)); if(!list.length) continue; total+=list.length;
+    html+=`<section><h2>${c.t}<small>${list.length}</small></h2><p class="catnote">${c.n}</p>`;
+    for(const s of [...new Set(list.map(m=>m.sub))]){
+      html+=`<h3>${esc(s)}</h3><div class="list">`;
+      for(const m of list.filter(x=>x.sub===s)){
+        const st2=ms[m.slug]; const rel=relationsFor(m.slug).length+decisionsFor(m.slug).length;
+        const flag = st2 ? (st2.state==="weg" ? `<span class="stat weg">${st2.final?"Abgewählt":"Abgewählt (Empfehlung)"}</span>` : `<span class="stat drin">${st2.final?"Gewählt":"Gewählt (Empfehlung)"}</span>`) : "";
+        const src=m.quellen.map(x=>SRC[x]).filter(Boolean).join(" · ");
+        html+=`<div class="row${st2&&st2.state==="weg"?" off":""}"><div class="name"><a href="${m.cf||"https://modrinth.com/project/"+m.slug}" target="_blank" rel="noopener">${esc(m.name)}</a><span class="role ${m.rolle}">${ROLE[m.rolle]}</span>${m.cf?`<span class="role">CurseForge</span>`:""}${flag}</div>
+        <div><span class="pill ${m.ampel}"><span class="dot ${m.ampel}"></span>${AMP[m.ampel]}</span></div>
+        <div class="note">${esc(m.notiz)}${src?`<span class="src">${src}</span>`:""}</div>
+        <div class="dl">${rel?`<button class="link" data-detail="${m.slug}">${rel} Beziehung${rel===1?"":"en"}</button>`:fmt(m.downloadsK)}</div></div>`;
+      }
+      html+=`</div>`;
+    }
+    html+=`</section>`;
+  }
+  $("out").innerHTML= total?html:`<div class="empty">Keine Mods für diese Filter. Nimm einen Filter heraus oder ändere die Suche.</div>`;
+}
+
+/* ---------- previews ---------- */
+const PT={m:"mod",r:"resourcepack",s:"shader"};
+function galUrl(s){ const m=BY[s]; const t=PT[(m&&m.pt)||"m"]; return `https://modrinth.com/${t}/${s}/gallery`; }
+function ytUrl(s){ return "https://www.youtube.com/results?search_query="+encodeURIComponent(NAME(s)+" minecraft "+(BY[s]&&BY[s].pt==="r"?"resource pack":BY[s]&&BY[s].pt==="s"?"shader":"mod")+" showcase"); }
+function previewLinks(s,short){ const m=BY[s]; if(!m) return ""; const g=m.gal?`<a href="${galUrl(s)}" target="_blank" rel="noopener">${short?"Bilder":"Bilder ("+m.gal+")"}</a>`:""; return `<span class="pv">${g}${g?" · ":""}<a href="${ytUrl(s)}" target="_blank" rel="noopener">Video</a></span>`; }
+/* ---------- detail dialog ---------- */
+function openDetail(slug){
+  const m=BY[slug]; if(!m) return; const ms=modStatus();
+  $("detail-title").textContent=m.name;
+  let h=`<p class="catnote">${esc(m.notiz)}</p><p><span class="pill ${m.ampel}"><span class="dot ${m.ampel}"></span>${AMP[m.ampel]}</span> <span class="role ${m.rolle}">${ROLE[m.rolle]}</span> <a href="https://modrinth.com/project/${m.slug}" target="_blank" rel="noopener">Auf Modrinth ansehen</a> · ${previewLinks(slug)}</p>${FILES[slug]?`<p class="hint">Version für 26.3: ${esc(FILES[slug][6])}${FILES[slug][5].length?" · braucht "+FILES[slug][5].map(d=>esc(FILES[d]&&FILES[d][7]||NAME(d))).join(", "):""}</p>`:""}`;
+  const ds=decisionsFor(slug);
+  if(ds.length){ h+=`<h3>Entscheidungen</h3><ul class="dl-list">`+ds.map(d=>{const c=choices[d.id]; const o=d.optionen.find(x=>x.id===(c?c.choice:d.empfehlung)); return `<li><a href="#entscheidungen" data-jump="${d.id}">${esc(d.titel)}</a>: ${c?"gewählt":"Empfehlung"} „${esc(o.label)}“</li>`;}).join("")+`</ul>`; }
+  const rs=relationsFor(slug);
+  if(rs.length){ for(const a of ["K","D","T","A","S"]){ const g=rs.filter(r=>r.art===a); if(!g.length) continue;
+    h+=`<h3><span class="tag ${a}">${ART[a]}</span></h3><ul class="dl-list">`+g.map(r=>`<li><b>${r.mods.filter(x=>x!==slug).map(NAME).map(esc).join(", ")}</b>: ${esc(r.text)}</li>`).join("")+`</ul>`; } }
+  if(!ds.length&&!rs.length) h+=`<p class="catnote">Keine bekannten Überschneidungen.</p>`;
+  $("detail-body").innerHTML=h; const dlg=$("detail"); if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open","");
+}
+$("detail-close").onclick=()=>$("detail").close();
+
+/* ---------- decisions ---------- */
+function who(c){ if(!c) return ""; const n=(c.by&&names[c.by])||""; const d=c.at?new Date(c.at).toLocaleDateString("de-DE"):""; return `Gewählt${n?" von "+esc(n):""}${d?" am "+d:""}`; }
+function renderDecisions(){
+  const done=DEC.entscheidungen.filter(d=>choices[d.id]).length, total=DEC.entscheidungen.length;
+  $("open-count").textContent= total-done ? String(total-done) : "";
+  $("d-progress").textContent=`${done} von ${total} entschieden`;
+  $("d-open").setAttribute("aria-pressed",st.openOnly);
+  const list=DEC.entscheidungen.filter(d=>!st.openOnly||!choices[d.id]);
+  $("dec-list").innerHTML = list.length ? list.map(d=>{
+    const c=choices[d.id];
+    return `<article class="dec" id="dec-${d.id}"><div class="dec-head"><span class="tag ${d.art}">${ART[d.art]}</span><h2>${esc(d.titel)}</h2>${c?`<span class="who">${who(c)}</span>`:""}</div>
+    <p class="frage">${esc(d.frage)}</p><div class="opts">`+d.optionen.map(o=>{
+      const sel=c&&c.choice===o.id, rec=d.empfehlung===o.id;
+      return `<div class="opt${sel?" sel":""}"><div class="opt-h"><b>${esc(o.label)}</b>${rec?`<span class="rec">Empfehlung</span>`:""}</div>
+      ${o.pro.length?`<ul class="pro">${o.pro.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}
+      ${o.contra.length?`<ul class="con">${o.contra.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}
+      ${(()=>{const im=o.behalten.flatMap(s=>(BY[s]&&BY[s].img||[]).slice(0,1).map(u=>[s,u])).slice(0,2); return im.length?`<div class="thumbs">${im.map(([s,u])=>`<a href="${galUrl(s)}" target="_blank" rel="noopener"><img src="${u}" alt="${esc(NAME(s))}" loading="lazy" onerror="this.parentNode.remove()"></a>`).join("")}</div>`:"";})()}
+      ${o.behalten.length?`<p class="pvrow">Ansehen: ${o.behalten.slice(0,3).map(s=>`<span>${esc(NAME(s))} ${previewLinks(s,true)}</span>`).join("")}</p>`:""}
+      <p class="mods">${o.behalten.length?`<span>Behält: ${o.behalten.map(NAME).map(esc).join(", ")}</span>`:""}${o.weg.length?`<span>Entfernt: ${o.weg.map(NAME).map(esc).join(", ")}</span>`:""}</p>
+      <button class="btn${sel?" primary":""}" data-choose="${d.id}" data-opt="${o.id}" ${sel?"aria-pressed=\"true\"":""}>${sel?"Gewählt":"Diese wählen"}</button></div>`;}).join("")+
+    `</div><p class="dec-foot"><span class="src">Quelle: ${esc(d.quelle)}</span>${c?`<button class="link" data-reset="${d.id}">Entscheidung zurücknehmen</button>`:""}</p></article>`;
+  }).join("") : `<div class="empty">Alle Entscheidungen sind getroffen. Mit „Nur offene“ aus siehst du sie wieder.</div>`;
+  $("rel-list").innerHTML = ["K","D","T","A","S"].map(a=>{const g=DEC.beziehungen.filter(r=>r.art===a); if(!g.length) return "";
+    return `<h3><span class="tag ${a}">${ART[a]}</span></h3><div class="list">`+g.map(r=>`<div class="orow"><div class="omods">${r.mods.map(s=>`<button class="link mchip" data-detail="${s}">${esc(NAME(s))}</button>`).join(`<span class="plus">+</span>`)}</div><div class="otext">${esc(r.text)}</div></div>`).join("")+`</div>`;}).join("");
+}
+async function choose(id,opt){
+  const prev=choices[id]; const val={choice:opt,by:myId||null,at:new Date().toISOString()};
+  choices={...choices,[id]:val}; renderAll();
+  if(mode==="shared"){ try{ await db.doc("decisions/"+id).set(val); }catch(e){ choices={...choices}; if(prev) choices[id]=prev; else delete choices[id]; renderAll(); showSync(e&&e.code==="permission_denied"?"Du hast hier nur Leserechte. Deine Wahl wurde nicht gespeichert.":"Speichern hat nicht geklappt. Bitte noch einmal versuchen."); } }
+  else localSave();
+}
+async function resetChoice(id){
+  const prev=choices[id]; const n={...choices}; delete n[id]; choices=n; renderAll();
+  if(mode==="shared"){ try{ await db.doc("decisions/"+id).delete(); }catch(e){ choices={...choices,[id]:prev}; renderAll(); showSync("Zurücknehmen hat nicht geklappt."); } }
+  else localSave();
+}
+function showSync(t){ const s=$("sync"); s.textContent=t; s.hidden=!t; }
+
+/* ---------- builder ---------- */
+const COST={"photon-shader":8,"complementary-reimagined":7,"complementary-unbound":8,"bliss-shader":9,"solas-shader":5,"bsl-shaders":5,"i-like-vanilla":3,"steadfast-shaders":3,"voxy":4,"distanthorizons":5,"living-horizon":3,"physicsmod":8,"particle-rain":3,"subtle-effects":2,"sound-physics-remastered":3,"fresh-animations":3,"fresh-animations-extensions":2,"fresh-animations-objects":2,"wakes":2,"better-smoke":2,"particle-interactions":2,"atmospherics":2,"immersive-storms":2,"chunks-fade-in":2,"spatial-gui":1,"diorama-map":2,"xaeros-world-map":2,"journeymap":3,"grassier-grass":2,"os-colorful-grasses":2,"round-trees":1,"lambdabettergrass":1,"visuality":1,"fallingleaves":1,"windy":1,"ambientsounds":1,"presence-footsteps":1,"punchy-fpa":1,"punchymoves":1,"3dskinlayers":1,"enchanted-fishing-line":1};
+const BOOST=new Set(["sodium","lithium","ferrite-core","immediatelyfast","entityculling","moreculling","modernfix-mvus","badoptimizations","dynamic-fps","krypton","c2me-fabric","scalablelux","better-block-entities","ggtu"]);
+const cost=s=>BOOST.has(s)?0:(COST[s]??1);
+const LOCKED=new Set(MODS.filter(m=>(m.cat==="P"&&m.rolle==="K")||m.pflicht).map(m=>m.slug));
+/* settings editors: verified keys (Photon source, Voxy source, options.txt) */
+const TPL=__TPL__;
+const SETDEF={
+ "photon-shader":{file:"Photon-Shader-Datei",items:[
+  {k:"COLORED_LIGHTS",t:"bool",d:true,l:"Farbiges Licht",h:"Fackeln, Lava und Redstone färben ihre Umgebung. Kostet etwas Leistung, sieht aber am meisten nach „Ultra“ aus."},
+  {k:"WATER_CAUSTICS",t:"bool",d:true,l:"Wasser-Kaustiken",h:"Tanzende Lichtmuster unter Wasser. Kostet wenig."},
+  {k:"shadowMapResolution",t:"sel",o:[1024,2048,3072,4096],d:2048,l:"Schattenauflösung",h:"Höher = schärfere Schattenkanten. Bei 1440p reicht 2048."},
+  {k:"shadowDistance",t:"sel",o:[96,128,160,192,256],d:160,f:v=>v.toFixed(1),l:"Schattendistanz (Blöcke)",h:"Wie weit Schatten reichen. Die wichtigste Stellschraube für FPS."},
+  {k:"BLOOM_INTENSITY",t:"range",min:0,max:1.5,step:.05,d:.8,f:v=>Number(v).toFixed(2),l:"Bloom",h:"Leuchten um helle Stellen. Weniger wirkt vanilla-näher."},
+  {k:"AURORA_NORMAL",t:"sel",o:["AURORA_NEVER","AURORA_RARELY","AURORA_ALWAYS"],ol:["Nie","Selten","Immer"],d:"AURORA_RARELY",l:"Polarlichter",h:"Polarlichter am Nachthimmel."},
+  {k:"BLOCKY_CLOUDS",t:"bool",d:false,l:"Blockwolken",h:"An = eckige Wolken wie in Vanilla, aus = weiche volumetrische Wolken."},
+  {k:"HANDHELD_LIGHTING",t:"bool",d:false,l:"Licht in der Hand (Photon)",h:"Aus lassen, wenn LambDynamicLights drin ist, sonst doppelt hell."},
+  {k:"DESERT_SANDSTORM",t:"bool",d:false,l:"Sandsturm (Photon)",h:"Aus lassen, wenn Particle Rain drin ist, das macht eigene Sandstürme."},
+  {k:"TAAU",t:"bool",d:false,l:"Upscaling (TAAU)",h:"Rendert intern kleiner und rechnet hoch. Nur einschalten, wenn FPS fehlen."},
+  {k:"MOTION_BLUR",t:"bool",d:false,l:"Bewegungsunschärfe",h:"Filmischer Look, stört beim normalen Spielen."}]},
+ "particle-rain":{file:"particlerain/config.json",fmt:"json",items:[
+  {k:"perf.particleAmount",t:"sel",o:[500,1000,1500,2500],d:1500,l:"Partikelmenge",h:"Wie viele Regen- und Schneepartikel gleichzeitig. Weniger = mehr FPS."},
+  {k:"perf.particleDistance",t:"sel",o:[12,16,24,32],d:16,l:"Partikel-Reichweite (Blöcke)",h:"Wie weit um dich herum Wetterpartikel erscheinen."},
+  {k:"sound.rainVolume",t:"range",min:0,max:1,step:.05,d:.2,l:"Regen-Lautstärke",h:"Zusätzliche Regengeräusche von Particle Rain."},
+  {k:"wind.strength",t:"range",min:0,max:.1,step:.01,d:.03,l:"Windstärke",h:"Wie schräg Regen und Schnee fallen."}]},
+ "sound-physics-remastered":{file:"sound_physics_remastered/soundphysics.properties",fmt:"props",items:[
+  {k:"enabled",t:"bool",d:true,l:"Aktiv",h:"Hall und Dämpfung je nach Umgebung."},
+  {k:"reverb_brightness",t:"range",min:.5,max:2,step:.05,d:1,l:"Hall-Helligkeit",h:"Höher = hellerer, klarerer Hall in Höhlen."},
+  {k:"block_absorption",t:"range",min:0,max:3,step:.1,d:1,l:"Dämpfung durch Blöcke",h:"Wie stark Wände Geräusche schlucken."},
+  {k:"underwater_filter",t:"range",min:0,max:1,step:.05,d:.9,l:"Unterwasser-Filter",h:"Wie dumpf es unter Wasser klingt."},
+  {k:"environment_evaluation_ray_count",t:"sel",o:[16,32,64],d:32,l:"Genauigkeit",h:"Mehr Strahlen = genauerer Hall, kostet CPU."}]},
+ "visuality":{file:"visuality.json",fmt:"json",items:[
+  {k:"sparkleEnabled",t:"bool",d:true,l:"Glitzern an Erzen und Kristallen",h:"Funkelnde Partikel an Amethyst, Diamanterz usw."},
+  {k:"shinyBlocksEnabled",t:"bool",d:true,l:"Glänzende Blöcke",h:"Leichtes Glitzern an Gold- und Diamantblöcken."},
+  {k:"shinyArmorEnabled",t:"bool",d:true,l:"Glänzende Rüstung",h:"Glitzern an wertvoller Rüstung."},
+  {k:"hitParticlesEnabled",t:"bool",d:true,l:"Treffer-Partikel",h:"Knochen, Federn usw. beim Schlagen von Mobs."},
+  {k:"waterCircles.enabled",t:"bool",d:true,l:"Regenringe auf Wasser",h:"Ringe, wenn Regen auf Wasser fällt. Mit Particle Rain doppelt, dann aus."}]},
+ "fallingleaves":{file:"fallingleaves2.json",fmt:"json",base:{version:1},items:[
+  {k:"enabled",t:"bool",d:true,l:"Fallende Blätter",h:"Blätter fallen von Bäumen."},
+  {k:"leafSpawnRate",t:"sel",o:[5,10,15,20],d:10,l:"Menge",h:"Wie viele Blätter fallen."},
+  {k:"leafSize",t:"sel",o:[3,5,7],d:5,l:"Größe",h:"Größe der Blätter."},
+  {k:"windEnabled",t:"bool",d:true,l:"Wind",h:"Blätter werden vom Wind getragen."}]},
+ "explosive-enhancement":{file:"explosiveenhancement.json",fmt:"json",items:[
+  {k:"showMushroomCloud",t:"bool",d:true,l:"Pilzwolke",h:"Rauchpilz bei großen Explosionen."},
+  {k:"showShockwave",t:"bool",d:true,l:"Druckwelle",h:"Sichtbare Druckwelle am Boden."},
+  {k:"showSparks",t:"bool",d:true,l:"Funken",h:"Funkenregen."},
+  {k:"dynamicSize",t:"bool",d:true,l:"Größe nach Stärke",h:"Kleine Explosionen sehen kleiner aus."}]},
+ "windy":{file:"windy-config.json",fmt:"json",items:[
+  {k:"spawnWind",t:"bool",d:true,l:"Windpartikel",h:"Sichtbare Windstreifen in der Höhe."},
+  {k:"windFrequency",t:"range",min:.25,max:2,step:.25,d:1,l:"Häufigkeit",h:"Wie oft Windstreifen erscheinen."}]},
+ "3dskinlayers":{file:"skinlayers.json",fmt:"json",items:[
+  {k:"renderDistanceLOD",t:"sel",o:[8,14,24],d:14,l:"3D-Distanz (Blöcke)",h:"Ab dieser Entfernung wird der Skin wieder flach. Spart Leistung."},
+  {k:"enableSkulls",t:"bool",d:true,l:"3D-Spielerköpfe",h:"Auch platzierte Köpfe in 3D."}]},
+ "not-enough-animations":{file:"notenoughanimations.json",fmt:"json",base:{configVersion:12},items:[
+  {k:"enableEatDrinkAnimation",t:"bool",d:true,l:"Essen und Trinken",h:"Arme bewegen sich beim Essen auch in Third Person."},
+  {k:"enableLadderAnimation",t:"bool",d:true,l:"Leiter klettern",h:"Echte Kletteranimation."},
+  {k:"enableInWorldMapRendering",t:"bool",d:true,l:"Karten in der Hand",h:"Andere sehen deine Karte."},
+  {k:"enableHorseAnimation",t:"bool",d:true,l:"Reiten",h:"Animation beim Reiten."},
+  {k:"enableAnimationSmoothing",t:"bool",d:true,l:"Weiche Übergänge",h:"Animationen gehen weicher ineinander über."}]},
+ "living-horizon":{file:"livinghorizon.json",fmt:"json",base:{version:13},items:[
+  {k:"distantMobs",t:"bool",d:true,l:"Ferne Mobs",h:"Zeigt Tiere und Monster hinter der Sichtweite."},
+  {k:"maxDistantMobs",t:"sel",o:[128,256,512,1024],d:512,l:"Max. ferne Mobs",h:"Mehr = lebendiger, kostet etwas Leistung."},
+  {k:"mobMaxDistance",t:"sel",o:[256,512,1024],d:512,l:"Mob-Reichweite (Blöcke)",h:"Bis wohin ferne Mobs gezeigt werden."},
+  {k:"distantEntities",t:"bool",d:true,l:"Ferne Objekte",h:"Boote, Loren und Rüstungsständer in der Ferne."}]},
+ "zoomify":{file:"zoomify.json",fmt:"tpl",items:[
+  {k:"initialZoom",t:"sel",o:[2,3,4,6],d:2,l:"Zoom-Stärke",h:"Wie stark beim Drücken von C gezoomt wird. Vorlage aus Studious nutzt 2, Zoomify selbst 4."},
+  {k:"zoomKeyBehaviour",t:"sel",o:["hold","toggle"],ol:["Halten","Umschalten"],s:1,d:"hold",l:"Zoom-Taste",h:"Halten = Zoom nur solange gedrückt. Umschalten = einmal drücken an, nochmal aus."},
+  {k:"scrollZoom",t:"bool",d:true,l:"Mit Mausrad nachzoomen",h:"Während des Zooms mit dem Mausrad näher ran."},
+  {k:"relativeSensitivity",t:"sel",o:[50,75,100],d:100,l:"Maus beim Zoomen (%)",h:"100 = Maus wird beim Zoomen proportional langsamer, fühlt sich natürlich an."}]},
+ "cameraoverhaul":{file:"cameraoverhaul.toml",fmt:"tpl",items:[
+  {k:"general.enabled",t:"bool",d:true,l:"Aktiv",h:"Schaltet alle Kamera-Effekte an oder aus."},
+  {k:"general.turningRollIntensity",t:"sel",o:[0,0.5,1.25,2],d:1.25,l:"Neigen beim Umdrehen",h:"Wie stark die Kamera beim schnellen Drehen kippt. Standard 1.25."},
+  {k:"general.cameraSwayIntensity",t:"sel",o:[0,0.3,0.6,1],d:0.6,l:"Schwanken im Stand",h:"Leichtes Atmen der Kamera, wenn du stillstehst. 0 = aus."},
+  {k:"general.screenShakesMaxIntensity",t:"sel",o:[0,1,2.5],d:2.5,l:"Max. Bildschirm-Wackeln",h:"Begrenzt Wackeln durch Explosionen und Donner. 0 = kein Wackeln."},
+  {k:"walking.strafingRollFactor",t:"sel",o:[0,5,10,15],d:10,l:"Neigen beim Seitwärtslaufen",h:"Kamera kippt beim Gehen nach links/rechts. Standard 10."}]},
+ "immersive-hotbar":{file:"immersive-hotbar.json5",fmt:"tpl",items:[
+  {k:"selectedItemSize",t:"sel",o:[1,1.1,1.2,1.3],d:1.2,l:"Größe des gewählten Items",h:"Wie stark das ausgewählte Item in der Hotbar wächst."},
+  {k:"bouncyAnimation",t:"bool",d:false,l:"Federnde Animation",h:"Items hüpfen beim Wechseln."},
+  {k:"immersiveToolTip",t:"bool",d:true,l:"Animierter Item-Name",h:"Der Name über der Hotbar ploppt beim Wechseln auf."},
+  {k:"lowDurabilityGlow",t:"bool",d:false,l:"Glühen bei wenig Haltbarkeit",h:"Fast kaputte Werkzeuge leuchten in der Hotbar."}]},
+ "moreculling":{file:"moreculling.toml",fmt:"tpl",items:[
+  {k:"rainCulling",t:"bool",d:true,l:"Regen ausblenden, wo unsichtbar",h:"Spart Leistung bei Regen."},
+  {k:"useItemFrameLOD",t:"bool",d:true,l:"Item-Rahmen vereinfachen",h:"Weit entfernte Item-Rahmen werden einfacher gezeichnet. Hilft bei großen Lagern."},
+  {k:"itemFrameLODRange",t:"sel",o:[8,11,16,24],d:11,l:"Ab Entfernung (Blöcke)",h:"Ab hier werden Item-Rahmen vereinfacht."},
+  {k:"signTextCulling",t:"bool",d:true,l:"Schildtext ausblenden",h:"Text auf Schildern, die du nicht lesen kannst, wird nicht gezeichnet."}]},
+ "wavey-capes":{file:"waveycapes.json",fmt:"tpl",items:[
+  {k:"capeStyle",t:"sel",o:["SMOOTH","BLOCKY"],ol:["Weich","Blockig"],s:1,d:"SMOOTH",l:"Umhang-Stil",h:"Weich = fließender Stoff, blockig = Minecraft-Look."},
+  {k:"capeMovement",t:"sel",o:["VANILLA","BASIC_SIMULATION","BASIC_SIMULATION_3D","DUNGEONS"],ol:["Vanilla","Simulation","Simulation 3D","Dungeons"],s:1,d:"BASIC_SIMULATION_3D",l:"Bewegung",h:"Simulation 3D sieht am echtesten aus."},
+  {k:"windMode",t:"sel",o:["NONE","WAVES"],ol:["Aus","Wellen"],s:1,d:"NONE",l:"Wind",h:"Umhang flattert auch im Stand."}]},
+ "wakes-reforged":{file:"wakes-client.toml",fmt:"tpl",items:[
+  {k:"wakeResolution",t:"sel",o:["EIGHT","SIXTEEN","THIRTYTWO"],ol:["8","16","32"],s:1,d:"SIXTEEN",l:"Wellen-Auflösung",h:"Höher = feinere Wellen, kostet mehr."},
+  {k:"wakeOpacity",t:"sel",o:[0.5,0.75,1],d:1,l:"Deckkraft",h:"Wie sichtbar die Wellen sind."},
+  {k:"spawnParticles",t:"bool",d:true,l:"Spritzer-Partikel",h:"Wasserspritzer an Booten."}]},
+ "entityculling":{file:"entityculling.json",fmt:"tpl",items:[
+  {k:"tracingDistance",t:"sel",o:[64,128,256],d:128,l:"Prüf-Distanz (Blöcke)",h:"Bis wohin geprüft wird, ob Objekte verdeckt sind."},
+  {k:"tickCulling",t:"bool",d:true,l:"Verdeckte Objekte nicht animieren",h:"Spart CPU. Selten können Animationen kurz stocken."},
+  {k:"renderNametagsThroughWalls",t:"bool",d:true,l:"Namen durch Wände",h:"Spielernamen bleiben hinter Wänden sichtbar."}]},
+ "voxy":{file:"voxy-config.json",fmt:"json",base:{enabled:true,enable_rendering:true,ingest_enabled:true},items:[
+  {k:"section_render_distance",num:1,t:"sel",o:[8,12,16,24,32],ol:["256 Chunks","384 Chunks","512 Chunks","768 Chunks","1024 Chunks"],d:16,l:"Fernsicht",h:"Wie weit Voxy die Landschaft zeigt. 512 ist ein guter Start für eine 3080."},
+  {k:"sub_division_size",t:"sel",o:[32,48,64,96,128],d:64,l:"Detail in der Ferne",h:"Kleiner = detailreicher in der Ferne, kostet Leistung."},
+  {k:"dont_use_sodium_builder_threads",t:"bool",inv:true,d:true,l:"Sodium-Threads mitnutzen",h:"Laut Voxy weniger Ruckler beim schnellen Fliegen."}]}
+};
+const BASE={items:[
+  {k:"renderDistance",t:"sel",o:[8,10,12,16,20,24],d:16,l:"Sichtweite (Chunks)",h:"Normale Sichtweite. Dahinter übernimmt Voxy."},
+  {k:"simulationDistance",t:"sel",o:[6,8,10,12],d:10,l:"Simulationsdistanz",h:"Wie weit die Welt aktiv ist. Weniger entlastet die CPU."},
+  {k:"maxFps",t:"sel",o:[60,120,140,165,240,260],ol:["60","120","140","165","240","Unbegrenzt"],d:140,l:"FPS-Limit",h:"Mit G-Sync knapp unter der Bildwiederholrate: 140 bei 144 Hz."}]};
+let cfg={};
+function buildConfig(slug){
+  const def=SETDEF[slug]; if(!def||!def.fmt) return null;
+  const fl=(v,o)=>/^-?\d+$/.test(v)&&/^-?\d+\.\d+/.test(o.trim())?v+".0":v;
+  if(def.fmt==="tpl"){ let t=TPL[def.file]; const toml=/\.toml$/.test(def.file);
+    for(const i of def.items){ let v=cv(slug,i.k); v=i.t==="bool"?String(!!v):i.s?'"'+v+'"':String(Number(v)); const p=i.k.split("."); const key=p.pop().replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+      if(toml){ let a=0,b=t.length; if(p.length){ const m=t.match(new RegExp("^\\s*\\["+p[0]+"\\]\\s*$","m")); if(!m) continue; a=m.index+m[0].length; const n=t.slice(a).search(/^\s*\[/m); if(n>=0) b=a+n; }
+        t=t.slice(0,a)+t.slice(a,b).replace(new RegExp("^(\\s*"+key+"\\s*=\\s*)(.*)$","m"),(m0,g1,g2)=>g1+fl(v,g2))+t.slice(b); }
+      else t=t.replace(new RegExp('^(\\s*"?'+key+'"?\\s*:\\s*)([^,\\n]*)',"m"),(m0,g1,g2)=>g1+fl(v,g2)); }
+    return t; }
+  if(def.fmt==="props") return def.items.map(i=>{const v=cv(slug,i.k); return i.k+"="+(i.t==="bool"?String(!!v):String(v));}).join("\n")+"\n";
+  const o=JSON.parse(JSON.stringify(def.base||{}));
+  for(const i of def.items){ let v=cv(slug,i.k); if(i.inv) v=!v; if(i.t!=="bool") v=Number(v); const p=i.k.split("."); let c=o; while(p.length>1){ const q=p.shift(); c[q]=c[q]||{}; c=c[q]; } c[p[0]]=v; }
+  return JSON.stringify(o,null,2);
+}
+function cv(slug,k){ const def=(slug==="_base"?BASE:SETDEF[slug]).items.find(i=>i.k===k); return cfg[slug]&&k in cfg[slug]?cfg[slug][k]:def.d; }
+function setCv(slug,k,v){ cfg={...cfg,[slug]:{...(cfg[slug]||{}),[k]:v}}; saveSel(); }
+function editorHtml(slug){
+  const def=slug==="_base"?BASE:SETDEF[slug]; if(!def) return "";
+  return `<div class="ed" data-ed="${slug}">`+def.items.map(i=>{ const v=cv(slug,i.k); let c="";
+    if(i.t==="bool") c=`<input type="checkbox" data-cfg="${slug}|${i.k}" ${v?"checked":""}>`;
+    else if(i.t==="sel") c=`<select data-cfg="${slug}|${i.k}">`+i.o.map((o,n)=>`<option value="${o}" ${String(o)===String(v)?"selected":""}>${esc(i.ol?i.ol[n]:o)}</option>`).join("")+`</select>`;
+    else c=`<input type="range" min="${i.min}" max="${i.max}" step="${i.step}" value="${v}" data-cfg="${slug}|${i.k}"><output>${Number(v).toFixed(2)}</output>`;
+    return `<div class="eitem"><label><span class="el">${esc(i.l)}</span>${c}</label><p class="eh">${esc(i.h)}${String(v)!==String(i.d)?` <button class="link" data-cfgreset="${slug}|${i.k}">Standard</button>`:""}</p></div>`;}).join("")+`</div>`;
+}
+let sel=new Set(LOCKED), bst={q:"",f:new Set()}, wizSug=new Set();
+const PT_T={m:"Mods",s:"Shader",r:"Resource Packs",d:"Datapacks"};
+const TABNOTE={m:"Mods verändern das Spiel selbst. Oben nach Leistung, Optik, Gameplay, Welt und Server-Technik filtern.",s:"Shader berechnen Licht, Schatten, Wasser und Himmel neu. Es ist immer nur einer aktiv. Iris (der Shader-Lader) kommt automatisch mit.",r:"Resource Packs tauschen Texturen, 3D-Modelle und Sounds aus. Die Reihenfolge setzt die Website automatisch richtig.",d:"Datapacks ändern Welt-Generierung oder Spielregeln. Sie wirken nur in neuen Welten."};
+const SUBS=[["P","Leistung"],["V","Optik & Sound"],["G","Gameplay"],["T","Welt & Terrain"],["S","Server & Technik"]];
+const XF=[["sel","Ausgewählt"],["rec","Empfohlen"],["van","Läuft auf Vanilla-Server"],["sug","Assistent-Vorschläge"]];
+const GROUPS=DEC.gruppen||[]; const GROUPOF={}; GROUPS.forEach(g=>g.mods.forEach(s=>GROUPOF[s]=g));
+let bt="m", bsub=null;
+function saveSel(){ try{ localStorage.setItem("mk-sel2",JSON.stringify({s:[...sel],c:cfg,w:wizA})); }catch(e){} }
+function loadSel(){
+  const hm=location.hash.match(/^#pack-([0-9a-z.]+)$/); if(hm){ try{ sel=new Set([...LOCKED,...hm[1].split(".").map(x=>MODS[parseInt(x,36)]&&MODS[parseInt(x,36)].slug).filter(Boolean)]); return true; }catch(e){} }
+  try{ const v=JSON.parse(localStorage.getItem("mk-sel2")||"null"); if(v&&v.s){ sel=new Set([...LOCKED,...v.s.filter(s=>BY[s])]); cfg=v.c||{}; wizA=v.w||{}; return true; } }catch(e){} return false;
+}
+const IMPLICIT={"fresh-animations":["entity-model-features","entitytexturefeatures"],"fresh-animations-extensions":["fresh-animations"],"fa-player-extension":["fresh-animations"],"just-expressions":["entity-model-features"],"hyper-punchy":["punchy-fpa"],"fresh-food-for-hyper-punchy":["hyper-punchy"],"punchymoves":["fluid-foolish"],"connected-paths":["continuity"],"new-glowing-ores":["continuity"],"euphoria-patches":["complementary-reimagined"],"detailed-animations":["entity-model-features","entitytexturefeatures"],"als-piglins-revamped-x-fresh-animations":["fresh-animations"],"als-zombies-revamped-x-fresh-animations":["fresh-animations"],"als-enderman-revamped-x-fresh-animations":["fresh-animations"],"als-skeletons-revamped-x-fresh-animations":["fresh-animations"],"assorted-allays-x-fresh-animations":["fresh-animations"],"bare-bones-x-fresh-animations":["fresh-animations"],"fresh-skeleton-physics":["fresh-animations"]};
+function implicit(s){ const m=BY[s]; return (IMPLICIT[s]||[]).concat(m&&m.pt==="s"?["iris"]:[]).concat(X.rpo[s]?["respackopts"]:[]); }
+function resolve(){
+  const out=new Set(), libs=new Set(); const stack=[...sel];
+  while(stack.length){ const s=stack.pop(); if(out.has(s)||libs.has(s)) continue; const f=FILES[s]; if(!f) continue; if(BY[s]) out.add(s); else libs.add(s); for(const d of f[5].concat(implicit(s))) stack.push(d); }
+  return {mods:out,libs};
+}
+/* Konflikte von x gegen die aktuelle Auswahl */
+function clashes(x,within){
+  const S=within||sel; const res=[];
+  const g=GROUPOF[x]; if(g) for(const y of g.mods) if(y!==x&&S.has(y)) res.push({y,text:g.text,art:"D",grp:g});
+  for(const r of DEC.beziehungen){ if((r.art==="K"||r.art==="D")&&!r.erledigt&&r.mods.includes(x)) for(const y of r.mods) if(y!==x&&S.has(y)&&!res.some(c=>c.y===y)) res.push({y,text:r.text,art:r.art}); }
+  for(const d of DEC.entscheidungen){ const ox=d.optionen.filter(o=>o.behalten.includes(x)); if(!ox.length) continue;
+    for(const o of d.optionen){ if(ox.includes(o)) continue; for(const y of o.behalten) if(y!==x&&S.has(y)&&!ox.some(a=>a.behalten.includes(y))&&!res.some(c=>c.y===y)) res.push({y,text:d.frage,art:d.art,dec:d}); } }
+  return res;
+}
+function problems(){ const out=[], seen=new Set(); for(const s of sel) for(const c of clashes(s)){ const k=[s,c.y].sort().join("|"); if(!seen.has(k)){ seen.add(k); out.push({a:s,b:c.y,art:c.art,text:c.text}); } } return out; }
+function relInfo(x){
+  const out=[];
+  const g=GROUPOF[x]; if(g) out.push({art:"D",others:g.mods.filter(y=>y!==x),text:"Nur eins wählbar: "+g.text});
+  for(const r of DEC.beziehungen) if(r.mods.includes(x)) out.push({art:r.erledigt?"S":r.art,others:r.mods.filter(y=>y!==x),text:(r.erledigt?"Geregelt: ":"")+r.text});
+  for(const d of DEC.entscheidungen){ const ox=d.optionen.filter(o=>o.behalten.includes(x)); if(!ox.length) continue; const others=[...new Set(d.optionen.filter(o=>!ox.includes(o)).flatMap(o=>o.behalten))].filter(y=>y!==x); if(others.length) out.push({art:d.art,others,text:d.titel+": "+d.frage,dec:d.id}); }
+  return out;
+}
+function thumbs(s,n){ const m=BY[s]; const im=(m&&m.img||[]).slice(0,n||1); return im.length?im.map((u,i)=>`<img src="${u}" alt="" loading="lazy" data-zoom="${s}|${i}" onerror="this.remove()">`).join(""):`<span class="noimg">${esc(PT_T[(m&&m.pt)||"m"])}</span>`; }
+function askConflict(x,cl){
+  return new Promise(res=>{
+    const dlg=$("ask"); const ys=[...new Set(cl.map(c=>c.y))];
+    $("ask-title").textContent=`${NAME(x)} oder ${ys.map(NAME).join(", ")}?`;
+    const opt=s=>{ const m=BY[s]; const d=cl.find(c=>c.dec)&&cl.find(c=>c.dec).dec; const o=d&&d.optionen.find(o=>o.behalten.includes(s));
+      return `<div class="cmpcard"><div class="thumbs big">${thumbs(s,3)}</div><b>${esc(m.name)}</b><p>${esc(m.notiz)}</p>${o?`<ul class="pro">${o.pro.map(p=>`<li>${esc(p)}</li>`).join("")}</ul><ul class="con">${o.contra.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>`:""}<p class="hint">${m.downloadsK?fmt(m.downloadsK)+" Downloads":""}${COST[s]>=5?" · kostet spürbar FPS":""}</p></div>`; };
+    $("ask-body").innerHTML=`<p>${[...new Set(cl.map(c=>c.text))].map(esc).join(" ")}</p><div class="cmp2">${opt(x)}${ys.map(opt).join("")}</div><p class="hint">Beide zusammen geht nicht. Welche soll ins Pack?</p>`;
+    $("ask-btns").innerHTML=`<button class="btn primary" data-a="new">${esc(NAME(x))} nehmen</button><button class="btn" data-a="old">${esc(ys.map(NAME).join(", "))} behalten</button>`;
+    $("ask-btns").onclick=e=>{ const b=e.target.closest("[data-a]"); if(!b) return; dlg.close(); res({a:b.dataset.a,ys}); };
+    dlg.onclose=()=>res({a:"old",ys});
+    dlg.showModal();
+  });
+}
+async function pick(x,on){
+  if(!on){ if(LOCKED.has(x)) return; sel.delete(x); saveSel(); renderBuild(); if($("detail").open) openMod(x); return; }
+  const cl=clashes(x);
+  if(cl.length){ const r=await askConflict(x,cl); if(r.a!=="new"){ renderBuild(); return; } r.ys.forEach(y=>{ if(!LOCKED.has(y)) sel.delete(y); }); }
+  sel.add(x); saveSel(); renderBuild(); if($("detail").open) openMod(x);
+}
+function matchF(m){
+  if((m.pt||"m")!==bt) return false;
+  if(bt==="m"&&bsub&&m.cat!==bsub) return false;
+  const t={sel:()=>sel.has(m.slug),rec:()=>m.rolle==="K",van:()=>m.ampel!=="R"&&m.cat!=="S",sug:()=>wizSug.has(m.slug)};
+  return [...bst.f].every(k=>t[k]?t[k]():true);
+}
+const hasCfg=s=>!!(SETDEF[s]||X.cfgs[s]||X.rpo[s]);
+function card(m){
+  const on=sel.has(m.slug), lk=LOCKED.has(m.slug);
+  return `<div class="card${on?" on":""}${lk?" lk":""}" data-card="${m.slug}" role="button" tabindex="0" aria-pressed="${on}">
+  <div class="thumbs">${thumbs(m.slug,3)}</div>
+  <div class="cbody"><span class="cname">${esc(m.name)}</span><span class="cnote">${esc(m.notiz)}</span>
+  <span class="cmeta">${lk?`<span class="role K">immer dabei</span>`:m.rolle==="K"?`<span class="role K">empfohlen</span>`:""}${m.ampel==="R"?`<span class="pill R"><span class="dot R"></span>Server nötig</span>`:""}${hasCfg(m.slug)?`<span class="role">einstellbar</span>`:""}${COST[m.slug]>=5?`<span class="role">kostet FPS</span>`:""}${wizSug.has(m.slug)&&!on?`<span class="role sug">Vorschlag</span>`:""}</span></div>
+  <span class="ccheck" aria-hidden="true">${on?"✓":"+"}</span><button class="cinfo" data-mod="${m.slug}">Details</button></div>`;
+}
+const ord=(a,b)=>(b.rolle==="K")-(a.rolle==="K")||(b.downloadsK||0)-(a.downloadsK||0);
+function renderBuild(){
+  $("btabs").innerHTML=Object.entries(PT_T).map(([k,l])=>{ const n=MODS.filter(m=>(m.pt||"m")===k&&FILES[m.slug]).length; const s=MODS.filter(m=>(m.pt||"m")===k&&sel.has(m.slug)).length; return `<button class="btab" data-bt="${k}" aria-pressed="${bt===k}">${l}<small>${s} von ${n}</small></button>`; }).join("");
+  $("fg").innerHTML=(bt==="m"?`<button class="chip" data-sub="" aria-pressed="${!bsub}">Alle</button>`+SUBS.map(([k,l])=>`<button class="chip" data-sub="${k}" aria-pressed="${bsub===k}">${l}</button>`).join("")+`<span class="sep"></span>`:"")+XF.map(([k,l])=>k==="sug"&&!wizSug.size?"":`<button class="chip" data-filter="${k}" aria-pressed="${bst.f.has(k)}">${l}</button>`).join("");
+  $("tabnote").textContent=bt==="m"&&bsub?CATS[bsub].n:TABNOTE[bt];
+  const q=bst.q.toLowerCase(); const list=MODS.filter(m=>FILES[m.slug]&&matchF(m)&&(!q||(m.name+" "+m.sub+" "+m.notiz+" "+m.slug).toLowerCase().includes(q)));
+  const ids=new Set(list.map(m=>m.slug)); let h="";
+  const gs=GROUPS.filter(g=>g.mods.some(s=>ids.has(s))); const inG=new Set(gs.flatMap(g=>g.mods));
+  if(gs.length) h+=`<h3>Nur eins wählbar <small>Vergleich nebeneinander</small></h3>`+gs.map(g=>`<div class="grp"><div class="ghead"><b>${esc(g.titel)}</b><span>${esc(g.text)}</span></div><div class="cards">${g.mods.filter(s=>BY[s]&&FILES[s]).map(s=>card(BY[s])).join("")}</div></div>`).join("");
+  for(const c of (bt==="m"?["P","V","G","T","S"]:[null])){
+    const l2=list.filter(m=>!inG.has(m.slug)&&(c===null||m.cat===c)).sort(ord); if(!l2.length) continue;
+    const bysub={}; l2.forEach(m=>(bysub[m.sub]=bysub[m.sub]||[]).push(m));
+    for(const [sb,ms] of Object.entries(bysub)) h+=`<h3>${c&&!bsub?esc(CATS[c].t)+" · ":""}${esc(sb)} <small>${ms.length}</small></h3><div class="cards">`+ms.map(card).join("")+`</div>`;
+  }
+  $("blist").innerHTML=h||`<div class="empty">Nichts gefunden. Nimm einen Filter heraus.</div>`;
+  renderSide();
+}
+function packLoad(mods){ const c=[...mods].reduce((a,s)=>a+cost(s),0); return {c,l:c<15?["Leicht","G"]:c<30?["Mittel","Y"]:["Schwer","R"]}; }
+function renderSide(){
+  const r=resolve(); const all=new Set([...r.mods,...r.libs]);
+  const red=[...r.mods].filter(s=>BY[s].ampel==="R"&&BY[s].cat!=="S"); const size=[...all].reduce((a,s)=>a+(FILES[s]?FILES[s][4]:0),0);
+  const cnt=t=>[...r.mods].filter(s=>(BY[s].pt||"m")===t).length; const pl=packLoad(r.mods);
+  const pr=problems(); const kc=keyConflicts().length;
+  const need=[]; for(const rr of DEC.beziehungen) if(rr.art==="A"){ const [a,...rest]=rr.mods; if(sel.has(a)&&rest.some(s=>BY[s]&&!all.has(s))) need.push(NAME(a)+" braucht: "+rest.filter(s=>!all.has(s)).map(NAME).join(", ")); }
+  $("mbar").innerHTML=`<b>${r.mods.size} im Pack</b><span>${pl.l[0]} · ${pr.length?pr.length+" Konflikte":"alles klar"}</span><span>Ansehen ↓</span>`;
+  $("bside").innerHTML=`<h2>Dein Pack</h2>
+   <div class="stats"><div><b>${cnt("m")}</b><span>Mods</span></div><div><b>${cnt("r")}</b><span>Packs</span></div><div><b>${cnt("s")}</b><span>Shader</span></div><div><b>${r.libs.size}</b><span>Bibliotheken</span></div></div>
+   <div class="load"><span>Leistungsbedarf</span><div class="meter"><i class="${pl.l[1]}" style="width:${Math.min(100,pl.c/45*100)}%"></i></div><b class="${pl.l[1]}">${pl.l[0]}</b></div>
+   <p class="hint">ca. ${(size/1048576).toFixed(0)} MB · Arbeitsspeicher <b>${ramGB(r)} GB</b> (steckt in der Prism-Datei)</p>
+   <p class="srv ${red.length?"R":"G"}">${red.length?`${red.length} Mod${red.length===1?" braucht":"s brauchen"} einen eigenen Server.`:"Läuft auf jedem Vanilla-Server."}</p>
+   ${pr.length?`<h3>Konflikte (${pr.length})</h3><ul class="warn">`+pr.map(x=>`<li><span class="tag ${x.art}">${ART[x.art]}</span> ${esc(NAME(x.a))} + ${esc(NAME(x.b))} <button class="btn sm" data-fix="${x.a}|${x.b}">Klären</button></li>`).join("")+`</ul>`:`<p class="ok">Keine Konflikte, keine Doppelungen.</p>`}
+   ${need.length?`<ul class="warn">${need.map(t=>`<li><span class="tag A">fehlt</span> ${esc(t)}</li>`).join("")}</ul>`:""}
+   <div class="tools"><button class="btn" data-tool="keys">Tastatur${kc?` <span class="tag K">${kc}</span>`:""}</button><button class="btn" data-tool="rp">Pack-Reihenfolge</button><button class="btn" data-tool="base">Grundeinstellungen</button></div>
+   <label class="fld" for="packname">Name</label><input id="packname" value="${esc(cfg._name||"Mein Pack")}">
+   <label class="chk"><input type="checkbox" id="withcfg" checked> Einstellungen und Tastenbelegung beilegen</label>
+   <label class="chk"><input type="checkbox" id="testkit" ${sel.has("spark")?"checked":""}> Test-Kit (spark) beilegen</label>
+   <button class="btn primary big" id="export-prism">Für Prism herunterladen</button>
+   <button class="btn" id="export">.mrpack für Modrinth App</button>
+   <button class="btn" id="export-srv">Server-Pack</button>
+   <p class="hint" id="exp-status"></p>
+   <button class="btn" id="upd">Auf Updates prüfen</button><div id="upd-out" class="hint"></div>`;
+}
+/* Detail-Popup */
+function cfgInput(attr,t,v,o){ return t==="bool"?`<input type="checkbox" ${attr} ${v?"checked":""}>`:o?`<select ${attr}>${o.map(x=>`<option ${String(v)===String(x)?"selected":""}>${esc(x)}</option>`).join("")}</select>`:`<input ${attr} value="${esc(v)}" ${t==="num"?'inputmode="decimal"':""} size="8">`; }
+function autoVal(slug,file,k){ const r=X.prules.find(p=>p.slug===slug&&p.file===file&&p.k===k&&p.wenn.every(s=>sel.has(s))); return r?r:undefined; }
+function gval(slug,file,i){ const id="@"+file+"|"+i.k; if(cfg[slug]&&id in cfg[slug]) return cfg[slug][id]; const a=autoVal(slug,file,i.k); return a?a.v:i.d; }
+function allCfgHtml(slug){
+  const fs=X.cfgs[slug]; if(!fs) return "";
+  return fs.map(f=>`<details class="chg"><summary>Alle Einstellungen aus <code>${esc(f.file)}</code> <small>${f.items.length}</small></summary><input type="search" data-cfs placeholder="Einstellung suchen …" aria-label="Einstellung suchen"><div class="ckeys">`+f.items.map(i=>{ const a=autoVal(slug,f.file,i.k); const id="@"+f.file+"|"+i.k; const ch=cfg[slug]&&id in cfg[slug];
+    return `<label class="crow${ch?" changed":""}" data-name="${esc((i.k+" "+(i.h||"")).toLowerCase())}"><span>${esc(i.k)}${i.h?`<small>${esc(i.h)}</small>`:""}${a&&!ch?`<small class="auto">Automatisch angepasst: ${esc(a.text)}</small>`:""}</span>${cfgInput(`data-gcfg="${slug}|${f.file}|${i.k}"`,i.t,gval(slug,f.file,i),i.o)}</label>`; }).join("")+`</div><p class="hint">Werte stammen aus der echten Config-Datei dieser Mod-Version. Geänderte Werte werden beim Export mitgeliefert.</p></details>`).join("");
+}
+function rpoHtml(slug){
+  const r=X.rpo[slug]; if(!r) return "";
+  const flat=[]; (function walk(o,p){ for(const [k,v] of Object.entries(o)){ if(v&&typeof v==="object") walk(v,p+k+"."); else flat.push([p+k,v]); } })(r.data,"");
+  return `<h3>Pack-Optionen <small>Respackopts</small></h3><p class="hint">Dieses Resource Pack hat eigene Schalter. Voreinstellung = deine Werte aus „Test Claude“.</p><div class="ckeys">`+flat.map(([k,v])=>{ const id="@rpo|"+k; const cur=cfg[slug]&&id in cfg[slug]?cfg[slug][id]:v; return `<label class="crow"><span>${esc(k.replace(/\./g," › "))}</span>${cfgInput(`data-rpo="${slug}|${k}"`,typeof v==="boolean"?"bool":typeof v==="number"?"num":"str",cur)}</label>`; }).join("")+`</div>`;
+}
+function openMod(slug){
+  const m=BY[slug]; if(!m) return; const on=sel.has(slug); const d=X.details[slug]||{};
+  $("detail-title").textContent=m.name;
+  let h=m.img&&m.img.length?`<div class="gal">${m.img.map((u,i)=>`<img src="${u}" alt="" loading="lazy" data-zoom="${slug}|${i}" onerror="this.remove()">`).join("")}</div>`:"";
+  if(d.yt&&d.yt.length) h+=`<div class="vids">${d.yt.map(v=>`<a class="vid" href="https://www.youtube.com/watch?v=${v}" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/${v}/mqdefault.jpg" alt="" onerror="this.remove()"><span>▶ Video ansehen</span></a>`).join("")}</div>`;
+  h+=`<p class="lead2">${esc(m.notiz)}</p>`;
+  h+=`<p><span class="pill ${m.ampel}"><span class="dot ${m.ampel}"></span>${AMP[m.ampel]}</span> <span class="hint">${esc(PT_T[m.pt||"m"])} · ${esc(CATS[m.cat].t)} · ${esc(m.sub)} · Version ${esc(FILES[slug]?FILES[slug][6]:"–")}${m.downloadsK?" · "+fmt(m.downloadsK)+" Downloads":""}</span></p>`;
+  if(d.txt) h+=`<details class="chg"><summary>Ausführlich (Projektseite, Englisch)</summary><div class="body">${esc(d.txt).replace(/\n/g,"<br>")}</div></details>`;
+  { const deps=FILES[slug]?FILES[slug][5].concat(implicit(slug)):[]; if(deps.length) h+=`<p class="hint">Bringt automatisch mit: ${[...new Set(deps)].map(x=>esc(FILES[x]&&FILES[x][7]||NAME(x))).join(", ")}</p>`; }
+  const ri=relInfo(slug);
+  if(ri.length) h+=`<h3>Verträglichkeit</h3><ul class="dl-list">`+ri.map(x=>{ const st=x.others.map(y=>`${esc(NAME(y))}${sel.has(y)?` <span class="stat ${x.art==="K"||x.art==="D"?"weg":"drin"}">gewählt</span>`:""}`).join(", "); return `<li><span class="tag ${x.art}">${ART[x.art]}</span> ${st}: ${esc(x.text)}</li>`; }).join("")+`</ul>`;
+  const ar=X.prules.filter(p=>p.slug===slug); if(ar.length) h+=`<p class="hint">Wird automatisch angepasst, sobald passende Mods dabei sind: ${ar.map(p=>esc(p.text)).join(" ")}</p>`;
+  if(SETDEF[slug]) h+=`<h3>Wichtigste Einstellungen</h3>`+editorHtml(slug);
+  h+=allCfgHtml(slug)+rpoHtml(slug);
+  h+=`<div class="row-actions">${LOCKED.has(slug)?`<span class="role K">immer dabei</span>`:`<button class="btn primary" data-toggle="${slug}">${on?"Aus dem Pack entfernen":"Zum Pack hinzufügen"}</button>`}<a class="btn" href="https://modrinth.com/project/${slug}" target="_blank" rel="noopener">Auf Modrinth ansehen</a></div>`;
+  $("detail-body").innerHTML=h; if(!$("detail").open) $("detail").showModal();
+}
+/* Bilder groß */
+let lb={s:null,i:0};
+function openLb(s,i){ const m=BY[s]; if(!m||!m.img||!m.img.length) return; lb={s,i:(i+m.img.length)%m.img.length}; $("lb-img").src=m.img[lb.i]; $("lb-cap").textContent=`${m.name} · Bild ${lb.i+1} von ${m.img.length}`; $("lb-link").href=`https://modrinth.com/project/${s}/gallery`; if(!$("lightbox").open) $("lightbox").showModal(); }
+/* Tastatur: Standardbelegungen stammen aus der echten options.txt deines Packs */
+const KEYDB=X.keys.map(([id,def,mod,ctx])=>({id,def,mod,ctx}));
+const LBL={"z":"Y","y":"Z","semicolon":"Ö","apostrophe":"Ä","left.bracket":"Ü","right.bracket":"+","minus":"ß","equal":"´","grave.accent":"^","slash":"-","backslash":"#","world.2":"<","left.shift":"Shift","right.shift":"Shift","left.control":"Strg","right.control":"Strg","left.alt":"Alt","right.alt":"AltGr","space":"Leertaste","tab":"Tab","caps.lock":"Feststell","enter":"Enter","backspace":"⌫","escape":"Esc","left.win":"Win","maus.left":"Maus links","maus.right":"Maus rechts","maus.middle":"Mausrad","maus.4":"Maus 4","maus.5":"Maus 5","comma":",","period":".","insert":"Einfg","delete":"Entf","home":"Pos1","end":"Ende","page.up":"Bild↑","page.down":"Bild↓","up":"↑","down":"↓","left":"←","right":"→"};
+const kl=k=>k?(LBL[k]||k.toUpperCase()):"–";
+const KB=[["escape","f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12"],["grave.accent","1","2","3","4","5","6","7","8","9","0","minus","equal","backspace"],["tab","q","w","e","r","t","y","u","i","o","p","left.bracket","right.bracket"],["caps.lock","a","s","d","f","g","h","j","k","l","semicolon","apostrophe","backslash","enter"],["left.shift","world.2","z","x","c","v","b","n","m","comma","period","slash","right.shift"],["left.control","left.win","left.alt","space","right.alt","right.control"],["maus.left","maus.middle","maus.right","maus.4","maus.5","insert","delete","home","end","page.up","page.down"]];
+const KALL=KB.flat();
+const KEYIMPORTANT=new Set(["zoomify.key.zoom","key.diorama.open_map","key.voice_chat","key.freecam.toggle","key.chesttracker.open_gui","key.jade.show_overlay","key.crawl","key.carry.desc"]);
+let kSel=null;
+function kv(id){ const c=cfg._keys||{}; if(id in c) return c[id]; const k=KEYDB.find(x=>x.id===id); return k?k.def:""; }
+function activeKeys(){ return KEYDB.filter(k=>(k.mod==="vanilla"||k.mod==="vanilla-f3")?true:sel.has(k.mod)); }
+function keyConflicts(){ const m={}; for(const k of activeKeys()){ if(k.ctx==="f3") continue; const v=kv(k.id); if(!v) continue; const key=k.ctx+"|"+v; (m[key]=m[key]||[]).push(k); } return Object.entries(m).filter(([v,l])=>new Set(l.map(k=>k.mod==='vanilla-f3'?'vanilla':k.mod)).size>1).map(([v,l])=>[v.split("|")[1],l,v.split("|")[0]]); }
+const kname=v=>v.startsWith("maus.")?"key.mouse."+v.slice(5):"key.keyboard."+v;
+function keyLines(){ const c=cfg._keys||{}; return Object.keys(c).filter(id=>activeKeys().some(k=>k.id===id)).map(id=>`key_${id}:${c[id]?kname(c[id]):"key.keyboard.unknown"}`); }
+function kLabel(k){ return (k.mod==="vanilla"?"Minecraft":NAME(k.mod))+": "+k.id.replace(/^(key|keybind|keybinding)\./,"").replace(/^[^.]+\./,"").replace(/[._]/g," "); }
+function autoFixKeys(){
+  const c={...(cfg._keys||{})};
+  for(const [v,l] of keyConflicts()){
+    const keep=l.find(k=>k.mod==="vanilla")||l.find(k=>KEYIMPORTANT.has(k.id))||l[0];
+    for(const k of l) if(k!==keep) c[k.id]="";
+  }
+  cfg={...cfg,_keys:c}; saveSel();
+}
+function keysHtml(){
+  const conf=keyConflicts(); const act=activeKeys(); const used={};
+  for(const k of act){ if(k.ctx==="f3") continue; const v=kv(k.id); if(v) (used[v]=used[v]||[]).push(k); }
+  const bad=new Set(conf.map(c=>c[0]));
+  const kb=KB.map(row=>`<div class="kbrow">`+row.map(k=>`<button class="kk${bad.has(k)?" bad":used[k]?" used":""}${kSel===k?" cur":""} k-${k.replace(/\./g,"_")}" data-kk="${k}" title="${esc((used[k]||[]).map(kLabel).join("\n"))}">${esc(kl(k))}${used[k]?`<i>${used[k].length}</i>`:""}</button>`).join("")+`</div>`).join("");
+  let h=`<p class="catnote">So ist deine Tastatur mit diesem Pack belegt. Rot = doppelt belegt (gleiche Situation, z. B. beide im Spiel). Nur wichtige Tasten werden vorbelegt, alles andere stellst du im Spiel unter Optionen › Steuerung ein.</p>
+  ${conf.length?`<p class="srv R">${conf.length} Doppelbelegung${conf.length===1?"":"en"} <button class="btn sm" id="kfix">Automatisch lösen</button></p>`:`<p class="ok">Keine Doppelbelegungen.</p>`}
+  <div class="kbd">${kb}</div><p class="hint">Grau = frei · grün = belegt · rot = doppelt. Taste anklicken, um zu sehen und zu ändern, was darauf liegt.</p>`;
+  if(kSel){ const on=(used[kSel]||[]); h+=`<h3>Taste ${esc(kl(kSel))}</h3>`+(on.length?`<div class="keys">`+on.map(k=>`<label class="krow${bad.has(kSel)?" bad":""}"><span>${esc(kLabel(k))}<small>${k.ctx==="menu"?"in Menüs":"im Spiel"}</small></span><select data-key="${k.id}"><option value="">– keine (im Spiel selbst belegen) –</option>${KALL.map(o=>`<option value="${o}" ${o===kv(k.id)?"selected":""}>${esc(kl(o))}${used[o]&&o!==kv(k.id)?" (belegt)":""}</option>`).join("")}</select></label>`).join("")+`</div>`:`<p class="hint">Frei.</p>`); }
+  if(conf.length) h+=`<h3>Doppelt belegt</h3><ul class="dl-list">`+conf.map(([v,l])=>`<li><b>${esc(kl(v))}</b>: ${l.map(k=>esc(kLabel(k))).join(" · ")}</li>`).join("")+`</ul>`;
+  const changed=Object.entries(cfg._keys||{}); if(changed.length) h+=`<h3>Von dir/automatisch geändert</h3><ul class="dl-list">`+changed.map(([id,v])=>{ const k=KEYDB.find(x=>x.id===id); return k?`<li>${esc(kLabel(k))}: ${esc(kl(k.def))} → ${v?esc(kl(v)):"nicht belegt"} <button class="btn sm" data-kreset="${id}">zurück</button></li>`:""; }).join("")+`</ul>`;
+  return h;
+}
+/* Resource-Pack-Reihenfolge (oben = höchste Priorität) */
+const RPRANK=[["fresh-flower-pots","round-trees","fresh-skeleton-physics"],["fresh-animations-extensions","fa-player-extension","just-expressions","detailed-animations","als-piglins-revamped-x-fresh-animations","als-zombies-revamped-x-fresh-animations","als-enderman-revamped-x-fresh-animations","als-skeletons-revamped-x-fresh-animations","assorted-allays-x-fresh-animations","bare-bones-x-fresh-animations","als-creepers-revamped"],["fresh-animations"],["fresh-food-for-hyper-punchy","hyper-punchy","fluid-foolish","theones-eating-animation-pack"],["fresh-food","fresh-flowers-and-plants","fresh-ores-and-ingots","fresh-buckets","fresh-music-discs","just-3d-potions","glowing-3d-totem","refined-buckets","findreks-3d-buckets-and-fish","fyoncles-3d-trims","glowing-3d-armor","3d-flint-steel-for-punchy","animated-3d-wind-charge-compatible-with-punchy","luminous-lanterns","drigo-3d-lanterns-x-punchy","tools-and-utils","bray-cyber-3d-enchanted-books","nautilus3d"],["better-lanterns","torches-reimagined","weskersons-torches","rays-3d-rails","3d-ladders","rays-3d-ladders","3d-crops","fancy-crops","3d-bamboo-shoots","fancy-beds","os-colorful-grasses","connected-paths","fast-better-grass","better-leaves","fancyfast-bushy-leaves","3d-default","animated-items","xk-redstone-display","excalibur-lootr-support"],["even-better-enchants","beautiful-enchanted-books","enchanted-books-re-covered","visual-armor-trims","emissive-trims","glowing-glints","new-glowing-ores","low-on-fire","low-shield-pack","blinking-ender-eyes","dramatic-skys","sunbathing-godrays","visual-effects-plus"],["icons","recolourful-containers-gui","clearer-slot-highlight","shrimps-immersive-interfaces","default-dark-mode"],["vvi","enhanced-audio","gentler-weather-sounds"],["vanilla-exp","xalis-enhanced-vanilla","faithful-32x","faithful-64x"]];
+function rpAuto(rps){ const rank=s=>{ const i=RPRANK.findIndex(g=>g.includes(s)); return i<0?6:i; }; const flat=RPRANK.flat(); return [...rps].sort((a,b)=>rank(a)-rank(b)||flat.indexOf(a)-flat.indexOf(b)); }
+function rpTopDown(rps){ const auto=rpAuto(rps); const man=(cfg._rpord||[]).filter(s=>rps.includes(s)); if(!man.length) return auto; return [...man,...auto.filter(s=>!man.includes(s))]; }
+function rpHtml(){
+  const r=resolve(); const rps=[...r.mods].filter(s=>BY[s].pt==="r"); const o=rpTopDown(rps);
+  if(!o.length) return `<p class="hint">Noch keine Resource Packs gewählt.</p>`;
+  return `<p class="catnote">Oben gewinnt: Wenn zwei Packs dieselbe Datei ändern, zählt das obere. Die Website sortiert nach den Regeln der Pack-Autoren (Erweiterungen über ihrem Basis-Pack, Komplett-Texturen ganz unten). Die Reihenfolge landet beim Export in der options.txt, das Spiel startet also direkt richtig.</p><ol class="rpo">`+o.map((s,i)=>`<li><span class="thumbs">${thumbs(s,1)}</span><span>${esc(NAME(s))}</span><span class="rpbtn"><button class="btn sm" data-rpmv="${s}|-1" ${i?"":"disabled"} aria-label="nach oben">↑</button><button class="btn sm" data-rpmv="${s}|1" ${i<o.length-1?"":"disabled"} aria-label="nach unten">↓</button></span></li>`).join("")+`</ol>${(cfg._rpord||[]).length?`<button class="btn" id="rp-auto">Wieder automatisch sortieren</button>`:""}`;
+}
+function openTool(t){ kSel=null; $("tool-title").textContent={keys:"Tastenbelegung",rp:"Resource-Pack-Reihenfolge",base:"Grundeinstellungen",ai:"KI-Antwort übernehmen"}[t]; $("tool").dataset.t=t; renderTool(); if(!$("tool").open) $("tool").showModal(); }
+function renderTool(){ const t=$("tool").dataset.t; $("tool-body").innerHTML=t==="keys"?keysHtml():t==="rp"?rpHtml():t==="base"?editorHtml("_base"):aiHtml(); }
+/* RAM */
+function ramGB(r){ const n=r.mods.size+r.libs.size; let g=n<60?4:n<120?6:n<250?8:10; if(r.mods.has("voxy")||r.mods.has("distanthorizons")) g+=1; if([...r.mods].some(s=>BY[s]&&/faithful-64x/.test(s))) g+=1; const sys=Number(wizA.ram||0); if(sys) g=Math.min(g,Math.floor(sys/2)); return Math.max(3,Math.min(g,12)); }
+/* Assistent */
+let wizA={};
+const SHADERS=[["photon-shader","Photon","Realistisches Licht, schöne Wolken und Wasser. Unser Standard ab Oberklasse-Grafikkarte.",2],["complementary-reimagined","Complementary Reimagined","Sehr beliebt, nah an Vanilla, viele Einstellungen. Ab Mittelklasse.",1],["solas-shader","Solas","Stimmungsvoll und schnell. Gut für Mittelklasse.",1],["bsl-shaders","BSL","Klassiker, solide auf fast jeder Karte.",0],["i-like-vanilla","I Like Vanilla","Ganz leicht: etwas Licht und Schatten, kaum FPS-Verlust. Für schwächere PCs.",0],["pegasus","Pegasus","Schnell mit vielen Stil-Optionen.",0],["mellow","Mellow","Gemalter Look, eher künstlerisch.",1],["bliss-shader","Bliss","Sehr realistisch, aber anspruchsvoll. Nur High-End.",3],["complementary-unbound","Complementary Unbound","Wie Reimagined, aber kräftiger und moderner.",2]];
+function gpuScore(){ const g={low:0,mid:1,high:2,top:3}[wizA.gpu||"high"]; const px=(Number(wizA.w||2560)*Number(wizA.h||1440))/(2560*1440); return Math.max(0,Math.min(3,g-(px>1.6?1:px<0.7?-1:0)+((wizA.fps||"hz")==="60"?1:0)-(Number(wizA.hz||144)>165?1:0))); }
+const WEX=(t,s)=>`<p class="wex">${t}</p>${s?`<div class="thumbs wimg">${thumbs(s,3)}</div>`:""}`;
+function renderWiz(){
+  const sc=gpuScore(); const rec=SHADERS.filter(x=>BY[x[0]]).filter(x=>x[3]<=sc).sort((a,b)=>b[3]-a[3]);
+  const q=(k,title,ex,opts)=>`<fieldset class="wq"><legend>${title}</legend>${ex||""}${opts.map(([v,l])=>`<label class="chk"><input type="radio" name="w-${k}" value="${v}" ${wizA[k]===v?"checked":""}> ${l}</label>`).join("")}</fieldset>`;
+  let h=`<p class="catnote">Beantworte ein paar Fragen. Danach sind Leistungs-Mods, Grafik, FPS-Limit und Arbeitsspeicher automatisch passend eingestellt. Du kannst alles später ändern.</p>`;
+  h+=q("srv","1. Wo spielst du?",WEX("Auf einem normalen (Vanilla-)Server dürfen nur Mods laufen, die allein auf deinem PC arbeiten. Gameplay- und Welt-Mods bräuchten den Mod auch auf dem Server."),[["vanilla","Auf dem Vanilla-Server von Freunden"],["own","Einzelspieler oder eigener Server mit Mods"]]);
+  h+=q("vendor","2. Hersteller der Grafikkarte",WEX("Wichtig für einige Leistungs-Mods: Nvidium macht NVIDIA-Karten deutlich schneller, läuft aber nur dort."),[["nvidia","NVIDIA (GeForce)"],["amd","AMD (Radeon)"],["intel","Intel / Laptop-Grafik"]]);
+  h+=q("gpu","3. Wie stark ist die Grafikkarte?","",[["low","Einsteiger (z. B. GTX 1060, RX 580, Laptop)"],["mid","Mittelklasse (RTX 3060/4060, RX 6600–7600)"],["high","Oberklasse (RTX 3080/4070 Ti, RX 6800+)"],["top","High-End (RTX 4080/5080+, RX 7900+)"]]);
+  h+=q("ram","4. Arbeitsspeicher im PC",WEX("Minecraft bekommt davon höchstens die Hälfte, damit Windows und Discord flüssig bleiben."),[["8","8 GB"],["16","16 GB"],["32","32 GB"],["64","64 GB oder mehr"]]);
+  h+=`<fieldset class="wq"><legend>5. Monitor</legend>${WEX("Auflösung und Bildwiederholrate bestimmen, wie viel die Grafikkarte leisten muss und wo das FPS-Limit liegt.")}<div class="tgrid"><label class="fld">Breite (Pixel)<input id="w-w" inputmode="numeric" value="${esc(wizA.w||2560)}"></label><label class="fld">Höhe (Pixel)<input id="w-h" inputmode="numeric" value="${esc(wizA.h||1440)}"></label><label class="fld">Bildwiederholrate (Hz)<input id="w-hz" inputmode="numeric" value="${esc(wizA.hz||144)}"></label></div><p class="hint">Typisch: 1920×1080, 2560×1440, 3440×1440, 3840×2160 · 60, 144, 165, 240 Hz</p>
+    ${["yes","no"].map(v=>`<label class="chk"><input type="radio" name="w-sync" value="${v}" ${wizA.sync===v?"checked":""}> ${v==="yes"?"G-Sync / FreeSync vorhanden":"Kein G-Sync / FreeSync oder weiß nicht"}</label>`).join("")}</fieldset>`;
+  h+=q("fps","6. Ziel-FPS",WEX("Mehr FPS = flüssiger. Weniger FPS erlauben mehr Grafik."),[["hz","So hoch wie mein Monitor kann"],["60","Stabile 60 reichen, lieber schöner"]]);
+  h+=q("shader","7. Shader?",WEX("Shader berechnen Licht, Schatten, Wasser und Himmel neu, das sieht viel schöner aus, kostet aber am meisten Leistung.","photon-shader"),[["yes","Ja, Shader"],["no","Nein, lieber mehr FPS"]]);
+  h+=`<fieldset class="wq" ${wizA.shader==="yes"?"":"hidden"} id="w-shaderpick"><legend>Welcher Shader?</legend><p class="wex">Passend zu deiner Grafikkarte und Auflösung empfohlen (oben = beste Wahl):</p>${(rec.length?rec:SHADERS.slice(4,5)).map(([s,n,t],i)=>`<label class="chk"><input type="radio" name="w-shaderpack" value="${s}" ${(wizA.shaderpack||rec[0]&&rec[0][0])===s?"checked":""}> <b>${esc(n)}</b>${i===0?` <span class="role K">empfohlen</span>`:""} <span class="hint">${esc(t)}</span></label>`).join("")}</fieldset>`;
+  h+=q("lod","8. Fernsicht?",WEX("Fernsicht (Voxy) zeigt Berge und Landschaft weit hinter der normalen Sichtweite, als vereinfachtes Modell. Sieht großartig aus, braucht etwas Grafikspeicher und beim ersten Besuch kurz Rechenzeit.","voxy"),[["voxy","Ja, Fernsicht mit Voxy"],["none","Nein"]]);
+  h+=q("anim","9. Spieler-Animationen?",WEX("Punchy animiert deine Hände und Items in der Ego-Sicht: Schwerter schwingen, Essen wird zum Mund geführt, Tränke werden getrunken. Dazu passende Packs für Laternen, Essen usw.","punchy-fpa"),[["punchy","Ja, Punchy"],["none","Nein, Vanilla-Animationen"]]);
+  h+=q("feel","10. Wie nah an Vanilla?",WEX("Bestimmt, wie viele Vorschläge über Optik hinausgehen."),[["pure","Fast wie Vanilla, nur schöner"],["plus","Vanilla+ mit Komfort"],["more","Gern auch neuer Inhalt"]]);
+  h+=`<div class="row-actions"><button class="btn primary" id="wiz-go">Pack zusammenstellen</button><span class="hint">Leistungs-Mods, Grafik, FPS-Limit und Arbeitsspeicher werden automatisch gesetzt. Alles andere sind Vorschläge.</span></div>`;
+  $("wiz-body").innerHTML=h;
+}
+function wizRead(){ document.querySelectorAll("#wiz-body input[type=radio]:checked").forEach(c=>wizA[c.name.slice(2)]=c.value); ["w","h","hz"].forEach(k=>{ const v=$("w-"+k); if(v&&v.value) wizA[k]=v.value.replace(/\D/g,""); }); }
+function applyHardware(){
+  const sc=gpuScore(), hz=Number(wizA.hz||144), fpsHigh=(wizA.fps||"hz")==="hz";
+  const P=[{sm:1024,sd:96,cl:false,wc:false,taau:true,vx:8,rd:10},{sm:2048,sd:128,cl:false,wc:true,taau:false,vx:12,rd:12},{sm:2048,sd:160,cl:true,wc:true,taau:false,vx:16,rd:16},{sm:3072,sd:192,cl:true,wc:true,taau:false,vx:24,rd:16}][sc];
+  const fpsLim=fpsHigh?(wizA.sync==="yes"?Math.max(60,hz-4):hz):60; const opt=BASE.items.find(i=>i.k==="maxFps"); if(!opt.o.includes(fpsLim)){ opt.o=[...opt.o,fpsLim].sort((a,b)=>a-b); }
+  cfg={...cfg,_base:{...(cfg._base||{}),maxFps:fpsLim,renderDistance:P.rd},"photon-shader":{...(cfg["photon-shader"]||{}),shadowMapResolution:P.sm,shadowDistance:P.sd,COLORED_LIGHTS:P.cl,WATER_CAUSTICS:P.wc,TAAU:P.taau},voxy:{...(cfg.voxy||{}),section_render_distance:P.vx}};
+  // Leistung automatisch
+  const nv=wizA.vendor==="nvidia"&&(wizA.gpu||"high")!=="low";
+  nv&&BY.nvidium?sel.add("nvidium"):sel.delete("nvidium");
+  for(const g of GROUPS) if(g.id==="particleperf"&&!g.mods.some(s=>sel.has(s))&&BY["smart-particles"]) sel.add("smart-particles");
+  saveSel();
+}
+function wizRun(){
+  wizRead(); const ms=modStatus(); const s=new Set();
+  for(const m of MODS){ if(LOCKED.has(m.slug)||m.cat==="S"||m.cat==="P") continue;
+    if(wizA.srv==="vanilla"&&m.ampel==="R") continue;
+    if(m.cat==="G"||m.cat==="T"){ if(wizA.srv==="vanilla"||wizA.feel==="pure") continue; if(wizA.feel==="plus"&&m.cat==="T"&&m.rolle!=="K") continue; }
+    if(m.pt==="s") continue;
+    const rec=m.rolle==="K"||(ms[m.slug]&&ms[m.slug].state==="drin"); if(!rec) continue; if(ms[m.slug]&&ms[m.slug].state==="weg") continue;
+    s.add(m.slug); }
+  if(wizA.shader==="yes"){ const sp=wizA.shaderpack||"photon-shader"; if(BY[sp]) s.add(sp); }
+  if(wizA.lod==="none") ["voxy","living-horizon","voxy-extra","voxy-worldgen"].forEach(x=>s.delete(x)); else if(BY.voxy) s.add("voxy");
+  if(wizA.anim==="none") MODS.filter(m=>m.sub==="Spieler-Animation"||m.sub==="Punchy-Packs").forEach(m=>s.delete(m.slug));
+  // Gruppen: nie zwei Vorschläge aus derselben Gruppe
+  for(const g of GROUPS){ const hit=g.mods.filter(x=>s.has(x)); hit.slice(1).forEach(x=>s.delete(x)); }
+  applyHardware(); wizSug=s; setTimeout(()=>{ autoFixKeys(); renderSide(); },0); s.forEach(x=>{ if(!clashes(x).length) sel.add(x); }); saveSel();
+  bst.f=new Set(); $("wiz").close(); renderBuild();
+  $("blist").insertAdjacentHTML("afterbegin",`<div class="sugbar"><b>Fertig.</b> ${s.size} passende Mods und Packs sind ausgewählt, Leistung und Grafik eingestellt (FPS-Limit ${cv("_base","maxFps")}, ${ramGB(resolve())} GB RAM). Ändere einfach, was dir nicht gefällt.</div>`);
+}
+/* Vorlagen */
+function preset(p){
+  sel=new Set(LOCKED);
+  if(p==="perf"){ ["dynamic-fps","entityculling","moreculling","immediatelyfast","modernfix-mvus","badoptimizations","lithium","ferrite-core","krypton","c2me-fabric","scalablelux","sodium-extra","reeses-sodium-options"].forEach(s=>BY[s]&&sel.add(s)); }
+  else{ for(const m of MODS){ if(m.rolle!=="K"||m.cat==="S"||m.pt==="s") continue; if(p==="visual"&&(m.cat==="G"||m.cat==="T"||m.ampel==="R")) continue; if(!clashes(m.slug).length) sel.add(m.slug); } if(BY["photon-shader"]) sel.add("photon-shader"); }
+  saveSel(); autoFixKeys(); renderBuild();
+}
+/* Test */
+const TESTSEED="-4172144997902289642";
+const KIT="https://nashornaufcrack.github.io/mc-modpack/downloads/Test-Kit.zip";
+let lastFps=null;
+function renderTest(){
+  $("view-test").innerHTML=`<p class="catnote lead">Ein Test dauert 3 Minuten und läuft immer gleich ab: Ein Datapack fliegt dich automatisch über dieselbe Strecke (Tag, Nacht, Regen), ein kleines Windows-Programm misst dabei jedes einzelne Bild. Du trägst nichts von Hand ein, du lädst nur die Messdatei hoch.</p>
+  <ol class="steps">
+   <li><b>Test-Kit laden</b><span><a class="btn" href="${KIT}">Test-Kit herunterladen</a> (Benchmark-Datapack, FPS-Messung.bat, Anleitung). Beim Export „Test-Kit beilegen“ anhaken, dann ist auch spark im Pack.</span></li>
+   <li><b>Einmal starten</b><span>Pack importieren, Minecraft einmal bis ins Hauptmenü starten.</span></li>
+   <li><b>Testwelt</b><span>Neue Welt: Seed <code>${TESTSEED}</code>, Kreativ, Cheats an. Unter „Datenpakete“ die Datei Benchmark-Datapack.zip hineinziehen. Nach dem Erstellen 1–2 Minuten warten (Fernsicht lädt).</span></li>
+   <li><b>Messen</b><span>FPS-Messung.bat starten (Admin bestätigen). Im Spiel: <code>/function bench:start</code> und <code>/sparkc profiler start --timeout 180</code>, dann in der .bat eine Taste drücken.</span></li>
+   <li><b>Hochladen</b><span>Nach 3 Minuten: fps.csv hier hochladen und den spark-Link aus dem Chat einfügen.</span></li>
+  </ol>
+  <div class="logbox"><label class="file" for="t-csv">fps.csv wählen<input type="file" id="t-csv" accept=".csv,text/csv"></label><span class="hint" id="t-csvout">Noch keine Messung.</span>
+  <label class="fld" for="t-link">spark-Link</label><input id="t-link" placeholder="https://spark.lucko.me/…">
+  <label class="fld" for="t-note">Was ist dir aufgefallen? (Ruckler, Grafikfehler …)</label><textarea id="t-note" rows="3"></textarea>
+  <div class="row-actions"><button class="btn primary" id="t-save">Ergebnis speichern</button><span class="hint" id="t-status"></span></div></div>
+  <h2>Auswerten lassen</h2><p class="catnote">Der Text unten enthält dein Pack, deine Hardware und die Messwerte. Gib ihn mir oder deiner eigenen KI. Die Antwort ist ein Code-Block, den du hier wieder einfügst: Die Website setzt die Vorschläge dann selbst um (Mods tauschen, Einstellungen ändern).</p>
+  <div class="row-actions"><button class="btn" id="t-prompt">Text für die KI erzeugen</button><button class="btn" data-tool="ai">KI-Antwort einfügen</button></div>
+  <textarea id="t-prompttxt" rows="8" hidden readonly></textarea><div id="t-hist"></div>`;
+  try{ const h=JSON.parse(localStorage.getItem("mk-tests")||"[]"); $("t-hist").innerHTML=h.length?`<h3>Bisherige Tests</h3><ul class="dl-list">`+h.map(t=>`<li>${new Date(t.at).toLocaleDateString("de-DE")}: Ø ${esc(t.avg)} FPS · 1 % Tief ${esc(t.low1)} · ${esc(t.n||"?")} Mods ${t.link?`· <a href="${esc(t.link)}" target="_blank" rel="noopener">spark</a>`:""} ${esc(t.note||"")}</li>`).join("")+`</ul>`:""; }catch(e){}
+}
+function parseFps(txt){
+  const lines=txt.split(/\r?\n/).filter(Boolean); const head=lines[0].split(",");
+  const col=["MsBetweenPresents","FrameTime","MsBetweenDisplayChange","msBetweenPresents"].map(c=>head.indexOf(c)).find(i=>i>=0);
+  if(col===undefined) return null;
+  const ft=lines.slice(1).map(l=>Number(l.split(",")[col])).filter(v=>v>0&&v<1000); if(ft.length<50) return null;
+  const avg=1000/(ft.reduce((a,b)=>a+b,0)/ft.length); const s=[...ft].sort((a,b)=>b-a); const p=q=>{ const k=s.slice(0,Math.max(1,Math.floor(s.length*q))); return 1000/(k.reduce((a,b)=>a+b,0)/k.length); };
+  return {avg:Math.round(avg),low1:Math.round(p(.01)),low01:Math.round(p(.001)),frames:ft.length,stutter:s.filter(v=>v>50).length};
+}
+async function saveTest(){
+  const r=resolve(); const t={at:new Date().toISOString(),link:$("t-link").value.trim(),note:$("t-note").value.trim(),mods:[...sel],n:r.mods.size,...(lastFps||{}),hw:wizA,by:myId||null};
+  if(t.link&&!/^https:\/\/spark\.lucko\.me\//.test(t.link)){ $("t-status").textContent="Der Link sollte mit https://spark.lucko.me/ beginnen."; return; }
+  if(!lastFps){ $("t-status").textContent="Bitte zuerst die fps.csv hochladen."; return; }
+  try{ const h=JSON.parse(localStorage.getItem("mk-tests")||"[]"); h.unshift(t); localStorage.setItem("mk-tests",JSON.stringify(h.slice(0,20))); }catch(e){}
+  let shared=false; if(db&&mode==="shared"){ try{ await db.collection("tests").add(t); shared=true; }catch(e){} }
+  $("t-status").textContent=shared?"Gespeichert. Claude kann das Ergebnis jetzt lesen.":"Gespeichert."; renderTest();
+}
+function aiPrompt(){
+  const r=resolve(); const t=lastFps||(()=>{ try{ return JSON.parse(localStorage.getItem("mk-tests")||"[]")[0]; }catch(e){ return null; } })();
+  const groups=GROUPS.map(g=>`- ${g.titel}: ${g.mods.join(", ")}`).join("\n");
+  return `Du hilfst beim Optimieren eines Minecraft-Modpacks (Fabric, MC 26.3).
+
+HARDWARE: Grafikkarte ${wizA.vendor||"?"} ${wizA.gpu||"?"}, RAM ${wizA.ram||"?"} GB, Monitor ${wizA.w||"?"}x${wizA.h||"?"} @ ${wizA.hz||"?"} Hz, G-Sync/FreeSync: ${wizA.sync||"?"}, Ziel: ${wizA.fps==="60"?"stabile 60 FPS":"Monitor-Hz"}
+MESSUNG (3-Minuten-Flug, gleiche Strecke): ${t?`Ø ${t.avg} FPS, 1 %-Tief ${t.low1} FPS, 0,1 %-Tief ${t.low01} FPS, ${t.stutter} Ruckler über 50 ms`:"noch keine"}${$("t-link")&&$("t-link").value?`\nSPARK-PROFIL: ${$("t-link").value}`:""}${$("t-note")&&$("t-note").value?`\nBEOBACHTUNG: ${$("t-note").value}`:""}
+
+MODS IM PACK (Slug: Name):
+${[...r.mods].map(s=>`${s}: ${NAME(s)}`).join("\n")}
+
+GRUPPEN, AUS DENEN NUR EINER ERLAUBT IST:
+${groups}
+
+AUFGABE: Finde die wahrscheinlichsten Ursachen für fehlende FPS oder Ruckler und schlage höchstens 8 konkrete Änderungen vor. Erkläre jede in einem Satz auf Deutsch. Gib am Ende GENAU EINEN Codeblock mit diesem JSON zurück (nur Slugs aus der Liste oben oder von modrinth.com):
+\`\`\`json
+{"aktionen":[
+ {"typ":"entfernen","slug":"…","grund":"…"},
+ {"typ":"hinzufuegen","slug":"…","grund":"…"},
+ {"typ":"einstellung","slug":"_base","key":"renderDistance","wert":12,"grund":"…"},
+ {"typ":"einstellung","slug":"photon-shader","key":"shadowDistance","wert":128,"grund":"…"}
+]}
+\`\`\`
+Erlaubte Einstellungen mit slug "_base": renderDistance, simulationDistance, maxFps. Für Mods: Schlüssel aus deren Config-Datei.`;
+}
+function aiHtml(){ return `<p class="catnote">Füge hier die Antwort deiner KI ein (der ganze Text geht, die Website sucht sich den JSON-Block selbst heraus). Du siehst vorher, was geändert wird.</p><textarea id="ai-in" rows="8" placeholder='{"aktionen":[…]}'></textarea><div class="row-actions"><button class="btn" id="ai-check">Prüfen</button></div><div id="ai-out"></div>`; }
+let aiPlan=null;
+function aiCheck(){
+  const raw=$("ai-in").value; const m=raw.match(/\{[\s\S]*"aktionen"[\s\S]*\}/); aiPlan=null;
+  try{ const j=JSON.parse(m?m[0]:raw); const ok=[],bad=[];
+    for(const a of j.aktionen||[]){ if((a.typ==="entfernen"||a.typ==="hinzufuegen")&&BY[a.slug]) ok.push(a); else if(a.typ==="einstellung"&&(a.slug==="_base"?BASE.items.some(i=>i.k===a.key):(SETDEF[a.slug]&&SETDEF[a.slug].items.some(i=>i.k===a.key))||(X.cfgs[a.slug]||[]).some(f=>f.items.some(i=>i.k===a.key)))) ok.push(a); else bad.push(a); }
+    aiPlan=ok; $("ai-out").innerHTML=`<ul class="dl-list">`+ok.map(a=>`<li><span class="tag ${a.typ==="entfernen"?"K":a.typ==="hinzufuegen"?"A":"T"}">${esc(a.typ)}</span> ${esc(a.slug==="_base"?"Grundeinstellung":NAME(a.slug))}${a.key?` · ${esc(a.key)} = ${esc(a.wert)}`:""} <span class="hint">${esc(a.grund||"")}</span></li>`).join("")+`</ul>${bad.length?`<p class="hint">${bad.length} Vorschläge ignoriert (unbekannter Mod oder Schlüssel).</p>`:""}${ok.length?`<button class="btn primary" id="ai-apply">${ok.length} Änderungen übernehmen</button>`:""}`;
+  }catch(e){ $("ai-out").innerHTML=`<p class="srv R">Kein gültiger JSON-Block gefunden.</p>`; }
+}
+function aiApply(){ if(!aiPlan) return; for(const a of aiPlan){
+    if(a.typ==="entfernen"&&!LOCKED.has(a.slug)) sel.delete(a.slug);
+    else if(a.typ==="hinzufuegen"){ clashes(a.slug).forEach(c=>{ if(!LOCKED.has(c.y)) sel.delete(c.y); }); sel.add(a.slug); }
+    else if(a.typ==="einstellung"){ const isG=a.slug!=="_base"&&!(SETDEF[a.slug]&&SETDEF[a.slug].items.some(i=>i.k===a.key)); if(isG){ const f=X.cfgs[a.slug].find(f=>f.items.some(i=>i.k===a.key)); cfg={...cfg,[a.slug]:{...(cfg[a.slug]||{}),["@"+f.file+"|"+a.key]:a.wert}}; } else setCv(a.slug,a.key,a.wert); } }
+  saveSel(); $("tool").close(); renderBuild(); $("t-status")&&($("t-status").textContent=`${aiPlan.length} Änderungen übernommen. Jetzt neu exportieren und erneut testen.`); }
+/* Export */
+function fmtVal(v,t,fmt,orig){ if(t==="bool"||typeof v==="boolean") return String(v===true||v==="true"); if(t==="num"||typeof v==="number"){ const s=String(Number(v)); return /^-?\d+\.\d+/.test(String(orig).trim())&&!s.includes(".")?s+".0":s; } return fmt==="props"?String(v):JSON.stringify(String(v)); }
+function patchText(t,fmt,k,val){
+  const esc2=s=>s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  if(fmt==="toml"||fmt==="props"){ const p=k.split("."); const key=fmt==="toml"?p.pop():k; let a=0,b=t.length;
+    if(fmt==="toml"&&p.length){ const m=t.match(new RegExp("^\\s*\\["+esc2(p.join("."))+"\\]\\s*$","m")); if(!m) return t; a=m.index+m[0].length; const n=t.slice(a).search(/^\s*\[/m); if(n>=0) b=a+n; }
+    return t.slice(0,a)+t.slice(a,b).replace(new RegExp('^(\\s*"?'+esc2(key)+'"?\\s*[=:]\\s*)(.*)$',"m"),(m0,g1,g2)=>g1+(typeof val==="function"?val(g2):val))+t.slice(b); }
+  return t.replace(new RegExp('^(\\s*"?'+esc2(k)+'"?\\s*:\\s*)([^,\\n]*)',"m"),(m0,g1,g2)=>g1+(typeof val==="function"?val(g2):val));
+}
+/* alle Dateien einer Mod mit Änderungen: {pfad: inhalt} */
+function modFiles(slug){
+  const out={}; const fs=X.cfgs[slug]||[];
+  for(const f of fs){
+    const ch={}; for(const i of f.items){ const id="@"+f.file+"|"+i.k; if(cfg[slug]&&id in cfg[slug]) ch[i.k]=[cfg[slug][id],i.t]; else { const a=autoVal(slug,f.file,i.k); if(a) ch[i.k]=[a.v,i.t]; } }
+    if(SETDEF[slug]&&SETDEF[slug].file===f.file&&(cfg[slug]&&Object.keys(cfg[slug]).some(k=>k[0]!=="@")||slug==="voxy")) for(const i of SETDEF[slug].items){ let v=cv(slug,i.k); if(i.inv) v=!v; ch[i.k]=[v,i.t==="bool"?"bool":i.s?"str":"num"]; }
+    if(!Object.keys(ch).length) continue;
+    let t=X.tpl[f.file];
+    if(f.fmt==="json"){ const o=JSON.parse(t); for(const [k,[v,ty]] of Object.entries(ch)){ const p=k.split("."); let c=o; while(p.length>1){ const q=p.shift(); c[q]=c[q]||{}; c=c[q]; } c[p[0]]=ty==="bool"?(v===true||v==="true"):ty==="num"?Number(v):v; } t=JSON.stringify(o,null,2); }
+    else for(const [k,[v,ty]] of Object.entries(ch)) t=patchText(t,f.fmt,k,orig=>fmtVal(v,ty,f.fmt,orig));
+    out["config/"+f.file]=t;
+  }
+  if(SETDEF[slug]&&!out["config/"+SETDEF[slug].file]&&!fs.some(f=>f.file===SETDEF[slug].file)){ const c=buildConfig(slug); if(c&&(cfg[slug]&&Object.keys(cfg[slug]).length||slug==="voxy")) out["config/"+SETDEF[slug].file]=c; }
+  if(X.rpo[slug]&&FILES[slug]){ const d=JSON.parse(JSON.stringify(X.rpo[slug].data)); for(const [id,v] of Object.entries(cfg[slug]||{})) if(id.startsWith("@rpo|")){ const p=id.slice(5).split("."); let c=d; while(p.length>1) c=c[p.shift()]; c[p[0]]=v; } out["resourcepacks/"+decodeURIComponent(FILES[slug][1])+".rpo"]=JSON.stringify(d,null,2); }
+  return out;
+}
+function rpOrder(rps){ return ["vanilla",...rpTopDown(rps).reverse().map(s=>"file/"+decodeURIComponent(FILES[s][1]))]; }
+function optionsTxt(r){ const B=k=>cv("_base",k); const rps=[...r.mods].filter(s=>BY[s].pt==="r");
+  return [`renderDistance:${B("renderDistance")}`,`simulationDistance:${B("simulationDistance")}`,`maxFps:${B("maxFps")}`,"enableVsync:false","mipmapLevels:4","biomeBlendRadius:2","resourcePacks:"+JSON.stringify(rpOrder(rps)),...keyLines()].join("\n")+"\n"; }
+function packFiles(r,server){
+  const files={};
+  if(server) return files;
+  files["options.txt"]=optionsTxt(r);
+  files["config/defaultoptions/options.txt"]=files["options.txt"];
+  const kl2=keyLines(); if(kl2.length) files["config/defaultoptions/keybindings.txt"]=kl2.join("\n")+"\n";
+  if(r.mods.has("iris")){ const sp=[...r.mods].find(s=>BY[s].pt==="s"); if(sp){ const pf=decodeURIComponent(FILES[sp][1]); files["config/iris.properties"]="enableShaders=true\nshaderPack="+pf+"\n";
+    if(sp==="photon-shader") files["shaderpacks/"+pf+".txt"]=SETDEF["photon-shader"].items.map(i=>{const v=cv("photon-shader",i.k); return i.k+"="+(i.f?i.f(Number(v)):v);}).join("\n")+"\n"; } }
+  for(const s of r.mods) Object.assign(files,modFiles(s));
+  files["LIES-MICH.txt"]=`Erstellt mit dem Mod-Katalog 26.3 (${new Date().toLocaleDateString("de-DE")}).\nEinstellungen und Tastenbelegung sind schon gesetzt. Zurück auf diese Werte: Default Options (config/defaultoptions).\nFeste Versionen: Sodium 0.9.2, Iris 1.11.7, Voxy 0.2.20-beta, Photon v1.4. Nur zusammen aktualisieren.\nArbeitsspeicher: ${ramGB(r)} GB.\n`;
+  if(r.mods.has("spark")) files["TEST-ANLEITUNG.txt"]="Test-Kit: "+KIT+"\nSeed: "+TESTSEED+"\n";
+  return files;
+}
+function exportSet(server){
+  const r=resolve(); let all=[...r.mods,...r.libs];
+  if(server){ const keep=new Set(); const stack=[...r.mods].filter(s=>BY[s].ampel==="R"||BY[s].ampel==="Y").concat(MODS.filter(m=>m.cat==="S"&&FILES[m.slug]&&m.slug!=="voxy-server-side"||(m.slug==="voxy-server-side"&&r.mods.has("voxy"))).map(m=>m.slug)); while(stack.length){ const s=stack.pop(); if(keep.has(s)||!FILES[s]) continue; if(BY[s]&&BY[s].pt!=="m"&&BY[s].pt!=="d") continue; keep.add(s); FILES[s][5].forEach(d=>stack.push(d)); } all=[...keep]; }
+  return {r,all};
+}
+const dirOf=s=>{ const t=BY[s]?BY[s].pt:(FILES[s][8]||"m"); return t==="r"?"resourcepacks":t==="s"?"shaderpacks":t==="d"?"datapacks":"mods"; };
+async function saveBlob(blob,fname,st2,hint){
+  const dl=window.claude&&window.claude.use?await window.claude.use("downloads"):null; let ok=false;
+  if(dl){ try{ const res=await dl.save({filename:fname,data:blob}); ok=res&&res.status==="saved"; st2.textContent=ok?`Gespeichert: ${fname}. ${hint}`:"Abgebrochen."; }catch(e){ st2.textContent="Speichern hat nicht geklappt."; } }
+  else{ const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=fname; document.body.appendChild(a); a.click(); a.remove(); ok=true; st2.textContent=`Heruntergeladen: ${fname}. ${hint}`; }
+  return ok;
+}
+function guard(st2){ if(keyConflicts().length) autoFixKeys(); const pr=problems(); if(pr.length){ st2.innerHTML=`<span class="srv R">Erst die ${pr.length} Konflikte klären (oben in „Dein Pack“). Im fertigen Pack darf nichts doppelt sein.</span>`; return false; } return true; }
+async function exportPack(server){
+  const st2=$("exp-status"); if(!guard(st2)) return; st2.textContent="Pack wird gebaut …";
+  if(!window.JSZip){ st2.textContent="Die Zip-Bibliothek konnte nicht geladen werden. Seite neu laden."; return; }
+  const {r,all}=exportSet(server); const name=($("packname").value||"Mein Pack").trim()+(server?" Server":"");
+  const env=s=>{ const m=BY[s]; const a=m?m.ampel:"Y"; return {client:m&&m.cat==="S"?"optional":"required",server:a==="G"?"unsupported":a==="R"||(m&&m.cat==="S")?"required":"optional"}; };
+  const files=all.filter(s=>!(server&&dirOf(s)==="datapacks")).map(s=>{const f=FILES[s]; return {path:dirOf(s)+"/"+decodeURIComponent(f[1]),hashes:{sha1:f[2],sha512:f[3]},env:env(s),downloads:[f[0]],fileSize:f[4]};});
+  const index={formatVersion:1,game:"minecraft",versionId:"1.0.0",name,summary:"Erstellt mit dem Mod-Katalog 26.3",files,dependencies:{minecraft:"26.3","fabric-loader":"0.20.1"}};
+  const zip=new JSZip(); zip.file("modrinth.index.json",JSON.stringify(index,null,2));
+  if($("withcfg").checked) for(const [p,c] of Object.entries(packFiles(r,server))) zip.file("overrides/"+p,c);
+  const blob=await zip.generateAsync({type:"blob",compression:"DEFLATE"});
+  const ok=await saveBlob(blob,name.replace(/[^\w\- ]+/g,"").replace(/\s+/g,"-")+".mrpack",st2,server?"Auf dem Server mit einem .mrpack-Installer einrichten.":`Modrinth App: Datei hineinziehen. Danach Arbeitsspeicher auf ${ramGB(r)} GB stellen (Instanz › Einstellungen › Java).`);
+  if(ok&&!server){ try{ localStorage.setItem("mk-last",JSON.stringify({at:new Date().toISOString(),f:Object.fromEntries([...r.mods].map(s=>[s,FILES[s][6]]))})); }catch(e){} }
+  if(ok&&db&&mode==="shared"){ try{ await db.doc("packs/letzter").set({name,slugs:[...sel],cfg,by:myId||null,at:new Date().toISOString()}); }catch(e){} }
+}
+async function exportPrism(){
+  const st2=$("exp-status"); if(!guard(st2)) return;
+  if(!window.JSZip){ st2.textContent="Die Zip-Bibliothek konnte nicht geladen werden."; return; }
+  const {r,all}=exportSet(false); const name=($("packname").value||"Mein Pack").trim(); const zip=new JSZip();
+  zip.file("instance.cfg",`[General]\nConfigVersion=1.2\nInstanceType=OneSix\nname=${name}\nOverrideMemory=true\nMaxMemAlloc=${ramGB(r)*1024}\nMinMemAlloc=1024\nnotes=Erstellt mit dem Mod-Katalog 26.3\n`);
+  zip.file("mmc-pack.json",JSON.stringify({components:[{uid:"net.minecraft",version:"26.3",important:true},{uid:"net.fabricmc.fabric-loader",version:"0.20.1"}],formatVersion:1},null,1));
+  if($("withcfg").checked) for(const [p,c] of Object.entries(packFiles(r,false))) zip.file(".minecraft/"+p,c);
+  let done=0, fail=[]; const list=all.filter(s=>dirOf(s)!=="datapacks");
+  const one=async s=>{ const f=FILES[s]; try{ const res=await fetch(f[0]); if(!res.ok) throw 0; zip.file(".minecraft/"+dirOf(s)+"/"+decodeURIComponent(f[1]),await res.arrayBuffer()); }catch(e){ fail.push(NAME(s)); } done++; st2.textContent=`Lade Dateien von Modrinth: ${done} von ${list.length} …`; };
+  const q=[...list]; await Promise.all(Array.from({length:6},async()=>{ while(q.length) await one(q.shift()); }));
+  if(fail.length){ st2.innerHTML=`<span class="srv R">${fail.length} Dateien nicht ladbar (${esc(fail.slice(0,5).join(", "))}). Nimm stattdessen die .mrpack-Datei.</span>`; return; }
+  st2.textContent="Packe die Instanz …"; const blob=await zip.generateAsync({type:"blob",compression:"STORE"});
+  await saveBlob(blob,name.replace(/[^\w\- ]+/g,"").replace(/\s+/g,"-")+"-Prism.zip",st2,`Prism: Instanz hinzufügen › Importieren › Datei wählen. Arbeitsspeicher (${ramGB(r)} GB) ist schon eingestellt.`);
+}
+const PINNED=["sodium","iris","voxy","photon-shader"];
+async function checkUpdates(){
+  const out=$("upd-out"); out.textContent="Frage Modrinth …";
+  const r=resolve(); const mods=[...r.mods,...r.libs].filter(s=>(BY[s]?BY[s].pt:"m")==="m");
+  try{
+    const res=await fetch("https://api.modrinth.com/v2/version_files/update",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({hashes:mods.map(s=>FILES[s][2]),algorithm:"sha1",loaders:["fabric"],game_versions:["26.3"]})});
+    const data=await res.json(); const upd=[]; mods.forEach(s=>{ const v=data[FILES[s][2]]; if(v&&v.version_number!==FILES[s][6]) upd.push([s,v.version_number,v.version_type]); });
+    out.innerHTML= upd.length ? `<b>${upd.length} Updates</b><ul class="dl-list">`+upd.map(([s,v,t])=>`<li>${esc(BY[s]?BY[s].name:FILES[s][7]||s)}: ${esc(FILES[s][6])} → ${esc(v)}${t!=="release"?" (Beta)":""}${PINNED.includes(s)?` <span class="tag K">fest</span>`:""}</li>`).join("")+`</ul>` : "Alles aktuell.";
+  }catch(e){ out.textContent="Modrinth ist von hier aus nicht erreichbar. Auf der GitHub-Seite funktioniert die Prüfung."; }
+}
+async function loadUpdateReport(){
+  try{ const r=await fetch("data/updates.json",{cache:"no-store"}); if(!r.ok) return; const u=await r.json();
+    const n=u.next; $("upd-banner").innerHTML=`<div class="sugbar"><span>Automatische Prüfung vom ${new Date(u.checked).toLocaleDateString("de-DE")}: <b>${u.updates.length}</b> Updates für 26.3.${n?` Bereit für <b>${esc(n.version)}</b>: ${n.ready} von ${n.total} Mods.`:""}</span></div>`; }catch(e){}
+}
+/* ---------- settings ---------- */
+function renderSettings(){
+  let h=`<div class="pins"><h2>Feste Versionen<small>wichtig für Updates</small></h2><p class="catnote">Voxy ist an bestimmte Versionen von Sodium und Iris gebunden. Diese Versionen gehören zusammen und werden nur gemeinsam aktualisiert.</p><div class="list">`+
+    SET.versionen.map(v=>`<div class="srow"><div class="sname">${esc(v.name)}</div><div class="sval">${esc(v.wert)}</div><div class="swhy">${esc(v.warum)}</div></div>`).join("")+`</div></div>`;
+  h+=`<div class="toc">`+SET.gruppen.map(g=>`<a href="#einstellungen" data-g="${g.id}">${esc(g.titel)}</a>`).join("")+`<a href="#einstellungen" data-g="fps">FPS-Leiter</a></div>`;
+  for(const g of SET.gruppen){
+    h+=`<section class="sgroup" id="g-${g.id}"><h2>${esc(g.titel)}</h2><p class="where">${esc(g.ort)}</p><p class="catnote">${esc(g.hinweis)}</p><div class="list"><div class="srow shead"><div>Einstellung</div><div>Unser Wert</div><div>Warum</div></div>`;
+    for(const w of g.werte){ const def=w[2]&&w[2]!==w[1]?`<span class="def">Standard: ${esc(w[2])}</span>`:""; const key=w[4]&&g.id==="photon"?`<span class="key">${esc(w[4])}</span>`:"";
+      h+=`<div class="srow"><div class="sname">${esc(w[0])}${key}</div><div class="sval">${esc(w[1])}${def}</div><div class="swhy">${esc(w[3])}</div></div>`; }
+    h+=`</div></section>`;
+  }
+  h+=`<section class="sgroup" id="g-fps"><h2>FPS-Leiter</h2><p class="catnote">Wenn im Test weniger als 144 FPS ankommen, diese Schritte der Reihe nach gehen und nach jedem Schritt neu messen.</p><ol class="ladder">`+SET.fpsleiter.map(x=>`<li>${esc(x)}</li>`).join("")+`</ol></section>`;
+  h+=`<p class="foot">Alle Werte sind Startwerte für ${esc(SET.ziel)} und werden beim Testen feinjustiert.</p>`;
+  $("view-settings").innerHTML=h;
+}
+
+/* ---------- logs ---------- */
+let logText="", logName="";
+$("log-file").addEventListener("change",async e=>{ const f=e.target.files[0]; if(!f) return; logName=f.name; logText=await f.text(); $("log-text").value=logText.length>200000?logText.slice(0,200000)+"\n…":logText; $("log-name").textContent=`${f.name} · ${(f.size/1024).toFixed(0)} KB`; quickCheck(); });
+$("log-text").addEventListener("input",e=>{ logText=e.target.value; if(!logName) logName="eingefügt"; });
+function excerpt(t){
+  const L=t.split(/\r?\n/); if(L.length<=400) return t.slice(0,60000);
+  const keep=new Set(); L.forEach((l,i)=>{ if(/(ERROR|FATAL|Exception|Caused by|Mixin|mixin|crash|Crash|Incompatible|requires|Missing|Description:|---- )/.test(l)) for(let j=Math.max(0,i-2);j<Math.min(L.length,i+6);j++) keep.add(j); });
+  for(let i=0;i<60;i++) keep.add(i); for(let i=L.length-150;i<L.length;i++) keep.add(i);
+  let out="",last=-1; [...keep].sort((a,b)=>a-b).forEach(i=>{ if(i>last+1) out+="[…]\n"; out+=L[i]+"\n"; last=i; });
+  return out.slice(0,60000);
+}
+function quickCheck(){
+  const t=logText||$("log-text").value; if(!t.trim()){ $("log-quick-out").innerHTML=`<div class="empty">Noch kein Log. Wähle eine Datei oder füge Text ein.</div>`; return; }
+  const finds=[];
+  const desc=t.match(/Description: (.+)/); if(desc) finds.push(["Absturz-Beschreibung",desc[1]]);
+  const mix=[...t.matchAll(/Mixin apply (?:for mod )?(\S+) failed|from mod (\S+?)[,\]\s]/g)].map(m=>m[1]||m[2]); if(mix.length) finds.push(["Mixin-Fehler bei",[...new Set(mix)].slice(0,8).join(", ")]);
+  const req=[...t.matchAll(/(?:requires|Mod '([^']+)'.*?requires) (?:any version of |version )?['"]?([\w\-.]+)['"]?/g)].map(m=>m[0]); if(req.length) finds.push(["Fehlende Abhängigkeit",[...new Set(req)].slice(0,5).join(" · ")]);
+  const cause=[...t.matchAll(/Caused by: ([^\n]+)/g)].map(m=>m[1]); if(cause.length) finds.push(["Ursache (letzte)",cause[cause.length-1].slice(0,240)]);
+  const lower=t.toLowerCase(); const seen=MODS.filter(m=>lower.includes(m.slug.replace(/-/g,"")) || lower.includes(m.slug)).map(m=>m.slug);
+  const susp=DEC.beziehungen.filter(r=>(r.art==="K"||r.art==="T")&&r.mods.filter(s=>seen.includes(s)).length>=2);
+  let h=`<h2>Schnellprüfung</h2>`;
+  h+= finds.length?`<div class="list">`+finds.map(f=>`<div class="srow"><div class="sname">${esc(f[0])}</div><div class="swhy" style="grid-column:2/-1">${esc(f[1])}</div></div>`).join("")+`</div>`:`<p class="catnote">Keine typischen Fehlermuster gefunden. Das spricht eher für einen Grafiktreiber- oder Speicherproblem, oder das Log endet vor dem Fehler.</p>`;
+  if(susp.length) h+=`<h3>Bekannte Überschneidungen in diesem Log</h3><ul class="dl-list">`+susp.map(r=>`<li><b>${r.mods.map(NAME).map(esc).join(" + ")}</b>: ${esc(r.text)}</li>`).join("")+`</ul>`;
+  $("log-quick-out").innerHTML=h;
+}
+$("log-quick").onclick=()=>{ logText=$("log-text").value||logText; quickCheck(); };
+async function aiAnalyze(){
+  const t=$("log-text").value||logText; if(!t.trim()){ $("log-status").textContent="Erst ein Log wählen oder einfügen."; return; }
+  const ms=modStatus(); const active=MODS.filter(m=>!(ms[m.slug]&&ms[m.slug].state==="weg")).map(m=>m.slug).join(", ");
+  const rel=DEC.beziehungen.map(r=>`${ART[r.art]}: ${r.mods.join(" + ")} – ${r.text}`).join("\n");
+  const prompt=`Du analysierst ein Minecraft-Log (Fabric, MC 26.3) für ein Vanilla-Plus-Modpack. Antworte auf Deutsch, knapp, für einen technisch interessierten Spieler.
+Format:
+1. Was ist passiert (1–2 Sätze)
+2. Wahrscheinlich verantwortliche Mod(s) mit Begründung aus dem Log (Zeilen zitieren)
+3. Was ich tun soll (konkrete Schritte, z. B. Mod aktualisieren/entfernen, Version, Einstellung)
+4. Wie sicher du bist (hoch/mittel/niedrig)
+Wenn das Log keinen Fehler zeigt, sag das klar. Erfinde keine Mods oder Versionen, die nicht im Log oder in der Liste stehen.
+
+Feste Versionen: Sodium 0.9.2, Iris 1.11.7, Voxy 0.2.20-beta (bricht mit Iris ≥ 1.12), Photon v1.4.
+Mods im Katalog (Modrinth-Slugs): ${active}
+Bekannte Beziehungen:
+${rel}
+
+LOG (Auszug, gekürzt mit […]):
+${excerpt(t)}`;
+  const out=$("log-ai-out"); out.hidden=false; out.textContent="Claude liest das Log …"; $("log-ai").disabled=true; $("log-status").textContent="";
+  try{
+    const r=await sample(prompt,{modelTier:"default",cache:false,onText:({text})=>{ out.textContent=text; }});
+    out.textContent=r.text; if(r.truncated) $("log-status").textContent="Antwort wurde gekürzt.";
+    if(db&&mode==="shared"){ try{ await db.collection("logs").add({at:new Date().toISOString(),by:myId||null,name:logName||"eingefügt",auszug:excerpt(t).slice(0,40000),analyse:r.text.slice(0,20000)}); }catch(e){} }
+  }catch(e){
+    out.textContent = e&&e.code==="not_granted" ? "Die Analyse durch Claude ist hier nicht freigegeben. Die Schnellprüfung oben funktioniert trotzdem." : e&&e.code==="rate_limited" ? "Gerade zu viele Anfragen. Bitte in ein paar Minuten noch einmal." : "Die Analyse hat nicht geklappt. Die Schnellprüfung oben funktioniert trotzdem.";
+    if(e&&e.code==="not_granted") $("log-ai").hidden=true;
+  }finally{ $("log-ai").disabled=false; }
+}
+$("log-ai").onclick=aiAnalyze;
+function renderLogHistory(docs){
+  if(!docs.length){ $("log-hist-h").hidden=true; $("log-hist").innerHTML=""; return; }
+  $("log-hist-h").hidden=false;
+  $("log-hist").innerHTML=docs.map(d=>`<details class="hist"><summary><b>${esc(d.name||"Log")}</b> · ${d.at?new Date(d.at).toLocaleString("de-DE"):""}${d.by&&names[d.by]?" · "+esc(names[d.by]):""}</summary><div class="analysis">${esc(d.analyse||"")}</div></details>`).join("");
+}
+
+/* ---------- routing & events ---------- */
+const VIEWS={katalog:"view-catalog",entscheidungen:"view-decisions",bauen:"view-build",einstellungen:"view-settings",testen:"view-test",logs:"view-logs"};
+function route(){
+  const dlg=$("detail"); if(dlg.open) dlg.close();
+  const k=(location.hash||"#katalog").slice(1); const v=k.startsWith("pack-")?"bauen":VIEWS[k]?k:"katalog";
+  for(const [n,id] of Object.entries(VIEWS)){ $(id).hidden=n!==v; $("v-"+n).setAttribute("aria-current",n===v?"page":"false"); }
+  if(v==="bauen") renderBuild();
+  if(v==="testen") renderTest();
+}
+window.addEventListener("hashchange",route);
+/* Klick neben ein Popup schließt es */
+document.querySelectorAll("dialog").forEach(d=>d.addEventListener("click",e=>{ if(e.target!==d) return; const r=d.getBoundingClientRect(); if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom) d.close(); }));
+document.addEventListener("keydown",e=>{ if($("lightbox").open&&(e.key==="ArrowRight"||e.key==="ArrowLeft")) openLb(lb.s,lb.i+(e.key==="ArrowRight"?1:-1)); const c=e.target.closest&&e.target.closest("[data-card]"); if(c&&(e.key==="Enter"||e.key===" ")){ e.preventDefault(); pick(c.dataset.card,!sel.has(c.dataset.card)); } });
+document.addEventListener("click",e=>{
+  const z=e.target.closest("[data-zoom]"); if(z){ e.stopPropagation(); const [s,i]=z.dataset.zoom.split("|"); openLb(s,Number(i)); return; }
+  if(e.target.closest("#lb-prev")){ openLb(lb.s,lb.i-1); return; } if(e.target.closest("#lb-next")){ openLb(lb.s,lb.i+1); return; }
+  if(e.target.closest("[data-close]")){ e.target.closest("dialog").close(); return; }
+  const t=e.target.closest("[data-choose],[data-reset],[data-detail],[data-jump],a[data-g],[data-mod],[data-toggle],[data-filter],[data-sub],[data-bt],[data-cfgreset],[data-tool],[data-kk],[data-kreset],[data-rpmv],[data-preset],[data-fix],#kfix,#rp-auto,#export,#export-srv,#export-prism,#upd,#wiz-open,#wiz-close,#wiz-go,#share,#reset-all,#t-save,#t-prompt,#ai-check,#ai-apply,#mbar,.sum,[data-card]"); if(!t) return;
+  if(t.id==="t-save"){ saveTest(); return; }
+  if(t.id==="t-prompt"){ const ta=$("t-prompttxt"); ta.value=aiPrompt(); ta.hidden=false; ta.select(); try{ navigator.clipboard.writeText(ta.value); $("t-status").textContent="Text kopiert. In den Chat oder deine KI einfügen."; }catch(e){} return; }
+  if(t.id==="ai-check"){ aiCheck(); return; } if(t.id==="ai-apply"){ aiApply(); return; }
+  if(t.id==="mbar"){ e.preventDefault(); $("bside").scrollIntoView({behavior:"smooth"}); return; }
+  if(t.dataset.mod){ openMod(t.dataset.mod); return; }
+  if(t.dataset.card){ const s=t.dataset.card; if(LOCKED.has(s)){ openMod(s); return; } pick(s,!sel.has(s)); return; }
+  if(t.dataset.toggle){ pick(t.dataset.toggle,!sel.has(t.dataset.toggle)); return; }
+  if(t.dataset.bt){ bt=t.dataset.bt; bsub=null; renderBuild(); return; }
+  if(t.dataset.sub!==undefined){ bsub=t.dataset.sub||null; renderBuild(); return; }
+  if(t.dataset.filter){ const k=t.dataset.filter; bst.f.has(k)?bst.f.delete(k):bst.f.add(k); renderBuild(); return; }
+  if(t.dataset.preset){ preset(t.dataset.preset); return; }
+  if(t.dataset.fix){ const [a,b]=t.dataset.fix.split("|"); sel.delete(b); pick(b,true); return; }
+  if(t.dataset.tool){ openTool(t.dataset.tool); return; }
+  if(t.dataset.kk){ kSel=kSel===t.dataset.kk?null:t.dataset.kk; renderTool(); return; }
+  if(t.dataset.kreset){ const c={...(cfg._keys||{})}; delete c[t.dataset.kreset]; cfg={...cfg,_keys:c}; saveSel(); renderTool(); renderSide(); return; }
+  if(t.id==="kfix"){ autoFixKeys(); renderTool(); renderSide(); return; }
+  if(t.dataset.rpmv){ const [s,d]=t.dataset.rpmv.split("|"); const r=resolve(); const o=rpTopDown([...r.mods].filter(x=>BY[x].pt==="r")); const i=o.indexOf(s), j=i+Number(d); if(j<0||j>=o.length) return; [o[i],o[j]]=[o[j],o[i]]; cfg={...cfg,_rpord:o}; saveSel(); renderTool(); return; }
+  if(t.id==="rp-auto"){ const c={...cfg}; delete c._rpord; cfg=c; saveSel(); renderTool(); return; }
+  if(t.dataset.cfgreset){ const [s,k]=t.dataset.cfgreset.split("|"); const c={...(cfg[s]||{})}; delete c[k]; cfg={...cfg,[s]:c}; saveSel(); if(s==="_base") renderTool(); else openMod(s); return; }
+  if(t.id==="export"){ exportPack(false); return; } if(t.id==="export-srv"){ exportPack(true); return; } if(t.id==="export-prism"){ exportPrism(); return; }
+  if(t.id==="upd"){ checkUpdates(); return; }
+  if(t.id==="wiz-open"){ renderWiz(); $("wiz").showModal(); return; }
+  if(t.id==="wiz-close"){ $("wiz").close(); return; }
+  if(t.id==="wiz-go"){ wizRun(); return; }
+  if(t.id==="reset-all"){ if(!confirmReset()) return; return; }
+  if(t.id==="share"){ const code=[...sel].filter(s=>!LOCKED.has(s)).map(s=>MODS.findIndex(m=>m.slug===s).toString(36)).join("."); const url=location.href.split("#")[0]+"#pack-"+code; const so=$("share-out"); if(location.host.endsWith("github.io")){ navigator.clipboard.writeText(url).then(()=>so.textContent="Link kopiert.",()=>so.textContent=url); } else so.textContent="Teilen-Links funktionieren auf der GitHub-Seite."; return; }
+  if(t.dataset.choose){ choose(t.dataset.choose,t.dataset.opt); }
+  else if(t.dataset.reset){ resetChoice(t.dataset.reset); }
+  else if(t.dataset.detail){ openMod(t.dataset.detail); }
+  else if(t.dataset.jump){ e.preventDefault(); $("detail").close(); st.openOnly=false; renderDecisions(); location.hash="entscheidungen"; route(); setTimeout(()=>{const el=$("dec-"+t.dataset.jump); if(el) el.scrollIntoView({block:"start"});},0); }
+  else if(t.dataset.g){ e.preventDefault(); if(location.hash!=="#einstellungen") location.hash="einstellungen"; route(); setTimeout(()=>{const el=$("g-"+t.dataset.g); if(el) el.scrollIntoView({block:"start"});},0); }
+  else if(t.classList.contains("sum")){ st.cat=st.cat===t.dataset.cat?null:t.dataset.cat; saveFilter(); renderCatalog(); }
+});
+let resetArmed=0;
+function confirmReset(){ const b=$("reset-all"); if(Date.now()-resetArmed>4000){ resetArmed=Date.now(); b.textContent="Wirklich alles löschen? Nochmal klicken"; setTimeout(()=>{ b.textContent="Alles zurücksetzen"; },4000); return false; }
+  try{ Object.keys(localStorage).filter(k=>k.startsWith("mk-")).forEach(k=>localStorage.removeItem(k)); }catch(e){}
+  sel=new Set(LOCKED); cfg={}; wizA={}; wizSug=new Set(); bst={q:"",f:new Set()}; bt="m"; bsub=null; choices={}; st.cat=null; st.q="";
+  b.textContent="Alles zurücksetzen"; $("share-out").textContent="Alles auf Anfang: Auswahl, Einstellungen, Tasten, Assistent und Tests gelöscht."; renderAll(); renderBuild(); return true; }
+$("q").addEventListener("input",e=>{ st.q=e.target.value.trim(); renderCatalog(); });
+["core","vanilla","hide"].forEach(k=>$("f-"+k).onclick=()=>{ st[k]=!st[k]; saveFilter(); renderCatalog(); });
+document.addEventListener("change",e=>{
+  if(e.target.id==="t-csv"){ const f=e.target.files[0]; if(!f) return; f.text().then(txt=>{ lastFps=parseFps(txt); $("t-csvout").textContent=lastFps?`Ø ${lastFps.avg} FPS · 1 %-Tief ${lastFps.low1} · 0,1 %-Tief ${lastFps.low01} · ${lastFps.stutter} Ruckler über 50 ms (${lastFps.frames} Bilder)`:"Diese Datei kenne ich nicht. Bitte die fps.csv aus dem Test-Kit nehmen."; }); return; }
+  if(e.target.id==="packname"){ cfg={...cfg,_name:e.target.value}; saveSel(); return; }
+  if(e.target.name==="w-shader"){ wizRead(); renderWiz(); return; }
+  if(e.target.name==="w-gpu"||e.target.name==="w-fps"){ wizRead(); renderWiz(); return; }
+  const g=e.target.closest("[data-cfg]"); if(g){ const [s,k]=g.dataset.cfg.split("|"); const def=(s==="_base"?BASE:SETDEF[s]).items.find(i=>i.k===k); setCv(s,k,def.t==="bool"?g.checked:def.t==="range"?Number(g.value):(isNaN(Number(g.value))?g.value:Number(g.value))); if(s==="_base") renderTool(); else openMod(s); return; }
+  const gg=e.target.closest("[data-gcfg]"); if(gg){ const [s,file,k]=gg.dataset.gcfg.split("|"); const it=X.cfgs[s].find(f=>f.file===file).items.find(i=>i.k===k); const v=it.t==="bool"?gg.checked:it.t==="num"?Number(gg.value.replace(",",".")):gg.value; cfg={...cfg,[s]:{...(cfg[s]||{}),["@"+file+"|"+k]:v}}; saveSel(); gg.closest(".crow").classList.add("changed"); return; }
+  const rp=e.target.closest("[data-rpo]"); if(rp){ const [s,k]=rp.dataset.rpo.split("|"); const v=rp.type==="checkbox"?rp.checked:isNaN(Number(rp.value))?rp.value:Number(rp.value); cfg={...cfg,[s]:{...(cfg[s]||{}),["@rpo|"+k]:v}}; saveSel(); return; }
+  if(e.target.id==="testkit"){ e.target.checked?sel.add("spark"):sel.delete("spark"); saveSel(); renderBuild(); return; }
+  const kk=e.target.closest("[data-key]"); if(kk){ cfg={...cfg,_keys:{...(cfg._keys||{}),[kk.dataset.key]:kk.value}}; saveSel(); renderTool(); renderSide(); }
+});
+document.addEventListener("input",e=>{ const g=e.target.closest('input[type=range][data-cfg]'); if(g&&g.nextElementSibling) g.nextElementSibling.textContent=Number(g.value).toFixed(2);
+  if(e.target.matches("[data-cfs]")){ const q=e.target.value.toLowerCase(); e.target.nextElementSibling.querySelectorAll(".crow").forEach(r=>r.hidden=q&&!r.dataset.name.includes(q)); } });
+$("bq").addEventListener("input",e=>{ bst.q=e.target.value.trim(); renderBuild(); });
+$("d-open").onclick=()=>{ st.openOnly=!st.openOnly; saveFilter(); renderDecisions(); };
+function renderAll(){ renderCatalog(); renderDecisions(); if(!$("view-build").hidden) renderBuild(); }
+
+/* ---------- boot ---------- */
+localLoad(); loadSel(); loadUpdateReport(); renderSettings(); renderAll(); route();
+(async()=>{
+  const C=window.claude; if(!C||!C.use){ mode="local"; showSync("Entscheidungen werden nur in diesem Browser gespeichert."); return; }
+  const [d,u,s]=await Promise.all([C.use("db"),C.use("user"),C.use("sample")]); C.use("downloads");
+  user=u; sample=s; if(sample) $("log-ai").hidden=false;
+  if(user){ try{ myId=await user.id(); }catch(e){} }
+  if(!d){ mode="local"; showSync("Entscheidungen werden nur in diesem Browser gespeichert. Zum Teilen mit Freunden die Seite angemeldet öffnen."); return; }
+  db=d; mode="shared"; const local=choices; choices={}; renderAll();
+  const timer=setTimeout(()=>showSync("Die gespeicherten Entscheidungen sind noch nicht erreichbar. Angezeigt werden die Empfehlungen."),10000);
+  const resolveNames=async ids=>{ if(!user||!ids.length) return; try{ const ps=await user.profiles(ids); for(const id of ids) names[id]=(ps[id]&&ps[id].name)||names[id]||""; }catch(e){} };
+  db.collection("decisions").onSnapshot(async snap=>{
+    if(!snap.metadata.fromCache){ clearTimeout(timer); showSync(""); }
+    const n={}; snap.docs.forEach(x=>{ const v=x.data(); if(v&&v.choice) n[x.id]=v; }); choices=n;
+    await resolveNames([...new Set(Object.values(n).map(v=>v.by).filter(Boolean))]); renderAll();
+  },()=>{ clearTimeout(timer); showSync("Gespeicherte Entscheidungen konnten nicht geladen werden."); });
+  db.collection("logs").orderBy("at","desc").limit(10).onSnapshot(async snap=>{
+    const docs=snap.docs.map(x=>x.data()).filter(Boolean); await resolveNames([...new Set(docs.map(v=>v.by).filter(Boolean))]); renderLogHistory(docs);
+  },()=>{});
+})();
+</script>

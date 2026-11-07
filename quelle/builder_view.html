@@ -1,0 +1,19 @@
+<section id="view-build" hidden>
+  <div class="bhead">
+    <p class="catnote lead">Performance & Basis ist schon drin. Alles andere wählst du selbst: Klick auf einen Namen zeigt, was die Mod macht, Bilder, Einstellungen und womit sie sich verträgt. Am Ende lädst du das Pack als <code>.mrpack</code> für Prism herunter.</p>
+    <div class="row-actions"><button class="btn primary" id="wiz-open">Assistent starten</button><button class="btn" id="share">Auswahl teilen</button><button class="btn" id="reset-sel">Auswahl leeren</button><span class="hint" id="share-out"></span></div>
+  </div>
+  <div id="upd-banner"></div>
+  <div class="buildgrid">
+    <div class="buildlist">
+      <div class="fbar" role="toolbar" aria-label="Filter">
+        <input type="search" id="bq" placeholder="Suchen …" aria-label="Suchen">
+        <div class="fgroup" id="fg"></div>
+      </div>
+      <div id="blist"></div>
+    </div>
+    <aside class="buildside" id="bside"></aside>
+  </div>
+</section>
+<dialog id="ask" aria-labelledby="ask-title"><h2 id="ask-title">Überschneidung</h2><div id="ask-body"></div><div class="row-actions" id="ask-btns"></div></dialog>
+<dialog id="wiz" aria-labelledby="wiz-title"><div class="dhead"><h2 id="wiz-title">Assistent</h2><button class="btn" id="wiz-close">Schließen</button></div><div id="wiz-body"></div></dialog>
