@@ -73,7 +73,8 @@ try {
 app.files = { ...app.files, ...Object.fromEntries(updates.map(u => [u.slug, files[u.slug]])) };
 fs.writeFileSync("data/files.json", JSON.stringify(files));
 fs.writeFileSync("data/app-data.json", JSON.stringify(app));
-const verlauf = [...(prev.verlauf || []).filter(x => x.datum !== today), ...(updates.length ? [{ datum: today, updates }] : [])].slice(-60);
+const heute = [...((prev.verlauf || []).find(x => x.datum === today)?.updates || []).filter(u => !updates.some(n => n.slug === u.slug)), ...updates];
+const verlauf = [...(prev.verlauf || []).filter(x => x.datum !== today), ...(heute.length ? [{ datum: today, updates: heute }] : [])].slice(-60);
 const alt = Object.entries(stand).filter(([, v]) => v.seit).sort((a, b) => a[1].seit.localeCompare(b[1].seit));
 const woche = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
 const ohneNeue = alt.filter(([s, v]) => v.seit < woche && NAME[s]).map(([s, v]) => ({ slug: s, name: NAME[s] || s, version: v.version, seit: v.seit }));
