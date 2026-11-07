@@ -114,6 +114,9 @@ log.push(`yt-dlp-Suchen: ${nd}, mit Treffer: ${okD}, noch offen: ${Math.max(0, t
 
 // ---------- Ausgabe ----------
 for (const e of Object.values(media)) for (const v of e.videos || []) v.status = v.status || (v.punkte >= 5 ? "auto" : "review");
+// Visuelle Prüfung (Prüfbögen): data/video-review.json { "slug:videoId": "ok" | "nein" }
+const REV = fs.existsSync("data/video-review.json") ? JSON.parse(fs.readFileSync("data/video-review.json", "utf8")) : {};
+for (const [s, e] of Object.entries(media)) for (const v of e.videos || []) if (REV[s + ":" + v.id]) v.status = REV[s + ":" + v.id];
 fs.writeFileSync(OUT, JSON.stringify(media));
 const all = mods.map(m => media[m.slug] || {});
 const stat = { stand: new Date().toISOString(), eintraege: mods.length, mitBildern: all.filter(e => (e.bilder || []).length).length,
