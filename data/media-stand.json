@@ -1,14 +1,16 @@
 {
- "stand": "2026-11-07T17:20:13.428Z",
- "eintraege": 684,
- "mitBildern": 605,
- "mitVideoSicher": 304,
- "mitVideoReview": 281,
+ "stand": "2026-11-07T18:08:32.831Z",
+ "eintraege": 697,
+ "mitBildern": 616,
+ "hdOderVideo": 525,
+ "mitVideoSicher": 382,
+ "mitVideoReview": 192,
  "log": [
   "CurseForge-Key: funktioniert",
   "YouTube-Key: funktioniert",
-  "Suche gestoppt bei shuttfup: 429",
-  "YouTube-Suchen in diesem Lauf: 3, noch offen: 355",
-  "yt-dlp-Suchen: 0, mit Treffer: 0, noch offen: 0"
+  "Suche gestoppt bei quick-pack: 429",
+  "YouTube-Suchen in diesem Lauf: 4, noch offen: 363",
+  "yt-dlp-Suchen: 11, mit Treffer: 6, noch offen: 0",
+  "Auflösung gemessen: 2501 Bilder"
  ]
 }
