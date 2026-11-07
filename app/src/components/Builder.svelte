@@ -16,7 +16,7 @@
   const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "");
   const items = $derived.by(() => {
     const q = norm(ui.q.trim()); const f = ui.filters;
-    return pack.data.mods.filter(m => pack.data.files[m.slug] && (m.pt || "m") === ui.tab && (ui.tab !== "m" || !ui.sub || m.cat === ui.sub)
+    return pack.data.mods.filter(m => (pack.data.files[m.slug] || m.cf) && (m.pt || "m") === ui.tab && (ui.tab !== "m" || !ui.sub || m.cat === ui.sub)
       && (!q || norm(m.name + " " + m.sub + " " + m.notiz + " " + m.slug).includes(q))
       && (!f.has("sel") || pack.sel.has(m.slug)) && (!f.has("rec") || m.rolle === "K") && (!f.has("van") || (m.ampel !== "R" && m.cat !== "S")) && (!f.has("sug") || pack.sug.has(m.slug)));
   });
@@ -31,7 +31,7 @@
     }
     return out;
   });
-  const count = (t: string) => { const all = pack.data.mods.filter(m => (m.pt || "m") === t && pack.data.files[m.slug]); return [all.filter(m => pack.sel.has(m.slug)).length, all.length]; };
+  const count = (t: string) => { const all = pack.data.mods.filter(m => (m.pt || "m") === t && (pack.data.files[m.slug] || m.cf)); return [all.filter(m => pack.sel.has(m.slug)).length, all.length]; };
   function toggleF(k: string) { const n = new Set(ui.filters); n.has(k) ? n.delete(k) : n.add(k); ui.filters = n; }
 </script>
 

@@ -2,7 +2,7 @@
 export type Mod = {
   slug: string; name: string; cat: "P" | "V" | "G" | "T" | "S"; sub: string; ampel: "G" | "Y" | "R" | "Q";
   rolle: "K" | "O" | "A"; downloadsK: number; notiz: string; quellen: string[]; pt?: "m" | "r" | "s" | "d";
-  img?: string[]; pflicht?: boolean; seite?: string; cf?: string; vn?: string;
+  img?: string[]; pflicht?: boolean; neu?: boolean; seite?: string; cf?: string; vn?: string;
 };
 export type Gruppe = { id: string; titel: string; mods: string[]; text: string };
 export type Beziehung = { art: "K" | "D" | "T" | "A" | "S"; mods: string[]; text: string; erledigt?: boolean };

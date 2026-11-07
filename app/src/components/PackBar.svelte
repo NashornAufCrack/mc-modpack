@@ -2,7 +2,7 @@
   import { pack, PRESETS } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
   import { conflicts } from "../lib/keys";
-  import { exportMrpack, exportPrism } from "../lib/export";
+  import { exportMrpack, exportPrism, manualList } from "../lib/export";
 
   const r = $derived(pack.resolve());
   const cnt = (t: string) => [...r.mods].filter(s => (pack.BY[s].pt || "m") === t).length;
@@ -10,6 +10,7 @@
   const size = $derived([...r.mods, ...r.libs].reduce((a, s) => a + (pack.data.files[s]?.[4] || 0), 0));
   const red = $derived([...r.mods].filter(s => pack.BY[s].ampel === "R" && pack.BY[s].cat !== "S"));
   const probs = $derived(pack.problems());
+  const manual = $derived((pack.sel, manualList()));
   const kc = $derived(conflicts().length);
   const diff = $derived(pack.presetDiff());
   const pname = $derived(PRESETS.find(p => p.id === pack.preset?.id)?.name);
@@ -61,6 +62,7 @@
   <button class="btn primary big" disabled={busy} onclick={() => go("prism")}>Für Prism herunterladen</button>
   <div class="two"><button class="btn sm" disabled={busy} onclick={() => go("mrpack")}>.mrpack (Modrinth App)</button><button class="btn sm" disabled={busy} onclick={() => go("server")}>Server-Pack</button></div>
   {#if st}<p class="small" role="status">{st}</p>{/if}
+  {#if manual.length}<div class="warnbox" style="border-color:var(--warn);background:var(--warn-soft)"><b>Selbst herunterladen ({manual.length})</b>{#each manual as s}<a href={pack.BY[s].cf} target="_blank" rel="noopener">{pack.name(s)} ↗</a>{/each}<span class="small">Diese CurseForge-Autoren erlauben keinen automatischen Download. Datei laden und in den Ordner mods legen.</span></div>{/if}
   <div class="two"><button class="btn sm ghost" onclick={share}>Teilen-Link</button><button class="btn sm ghost" onclick={() => pack.undo()}>↶ Rückgängig</button></div>
   <button class="btn sm ghost danger" onclick={reset}>{armed ? "Wirklich alles löschen? Nochmal klicken" : "Alles zurücksetzen"}</button>
 </aside>

@@ -26,6 +26,9 @@
     <div class="meta">
       {#if lk}<span class="badge ok">immer dabei</span>{:else if m.rolle === "K"}<span class="badge ok">empfohlen</span>{/if}
       {#if fromPreset}<span class="badge preset" title="Kommt aus der gewählten Vorlage">Vorlage</span>{:else if on && pack.preset && !lk}<span class="badge info" title="Von dir hinzugefügt">+ von dir</span>{/if}
+      {#if (m as any).neu}<span class="badge info">neu</span>{/if}
+      {#if m.cf}<span class="badge plain">CurseForge</span>{/if}
+      {#if m.cf && !pack.data.files[m.slug]}<span class="badge warn">nur manuell</span>{/if}
       {#if m.ampel === "R"}<span class="badge bad">Server nötig</span>{/if}
       {#if pack.cost(m.slug) >= 5}<span class="badge warn">kostet FPS</span>{/if}
       {#if settable}<span class="badge plain">einstellbar</span>{/if}

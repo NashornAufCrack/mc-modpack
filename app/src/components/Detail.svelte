@@ -31,11 +31,12 @@
         <div class="tags"><span class="badge plain">{PT_1[m.pt || "m"]}</span><span class="badge plain">{CATS[m.cat].t}</span><span class="badge plain">{m.sub}</span>
           <span class="badge {m.ampel === 'R' ? 'bad' : m.ampel === 'Y' ? 'warn' : 'ok'}">{m.ampel === "R" ? "Server nötig" : m.ampel === "Y" ? "Server optional" : "Nur Client"}</span></div>
         <p class="small muted">Version {pack.data.files[s]?.[6] || "–"}{m.downloadsK ? ` · ${fmtK(m.downloadsK)} Downloads` : ""}</p>
+        {#if m.cf && !pack.data.files[s]}<p class="small warn">Der Autor erlaubt keinen automatischen Download. Die Datei musst du einmal selbst von CurseForge laden und in den mods-Ordner legen. Die Website erinnert dich beim Export daran.</p>{/if}
         {#if deps.length}<p class="small muted">Bringt automatisch mit: {deps.map(d => pack.name(d)).join(", ")}</p>{/if}
         <div class="act">
           {#if pack.LOCKED.has(s)}<span class="badge ok">immer dabei</span>
           {:else}<button class="btn {pack.sel.has(s) ? '' : 'primary'}" onclick={() => ui.pick(s)}>{pack.sel.has(s) ? "Aus dem Pack entfernen" : "Zum Pack hinzufügen"}</button>{/if}
-          <a class="btn ghost" href="https://modrinth.com/project/{s}" target="_blank" rel="noopener">Modrinth ↗</a>
+          {#if m.cf}<a class="btn ghost" href={m.cf} target="_blank" rel="noopener">CurseForge ↗</a>{:else}<a class="btn ghost" href="https://modrinth.com/project/{s}" target="_blank" rel="noopener">Modrinth ↗</a>{/if}
         </div>
       </div>
     </div>
@@ -70,7 +71,7 @@
   .noimg { aspect-ratio: 16/9; display: grid; place-items: center; border: 1px dashed var(--line-2); border-radius: 12px; font-size: .85rem; padding: 1rem; text-align: center; }
   .lead { margin: 0 0 .6rem; font-size: 1.02rem; }
   .tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .5rem; }
-  .small { font-size: .82rem; margin: .2rem 0; }
+  .small { font-size: .82rem; margin: .2rem 0; } .warn { color: var(--warn); }
   .act { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .8rem; }
   h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; margin: 1.4rem 0 .5rem; }
   .vids { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: .6rem; }

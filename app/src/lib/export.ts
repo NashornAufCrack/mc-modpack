@@ -49,6 +49,7 @@ export function modFiles(slug: string) {
   if (r && pack.data.files[slug]) { const d = JSON.parse(JSON.stringify(r.data)); for (const [id, v] of Object.entries(cfg)) if (id.startsWith("@rpo|")) { const p = id.slice(5).split("."); let c = d; while (p.length > 1) c = c[p.shift()!]; c[p[0]] = v; } out["resourcepacks/" + decodeURIComponent(pack.data.files[slug][1]) + ".rpo"] = JSON.stringify(d, null, 2); }
   return out;
 }
+export const manualList = () => [...pack.sel].filter(s => !pack.data.files[s] && pack.BY[s]?.cf);
 const fname = (s: string) => decodeURIComponent(pack.data.files[s][1]);
 export function optionsTxt(mods: Set<string>) {
   const B = (k: string) => pack.cv("_base", k); const rps = [...mods].filter(s => pack.BY[s].pt === "r");
@@ -64,7 +65,8 @@ export function packFiles(withCfg: boolean) {
   if (sp && r.mods.has("iris")) { files["config/iris.properties"] = "enableShaders=true\nshaderPack=" + fname(sp) + "\n";
     if (sp === "photon-shader") files["shaderpacks/" + fname(sp) + ".txt"] = (SETDEF as any)["photon-shader"].items.map((i: any) => { const v = pack.cv("photon-shader", i.k); return i.k + "=" + (i.f ? i.f(Number(v)) : v); }).join("\n") + "\n"; }
   for (const s of r.mods) Object.assign(files, modFiles(s));
-  files["LIES-MICH.txt"] = `Erstellt mit dem Mod-Katalog 26.3 (${new Date().toLocaleDateString("de-DE")}).\nEinstellungen und Tasten sind schon gesetzt (Sicherung in config/defaultoptions).\nArbeitsspeicher: ${pack.ramGB(r)} GB.\n`;
+  const manual = manualList();
+  files["LIES-MICH.txt"] = `Erstellt mit dem Mod-Katalog 26.3 (${new Date().toLocaleDateString("de-DE")}).\nEinstellungen und Tasten sind schon gesetzt (Sicherung in config/defaultoptions).\nArbeitsspeicher: ${pack.ramGB(r)} GB.\n` + (manual.length ? `\nBITTE SELBST HERUNTERLADEN und in den Ordner mods legen (der Autor erlaubt keinen automatischen Download):\n${manual.map(s => "- " + pack.name(s) + ": " + pack.BY[s].cf).join("\n")}\n` : "");
   if (r.mods.has("spark")) files["TEST-ANLEITUNG.txt"] = "Test-Kit: " + KIT + "\nSeed: " + TESTSEED + "\n";
   return files;
 }
