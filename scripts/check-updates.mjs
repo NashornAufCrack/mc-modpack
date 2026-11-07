@@ -21,6 +21,9 @@ const isPre = v => /alpha|beta|pre|rc|snapshot/i.test(String(v));
 const verfuegbar = [];
 
 const updates = [], stand = prev.stand || {};
+// Art der aktuell verwendeten Datei (release/beta/alpha), damit Beta-only-Projekte weiter automatisch laufen
+const curType = {}; const allMR = Object.keys(files).filter(s => isMR(s) && files[s][2]);
+for (let i = 0; i < allMR.length; i += 300) { try { const r = await post(`${A}/version_files`, { hashes: allMR.slice(i, i + 300).map(s => files[s][2]), algorithm: "sha1" }); for (const s of allMR.slice(i, i + 300)) { const v = r[files[s][2]]; if (v) { curType[s] = v.version_type; stand[s] = { ...(stand[s] || {}), version: files[s][6], seit: stand[s]?.version === files[s][6] && stand[s]?.seit ? stand[s].seit : v.date_published.slice(0, 10) }; } } } catch {} }
 for (const [t, loaders] of Object.entries(LOADERS)) {
   const slugs = Object.keys(files).filter(s => (files[s][8] || "m") === t && isMR(s) && files[s][2]);
   for (let i = 0; i < slugs.length; i += 300) {
@@ -28,7 +31,7 @@ for (const [t, loaders] of Object.entries(LOADERS)) {
     const upd = await post(`${A}/version_files/update`, { hashes: part.map(s => files[s][2]), algorithm: "sha1", loaders, game_versions: [MC] });
     for (const s of part) {
       const v = upd[files[s][2]];
-      if (v && v.files?.length && v.version_number !== files[s][6] && (PIN.has(s) || (v.version_type !== "release" && !isPre(files[s][6])))) {
+      if (v && v.files?.length && v.version_number !== files[s][6] && (PIN.has(s) || (v.version_type !== "release" && (curType[s] || (isPre(files[s][6]) ? "beta" : "release")) === "release"))) {
         verfuegbar.push({ slug: s, name: NAME[s] || s, typ: t, aktuell: files[s][6], neu: v.version_number, art: v.version_type, grund: PIN.has(s) ? "festgelegte Version" : "nur als " + v.version_type });
         if (!stand[s] || stand[s].version !== files[s][6]) stand[s] = { version: files[s][6], seit: stand[s]?.seit || null };
       } else if (v && v.files?.length && v.version_number !== files[s][6]) {
