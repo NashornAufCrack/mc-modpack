@@ -7,7 +7,8 @@ export const PT_T: Record<string, string> = { m: "Mods", s: "Shader", r: "Resour
 export const PT_1: Record<string, string> = { m: "Mod", s: "Shader", r: "Resource Pack", d: "Datapack" };
 export const CATS: Record<string, { t: string; n: string }> = {
   P: { t: "Leistung & Basis", n: "Das Leistungspaket ist immer dabei. Hier stehen nur Extras, die du zusätzlich wählen kannst." },
-  V: { t: "Optik & Sound", n: "Verändert, wie das Spiel aussieht, klingt und sich anfühlt, nicht wie es funktioniert. Läuft auf jedem Server." },
+  V: { t: "Optik & Sound", n: "Verändert, wie das Spiel aussieht, klingt und sich anfühlt: Licht, Partikel, Animationen, 3D-Modelle, Sound. Läuft auf jedem Server." },
+  B: { t: "Bedienung & HUD", n: "Anzeigen, Inventar, Menüs und Steuerung, z. B. AppleSkin, Jade, Mouse Tweaks. Läuft auf jedem Server." },
   G: { t: "Gameplay", n: "Ändert Regeln oder bringt Inhalte. Meist muss die Mod auch auf dem Server sein." },
   T: { t: "Welt & Terrain", n: "Verändert die Weltgenerierung. Wirkt nur in neuen Gebieten oder neuen Welten." },
   S: { t: "Server & Technik", n: "Werkzeuge für Server und Technik-Spieler. Kommen beim Server-Pack automatisch dazu." },
@@ -34,6 +35,9 @@ class Pack {
   history: string[][] = [];
 
   init(data: AppData, media: Record<string, Media>) {
+    // Feinere Einordnung: Bedienung/HUD als eigene Kategorie, klarere Unterbereiche
+    const SUBN: Record<string, string> = { "Effekte & Partikel": "Welt & Licht", "Komfort": "Komfort (QoL)", "Inhalt": "Neue Inhalte" };
+    for (const m of data.mods) { if (m.cat === "V" && (m.sub === "HUD & Bedienung" || m.sub === "Komfort")) { m.cat = "B"; m.sub = m.sub === "Komfort" ? "Komfort (QoL)" : "Anzeigen & Menüs"; } else if (SUBN[m.sub]) m.sub = SUBN[m.sub]; }
     const bad = new Set(data.x.rpbad || []);
     this.outdated = data.mods.filter(m => bad.has(m.slug)).map(m => m.name);
     if (bad.size) { data.mods = data.mods.filter(m => !bad.has(m.slug)); for (const g of data.dec.gruppen || []) g.mods = g.mods.filter(s => !bad.has(s)); }

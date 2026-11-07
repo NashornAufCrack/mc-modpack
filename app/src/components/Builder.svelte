@@ -17,14 +17,15 @@
   const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "");
   const items = $derived.by(() => {
     const q = norm(ui.q.trim()); const f = ui.filters;
-    return pack.data.mods.filter(m => (pack.data.files[m.slug] || m.cf) && (m.pt || "m") === ui.tab && (ui.tab !== "m" || !ui.sub || m.cat === ui.sub)
+    return pack.data.mods.filter(m => (pack.data.files[m.slug] || m.cf) && (m.pt || "m") === ui.tab && (ui.tab !== "m" || !ui.sub || m.cat === ui.sub) && (!ui.sub2 || m.sub === ui.sub2)
       && (!!q || !pack.LOCKED.has(m.slug)) && (!q || norm(m.name + " " + m.sub + " " + m.notiz + " " + m.slug).includes(q))
       && (!f.has("sel") || pack.sel.has(m.slug)) && (!f.has("rec") || m.rolle === "K") && (!f.has("van") || (m.ampel !== "R" && m.cat !== "S")) && (!f.has("sug") || pack.sug.has(m.slug)));
   });
+  const subs = $derived.by(() => { const c: Record<string, number> = {}; for (const m of pack.data.mods) if (m.cat === ui.sub && (m.pt || "m") === "m" && (pack.data.files[m.slug] || m.cf) && !pack.LOCKED.has(m.slug)) c[m.sub] = (c[m.sub] || 0) + 1; return Object.entries(c).sort((a, b) => b[1] - a[1]); });
   const groups = $derived(pack.data.dec.gruppen.filter(g => g.mods.some(s => items.some(m => m.slug === s))));
   const sections = $derived.by(() => {
     const inG = new Set(groups.flatMap(g => g.mods)); const out: { title: string; list: Mod[] }[] = [];
-    const cats = ui.tab === "m" ? ["P", "V", "G", "T", "S"] : [null];
+    const cats = ui.tab === "m" ? ["P", "V", "B", "G", "T", "S"] : [null];
     for (const c of cats) {
       const l = items.filter(m => !inG.has(m.slug) && (c === null || m.cat === c)).sort((a, b) => Number(b.rolle === "K") - Number(a.rolle === "K") || (b.downloadsK || 0) - (a.downloadsK || 0));
       const by: Record<string, Mod[]> = {}; for (const m of l) (by[m.sub] ||= []).push(m);
@@ -66,19 +67,22 @@
     <div class="tabs" role="tablist" aria-label="Art">
       {#each Object.entries(PT_T) as [k, l]}
         {@const [s, n] = count(k)}
-        <button role="tab" aria-selected={ui.tab === k} class="tab" onclick={() => { ui.tab = k as any; ui.sub = null; }}>{l}<span>{s}/{n}</span></button>
+        <button role="tab" aria-selected={ui.tab === k} class="tab" onclick={() => { ui.tab = k as any; ui.sub = null; ui.sub2 = null; }}>{l}<span>{s}/{n}</span></button>
       {/each}
     </div>
     <div class="filters">
       <input class="field search" type="search" placeholder="Suchen: Name, Funktion …  ( / oder Strg+K )" bind:this={search} bind:value={ui.q} aria-label="Suchen" aria-keyshortcuts="/ Control+K" />
       <div class="chips">
         {#if ui.tab === "m"}
-          <button class="chip" aria-pressed={!ui.sub} onclick={() => (ui.sub = null)}>Alle</button>
-          {#each Object.entries(CATS) as [k, c]}<button class="chip" aria-pressed={ui.sub === k} onclick={() => (ui.sub = ui.sub === k ? null : k)}>{c.t}</button>{/each}
+          <button class="chip" aria-pressed={!ui.sub} onclick={() => { ui.sub = null; ui.sub2 = null; }}>Alle</button>
+          {#each Object.entries(CATS) as [k, c]}<button class="chip" aria-pressed={ui.sub === k} onclick={() => { ui.sub = ui.sub === k ? null : k; ui.sub2 = null; }}>{c.t}</button>{/each}
           <span class="sep"></span>
         {/if}
         {#each XF as [k, l]}{#if k !== "sug" || pack.sug.size}<button class="chip" class:sugchip={k === "sug"} aria-pressed={ui.filters.has(k)} onclick={() => toggleF(k)}>{l}{#if k === "sug"} ({pack.sug.size}){/if}</button>{/if}{/each}
       </div>
+      {#if ui.tab === "m" && ui.sub && subs.length > 1}
+        <div class="chips sub2" role="group" aria-label="Unterbereich">{#each subs as [sb, n]}<button class="chip sm" aria-pressed={ui.sub2 === sb} onclick={() => (ui.sub2 = ui.sub2 === sb ? null : sb)}>{sb} <span class="muted">{n}</span></button>{/each}</div>
+      {/if}
       <p class="note muted">{ui.tab === "m" && ui.sub ? CATS[ui.sub].n : TABNOTE[ui.tab]}</p>
     </div>
 
@@ -124,4 +128,5 @@
   @media (max-width: 640px) { .filters { position: static; } }
   @media (max-width: 640px) { .presets { grid-template-columns: minmax(0, 1fr); } .dgrid { grid-template-columns: minmax(0, 1fr); } .grid { grid-template-columns: minmax(0, 1fr); } }
   .sugchip { border-color: var(--preset); }
+  .sub2 { padding-left: .6rem; border-left: 2px solid var(--accent); } .chip.sm { font-size: .8rem; padding: .25rem .6rem; }
 </style>

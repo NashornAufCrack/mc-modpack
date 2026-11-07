@@ -41,6 +41,7 @@
   <div class="stats">
     <div><b>{cnt("m")}</b><span>Mods</span></div><div><b>{cnt("r")}</b><span>Packs</span></div><div><b>{cnt("s")}</b><span>Shader</span></div><div><b>{r.libs.size}</b><span>Bibliotheken</span></div>
   </div>
+  {#if r.libs.size}<details class="libs"><summary>{r.libs.size} Bibliotheken kommen automatisch mit</summary><p>Hilfs-Mods, die andere Mods zum Laufen brauchen. Du musst nichts tun.</p><ul>{#each [...r.libs].sort() as l}<li>{pack.BY[l]?.name || pack.data.files[l]?.[7] || l}</li>{/each}</ul></details>{/if}
   <div class="meter"><span>Leistungsbedarf</span><div class="track"><i class={load.t} style="width:{Math.min(100, (load.c / 45) * 100)}%"></i></div><b class={load.t}>{load.l}</b></div>
   <p class="small muted">{(size / 1048576).toFixed(0)} MB · {pack.ramGB(r)} GB Arbeitsspeicher · MC 26.3 Fabric</p>
   <p class="state {red.length ? 'bad' : 'ok'}">{red.length ? `${red.length} Mods brauchen einen eigenen Server` : "Läuft auf jedem Vanilla-Server"}</p>
@@ -55,8 +56,11 @@
   </div>
   <p class="ram"><b>Arbeitsspeicher: {pack.ramGB(r)} GB</b> · Prism stellt ihn automatisch ein. In der Modrinth App musst du ihn nach dem Import selbst setzen (Instanz › Einstellungen › Java), sonst stürzt das Spiel beim Start ab.</p>
   <label class="lbl">Name<input class="field" bind:value={name} /></label>
-  <button class="btn primary big" disabled={busy} onclick={() => go("prism")}>Für Prism herunterladen</button>
-  <div class="two"><button class="btn sm" disabled={busy} onclick={() => go("mrpack")}>.mrpack (Modrinth App)</button><button class="btn sm" disabled={busy} onclick={() => go("server")}>Server-Pack</button></div>
+  <button class="btn primary big" disabled={busy} onclick={() => go("mrpack")}>Modpack-Datei (.mrpack)</button>
+  <p class="hint">Klein und schnell. Importieren in Modrinth App, Prism oder ATLauncher, die Mods lädt der Launcher selbst.</p>
+  <button class="btn" disabled={busy} onclick={() => go("prism")}>Komplette Prism-Instanz (.zip)</button>
+  <p class="hint">Alle Dateien schon drin und Arbeitsspeicher eingestellt. Größer, der Download dauert etwas.</p>
+  <button class="btn sm ghost" disabled={busy} onclick={() => go("server")}>Server-Pack (.mrpack)</button>
   {#if st}<p class="small" role="status">{st}</p>{/if}
   {#if manual.length}<div class="warnbox" style="border-color:var(--warn);background:var(--warn-soft)"><b>Selbst herunterladen ({manual.length})</b>{#each manual as s}<a href={pack.BY[s].cf} target="_blank" rel="noopener">{pack.name(s)} ↗</a>{/each}<span class="small">Diese CurseForge-Autoren erlauben keinen automatischen Download. Datei laden und in den Ordner mods legen.</span></div>{/if}
   <div class="two"><button class="btn sm ghost" onclick={share}>Teilen-Link</button><button class="btn sm ghost" onclick={() => pack.undo()}>↶ Rückgängig</button></div>
@@ -83,6 +87,8 @@
   .prob { display: flex; justify-content: space-between; gap: .5rem; align-items: center; }
   .tools, .two { display: flex; gap: .4rem; flex-wrap: wrap; } .two > * { flex: 1; }
   .ram { margin: 0; padding: .5rem .6rem; border-radius: 8px; background: var(--warn-soft); border: 1px solid var(--warn); font-size: .8rem; }
+  .hint { margin: -.35rem 0 0; font-size: .76rem; color: var(--muted); }
+  .libs { font-size: .8rem; } .libs summary { cursor: pointer; color: var(--muted); } .libs p { margin: .3rem 0; } .libs ul { margin: 0; padding-left: 1.1rem; max-height: 9rem; overflow: auto; columns: 2; column-gap: 1rem; }
   .lbl { display: grid; gap: .25rem; font-size: .8rem; color: var(--muted); }
   .chk { display: flex; gap: .45rem; align-items: center; font-size: .85rem; }
   .big { min-height: 2.8rem; font-size: 1rem; }

@@ -5,6 +5,7 @@ class UI {
   view = $state<"bauen" | "testen" | "hilfe" | "crash" | "updates">("bauen");
   tab = $state<"m" | "s" | "r" | "d">("m");
   sub = $state<string | null>(null);
+  sub2 = $state<string | null>(null);
   q = $state("");
   filters = $state(new Set<string>());
   detail = $state<string | null>(null);
