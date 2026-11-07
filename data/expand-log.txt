@@ -15,22 +15,23 @@ nicht gefunden: blockanimations
 nicht gefunden: clear-despawn
 nicht gefunden: mobplaques
 Wunsch noch nicht für 26.3: Pogs Fresher Ores -> pogs-fresher-ores-glowing (neueste: 26.2)
-Wunsch noch nicht für 26.3: Timber Tales -> timber-tales-smp-permits (neueste: 1.21.4)
-Wunsch: Signpost -> signpost (Signpost)
+Wunsch: Timber Tales -> CurseForge timber-tales-dynamic-tree-system
+Wunsch schon im Katalog: Signpost -> signpost
 Wunsch schon im Katalog: Icy's Better Horse -> icys-better-horses
 Wunsch noch nicht für 26.3: Voxy Seedgen -> voxy-seedgen (neueste: 26.2)
-Wunsch: Inventory Tabs -> CurseForge improved-inventory-tabs
-Wunsch: Slabbed -> slabbed (Slabbed)
-Wunsch nicht gefunden: Weather Glass
-Wunsch: Ping It -> CurseForge ping
+Wunsch schon im Katalog (CF): Inventory Tabs
+Wunsch schon im Katalog: Slabbed -> slabbed
+Wunsch: Weather Glass -> CurseForge weather-glass
+Wunsch schon im Katalog (CF): Ping It
 Wunsch noch nicht für 26.3: Soft Leaves -> soft-leaves (neueste: 26.2)
 Wunsch noch nicht für 26.3: Portal Glimpse -> portal-glimpse (neueste: 1.21.1)
 Wunsch noch nicht für 26.3: Road Weaver -> roadweaver (neueste: 1.21.11)
-Wunsch nicht gefunden: Rainbow Foliage Vanilla
-Wunsch: Texture Builder -> texture-builder (Texture Builder)
+Wunsch: Rainbows Foliage -> rainbows-foliage (rainbow's foliage: polytone)
+Wunsch nicht gefunden: Rainbow Foliage
+Wunsch schon im Katalog: Texture Builder -> texture-builder
 Wunsch schon im Katalog: Fresh Flower Pots -> fresh-flower-pots
 Wunsch: Fresh Flower Pots Rotated -> fresh-flower-pots-rotated
-Gewünscht: fresh-flower-pots-rotated, kerria-opt, animaticam, animated-gui, exordium, ebe, figura, true-darkness, cave-dust, enhanced-attack-indicator, interactic, no-fade, better-third-person, leawind-third-person, cit-resewn, sodium-dynamic-lights, nyfs-spiders, effective, auditory, euphonium, mixintrace, highlight, signpost, slabbed, texture-builder
+Gewünscht: fresh-flower-pots-rotated, kerria-opt, animaticam, animated-gui, exordium, ebe, figura, true-darkness, cave-dust, enhanced-attack-indicator, interactic, no-fade, better-third-person, leawind-third-person, cit-resewn, sodium-dynamic-lights, nyfs-spiders, effective, auditory, euphonium, mixintrace, highlight, rainbows-foliage
 keine 26.3-Datei: kerria-opt
 keine 26.3-Datei: animaticam
 keine 26.3-Datei: animated-gui
@@ -52,5 +53,5 @@ keine 26.3-Datei: auditory
 keine 26.3-Datei: euphonium
 keine 26.3-Datei: mixintrace
 keine 26.3-Datei: highlight
-CurseForge: 1004 mit 26.3-Fabric-Datei, 185 nicht auf Modrinth, ausgewählt: cinematic-interactions, studious-keybinds, improved-inventory-tabs, ping
-Neu: 507 Einträge, 495 Dateien
+CurseForge: 1004 mit 26.3-Fabric-Datei, 185 nicht auf Modrinth, ausgewählt: cinematic-interactions, studious-keybinds, timber-tales-dynamic-tree-system, weather-glass
+Neu: 505 Einträge, 492 Dateien
