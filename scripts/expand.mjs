@@ -48,10 +48,11 @@ for (const id of WANT_MR) {
   await sleep(150);
 }
 // Wünsche des Nutzers per Namenssuche: Modrinth (26.3), sonst CurseForge (26.3); Namen müssen passen
-const WANT_Q = (process.env.WANT_Q || "Pogs Fresher Ores|Timber Tales|Signpost|Icy's Better Horse|Voxy Seedgen|Inventory Tabs|Slabbed|Weather Glass|Ping It|Soft Leaves|Portal Glimpse|Road Weaver|Rainbow Foliage Vanilla|Texture Builder|Fresh Flower Pots|Fresh Flower Pots Rotated").split("|");
+const WANT_Q = (process.env.WANT_Q || "Pogs Fresher Ores|Timber Tales|Signpost|Icy's Better Horse|Voxy Seedgen|Inventory Tabs|Slabbed|Weather Glass|Ping It|Soft Leaves|Portal Glimpse|Road Weaver|Rainbows Foliage|Rainbow Foliage|Texture Builder|Fresh Flower Pots|Fresh Flower Pots Rotated").split("|");
 const nn = x => String(x || "").toLowerCase().replace(/^(pog'?s|icy'?s|the)\s+/, "").replace(/[^a-z0-9]/g, "");
 const fits = (q, t) => { const a = nn(q), b = nn(t); return a && b && (a === b || b.includes(a) || a.includes(b)); };
 const cfWish = [];
+const CF_SLUG = { "Weather Glass": "weather-glass", "Timber Tales": "timber-tales-dynamic-tree-system" };
 for (const q of WANT_Q) {
   try {
     const r = await mr(`/search?limit=10&query=${encodeURIComponent(q)}&facets=${encodeURIComponent(JSON.stringify([["versions:26.3"]]))}`); const h = r.hits.find(x => fits(q, x.title) || fits(q, x.slug));
@@ -63,7 +64,14 @@ for (const q of WANT_Q) {
     }
     // CurseForge
     let cfHit = null;
-    if (CF) { const cr = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&searchFilter=${encodeURIComponent(q)}&pageSize=20&sortField=2&sortOrder=desc`, { headers: { "x-api-key": CF } });
+    const cfSlug = CF_SLUG[q];
+    if (CF && cfSlug) { const sr = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&slug=${cfSlug}`, { headers: { "x-api-key": CF } }); const c = sr.ok ? (await sr.json()).data[0] : null;
+      if (c) { const fr = await fetch(`https://api.curseforge.com/v1/mods/${c.id}/files?gameVersion=26.3&pageSize=50`, { headers: { "x-api-key": CF } }); const fl = fr.ok ? (await fr.json()).data : [];
+        const f = fl.filter(f => f.releaseType !== 3 && (c.classId !== 6 || f.gameVersions.includes("Fabric"))).sort((a, b) => b.id - a.id)[0];
+        if (f) cfHit = { slug: c.slug, name: c.name, dl: c.downloadCount, desc: c.summary, url: c.links?.websiteUrl, bilder: (c.screenshots || []).map(x => x.url), verteilen: c.allowModDistribution, pt: c.classId === 12 ? "r" : c.classId === 6552 ? "s" : "m",
+          datei: { url: f.downloadUrl, name: f.fileName, sha1: (f.hashes || []).find(x => x.algo === 1)?.value, size: f.fileLength, versionen: f.gameVersions } };
+        else log.push(`Wunsch ${q}: CurseForge-Projekt ${c.slug} hat keine 26.3-Fabric-Datei`); } }
+    if (CF && !cfHit) { const cr = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&searchFilter=${encodeURIComponent(q)}&pageSize=20&sortField=2&sortOrder=desc`, { headers: { "x-api-key": CF } });
       if (cr.ok) for (const c of (await cr.json()).data) { if (!fits(q, c.name) && !fits(q, c.slug)) continue;
         const f = (c.latestFiles || []).filter(f => f.gameVersions.includes("26.3") && (c.classId !== 6 || f.gameVersions.includes("Fabric"))).sort((a, b) => b.id - a.id)[0];
         if (f) { cfHit = { slug: c.slug, name: c.name, dl: c.downloadCount, desc: c.summary, url: c.links?.websiteUrl, bilder: (c.screenshots || []).map(x => x.url), verteilen: c.allowModDistribution, pt: c.classId === 12 ? "r" : c.classId === 6552 ? "s" : "m",
