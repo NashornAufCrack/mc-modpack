@@ -172,9 +172,9 @@
     ],
     [
      "Sodium-Threads mitnutzen",
+     "An (Standard)",
      "An",
-     "Aus",
-     "Laut Voxy weniger Ruckler bei schnellem Fliegen mit großer Sichtweite.",
+     "Ist ab Werk an und sollte an bleiben: laut Voxy weniger Ruckler beim schnellen Fliegen.",
      "dont_use_sodium_builder_threads"
     ],
     [
