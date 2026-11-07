@@ -15,6 +15,9 @@ const imgUrls = s => [...new Set([...String(s || "").matchAll(/https:\/\/[^\s"')
   .filter(u => !/shields\.io|badge|discord|ko-?fi|patreon|bisect|curseforge\.com\/.*\/icons|\/icon\./i.test(u));
 const norm = s => String(s || "").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/\(.*?\)|\[.*?\]/g, " ").replace(/[^a-z0-9]+/g, " ").trim();
 const PT = { m: "mod", r: "resource pack", s: "shader", d: "datapack" };
+const mrGet = async p => { const r = await fetch("https://api.modrinth.com/v2" + p, { headers: { "User-Agent": UA } }); if (!r.ok) throw new Error(p + " " + r.status); return r.json(); };
+// Zusatzbilder (CurseForge-Suche, GitHub-README) liegen dauerhaft in e.extra und werden bei jedem Lauf angehängt
+const addExtra = (e, urls) => { e.extra = [...new Set([...(e.extra || []), ...urls])].slice(0, 12); e.hq = [...new Set([...(e.hq || []), ...urls])].slice(0, 16); e.bilder = [...new Set([...(e.bilder || []), ...urls])].slice(0, 16); };
 
 // ---------- Stufe A: Modrinth ----------
 const slugs = mods.filter(m => !m.cf).map(m => m.slug);
@@ -26,8 +29,8 @@ for (let i = 0; i < slugs.length; i += 80) {
     const e = (media[p.slug] ||= {});
     const gal = (p.gallery || []).sort((a, b) => (b.featured - a.featured) || (a.ordering - b.ordering));
     const body = imgUrls(p.body).filter(u => !gal.some(g => g.url === u || g.raw_url === u));
-    e.bilder = [...gal.map(g => g.url), ...body].slice(0, 16);
-    e.hq = [...gal.map(g => g.raw_url || g.url), ...body].slice(0, 16);
+    e.bilder = [...new Set([...gal.map(g => g.url), ...body, ...(e.extra || [])])].slice(0, 16);
+    e.hq = [...new Set([...gal.map(g => g.raw_url || g.url), ...body, ...(e.extra || [])])].slice(0, 16);
     e.icon = p.icon_url || null;
     const desc = ytIds(p.body).map(id => ({ id, quelle: "beschreibung", punkte: 10 }));
     e.videos = [...desc, ...(e.videos || []).filter(v => v.quelle !== "beschreibung" && !desc.some(d => d.id === v.id))];
@@ -54,11 +57,11 @@ if (CF) {
   const nn = x => String(x || "").toLowerCase().replace(/\[.*?\]|\(.*?\)/g, "").replace(/[^a-z0-9]/g, "");
   let nb = 0, hit = 0;
   for (const m of mods.filter(m => !m.cf)) {
-    const e = media[m.slug] || {}; if ((e.breite || 0) >= 1280 || e.cfSuche) continue; if (nb >= 300) break; nb++;
+    const e = media[m.slug] || {}; if ((e.breite || 0) >= 1280 || (e.cfSuche && e.cfSuche >= "2026-11-08")) continue; if (nb >= 300) break; nb++;
     try { const r = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&searchFilter=${encodeURIComponent(m.name)}&pageSize=10&sortField=2&sortOrder=desc`, { headers: { "x-api-key": CF, Accept: "application/json" } });
       const ee = (media[m.slug] ||= {}); ee.cfSuche = new Date().toISOString().slice(0, 10); if (!r.ok) continue;
       const d = (await r.json()).data.find(c => nn(c.name) === nn(m.name) || c.slug === m.slug); if (!d || !(d.screenshots || []).length) continue; hit++;
-      ee.hq = [...new Set([...(ee.hq || []), ...d.screenshots.map(x => x.url)])].slice(0, 16); ee.bilder = [...new Set([...(ee.bilder || []), ...d.screenshots.map(x => x.thumbnailUrl || x.url)])].slice(0, 16);
+      addExtra(ee, d.screenshots.map(x => x.url));
     } catch {}
     await sleep(120);
   }
@@ -108,7 +111,7 @@ if (YT) {
 
 // ---------- Stufe D: yt-dlp-Suche (kein API-Kontingent) für alles, was noch kein Video hat ----------
 import { execFileSync } from "node:child_process";
-const MAX_DLP = Number(process.env.MAX_DLP || 250);
+const MAX_DLP = Number(process.env.MAX_DLP || 600);
 const has = m => { const e = media[m.slug] || {}; return (e.bilder || []).length || (e.videos || []).length; };
 const todoD = mods.filter(m => { const e = media[m.slug] || {}; const ok = (e.videos || []).some(v => v.status === "auto" || v.status === "ok"); return !ok && (!e.dlp || (!e.dlp2 && (e.breite || 0) < 1280)); })
   .sort((a, b) => Number(!!has(a)) - Number(!!has(b)) || Number(a.cat === "P") - Number(b.cat === "P") || (b.downloadsK || 0) - (a.downloadsK || 0));
@@ -127,6 +130,31 @@ for (const m of todoD) {
   await sleep(400);
 }
 log.push(`yt-dlp-Suchen: ${nd}, mit Treffer: ${okD}, noch offen: ${Math.max(0, todoD.length - nd)}`);
+
+// ---------- Stufe F: Bilder/GIFs aus dem GitHub-README (für Einträge ohne gute Bilder) ----------
+{
+  const need = mods.filter(m => !m.cf && (media[m.slug]?.breite || 0) < 1280 && !media[m.slug]?.readme);
+  const src = {};
+  for (let i = 0; i < need.length; i += 80) { try { for (const p of await mrGet(`/projects?ids=${encodeURIComponent(JSON.stringify(need.slice(i, i + 80).map(m => m.slug)))}`)) src[p.slug] = p.source_url; } catch {} await sleep(200); }
+  let nr = 0, hr = 0;
+  for (const m of need) {
+    const u = src[m.slug]; const g = u && String(u).match(/github\.com\/([^/]+)\/([^/#?]+)/i);
+    const e = (media[m.slug] ||= {}); e.readme = new Date().toISOString().slice(0, 10); if (!g) continue; nr++;
+    const repo = g[1] + "/" + g[2].replace(/\.git$/, "");
+    try {
+      const r = await fetch(`https://api.github.com/repos/${repo}/readme`, { headers: { Accept: "application/vnd.github.raw", "User-Agent": "mc-modpack media", ...(process.env.GITHUB_TOKEN ? { Authorization: "Bearer " + process.env.GITHUB_TOKEN } : {}) } });
+      if (!r.ok) continue; const md = await r.text();
+      const raw = [...md.matchAll(/!\[[^\]]*\]\(\s*<?([^)\s>]+)/g), ...md.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)].map(x => x[1]);
+      const imgs = [...new Set(raw.map(x => x.startsWith("http") ? x : `https://raw.githubusercontent.com/${repo}/HEAD/${x.replace(/^\.?\//, "")}`)
+        .map(x => x.replace(/github\.com\/([^/]+\/[^/]+)\/(blob|raw)\//, "raw.githubusercontent.com/$1/"))
+        .filter(x => /\.(png|jpe?g|gif|webp)(\?|$)/i.test(x) || /user-attachments|githubusercontent\.com\/.*\/assets\//.test(x))
+        .filter(x => !/shields\.io|badge|discord|ko-fi|patreon|logo|icon|banner|modrinth\.com\/.*\/(badge|compact)/i.test(x)))].slice(0, 8);
+      if (imgs.length) { hr++; addExtra(e, imgs); }
+    } catch {}
+    await sleep(120);
+  }
+  log.push(`GitHub-README: ${nr} Repos geprüft, ${hr} mit Bildern`);
+}
 
 // ---------- Stufe E: Auflösung messen (nur Dateikopf laden), beste Bilder zuerst, Winzlinge raus ----------
 function dims(b) {
