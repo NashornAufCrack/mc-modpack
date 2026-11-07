@@ -4,6 +4,12 @@ Zuletzt geprüft: 2026-11-07
 
 ## Neue Versionen in den letzten 7 Tagen (automatisch übernommen)
 
+- 2026-11-07: **Carpet AMS Addition** (Mod) mc26.3-v26.4-beta.3 → mc26.3-v26.4-beta.4
+- 2026-11-07: **Not Enough Recipe Book [NERB]** (Mod) 0.6+26.3 → 0.6.1+26.3
+- 2026-11-07: **Collective** (Mod) 26.3.0-8.82-fabric+forge+neo → 26.3.0-8.83-fabric+forge+neo
+- 2026-11-07: **Offgrid** (Mod) 1.0.4+26.3-fabric → 1.0.5+26.3-fabric
+- 2026-11-07: **Clutter No More** (Mod) 3.1.2+26.3-fabric → 3.1.3+26.3-fabric
+- 2026-11-07: **ChoiceTheorem's Overhauled Village** (Mod) 4.2.1 → 4.2.2
 - 2026-11-07: **Punchy! Moves** (Mod) 1.0.7 → 1.0.8 (beta)
 
 
@@ -25,7 +31,7 @@ Zuletzt geprüft: 2026-11-07
 - Pegasus Shaders: 0.5 → 0.8.1 (nur als beta)
 
 
-## Ohne neue Version seit über einer Woche (609)
+## Ohne neue Version seit über einer Woche (610)
 
 Sortiert nach Alter der aktuellen Datei.
 
@@ -145,6 +151,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Faithful 64x: Release-15-Wilderness-Bound-Drop (seit 2026-09-15)
 - Faithful 32x: 26.3-september-2026 (seit 2026-09-15)
 - No Pumpkin Blur: 1.4 (seit 2026-09-15)
+- Animated Ore: 0.6.10 (seit 2026-09-15)
 - Hardcore Hearts: 28 (seit 2026-09-15)
 - Complementary Reimagined: r5.9.3 (seit 2026-09-15)
 - Complementary Unbound: r5.9.3 (seit 2026-09-15)

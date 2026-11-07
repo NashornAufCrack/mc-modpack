@@ -1378,5 +1378,12 @@
 "von": 18.0,
 "bis": 999.0,
 "grund": ""
+},
+"rainbows-foliage": {
+"sha1": "bdf87562ae85617ae6f7cdfd41bc4d281ad36a7b",
+"ok": true,
+"von": 15.0,
+"bis": 420.0,
+"grund": ""
 }
 }
