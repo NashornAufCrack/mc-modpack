@@ -1,0 +1,30 @@
+name: Kandidaten
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 3 * * 1"
+  push:
+    paths:
+      - "scripts/discover.mjs"
+      - ".github/workflows/discover.yml"
+permissions:
+  contents: write
+concurrency: discover
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/discover.mjs | tee data/discover-log.txt
+        env:
+          CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
+      - run: |
+          git config user.name "kandidaten"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/candidates.json data/discover-log.txt
+          git diff --cached --quiet || git commit -m "Kandidaten $(date +%F)"
+          git pull --rebase -q || true
+          git push

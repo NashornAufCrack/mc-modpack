@@ -24,7 +24,10 @@ for (let i = 0; i < slugs.length; i += 80) {
   if (!r.ok) { log.push("Modrinth " + r.status); continue; }
   for (const p of await r.json()) {
     const e = (media[p.slug] ||= {});
-    e.bilder = [...new Set([...(p.gallery || []).sort((a, b) => (b.featured - a.featured) || (a.ordering - b.ordering)).map(g => g.url), ...imgUrls(p.body)])].slice(0, 16);
+    const gal = (p.gallery || []).sort((a, b) => (b.featured - a.featured) || (a.ordering - b.ordering));
+    const body = imgUrls(p.body).filter(u => !gal.some(g => g.url === u || g.raw_url === u));
+    e.bilder = [...gal.map(g => g.url), ...body].slice(0, 16);
+    e.hq = [...gal.map(g => g.raw_url || g.url), ...body].slice(0, 16);
     e.icon = p.icon_url || null;
     const desc = ytIds(p.body).map(id => ({ id, quelle: "beschreibung", punkte: 10 }));
     e.videos = [...desc, ...(e.videos || []).filter(v => v.quelle !== "beschreibung" && !desc.some(d => d.id === v.id))];
@@ -42,7 +45,7 @@ if (CF) {
     const slug = String(m.cf).split("/").filter(Boolean).pop();
     const r = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&slug=${encodeURIComponent(slug)}`, { headers: { "x-api-key": CF, Accept: "application/json" } });
     if (!r.ok) continue; const d = (await r.json()).data?.[0]; if (!d) continue;
-    const e = (media[m.slug] ||= {}); e.bilder = [...new Set([...(e.bilder || []), ...(d.screenshots || []).map(s => s.url)])].slice(0, 16); e.icon = e.icon || d.logo?.url || null;
+    const e = (media[m.slug] ||= {}); e.bilder = [...new Set([...(e.bilder || []), ...(d.screenshots || []).map(s => s.thumbnailUrl || s.url)])].slice(0, 16); e.hq = [...new Set([...(e.hq || e.bilder || []), ...(d.screenshots || []).map(s => s.url)])].slice(0, 16); e.icon = e.icon || d.logo?.url || null;
   }
 } else log.push("CurseForge-Key: fehlt");
 
