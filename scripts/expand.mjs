@@ -47,6 +47,19 @@ for (const id of WANT_MR) {
   } catch { log.push("nicht gefunden: " + id); }
   await sleep(150);
 }
+// Wünsche des Nutzers per Namenssuche (nimmt den besten 26.3-Treffer)
+const WANT_Q = (process.env.WANT_Q || "Pogs Fresher Ores|Timber Tales|Signpost|Icy's Better Horse|Voxy Seedgen|Inventory Tabs|Slabbed|Weather Glass|Ping It|Soft Leaves|Portal Glimpse|Road Weaver|Rainbow Foliage Vanilla|Texture Builder|Fresh Flower Pots|Fresh Flower Pots Rotated").split("|");
+const wantQ = {};
+for (const q of WANT_Q) {
+  try { const r = await mr(`/search?limit=3&query=${encodeURIComponent(q)}&facets=${encodeURIComponent(JSON.stringify([["versions:26.3"]]))}`); const h = r.hits[0];
+    if (!h) { log.push("Wunsch ohne 26.3-Treffer: " + q); continue; }
+    wantQ[h.slug] = q; if (pickSet.has(h.slug)) { const x = pickMR.find(m => m.slug === h.slug); if (x) x.want = true; continue; }
+    if (have.has(h.slug)) { log.push(`Wunsch schon im Katalog: ${q} -> ${h.slug}`); continue; }
+    pickSet.add(h.slug); pickMR.push({ slug: h.slug, name: h.title, pt: h.project_type, desc: h.description, dl: h.downloads, cats: h.categories, client: h.client_side, server: h.server_side, gallery: h.gallery || [], want: true });
+    log.push(`Wunsch: ${q} -> ${h.slug} (${h.title})`);
+  } catch (e) { log.push("Wunsch-Fehler " + q + " " + e); }
+  await sleep(150);
+}
 log.push(`Gewünscht: ${pickMR.filter(m => m.want).map(m => m.slug).join(", ")}`);
 
 // ---------- Modrinth: Dateien für 26.3 ----------
@@ -59,7 +72,7 @@ for (const m of pickMR) {
     const f = v.files.find(x => x.primary) || v.files[0];
     const deps = v.dependencies.filter(d => d.dependency_type === "required" && d.project_id).map(d => d.project_id); deps.forEach(d => depIds.add(d));
     const [cat, sub] = place(m); const pt = { mod: "m", resourcepack: "r", shader: "s", datapack: "d" }[m.pt];
-    out.mods.push({ slug: m.slug, name: m.name, cat, sub, ampel: m.server === "required" ? "R" : m.server === "optional" ? "Y" : "G", rolle: "O", downloadsK: Math.round(m.dl / 1000), notiz: m.desc, quellen: ["AUTO"], mc: "26.3", loader: pt === "m" ? "fabric" : "", einstellungen: null, ueberschneidung: "", pt, gal: m.gallery.length, vn: v.version_number, img: m.gallery, neu: true });
+    out.mods.push({ slug: m.slug, name: m.name, cat, sub, ampel: m.server === "required" ? "R" : m.server === "optional" ? "Y" : "G", rolle: "O", downloadsK: Math.round(m.dl / 1000), notiz: m.desc, quellen: ["AUTO"], mc: "26.3", loader: pt === "m" ? "fabric" : "", einstellungen: null, ueberschneidung: "", pt, gal: m.gallery.length, vn: v.version_number, img: m.gallery, neu: true, want: !!m.want });
     out.files[m.slug] = [f.url, f.filename, f.hashes.sha1, f.hashes.sha512, f.size, deps, v.version_number, "", pt];
   } catch (e) { log.push(String(e)); }
   await sleep(220);
