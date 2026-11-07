@@ -1,12 +1,12 @@
 hash-format = "sha256"
 
 [[files]]
-file = "config/yosbr/config/iris.properties"
+file = "config/defaultoptions/extra/config/iris.properties"
 hash = "9c2add2ebcc269ef72fbae37c3c56b3178d3d800b0b2301873ec829408526f9d"
 
 [[files]]
-file = "config/yosbr/options.txt"
-hash = "3cc0dd08c4d70efa9d7a138d98b2e78dd0f6f9869021f2891f4615a04cfe96e4"
+file = "config/defaultoptions/options.txt"
+hash = "1180be08b46c3e1646764b229dbb27396e2b6edc6766736346cb2b979bdf0d02"
 
 [[files]]
 file = "mods/3dskinlayers.pw.toml"
@@ -29,8 +29,8 @@ hash = "ff675667f4c6924a9eaebc42dc2df5306dc5e8b005e931d9d8b73cebad67d5eb"
 metafile = true
 
 [[files]]
-file = "mods/better-smoke.pw.toml"
-hash = "68c4d2d7c91c265fdf83f6f81d44f0a843f518846983d4644b22ba4ea5b194d9"
+file = "mods/balm.pw.toml"
+hash = "3f529d5fd5e99dbcba1364cfc68eefc9235e6956dcd05f4c6554116f89d9c9c9"
 metafile = true
 
 [[files]]
@@ -39,13 +39,13 @@ hash = "ce6ca9705a9facfbc967ded7edca7f8775dc47269d32b60050d6223da8845add"
 metafile = true
 
 [[files]]
-file = "mods/cameraoverhaul.pw.toml"
-hash = "3b24cee83da9833975306a4312e14b1608c90ff2a20ae2f0e62d7fffe638d75e"
+file = "mods/cloth-config.pw.toml"
+hash = "2b9727522c90a979eb9671ad7c5421443d91391b0697d1772146e6bfa19cb3c1"
 metafile = true
 
 [[files]]
-file = "mods/cloth-config.pw.toml"
-hash = "2b9727522c90a979eb9671ad7c5421443d91391b0697d1772146e6bfa19cb3c1"
+file = "mods/configurable.pw.toml"
+hash = "1f59d9c68387dc77344082e61079686ef485499d84d360af181d24de013469c4"
 metafile = true
 
 [[files]]
@@ -64,8 +64,18 @@ hash = "3f91f4035a0c10a11cb405cb4a834903b679b848b26a4fb24c9929c96ed16bc6"
 metafile = true
 
 [[files]]
+file = "mods/crash-assistant.pw.toml"
+hash = "f7909025ba51d36c602efaf988449b66c1d44ab1bfce28ba7f0ad2806f077099"
+metafile = true
+
+[[files]]
 file = "mods/creativecore.pw.toml"
 hash = "de8105faff1ccd5f46dc0c57141515b968e8f350725074599df9ba4122030a3d"
+metafile = true
+
+[[files]]
+file = "mods/default-options.pw.toml"
+hash = "37b073599d01c9e6dd418a83eddbd4e109eae16dffc603a1123a1eb9c66ed135"
 metafile = true
 
 [[files]]
@@ -169,6 +179,11 @@ hash = "ccee57f34e035e85ebb41db22ba255b61aa885f69bd8ef2f7b818be7fa546750"
 metafile = true
 
 [[files]]
+file = "mods/mclogs.pw.toml"
+hash = "46bb181cfaa1e120267f66a41af529b88cb682ae148f00aabea8713569340558"
+metafile = true
+
+[[files]]
 file = "mods/modmenu.pw.toml"
 hash = "cd05db76d670773ace1184abdd46126e7b7c75c2b70da82e1764cff9544c4269"
 metafile = true
@@ -176,6 +191,16 @@ metafile = true
 [[files]]
 file = "mods/moreculling.pw.toml"
 hash = "a0fefd25252e1dfac7da103d64436b9d7579b5cf404fd664139c4db079f40897"
+metafile = true
+
+[[files]]
+file = "mods/neruina.pw.toml"
+hash = "06a600952e473688d577b20d5889ddf701b82b1a5d7c7f123dd471dbe559a476"
+metafile = true
+
+[[files]]
+file = "mods/notenoughcrashes.pw.toml"
+hash = "4623694d40deaf0cac300ec82aaf419d3b51bd4fc40b4c53fe33db2611a542bd"
 metafile = true
 
 [[files]]
@@ -249,11 +274,6 @@ hash = "54d699d9ba85bb08b9fd3696a11c7449ea1175a118805855143e1c88fa54aa6b"
 metafile = true
 
 [[files]]
-file = "mods/sound-physics-remastered.pw.toml"
-hash = "9bab2f7038705a3a14c522ef378743465a596f2d1e28305c2c9a291cbb7d6289"
-metafile = true
-
-[[files]]
 file = "mods/spatial-gui.pw.toml"
 hash = "0c1b1df9cd767c3f505b99c1f38cca74844a308201e1089964849160be2d33cf"
 metafile = true
@@ -261,6 +281,11 @@ metafile = true
 [[files]]
 file = "mods/subtle-effects.pw.toml"
 hash = "8daea38b615d83c241f126e3f18348be1e6428f1f6fe35fcb57af0898db45861"
+metafile = true
+
+[[files]]
+file = "mods/technomodel.pw.toml"
+hash = "e078ef21154ef3b3eecc3393274199481ab487568635be97be90049b10bc4695"
 metafile = true
 
 [[files]]
@@ -286,11 +311,6 @@ metafile = true
 [[files]]
 file = "mods/yacl.pw.toml"
 hash = "7b82bfcde20d2ac0fb158c003caf5288523272ca462f519864ee424912e4e4dd"
-metafile = true
-
-[[files]]
-file = "mods/yosbr.pw.toml"
-hash = "c79c8f2d03f0e6d0b026a101b230eb957ea17cbae90a13a117ec219fc6c86ab1"
 metafile = true
 
 [[files]]

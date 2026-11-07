@@ -57,10 +57,10 @@ def build(name, plus):
     rank = lambda s: next((i for i, g in enumerate(PRIO) if s in g), len(PRIO))
     order = ["vanilla"] + ["file/" + unquote(F[s][1]) for s in sorted(rps, key=rank, reverse=True)]
     opts = ["renderDistance:16", "simulationDistance:10", "maxFps:140", "enableVsync:false", 'renderClouds:"false"', "mipmapLevels:4", "biomeBlendRadius:2", "resourcePacks:" + json.dumps(order, ensure_ascii=False), "key_key.saveToolbarActivator:key.keyboard.unknown" if "zoomify" in sel else ""]
-    files["config/yosbr/options.txt"] = ("\n".join(o for o in opts if o).encode() + b"\n", False)
+    files["config/defaultoptions/options.txt"] = ("\n".join(o for o in opts if o).encode() + b"\n", False)
     if "photon-shader" in sel:
         pf = unquote(F["photon-shader"][1])
-        files["config/yosbr/config/iris.properties"] = (f"enableShaders=true\nshaderPack={pf}\n".encode(), False)
+        files["config/defaultoptions/extra/config/iris.properties"] = (f"enableShaders=true\nshaderPack={pf}\n".encode(), False)
         files[f"shaderpacks/{pf}.txt"] = ("COLORED_LIGHTS=true\nWATER_CAUSTICS=true\nshadowMapResolution=2048\nshadowDistance=160.0\nBLOOM_INTENSITY=0.80\nAURORA_NORMAL=AURORA_RARELY\nHANDHELD_LIGHTING=false\nDESERT_SANDSTORM=false\n".encode(), False)
     for p, (b, meta) in files.items():
         os.makedirs(os.path.dirname(os.path.join(d, p)), exist_ok=True); open(os.path.join(d, p), "wb").write(b)
