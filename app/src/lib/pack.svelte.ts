@@ -40,6 +40,7 @@ class Pack {
     this.ready = true;
   }
   name = (s: string) => this.BY[s]?.name || this.data.files[s]?.[7] || s;
+  imgHQ(s: string): string[] { const m = this.media[s]; return (m?.hq?.length ? m.hq : this.img(s)); }
   img(s: string): string[] { const m = this.media[s]; return (m?.bilder?.length ? m.bilder : this.BY[s]?.img) || []; }
   videos(s: string) { const v = this.media[s]?.videos || []; const yt = this.data.x.details[s]?.yt || []; const out = v.filter(x => x.status !== "nein" && x.status !== "review").slice(0, 3); for (const id of yt) if (!out.some(o => o.id === id)) out.push({ id, quelle: "beschreibung", punkte: 10 }); return out.slice(0, 4); }
   cost = (s: string) => (BOOST.has(s) ? 0 : ((COST as any)[s] ?? 1));

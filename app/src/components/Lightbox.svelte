@@ -4,7 +4,7 @@
   import { ui } from "../lib/ui.svelte";
   let open = $state(false);
   $effect(() => { open = !!ui.lightbox; });
-  const lb = $derived(ui.lightbox); const imgs = $derived(lb ? pack.img(lb.slug) : []);
+  const lb = $derived(ui.lightbox); const imgs = $derived(lb ? pack.imgHQ(lb.slug) : []); const th = $derived(lb ? pack.img(lb.slug) : []);
   const go = (d: number) => { if (lb && imgs.length) ui.lightbox = { slug: lb.slug, i: (lb.i + d + imgs.length) % imgs.length }; };
   function key(e: KeyboardEvent) { if (!lb) return; if (e.key === "ArrowRight") go(1); if (e.key === "ArrowLeft") go(-1); }
 </script>
@@ -17,7 +17,7 @@
       <img src={imgs[lb.i]} alt="Bild {lb.i + 1} von {pack.name(lb.slug)}" />
       <button class="btn nav" onclick={() => go(1)} aria-label="Nächstes Bild" disabled={imgs.length < 2}>›</button>
     </div>
-    <div class="thumbs">{#each imgs as u, i}<button class:on={i === lb.i} onclick={() => (ui.lightbox = { slug: lb.slug, i })} aria-label="Bild {i + 1}"><img src={u} alt="" loading="lazy" /></button>{/each}</div>
+    <div class="thumbs">{#each th as u, i}<button class:on={i === lb.i} onclick={() => (ui.lightbox = { slug: lb.slug, i })} aria-label="Bild {i + 1}"><img src={u} alt="" loading="lazy" /></button>{/each}</div>
   {/if}
 </Modal>
 

@@ -9,7 +9,7 @@ export type Beziehung = { art: "K" | "D" | "T" | "A" | "S"; mods: string[]; text
 export type CfgItem = { k: string; t: "bool" | "num" | "str"; d: any; h?: string; o?: string[] };
 export type CfgFile = { file: string; fmt: "json" | "json5" | "toml" | "props"; items: CfgItem[] };
 export type Video = { id: string; quelle: string; punkte: number; titel?: string; kanal?: string; status?: string; warum?: string[] };
-export type Media = { bilder?: string[]; icon?: string | null; videos?: Video[] };
+export type Media = { bilder?: string[]; hq?: string[]; icon?: string | null; videos?: Video[] };
 export type AppData = {
   mods: Mod[]; files: Record<string, any[]>; dec: { gruppen: Gruppe[]; beziehungen: Beziehung[]; entscheidungen: any[] }; settings: any;
   x: { cfgs: Record<string, CfgFile[]>; tpl: Record<string, string>; tplS: Record<string, string>; details: Record<string, { txt?: string; yt?: string[] }>;

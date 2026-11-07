@@ -22,7 +22,7 @@
     <div class="top">
       <div class="media">
         {#if imgs.length}
-          <button class="hero" onclick={() => (ui.lightbox = { slug: s, i: 0 })}><img src={imgs[0]} alt="Bild von {m.name}" /></button>
+          <button class="hero" onclick={() => (ui.lightbox = { slug: s, i: 0 })}><img src={pack.imgHQ(s)[0] || imgs[0]} alt="Bild von {m.name}" /></button>
           {#if imgs.length > 1}<div class="strip">{#each imgs.slice(1, 9) as u, i}<button onclick={() => (ui.lightbox = { slug: s, i: i + 1 })}><img src={u} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).parentElement!.remove()} /></button>{/each}</div>{/if}
         {:else}<div class="noimg muted">Noch keine Bilder – kommen über die Medien-Pipeline.</div>{/if}
       </div>
