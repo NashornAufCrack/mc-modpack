@@ -4,16 +4,10 @@ Zuletzt geprüft: 2026-11-07
 
 ## Neue Versionen in den letzten 7 Tagen (automatisch übernommen)
 
-- 2026-11-07: **ChoiceTheorem's Overhauled Village** (Mod) 4.2.1 → 4.2.2
-- 2026-11-07: **Clutter No More** (Mod) 3.1.2+26.3-fabric → 3.1.3+26.3-fabric
-- 2026-11-07: **Offgrid** (Mod) 1.0.4+26.3-fabric → 1.0.5+26.3-fabric
-- 2026-11-07: **Collective** (Mod) 26.3.0-8.82-fabric+forge+neo → 26.3.0-8.83-fabric+forge+neo
-- 2026-11-07: **Not Enough Recipe Book [NERB]** (Mod) 0.6+26.3 → 0.6.1+26.3
-- 2026-11-07: **Carpet AMS Addition** (Mod) mc26.3-v26.4-beta.3 → mc26.3-v26.4-beta.4
-- 2026-11-07: **optigui** (Mod) 2.3.0-beta.11+26.3 → 2.3.0-beta.11+26.1 (beta)
+- 2026-11-07: **Punchy! Moves** (Mod) 1.0.7 → 1.0.8 (beta)
 
 
-## Verfügbar, aber nicht automatisch übernommen (15)
+## Verfügbar, aber nicht automatisch übernommen (14)
 
 - Sodium: mc26.3-0.9.2-fabric → mc26.3-0.9.3-beta.3-fabric (festgelegte Version)
 - Reese's Sodium Options: mc26.3-2.2.5+fabric → mc26.3-2.2.6-beta.1+fabric (nur als beta)
@@ -22,7 +16,6 @@ Zuletzt geprüft: 2026-11-07
 - Detail Armor Bar: 5.3.2-26.3-fabric → 5.3.3-beta.1-26.3-fabric (nur als beta)
 - Tectonic: 3.0.32-fabric-26.3 → 3.1.0+beta2-fabric-26.3 (nur als beta)
 - Biomes O' Plenty: 26.3.0.0.7 → 26.3.0.0.16 (nur als beta)
-- Punchy! Moves: 1.0.7 → 1.0.8 (nur als beta)
 - jei: 31.14.0.72 → 31.17.0.109 (nur als beta)
 - plasmo-voice: fabric-26.3-2.1.17 → fabric-26.3-2.2.0-beta.2 (nur als beta)
 - viaversion: 5.12.2 → 5.12.3-SNAPSHOT+1119 (nur als beta)
@@ -32,7 +25,7 @@ Zuletzt geprüft: 2026-11-07
 - Pegasus Shaders: 0.5 → 0.8.1 (nur als beta)
 
 
-## Ohne neue Version seit über einer Woche (606)
+## Ohne neue Version seit über einer Woche (609)
 
 Sortiert nach Alter der aktuellen Datei.
 
@@ -266,6 +259,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Paper Doll: 1.5.3 (seit 2026-09-19)
 - Fresh Flower Pots: 1.5.4 (seit 2026-09-19)
 - Default Dark Mode: 2026.9.0-26.3 (seit 2026-09-19)
+- Fresh Flower Pots: Rotated: 1.2.4 (seit 2026-09-19)
 - DeCubed Dungeons (Formerly Dungeons+): 1.13.1 (seit 2026-09-19)
 - Crash Assistant: 1.11.14 (seit 2026-09-20)
 - Visuality: 0.7.15+26.3 (seit 2026-09-20)
@@ -468,6 +462,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Chat Patches: 8.0.0+26.3-fabric (seit 2026-10-04)
 - Weskerson's Torches: 1.0.3 (seit 2026-10-04)
 - Weskerson's 3D Items: 2.5.5 (seit 2026-10-04)
+- Signpost: 2.04.1 (seit 2026-10-04)
 - Packed Packs: 2.3.1+26.3 (seit 2026-10-05)
 - Fusion (Connected Textures): 1.3.16-fabric-mc26.3 (seit 2026-10-05)
 - Punchy! x Tiny Takeover: 2.0.4 (seit 2026-10-05)
@@ -614,6 +609,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Simple Armor Hud: 1.10.0-26.3 (seit 2026-10-25)
 - fresh block animations: 1.4-rc.3-hotfix (seit 2026-10-25)
 - Fresh Buckets: 1.3 (seit 2026-10-25)
+- Texture Builder: 1.1.0 (seit 2026-10-25)
 - Cinematic Respawn: 26.3-fabric-1.4.3 (seit 2026-10-26)
 - Friends & Foes: fabric-5.0.4+mc26.3 (seit 2026-10-26)
 - ResourcePackCached: 1.3.0-fabric (seit 2026-10-26)
