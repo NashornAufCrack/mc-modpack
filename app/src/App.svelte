@@ -11,14 +11,15 @@
   import Tools from "./components/Tools.svelte";
   import TestView from "./components/TestView.svelte";
   import Help from "./components/Help.svelte";
+  import UpdatesView from "./components/Updates.svelte";
 
   let err = $state("");
   onMount(async () => {
     try { const t = localStorage.getItem("mk-theme"); if (t === "light" || t === "dark") ui.setTheme(t); } catch {}
     try { const { data, media } = await loadData(); pack.init(data, media); } catch (e) { err = String(e); }
-    const v = location.hash.slice(1); if (v === "testen" || v === "hilfe") ui.view = v;
+    const v = location.hash.slice(1); if (v === "testen" || v === "hilfe" || v === "updates") ui.view = v;
   });
-  const NAV = [["bauen", "Pack bauen"], ["testen", "Testen"], ["hilfe", "Hilfe & Glossar"]] as const;
+  const NAV = [["bauen", "Pack bauen"], ["testen", "Testen"], ["updates", "Updates"], ["hilfe", "Hilfe & Glossar"]] as const;
 </script>
 
 <div class="shell">
@@ -39,6 +40,7 @@
     {:else if !pack.ready}<div class="loading"><span class="spin"></span> Katalog wird geladen …</div>
     {:else if ui.view === "bauen"}<Builder />
     {:else if ui.view === "testen"}<TestView />
+    {:else if ui.view === "updates"}<UpdatesView />
     {:else}<Help />{/if}
   </main>
 </div>

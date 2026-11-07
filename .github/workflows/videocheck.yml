@@ -8,7 +8,7 @@ on:
         required: true
 permissions:
   contents: write
-concurrency: videocheck
+concurrency: data
 jobs:
   check:
     runs-on: ubuntu-latest

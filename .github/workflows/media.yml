@@ -9,7 +9,7 @@ on:
       - ".github/workflows/media.yml"
 permissions:
   contents: write
-concurrency: media
+concurrency: data
 jobs:
   media:
     runs-on: ubuntu-latest

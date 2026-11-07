@@ -2,7 +2,7 @@
 import { pack } from "./pack.svelte";
 
 class UI {
-  view = $state<"bauen" | "testen" | "hilfe" | "crash">("bauen");
+  view = $state<"bauen" | "testen" | "hilfe" | "crash" | "updates">("bauen");
   tab = $state<"m" | "s" | "r" | "d">("m");
   sub = $state<string | null>(null);
   q = $state("");

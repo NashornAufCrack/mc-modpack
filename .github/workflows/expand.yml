@@ -7,7 +7,7 @@ on:
       - ".github/workflows/expand.yml"
 permissions:
   contents: write
-concurrency: expand
+concurrency: data
 jobs:
   expand:
     runs-on: ubuntu-latest

@@ -21,6 +21,7 @@ const PERF_SET = ["dynamic-fps","entityculling","moreculling","immediatelyfast",
 
 class Pack {
   data!: AppData; media: Record<string, Media> = $state({});
+  outdated: string[] = [];
   BY: Record<string, Mod> = {}; GROUPOF: Record<string, Gruppe> = {}; LOCKED = new Set<string>();
   ready = $state(false);
   sel = $state(new Set<string>());
@@ -31,6 +32,9 @@ class Pack {
   history: string[][] = [];
 
   init(data: AppData, media: Record<string, Media>) {
+    const bad = new Set(data.x.rpbad || []);
+    this.outdated = data.mods.filter(m => bad.has(m.slug)).map(m => m.name);
+    if (bad.size) { data.mods = data.mods.filter(m => !bad.has(m.slug)); for (const g of data.dec.gruppen || []) g.mods = g.mods.filter(s => !bad.has(s)); }
     this.data = data; this.media = media;
     for (const m of data.mods) this.BY[m.slug] = m;
     for (const g of data.dec.gruppen || []) g.mods.forEach(s => (this.GROUPOF[s] = g));

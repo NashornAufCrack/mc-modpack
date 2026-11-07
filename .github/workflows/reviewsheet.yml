@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
-concurrency: media
+concurrency: data
 jobs:
   sheets:
     runs-on: ubuntu-latest
