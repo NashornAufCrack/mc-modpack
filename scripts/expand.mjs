@@ -47,18 +47,33 @@ for (const id of WANT_MR) {
   } catch { log.push("nicht gefunden: " + id); }
   await sleep(150);
 }
-// Wünsche des Nutzers per Namenssuche (nimmt den besten 26.3-Treffer)
+// Wünsche des Nutzers per Namenssuche: Modrinth (26.3), sonst CurseForge (26.3); Namen müssen passen
 const WANT_Q = (process.env.WANT_Q || "Pogs Fresher Ores|Timber Tales|Signpost|Icy's Better Horse|Voxy Seedgen|Inventory Tabs|Slabbed|Weather Glass|Ping It|Soft Leaves|Portal Glimpse|Road Weaver|Rainbow Foliage Vanilla|Texture Builder|Fresh Flower Pots|Fresh Flower Pots Rotated").split("|");
-const wantQ = {};
+const nn = x => String(x || "").toLowerCase().replace(/^(pog'?s|icy'?s|the)\s+/, "").replace(/[^a-z0-9]/g, "");
+const fits = (q, t) => { const a = nn(q), b = nn(t); return a && b && (a === b || b.includes(a) || a.includes(b)); };
+const cfWish = [];
 for (const q of WANT_Q) {
-  try { const r = await mr(`/search?limit=3&query=${encodeURIComponent(q)}&facets=${encodeURIComponent(JSON.stringify([["versions:26.3"]]))}`); const h = r.hits[0];
-    if (!h) { log.push("Wunsch ohne 26.3-Treffer: " + q); continue; }
-    wantQ[h.slug] = q; if (pickSet.has(h.slug)) { const x = pickMR.find(m => m.slug === h.slug); if (x) x.want = true; continue; }
-    if (have.has(h.slug)) { log.push(`Wunsch schon im Katalog: ${q} -> ${h.slug}`); continue; }
-    pickSet.add(h.slug); pickMR.push({ slug: h.slug, name: h.title, pt: h.project_type, desc: h.description, dl: h.downloads, cats: h.categories, client: h.client_side, server: h.server_side, gallery: h.gallery || [], want: true });
-    log.push(`Wunsch: ${q} -> ${h.slug} (${h.title})`);
+  try {
+    const r = await mr(`/search?limit=10&query=${encodeURIComponent(q)}&facets=${encodeURIComponent(JSON.stringify([["versions:26.3"]]))}`); const h = r.hits.find(x => fits(q, x.title) || fits(q, x.slug));
+    if (h) {
+      if (pickSet.has(h.slug)) { const x = pickMR.find(m => m.slug === h.slug); if (x) x.want = true; log.push(`Wunsch: ${q} -> ${h.slug}`); continue; }
+      if (have.has(h.slug)) { log.push(`Wunsch schon im Katalog: ${q} -> ${h.slug}`); continue; }
+      pickSet.add(h.slug); pickMR.push({ slug: h.slug, name: h.title, pt: h.project_type, desc: h.description, dl: h.downloads, cats: h.categories, client: h.client_side, server: h.server_side, gallery: h.gallery || [], want: true });
+      log.push(`Wunsch: ${q} -> ${h.slug} (${h.title})`); continue;
+    }
+    // CurseForge
+    let cfHit = null;
+    if (CF) { const cr = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&searchFilter=${encodeURIComponent(q)}&pageSize=20&sortField=2&sortOrder=desc`, { headers: { "x-api-key": CF } });
+      if (cr.ok) for (const c of (await cr.json()).data) { if (!fits(q, c.name) && !fits(q, c.slug)) continue;
+        const f = (c.latestFiles || []).filter(f => f.gameVersions.includes("26.3") && (c.classId !== 6 || f.gameVersions.includes("Fabric"))).sort((a, b) => b.id - a.id)[0];
+        if (f) { cfHit = { slug: c.slug, name: c.name, dl: c.downloadCount, desc: c.summary, url: c.links?.websiteUrl, bilder: (c.screenshots || []).map(x => x.url), verteilen: c.allowModDistribution, pt: c.classId === 12 ? "r" : c.classId === 6552 ? "s" : "m",
+          datei: { url: f.downloadUrl, name: f.fileName, sha1: (f.hashes || []).find(x => x.algo === 1)?.value, size: f.fileLength, versionen: f.gameVersions } }; break; } } }
+    if (cfHit) { if (have.has(cfHit.slug)) { log.push(`Wunsch schon im Katalog (CF): ${q}`); continue; } cfWish.push(cfHit); log.push(`Wunsch: ${q} -> CurseForge ${cfHit.slug}`); continue; }
+    // nicht für 26.3: trotzdem melden, welche Versionen es gibt
+    const any = (await mr(`/search?limit=10&query=${encodeURIComponent(q)}`)).hits.find(x => fits(q, x.title) || fits(q, x.slug));
+    log.push(any ? `Wunsch noch nicht für 26.3: ${q} -> ${any.slug} (neueste: ${(any.versions || []).slice(-1)[0]})` : `Wunsch nicht gefunden: ${q}`);
   } catch (e) { log.push("Wunsch-Fehler " + q + " " + e); }
-  await sleep(150);
+  await sleep(200);
 }
 log.push(`Gewünscht: ${pickMR.filter(m => m.want).map(m => m.slug).join(", ")}`);
 
@@ -95,6 +110,7 @@ const onMR = new Set();
 for (let i = 0; i < cfC.length; i += 100) { try { for (const p of await mr(`/projects?ids=${encodeURIComponent(JSON.stringify(cfC.slice(i, i + 100).map(c => c.slug)))}`)) onMR.add(p.slug); } catch {} await sleep(200); }
 // Nur gezielt gewünschte CurseForge-Mods (Namensabgleich mit Modrinth ist zu unzuverlässig für Automatik)
 const cfPick = cand.curseforge.filter(c => WANT_CF.has(c.slug) && c.datei);
+for (const c of cfWish) if (!cfPick.some(x => x.slug === c.slug)) cfPick.push(c);
 log.push(`CurseForge: ${cfC.length} mit 26.3-Fabric-Datei, ${cfC.length - onMR.size} nicht auf Modrinth, ausgewählt: ${cfPick.map(c => c.slug).join(", ")}`);
 fs.rmSync("cf", { recursive: true, force: true }); fs.mkdirSync("cf", { recursive: true });
 for (const c of cfPick) {
@@ -107,8 +123,9 @@ for (const c of cfPick) {
     } catch (e) { log.push("Spiegeln fehlgeschlagen: " + c.slug + " " + e); url = null; }
   } else url = null;
   const deps = [];
-  if (!have.has(c.slug)) out.mods.push({ slug: c.slug, name: c.name, cat: "V", sub: "HUD & Bedienung", ampel: "G", rolle: "O", downloadsK: Math.round(c.dl / 1000), notiz: c.desc, quellen: ["CF"], mc: "26.3", loader: "fabric", einstellungen: null, ueberschneidung: "", pt: "m", gal: c.bilder.length, vn: f.name, img: c.bilder.slice(0, 6), cf: c.url, neu: true, cfVerteilen: c.verteilen });
-  if (url) out.files[c.slug] = [url, f.name.replace(/[^\w.+-]+/g, "_"), sha1, sha512, size, deps, f.name, "", "m"];
+  const cpt = c.pt || "m";
+  if (!have.has(c.slug)) out.mods.push({ want: cfWish.includes(c), slug: c.slug, name: c.name, cat: "V", sub: cpt === "r" ? "Resource Packs" : cpt === "s" ? "Shader" : "HUD & Bedienung", ampel: "G", rolle: "O", downloadsK: Math.round(c.dl / 1000), notiz: c.desc, quellen: ["CF"], mc: "26.3", loader: cpt === "m" ? "fabric" : "", einstellungen: null, ueberschneidung: "", pt: cpt, gal: c.bilder.length, vn: f.name, img: c.bilder.slice(0, 6), cf: c.url, neu: true, cfVerteilen: c.verteilen });
+  if (url) out.files[c.slug] = [url, f.name.replace(/[^\w.+-]+/g, "_"), sha1, sha512, size, deps, f.name, "", cpt];
 }
 fs.writeFileSync("data/auto.json", JSON.stringify(out));
 console.log(log.join("\n")); console.log(`Neu: ${out.mods.length} Einträge, ${Object.keys(out.files).length} Dateien`);

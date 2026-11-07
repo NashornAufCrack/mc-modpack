@@ -19,7 +19,7 @@ qraftys-jungle-villages grim-kingdoms-lost-structu katters-structures better-end
 R='''translations-for-sodium low-fire-pack enhanced-boss-bars unique-dark cozyui-plus redstone-tweaks small-shield-totem eggs-n-eyes actually-3d-stuff no-pumpkin-blur bushier-bushes
 subtly-glowing-ores better-flame-particles enchanting-table-magic-cir small-held-items brays-better-3d-bow minecarts-with-wheels default-hd-sun-and-moon 3d-harnesses-x-fresh-anima
 mob-crates dimanic-beds borderless-glass fresh-seeds visual-enchantments renewed-bookshelf rethoughted-spawn-eggs cubic-leaves fluffy-carpets animated-totem-of-undying amazing-mace-3d
-blockier-goat-horn hardcore-hearts'''.split()
+blockier-goat-horn hardcore-hearts fresh-flower-pots-rotated'''.split()
 S='makeup-ultra-fast-shaders astralex noble sildurs-vibrant-shaders'.split()
 CAT={**{s:'V' for s in V},**{s:'G' for s in G},**{s:'P' for s in P},**{s:'T' for s in T},**{s:'V' for s in R+S}}
 SUB={'cinematic-interactions':'Spieler-Animation','cpa':'Spieler-Animation','fresh-block-animations':'Animation & Modelle','ears':'Animation & Modelle','studious-keybinds':'HUD & Bedienung',
@@ -28,6 +28,7 @@ def match(slug): return next((k for k in CAT if slug.startswith(k)), None)
 n=0; seen=set(); used=set()
 for x in a['mods']:
   k=match(x['slug'])
+  if not k and x.get('want'): CAT[x['slug']]=x.get('cat') or 'V'; k=x['slug']
   if not k or x['slug'] in have or x['slug'] in seen: continue
   if x['slug'] not in a['files']: continue
   seen.add(x['slug']); used.add(k)

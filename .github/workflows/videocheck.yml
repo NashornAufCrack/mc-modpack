@@ -8,7 +8,7 @@ on:
         required: true
 permissions:
   contents: write
-concurrency: data
+concurrency: videocheck
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -35,5 +35,4 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add review
           git diff --cached --quiet || git commit -m "Video-Prüfung $(date +%F)"
-          git pull --rebase -q || true
-          git push
+          for i in 1 2 3 4; do git pull --rebase -X theirs -q && git push && break; sleep $((i*7)); done
