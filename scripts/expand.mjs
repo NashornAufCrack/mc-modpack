@@ -48,7 +48,7 @@ for (const id of WANT_MR) {
   await sleep(150);
 }
 // Wünsche des Nutzers per Namenssuche: Modrinth (26.3), sonst CurseForge (26.3); Namen müssen passen
-const WANT_Q = (process.env.WANT_Q || "Pogs Fresher Ores|Timber Tales|Signpost|Icy's Better Horse|Voxy Seedgen|Inventory Tabs|Slabbed|Weather Glass|Ping It|Soft Leaves|Portal Glimpse|Road Weaver|Rainbows Foliage|Rainbow Foliage|Texture Builder|Fresh Flower Pots|Fresh Flower Pots Rotated").split("|");
+const WANT_Q = (process.env.WANT_Q || "Pogs Fresher Ores|Timber Tales|Signpost|Icy's Better Horse|Voxy Seedgen|Inventory Tabs|Slabbed|Weather Glass|Ping It|Soft Leaves|Portal Glimpse|Road Weaver|Rainbows Foliage|Rainbow Foliage|Texture Builder|Fresh Flower Pots|Fresh Flower Pots Rotated|Immersive Interfaces Mod Support Unofficial|Immersive Interfaces Mod Support|Connected Rocks").split("|");
 const nn = x => String(x || "").toLowerCase().replace(/^(pog'?s|icy'?s|the)\s+/, "").replace(/[^a-z0-9]/g, "");
 const fits = (q, t) => { const a = nn(q), b = nn(t); return a && b && (a === b || b.includes(a) || a.includes(b)); };
 const cfWish = [];
