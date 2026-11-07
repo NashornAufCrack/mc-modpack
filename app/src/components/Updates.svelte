@@ -28,8 +28,14 @@
 
     <h2>Neu in den letzten 7 Tagen</h2>
     {#if recent.length}
-      <ul class="list">{#each recent as x}<li><button class="lnk" onclick={() => { ui.view = "bauen"; ui.detail = x.slug; }}>{x.name}</button> <span class="badge plain">{T[x.typ]}</span> <span class="mono muted">{x.von} → {x.auf}</span>{#if x.art !== "release"} <span class="badge warn">{x.art}</span>{/if} <span class="muted small">{fmt(x.tag)}</span></li>{/each}</ul>
+      <ul class="list">{#each recent as x}<li>{#if pack.BY[x.slug]}<button class="lnk" onclick={() => { ui.view = "bauen"; ui.detail = x.slug; }}>{pack.BY[x.slug].name}</button>{:else}<span>{x.name}</span> <span class="badge plain">Bibliothek</span>{/if} <span class="badge plain">{T[x.typ]}</span> <span class="mono muted">{x.von} → {x.auf}</span>{#if x.art !== "release"} <span class="badge warn">{x.art}</span>{/if} <span class="muted small">{fmt(x.tag)}</span></li>{/each}</ul>
     {:else}<p class="muted">Keine neuen Versionen in dieser Woche.</p>{/if}
+
+    {#if u.verfuegbar?.length}
+      <h2>Verfügbar, aber bewusst nicht übernommen</h2>
+      <p class="muted small">Festgelegte Versionen (Sodium, Iris, Voxy, Photon) und Sprünge von einer stabilen Version auf eine Beta wechseln nie automatisch.</p>
+      <ul class="list">{#each u.verfuegbar as v}<li><b>{pack.BY[v.slug]?.name || v.name}</b> <span class="mono muted">{v.aktuell} → {v.neu}</span> <span class="badge {v.grund.startsWith('fest') ? 'info' : 'warn'}">{v.grund}</span></li>{/each}</ul>
+    {/if}
 
     {#if u.next}
       <h2>Nächste Minecraft-Version {u.next.version}</h2>
