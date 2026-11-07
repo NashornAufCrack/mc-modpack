@@ -1,16 +1,17 @@
 {
- "stand": "2026-11-07T18:09:58.896Z",
+ "stand": "2026-11-07T18:32:44.379Z",
  "eintraege": 697,
- "mitBildern": 616,
- "hdOderVideo": 587,
- "mitVideoSicher": 431,
- "mitVideoReview": 122,
+ "mitBildern": 621,
+ "hdOderVideo": 584,
+ "mitVideoSicher": 409,
+ "mitVideoReview": 230,
  "log": [
   "CurseForge-Key: funktioniert",
+  "CurseForge-Bildersuche für Modrinth-Einträge: 238, mit Bildern: 51",
   "YouTube-Key: funktioniert",
   "Suche gestoppt bei quick-pack: 429",
   "YouTube-Suchen in diesem Lauf: 1, noch offen: 360",
-  "yt-dlp-Suchen: 0, mit Treffer: 0, noch offen: 0",
-  "Auflösung gemessen: 1062 Bilder"
+  "yt-dlp-Suchen: 237, mit Treffer: 130, noch offen: 0",
+  "Auflösung gemessen: 129 Bilder"
  ]
 }
