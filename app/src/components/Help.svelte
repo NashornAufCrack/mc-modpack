@@ -1,0 +1,34 @@
+<script lang="ts">
+  const G: [string, string][] = [
+    ["Mod", "Eine Erweiterung, die das Spiel selbst verändert, z. B. schneller macht oder neue Funktionen bringt. Läuft über Fabric."],
+    ["Fabric", "Das Grundgerüst, das Mods lädt. Alle Mods hier sind für Fabric und Minecraft 26.3."],
+    ["Shader", "Berechnet Licht, Schatten, Wasser und Himmel neu. Braucht Iris (kommt automatisch). Es ist immer nur ein Shader aktiv."],
+    ["Resource Pack", "Tauscht Texturen, 3D-Modelle oder Sounds aus. Mehrere gleichzeitig möglich, die Reihenfolge entscheidet, welches gewinnt."],
+    ["Datapack", "Ändert Regeln oder die Welt-Generierung. Wirkt in neuen Welten bzw. neuen Gebieten."],
+    ["Fernsicht (Voxy)", "Zeigt die Landschaft weit hinter der normalen Sichtweite als vereinfachtes Modell."],
+    ["Vanilla-Server", "Ein Server ohne Mods. Dort laufen nur Mods, die allein auf deinem PC arbeiten (Optik, Sound, Komfort)."],
+    ["Konflikt", "Zwei Einträge, die dasselbe tun oder sich stören. Die Website lässt immer nur einen zu."],
+    ["Vorlage", "Eine fertige Auswahl als Startpunkt. Deine Änderungen daran siehst du rechts in der Pack-Leiste."],
+    ["Prism / Modrinth App", "Programme, die Minecraft mit Mods starten. Prism-Datei: Arbeitsspeicher ist schon eingestellt. .mrpack: in die Modrinth App ziehen."],
+    ["Arbeitsspeicher (RAM)", "So viel Speicher bekommt Minecraft. Zu wenig führt zu Rucklern, zu viel bringt nichts."],
+    ["FPS, 1 %-Tief", "Bilder pro Sekunde. Das 1 %-Tief zeigt die schlechtesten Momente, also wie stark es ruckelt."],
+  ];
+  const INST = [
+    ["Prism Launcher", "„Für Prism herunterladen“ → in Prism auf „Instanz hinzufügen“ → „Importieren“ → die ZIP wählen → starten."],
+    ["Modrinth App", "„.mrpack“ herunterladen → Datei in die Modrinth App ziehen → bei der Instanz unter Einstellungen › Java den Arbeitsspeicher einstellen."],
+  ];
+</script>
+
+<section class="wrap">
+  <h1>Hilfe & Glossar</h1>
+  <h2>Installieren</h2>
+  <div class="grid">{#each INST as [t, d]}<div class="card-surface it"><b>{t}</b><p class="muted">{d}</p></div>{/each}</div>
+  <h2>Begriffe</h2>
+  <dl>{#each G as [t, d]}<div><dt>{t}</dt><dd class="muted">{d}</dd></div>{/each}</dl>
+</section>
+
+<style>
+  .wrap { max-width: 880px; padding: 1.8rem 0; } h1 { margin: 0 0 1rem; } h2 { font-size: 1.05rem; margin: 1.6rem 0 .6rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .7rem; } .it { padding: .9rem; } .it p { margin: .3rem 0 0; font-size: .9rem; }
+  dl { display: grid; gap: .6rem; margin: 0; } dt { font-weight: 600; } dd { margin: .1rem 0 0; font-size: .9rem; }
+</style>
