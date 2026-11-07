@@ -6,9 +6,14 @@ try: out = json.load(open("data/sounds.json"))
 except Exception: out = {}
 EXTRA = {"atmosfera", "ambientsounds", "immersivemusicmod", "spooky-doors", "vvi", "enhanced-audio", "gentler-weather-sounds"}
 cand = [m for m in mods if m["slug"] in files and (m.get("sub") == "Sound" or m["slug"] in EXTRA or (m.get("pt") == "r"))]
+W = {"animals": "Tiere", "bird": "Vögel", "cave": "Höhle", "wind": "Wind", "water": "Wasser", "dirt": "Erde", "marble": "Marmor", "metalbar": "Metallgitter", "concrete": "Beton", "block": "Block", "ice": "Eis", "mob": "Mob", "villager": "Dorfbewohner", "step": "Schritte", "dig": "Abbauen", "random": "Verschiedenes", "liquid": "Flüssigkeiten", "ambient": "Umgebung", "weather": "Wetter", "forest": "Wald", "music": "Musik", "desert": "Wüste", "rain": "Regen", "door": "Tür", "wood": "Holz", "stone": "Stein", "grass": "Gras", "sand": "Sand", "snow": "Schnee", "gravel": "Kies", "leaves": "Blätter", "fire": "Feuer", "thunder": "Donner", "ui": "Menü", "animationssounds": "Animationen", "spookydoors": "Türen", "coolrain": "Regen", "ambientsounds": "Umgebung", "presencefootsteps": "Schritte", "timm": "Musik", "punchy": "Punchy"}
 def label(d):
     p = [x for x in d.split("/") if x and x not in ("sounds", "assets", "minecraft")]
-    return " · ".join(x.replace("_", " ") for x in p[-2:]) or "Sound"
+    o = []
+    for x in p[-2:]:
+        x = W.get(x, x.replace("_", " "))
+        if x not in o: o.append(x)
+    return " · ".join(o) or "Sound"
 def ff(args): subprocess.run(["ffmpeg", "-loglevel", "error", "-y", *args], check=True)
 done = 0
 for m in cand:

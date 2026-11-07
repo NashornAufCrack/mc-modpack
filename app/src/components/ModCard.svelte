@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SOUNDBASE } from "../lib/data";
   import type { Mod } from "../lib/data";
   import { pack } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
@@ -8,13 +9,17 @@
   const imgs = $derived(pack.img(m.slug).slice(0, 3));
   const fromPreset = $derived(!!pack.preset && pack.preset.base.includes(m.slug));
   const vids = $derived(pack.videos(m.slug).length);
+  const snd = $derived(pack.proben(m.slug));
+  let audio: HTMLAudioElement | null = null; let playing = $state(false);
+  function toggle() { if (!audio) { audio = new Audio(SOUNDBASE + snd[0].datei); audio.onended = () => (playing = false); } if (playing) { audio.pause(); playing = false; } else { audio.currentTime = 0; audio.play(); playing = true; } }
 </script>
 
 <article class="card" class:on class:lk class:compact>
   <button class="hit" aria-pressed={on} aria-label="{m.name}: {lk ? 'immer dabei, Details zeigen' : on ? 'im Pack, klicken zum Entfernen' : 'klicken zum Hinzufügen'}" onclick={() => (lk ? (ui.detail = m.slug) : ui.pick(m.slug))}></button>
   {#if !compact}
     <div class="thumbs">
-      {#each imgs as u, i}<button class="zoom" onclick={() => (ui.lightbox = { slug: m.slug, i })} aria-label="Bild {i + 1} von {m.name} vergrößern"><img src={u} alt="" loading="lazy" decoding="async" onerror={(e) => (e.currentTarget as HTMLElement).parentElement?.remove()} /></button>{:else}<span class="ph">{m.name.slice(0, 1)}</span>{/each}
+      {#each imgs as u, i}<button class="zoom" onclick={() => (ui.lightbox = { slug: m.slug, i })} aria-label="Bild {i + 1} von {m.name} vergrößern"><img src={u} alt="" loading="lazy" decoding="async" onerror={(e) => (e.currentTarget as HTMLElement).parentElement?.remove()} /></button>{:else}{#if snd.length}<span class="ph sndph" aria-hidden="true">♪</span>{:else}<span class="ph">{m.name.slice(0, 1)}</span>{/if}{/each}
+      {#if snd.length}<button class="play" onclick={toggle} aria-label="{playing ? 'Hörprobe stoppen' : 'Hörprobe abspielen'}: {m.name}">{playing ? "■" : "▶"} Hörprobe</button>{/if}
       {#if vids}<span class="vid" aria-hidden="true">▶ Video</span>{/if}
     </div>
   {/if}
@@ -24,6 +29,7 @@
     <div class="meta">
       {#if lk}<span class="badge ok">immer dabei</span>{:else if m.rolle === "K"}<span class="badge ok">empfohlen</span>{/if}
       {#if fromPreset}<span class="badge preset" title="Kommt aus der gewählten Vorlage">Vorlage</span>{:else if on && pack.preset && !lk}<span class="badge info" title="Von dir hinzugefügt">+ von dir</span>{/if}
+      {#if snd.length}<span class="badge info">♪ Hörprobe</span>{/if}
       {#if (m as any).neu}<span class="badge info">neu</span>{/if}
       {#if m.cf}<span class="badge plain">CurseForge</span>{/if}
       {#if m.cf && !pack.data.files[m.slug]}<span class="badge warn">nur manuell</span>{/if}
@@ -58,4 +64,7 @@
   .on .check { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
   .more { position: absolute; right: .55rem; bottom: .55rem; border: 1px solid var(--line); background: var(--surface-2); color: var(--fg); border-radius: 8px; padding: .2rem .65rem; font: 500 .8rem var(--font); cursor: pointer; }
   .more:hover { border-color: var(--accent); color: var(--accent); }
+  .play { position: absolute; right: .5rem; bottom: .5rem; z-index: 2; border: 0; border-radius: 99px; padding: .3rem .65rem; font: 600 .78rem var(--font); background: rgb(0 0 0 / .72); color: #fff; cursor: pointer; }
+  .play:hover { background: var(--accent); color: #062; }
+  .sndph { font-size: 2.2rem; color: var(--accent); }
 </style>

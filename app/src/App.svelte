@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { loadData } from "./lib/data";
+  import { loadData, loadSounds } from "./lib/data";
   import { pack } from "./lib/pack.svelte";
   import { ui } from "./lib/ui.svelte";
   import Builder from "./components/Builder.svelte";
@@ -16,7 +16,7 @@
   let err = $state("");
   onMount(async () => {
     try { const t = localStorage.getItem("mk-theme"); if (t === "light" || t === "dark") ui.setTheme(t); } catch {}
-    try { const { data, media } = await loadData(); pack.init(data, media); } catch (e) { err = String(e); }
+    try { const { data, media } = await loadData(); pack.init(data, media); loadSounds().then(x => (pack.sounds = x)); } catch (e) { err = String(e); }
     const v = location.hash.slice(1); if (v === "testen" || v === "hilfe" || v === "updates") ui.view = v;
   });
   const NAV = [["bauen", "Pack bauen"], ["testen", "Testen"], ["updates", "Updates"], ["hilfe", "Hilfe & Glossar"]] as const;

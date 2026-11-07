@@ -4,7 +4,7 @@
 "proben": [
 {
 "datei": "sounds/coolrain/1.m4a",
-"titel": "coolrain"
+"titel": "Regen"
 }
 ]
 },
@@ -13,19 +13,19 @@
 "proben": [
 {
 "datei": "sounds/ambientsounds/1.m4a",
-"titel": "animals \u00b7 bird"
+"titel": "Tiere \u00b7 V\u00f6gel"
 },
 {
 "datei": "sounds/ambientsounds/2.m4a",
-"titel": "ambientsounds \u00b7 cave"
+"titel": "Umgebung \u00b7 H\u00f6hle"
 },
 {
 "datei": "sounds/ambientsounds/3.m4a",
-"titel": "ambientsounds \u00b7 wind"
+"titel": "Umgebung \u00b7 Wind"
 },
 {
 "datei": "sounds/ambientsounds/4.m4a",
-"titel": "ambientsounds \u00b7 water"
+"titel": "Umgebung \u00b7 Wasser"
 }
 ]
 },
@@ -34,19 +34,19 @@
 "proben": [
 {
 "datei": "sounds/presence-footsteps/1.m4a",
-"titel": "presencefootsteps \u00b7 dirt"
+"titel": "Schritte \u00b7 Erde"
 },
 {
 "datei": "sounds/presence-footsteps/2.m4a",
-"titel": "presencefootsteps \u00b7 marble"
+"titel": "Schritte \u00b7 Marmor"
 },
 {
 "datei": "sounds/presence-footsteps/3.m4a",
-"titel": "presencefootsteps \u00b7 metalbar"
+"titel": "Schritte \u00b7 Metallgitter"
 },
 {
 "datei": "sounds/presence-footsteps/4.m4a",
-"titel": "presencefootsteps \u00b7 concrete"
+"titel": "Schritte \u00b7 Beton"
 }
 ]
 },
@@ -55,7 +55,7 @@
 "proben": [
 {
 "datei": "sounds/sound/1.m4a",
-"titel": "block \u00b7 ice"
+"titel": "Block \u00b7 Eis"
 }
 ]
 },
@@ -120,7 +120,7 @@
 "proben": [
 {
 "datei": "sounds/vvi/1.m4a",
-"titel": "mob \u00b7 villager"
+"titel": "Mob \u00b7 Dorfbewohner"
 }
 ]
 },
@@ -129,19 +129,19 @@
 "proben": [
 {
 "datei": "sounds/enhanced-audio/1.m4a",
-"titel": "step"
+"titel": "Schritte"
 },
 {
 "datei": "sounds/enhanced-audio/2.m4a",
-"titel": "dig"
+"titel": "Abbauen"
 },
 {
 "datei": "sounds/enhanced-audio/3.m4a",
-"titel": "random"
+"titel": "Verschiedenes"
 },
 {
 "datei": "sounds/enhanced-audio/4.m4a",
-"titel": "liquid"
+"titel": "Fl\u00fcssigkeiten"
 }
 ]
 },
@@ -150,7 +150,7 @@
 "proben": [
 {
 "datei": "sounds/gentler-weather-sounds/1.m4a",
-"titel": "ambient \u00b7 weather"
+"titel": "Umgebung \u00b7 Wetter"
 }
 ]
 },
@@ -191,7 +191,7 @@
 "proben": [
 {
 "datei": "sounds/hyper-punchy/1.m4a",
-"titel": "punchy \u00b7 animationssounds"
+"titel": "Punchy \u00b7 Animationen"
 }
 ]
 },
@@ -272,7 +272,7 @@
 "proben": [
 {
 "datei": "sounds/spooky-doors/1.m4a",
-"titel": "spookydoors"
+"titel": "T\u00fcren"
 }
 ]
 },
@@ -317,11 +317,11 @@
 "proben": [
 {
 "datei": "sounds/atmosfera/1.m4a",
-"titel": "ambient \u00b7 forest"
+"titel": "Umgebung \u00b7 Wald"
 },
 {
 "datei": "sounds/atmosfera/2.m4a",
-"titel": "music \u00b7 desert"
+"titel": "Musik \u00b7 W\u00fcste"
 }
 ]
 },
@@ -330,7 +330,7 @@
 "proben": [
 {
 "datei": "sounds/immersivemusicmod/1.m4a",
-"titel": "timm \u00b7 music"
+"titel": "Musik"
 }
 ]
 },

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SOUNDBASE } from "../lib/data";
   import Modal from "./Modal.svelte";
   import { pack, PT_1, CATS } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
@@ -39,6 +40,11 @@
         </div>
       </div>
     </div>
+    {#if pack.proben(s).length}
+      <h3>Hörproben</h3>
+      <ul class="snd">{#each pack.proben(s) as p}<li><span>{p.titel}</span><audio controls preload="none" src={SOUNDBASE + p.datei}></audio></li>{/each}</ul>
+      <p class="small muted">Direkt aus den Dateien der Mod bzw. des Packs.</p>
+    {/if}
     {#if vids.length}
       <h3>Videos</h3>
       <div class="vids">
@@ -82,4 +88,6 @@
   .long { margin-top: 1rem; } .long p { white-space: pre-line; font-size: .84rem; color: var(--muted); max-height: 18rem; overflow: auto; }
   summary { cursor: pointer; font-weight: 500; }
   @media (max-width: 760px) { .top { grid-template-columns: minmax(0, 1fr); } }
+  .snd { list-style: none; padding: 0; margin: .4rem 0; display: grid; gap: .5rem; } .snd li { display: grid; grid-template-columns: minmax(8rem, 14rem) minmax(0, 1fr); gap: .75rem; align-items: center; font-size: .9rem; text-transform: capitalize; } .snd audio { width: 100%; height: 2.2rem; }
+  @media (max-width: 540px) { .snd li { grid-template-columns: minmax(0, 1fr); } }
 </style>

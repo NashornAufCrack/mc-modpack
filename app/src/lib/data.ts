@@ -20,6 +20,10 @@ const DATA = (import.meta.env.VITE_DATA as string) || "data/";
 
 export type Updates = { checked: string; mc: string; updates: Upd[]; verlauf: { datum: string; updates: Upd[] }[]; ohneNeue: { slug: string; name: string; version: string; seit: string }[]; verfuegbar?: { slug: string; name: string; aktuell: string; neu: string; grund: string }[]; next: { version: string; total: number; ready: number; missing: string[] } | null };
 export type Upd = { slug: string; name: string; typ: string; von: string; auf: string; art: string; datum: string };
+export type Probe = { datei: string; titel: string };
+/** Hörproben: Pfade sind relativ zum Repo-Wurzelordner */
+export const SOUNDBASE = DATA + "../";
+export async function loadSounds(): Promise<Record<string, { proben: Probe[] }>> { if (ARTIFACT) return {}; try { const r = await fetch(DATA + "sounds.json"); return r.ok ? r.json() : {}; } catch { return {}; } }
 export async function loadUpdates(): Promise<Updates | null> { if (ARTIFACT) return null; try { const r = await fetch(DATA + "updates.json", { cache: "no-cache" }); return r.ok ? r.json() : null; } catch { return null; } }
 export async function loadData(): Promise<{ data: AppData; media: Record<string, Media> }> {
   if (ARTIFACT) {

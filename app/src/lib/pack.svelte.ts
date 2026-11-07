@@ -21,6 +21,8 @@ const PERF_SET = ["dynamic-fps","entityculling","moreculling","immediatelyfast",
 
 class Pack {
   data!: AppData; media: Record<string, Media> = $state({});
+  sounds: Record<string, { proben: { datei: string; titel: string }[] }> = $state({});
+  proben(s: string) { return this.sounds[s]?.proben || []; }
   outdated: string[] = [];
   BY: Record<string, Mod> = {}; GROUPOF: Record<string, Gruppe> = {}; LOCKED = new Set<string>();
   ready = $state(false);
