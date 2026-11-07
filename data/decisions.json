@@ -1123,14 +1123,6 @@
    "text": "Mob-Icons werden falsch angezeigt. Zusatz-Pack „Xaero Minimap X Fresh Animations“ nötig."
   },
   {
-   "art": "T",
-   "mods": [
-    "punchymoves",
-    "not-enough-animations"
-   ],
-   "text": "Falls beide drin sind: beide animieren den Spieler in Third Person."
-  },
-  {
    "art": "K",
    "mods": [
     "voxy",
@@ -1458,12 +1450,31 @@
    "text": "Ergänzen sich: FWA animiert Türen, Hebel und Laternen, Stupid Block Animations das Platzieren und Abbauen."
   },
   {
+   "art": "D",
+   "mods": [
+    "fwa",
+    "animated-doors"
+   ],
+   "text": "Fancy World Animations animiert Türen schon selbst."
+  },
+  {
+   "art": "D",
+   "mods": [
+    "fwa",
+    "swinging-lanterns"
+   ],
+   "text": "Fancy World Animations lässt Laternen schon selbst schwingen."
+  },
+  {
    "art": "T",
    "mods": [
-    "cpa",
-    "punchymoves"
+    "subtle-effects",
+    "particular-reforged",
+    "effectual",
+    "perception",
+    "visuality"
    ],
-   "text": "Custom Player Animations und Punchy! Moves animieren beide den Spieler. Zusammen ungetestet."
+   "text": "Alle fügen Atmosphäre-Effekte hinzu. Kombinierbar, einzelne Effekte (z. B. Glühwürmchen) können doppelt auftauchen."
   }
  ],
  "gruppen": [
@@ -1604,7 +1615,9 @@
    "mods": [
     "punchymoves",
     "detailed-animations",
-    "fa-player-extension"
+    "fa-player-extension",
+    "not-enough-animations",
+    "cpa"
    ],
    "text": "Alle animieren den Spieler-Körper in Third Person. Standard: Punchy! Moves."
   },
@@ -1623,7 +1636,9 @@
    "titel": "Blätter",
    "mods": [
     "better-leaves",
-    "fancyfast-bushy-leaves"
+    "fancyfast-bushy-leaves",
+    "cubic-leaves",
+    "rainbows-foliage"
    ],
    "text": "Beide ersetzen das Blätter-Modell; nur eins wäre sichtbar."
   },
@@ -1633,9 +1648,319 @@
    "mods": [
     "default-dark-mode",
     "shrimps-immersive-interfaces",
-    "recolourful-containers-gui"
+    "recolourful-containers-gui",
+    "unique-dark",
+    "cozyui-plus",
+    "mindful-darkness"
    ],
    "text": "Alle färben bzw. ersetzen die Menü-Texturen; zusammen überdecken sie sich."
+  },
+  {
+   "id": "minimap",
+   "titel": "Minimap",
+   "mods": [
+    "xaeros-minimap",
+    "journeymap",
+    "diorama-map"
+   ],
+   "text": "Alle drei zeigen eine Minimap mit Weltkarte. Mehrere gleichzeitig überdecken sich."
+  },
+  {
+   "id": "crosshair",
+   "titel": "Fadenkreuz",
+   "mods": [
+    "custom-crosshair-mod",
+    "centered-crosshair"
+   ],
+   "text": "Custom Crosshair kann das Fadenkreuz auch mittig setzen."
+  },
+  {
+   "id": "effects",
+   "titel": "Trank-Effekt-Anzeige",
+   "mods": [
+    "status-effect-bars",
+    "statuseffecttimer",
+    "stylish-effects"
+   ],
+   "text": "Alle drei ändern die Anzeige der Trank-Effekte."
+  },
+  {
+   "id": "armorstand",
+   "titel": "Rüstungsständer posieren",
+   "mods": [
+    "armor-poser",
+    "armor-statues"
+   ],
+   "text": "Beide machen Rüstungsständer frei posierbar."
+  },
+  {
+   "id": "sit",
+   "titel": "Hinsetzen",
+   "mods": [
+    "bl4cks-sit",
+    "sit-anywhere"
+   ],
+   "text": "Beide lassen dich auf Stufen und Treppen sitzen."
+  },
+  {
+   "id": "treefell",
+   "titel": "Bäume fällen",
+   "mods": [
+    "fallingtree",
+    "timber-tales-dynamic-tree-system"
+   ],
+   "text": "Beide fällen ganze Bäume. Timber Tales lässt sie zusätzlich animiert umfallen."
+  },
+  {
+   "id": "placement",
+   "titel": "Blöcke setzen",
+   "mods": [
+    "accurate-block-placement-reborn",
+    "smartblockplacement"
+   ],
+   "text": "Beide setzen Blöcke beim Gedrückthalten sauber in Reihe."
+  },
+  {
+   "id": "advscreen",
+   "titel": "Fortschritte-Bildschirm",
+   "mods": [
+    "better-advancements",
+    "paginatedadvancements"
+   ],
+   "text": "Beide bauen den Fortschritte-Bildschirm um."
+  },
+  {
+   "id": "advtoast",
+   "titel": "Fortschritt-Meldungen",
+   "mods": [
+    "fancy-toasts",
+    "achievement-style",
+    "advancement-plaques"
+   ],
+   "text": "Alle drei ersetzen die Fortschritt-Meldung oben rechts."
+  },
+  {
+   "id": "replay",
+   "titel": "Aufnahme",
+   "mods": [
+    "replaymod",
+    "flashback"
+   ],
+   "text": "Beide nehmen Spielszenen auf und rendern sie mit freier Kamera."
+  },
+  {
+   "id": "chathist",
+   "titel": "Chat-Verlauf",
+   "mods": [
+    "chatpatches",
+    "morechathistory"
+   ],
+   "text": "Chat Patches verlängert den Verlauf schon selbst."
+  },
+  {
+   "id": "itemphys",
+   "titel": "Item-Physik",
+   "mods": [
+    "itemphysic",
+    "itemphysic-lite"
+   ],
+   "text": "Lite ist der kleine Teil von ItemPhysic (nur flach liegende Items)."
+  },
+  {
+   "id": "bettergrass",
+   "titel": "Bessere Grasseiten",
+   "mods": [
+    "lambdabettergrass",
+    "bettergrassify",
+    "fast-better-grass"
+   ],
+   "text": "Alle drei machen Grasseiten wie OptiFine „Better Grass“."
+  },
+  {
+   "id": "grasslook",
+   "titel": "Gras-Optik",
+   "mods": [
+    "grassier-grass",
+    "os-colorful-grasses"
+   ],
+   "text": "Beide ersetzen das Gras-Modell."
+  },
+  {
+   "id": "foliage",
+   "titel": "Pflanzen bewegen sich",
+   "mods": [
+    "mc2-interactive-foliage",
+    "sway"
+   ],
+   "text": "Beide lassen Pflanzen beim Durchlaufen wackeln."
+  },
+  {
+   "id": "footprints",
+   "titel": "Fußspuren",
+   "mods": [
+    "snow-imprints",
+    "footprintparticle"
+   ],
+   "text": "Beide zeigen Fußspuren."
+  },
+  {
+   "id": "totem",
+   "titel": "Totem-Modell",
+   "mods": [
+    "glowing-3d-totem",
+    "animated-totem-of-undying"
+   ],
+   "text": "Beide ersetzen das Totem-Aussehen."
+  },
+  {
+   "id": "lowfire",
+   "titel": "Feuer im Bild",
+   "mods": [
+    "low-on-fire",
+    "low-fire-pack"
+   ],
+   "text": "Beide machen das Feuer im Bild kleiner."
+  },
+  {
+   "id": "shield",
+   "titel": "Schild in der Hand",
+   "mods": [
+    "low-shield-pack",
+    "small-shield-totem"
+   ],
+   "text": "Beide verkleinern bzw. senken den Schild in der Ego-Sicht."
+  },
+  {
+   "id": "spawneggs",
+   "titel": "Spawn-Eier",
+   "mods": [
+    "eggs-n-eyes",
+    "rethoughted-spawn-eggs",
+    "mob-crates"
+   ],
+   "text": "Alle drei ersetzen das Aussehen der Spawn-Eier."
+  },
+  {
+   "id": "beds",
+   "titel": "Betten",
+   "mods": [
+    "fancy-beds",
+    "dimanic-beds"
+   ],
+   "text": "Beide ersetzen das Bett-Modell."
+  },
+  {
+   "id": "lanterns",
+   "titel": "3D-Laternen",
+   "mods": [
+    "luminous-lanterns",
+    "drigo-3d-lanterns-x-punchy",
+    "better-lanterns"
+   ],
+   "text": "Alle drei ersetzen das Laternen-Modell. Mit Punchy: Luminous oder Drigo."
+  },
+  {
+   "id": "redstone",
+   "titel": "Redstone-Anzeige",
+   "mods": [
+    "redstone-tweaks",
+    "xk-redstone-display"
+   ],
+   "text": "Beide ändern, wie Redstone-Bauteile ihren Zustand zeigen."
+  },
+  {
+   "id": "horses",
+   "titel": "Pferde-Überarbeitung",
+   "mods": [
+    "icys-better-horses",
+    "horseman"
+   ],
+   "text": "Beide überarbeiten Pferde grundlegend."
+  },
+  {
+   "id": "anvil",
+   "titel": "Amboss ohne „Zu teuer!“",
+   "mods": [
+    "easy-anvils",
+    "too-cheap"
+   ],
+   "text": "Beide entfernen die „Zu teuer!“-Grenze."
+  },
+  {
+   "id": "capes",
+   "titel": "Umhänge",
+   "mods": [
+    "capes",
+    "better-capes"
+   ],
+   "text": "Beide laden fremde Umhänge."
+  },
+  {
+   "id": "fullscreen",
+   "titel": "Vollbild",
+   "mods": [
+    "borderless-fullscreen",
+    "cubes-without-borders"
+   ],
+   "text": "Beide machen randloses Vollbild und vertragen sich nicht."
+  },
+  {
+   "id": "placeanim",
+   "titel": "Block-Platzier-Animation",
+   "mods": [
+    "stupid-block-animations",
+    "fresh-block-animations"
+   ],
+   "text": "Beide animieren das Setzen von Blöcken. Deine Wahl war SBA."
+  },
+  {
+   "id": "endover",
+   "titel": "End-Umbau",
+   "mods": [
+    "nullscape",
+    "enderscape",
+    "betterend"
+   ],
+   "text": "Alle drei bauen das End-Gelände um."
+  },
+  {
+   "id": "netherover",
+   "titel": "Nether-Umbau",
+   "mods": [
+    "incendium",
+    "amplified-nether",
+    "betternether",
+    "ibo"
+   ],
+   "text": "Alle drei bauen das Nether-Gelände um."
+  },
+  {
+   "id": "snowmod",
+   "titel": "Schnee",
+   "mods": [
+    "snow",
+    "snow-under-trees"
+   ],
+   "text": "Snow legt selbst schon Schnee unter Bäume."
+  },
+  {
+   "id": "egoanim",
+   "titel": "Ego-Animationen",
+   "mods": [
+    "punchy-fpa",
+    "interactivestuff"
+   ],
+   "text": "Beide animieren Hände und Items in der Ego-Sicht. Standard: Punchy."
+  },
+  {
+   "id": "3ditems",
+   "titel": "3D-Items",
+   "mods": [
+    "actually-3d-stuff",
+    "tools-and-utils",
+    "3d-default"
+   ],
+   "text": "Alle drei machen viele Items zu 3D-Modellen und überschreiben sich gegenseitig."
   }
  ]
 }

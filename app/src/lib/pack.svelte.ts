@@ -60,6 +60,7 @@ class Pack {
   clashes(x: string, S: Set<string> = this.sel) {
     const res: { y: string; text: string; art: string; grp?: Gruppe; dec?: any }[] = [];
     const g = this.GROUPOF[x]; if (g) for (const y of g.mods) if (y !== x && S.has(y)) res.push({ y, text: g.text, art: "D", grp: g });
+    if (this.BY[x]?.pt === "s") for (const y of S) if (y !== x && this.BY[y]?.pt === "s" && !res.some(c => c.y === y)) res.push({ y, text: "Es kann immer nur ein Shader aktiv sein.", art: "D" });
     for (const r of this.data.dec.beziehungen) if ((r.art === "K" || r.art === "D") && !r.erledigt && r.mods.includes(x)) for (const y of r.mods) if (y !== x && S.has(y) && !res.some(c => c.y === y)) res.push({ y, text: r.text, art: r.art });
     for (const d of this.data.dec.entscheidungen) { const ox = d.optionen.filter((o: any) => o.behalten.includes(x)); if (!ox.length) continue;
       for (const o of d.optionen) { if (ox.includes(o)) continue; for (const y of o.behalten) if (y !== x && S.has(y) && !ox.some((a: any) => a.behalten.includes(y)) && !res.some(c => c.y === y)) res.push({ y, text: d.frage, art: d.art, dec: d }); } }
