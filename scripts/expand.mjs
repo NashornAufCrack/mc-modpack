@@ -70,9 +70,10 @@ for (const p of Object.values(idSlug)) {
 const cfC = cand.curseforge.filter(c => c.datei && c.datei.versionen.includes("26.3") && c.datei.versionen.includes("Fabric"));
 const onMR = new Set();
 for (let i = 0; i < cfC.length; i += 100) { try { for (const p of await mr(`/projects?ids=${encodeURIComponent(JSON.stringify(cfC.slice(i, i + 100).map(c => c.slug)))}`)) onMR.add(p.slug); } catch {} await sleep(200); }
-const cfPick = cfC.filter(c => !onMR.has(c.slug) && !have.has(c.slug) && (WANT_CF.has(c.slug) || (c.dl >= 2_000_000 && c.datei.versionen.includes("Client"))));
+// Nur gezielt gewünschte CurseForge-Mods (Namensabgleich mit Modrinth ist zu unzuverlässig für Automatik)
+const cfPick = cand.curseforge.filter(c => WANT_CF.has(c.slug) && c.datei && !have.has(c.slug));
 log.push(`CurseForge: ${cfC.length} mit 26.3-Fabric-Datei, ${cfC.length - onMR.size} nicht auf Modrinth, ausgewählt: ${cfPick.map(c => c.slug).join(", ")}`);
-fs.mkdirSync("cf", { recursive: true });
+fs.rmSync("cf", { recursive: true, force: true }); fs.mkdirSync("cf", { recursive: true });
 for (const c of cfPick) {
   const f = c.datei; let url = f.url, sha1 = f.sha1, sha512 = null, size = f.size;
   if (c.verteilen && f.url) {
