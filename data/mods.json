@@ -5484,5 +5484,24 @@
    "https://cdn.modrinth.com/data/QI0EmgZ1/images/ccdf66d116f847c08a290c7806c62cc67f01a410_350.webp",
    "https://cdn.modrinth.com/data/QI0EmgZ1/images/239c9b7832f50911cbb4f6678d3ed3896c769cc4_350.webp"
   ]
+ },
+ {
+  "slug": "spark",
+  "name": "spark",
+  "cat": "P",
+  "sub": "Basis & Werkzeuge",
+  "ampel": "Y",
+  "rolle": "O",
+  "downloadsK": 24062,
+  "notiz": "Leistungs-Profiler: misst, was FPS kostet. Gehört zum Test-Kit.",
+  "quellen": [],
+  "mc": "26.3",
+  "loader": "fabric",
+  "einstellungen": null,
+  "ueberschneidung": "",
+  "pt": "m",
+  "gal": 0,
+  "vn": "1.10.187-fabric",
+  "img": []
  }
 ]
