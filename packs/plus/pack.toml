@@ -1,0 +1,13 @@
+name = "Vanilla Plus"
+author = "NashornAufCrack"
+version = "1.0.0"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "0606ba44918856723b6dc1012a67f526d78b8e8bd875607c9a29f21f7d4485e4"
+
+[versions]
+minecraft = "26.3"
+fabric = "0.20.1"

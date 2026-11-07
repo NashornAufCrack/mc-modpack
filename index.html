@@ -206,6 +206,10 @@ b.G{color:var(--g)}b.Y{color:var(--y)}b.R{color:var(--r)}
 .steps li span{display:block;color:var(--muted);font-size:.9rem}
 .tgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .logbox input{padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg);font:inherit;min-width:0;width:100%}
+.auto{background:var(--surface);border:1px solid var(--accent);border-radius:6px;padding:10px 14px}
+.auto summary{cursor:pointer;font-size:.9rem}
+.autogrid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+a.btn{text-decoration:none;display:inline-block}
 @media (max-width:760px){
   .orow{grid-template-columns:minmax(0,1fr)}
   .srow{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
@@ -267,6 +271,10 @@ b.G{color:var(--g)}b.Y{color:var(--y)}b.R{color:var(--r)}
 <section id="view-build" hidden>
   <div class="bhead">
     <p class="catnote lead">Performance & Basis ist schon drin. Alles andere wählst du selbst: Klick auf einen Namen zeigt, was die Mod macht, Bilder, Einstellungen und womit sie sich verträgt. Am Ende lädst du das Pack als <code>.mrpack</code> für Prism herunter.</p>
+    <details class="auto"><summary><b>Fertige Packs mit Auto-Update</b> für Prism, ideal für Freunde: einmal importieren, Updates kommen bei jedem Start automatisch.</summary>
+      <div class="autogrid"><a class="btn" href="https://nashornaufcrack.github.io/mc-modpack/downloads/Prism-Vanilla-Visual-AutoUpdate.zip">Vanilla Visual herunterladen</a><a class="btn" href="https://nashornaufcrack.github.io/mc-modpack/downloads/Prism-Vanilla-Plus-AutoUpdate.zip">Vanilla Plus herunterladen</a></div>
+      <ol class="ladder"><li>Prism öffnen → <b>Instanz hinzufügen</b> → <b>Importieren</b> → die .zip wählen.</li><li>Instanz starten. Beim ersten Start lädt ein kleines Fenster alle Mods (dauert 1–2 Minuten).</li><li>Fertig. Wenn wir das Pack ändern, holt Prism die Änderungen beim nächsten Start von selbst.</li></ol>
+      <p class="hint">Inhalt: unsere Empfehlungen und die getroffenen Entscheidungen. Für ein eigenes Pack unten selbst zusammenstellen.</p></details>
     <div class="row-actions"><button class="btn primary" id="wiz-open">Assistent starten</button><button class="btn" id="share">Auswahl teilen</button><button class="btn" id="reset-sel">Auswahl leeren</button><span class="hint" id="share-out"></span></div>
   </div>
   <div id="upd-banner"></div>

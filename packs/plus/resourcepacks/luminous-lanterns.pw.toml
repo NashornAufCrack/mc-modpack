@@ -1,0 +1,13 @@
+name = "Luminous Lanterns x Punchy!"
+filename = "Luminous Lanterns.zip"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/9k8RMjsM/versions/S2z4ITQ6/Luminous%20Lanterns.zip"
+hash-format = "sha512"
+hash = "7a480a3d77d636b42142d707414aff7ecb45d27ef7d6a77b26bd0da03f9c9f9ab6b4594ff7b99ef4498b7a2b20c3f6398e993453007c0db28e241e95665280f6"
+
+[update]
+[update.modrinth]
+mod-id = "9k8RMjsM"
+version = "S2z4ITQ6"
