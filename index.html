@@ -665,17 +665,31 @@ function keyLines(){ return activeKeys().map(k=>`key_${k[1]}:key.keyboard.${kv(k
 const RPRANK=[["fresh-flower-pots","round-trees"],["fresh-animations-objects","fresh-animations-extensions","fa-player-extension","fresh-animations-emissive","just-expressions"],["fresh-animations"],["fresh-food-for-hyper-punchy","hyper-punchy","fluid-foolish"],["fresh-food","fresh-flowers-and-plants","fresh-ores-and-ingots","just-3d-potions","glowing-3d-totem","refined-buckets","fyoncles-3d-trims","3d-flint-steel-for-punchy","animated-3d-wind-charge-compatible-with-punchy","luminous-lanterns","drigo-3d-lanterns-x-punchy","theones-eating-animation-pack"],["better-lanterns","weskersons-torches","rays-3d-rails","rays-3d-ladders","fancy-crops","os-colorful-grasses","connected-paths","fast-better-grass"],["enchanted-books-re-covered","visual-armor-trims","glowing-glints","recolourful-containers-gui","clearer-slot-highlight","low-on-fire","low-shield-pack","blinking-ender-eyes","new-glowing-ores","dramatic-skys","sunbathing-godrays"],["vvi","enhanced-audio","gentler-weather-sounds"]];
 function rpTopDown(rps){ const rank=s=>{ const i=RPRANK.findIndex(g=>g.includes(s)); return i<0?RPRANK.length:i; }; return [...rps].sort((a,b)=>rank(a)-rank(b)||RPRANK.flat().indexOf(a)-RPRANK.flat().indexOf(b)); }
 /* RAM */
-function ramGB(r){ const n=r.mods.size+r.libs.size; let g=n<60?4:n<120?6:8; if(r.mods.has("voxy")||r.mods.has("distanthorizons")) g+=1; return Math.min(g,10); }
+function ramGB(r){ const n=r.mods.size+r.libs.size; let g=n<60?4:n<120?6:8; if(r.mods.has("voxy")||r.mods.has("distanthorizons")) g+=1; const sys=cfg._hw&&cfg._hw.ram; if(sys) g=Math.min(g,Math.floor(sys/2)); return Math.max(3,Math.min(g,10)); }
 /* assistant */
 const WIZ=[
  {k:"srv",q:"Wo spielst du?",o:[["vanilla","Auf dem Vanilla-Server meiner Freunde"],["own","Singleplayer oder eigener Server"]]},
  {k:"feel",q:"Wie nah an Vanilla soll es bleiben?",o:[["pure","Fast wie Vanilla, nur schöner"],["plus","Vanilla+ mit Komfort"],["more","Gern auch neuer Inhalt"]]},
  {k:"shader",q:"Shader?",o:[["photon","Ja, Photon"],["none","Nein, lieber mehr FPS"]]},
  {k:"lod",q:"Fernsicht?",o:[["voxy","Ja, Voxy"],["none","Nein"]]},
- {k:"anim",q:"Spieler-Animationen?",o:[["punchy","Punchy"],["none","Keine"]]}];
+ {k:"anim",q:"Spieler-Animationen?",o:[["punchy","Punchy"],["none","Keine"]]},
+ {k:"gpu",q:"Grafikkarte",o:[["low","Einsteiger (GTX 1060, RX 580, Laptop)"],["mid","Mittelklasse (RTX 3060/4060, RX 6600–7600)"],["high","Oberklasse (RTX 3080/4070 Ti, RX 6800+)"],["top","High-End (RTX 4080/5080+, RX 7900+)"]]},
+ {k:"ram",q:"Arbeitsspeicher im PC",o:[["8","8 GB"],["16","16 GB"],["32","32 GB"],["64","64 GB oder mehr"]]},
+ {k:"res",q:"Bildschirmauflösung",o:[["1080","1920×1080"],["1440","2560×1440"],["2160","3840×2160 (4K)"]]},
+ {k:"hz",q:"Bildwiederholrate",o:[["60","60 Hz"],["144","144 Hz"],["165","165 Hz"],["240","240 Hz"]]},
+ {k:"sync",q:"G-Sync oder FreeSync?",o:[["yes","Ja"],["no","Nein / weiß nicht"]]},
+ {k:"fps",q:"Ziel-FPS",o:[["hz","So hoch wie der Monitor kann"],["60","Stabile 60 reichen, lieber schöner"]]}];
+function applyHardware(){
+  const gpu=wizA.gpu||"high", res=wizA.res||"1440", hz=Number(wizA.hz||144), fpsHigh=(wizA.fps||"hz")==="hz";
+  const score={low:0,mid:1,high:2,top:3}[gpu]-(res==="2160"?1:res==="1080"?-1:0)+(fpsHigh?0:1);
+  const P=[{sm:1024,sd:96,cl:false,wc:false,taau:true,vx:8},{sm:2048,sd:128,cl:false,wc:true,taau:false,vx:12},{sm:2048,sd:160,cl:true,wc:true,taau:false,vx:16},{sm:3072,sd:192,cl:true,wc:true,taau:false,vx:24}][Math.max(0,Math.min(3,score))];
+  const fpsLim=fpsHigh?(wizA.sync==="yes"?Math.max(60,hz-4):hz):60; const opt=BASE.items.find(i=>i.k==="maxFps"); if(!opt.o.includes(fpsLim)){ opt.o=[...opt.o,fpsLim].sort((a,b)=>a-b); }
+  cfg={...cfg,_base:{...(cfg._base||{}),maxFps:fpsLim,renderDistance:score<=0?12:16},"photon-shader":{...(cfg["photon-shader"]||{}),shadowMapResolution:P.sm,shadowDistance:P.sd,COLORED_LIGHTS:P.cl,WATER_CAUSTICS:P.wc,TAAU:P.taau},voxy:{...(cfg.voxy||{}),section_render_distance:P.vx},_hw:{ram:Number(wizA.ram||16)}};
+  saveSel();
+}
 let wizA={};
 function renderWiz(){
-  $("wiz-body").innerHTML=WIZ.map(w=>`<fieldset class="wq"><legend>${esc(w.q)}</legend>${w.o.map(([v,l])=>`<label class="chk"><input type="radio" name="w-${w.k}" value="${v}" ${wizA[w.k]===v?"checked":""}> ${esc(l)}</label>`).join("")}</fieldset>`).join("")+`<div class="row-actions"><button class="btn primary" id="wiz-go">Vorschläge zeigen</button><span class="hint">Es wird nichts automatisch angehakt.</span></div>`;
+  $("wiz-body").innerHTML=WIZ.map(w=>`<fieldset class="wq"><legend>${esc(w.q)}</legend>${w.o.map(([v,l])=>`<label class="chk"><input type="radio" name="w-${w.k}" value="${v}" ${wizA[w.k]===v?"checked":""}> ${esc(l)}</label>`).join("")}</fieldset>`).join("")+`<div class="row-actions"><button class="btn primary" id="wiz-go">Vorschläge zeigen</button><span class="hint">Mods werden nur vorgeschlagen. Grafik, FPS-Limit und Arbeitsspeicher werden an deinen PC angepasst.</span></div>`;
 }
 function wizRun(){
   WIZ.forEach(w=>{ const c=document.querySelector(`input[name="w-${w.k}"]:checked`); if(c) wizA[w.k]=c.value; });
@@ -688,6 +702,7 @@ function wizRun(){
   if(wizA.shader==="none") ["iris","photon-shader"].forEach(x=>s.delete(x));
   if(wizA.lod==="none") s.delete("voxy"), s.delete("living-horizon");
   if(wizA.anim==="none") MODS.filter(m=>m.sub==="Spieler-Animation"||m.sub==="Punchy-Packs").forEach(m=>s.delete(m.slug));
+  applyHardware();
   wizSug=s; bst.f=new Set(["sug"]); $("wiz").close(); renderBuild();
   $("blist").insertAdjacentHTML("afterbegin",`<div class="sugbar"><b>${s.size} Vorschläge</b> passend zu deinen Antworten. Klick auf die Namen, um sie anzusehen.<button class="btn primary" id="sug-all">Alle Vorschläge übernehmen</button></div>`);
 }
