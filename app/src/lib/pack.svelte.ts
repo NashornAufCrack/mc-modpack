@@ -44,8 +44,10 @@ class Pack {
     this.ready = true;
   }
   name = (s: string) => this.BY[s]?.name || this.data.files[s]?.[7] || s;
-  imgHQ(s: string): string[] { const m = this.media[s]; return (m?.hq?.length ? m.hq : this.img(s)); }
-  img(s: string): string[] { const m = this.media[s]; return (m?.bilder?.length ? m.bilder : this.BY[s]?.img) || []; }
+  /** Standbild eines geprüften Videos, falls ein Eintrag keine Bilder hat */
+  #vidImg(s: string, q: string) { return this.videos(s).slice(0, 3).map(v => `https://i.ytimg.com/vi/${v.id}/${q}.jpg`); }
+  imgHQ(s: string): string[] { const m = this.media[s]; return m?.hq?.length ? m.hq : m?.bilder?.length ? m.bilder : this.BY[s]?.img?.length ? this.BY[s].img! : this.#vidImg(s, "maxresdefault"); }
+  img(s: string): string[] { const m = this.media[s]; return m?.bilder?.length ? m.bilder : this.BY[s]?.img?.length ? this.BY[s].img! : this.#vidImg(s, "hqdefault"); }
   videos(s: string) { const v = this.media[s]?.videos || []; const yt = this.data.x.details[s]?.yt || []; const out = v.filter(x => x.status !== "nein" && x.status !== "review").slice(0, 3); for (const id of yt) if (!out.some(o => o.id === id)) out.push({ id, quelle: "beschreibung", punkte: 10 }); return out.slice(0, 4); }
   cost = (s: string) => (BOOST.has(s) ? 0 : ((COST as any)[s] ?? 1));
   implicit(s: string) { const m = this.BY[s]; return (IMPLICIT[s] || []).concat(m?.pt === "s" ? ["iris"] : []).concat(this.data.x.rpo[s] ? ["respackopts"] : []); }

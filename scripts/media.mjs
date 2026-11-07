@@ -112,14 +112,42 @@ for (const m of todoD) {
 }
 log.push(`yt-dlp-Suchen: ${nd}, mit Treffer: ${okD}, noch offen: ${Math.max(0, todoD.length - nd)}`);
 
+// ---------- Stufe E: Auflösung messen (nur Dateikopf laden), beste Bilder zuerst, Winzlinge raus ----------
+function dims(b) {
+  const u = new Uint8Array(b), dv = new DataView(b);
+  if (u[0] === 0x89 && u[1] === 0x50) return [dv.getUint32(16), dv.getUint32(20)];
+  if (u[0] === 0x47 && u[1] === 0x49) return [dv.getUint16(6, true), dv.getUint16(8, true)];
+  if (u[0] === 0x52 && u[8] === 0x57) { const t = String.fromCharCode(u[12], u[13], u[14], u[15]);
+    if (t === "VP8X") return [1 + (u[24] | u[25] << 8 | u[26] << 16), 1 + (u[27] | u[28] << 8 | u[29] << 16)];
+    if (t === "VP8L") { const b0 = u[21], b1 = u[22], b2 = u[23], b3 = u[24]; return [1 + (((b1 & 0x3f) << 8) | b0), 1 + (((b3 & 0xf) << 10) | (b2 << 2) | ((b1 & 0xc0) >> 6))]; }
+    if (t === "VP8 ") return [dv.getUint16(26, true) & 0x3fff, dv.getUint16(28, true) & 0x3fff]; }
+  if (u[0] === 0xff && u[1] === 0xd8) { let i = 2; while (i < u.length - 9) { if (u[i] !== 0xff) { i++; continue; } const m = u[i + 1]; if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) return [dv.getUint16(i + 7), dv.getUint16(i + 5)]; i += 2 + dv.getUint16(i + 2); } }
+  return null;
+}
+const DIMS = fs.existsSync("data/media-dims.json") ? JSON.parse(fs.readFileSync("data/media-dims.json", "utf8")) : {}; let measured = 0;
+for (const m of mods) {
+  const e = media[m.slug]; if (!e) continue;
+  const list = [...new Set([...(e.hq || []), ...(e.bilder || [])])];
+  for (const url of list.slice(0, 8)) {
+    if (DIMS[url] || measured > 2500) continue;
+    try { const r = await fetch(url, { headers: { Range: "bytes=0-131071", "User-Agent": "mc-modpack media" } }); if (!r.ok) { DIMS[url] = [0, 0]; continue; } DIMS[url] = dims(await r.arrayBuffer()) || [0, 0]; measured++; } catch { DIMS[url] = [0, 0]; }
+  }
+  const px = u => (DIMS[u] ? DIMS[u][0] : 0);
+  if (e.hq?.length) { const best = Math.max(...e.hq.map(px)); e.hq = e.hq.filter(u => px(u) === 0 || px(u) >= Math.min(960, best)).sort((a, b) => px(b) - px(a)); }
+  e.breite = Math.max(0, ...(e.hq || e.bilder || []).map(px));
+}
+fs.writeFileSync("data/media-dims.json", JSON.stringify(DIMS));
+log.push(`Auflösung gemessen: ${measured} Bilder`);
+
 // ---------- Ausgabe ----------
-for (const e of Object.values(media)) for (const v of e.videos || []) v.status = v.status || (v.punkte >= 5 ? "auto" : "review");
+for (const e of Object.values(media)) for (const v of (Array.isArray(e.videos) ? e.videos : [])) v.status = v.status || (v.punkte >= 5 ? "auto" : "review");
 // Visuelle Prüfung (Prüfbögen): data/video-review.json { "slug:videoId": "ok" | "nein" }
 const REV = fs.existsSync("data/video-review.json") ? JSON.parse(fs.readFileSync("data/video-review.json", "utf8")) : {};
 for (const [s, e] of Object.entries(media)) for (const v of e.videos || []) if (REV[s + ":" + v.id]) v.status = REV[s + ":" + v.id];
 fs.writeFileSync(OUT, JSON.stringify(media));
 const all = mods.map(m => media[m.slug] || {});
-const stat = { stand: new Date().toISOString(), eintraege: mods.length, mitBildern: all.filter(e => (e.bilder || []).length).length,
+const hd = all.filter(e => (e.breite || 0) >= 1280 || (e.videos || []).some(v => v.status === "auto" || v.status === "ok")).length;
+const stat = { stand: new Date().toISOString(), eintraege: mods.length, mitBildern: all.filter(e => (e.bilder || []).length).length, hdOderVideo: hd,
   mitVideoSicher: all.filter(e => (e.videos || []).some(v => v.status === "auto" || v.status === "ok")).length,
   mitVideoReview: all.filter(e => (e.videos || []).some(v => v.status === "review")).length, log };
 fs.writeFileSync("data/media-stand.json", JSON.stringify(stat, null, 1));
