@@ -31,7 +31,10 @@ Wunsch nicht gefunden: Rainbow Foliage
 Wunsch schon im Katalog: Texture Builder -> texture-builder
 Wunsch schon im Katalog: Fresh Flower Pots -> fresh-flower-pots
 Wunsch: Fresh Flower Pots Rotated -> fresh-flower-pots-rotated
-Gewünscht: fresh-flower-pots-rotated, kerria-opt, animaticam, animated-gui, exordium, ebe, figura, true-darkness, cave-dust, enhanced-attack-indicator, interactic, no-fade, better-third-person, leawind-third-person, cit-resewn, sodium-dynamic-lights, nyfs-spiders, effective, auditory, euphonium, mixintrace, highlight
+Wunsch: Immersive Interfaces Mod Support Unofficial -> immersive-interfaces-mod-support-unofficial (Immersive Interfaces - Mod Support Unofficial)
+Wunsch: Immersive Interfaces Mod Support -> immersive-interfaces-mod-support-unofficial
+Wunsch: Connected Rocks -> connected-rocks (Connected Rocks)
+Gewünscht: fresh-flower-pots-rotated, kerria-opt, animaticam, animated-gui, exordium, ebe, figura, true-darkness, cave-dust, enhanced-attack-indicator, interactic, no-fade, better-third-person, leawind-third-person, cit-resewn, sodium-dynamic-lights, nyfs-spiders, effective, auditory, euphonium, mixintrace, highlight, immersive-interfaces-mod-support-unofficial, connected-rocks
 keine 26.3-Datei: kerria-opt
 keine 26.3-Datei: animaticam
 keine 26.3-Datei: animated-gui
@@ -54,4 +57,4 @@ keine 26.3-Datei: euphonium
 keine 26.3-Datei: mixintrace
 keine 26.3-Datei: highlight
 CurseForge: 1004 mit 26.3-Fabric-Datei, 185 nicht auf Modrinth, ausgewählt: cinematic-interactions, studious-keybinds, timber-tales-dynamic-tree-system, improved-inventory-tabs, weather-glass, ping
-Neu: 502 Einträge, 494 Dateien
+Neu: 504 Einträge, 496 Dateien
