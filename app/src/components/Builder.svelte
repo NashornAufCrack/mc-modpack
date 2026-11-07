@@ -4,6 +4,7 @@
   import ModCard from "./ModCard.svelte";
   import Decision from "./Decision.svelte";
   import PackBar from "./PackBar.svelte";
+  import PerfPack from "./PerfPack.svelte";
   import type { Mod } from "../lib/data";
 
   const XF = [["sel", "Ausgewählt"], ["rec", "Empfohlen"], ["van", "Läuft auf Vanilla-Server"], ["sug", "Vom Assistenten"]] as const;
@@ -17,7 +18,7 @@
   const items = $derived.by(() => {
     const q = norm(ui.q.trim()); const f = ui.filters;
     return pack.data.mods.filter(m => (pack.data.files[m.slug] || m.cf) && (m.pt || "m") === ui.tab && (ui.tab !== "m" || !ui.sub || m.cat === ui.sub)
-      && (!q || norm(m.name + " " + m.sub + " " + m.notiz + " " + m.slug).includes(q))
+      && (!!q || !pack.LOCKED.has(m.slug)) && (!q || norm(m.name + " " + m.sub + " " + m.notiz + " " + m.slug).includes(q))
       && (!f.has("sel") || pack.sel.has(m.slug)) && (!f.has("rec") || m.rolle === "K") && (!f.has("van") || (m.ampel !== "R" && m.cat !== "S")) && (!f.has("sug") || pack.sug.has(m.slug)));
   });
   const groups = $derived(pack.data.dec.gruppen.filter(g => g.mods.some(s => items.some(m => m.slug === s))));
@@ -74,6 +75,7 @@
       <p class="note muted">{ui.tab === "m" && ui.sub ? CATS[ui.sub].n : TABNOTE[ui.tab]}</p>
     </div>
 
+    {#if ui.tab === "m" && (!ui.sub || ui.sub === "P") && !ui.q}<PerfPack />{/if}
     {#if groups.length}
       <h2 class="sec">Entscheidungen <span class="muted">· nur eins pro Gruppe</span></h2>
       <div class="dgrid">{#each groups as g (g.id)}<Decision {g} />{/each}</div>

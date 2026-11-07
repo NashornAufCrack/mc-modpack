@@ -90,6 +90,28 @@ if (YT) {
   }
 } else log.push("YouTube-Key: fehlt");
 
+// ---------- Stufe D: yt-dlp-Suche (kein API-Kontingent) für alles, was noch kein Video hat ----------
+import { execFileSync } from "node:child_process";
+const MAX_DLP = Number(process.env.MAX_DLP || 250);
+const has = m => { const e = media[m.slug] || {}; return (e.bilder || []).length || (e.videos || []).length; };
+const todoD = mods.filter(m => { const e = media[m.slug] || {}; return !e.dlp && !(e.videos || []).length; })
+  .sort((a, b) => Number(!!has(a)) - Number(!!has(b)) || Number(a.cat === "P") - Number(b.cat === "P") || (b.downloadsK || 0) - (a.downloadsK || 0));
+let nd = 0, okD = 0;
+for (const m of todoD) {
+  if (nd >= MAX_DLP) break; nd++;
+  const q = `${m.name} minecraft ${PT[m.pt || "m"]}`;
+  let j; try { j = JSON.parse(execFileSync("yt-dlp", ["--flat-playlist", "-J", "--no-warnings", `ytsearch8:${q}`], { encoding: "utf8", timeout: 60000, maxBuffer: 1 << 24 })); }
+  catch (e) { log.push(`yt-dlp Fehler bei ${m.slug}: ${String(e.stderr || e).slice(0, 160)}`); if (nd > 3 && !okD) break; continue; }
+  const e = (media[m.slug] ||= {}); e.dlp = new Date().toISOString().slice(0, 10);
+  const found = (j.entries || []).filter(v => v.id && v.duration).map(v => { const sv = { snippet: { title: v.title || "", description: v.description || "", channelTitle: v.channel || v.uploader || "" }, contentDetails: { duration: `PT${Math.floor(v.duration / 60)}M` } };
+    const s = score(m, sv); return { id: v.id, titel: v.title, kanal: sv.snippet.channelTitle, minuten: s.min, punkte: s.p, warum: s.why, quelle: "yt-dlp" }; })
+    .filter(v => v.punkte >= 3).sort((a, b) => b.punkte - a.punkte).slice(0, 3);
+  if (found.length) okD++;
+  e.videos = [...(e.videos || []).filter(v => v.quelle !== "yt-dlp"), ...found];
+  await sleep(400);
+}
+log.push(`yt-dlp-Suchen: ${nd}, mit Treffer: ${okD}, noch offen: ${Math.max(0, todoD.length - nd)}`);
+
 // ---------- Ausgabe ----------
 for (const e of Object.values(media)) for (const v of e.videos || []) v.status = v.status || (v.punkte >= 5 ? "auto" : "review");
 fs.writeFileSync(OUT, JSON.stringify(media));

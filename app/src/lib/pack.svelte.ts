@@ -6,7 +6,7 @@ export const IMPLICIT: Record<string, string[]> = {"fresh-animations":["entity-m
 export const PT_T: Record<string, string> = { m: "Mods", s: "Shader", r: "Resource Packs", d: "Datapacks" };
 export const PT_1: Record<string, string> = { m: "Mod", s: "Shader", r: "Resource Pack", d: "Datapack" };
 export const CATS: Record<string, { t: string; n: string }> = {
-  P: { t: "Leistung & Basis", n: "Macht das Spiel schneller und stabiler. Wird automatisch passend zu deinem PC gewählt." },
+  P: { t: "Leistung & Basis", n: "Das Leistungspaket ist immer dabei. Hier stehen nur Extras, die du zusätzlich wählen kannst." },
   V: { t: "Optik & Sound", n: "Verändert, wie das Spiel aussieht, klingt und sich anfühlt, nicht wie es funktioniert. Läuft auf jedem Server." },
   G: { t: "Gameplay", n: "Ändert Regeln oder bringt Inhalte. Meist muss die Mod auch auf dem Server sein." },
   T: { t: "Welt & Terrain", n: "Verändert die Weltgenerierung. Wirkt nur in neuen Gebieten oder neuen Welten." },
@@ -86,7 +86,7 @@ class Pack {
   resetCv(slug: string, k: string) { const c = { ...(this.cfg[slug] || {}) }; delete c[k]; this.cfg = { ...this.cfg, [slug]: c }; this.save(); }
   autoVal(slug: string, file: string, k: string) { return this.data.x.prules.find(p => p.slug === slug && p.file === file && p.k === k && p.wenn.every((s: string) => this.sel.has(s))); }
   ramGB(r = this.resolve()) { const n = r.mods.size + r.libs.size; let g = n < 60 ? 4 : n < 120 ? 6 : n < 250 ? 8 : 10; if (r.mods.has("voxy") || r.mods.has("distanthorizons")) g += 1; if (r.mods.has("faithful-64x")) g += 1; const sys = Number(this.wiz.ram || 0); if (sys) g = Math.min(g, Math.floor(sys / 2)); return Math.max(3, Math.min(g, 12)); }
-  load_() { const c = [...this.resolve().mods].reduce((a, s) => a + this.cost(s), 0); return { c, l: c < 15 ? "Leicht" : c < 30 ? "Mittel" : "Schwer", t: c < 15 ? "ok" : c < 30 ? "warn" : "bad" }; }
+  load_() { const c = [...this.resolve().mods].filter(s => !this.LOCKED.has(s)).reduce((a, s) => a + this.cost(s), 0); return { c, l: c < 15 ? "Leicht" : c < 30 ? "Mittel" : "Schwer", t: c < 15 ? "ok" : c < 30 ? "warn" : "bad" }; }
   // Speicherung
   save() { try { localStorage.setItem("mk-v3", JSON.stringify({ s: [...this.sel], c: this.cfg, w: this.wiz, p: this.preset })); } catch {} }
   load() {
