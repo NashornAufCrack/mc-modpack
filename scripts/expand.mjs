@@ -69,13 +69,13 @@ for (const q of WANT_Q) {
       if (c) { const fr = await fetch(`https://api.curseforge.com/v1/mods/${c.id}/files?gameVersion=26.3&pageSize=50`, { headers: { "x-api-key": CF } }); const fl = fr.ok ? (await fr.json()).data : [];
         const f = fl.filter(f => f.releaseType !== 3 && (c.classId !== 6 || f.gameVersions.includes("Fabric"))).sort((a, b) => b.id - a.id)[0];
         if (f) cfHit = { slug: c.slug, name: c.name, dl: c.downloadCount, desc: c.summary, url: c.links?.websiteUrl, bilder: (c.screenshots || []).map(x => x.url), verteilen: c.allowModDistribution, pt: c.classId === 12 ? "r" : c.classId === 6552 ? "s" : "m",
-          datei: { url: f.downloadUrl, name: f.fileName, sha1: (f.hashes || []).find(x => x.algo === 1)?.value, size: f.fileLength, versionen: f.gameVersions } };
+          datei: { id: f.id, url: f.downloadUrl, name: f.fileName, sha1: (f.hashes || []).find(x => x.algo === 1)?.value, size: f.fileLength, versionen: f.gameVersions } };
         else log.push(`Wunsch ${q}: CurseForge-Projekt ${c.slug} hat keine 26.3-Fabric-Datei`); } }
     if (CF && !cfHit) { const cr = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&searchFilter=${encodeURIComponent(q)}&pageSize=20&sortField=2&sortOrder=desc`, { headers: { "x-api-key": CF } });
       if (cr.ok) for (const c of (await cr.json()).data) { if (!fits(q, c.name) && !fits(q, c.slug)) continue;
         const f = (c.latestFiles || []).filter(f => f.gameVersions.includes("26.3") && (c.classId !== 6 || f.gameVersions.includes("Fabric"))).sort((a, b) => b.id - a.id)[0];
         if (f) { cfHit = { slug: c.slug, name: c.name, dl: c.downloadCount, desc: c.summary, url: c.links?.websiteUrl, bilder: (c.screenshots || []).map(x => x.url), verteilen: c.allowModDistribution, pt: c.classId === 12 ? "r" : c.classId === 6552 ? "s" : "m",
-          datei: { url: f.downloadUrl, name: f.fileName, sha1: (f.hashes || []).find(x => x.algo === 1)?.value, size: f.fileLength, versionen: f.gameVersions } }; break; } } }
+          datei: { id: f.id, url: f.downloadUrl, name: f.fileName, sha1: (f.hashes || []).find(x => x.algo === 1)?.value, size: f.fileLength, versionen: f.gameVersions } }; break; } } }
     if (cfHit) { if (have.has(cfHit.slug)) { log.push(`Wunsch schon im Katalog (CF): ${q}`); continue; } cfWish.push(cfHit); log.push(`Wunsch: ${q} -> CurseForge ${cfHit.slug}`); continue; }
     // nicht für 26.3: trotzdem melden, welche Versionen es gibt
     const any = (await mr(`/search?limit=10&query=${encodeURIComponent(q)}`)).hits.find(x => fits(q, x.title) || fits(q, x.slug));
@@ -123,6 +123,8 @@ log.push(`CurseForge: ${cfC.length} mit 26.3-Fabric-Datei, ${cfC.length - onMR.s
 fs.mkdirSync("cf", { recursive: true }); // vorhandene Spiegel bleiben erhalten (Katalog verweist darauf)
 for (const c of cfPick) {
   const f = c.datei; let url = f.url, sha1 = f.sha1, sha512 = null, size = f.size;
+  // Autor sperrt die API-Weitergabe: privates Projekt, Datei direkt vom CurseForge-CDN holen
+  if (!f.url && f.id) f.url = `https://mediafilez.forgecdn.net/files/${Math.floor(f.id / 1000)}/${f.id % 1000}/${encodeURIComponent(f.name)}`;
   if (f.url) { // privates Projekt: gewünschte Mods werden immer gespiegelt
     try { const r = await fetch(f.url); if (!r.ok) throw new Error(r.status); const buf = Buffer.from(await r.arrayBuffer());
       const name = f.name.replace(/[^\w.+-]+/g, "_"); fs.writeFileSync("cf/" + name, buf);
