@@ -1,0 +1,19 @@
+name: Prüfseite
+# Bildbögen und Daten für die Video-Prüfseite (Artifact). Danach veröffentlicht Claude die Seite neu.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: pruefseite
+jobs:
+  boegen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q pillow && python3 scripts/pruefseite.py
+      - run: |
+          git config user.name "pruefseite"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A pruefung
+          git diff --cached --quiet || git commit -m "Prüfseite $(date +%F)"
+          for i in 1 2 3 4; do git pull --rebase -X theirs -q && git push && break; sleep $((i*7)); done
