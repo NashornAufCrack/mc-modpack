@@ -1,5 +1,16 @@
 # Umbau-Plan Mod-Katalog 26.3
 
+## Audit, Optimierung & Feature-Liste (08.11.2026)
+
+Vollständige Durchsicht von Website-Code, Abläufen, Katalogdaten und Medien, mit Browser-Tests (Playwright, axe) und einem unabhängigen Zweitprüfer. Details, Fehlertabelle und Feature-Liste: Dokument „Mod-Katalog 26.3 – Audit, Optimierung & Feature-Liste“ (https://claude.ai/artifact/Wa5jeWL9xwzzEuM6n6NCqZ).
+
+- 29 Fehler behoben, 8 davon schwer (Datapacks im Export, doppelte Dateinamen, Abhängigkeiten als Projekt-IDs, Update-Check verwarf neue Pflicht-Abhängigkeiten, Teilen-Links, Sackgasse bei Konflikten mit festen Mods, Shader-Ausschluss Pegasus/Photon).
+- 127 Beschreibungen übersetzt, Datenprüfung 0 Fehler, Browser-Tests 0 Fehler, axe 0 Verstöße, Typprüfung 0 Fehler.
+- Neu: Ablauf „Prüfung“ (.github/workflows/pruefung.yml) nach jeder Änderung und nach jedem Update-Check; Prüfwerkzeuge in `qa/` (datacheck.py, e2e.js).
+- Update-Check: lädt neue Pflicht-Abhängigkeiten nach oder hält das Update zurück, schreibt `quelle/files.json` mit, rechnet bei Push-Konflikt neu. `build.py` gleicht deshalb nicht mehr mit `data/files.json` ab.
+- Medien: schlanke `data/media-app.json` für die Website; vorübergehende Fehler werden bis zu 3-mal wiederholt.
+- Offen: 79 Einträge ohne HD-Medien, 409 Videos in Prüfung, 4 Fragen und 18 Feature-Ideen zum Entscheiden.
+
 ## Aktueller Stand und Planänderung (07.11.2026, abends)
 
 **Gestrichen (deine Entscheidung 17:18):** alle Config- und Tastatur-Funktionen (Abschnitte 5 und 6 unten sind nur noch Archiv). Assistent, Auswahl und Resource-Pack-Sortierung bleiben unverändert.
@@ -28,7 +39,7 @@
   - Vorschläge für neue gehypte Mods, aufgenommen erst nach deiner Zustimmung
 - Katalog-Quelle liegt jetzt im Repo unter `quelle/`, damit auch neue Sitzungen weiterarbeiten können.
 
-**Wünsche ohne 26.3-Version (Stand 07.11.):** Pog's Fresher Ores (26.2), Voxy SeedGen (26.2), Soft Leaves (26.2), Road Weaver (1.21.11), Portal Glimpse (1.21.1), Timber Tales (nicht als Mod gefunden), Weather Glass und Rainbow Foliage Vanilla (nicht gefunden). Ebenso fehlen Kerria, Figura, AnimatiCam, Exordium, Better Third Person, Sodium Dynamic Lights und Cave Dust.
+**Wünsche ohne 26.3-Version (Stand 07.11.):** Pog's Fresher Ores (26.2), Voxy SeedGen (26.2), Soft Leaves (26.2), Road Weaver (1.21.11), Portal Glimpse (1.21.1). Timber Tales, Weather Glass und Rainbow's Foliage sind inzwischen im Katalog. Ebenso fehlen Kerria, Figura, AnimatiCam, Exordium, Better Third Person, Sodium Dynamic Lights und Cave Dust.
 
 **Offen:** Zukunftsplan für die nächste Minecraft-Version (besprechen wir die Tage).
 
@@ -39,6 +50,6 @@
 - **Design:** ruhiges dunkles Design (hell wählbar), links Katalog, rechts dauerhaft die Pack-Leiste. Startseite = Builder mit Assistent, Vorlagen und Suche.
 - **Entscheidungs-Karten** im Builder statt eigenem Tab. Assistent als Schritt-für-Schritt-Dialog mit Vorschau. Vorlagen-Banner mit Änderungen.
 - **Konflikte in vier Stufen:** inkompatibel (gesperrt) · gleiche Funktion (nur eins) · Teilüberschneidung (Hinweis) · passt gut zusammen.
-- **Ideen für später:** Installations-Anleitung mit Bildern, Crash-Log-Erklärung, Leistungskosten aus echten Messungen, Vorher/Nachher-Schieberegler, Pack-Versionen vergleichen.
+- **Ideen für später:** jetzt gesammelt in der Feature-Liste des Audit-Dokuments (18 Ideen mit Entscheidungs-Spalte).
 - **Review-Zeit:** samstags ab 16 Uhr (1–2 Std.).
 - **Gestrichen:** Config-Editor, Tastatur/Maus-Ansicht, Headless-Config-Pipeline.
