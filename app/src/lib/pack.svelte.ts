@@ -16,7 +16,7 @@ export const CATS: Record<string, { t: string; n: string }> = {
   B: { t: "Bedienung & HUD", n: "Anzeigen, Inventar, Menüs und Steuerung, z. B. AppleSkin, Jade, Mouse Tweaks. Läuft auf jedem Server." },
   G: { t: "Gameplay", n: "Ändert Regeln oder bringt Inhalte. Meist muss die Mod auch auf dem Server sein." },
   T: { t: "Welt & Terrain", n: "Verändert die Weltgenerierung. Wirkt nur in neuen Gebieten oder neuen Welten." },
-  S: { t: "Server & Technik", n: "Werkzeuge für Server und Technik-Spieler. Harmlose kommen beim Server-Pack automatisch dazu; AutoModpack, Chunky Offline und TT20 nur, wenn du sie wählst." },
+  S: { t: "Server & Technik", n: "Werkzeuge für Server und Technik-Spieler. Beim Server-Pack sind die harmlosen vorausgewählt, AutoModpack, Chunky Offline und TT20 nur auf Wunsch; dort lässt sich jedes einzeln an- und abwählen." },
 };
 export const PRESETS = [
   { id: "perf", name: "Nur Performance", text: "Maximale FPS, Vanilla-Optik. Ideal für schwache PCs oder PvP." },
@@ -98,7 +98,12 @@ class Pack {
   typ(s: string) { return this.BY[s]?.pt || this.data.files[s]?.[8] || "m"; }
   implicit(s: string) { const t = this.typ(s); const alt = ONE_OF[s]; const base = alt ? (alt.some(a => this.sel.has(a)) ? [] : [alt[0]]) : (IMPLICIT[s] || []); return base.concat(t === "s" ? ["iris"] : []).concat(t === "d" ? ["globalpacks"] : []).concat(this.data.x.rpo[s] ? ["respackopts"] : []); }
   /** Tipps (Beziehungen „Testen“) für Einträge, die gemeinsam im Pack sind */
-  tips(r = this.resolve()) { return this.data.dec.beziehungen.filter(b => b.art === "T" && b.mods.filter(x => r.mods.has(x)).length >= 2).map(b => ({ mods: b.mods.filter(x => r.mods.has(x)), text: b.text })); }
+  tips(r = this.resolve()) {
+    const t: { mods: string[]; text: string }[] = this.data.dec.beziehungen.filter(b => b.art === "T" && b.mods.filter(x => r.mods.has(x)).length >= 2).map(b => ({ mods: b.mods.filter(x => r.mods.has(x)), text: b.text }));
+    // Shader ohne (sichere) Voxy-Unterstützung zusammen mit Voxy
+    if (r.mods.has("voxy")) for (const s of r.mods) { const v = this.BY[s]?.voxy; if (v && v.s !== "ja") t.push({ mods: ["voxy", s], text: v.t }); }
+    return t;
+  }
   resolve(sel: Set<string> = this.sel) {
     const mods = new Set<string>(), libs = new Set<string>(); const stack = [...sel];
     while (stack.length) { const s = stack.pop()!; if (mods.has(s) || libs.has(s) || DEP_IGNORE.has(s)) continue; const f = this.data.files[s]; if (!f) continue; (this.BY[s] ? mods : libs).add(s); for (const d of f[5].concat(this.implicit(s))) stack.push(d); }
@@ -145,6 +150,11 @@ class Pack {
   resetCv(slug: string, k: string) { const c = { ...(this.cfg[slug] || {}) }; delete c[k]; this.cfg = { ...this.cfg, [slug]: c }; this.save(); }
   ramGB(r = this.resolve(), sys = Number(this.wiz.ram || 0)) { const n = r.mods.size + r.libs.size; let g = n < 60 ? 4 : n < 120 ? 6 : n < 250 ? 8 : 10; if (r.mods.has("voxy") || r.mods.has("distanthorizons")) g += 1; if (r.mods.has("faithful-64x")) g += 1; if (sys) g = Math.min(g, Math.floor(sys / 2)); return Math.max(3, Math.min(g, 12)); }
   load_() { const c = [...this.resolve().mods].filter(s => !this.LOCKED.has(s)).reduce((a, s) => a + this.cost(s), 0); return { c, l: c < 15 ? "Leicht" : c < 30 ? "Mittel" : "Schwer", t: c < 15 ? "ok" : c < 30 ? "warn" : "bad" }; }
+  // Server-Pack: Werkzeuge einzeln wählbar. Vorauswahl: harmlose ja, „nichtAuto“ nur, wenn im Pack gewählt
+  srvTools(r = this.resolve()) { return this.data.mods.filter(m => m.cat === "S" && this.data.files[m.slug] && (m.slug !== "voxy-server-side" || r.mods.has("voxy"))); }
+  srvDefault(s: string, r = this.resolve()) { return r.mods.has(s) || !this.BY[s]?.nichtAuto; }
+  srvOn(s: string, r = this.resolve()) { const o = this.cfg._srv?.[s]; return typeof o === "boolean" ? o : this.srvDefault(s, r); }
+  setSrv(s: string, on: boolean) { const c = { ...(this.cfg._srv || {}) }; if (on === this.srvDefault(s)) delete c[s]; else c[s] = on; this.cfg = { ...this.cfg, _srv: c }; this.save(); }
   // Speicherung
   save() { try { localStorage.setItem("mk-v3", JSON.stringify({ s: [...this.sel], c: this.cfg, w: this.wiz, p: this.preset })); } catch {} }
   load() {

@@ -3,13 +3,16 @@
   import { pack } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
   import { plan, applyPlan, shaderChoices } from "../lib/wizard";
+  import { detectGpu, weakGpu, type Gpu } from "../lib/gpu";
   let open = $state(false);
   $effect(() => { open = ui.wizard; });
   let w: Record<string, any> = $state({});
   let step = $state(0);
   // Fortschritt bleibt erhalten, wenn der Dialog versehentlich geschlossen wird; neu ab Schritt 1 erst nach „Übernehmen“
   let started = false;
-  $effect(() => { if (ui.wizard && !started) { w = { w: 2560, h: 1440, hz: 144, ...pack.wiz }; step = 0; started = true; } });
+  let gpu: Gpu = $state({ name: "", vendor: "" });
+  $effect(() => { if (ui.wizard && !started) { gpu = detectGpu(); w = { w: 2560, h: 1440, hz: 144, ...(gpu.vendor ? { vendor: gpu.vendor } : {}), ...pack.wiz }; step = 0; started = true; } });
+  const weak = $derived(weakGpu(w));
   type Q = { k: string; t: string; ex: string; img?: string; o?: [string, string, string?][] };
   const Qs: Q[] = [
     { k: "srv", t: "Wo spielst du?", ex: "Auf einem normalen Server dürfen nur Mods laufen, die allein auf deinem PC arbeiten. Gameplay- und Welt-Mods bräuchten die Mod auch auf dem Server.", o: [["vanilla", "Auf dem Vanilla-Server von Freunden", "Nur Optik, Sound und Komfort"], ["own", "Einzelspieler oder eigener Server", "Alles möglich, auch Gameplay und Welt"]] },
@@ -18,8 +21,8 @@
     { k: "ram", t: "Wie viel Arbeitsspeicher hat dein PC?", ex: "Minecraft bekommt davon höchstens die Hälfte, damit Windows, Browser und Discord flüssig bleiben. Zu finden unter Windows › Einstellungen › System › Info.", o: [["8", "8 GB"], ["16", "16 GB"], ["32", "32 GB"], ["64", "64 GB oder mehr"]] },
     { k: "mon", t: "Dein Monitor", ex: "Auflösung und Bildwiederholrate bestimmen, wie viel die Grafikkarte leisten muss und wo das FPS-Limit liegt." },
     { k: "fps", t: "Was ist dir wichtiger?", ex: "Mehr FPS fühlen sich flüssiger an. Weniger FPS erlauben schönere Grafik.", o: [["hz", "Flüssig", "So viele FPS, wie der Monitor zeigen kann"], ["60", "Schön", "Stabile 60 FPS reichen, dafür mehr Grafik"]] },
-    { k: "shader", t: "Shader verwenden?", ex: "Shader berechnen Licht, Schatten, Wasser und Himmel neu. Das sieht viel schöner aus, kostet aber am meisten Leistung.", img: "photon-shader", o: [["yes", "Ja, Shader"], ["no", "Nein, lieber mehr FPS"]] },
     { k: "lod", t: "Fernsicht?", ex: "Voxy zeigt Berge und Landschaft weit hinter der normalen Sichtweite als vereinfachtes Modell. Braucht etwas Grafikspeicher.", img: "voxy", o: [["voxy", "Ja, weite Fernsicht"], ["none", "Nein"]] },
+    { k: "shader", t: "Shader verwenden?", ex: "Shader berechnen Licht, Schatten, Wasser und Himmel neu. Das sieht viel schöner aus, kostet aber am meisten Leistung.", img: "photon-shader", o: [["yes", "Ja, Shader"], ["no", "Nein, lieber mehr FPS"]] },
     { k: "anim", t: "Animierte Hände und Items?", ex: "Punchy animiert deine Hände in der Ego-Sicht: Schwerter schwingen, Essen wird zum Mund geführt, Tränke getrunken.", img: "punchy-fpa", o: [["punchy", "Ja, mit Punchy"], ["none", "Nein, wie Vanilla"]] },
     { k: "feel", t: "Wie nah an Vanilla?", ex: "Bestimmt, wie viele Vorschläge über Optik hinausgehen.", o: [["pure", "Fast wie Vanilla, nur schöner"], ["plus", "Vanilla+ mit Komfort"], ["more", "Gern auch neue Inhalte"]] },
   ];
@@ -27,7 +30,8 @@
   const q = $derived(Qs[step]);
   const answered = $derived(step >= N || (q.k === "mon" ? Number(w.w) > 0 && Number(w.h) > 0 && Number(w.hz) > 0 && !!w.sync : !!w[q.k] && (q.k !== "shader" || w.shader === "no" || !!w.shaderpack)));
   const preview = $derived(step >= N ? plan(w) : null);
-  function choose(k: string, v: string) { w[k] = v; if (k === "shader" && v === "yes" && !w.shaderpack) w.shaderpack = shaderChoices(w)[0][0]; }
+  function choose(k: string, v: string) { w[k] = v; if (w.shader === "yes" && (k === "shader" || k === "lod")) { const c = shaderChoices(w); if (!c.some(x => x[0] === w.shaderpack)) w.shaderpack = c[0][0]; } }
+  function light() { started = false; pack.applyPreset("perf"); ui.wizard = false; ui.say("Vorlage „Nur Performance“ übernommen. Ergänze nur, was du wirklich willst.", true); }
   function finish() { started = false; const p = applyPlan(w); ui.wizard = false; ui.filters = new Set(["sug"]); ui.say(`Fertig: ${p.add.length} Vorschläge übernommen, FPS-Limit ${p.fps}`, true); }
 </script>
 
@@ -50,8 +54,12 @@
       <div class="opts" role="radiogroup" aria-label={q.t}>
         {#each q.o! as [v, l, d]}<button class="opt" role="radio" aria-checked={w[q.k] === v} onclick={() => choose(q.k, v)}><b>{l}</b>{#if d}<span class="muted">{d}</span>{/if}</button>{/each}
       </div>
+      {#if q.k === "vendor" && gpu.name}<p class="small muted detect">Dein Browser meldet: <b>{gpu.name}</b>{gpu.vendor ? " (vorausgewählt)" : ""}. Bei Laptops mit zwei Grafikchips ist das oft der schwächere; dann selbst wählen.</p>{/if}
+      {#if (q.k === "shader" || q.k === "lod") && weak}
+        <div class="gwarn" role="note"><b>Eher nicht bei deiner Grafik.</b> {q.k === "shader" ? "Mit Intel-, Laptop- oder Einsteiger-Grafik laufen Shader meist unter 30 FPS und das Spiel ruckelt." : "Fernsicht braucht Grafikspeicher, den Intel-, Laptop- und Einsteiger-Grafik kaum hat. Ohne läuft es deutlich flüssiger."} Empfehlung: <b>Nein</b>.</div>
+      {/if}
       {#if q.k === "shader" && w.shader === "yes"}
-        <h4>Welcher Shader? <span class="muted">passend zu deinem PC sortiert</span></h4>
+        <h4>Welcher Shader? <span class="muted">passend zu deinem PC sortiert{w.lod === "voxy" ? ", nur mit Fernsicht-Unterstützung" : ""}</span></h4>
         <div class="opts">
           {#each shaderChoices(w) as [s, n, t], i}<button class="opt" aria-pressed={w.shaderpack === s} onclick={() => (w.shaderpack = s)}><b>{n} {#if i === 0}<span class="badge ok">empfohlen</span>{/if}</b><span class="muted">{t}</span></button>{/each}
         </div>
@@ -66,6 +74,12 @@
       {#if w.lod !== "none"}<li>Fernsicht: <b>Voxy</b></li>{/if}
       <li>Deine bisherige Auswahl wird ersetzt (Rückgängig ist möglich).</li>
     </ul>
+    {#if weak}
+      <div class="gwarn" role="note">
+        <b>Tipp für deine Grafik:</b> {w.shader === "yes" || w.lod !== "none" ? "Shader und Fernsicht sind auf Intel-, Laptop- oder Einsteiger-Grafik sehr schwer. " : ""}Am flüssigsten startest du mit der leichten Vorlage „Nur Performance“ und ergänzt dann nur, was du wirklich willst.
+        <button class="btn sm" onclick={light}>Leichte Vorlage nehmen</button>
+      </div>
+    {/if}
     <details><summary>Alle {preview.add.length} Vorschläge ansehen</summary><ul class="list">{#each preview.add as s}<li>{pack.name(s)} <span class="muted">– {preview.why[s]}</span></li>{/each}</ul></details>
   {/if}
   {#snippet foot()}
@@ -88,6 +102,8 @@
   .opt b { display: flex; gap: .4rem; align-items: center; font-weight: 600; } .opt span { font-size: .84rem; }
   .mon { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; margin-bottom: .3rem; } .mon label { display: grid; gap: .25rem; font-size: .82rem; color: var(--muted); }
   .small { font-size: .8rem; margin: 0 0 .8rem; }
+  .detect { margin: .6rem 0 0; }
+  .gwarn { margin-top: .8rem; padding: .65rem .8rem; border-radius: 10px; border: 1px solid var(--warn); background: var(--warn-soft); font-size: .88rem; display: grid; gap: .45rem; justify-items: start; }
   .sum { padding-left: 1.1rem; display: grid; gap: .3rem; } .list { font-size: .85rem; max-height: 14rem; overflow: auto; }
   @media (max-width: 540px) { .mon { grid-template-columns: minmax(0, 1fr); } }
 </style>

@@ -32,6 +32,7 @@
     <div class="meta">
       {#if lk}<span class="badge ok">immer dabei</span>{:else if bl}<span class="badge bad" title="Verträgt sich nicht mit {bl.map(y => pack.name(y)).join(', ')} aus dem Leistungspaket">nicht wählbar</span>{:else if m.rolle === "K"}<span class="badge ok">empfohlen</span>{/if}
       {#if fromPreset}<span class="badge preset" title="Kommt aus der gewählten Vorlage">Vorlage</span>{:else if on && pack.preset && !lk}<span class="badge info" title="Von dir hinzugefügt">+ von dir</span>{/if}
+      {#if m.pt === "s" && m.voxy}<span class="badge {m.voxy.s === 'ja' ? 'ok' : m.voxy.s === 'nein' ? 'bad' : 'plain'}" title={m.voxy.t}>{m.voxy.s === "ja" ? "mit Voxy" : m.voxy.s === "nein" ? "ohne Voxy" : "Voxy unklar"}</span>{/if}
       {#if snd.length}<span class="badge info">♪ Hörprobe</span>{/if}
       {#if (m as any).neu}<span class="badge info">neu</span>{/if}
       {#if m.cf}<span class="badge plain">CurseForge</span>{/if}

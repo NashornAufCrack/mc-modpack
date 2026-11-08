@@ -1,6 +1,7 @@
 name: Prüfung
 # Prüft nach jeder Änderung an Website oder Katalogdaten und nach jedem Update-Check,
-# ob Daten stimmig sind, die Website baut und alle Abläufe inkl. Exporte funktionieren. Schreibt nichts ins Repo.
+# ob Daten stimmig sind, die Website baut und alle Abläufe inkl. Exporte funktionieren.
+# Ist alles grün, veröffentlicht er den geprüften Build (neu/) selbst – ein lokaler Build ist nicht mehr nötig.
 on:
   push:
     paths:
@@ -15,7 +16,7 @@ on:
     types: [completed]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: pruefung
   cancel-in-progress: true
@@ -48,3 +49,20 @@ jobs:
           name: pruefbericht
           path: qa/out/e2e-report.json
           if-no-files-found: ignore
+      - name: "Website veröffentlichen (nur wenn alles grün ist)"
+        if: success() && github.ref == 'refs/heads/main'
+        run: |
+          git add neu
+          if git diff --cached --quiet; then echo "Website unverändert."; exit 0; fi
+          git -c user.name=website-build -c user.email=41898282+github-actions[bot]@users.noreply.github.com \
+            commit -q -m "Website gebaut ($(git rev-parse --short HEAD))"
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main
+            # neuere Website-Quellen auf main: der nächste Prüflauf baut und veröffentlicht sie
+            if ! git diff --quiet HEAD~1 origin/main -- app; then echo "Neuere Quellen auf main – der nächste Lauf veröffentlicht."; exit 0; fi
+            if git diff --quiet HEAD origin/main -- neu; then echo "Schon veröffentlicht."; exit 0; fi
+            if git rebase -q origin/main && git push -q origin HEAD:main; then echo "Website veröffentlicht."; exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 5))
+          done
+          echo "Veröffentlichen fehlgeschlagen"; exit 1

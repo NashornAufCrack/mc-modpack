@@ -8,7 +8,7 @@ export function gpuScore(w: Record<string, any>) {
   const px = (Number(w.w || 2560) * Number(w.h || 1440)) / (2560 * 1440);
   return Math.max(0, Math.min(3, g - (px > 1.6 ? 1 : px < 0.7 ? -1 : 0) + ((w.fps || "hz") === "60" ? 1 : 0) - (Number(w.hz || 144) > 165 ? 1 : 0)));
 }
-export function shaderChoices(w: Record<string, any>) { const sc = gpuScore(w); const l = SHADERS.filter(x => pack.BY[x[0]] && x[3] <= sc).sort((a, b) => b[3] - a[3]); return l.length ? l : SHADERS.filter(x => x[0] === "i-like-vanilla"); }
+export function shaderChoices(w: Record<string, any>) { const sc = gpuScore(w); const vx = w.lod === "voxy"; const l = SHADERS.filter(x => pack.BY[x[0]] && x[3] <= sc && (!vx || pack.BY[x[0]].voxy?.s === "ja")).sort((a, b) => b[3] - a[3]); return l.length ? l : SHADERS.filter(x => x[0] === "i-like-vanilla"); }
 export function plan(w: Record<string, any>) {
   const sc = gpuScore(w), hz = Number(w.hz || 144), fpsHigh = (w.fps || "hz") === "hz";
   const P = [{ sm: 1024, sd: 96, cl: false, wc: false, taau: true, vx: 8, rd: 10 }, { sm: 2048, sd: 128, cl: false, wc: true, taau: false, vx: 12, rd: 12 }, { sm: 2048, sd: 160, cl: true, wc: true, taau: false, vx: 16, rd: 16 }, { sm: 3072, sd: 192, cl: true, wc: true, taau: false, vx: 24, rd: 16 }][sc];

@@ -43,7 +43,7 @@ async function axe(p, label) {
 }
 
 // ---------- Export prüfen ----------
-async function validateMrpack(buf, label, { server = false } = {}) {
+async function validateMrpack(buf, label, { server = false, allow = [] } = {}) {
   const z = await JSZip.loadAsync(buf);
   const idx = JSON.parse(await z.file('modrinth.index.json').async('string'));
   const info = { files: idx.files.length, overrides: Object.keys(z.files).filter(f => f.startsWith('overrides/') && !z.files[f].dir) };
@@ -72,7 +72,7 @@ async function validateMrpack(buf, label, { server = false } = {}) {
   // Harte Konflikte
   for (const b of DATA.dec.beziehungen || []) if ((b.art === 'K' || b.art === 'D') && b.mods.length === 2 && b.mods.every(s => slugs.has(s))) fail(label + ' Konfliktpaar', `${b.mods.join(' + ')} (${b.art})`);
   // Server-Pack: keine reinen Client-Mods
-  if (server) for (const s of slugs) { const m = BY[s]; if (m && m.ampel === 'G' && (m.pt || 'm') === 'm') warn(label + ' Client-Mod im Server-Pack', s); if (m && m.nichtAuto) fail(label + ' Werkzeug nur auf Wunsch, trotzdem im Server-Pack', s); }
+  if (server) for (const s of slugs) { const m = BY[s]; if (m && m.ampel === 'G' && (m.pt || 'm') === 'm') warn(label + ' Client-Mod im Server-Pack', s); if (m && m.nichtAuto && !allow.includes(s)) fail(label + ' Werkzeug nur auf Wunsch, trotzdem im Server-Pack', s); }
   // options.txt: Resource-Pack-Reihenfolge passt zu den Dateien
   const opt = z.file('overrides/options.txt') ? await z.file('overrides/options.txt').async('string') : null;
   if (!server) {
@@ -145,7 +145,16 @@ async function download(p, buttonText) {
       const m = await download(p, 'Modpack-Datei (.mrpack)');
       await validateMrpack(m.buf, 'mrpack ' + preset);
       if (preset === 'Vanilla Plus') {
-        const s = await download(p, 'Server-Pack (.mrpack)'); await validateMrpack(s.buf, 'server ' + preset, { server: true });
+        const s = await download(p, 'Server-Pack (.mrpack)'); const sv0 = await validateMrpack(s.buf, 'server ' + preset, { server: true });
+        if (!sv0.slugs.has('carpet')) fail('Carpet fehlt im Server-Pack (harmlose Werkzeuge sind vorausgewählt)');
+        // Server-Werkzeuge einzeln wählbar: Mob Filter ab, TT20 an
+        await p.locator('details.srv summary').click();
+        await p.locator('details.srv label', { hasText: 'Mob Filter' }).locator('input').uncheck();
+        await p.locator('details.srv label', { hasText: 'TT20' }).locator('input').check();
+        const sv1 = await validateMrpack((await download(p, 'Server-Pack (.mrpack)')).buf, 'server Auswahl', { server: true, allow: ['tt20'] });
+        if (sv1.slugs.has('mobfilter')) fail('Abgewähltes Werkzeug trotzdem im Server-Pack', 'mobfilter');
+        if (!sv1.slugs.has('tt20')) fail('Gewähltes Werkzeug fehlt im Server-Pack', 'tt20');
+        R.info.serverAuswahl = await p.locator('details.srv summary').textContent();
         // Prism: externe Jars werden durch Platzhalter ersetzt
         const [dl] = await Promise.all([p.waitForEvent('download', { timeout: 180000 }), p.getByRole('button', { name: 'Komplette Prism-Instanz (.zip)' }).click()]);
         const fp = path.join(OUT, dl.suggestedFilename()); await dl.saveAs(fp);
@@ -176,8 +185,8 @@ async function download(p, buttonText) {
       await pick('32 GB'); await next();
       await pick('G-Sync / FreeSync vorhanden'); await next();
       await pick('Flüssig'); await next();
-      await pick('Ja, Shader'); await next();
       await pick('Ja, weite Fernsicht'); await next();
+      await pick('Ja, Shader'); await next();
       await pick('Ja, mit Punchy'); await next();
       await pick('Vanilla+ mit Komfort'); await next();
       R.info.wizardPreview = await p.locator('dialog[open] .sum').innerText().catch(() => '');
@@ -228,6 +237,36 @@ async function download(p, buttonText) {
       await p.getByRole('button', { name: 'Alles zurücksetzen' }).click(); await p.getByRole('button', { name: /Wirklich alles löschen/ }).click(); await p.waitForTimeout(300);
       R.info.afterReset = await stats(p);
       if (p._errs.length) fail('Fehler im Assistent-Ablauf', p._errs);
+      await ctx.close();
+    }
+
+    // ---------- 3b. Assistent bei schwacher Grafik: Warnung + leichte Vorlage; Voxy-Hinweise bei Shadern ----------
+    {
+      const { ctx, p } = await newPage(browser, { viewport: { width: 1280, height: 900 } });
+      await ready(p);
+      await p.getByRole('button', { name: /Assistent starten/ }).click();
+      await p.waitForSelector('dialog[open]');
+      const pick = async txt => { await p.locator('dialog[open] .opt', { hasText: txt }).first().click(); };
+      const next = async () => { await p.locator('dialog[open] .btn.primary').click(); await p.waitForTimeout(120); };
+      await pick('Vanilla-Server'); await next();
+      await pick('Intel oder Laptop-Grafik'); await next();
+      await pick('Einsteiger'); await next();
+      await pick('16 GB'); await next();
+      await pick('Kein G-Sync'); await next();
+      await pick('Flüssig'); await next();
+      if (!(await p.locator('dialog[open] .gwarn').count())) fail('Grafik-Warnung fehlt bei der Fernsicht-Frage');
+      await pick('Nein'); await next();
+      if (!(await p.locator('dialog[open] .gwarn').count())) fail('Grafik-Warnung fehlt bei der Shader-Frage');
+      await pick('Nein, lieber'); await next();
+      await pick('Nein, wie Vanilla'); await next();
+      await pick('Fast wie Vanilla'); await next();
+      const light = p.locator('dialog[open] .gwarn button', { hasText: 'Leichte Vorlage' });
+      if (!(await light.count())) fail('Vorschau ohne Vorschlag „Leichte Vorlage“');
+      else { await light.click(); await p.waitForTimeout(400); const pre = await p.locator('.presetbox b').first().textContent().catch(() => ''); if (pre !== 'Nur Performance') fail('Leichte Vorlage nicht übernommen', pre); }
+      // Shader-Kacheln zeigen Voxy-Verträglichkeit; Mellow + Voxy ergibt einen Tipp
+      await p.getByRole('tab', { name: /^Shader/ }).click(); await p.waitForTimeout(300);
+      const vx = await p.locator('.card .badge', { hasText: /Voxy/ }).count(); R.info.voxyBadges = vx;
+      if (vx < 10) fail('Voxy-Hinweise an Shadern fehlen', vx);
       await ctx.close();
     }
 

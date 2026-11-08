@@ -69,6 +69,7 @@ for m in vis:
     if not m.get('notiz'): note['Beschreibung fehlt'].append(m['slug'])
     elif e > d: note['Beschreibung noch englisch'].append(f"{m['slug']}: {m['notiz'][:70]}")
     if m['cat'] not in ('P', 'V', 'B', 'G', 'T', 'S'): err['Unbekannte Kategorie'].append(f"{m['slug']}: {m['cat']}")
+    if (m.get('pt') or 'm') == 's' and (m.get('voxy') or {}).get('s') not in ('ja', 'nein', '?'): note['Shader ohne Voxy-Angabe (Feld voxy, siehe quelle/tools/datafix_2026_11_08c.py)'].append(m['slug'])
 # 5 Medien
 def ok(s):
     e = Me.get(s, {}); return any(v.get('status') in ('auto', 'ok') for v in e.get('videos', [])) or (e.get('breite') or 0) >= 1280 or bool(S.get(s, {}).get('proben'))

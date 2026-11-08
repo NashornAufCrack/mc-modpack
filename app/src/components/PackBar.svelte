@@ -1,7 +1,7 @@
 <script lang="ts">
   import { pack, PRESETS } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
-  import { exportMrpack, exportPrism, manualList } from "../lib/export";
+  import { exportMrpack, exportPrism, exportSet, manualList } from "../lib/export";
 
   const r = $derived(pack.resolve());
   const cnt = (t: string) => [...r.mods].filter(s => (pack.BY[s].pt || "m") === t).length;
@@ -14,6 +14,9 @@
   const diff = $derived(pack.presetDiff());
   const pname = $derived(PRESETS.find(p => p.id === pack.preset?.id)?.name);
   const open = $derived(pack.data.dec.gruppen.filter(g => g.mods.some(s => pack.BY[s]) && !g.mods.some(s => pack.sel.has(s))).length);
+  const srvList = $derived(pack.srvTools(r));
+  const inSrv = $derived((pack.cfg, new Set(exportSet(true).all)));
+  const srvCount = $derived(srvList.filter(m => inSrv.has(m.slug)).length);
   let name = $state(pack.cfg._name || "Mein Pack"); let st = $state(""); let busy = $state(false);
   let showDiff = $state(false);
   async function go(kind: "prism" | "mrpack" | "server") {
@@ -68,6 +71,20 @@
   <button class="btn" disabled={busy} onclick={() => go("prism")}>Komplette Prism-Instanz (.zip)</button>
   <p class="hint">Alle Dateien schon drin und Arbeitsspeicher eingestellt. Größer, der Download dauert etwas.</p>
   <button class="btn sm ghost" disabled={busy} onclick={() => go("server")}>Server-Pack (.mrpack)</button>
+  <details class="srv">
+    <summary>Server-Werkzeuge: {srvCount} von {srvList.length} dabei</summary>
+    <p class="small muted">Harmlose sind vorausgewählt. Was du abwählst, bleibt draußen, außer ein anderes Werkzeug braucht es.</p>
+    <ul>
+      {#each srvList as m (m.slug)}
+        {@const on = pack.srvOn(m.slug, r)}
+        <li>
+          <label><input type="checkbox" checked={on} onchange={e => pack.setSrv(m.slug, e.currentTarget.checked)} /> {m.name}</label>
+          {#if m.nichtAuto}<span class="small muted">{m.nichtAuto}</span>{/if}
+          {#if !on && inSrv.has(m.slug)}<span class="small muted">Kommt trotzdem mit, weil ein anderes Werkzeug es braucht.</span>{/if}
+        </li>
+      {/each}
+    </ul>
+  </details>
   {#if st}<p class="small" role="status">{st}</p>{/if}
   {#if manual.length}<div class="warnbox" style="border-color:var(--warn);background:var(--warn-soft)"><b>Selbst herunterladen ({manual.length})</b>{#each manual as s}<a href={pack.BY[s].cf} target="_blank" rel="noopener">{pack.name(s)} ↗</a>{/each}<span class="small">Diese CurseForge-Autoren erlauben keinen automatischen Download. Datei laden und in den Ordner mods legen.</span></div>{/if}
   <div class="two"><button class="btn sm ghost" onclick={share}>Teilen-Link</button><button class="btn sm ghost" onclick={() => ui.undo()}>↶ Rückgängig</button></div>
@@ -82,6 +99,12 @@
   .link { background: none; border: 0; padding: 0; color: var(--preset); font: 500 .84rem var(--font); cursor: pointer; }
   .diff { list-style: none; margin: 0; padding: 0; font-size: .8rem; max-height: 9rem; overflow: auto; width: 100%; } .diff .p { color: var(--ok); } .diff .m { color: var(--bad); text-decoration: line-through; }
   .stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); text-align: center; }
+  .srv { border: 1px solid var(--line-2); border-radius: 10px; padding: .5rem .7rem; font-size: .84rem; }
+  .srv summary { cursor: pointer; }
+  .srv ul { list-style: none; margin: .4rem 0 0; padding: 0; display: grid; gap: .45rem; max-height: 16rem; overflow: auto; }
+  .srv li { display: grid; gap: .1rem; }
+  .srv label { display: flex; gap: .45rem; align-items: center; cursor: pointer; }
+  .srv input { width: 1rem; height: 1rem; accent-color: var(--accent); }
   .tipbox { border: 1px solid var(--line-2); border-radius: 10px; padding: .55rem .7rem; font-size: .84rem; }
   .tipbox summary { cursor: pointer; } .tipbox ul { margin: .5rem 0 .3rem; padding-left: 1.1rem; display: grid; gap: .4rem; }
   .stats b { display: block; font: 600 1.4rem var(--mono); } .stats span { font-size: .72rem; color: var(--muted); }

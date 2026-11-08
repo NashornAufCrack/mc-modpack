@@ -5,6 +5,8 @@ export type Mod = {
   img?: string[]; pflicht?: boolean; neu?: boolean; seite?: string; cf?: string; vn?: string;
   /** Server-Werkzeug, das nicht automatisch ins Server-Pack kommt (Grund) */
   nichtAuto?: string;
+  /** nur Shader: funktioniert er mit der Fernsicht-Mod Voxy? */
+  voxy?: { s: "ja" | "nein" | "?"; t: string };
 };
 export type Gruppe = { id: string; titel: string; mods: string[]; text: string };
 export type Beziehung = { art: "K" | "D" | "T" | "A" | "S"; mods: string[]; text: string; erledigt?: boolean };

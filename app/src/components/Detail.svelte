@@ -32,6 +32,7 @@
           <span class="badge {m.ampel === 'R' ? 'bad' : m.ampel === 'Y' ? 'warn' : 'ok'}">{m.ampel === "R" ? "Server nötig" : m.ampel === "Y" ? "Server optional" : "Nur Client"}</span></div>
         <p class="small muted">Version {pack.data.files[s]?.[6] || "–"}{m.downloadsK ? ` · ${fmtK(m.downloadsK)} Downloads` : ""}</p>
         {#if m.cf && !pack.data.files[s]}<p class="small warn">Der Autor erlaubt keinen automatischen Download. Die Datei musst du einmal selbst von CurseForge laden und in den mods-Ordner legen. Die Website erinnert dich beim Export daran.</p>{/if}
+        {#if m.pt === "s" && m.voxy}<p class="small {m.voxy.s === 'ja' ? 'muted' : 'warn'}"><b>Fernsicht (Voxy):</b> {m.voxy.t}</p>{/if}
         {#if m.nichtAuto}<p class="small muted">Kommt nur ins Server-Pack, wenn du es auswählst. {m.nichtAuto}</p>{/if}
         {#if bl}<p class="small warn">Nicht wählbar: verträgt sich nicht mit {bl.map(y => pack.name(y)).join(", ")}, das fest im Leistungspaket steckt.</p>{/if}
         {#if deps.length}<p class="small muted">Bringt automatisch mit: {deps.map(d => pack.name(d)).join(", ")}</p>{/if}
