@@ -12,9 +12,43 @@ const media = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, "utf8")) : {}
 const log = [];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const ytIds = s => [...new Set([...String(s || "").matchAll(/(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=|shorts\/)|youtu\.be\/)([\w-]{11})/g)].map(m => m[1]))];
-const imgUrls = s => [...new Set([...String(s || "").matchAll(/https:\/\/[^\s"')<>]+\.(?:png|jpe?g|gif|webp)(?:\?[^\s"')<>]*)?/gi)].map(m => m[0]))]
-  .filter(u => !/shields\.io|badge|discord|ko-?fi|patreon|bisect|curseforge\.com\/.*\/icons|\/icon\./i.test(u));
-const norm = s => String(s || "").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/\(.*?\)|\[.*?\]/g, " ").replace(/[^a-z0-9]+/g, " ").trim();
+const BAD_IMG_RE = /shields\.io|badge|discord|ko-?fi|patreon|bisect|nodecraft|shockbyte|sparked_banner|apexhosting|kinetichosting|bh-illusive|tr7zw\.github\.io\/uikit|yourkit\.com|yklogo|flaticon\.com|planetminecraft\.com\/images\/layout\/favicon|ewanhowell\.com\/assets\/images\/icons|paypal|curseforge\.com\/.*\/icons|\/icon\.|Fuzss\/modresources\/main\/pages\/commons\/headers\/|\/strip\.png|cdn\.serilum\.com\/description\/header|mods\.twelveiterations\.com\/img\/.*-header|DoomedArtemis\/ResourcePacksManager\/assets\/.*_title|Vi-Tul\/Recolourful-Containers-description\/.*(buttons|label\.png)|LopyMine\/Profile\/.*\/Template|quiqueck\/BCLib\/.*\/bclib_banner/i;
+function badImgUrl(u, slug = "") {
+  if (BAD_IMG_RE.test(u)) return true;
+  const fm = String(u).match(/Fuzss\/modresources\/main\/pages\/data\/([^/]+)\/banner\.png/i);
+  if (fm && slug && fm[1].toLowerCase() !== slug.toLowerCase().replace(/[^a-z0-9]/g, "")) return true;
+  return false;
+}
+const imgUrls = (s, slug = "") => [...new Set([...String(s || "").matchAll(/https:\/\/[^\s"')<>]+\.(?:png|jpe?g|gif|webp)(?:\?[^\s"')<>]*)?/gi)].map(m => m[0]))]
+  .filter(u => !badImgUrl(u, slug));
+const normTitle = s => String(s || "").replace(/([a-z])([A-Z0-9])/g, "$1 $2").replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/&/g, " and ").replace(/\+/g, " plus ").replace(/[^a-z0-9]+/g, " ").trim();
+const norm = s => normTitle(String(s || "").replace(/\(.*?\)|\[.*?\]/g, " "));
+const allModNorms = new Map(mods.map(m => [m.slug, norm(m.name)]).filter(([, n]) => n.length >= 3));
+function hasNameInTitle(m, rawTitle) {
+  const t = " " + normTitle(rawTitle) + " ";
+  const tNoAnd = t.replace(/ and /g, " ").replace(/\s+/g, " ");
+  const cands = [norm(m.name), norm(String(m.name || "").split("|")[0])];
+  const sn = normTitle(m.slug);
+  if (sn.length >= 5 && sn !== "sound") cands.push(sn);
+  for (const cand of [...new Set(cands)]) {
+    if (cand.length < 3) continue;
+    const candNoAnd = cand.replace(/\band\b/g, " ").replace(/\s+/g, " ").trim();
+    if (!t.includes(" " + cand + " ") && !tNoAnd.includes(" " + candNoAnd + " ")) continue;
+    if (m.slug === "peek" && t.includes(" sneak peek ")) continue;
+    if (m.slug === "icons" && !/icons (resource|texture) pack/.test(t)) continue;
+    if (m.slug === "low-fire-pack" && t.includes(" low on fire ")) continue;
+    if (m.slug === "sound" && !t.includes(" sounds mod ")) continue;
+    if (m.slug === "crawl" && (t.includes(" dungeon crawl ") || t.includes(" without any mod "))) continue;
+    if (m.slug === "ping" && (t.includes(" low ping ") || t.includes(" control your ping "))) continue;
+    if (m.slug === "mob-heads" && t.includes(" just mob heads ")) continue;
+    if (t.includes(" better than " + cand + " ") || t.includes(" alternative to " + cand + " ") || t.includes(" forget " + cand + " ")) continue;
+    let longer = false;
+    for (const [os, on] of allModNorms) if (os !== m.slug && on.length > cand.length && on.includes(cand) && t.includes(" " + on + " ")) { longer = true; break; }
+    if (longer) continue;
+    return true;
+  }
+  return false;
+}
 const PT = { m: "mod", r: "resource pack", s: "shader", d: "datapack" };
 const mrGet = async p => { const r = await fetch("https://api.modrinth.com/v2" + p, { headers: { "User-Agent": UA } }); if (!r.ok) throw new Error(p + " " + r.status); return r.json(); };
 // Zusatzbilder (CurseForge-Suche, GitHub-README) liegen dauerhaft in e.extra und werden bei jedem Lauf angehängt
@@ -28,8 +62,9 @@ for (let i = 0; i < slugs.length; i += 80) {
   if (!r.ok) { log.push("Modrinth " + r.status); continue; }
   for (const p of await r.json()) {
     const e = (media[p.slug] ||= {});
+    if (e.extra?.length) e.extra = e.extra.filter(u => !badImgUrl(u, p.slug));
     const gal = (p.gallery || []).sort((a, b) => (b.featured - a.featured) || (a.ordering - b.ordering));
-    const body = imgUrls(p.body).filter(u => !gal.some(g => g.url === u || g.raw_url === u));
+    const body = imgUrls(p.body, p.slug).filter(u => !gal.some(g => g.url === u || g.raw_url === u));
     e.bilder = [...new Set([...gal.map(g => g.url), ...body, ...(e.extra || [])])].slice(0, 16);
     e.hq = [...new Set([...gal.map(g => g.raw_url || g.url), ...body, ...(e.extra || [])])].slice(0, 16);
     e.icon = p.icon_url || null;
@@ -72,13 +107,15 @@ if (CF) {
 // ---------- Stufe C: YouTube ----------
 const YT = process.env.YOUTUBE_API_KEY;
 function score(m, v) {
-  const t = norm(v.snippet.title), d = String(v.snippet.description || "").toLowerCase(), n = norm(m.name);
+  const rawT = v.snippet.title || "", t = normTitle(rawT), d = String(v.snippet.description || "").toLowerCase();
   let p = 0, why = [];
-  if (d.includes("modrinth.com/") && d.includes(m.slug.toLowerCase())) { p += 5; why.push("Modrinth-Link in der Videobeschreibung"); }
-  if (n && (" " + t + " ").includes(" " + n + " ")) { p += 3; why.push("Name im Titel"); }
-  if (/(mod|resource ?pack|texture ?pack|shader|datapack|data pack)/.test(t)) { p += 1; why.push("Typ im Titel"); }
-  if (/\b(26\.\d|1\.21)/.test(v.snippet.title)) { p += 1; why.push("aktuelle Version"); }
-  if (/top ?\d+|best mods|mods? (you|for)|modpack|\bmods\b.*\bmods\b/.test(t)) { p -= 3; why.push("Sammelvideo"); }
+  const slugRe = new RegExp(`modrinth\\.com\\/(mod|resourcepack|shader|datapack|project)\\/${m.slug.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![a-z0-9_-])`);
+  if (slugRe.test(d)) { p += 2; why.push("Modrinth-Link in der Videobeschreibung"); }
+  if (hasNameInTitle(m, rawT)) { p += 4; why.push("Name im Titel"); }
+  if (/\b(mod|resource ?pack|texture ?pack|shader|shaders|datapack|data pack|showcase|review|spotlight|tutorial)\b/.test(t)) { p += 1; why.push("Typ im Titel"); }
+  if (/\b(26\.\d|1\.21)\b/.test(rawT)) { p += 1; why.push("aktuelle Version"); }
+  if (/\b(mcpe|bedrock|pocket edition|mcaddon|addonminecraftpe|pe 1|vintage story|hytale|terraria|roblox|sims|gta|fortnite|ark survival)\b/.test(t)) { p -= 6; why.push("anderes Spiel / Bedrock"); }
+  if (/\b(top ?\d+|\d+\+? ?(best|minecraft|mods|resource|texture|shader|datapack)|best (minecraft )?(mods|resource|texture|shader)|every minecraft|mods explained|packs compared|mods compared|tier ?list|modpack|let'?s play|let s play|episode ?\d+|smp)\b/.test(t) || /\bmods\b.*\bmods\b/.test(t)) { p -= 4; why.push("Sammelvideo"); }
   const dur = v.contentDetails?.duration || ""; const min = (+(dur.match(/(\d+)H/)?.[1] || 0)) * 60 + (+(dur.match(/(\d+)M/)?.[1] || 0));
   if (min > 25) { p -= 2; why.push("sehr lang"); }
   return { p, why, min };
@@ -103,7 +140,7 @@ if (YT) {
       if (!vr.ok) continue;
       const found = (await vr.json()).items.map(v => { const s = score(m, v); return { id: v.id, titel: v.snippet.title, kanal: v.snippet.channelTitle, minuten: s.min, punkte: s.p, warum: s.why, quelle: "youtube-suche" }; })
         .filter(v => v.punkte >= 2).sort((a, b) => b.punkte - a.punkte).slice(0, 4);
-      e.videos = [...(e.videos || []).filter(v => v.quelle !== "youtube-suche"), ...found];
+      e.videos = [...(e.videos || []).filter(v => v.quelle !== "youtube-suche" && !found.some(f => f.id === v.id)), ...found];
       await sleep(150);
     }
     log.push(`YouTube-Suchen in diesem Lauf: ${n}, noch offen: ${Math.max(0, todo.length - n)}`);
@@ -150,7 +187,7 @@ log.push(`yt-dlp-Suchen: ${nd}, mit Treffer: ${okD}, noch offen: ${Math.max(0, t
       const imgs = [...new Set(raw.map(x => x.startsWith("http") ? x : `https://raw.githubusercontent.com/${repo}/HEAD/${x.replace(/^\.?\//, "")}`)
         .map(x => x.replace(/github\.com\/([^/]+\/[^/]+)\/(blob|raw)\//, "raw.githubusercontent.com/$1/"))
         .filter(x => /\.(png|jpe?g|gif|webp)(\?|$)/i.test(x) || /user-attachments|githubusercontent\.com\/.*\/assets\//.test(x))
-        .filter(x => !/shields\.io|badge|discord|ko-fi|patreon|logo|icon|banner|modrinth\.com\/.*\/(badge|compact)/i.test(x)))].slice(0, 8);
+        .filter(x => !badImgUrl(x, m.slug) && !/logo|icon|banner|modrinth\.com\/.*\/(badge|compact)/i.test(x)))].slice(0, 8);
       if (imgs.length) { hr++; addExtra(e, imgs); }
     } catch {}
     await sleep(120);
@@ -171,6 +208,7 @@ function dims(b) {
   return null;
 }
 const DIMS = fs.existsSync("data/media-dims.json") ? JSON.parse(fs.readFileSync("data/media-dims.json", "utf8")) : {}; let measured = 0;
+const isStripOrTiny = u => { const d = DIMS[u]; if (!d || !d[0] || !d[1]) return false; return (d[1] < 48 || d[0] / d[1] > 8) && !/cdn\.modrinth\.com\/data\/[^/]+\/images\//.test(u); };
 for (const m of mods) {
   const e = media[m.slug]; if (!e) continue;
   const list = [...new Set([...(e.hq || []), ...(e.bilder || [])])];
@@ -178,6 +216,9 @@ for (const m of mods) {
     if (DIMS[url] || measured > 2500) continue;
     try { const r = await fetch(url, { headers: { Range: "bytes=0-131071", "User-Agent": "mc-modpack media" } }); if (!r.ok) { DIMS[url] = [0, 0]; continue; } DIMS[url] = dims(await r.arrayBuffer()) || [0, 0]; measured++; } catch { DIMS[url] = [0, 0]; }
   }
+  if (e.bilder?.length) e.bilder = e.bilder.filter(u => !badImgUrl(u, m.slug) && !isStripOrTiny(u));
+  if (e.hq?.length) e.hq = e.hq.filter(u => !badImgUrl(u, m.slug) && !isStripOrTiny(u));
+  if (e.extra?.length) e.extra = e.extra.filter(u => !badImgUrl(u, m.slug) && !isStripOrTiny(u));
   const px = u => (DIMS[u] ? DIMS[u][0] : 0);
   if (e.hq?.length) { const best = Math.max(...e.hq.map(px)); e.hq = e.hq.filter(u => px(u) === 0 || px(u) >= Math.min(960, best)).sort((a, b) => px(b) - px(a)); }
   e.breite = Math.max(0, ...(e.hq || e.bilder || []).map(px));
@@ -186,7 +227,15 @@ fs.writeFileSync("data/media-dims.json", JSON.stringify(DIMS));
 log.push(`Auflösung gemessen: ${measured} Bilder`);
 
 // ---------- Ausgabe ----------
-for (const e of Object.values(media)) for (const v of (Array.isArray(e.videos) ? e.videos : [])) v.status = v.status || (v.punkte >= 5 ? "auto" : "review");
+for (const e of Object.values(media)) {
+  if (!Array.isArray(e.videos)) continue;
+  const seen = new Set();
+  e.videos = e.videos.filter(v => v?.id && !seen.has(v.id) && seen.add(v.id));
+  for (const v of e.videos) {
+    if (v.quelle === "beschreibung") v.status = v.status || "auto";
+    else if (v.status !== "ok" && v.status !== "nein") v.status = (v.punkte >= 5 && (v.warum || []).includes("Name im Titel")) ? "auto" : "review";
+  }
+}
 // Visuelle Prüfung (Prüfbögen): data/video-review.json { "slug:videoId": "ok" | "nein" }
 const REV = fs.existsSync("data/video-review.json") ? JSON.parse(fs.readFileSync("data/video-review.json", "utf8")) : {};
 for (const [s, e] of Object.entries(media)) for (const v of e.videos || []) if (REV[s + ":" + v.id]) v.status = REV[s + ":" + v.id];

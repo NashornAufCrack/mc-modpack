@@ -82,6 +82,7 @@ kbd { font: 500 .78rem var(--mono); border: 1px solid var(--line); border-bottom
     <button class="chip" data-f="bad" aria-pressed="false">Raus</button>
     <button class="chip" data-f="alle" aria-pressed="false">Alle</button>
     <button class="chip" id="gap" aria-pressed="false">Nur Einträge ohne gute Medien</button>
+    <button class="chip" id="dl" hidden>Urteile herunterladen (JSON)</button>
     <input id="q" type="search" placeholder="Mod oder Video suchen" aria-label="Mod oder Video suchen">
     <span class="keys"><kbd>P</kbd> passt · <kbd>R</kbd> raus · <kbd>Z</kbd> zurück · <kbd>J</kbd>/<kbd>K</kbd> weiter/zurück</span>
   </div>
@@ -182,22 +183,29 @@ kbd { font: 500 .78rem var(--mono); border: 1px solid var(--line); border-bottom
     if (keepFocus && S.focus) { const el = g.querySelector(`[data-k="${CSS.escape(S.focus)}"]`); if (el && document.activeElement !== el && document.activeElement?.closest?.(".card")) el.focus({ preventScroll: true }); }
   }
 
+  function saveLocal() {
+    try { localStorage.setItem("mk-urteile", JSON.stringify(Object.fromEntries([...S.urteile].map(([id, v]) => [id, v.urteil])))); } catch {}
+  }
+
   let busy = new Set();
   async function decide(k, urteil) {
-    if (!S.db || !S.canWrite || busy.has(k)) return;
+    if (!S.canWrite || busy.has(k)) return;
     busy.add(k);
     const before = S.urteile.get(k);
     // sofort zeigen, Speichern läuft im Hintergrund
     if (urteil) S.urteile.set(k, { urteil }); else S.urteile.delete(k);
+    saveLocal();
     const next = nextOpen(k);
     render(false);
     try {
-      const ref = S.db.collection("urteile").doc(k);
-      if (urteil) await ref.set({ urteil, am: new Date().toISOString(), wer: S.uid }); else await ref.delete();
+      if (S.db) {
+        const ref = S.db.collection("urteile").doc(k);
+        if (urteil) await ref.set({ urteil, am: new Date().toISOString(), wer: S.uid }); else await ref.delete();
+      }
       say(urteil ? (urteil === "ok" ? "Gespeichert: passt." : "Gespeichert: raus.") : "Urteil zurückgenommen.");
       if (urteil && next) focusKey(next);
     } catch (e) {
-      if (before) S.urteile.set(k, before); else S.urteile.delete(k); render(false);
+      if (before) S.urteile.set(k, before); else S.urteile.delete(k); saveLocal(); render(false);
       if (e && e.code === "invalid_argument") { S.canWrite = false; render(false); say("Du kannst hier nur ansehen, nicht speichern."); }
       else say("Speichern hat nicht geklappt. Bitte gleich noch einmal klicken.");
     } finally { busy.delete(k); }
@@ -223,6 +231,11 @@ kbd { font: 500 .78rem var(--mono); border: 1px solid var(--line); border-bottom
     S.filter = b.dataset.f; S.page = 0; document.querySelectorAll(".chip[data-f]").forEach(x => x.setAttribute("aria-pressed", String(x === b))); render(false);
   }));
   $("gap").addEventListener("click", e => { S.gap = !S.gap; e.currentTarget.setAttribute("aria-pressed", String(S.gap)); S.page = 0; render(false); });
+  $("dl").addEventListener("click", () => {
+    const obj = Object.fromEntries([...S.urteile].sort((a, b) => a[0].localeCompare(b[0])).map(([k, v]) => [k, v.urteil]));
+    const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "video-review.json"; a.click(); URL.revokeObjectURL(a.href);
+  });
   let qt; $("q").addEventListener("input", e => { clearTimeout(qt); qt = setTimeout(() => { S.q = e.target.value; S.page = 0; render(false); }, 150); });
 
   // Daten der Bögen (mit der Seite veröffentlicht), dann die gespeicherten Urteile
@@ -231,14 +244,21 @@ kbd { font: 500 .78rem var(--mono); border: 1px solid var(--line); border-bottom
 
   (async () => {
     const C = window.claude; const note = $("dbnote");
-    const db = C ? await C.use("db") : null; const user = C ? await C.use("user") : null;
-    if (!db) { note.textContent = "Urteile speichern geht nur, wenn du angemeldet in der Claude-App oder auf claude.ai bist. Ansehen kannst du alles."; note.classList.add("warn"); return; }
+    const db = C ? await C.use("db").catch(() => null) : null; const user = C ? await C.use("user").catch(() => null) : null;
+    if (!db) {
+      const m = new Map();
+      try { const r = await fetch("../data/video-review.json"); if (r.ok) for (const [k, v] of Object.entries(await r.json())) if (v === "ok" || v === "nein") m.set(k, { urteil: v }); } catch {}
+      try { const loc = JSON.parse(localStorage.getItem("mk-urteile") || "{}"); for (const [k, v] of Object.entries(loc)) if (v === "ok" || v === "nein") m.set(k, { urteil: v }); } catch {}
+      S.urteile = m; S.canWrite = true; $("dl").hidden = false;
+      note.textContent = "Lokaler Prüfmodus: Deine Urteile werden im Browser gespeichert und lassen sich jederzeit über „Urteile herunterladen (JSON)“ als video-review.json exportieren.";
+      note.classList.remove("warn"); render(); return;
+    }
     S.db = db; S.uid = user ? await user.id() : null;
-    const can = user ? await user.can("data.write") : null; S.canWrite = can !== false;
+    const can = user ? await user.can("data.write") : null; S.canWrite = can !== false; $("dl").hidden = false;
     let timer = setTimeout(() => { note.textContent = "Die gespeicherten Urteile sind gerade nicht erreichbar. Neue Urteile werden trotzdem gespeichert, sobald die Verbindung steht."; note.classList.add("warn"); }, 10000);
     db.collection("urteile").onSnapshot(snap => {
       const m = new Map(); for (const d of snap.docs) { const v = d.data(); if (v && (v.urteil === "ok" || v.urteil === "nein")) m.set(d.id, v); }
-      S.urteile = m;
+      S.urteile = m; saveLocal();
       if (!snap.metadata.fromCache) { clearTimeout(timer); note.classList.remove("warn"); note.textContent = S.canWrite ? "Urteile werden sofort gespeichert und sind für Claude sichtbar." : "Du kannst hier nur ansehen, nicht speichern."; }
       render();
     }, err => { clearTimeout(timer); note.classList.add("warn"); note.textContent = "Die Urteile konnten nicht geladen werden (" + (err && err.code || "Fehler") + "). Bitte die Seite später neu öffnen."; });

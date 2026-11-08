@@ -8,6 +8,7 @@ on:
       - "app/**"
       - "qa/**"
       - "data/app-data.json"
+      - "data/media-app.json"
       - "scripts/check-updates.mjs"
       - ".github/workflows/pruefung.yml"
   # Commits der Abläufe (GITHUB_TOKEN) lösen keinen push-Lauf aus, daher nach dem Update-Check eigens prüfen

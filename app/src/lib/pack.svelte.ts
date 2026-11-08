@@ -13,7 +13,7 @@ export const PT_T: Record<string, string> = { m: "Mods", s: "Shader", r: "Resour
 export const PT_1: Record<string, string> = { m: "Mod", s: "Shader", r: "Resource Pack", d: "Datapack" };
 export const CATS: Record<string, { t: string; n: string }> = {
   P: { t: "Leistung & Basis", n: "Das Leistungspaket ist immer dabei. Hier stehen nur Extras, die du zusätzlich wählen kannst." },
-  V: { t: "Optik & Sound", n: "Verändert, wie das Spiel aussieht, klingt und sich anfühlt: Licht, Partikel, Animationen, 3D-Modelle, Sound. Läuft auf jedem Server." },
+  V: { t: "Optik & Sound", n: "Verändert, wie das Spiel aussieht, klingt und sich fühlt: Licht, Partikel, Animationen, 3D-Modelle, Sound. Läuft auf jedem Server." },
   B: { t: "Bedienung & HUD", n: "Anzeigen, Inventar, Menüs und Steuerung, z. B. AppleSkin, Jade, Mouse Tweaks. Läuft auf jedem Server." },
   G: { t: "Gameplay", n: "Ändert Regeln oder bringt Inhalte. Meist muss die Mod auch auf dem Server sein." },
   T: { t: "Welt & Terrain", n: "Verändert die Weltgenerierung. Wirkt nur in neuen Gebieten oder neuen Welten." },
@@ -93,7 +93,7 @@ class Pack {
     return out;
   }
   img(s: string): string[] { const m = this.media[s]; return m?.bilder?.length ? m.bilder : this.BY[s]?.img?.length ? this.BY[s].img! : this.#vidImg(s, false); }
-  videos(s: string) { const v = this.media[s]?.videos || []; const yt = this.data.x.details[s]?.yt || []; const out = v.filter(x => x.status !== "nein" && x.status !== "review").slice(0, 3); for (const id of yt) if (!out.some(o => o.id === id)) out.push({ id, quelle: "beschreibung", punkte: 10 }); return out.slice(0, 4); }
+  videos(s: string) { const v = this.media[s]?.videos || (Object.keys(this.media).length ? [] : (this.data.x.details[s]?.yt || []).map(id => ({ id, quelle: "beschreibung", punkte: 10 }))); const seen = new Set<string>(); return v.filter(x => x.status !== "nein" && x.status !== "review" && !seen.has(x.id) && seen.add(x.id)).slice(0, 4); }
   cost = (s: string) => (BOOST.has(s) ? 0 : ((COST as any)[s] ?? 1));
   /** Typ eines Eintrags (auch für Bibliotheken ohne Katalogeintrag) */
   typ(s: string) { return this.BY[s]?.pt || this.data.files[s]?.[8] || "m"; }
