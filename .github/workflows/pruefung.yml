@@ -1,5 +1,5 @@
 name: Prüfung
-# Prüft nach jeder Änderung an Website oder Katalogdaten (auch nach dem täglichen Update-Check),
+# Prüft nach jeder Änderung an Website oder Katalogdaten und nach jedem Update-Check,
 # ob Daten stimmig sind, die Website baut und alle Abläufe inkl. Exporte funktionieren. Schreibt nichts ins Repo.
 on:
   push:
@@ -9,6 +9,10 @@ on:
       - "data/app-data.json"
       - "scripts/check-updates.mjs"
       - ".github/workflows/pruefung.yml"
+  # Commits der Abläufe (GITHUB_TOKEN) lösen keinen push-Lauf aus, daher nach dem Update-Check eigens prüfen
+  workflow_run:
+    workflows: ["Update-Check"]
+    types: [completed]
   workflow_dispatch:
 permissions:
   contents: read
