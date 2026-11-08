@@ -1,11 +1,11 @@
-Modrinth-Kandidaten: 658, CurseForge gefunden: 1011, davon mit 26.3-Fabric-Datei: 1004, Verteilung erlaubt: 945
+Modrinth-Kandidaten: 506, CurseForge gefunden: 1011, davon mit 26.3-Fabric-Datei: 1004, Verteilung erlaubt: 943
 {"n":"Cinematic Interactions","slug":"cinematic-interactions","v":true,"d":{"name":"Cinematic Interaction-Fabric-26.3-0.18.30.jar","url":"https://edge.forgecdn.net/files/9345/442/Cinematic%20Interaction-Fabric-26.3-0.18.30.jar","vers":["Client","Fabric","26.3"]}}
 {"n":"Cinematic Zoom","slug":"cinematic-zoom","v":true,"d":{"name":"CinematicZoom-Fabric-26.3-1.3.7.jar","url":"https://edge.forgecdn.net/files/9055/665/CinematicZoom-Fabric-26.3-1.3.7.jar","vers":["Client","Fabric","26.3"]}}
 {"n":"Cinematic Respawn","slug":"cinematic-respawn","v":true,"d":{"name":"cinematic_respawn-26.3-fabric-1.4.3.jar","url":"https://edge.forgecdn.net/files/9335/7/cinematic_respawn-26.3-fabric-1.4.3.jar","vers":["Client","Fabric","26.3"]}}
 {"n":"Cinematic Zoom (Fabric)","slug":"cinematic-zoom-fabric","v":true,"d":{"name":"cinematiczoom-26.3-1.3.jar","url":"https://edge.forgecdn.net/files/9100/751/cinematiczoom-26.3-1.3.jar","vers":["Client","Fabric","Quilt","26.3"]}}
 {"n":"Studious Keybinds","slug":"studious-keybinds","v":true,"d":{"name":"studious-keybinds.jar","url":"https://edge.forgecdn.net/files/9087/802/studious-keybinds.jar","vers":["Client","Fabric","26.3"]}}
 {"n":"Cinematic First Person Compat — Fabric Build","slug":"cinematic-first-person-compat-fabric-build","v":true,"d":null}
-{"n":"Cinematic Cookery","slug":"cinematic-cookery","v":true,"d":{"name":"cinematic-cookery-0.2.0.jar","url":"https://edge.forgecdn.net/files/9353/177/cinematic-cookery-0.2.0.jar","vers":["Client","Fabric","26.3"]}}
+{"n":"Cinematic Cookery","slug":"cinematic-cookery","v":true,"d":{"name":"cinematic-cookery-0.3.0.jar","url":"https://edge.forgecdn.net/files/9492/425/cinematic-cookery-0.3.0.jar","vers":["Client","Fabric","26.3"]}}
 {"n":"Cinematic Delight","slug":"cinematic-delight","v":true,"d":null}
 {"n":"Cinematic Interactions X Leawind's Third Person","slug":"cinematic-interactions-x-leawinds-third-person","v":false,"d":{"name":"CinematicLeawindFix-1.0.0.jar","url":null,"vers":["Client","Fabric","1.20.1","Forge","1.21.1","NeoForge","26.2","26.3"]}}
 {"n":"Cinematic Interactions: Create","slug":"cinecreate","v":true,"d":null}
