@@ -44,6 +44,10 @@ for m in M:
         elif mi and m['slug'] not in basis: note['Abhängigkeit fehlt (Website blendet aus)'].append(f"{m['slug']} → {', '.join(mi)}")
 for m in M:
     if m['slug'] in LOCKED and m['slug'] not in F: err['Fest eingebaut, aber ohne Datei'].append(m['slug'])
+# 2b Doppelungen/Konflikte mit dem festen Leistungspaket (Entscheidung 08.11.: solche Einträge gehören nicht in den Katalog)
+for b in D['beziehungen']:
+    if b['art'] in ('K', 'D') and any(s in LOCKED for s in b['mods']) and any(s not in LOCKED for s in b['mods']):
+        err['Konflikt mit festem Leistungspaket (Eintrag entfernen)'].append(' + '.join(b['mods']))
 # 3 Gruppen und Beziehungen
 for g in D['gruppen']:
     for s in g['mods']:

@@ -16,7 +16,7 @@ export const CATS: Record<string, { t: string; n: string }> = {
   B: { t: "Bedienung & HUD", n: "Anzeigen, Inventar, Menüs und Steuerung, z. B. AppleSkin, Jade, Mouse Tweaks. Läuft auf jedem Server." },
   G: { t: "Gameplay", n: "Ändert Regeln oder bringt Inhalte. Meist muss die Mod auch auf dem Server sein." },
   T: { t: "Welt & Terrain", n: "Verändert die Weltgenerierung. Wirkt nur in neuen Gebieten oder neuen Welten." },
-  S: { t: "Server & Technik", n: "Werkzeuge für Server und Technik-Spieler. Kommen beim Server-Pack automatisch dazu." },
+  S: { t: "Server & Technik", n: "Werkzeuge für Server und Technik-Spieler. Harmlose kommen beim Server-Pack automatisch dazu; AutoModpack, Chunky Offline und TT20 nur, wenn du sie wählst." },
 };
 export const PRESETS = [
   { id: "perf", name: "Nur Performance", text: "Maximale FPS, Vanilla-Optik. Ideal für schwache PCs oder PvP." },
@@ -33,6 +33,8 @@ class Pack {
   outdated: string[] = [];
   /** ausgeblendet, weil eine Pflicht-Abhängigkeit für 26.3 fehlt (z. B. Addon ohne Basis-Pack) */
   ohneBasis: { name: string; fehlt: string[] }[] = [];
+  /** ausgeblendet, weil im Konflikt mit dem festen Leistungspaket */
+  gegenPaket: { name: string; mit: string[] }[] = [];
   BY: Record<string, Mod> = {}; GROUPOF: Record<string, Gruppe> = {}; LOCKED = new Set<string>();
   /** nicht wählbar, weil im Konflikt mit einem fest eingebauten Mod (Wert: die festen Gegenspieler) */
   BLOCKED = new Map<string, string[]>();
@@ -65,6 +67,13 @@ class Pack {
     for (const g of data.dec.gruppen || []) g.mods.forEach(s => (this.GROUPOF[s] = g));
     this.LOCKED = new Set(data.mods.filter(m => (m.cat === "P" && m.rolle === "K") || m.pflicht).map(m => m.slug));
     for (const m of data.mods) if (!this.LOCKED.has(m.slug)) { const b = [...new Set(this.clashes(m.slug, this.LOCKED).map(c => c.y))]; if (b.length) this.BLOCKED.set(m.slug, b); }
+    // Entscheidung 08.11.: was sich mit dem festen Leistungspaket beißt, gehört nicht in den Katalog (Liste auf der Update-Seite)
+    if (this.BLOCKED.size) {
+      this.gegenPaket = data.mods.filter(m => this.BLOCKED.has(m.slug)).map(m => ({ name: m.name, mit: this.BLOCKED.get(m.slug)!.map(y => this.name(y)) }));
+      data.mods = data.mods.filter(m => !this.BLOCKED.has(m.slug)); for (const s of this.BLOCKED.keys()) delete this.BY[s];
+      data.dec.gruppen = data.dec.gruppen.map(g => ({ ...g, mods: g.mods.filter(s => !this.BLOCKED.has(s)) })).filter(g => g.mods.length >= 2);
+      this.GROUPOF = {}; for (const g of data.dec.gruppen) g.mods.forEach(s => (this.GROUPOF[s] = g));
+    }
     this.sel = new Set(this.LOCKED);
     this.load();
     this.ready = true;

@@ -3,6 +3,8 @@ export type Mod = {
   slug: string; name: string; cat: "P" | "V" | "B" | "G" | "T" | "S"; sub: string; ampel: "G" | "Y" | "R" | "Q";
   rolle: "K" | "O" | "A"; downloadsK: number; notiz: string; quellen: string[]; pt?: "m" | "r" | "s" | "d";
   img?: string[]; pflicht?: boolean; neu?: boolean; seite?: string; cf?: string; vn?: string;
+  /** Server-Werkzeug, das nicht automatisch ins Server-Pack kommt (Grund) */
+  nichtAuto?: string;
 };
 export type Gruppe = { id: string; titel: string; mods: string[]; text: string };
 export type Beziehung = { art: "K" | "D" | "T" | "A" | "S"; mods: string[]; text: string; erledigt?: boolean };

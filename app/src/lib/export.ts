@@ -41,7 +41,7 @@ export const pathOf = (s: string) => dirOf(s) + "/" + fname(s);
 export function exportSet(server: boolean) {
   const r = pack.resolve(); let all = [...r.mods, ...r.libs];
   if (server) { // nur was der Server braucht: Mods/Datapacks mit Server-Teil + Server-Werkzeuge
-    const keep = new Set<string>(); const stack = [...r.mods].filter(s => pack.BY[s].ampel === "R" || pack.BY[s].ampel === "Y").concat(pack.data.mods.filter(m => m.cat === "S" && pack.data.files[m.slug] && (m.slug !== "voxy-server-side" || r.mods.has("voxy"))).map(m => m.slug));
+    const keep = new Set<string>(); const stack = [...r.mods].filter(s => pack.BY[s].ampel === "R" || pack.BY[s].ampel === "Y").concat(pack.data.mods.filter(m => m.cat === "S" && !m.nichtAuto && pack.data.files[m.slug] && (m.slug !== "voxy-server-side" || r.mods.has("voxy"))).map(m => m.slug));
     // reine Client-Mods (z. B. Litematica als Modrinth-Abhängigkeit von Litematica Server Paster) gehören nicht auf den Server
     while (stack.length) { const s = stack.pop()!; if (keep.has(s) || !pack.data.files[s]) continue; const t = pack.typ(s); if (t !== "m" && t !== "d") continue; if (t === "m" && pack.BY[s]?.ampel === "G") continue; keep.add(s); pack.data.files[s][5].concat(pack.implicit(s)).forEach((d: string) => stack.push(d)); }
     all = [...keep]; }

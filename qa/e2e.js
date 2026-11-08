@@ -72,7 +72,7 @@ async function validateMrpack(buf, label, { server = false } = {}) {
   // Harte Konflikte
   for (const b of DATA.dec.beziehungen || []) if ((b.art === 'K' || b.art === 'D') && b.mods.length === 2 && b.mods.every(s => slugs.has(s))) fail(label + ' Konfliktpaar', `${b.mods.join(' + ')} (${b.art})`);
   // Server-Pack: keine reinen Client-Mods
-  if (server) for (const s of slugs) { const m = BY[s]; if (m && m.ampel === 'G' && (m.pt || 'm') === 'm') warn(label + ' Client-Mod im Server-Pack', s); }
+  if (server) for (const s of slugs) { const m = BY[s]; if (m && m.ampel === 'G' && (m.pt || 'm') === 'm') warn(label + ' Client-Mod im Server-Pack', s); if (m && m.nichtAuto) fail(label + ' Werkzeug nur auf Wunsch, trotzdem im Server-Pack', s); }
   // options.txt: Resource-Pack-Reihenfolge passt zu den Dateien
   const opt = z.file('overrides/options.txt') ? await z.file('overrides/options.txt').async('string') : null;
   if (!server) {

@@ -43,6 +43,12 @@
       <p class="muted small">So viele der empfohlenen Inhalte gibt es schon für {u.next.version}.</p>
     {/if}
 
+    {#if pack.gegenPaket.length}
+      <h2>Ausgeblendet: passt nicht zum Leistungspaket</h2>
+      <p class="muted small">Das Leistungspaket ist immer dabei, deshalb fliegt raus, was sich damit beißt.</p>
+      <ul class="list">{#each pack.gegenPaket as o}<li><b>{o.name}</b> <span class="muted small">verträgt sich nicht mit {o.mit.join(", ")}</span></li>{/each}</ul>
+    {/if}
+
     {#if pack.ohneBasis.length}
       <h2>Ausgeblendet: Basis fehlt für 26.3</h2>
       <p class="muted small">Diese Einträge brauchen etwas, das es für 26.3 noch nicht gibt. Sie erscheinen wieder, sobald es eine passende Version gibt.</p>
