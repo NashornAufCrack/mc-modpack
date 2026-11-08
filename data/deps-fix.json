@@ -1,0 +1,50 @@
+{
+ "ids": {
+  "qvIfYCYJ": "qsl",
+  "3qAYkBMB": "polytone",
+  "u58R1TMW": "connector",
+  "qjlkcVfy": "modefite-item-definition-backport",
+  "7vxePowz": "farmers-delight-refabricated",
+  "P7dR8mSH": "fabric-api",
+  "uy4Cnpcm": "bookshelf-lib",
+  "Ha28R6CL": "fabric-language-kotlin",
+  "RiN8rDVs": "worldweaver"
+ },
+ "files": {
+  "gen-assets": [
+   "https://cdn.modrinth.com/data/ZRGZa67i/versions/LRELaY0z/gen_assets.zip",
+   "gen_assets.zip",
+   "50c8c55bd3caa6594519558358bd89a8608227fa",
+   "8c490b2088ce078a99db2ecef34dd3e13534879e77cbb27d73e1740537cd52e596d3116d7d77accc56d0c9bd469d0a1c9d34e39e0696fb4ce4250801cc041878",
+   5406491,
+   [],
+   "0.6.1",
+   "Gen Assets",
+   "r"
+  ]
+ },
+ "fehlt": [
+  "qsl (keine 26.3-Datei)",
+  "connector (keine 26.3-Datei)",
+  "modefite-item-definition-backport (keine 26.3-Datei)",
+  "bare-bones (keine 26.3-Datei)",
+  "celestial (keine 26.3-Datei)",
+  "farmers-delight-fabric (keine 26.3-Datei)",
+  "bare-bones (keine 26.3-Datei)",
+  "celestial (keine 26.3-Datei)",
+  "farmers-delight-fabric (keine 26.3-Datei)",
+  "bare-bones (keine 26.3-Datei)",
+  "celestial (keine 26.3-Datei)",
+  "farmers-delight-fabric (keine 26.3-Datei)",
+  "bare-bones (keine 26.3-Datei)",
+  "celestial (keine 26.3-Datei)",
+  "farmers-delight-fabric (keine 26.3-Datei)"
+ ],
+ "log": [
+  "Runde 1: 13 fehlend",
+  "+ gen-assets 0.6.1",
+  "Runde 2: 3 fehlend",
+  "Runde 3: 3 fehlend",
+  "Runde 4: 3 fehlend"
+ ]
+}
