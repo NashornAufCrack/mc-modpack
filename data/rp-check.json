@@ -133,9 +133,9 @@
 "grund": ""
 },
 "fancy-crops": {
-"sha1": "788e5169eb064b696b2e20d4c5d998cceb387a2e",
+"sha1": "a247188ff93c19045cda4344d80e3cb6e1b00494",
 "ok": true,
-"von": 15.0,
+"von": 97.0,
 "bis": 1024.0,
 "grund": ""
 },
@@ -1398,6 +1398,48 @@
 "ok": true,
 "von": 88.0,
 "bis": 97.1,
+"grund": ""
+},
+"clean-connected-glass": {
+"sha1": "c9ba6b65d840057ddac7f3e8acb214ea5c318040",
+"ok": true,
+"von": 15.0,
+"bis": 102.0,
+"grund": ""
+},
+"better-candles": {
+"sha1": "1d7e96698cc7549eb857d534d0cd9c0d39b3a7bd",
+"ok": true,
+"von": 97.1,
+"bis": 97.1,
+"grund": ""
+},
+"better-moss": {
+"sha1": "966e03e34aeabbe551ae79603510f56422b04c25",
+"ok": true,
+"von": 97.1,
+"bis": 97.1,
+"grund": ""
+},
+"hanging-leaves": {
+"sha1": "c47f0efb70b34de164252682fc1b05bc6358e692",
+"ok": true,
+"von": 69.0,
+"bis": 1000.0,
+"grund": ""
+},
+"simple-overlays": {
+"sha1": "86faea776836d413d679439fa96a2f9a169e7a4f",
+"ok": true,
+"von": 65.0,
+"bis": 1024.0,
+"grund": ""
+},
+"jutting-ores": {
+"sha1": "f3c66f5ef9ef5b9a594347cadcc59afee5019a86",
+"ok": true,
+"von": 4.0,
+"bis": 420.0,
 "grund": ""
 }
 }

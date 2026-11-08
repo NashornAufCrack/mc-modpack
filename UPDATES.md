@@ -19,13 +19,20 @@ Zuletzt geprüft: 2026-11-08
 - 2026-11-08: **Punchy! x Tiny Takeover** (Mod) 2.0.4 → 2.0.5
 - 2026-11-08: **optigui** (Mod) 2.3.0-beta.11+26.1 → 2.3.0-beta.11+26.3 (beta)
 - 2026-11-08: **Beautify: Refabricated** (Mod) 3.6.5-fabric+26.3 → 3.6.6-fabric+26.3
+- 2026-11-08: **More Culling** (Mod) 1.9.1 → 1.9.2
+- 2026-11-08: **Villager Names** (Mod) 26.3.0-8.9-fabric+forge+neo → 26.3.0-9.0-fabric+forge+neo
+- 2026-11-08: **Collective** (Mod) 26.3.0-8.83-fabric+forge+neo → 26.3.0-8.84-fabric+forge+neo
+- 2026-11-08: **Konfig** (Mod) 0.10.2+26.3 → 0.10.3+26.3
+- 2026-11-08: **Voxy Extra** (Mod) 0.2.8 → 0.3.0+26.3
+- 2026-11-08: **tree-harvester** (Mod) 26.3.0-11.0-fabric+forge+neo → 26.3.0-11.1-fabric+forge+neo
+- 2026-11-08: **Fancy Crops** (Resource Pack) 1.3 → 1.4
 
 
 ## Verfügbar, aber nicht automatisch übernommen (14)
 
 - Sodium: mc26.3-0.9.2-fabric → mc26.3-0.9.3-beta.4-fabric (festgelegte Version)
-- Reese's Sodium Options: mc26.3-2.2.5+fabric → mc26.3-2.2.6-beta.2+fabric (nur als beta)
-- Sodium Extra: mc26.3-0.9.5+fabric → mc26.3-0.9.6-beta.2+fabric (nur als beta)
+- Reese's Sodium Options: mc26.3-2.2.5+fabric → mc26.3-2.2.6-beta.3+fabric (nur als beta)
+- Sodium Extra: mc26.3-0.9.5+fabric → mc26.3-0.9.6-beta.3+fabric (nur als beta)
 - Animatica: 0.6.3+26.3 → 0.7.0+beta.4+26.3-fabric (nur als beta)
 - Detail Armor Bar: 5.3.2-26.3-fabric → 5.3.3-beta.1-26.3-fabric (nur als beta)
 - Tectonic: 3.0.32-fabric-26.3 → 3.1.0+beta2-fabric-26.3 (nur als beta)
@@ -39,7 +46,7 @@ Zuletzt geprüft: 2026-11-08
 - Pegasus Shaders: 0.5 → 0.8.1 (nur als beta)
 
 
-## Ohne neue Version seit über einer Woche (623)
+## Ohne neue Version seit über einer Woche (633)
 
 Sortiert nach Alter der aktuellen Datei.
 
@@ -55,7 +62,6 @@ Sortiert nach Alter der aktuellen Datei.
 - 3D crops Revamped: 3 (seit 2025-05-19)
 - Excalibur | Lootr Support: 1.1 (seit 2025-09-16)
 - Better Flame Particles: 3.1 (seit 2025-09-19)
-- Fancy Crops: 1.3 (seit 2025-10-11)
 - (Bee's) Fluffy Carpets and Wool: 1.1 (seit 2025-10-11)
 - (Bee's) Blockier Goat Horn: 1.2 (seit 2025-10-11)
 - AL's Zombies Revamped x Fresh Animations: 1.4.1 (seit 2025-11-22)
@@ -129,6 +135,7 @@ Sortiert nach Alter der aktuellen Datei.
 - SleepWarp (Updated): 2.13.0+26.3-rc-3 (seit 2026-09-14)
 - Gentler Weather Sounds: 2.3.0 (seit 2026-09-14)
 - Motschen's Better Leaves: 9.6 (seit 2026-09-14)
+- qrafty's Dappled Villages: 1.0+mod (seit 2026-09-14)
 - Sodium: mc26.3-0.9.2-fabric (seit 2026-09-15)
 - Dynamic FPS: 3.11.10 (seit 2026-09-15)
 - Euphoria Patches: 1.10.5-r5.9.3-fabric (seit 2026-09-15)
@@ -277,6 +284,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Default Dark Mode: 2026.9.0-26.3 (seit 2026-09-19)
 - Fresh Flower Pots: Rotated: 1.2.4 (seit 2026-09-19)
 - DeCubed Dungeons (Formerly Dungeons+): 1.13.1 (seit 2026-09-19)
+- AR1 Animated Typing: 1.0.1 (seit 2026-09-19)
 - Crash Assistant: 1.11.14 (seit 2026-09-20)
 - Visuality: 0.7.15+26.3 (seit 2026-09-20)
 - Better End Sky: 0.3.1+26.3 (seit 2026-09-20)
@@ -386,6 +394,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Fresh Skeleton Physics: 2.0.1 (seit 2026-09-26)
 - Eggs N Eyes: 1.0.7 (seit 2026-09-26)
 - ATi Structures: 1.4.7 (seit 2026-09-26)
+- ClickOptimizer: 1.0.0 (seit 2026-09-26)
 - First-person Model: 2.7.3 (seit 2026-09-27)
 - Better Animations Collection: 26.3.0 (seit 2026-09-27)
 - Crawl: 0.15.0 (seit 2026-09-27)
@@ -466,6 +475,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Super Resolution: 26.3-0.9.2-alpha.2+gl-fabric (seit 2026-10-03)
 - Ripple: 1.2.5 (seit 2026-10-03)
 - Custom Player Animations: 5.9.10-fabric+26.3 (seit 2026-10-03)
+- Hanging Leaves: 1 (seit 2026-10-03)
 - Sounds: 2.6.0+26.3-fabric (seit 2026-10-04)
 - BetterF3: 20.0.0 (seit 2026-10-04)
 - Chat Heads: 1.3.2 (seit 2026-10-04)
@@ -513,6 +523,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Friends&Foes - Beekeeper Hut (Fabric/Quilt): fabric-3.0.4+mc26.3 (seit 2026-10-09)
 - Lovely Snails: 1.4.0+26.3 (seit 2026-10-09)
 - Immersive Interfaces - Mod Support Unofficial: 2.1.2 (seit 2026-10-09)
+- Komorebi Shaders: 26.3 (seit 2026-10-09)
 - Particle Interactions: 0.10.5+26.3-fabric (seit 2026-10-10)
 - Inventory Particles: 3.3.0+26.3+fabric (seit 2026-10-10)
 - Particle Core: 0.3.3+fix1+26.2 (seit 2026-10-10)
@@ -526,6 +537,7 @@ Sortiert nach Alter der aktuellen Datei.
 - MasterCutter: 1.8.1-mc26.3+mod (seit 2026-10-11)
 - Animal Feeding Trough: 1.2.1+26.3 (seit 2026-10-11)
 - Fyoncle's 3D Trims: 6.0 (seit 2026-10-11)
+- Ancient Cities: 1.6 (seit 2026-10-11)
 - Subtle Effects: 1.15.1-hotfix.1 (seit 2026-10-12)
 - Drip Sounds: 0.6.3+26.3-fabric (seit 2026-10-12)
 - Incendium: 5.5.4+26.3 (seit 2026-10-12)
@@ -533,6 +545,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Animatica: 0.6.3+26.3 (seit 2026-10-13)
 - Trade Cycling: fabric-1.0.23+26.3 (seit 2026-10-13)
 - Bow Infinity Fix: 3.4.0 (seit 2026-10-13)
+- Better Candles: 1.1.0-mc26.3 (seit 2026-10-13)
 - Enderscape: 3.0.5+mc26.3 (seit 2026-10-14)
 - Not Enough Crashes: 4.5.1+26.3-fabric (seit 2026-10-14)
 - Async Logger: 2.2.3+26.1.2-fabric (seit 2026-10-14)
@@ -566,6 +579,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Perception: 0.1.6.1+26.3 (seit 2026-10-18)
 - Stack to Nearby Chests: 0.5.20 (seit 2026-10-18)
 - ReplayMod: 26.3-2.6.28 (seit 2026-10-18)
+- Wandering Traveler: 1.6.0+fabric (seit 2026-10-18)
 - Voxy: 0.2.20-beta (seit 2026-10-19)
 - AmbientSounds: 6.3.11 (seit 2026-10-19)
 - Immersive UI: 0.3.7+26.3 (seit 2026-10-19)
@@ -579,10 +593,10 @@ Sortiert nach Alter der aktuellen Datei.
 - Katters Structures: 2.9 (seit 2026-10-19)
 - Freecam: 1.5.1 (seit 2026-10-20)
 - FallingTree: 26.3-26.3.0.4 (seit 2026-10-20)
-- Villager Names: 26.3.0-8.9-fabric+forge+neo (seit 2026-10-20)
 - ItemPhysic: 1.8.18 (seit 2026-10-20)
 - Cave Spider Spawn: 26.3.0-1.5-fabric+forge+neo (seit 2026-10-20)
 - Nature X (Resource Pack): 26.0.1 (seit 2026-10-20)
+- Better Moss: 1.0.0-mc26.3 (seit 2026-10-20)
 - Grassier Grass: 1.4.5 (seit 2026-10-21)
 - Wandering Trader May Leave: 26.3.0-2.0-fabric+forge+neo (seit 2026-10-21)
 - Naturalist: 2.0.7+26.3-fabric (seit 2026-10-21)
@@ -591,11 +605,11 @@ Sortiert nach Alter der aktuellen Datei.
 - Areas: 26.3.0-7.0-fabric+forge+neo (seit 2026-10-21)
 - The Immersive Music Mod: 1.1.3-26.3 (seit 2026-10-21)
 - Enhanced Boss Bars: 1.6 (seit 2026-10-21)
+- Voxy Seam Fix: 0.2.1-release (seit 2026-10-21)
 - Atmospherics: 2.6.8 (seit 2026-10-22)
 - Last World Panorama: v1.0 (seit 2026-10-22)
 - Boat Item View: 26.3-0.0.11-fabric (seit 2026-10-22)
 - Head in the Clouds: 2.3.0+26.3 (seit 2026-10-22)
-- Voxy Extra: 0.2.8 (seit 2026-10-22)
 - Food Effect Tooltips [Fabric / NeoForge]: 2.1.2+26.3 (seit 2026-10-22)
 - Fresh Food for Hyper Punchy: v1.0 (seit 2026-10-22)
 - Torches Reimagined: v1.10 (seit 2026-10-22)
@@ -615,6 +629,8 @@ Sortiert nach Alter der aktuellen Datei.
 - Fresh Food: 1.3.8 (seit 2026-10-24)
 - Optimized Bushy Leaves: v4.3 (seit 2026-10-24)
 - Steadfast: 0.9.0 (seit 2026-10-24)
+- Jutting Ores: 1.1 (seit 2026-10-24)
+- Beautify Shaders: 1.3.5 (seit 2026-10-24)
 - Sodium Extra: mc26.3-0.9.5+fabric (seit 2026-10-25)
 - Xaero's Minimap: fabric-26.3-26.6.2 (seit 2026-10-25)
 - Xaero's World Map: fabric-26.3-1.47.2 (seit 2026-10-25)
@@ -649,6 +665,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Hyper Punchy: 2.8 (seit 2026-10-29)
 - Just 3D Potions (Punchy!): 1.2 (seit 2026-10-29)
 - Refined Buckets: 3.0 (seit 2026-10-29)
+- Shiroi Visuals: 26.3.10 (seit 2026-10-29)
 - Fancy World Animations: 1.3.4 (seit 2026-10-30)
 - Fast Noise: 1.1.2+26.3 (seit 2026-10-30)
 - Underlay: 1.0.5-hotfix.1 (seit 2026-10-30)
