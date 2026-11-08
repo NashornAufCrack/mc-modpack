@@ -1,0 +1,7 @@
+{
+  "name": "mc-katalog-qa",
+  "private": true,
+  "description": "Prüfungen für den Mod-Katalog: Daten (datacheck.py) und Website-Abläufe inkl. Exporte und Barrierefreiheit (e2e.js)",
+  "scripts": { "e2e": "node e2e.js out" },
+  "dependencies": { "axe-core": "4.10.2", "jszip": "3.10.1", "playwright": "1.63.0" }
+}

@@ -27,7 +27,8 @@ export function plan(w: Record<string, any>) {
   if (pack.BY["smart-particles"]) { add.add("smart-particles"); why["smart-particles"] = "weniger FPS-Einbrüche bei vielen Partikeln"; }
   for (const g of pack.data.dec.gruppen) g.mods.filter(x => add.has(x)).slice(1).forEach(x => add.delete(x));
   const S = new Set(pack.LOCKED); const final: string[] = [];
-  for (const s of add) if (!pack.clashes(s, S).length) { S.add(s); final.push(s); }
+  // fest eingebaute Mods sind keine Vorschläge (sonst zählt die Vorschau sie mit)
+  for (const s of add) if (!pack.LOCKED.has(s) && !pack.BLOCKED.has(s) && !pack.clashes(s, S).length) { S.add(s); final.push(s); }
   return { add: final, why, fps, rd: P.rd, P, ram: Math.min(12, Math.floor(Number(w.ram || 16) / 2)) };
 }
 export function applyPlan(w: Record<string, any>) {

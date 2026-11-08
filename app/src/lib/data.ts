@@ -1,6 +1,6 @@
 // Datenschicht: GitHub-Pages lädt per fetch, das Artifact bekommt alles eingebettet.
 export type Mod = {
-  slug: string; name: string; cat: "P" | "V" | "G" | "T" | "S"; sub: string; ampel: "G" | "Y" | "R" | "Q";
+  slug: string; name: string; cat: "P" | "V" | "B" | "G" | "T" | "S"; sub: string; ampel: "G" | "Y" | "R" | "Q";
   rolle: "K" | "O" | "A"; downloadsK: number; notiz: string; quellen: string[]; pt?: "m" | "r" | "s" | "d";
   img?: string[]; pflicht?: boolean; neu?: boolean; seite?: string; cf?: string; vn?: string;
 };
@@ -13,7 +13,7 @@ export type Media = { bilder?: string[]; hq?: string[]; icon?: string | null; vi
 export type AppData = {
   mods: Mod[]; files: Record<string, any[]>; dec: { gruppen: Gruppe[]; beziehungen: Beziehung[]; entscheidungen: any[] }; settings: any;
   x: { details: Record<string, { txt?: string; yt?: string[] }>;
-       rpo: Record<string, { fn: string; data: any }>; rpbad?: string[] };
+       rpo: Record<string, { fn: string; data: any }>; rpbad?: string[]; basisfehlt?: Record<string, string[]> };
 };
 export const ARTIFACT = import.meta.env.MODE === "artifact";
 const DATA = (import.meta.env.VITE_DATA as string) || "data/";
@@ -30,9 +30,11 @@ export async function loadData(): Promise<{ data: AppData; media: Record<string,
     const data = (await import("../../../data/app-data.json")).default as unknown as AppData;
     return { data, media: {} };
   }
+  const json = async (f: string) => { const r = await fetch(DATA + f); if (!r.ok) throw new Error(f + ": HTTP " + r.status); return r.json(); };
+  // media-app.json ist die schlanke Fassung (nur Bilder und freigegebene Videos), media.json der Rückfall
   const [data, media] = await Promise.all([
-    fetch(DATA + "app-data.json").then(r => r.json()),
-    fetch(DATA + "media.json").then(r => (r.ok ? r.json() : {})).catch(() => ({})),
+    json("app-data.json"),
+    json("media-app.json").catch(() => json("media.json")).catch(() => ({})),
   ]);
   return { data, media };
 }

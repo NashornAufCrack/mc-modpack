@@ -17,10 +17,21 @@
   onMount(async () => {
     try { const t = localStorage.getItem("mk-theme"); if (t === "light" || t === "dark") ui.setTheme(t); } catch {}
     try { const { data, media } = await loadData(); pack.init(data, media); loadSounds().then(x => (pack.sounds = x)); } catch (e) { err = String(e); }
-    const v = location.hash.slice(1); if (v === "testen" || v === "hilfe" || v === "updates") ui.view = v;
+    if (pack.imported !== null) sharedMsg(pack.imported);
+    route();
   });
-  const NAV = [["bauen", "Pack bauen"], ["testen", "Testen"], ["updates", "Updates"], ["hilfe", "Hilfe & Glossar"]] as const;
+  /** Hash-Navigation: Zurück/Vor im Browser und geteilte #pack-Links funktionieren auch ohne Neuladen */
+  function route() {
+    const v = location.hash.slice(1);
+    if (v === "testen" || v === "hilfe" || v === "updates" || v === "bauen") ui.view = v;
+    else if ((v.startsWith("p=") || v.startsWith("pack-")) && pack.ready) { const n = pack.importShared(); ui.view = "bauen"; if (n !== null) sharedMsg(n); }
+    else if (!v) ui.view = "bauen";
+  }
+  const sharedMsg = (n: number) => ui.say(`Geteiltes Pack geladen${n ? ` (${n} Einträge gibt es nicht mehr)` : ""}. Deine vorige Auswahl holst du mit Rückgängig zurück.`, true);
+  const NAV = [["bauen", "Pack bauen", ""], ["testen", "Testen", ""], ["updates", "Updates", ""], ["hilfe", "Hilfe", " & Glossar"]] as const;
 </script>
+
+<svelte:window onhashchange={route} />
 
 <div class="shell">
   <header class="top">
@@ -28,8 +39,8 @@
       <span class="logo" aria-hidden="true"></span><span><b>Mod-Katalog</b> <span class="muted">26.3</span></span>
     </a>
     <nav aria-label="Bereiche">
-      {#each NAV as [k, l]}
-        <a href="#{k}" aria-current={ui.view === k ? "page" : undefined} onclick={() => (ui.view = k)}>{l}</a>
+      {#each NAV as [k, l, x]}
+        <a href="#{k}" aria-current={ui.view === k ? "page" : undefined} onclick={() => (ui.view = k)}>{l}{#if x}<span class="long">{x}</span>{/if}</a>
       {/each}
     </nav>
     <button class="btn ghost sm" onclick={() => ui.setTheme(ui.theme === "dark" ? "light" : "dark")} aria-label="Hell/Dunkel umschalten">{ui.theme === "dark" ? "☀" : "☾"}</button>
@@ -48,7 +59,7 @@
 {#if pack.ready}
   <Detail /><Lightbox /><Wizard /><Conflict /><Tools />
   {#if ui.toast}
-    <div class="toast" role="status">{ui.toast.text}{#if ui.toast.undo}<button class="btn sm" onclick={() => { pack.undo(); ui.toast = null; }}>Rückgängig</button>{/if}</div>
+    <div class="toast" role="status">{ui.toast.text}{#if ui.toast.undo}<button class="btn sm" onclick={() => { ui.undo(); }}>Rückgängig</button>{/if}</div>
   {/if}
 {/if}
 
@@ -66,5 +77,8 @@
   .spin { width: 18px; height: 18px; border: 2px solid var(--line-2); border-top-color: var(--accent); border-radius: 50%; animation: s 1s linear infinite; }
   @keyframes s { to { transform: rotate(1turn); } }
   .toast { position: fixed; left: 50%; bottom: 1.25rem; transform: translateX(-50%); z-index: 60; display: flex; gap: .8rem; align-items: center; padding: .6rem .6rem .6rem 1rem; border-radius: 12px; background: var(--fg); color: var(--bg); box-shadow: var(--shadow); font-weight: 500; max-width: calc(100vw - 2rem); }
+  /* Handy: Navigation in eigener Zeile, alle vier Bereiche sichtbar */
+  @media (max-width: 640px) { .top { flex-wrap: wrap; row-gap: .4rem; } nav { order: 3; flex-basis: 100%; justify-content: space-between; } nav a { padding: .4rem .55rem; } .long { display: none; } .brand { flex: 1; } }
+  @media (max-width: 1100px) { .toast { bottom: 4.6rem; } }
   .toast :global(.btn) { background: transparent; color: inherit; border-color: color-mix(in srgb, var(--bg) 40%, transparent); }
 </style>

@@ -24,7 +24,10 @@ S='makeup-ultra-fast-shaders astralex noble sildurs-vibrant-shaders'.split()
 CAT={**{s:'V' for s in V},**{s:'G' for s in G},**{s:'P' for s in P},**{s:'T' for s in T},**{s:'V' for s in R+S}}
 SUB={'cinematic-interactions':'Spieler-Animation','cpa':'Spieler-Animation','fresh-block-animations':'Animation & Modelle','ears':'Animation & Modelle','studious-keybinds':'HUD & Bedienung',
  'enhancedvisuals':'Effekte & Partikel','bettergrassify':'Animation & Modelle','emotecraft':'Spieler-Animation','paperdoll':'HUD & Bedienung'}
-def match(slug): return next((k for k in CAT if slug.startswith(k)), None)
+def match(slug):
+  if slug in CAT: return slug
+  # Präfix nur für lange, abgeschnittene Schlüssel (z. B. mns-moogs-nether-structure…); kurze wie cpa/ears/ibo nur exakt
+  return next((k for k in CAT if len(k) >= 12 and slug.startswith(k)), None)
 n=0; seen=set(); used=set()
 for x in a['mods']:
   k=match(x['slug'])

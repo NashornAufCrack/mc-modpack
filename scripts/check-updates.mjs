@@ -37,17 +37,47 @@ for (const [t, loaders] of Object.entries(LOADERS)) {
       } else if (v && v.files?.length && v.version_number !== files[s][6]) {
         const f = v.files.find(x => x.primary) || v.files[0];
         const deps = v.dependencies.filter(d => d.dependency_type === "required" && d.project_id).map(d => d.project_id);
-        updates.push({ slug: s, name: NAME[s] || files[s][7] || s, typ: t, von: files[s][6], auf: v.version_number, art: v.version_type, datum: v.date_published.slice(0, 10), deps });
+        updates.push({ slug: s, name: NAME[s] || files[s][7] || s, typ: t, von: files[s][6], auf: v.version_number, art: v.version_type, datum: v.date_published.slice(0, 10), deps, alt: files[s], altStand: stand[s] });
         files[s] = [f.url, f.filename, f.hashes.sha1, f.hashes.sha512, f.size, files[s][5], v.version_number, files[s][7], t];
         stand[s] = { version: v.version_number, seit: v.date_published.slice(0, 10) };
       } else if (!stand[s] || stand[s].version !== files[s][6]) stand[s] = { version: files[s][6], seit: stand[s]?.seit || null };
     }
   }
 }
-// Projekt-IDs neuer Abhängigkeiten in Slugs übersetzen (nur bekannte), sonst alte Liste behalten
-const idSlug = {}; const ids = [...new Set(updates.flatMap(u => u.deps))];
-for (let i = 0; i < ids.length; i += 80) try { for (const p of await get(`${A}/projects?ids=${encodeURIComponent(JSON.stringify(ids.slice(i, i + 80)))}`)) idSlug[p.id] = p.slug; } catch {}
-for (const u of updates) { const d = u.deps.map(x => idSlug[x]).filter(x => x && files[x]); if (d.length) files[u.slug][5] = [...new Set([...files[u.slug][5], ...d])]; delete u.deps; }
+// Abhängigkeiten neuer Versionen: Projekt-IDs → Slugs, fehlende Bibliotheken für 26.3 nachladen (auch deren Abhängigkeiten).
+// Gibt es eine neue Pflicht-Abhängigkeit für 26.3 nicht, wird das Update zurückgehalten, sonst startet das Pack nicht.
+const IGNORE = new Set(["qsl", "quilted-fabric-api", "connector", "modefite-item-definition-backport"]); // für Fabric 26.3 bedeutungslos
+const PT = { mod: "m", resourcepack: "r", shader: "s", datapack: "d" };
+const LD = { mod: ["fabric"], resourcepack: ["minecraft"], shader: ["iris", "optifine"], datapack: ["datapack"] };
+const idInfo = {}, neuLib = [];
+async function projects(ids) { // unbekannte IDs (Abfrage gescheitert) zählen als nicht prüfbar → Update wird zurückgehalten
+  const need = [...new Set(ids)].filter(x => !(x in idInfo));
+  for (let i = 0; i < need.length; i += 80) try { for (const p of await get(`${A}/projects?ids=${encodeURIComponent(JSON.stringify(need.slice(i, i + 80)))}`)) idInfo[p.id] = { slug: p.slug, type: p.project_type, title: p.title }; } catch {}
+  return { ps: ids.map(x => idInfo[x]).filter(Boolean), offen: ids.filter(x => !idInfo[x]) };
+}
+async function lib(p) { // true = vorhanden oder vollständig nachgeladen; halb aufgelöste Bibliotheken werden wieder entfernt
+  if (files[p.slug] || IGNORE.has(p.slug)) return true;
+  try {
+    const vs = await get(`${A}/project/${p.slug}/version?game_versions=${encodeURIComponent(JSON.stringify([MC]))}&loaders=${encodeURIComponent(JSON.stringify(LD[p.type] || ["fabric"]))}`);
+    const v = vs.find(x => x.version_type === "release") || vs[0]; if (!v) return false;
+    const f = v.files.find(x => x.primary) || v.files[0];
+    files[p.slug] = [f.url, f.filename, f.hashes.sha1, f.hashes.sha512, f.size, [], v.version_number, p.title || p.slug, PT[p.type] || "m"]; neuLib.push(p.slug);
+    const { ps: sub, offen } = await projects(v.dependencies.filter(d => d.dependency_type === "required" && d.project_id).map(d => d.project_id));
+    files[p.slug][5] = sub.map(x => x.slug).filter(x => !IGNORE.has(x));
+    let ok = !offen.length; for (const q of sub) if (ok && !(await lib(q))) ok = false;
+    if (!ok) { delete files[p.slug]; neuLib.splice(neuLib.indexOf(p.slug), 1); }
+    return ok;
+  } catch { if (files[p.slug] && neuLib.includes(p.slug)) { delete files[p.slug]; neuLib.splice(neuLib.indexOf(p.slug), 1); } return false; }
+}
+for (const u of [...updates]) {
+  const { ps, offen } = await projects(u.deps); const fehlt = offen.map(x => "unbekannt (" + x + ")");
+  for (const p of ps) if (!(await lib(p))) fehlt.push(p.title || p.slug);
+  if (fehlt.length) {
+    files[u.slug] = u.alt; stand[u.slug] = u.altStand || { version: u.von, seit: null }; updates.splice(updates.indexOf(u), 1);
+    verfuegbar.push({ slug: u.slug, name: u.name, typ: u.typ, aktuell: u.von, neu: u.auf, art: u.art, grund: "Abhängigkeit fehlt für " + MC + ": " + fehlt.join(", ") });
+  } else { const d = ps.map(p => p.slug).filter(x => !IGNORE.has(x) && files[x]); if (d.length) files[u.slug][5] = [...new Set([...files[u.slug][5], ...d])]; }
+  delete u.deps; delete u.alt; delete u.altStand;
+}
 
 // Veröffentlichungsdatum der aktuellen Datei für alles ohne Datum nachtragen (zeigt, wie lange es keine neue Version gab)
 const noDate = Object.keys(stand).filter(s => files[s] && !stand[s].seit && isMR(s));
@@ -70,8 +100,10 @@ try {
 } catch {}
 
 // Ergebnis: Updates werden sofort wirksam (Website liest app-data.json)
-app.files = { ...app.files, ...Object.fromEntries(updates.map(u => [u.slug, files[u.slug]])) };
+app.files = { ...app.files, ...Object.fromEntries([...updates.map(u => u.slug), ...neuLib].map(x => [x, files[x]])) };
 fs.writeFileSync("data/files.json", JSON.stringify(files));
+// Katalog-Quelle mitziehen, damit ein lokaler Build die Updates nicht zurückdreht
+if (fs.existsSync("quelle/files.json")) fs.writeFileSync("quelle/files.json", JSON.stringify(files));
 fs.writeFileSync("data/app-data.json", JSON.stringify(app));
 const heute = [...((prev.verlauf || []).find(x => x.datum === today)?.updates || []).filter(u => !updates.some(n => n.slug === u.slug)), ...updates];
 const verlauf = [...(prev.verlauf || []).filter(x => x.datum !== today), ...(heute.length ? [{ datum: today, updates: heute }] : [])].slice(-60);
@@ -90,4 +122,5 @@ const md = [`# Update-Stand (${MC})`, "", `Zuletzt geprüft: ${today}`, "",
   ...ohneNeue.map(o => `- ${o.name}: ${o.version} (seit ${o.seit})`), "",
   ...(next ? [`## Nächste Minecraft-Version ${next.version}`, "", `${next.ready} von ${next.total} empfohlenen Inhalten sind bereit.`, "", ...next.missing.map(s => `- fehlt noch: ${NAME[s] || s}`)] : [])];
 fs.writeFileSync("UPDATES.md", md.join("\n") + "\n");
+if (neuLib.length) console.log("Neue Bibliotheken: " + neuLib.join(", "));
 console.log(`${updates.length} Updates übernommen, ${ohneNeue.length} ohne neue Version seit >7 Tagen, nächste Version: ${next ? next.version + " " + next.ready + "/" + next.total : "keine"}`);

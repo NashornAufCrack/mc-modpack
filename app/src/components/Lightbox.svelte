@@ -4,7 +4,7 @@
   import { ui } from "../lib/ui.svelte";
   let open = $state(false);
   $effect(() => { open = !!ui.lightbox; });
-  const lb = $derived(ui.lightbox); const imgs = $derived(lb ? pack.imgHQ(lb.slug) : []); const th = $derived(lb ? pack.img(lb.slug) : []);
+  const lb = $derived(ui.lightbox); const gal = $derived(lb ? pack.gallery(lb.slug) : []); const imgs = $derived(gal.map(g => g.full)); const th = $derived(gal.map(g => g.thumb));
   const go = (d: number) => { if (lb && imgs.length) ui.lightbox = { slug: lb.slug, i: (lb.i + d + imgs.length) % imgs.length }; };
   function key(e: KeyboardEvent) { if (!lb) return; if (e.key === "ArrowRight") go(1); if (e.key === "ArrowLeft") go(-1); }
 </script>

@@ -3,6 +3,7 @@
 // Stufe B: CurseForge (nur Einträge mit CurseForge-Link) – Key: CURSEFORGE_API_KEY
 // Stufe C: YouTube-Suche mit Bewertung – Key: YOUTUBE_API_KEY, max. MAX_SEARCH Suchen pro Lauf
 import fs from "node:fs";
+import { writeMediaApp } from "./media-app.mjs";
 const UA = "NashornAufCrack/mc-modpack media-pipeline (github.com/NashornAufCrack/mc-modpack)";
 const MAX_SEARCH = Number(process.env.MAX_SEARCH || 90);
 const mods = JSON.parse(fs.readFileSync("data/mods.json", "utf8"));
@@ -139,11 +140,12 @@ log.push(`yt-dlp-Suchen: ${nd}, mit Treffer: ${okD}, noch offen: ${Math.max(0, t
   let nr = 0, hr = 0;
   for (const m of need) {
     const u = src[m.slug]; const g = u && String(u).match(/github\.com\/([^/]+)\/([^/#?]+)/i);
-    const e = (media[m.slug] ||= {}); e.readme = new Date().toISOString().slice(0, 10); if (!g) continue; nr++;
+    const e = (media[m.slug] ||= {}); if (!g) { e.readme = new Date().toISOString().slice(0, 10); continue; } nr++;
     const repo = g[1] + "/" + g[2].replace(/\.git$/, "");
     try {
       const r = await fetch(`https://api.github.com/repos/${repo}/readme`, { headers: { Accept: "application/vnd.github.raw", "User-Agent": "mc-modpack media", ...(process.env.GITHUB_TOKEN ? { Authorization: "Bearer " + process.env.GITHUB_TOKEN } : {}) } });
-      if (!r.ok) continue; const md = await r.text();
+      if (r.status === 404) e.readme = new Date().toISOString().slice(0, 10); // kein README: nicht erneut fragen
+      if (!r.ok) continue; e.readme = new Date().toISOString().slice(0, 10); const md = await r.text(); // sonst (Limit, Serverfehler) beim nächsten Lauf nochmal
       const raw = [...md.matchAll(/!\[[^\]]*\]\(\s*<?([^)\s>]+)/g), ...md.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)].map(x => x[1]);
       const imgs = [...new Set(raw.map(x => x.startsWith("http") ? x : `https://raw.githubusercontent.com/${repo}/HEAD/${x.replace(/^\.?\//, "")}`)
         .map(x => x.replace(/github\.com\/([^/]+\/[^/]+)\/(blob|raw)\//, "raw.githubusercontent.com/$1/"))
@@ -189,6 +191,7 @@ for (const e of Object.values(media)) for (const v of (Array.isArray(e.videos) ?
 const REV = fs.existsSync("data/video-review.json") ? JSON.parse(fs.readFileSync("data/video-review.json", "utf8")) : {};
 for (const [s, e] of Object.entries(media)) for (const v of e.videos || []) if (REV[s + ":" + v.id]) v.status = REV[s + ":" + v.id];
 fs.writeFileSync(OUT, JSON.stringify(media));
+writeMediaApp(media);
 const all = mods.map(m => media[m.slug] || {});
 const hd = all.filter(e => (e.breite || 0) >= 1280 || (e.videos || []).some(v => v.status === "auto" || v.status === "ok")).length;
 const stat = { stand: new Date().toISOString(), eintraege: mods.length, mitBildern: all.filter(e => (e.bilder || []).length).length, hdOderVideo: hd,

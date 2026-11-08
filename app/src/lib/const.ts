@@ -1,15 +1,15 @@
 // Aus der alten Seite übernommen (kuratierte Editoren, Leistungskosten)
 export const COST={"photon-shader":8,"complementary-reimagined":7,"complementary-unbound":8,"bliss-shader":9,"solas-shader":5,"bsl-shaders":5,"i-like-vanilla":3,"steadfast-shaders":3,"voxy":4,"distanthorizons":5,"living-horizon":3,"physicsmod":8,"particle-rain":3,"subtle-effects":2,"sound-physics-remastered":3,"fresh-animations":3,"fresh-animations-extensions":2,"fresh-animations-objects":2,"wakes":2,"better-smoke":2,"particle-interactions":2,"atmospherics":2,"immersive-storms":2,"chunks-fade-in":2,"spatial-gui":1,"diorama-map":2,"xaeros-world-map":2,"journeymap":3,"grassier-grass":2,"os-colorful-grasses":2,"round-trees":1,"lambdabettergrass":1,"visuality":1,"fallingleaves":1,"windy":1,"ambientsounds":1,"presence-footsteps":1,"punchy-fpa":1,"punchymoves":1,"3dskinlayers":1,"enchanted-fishing-line":1};
 export const BOOST=new Set(["sodium","lithium","ferrite-core","immediatelyfast","entityculling","moreculling","modernfix-mvus","badoptimizations","dynamic-fps","krypton","c2me-fabric","scalablelux","better-block-entities","ggtu"]);
-export const cost=s=>BOOST.has(s)?0:(COST[s]??1);
+export const cost=(s:string)=>BOOST.has(s)?0:((COST as Record<string,number>)[s]??1);
 
 export const SETDEF={
  "photon-shader":{file:"Photon-Shader-Datei",items:[
   {k:"COLORED_LIGHTS",t:"bool",d:true,l:"Farbiges Licht",h:"Fackeln, Lava und Redstone färben ihre Umgebung. Kostet etwas Leistung, sieht aber am meisten nach „Ultra“ aus."},
   {k:"WATER_CAUSTICS",t:"bool",d:true,l:"Wasser-Kaustiken",h:"Tanzende Lichtmuster unter Wasser. Kostet wenig."},
   {k:"shadowMapResolution",t:"sel",o:[1024,2048,3072,4096],d:2048,l:"Schattenauflösung",h:"Höher = schärfere Schattenkanten. Bei 1440p reicht 2048."},
-  {k:"shadowDistance",t:"sel",o:[96,128,160,192,256],d:160,f:v=>v.toFixed(1),l:"Schattendistanz (Blöcke)",h:"Wie weit Schatten reichen. Die wichtigste Stellschraube für FPS."},
-  {k:"BLOOM_INTENSITY",t:"range",min:0,max:1.5,step:.05,d:.8,f:v=>Number(v).toFixed(2),l:"Bloom",h:"Leuchten um helle Stellen. Weniger wirkt vanilla-näher."},
+  {k:"shadowDistance",t:"sel",o:[96,128,160,192,256],d:160,f:(v:number)=>v.toFixed(1),l:"Schattendistanz (Blöcke)",h:"Wie weit Schatten reichen. Die wichtigste Stellschraube für FPS."},
+  {k:"BLOOM_INTENSITY",t:"range",min:0,max:1.5,step:.05,d:.8,f:(v:number)=>Number(v).toFixed(2),l:"Bloom",h:"Leuchten um helle Stellen. Weniger wirkt vanilla-näher."},
   {k:"AURORA_NORMAL",t:"sel",o:["AURORA_NEVER","AURORA_RARELY","AURORA_ALWAYS"],ol:["Nie","Selten","Immer"],d:"AURORA_RARELY",l:"Polarlichter",h:"Polarlichter am Nachthimmel."},
   {k:"BLOCKY_CLOUDS",t:"bool",d:false,l:"Blockwolken",h:"An = eckige Wolken wie in Vanilla, aus = weiche volumetrische Wolken."},
   {k:"HANDHELD_LIGHTING",t:"bool",d:false,l:"Licht in der Hand (Photon)",h:"Aus lassen, wenn LambDynamicLights drin ist, sonst doppelt hell."},

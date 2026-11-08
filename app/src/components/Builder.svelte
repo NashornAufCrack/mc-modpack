@@ -22,7 +22,8 @@
       && (!f.has("sel") || pack.sel.has(m.slug)) && (!f.has("rec") || m.rolle === "K") && (!f.has("van") || (m.ampel !== "R" && m.cat !== "S")) && (!f.has("sug") || pack.sug.has(m.slug)));
   });
   const subs = $derived.by(() => { const c: Record<string, number> = {}; for (const m of pack.data.mods) if (m.cat === ui.sub && (m.pt || "m") === "m" && (pack.data.files[m.slug] || m.cf) && !pack.LOCKED.has(m.slug)) c[m.sub] = (c[m.sub] || 0) + 1; return Object.entries(c).sort((a, b) => b[1] - a[1]); });
-  const groups = $derived(pack.data.dec.gruppen.filter(g => g.mods.some(s => items.some(m => m.slug === s))));
+  // Gruppen mit einem fest eingebauten Mitglied sind keine echte Wahl: deren andere Mitglieder erscheinen als „nicht wählbar“
+  const groups = $derived(pack.data.dec.gruppen.filter(g => !g.mods.some(s => pack.LOCKED.has(s)) && g.mods.some(s => items.some(m => m.slug === s))));
   const sections = $derived.by(() => {
     const inG = new Set(groups.flatMap(g => g.mods)); const out: { title: string; list: Mod[] }[] = [];
     const cats = ui.tab === "m" ? ["P", "V", "B", "G", "T", "S"] : [null];
@@ -39,6 +40,10 @@
     const t = e.target as HTMLElement; const typing = t?.closest?.("input, textarea, select, [contenteditable]");
     if ((e.key === "/" && !typing) || (e.key.toLowerCase() === "k" && (e.ctrlKey || e.metaKey))) { if (document.querySelector("dialog[open]")) return; e.preventDefault(); search?.focus(); search?.select(); }
   }
+  // Handy/Tablet: Pack-Leiste steht ganz unten, daher eine feste Mini-Leiste mit Sprung zum Export
+  const rr = $derived(pack.resolve()); const nSel = $derived([...rr.mods].filter(s => !pack.LOCKED.has(s)).length);
+  const nProb = $derived(pack.problems().length);
+  function toPack() { const el = document.getElementById("pack"); el?.focus({ preventScroll: true }); el?.scrollIntoView({ block: "start" }); }
   function toggleF(k: string) { const n = new Set(ui.filters); n.has(k) ? n.delete(k) : n.add(k); ui.filters = n; }
 </script>
 
@@ -91,13 +96,18 @@
       <h2 class="sec">Entscheidungen <span class="muted">· nur eins pro Gruppe</span></h2>
       <div class="dgrid">{#each groups as g (g.id)}<Decision {g} />{/each}</div>
     {/if}
-    {#each sections as s (s.title)}
+    {#each sections as s, i (s.title)}
       <h2 class="sec">{s.title} <span class="muted">{s.list.length}</span></h2>
-      <div class="grid">{#each s.list as m (m.slug)}<ModCard {m} />{/each}</div>
+      <!-- Kacheln unterhalb des ersten Abschnitts erst beim Hinscrollen rendern (Platzhalterhöhe je Kachel, daher unabhängig von der Spaltenzahl) -->
+      <div class="grid" class:defer={i > 0}>{#each s.list as m (m.slug)}<ModCard {m} />{/each}</div>
     {/each}
     {#if !items.length}<p class="empty muted">Nichts gefunden. Nimm einen Filter heraus oder ändere die Suche.</p>{/if}
   </div>
   <PackBar />
+</div>
+<div class="mobilebar" role="region" aria-label="Pack-Übersicht">
+  <span><b>{nSel}</b> gewählt{#if nProb} · <b class="bad">{nProb} Konflikte</b>{/if}</span>
+  <button class="btn primary sm" onclick={toPack}>Zum Pack &amp; Export ↓</button>
 </div>
 
 <style>
@@ -122,9 +132,14 @@
   .note { margin: 0; font-size: .85rem; }
   .sec { font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; font-weight: 650; margin: 1.6rem 0 .6rem; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); gap: .75rem; }
+  .grid.defer :global(.card) { content-visibility: auto; contain-intrinsic-size: auto none auto 290px; }
   .dgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr)); gap: .75rem; }
   .empty { padding: 3rem 0; text-align: center; }
-  @media (max-width: 1100px) { .layout { grid-template-columns: minmax(0, 1fr); } .hero { grid-template-columns: minmax(0, 1fr); } }
+  .mobilebar { display: none; }
+  @media (max-width: 1100px) { .layout { grid-template-columns: minmax(0, 1fr); } .hero { grid-template-columns: minmax(0, 1fr); }
+    .mobilebar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; gap: .8rem; align-items: center; justify-content: space-between; padding: .6rem clamp(12px, 2.5vw, 28px) calc(.6rem + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(10px); border-top: 1px solid var(--line); font-size: .9rem; }
+    .mobilebar .bad { color: var(--bad); }
+    .layout { padding-bottom: 4rem; } }
   @media (max-width: 640px) { .filters { position: static; } }
   @media (max-width: 640px) { .presets { grid-template-columns: minmax(0, 1fr); } .dgrid { grid-template-columns: minmax(0, 1fr); } .grid { grid-template-columns: minmax(0, 1fr); } }
   .sugchip { border-color: var(--preset); }

@@ -3,19 +3,22 @@
   import type { Mod } from "../lib/data";
   import { pack } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
+  import { onDestroy } from "svelte";
   let { m, compact = false }: { m: Mod; compact?: boolean } = $props();
   const on = $derived(pack.sel.has(m.slug));
   const lk = $derived(pack.LOCKED.has(m.slug));
+  const bl = $derived(pack.BLOCKED.get(m.slug));
   const imgs = $derived(pack.img(m.slug).slice(0, 3));
   const fromPreset = $derived(!!pack.preset && pack.preset.base.includes(m.slug));
   const vids = $derived(pack.videos(m.slug).length);
   const snd = $derived(pack.proben(m.slug));
   let audio: HTMLAudioElement | null = null; let playing = $state(false);
+  onDestroy(() => audio?.pause()); // Hörprobe stoppt, wenn die Kachel verschwindet (Tab, Filter, Suche)
   function toggle() { if (!audio) { audio = new Audio(SOUNDBASE + snd[0].datei); audio.onended = () => (playing = false); } if (playing) { audio.pause(); playing = false; } else { audio.currentTime = 0; playing = true; audio.play().catch(() => (playing = false)); } }
 </script>
 
-<article class="card" class:on class:lk class:compact>
-  <button class="hit" aria-pressed={on} aria-label="{m.name}: {lk ? 'immer dabei, Details zeigen' : on ? 'im Pack, klicken zum Entfernen' : 'klicken zum Hinzufügen'}" onclick={() => (lk ? (ui.detail = m.slug) : ui.pick(m.slug))}></button>
+<article class="card" class:on class:lk class:bl class:compact>
+  <button class="hit" aria-pressed={on} aria-label="{m.name}: {lk ? 'immer dabei, Details zeigen' : bl ? 'nicht wählbar, Details zeigen' : on ? 'im Pack, klicken zum Entfernen' : 'klicken zum Hinzufügen'}" onclick={() => (lk || bl ? (ui.detail = m.slug) : ui.pick(m.slug))}></button>
   {#if !compact}
     <div class="thumbs">
       {#each imgs as u, i}<button class="zoom" onclick={() => (ui.lightbox = { slug: m.slug, i })} aria-label="Bild {i + 1} von {m.name} vergrößern"><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" decoding="async" onerror={(e) => (e.currentTarget as HTMLElement).parentElement?.remove()} /></button>{:else}{#if snd.length}<span class="ph sndph" aria-hidden="true">♪</span>{:else}<span class="ph">{m.name.slice(0, 1)}</span>{/if}{/each}
@@ -27,7 +30,7 @@
     <h3>{m.name}</h3>
     <p>{m.notiz}</p>
     <div class="meta">
-      {#if lk}<span class="badge ok">immer dabei</span>{:else if m.rolle === "K"}<span class="badge ok">empfohlen</span>{/if}
+      {#if lk}<span class="badge ok">immer dabei</span>{:else if bl}<span class="badge bad" title="Verträgt sich nicht mit {bl.map(y => pack.name(y)).join(', ')} aus dem Leistungspaket">nicht wählbar</span>{:else if m.rolle === "K"}<span class="badge ok">empfohlen</span>{/if}
       {#if fromPreset}<span class="badge preset" title="Kommt aus der gewählten Vorlage">Vorlage</span>{:else if on && pack.preset && !lk}<span class="badge info" title="Von dir hinzugefügt">+ von dir</span>{/if}
       {#if snd.length}<span class="badge info">♪ Hörprobe</span>{/if}
       {#if (m as any).neu}<span class="badge info">neu</span>{/if}
@@ -37,15 +40,15 @@
       {#if pack.cost(m.slug) >= 5}<span class="badge warn">kostet FPS</span>{/if}
     </div>
   </div>
-  <span class="check" aria-hidden="true">{on ? "✓" : "+"}</span>
+  <span class="check" aria-hidden="true">{on ? "✓" : bl ? "–" : "+"}</span>
   <button class="more" onclick={() => (ui.detail = m.slug)}>Details</button>
 </article>
 
 <style>
-  .card { position: relative; display: flex; flex-direction: column; min-width: 0; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); overflow: hidden; transition: border-color .15s, box-shadow .15s, transform .15s; content-visibility: auto; contain-intrinsic-size: auto 290px; }
+  .card { position: relative; display: flex; flex-direction: column; min-width: 0; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); overflow: hidden; transition: border-color .15s, box-shadow .15s, transform .15s; }
   .card:hover { border-color: var(--line-2); transform: translateY(-1px); box-shadow: var(--shadow); }
   .card.on { border-color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
-  .card.lk { cursor: default; }
+  .card.lk { cursor: default; } .card.bl { opacity: .72; } .bl .hit { cursor: help; }
   .thumbs { position: relative; display: flex; gap: 2px; height: 8.5rem; background: var(--bg-2); }
   .hit { position: absolute; inset: 0; z-index: 1; border: 0; background: none; cursor: pointer; border-radius: inherit; }
   .lk .hit { cursor: default; }

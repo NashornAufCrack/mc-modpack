@@ -23,11 +23,11 @@
   </ul>
   {#if open}
     <div class="all">
-      {#each [["Leistung", perf], ["Grundbausteine (Absturzschutz, Menüs, Bibliotheken)", base]] as [t, l]}
-        <h3>{t}</h3>
-        <ul class="cols">{#each l as m (m.slug)}<li><button class="lnk" onclick={() => (ui.detail = m.slug)}>{m.name}</button><span class="muted">&nbsp;– {m.notiz}</span></li>{/each}</ul>
+      {#each [{ t: "Leistung", l: perf }, { t: "Grundbausteine (Absturzschutz, Menüs, Bibliotheken)", l: base }] as g (g.t)}
+        <h3>{g.t}</h3>
+        <ul class="cols">{#each g.l as m (m.slug)}<li><button class="lnk" onclick={() => (ui.detail = m.slug)}>{m.name}</button><span class="muted">&nbsp;– {m.notiz}</span></li>{/each}</ul>
       {/each}
-      <p class="small muted">Nvidium wirkt nur auf NVIDIA-Karten und schaltet sich bei aktiven Shadern selbst ab. Nicht automatisch dabei, weil nachweislich mit Nebenwirkungen: Krypton (Verbindungsprobleme im Client), Moonrise (nicht mit C2ME), Alternate Current (ändert Redstone). Sie bleiben unten wählbar.</p>
+      <p class="small muted">Nvidium wirkt nur auf NVIDIA-Karten und schaltet sich bei aktiven Shadern selbst ab. Nicht automatisch dabei, weil nachweislich mit Nebenwirkungen: Krypton (Verbindungsprobleme im Client) und Alternate Current (ändert Redstone); beide bleiben unten wählbar. Moonrise, AsyncParticles und Particle Core sind nicht wählbar, weil sie sich mit festen Leistungs-Mods beißen (C2ME, Smart Particles).</p>
     </div>
   {/if}
 </section>

@@ -1,10 +1,9 @@
 // KI-Schleife: Prompt aus Pack + Messung erzeugen, JSON-Antwort prüfen und anwenden
 import { pack } from "./pack.svelte";
-import { BASE } from "./const";
 
 export type Fps = { avg: number; low1: number; low01: number; frames: number; stutter: number };
 export function parseFps(txt: string): Fps | null {
-  const lines = txt.split(/\r?\n/).filter(Boolean); const head = lines[0].split(",");
+  const lines = (txt || "").split(/\r?\n/).filter(Boolean); if (lines.length < 2) return null; const head = lines[0].split(",").map(h => h.trim().replace(/^"|"$/g, ""));
   const col = ["MsBetweenPresents", "FrameTime", "MsBetweenDisplayChange", "msBetweenPresents"].map(c => head.indexOf(c)).find(i => i >= 0);
   if (col === undefined) return null;
   const ft = lines.slice(1).map(l => Number(l.split(",")[col])).filter(v => v > 0 && v < 1000); if (ft.length < 50) return null;
@@ -31,13 +30,28 @@ AUFGABE: Finde die wahrscheinlichsten Ursachen für fehlende FPS oder Ruckler un
 Einstellungen mit slug "_base": renderDistance, simulationDistance, maxFps. Andere Einstellungen werden nicht übernommen.`;
 }
 type A = { typ: string; slug: string; key?: string; wert?: any; grund?: string };
+/** erlaubte Werte für Grundeinstellungen aus der KI (ganze Zahlen im sinnvollen Bereich) */
+const RANGE: Record<string, [number, number]> = { renderDistance: [2, 32], simulationDistance: [5, 32], maxFps: [10, 260] };
+/** Ersten vollständigen JSON-Block mit "aktionen" finden: bevorzugt ```json-Block, sonst Klammern zählen (Text davor/danach stört nicht) */
+function jsonBlock(raw: string): string | null {
+  const fence = raw.match(/```(?:json)?\s*([\s\S]*?)```/i); if (fence && fence[1].includes('"aktionen"')) return fence[1].trim();
+  for (let st = raw.indexOf("{"); st >= 0; st = raw.indexOf("{", st + 1)) {
+    let d = 0, inStr = false, esc = false;
+    for (let i = st; i < raw.length; i++) { const c = raw[i];
+      if (inStr) { if (esc) esc = false; else if (c === "\\") esc = true; else if (c === '"') inStr = false; continue; }
+      if (c === '"') inStr = true; else if (c === "{") d++; else if (c === "}" && --d === 0) { const t = raw.slice(st, i + 1); if (t.includes('"aktionen"')) return t; break; } }
+  }
+  return null;
+}
 export function aiParse(raw: string): { ok: A[]; bad: number; err?: string } {
-  const m = raw.match(/\{[\s\S]*"aktionen"[\s\S]*\}/);
+  const block = jsonBlock(raw);
   try {
-    const j = JSON.parse(m ? m[0] : raw); const ok: A[] = []; let bad = 0;
-    for (const a of j.aktionen || []) {
-      const known = a.typ === "einstellung" && a.slug === "_base" && BASE.items.some((i: any) => i.k === a.key);
-      if (((a.typ === "entfernen" || a.typ === "hinzufuegen") && pack.BY[a.slug]) || known) ok.push(a); else bad++;
+    const j = JSON.parse(block ?? raw); const ok: A[] = []; let bad = 0;
+    for (const a of Array.isArray(j?.aktionen) ? j.aktionen : []) {
+      if (a?.typ === "einstellung") {
+        const r = a.slug === "_base" && RANGE[a.key]; const v = Number(a.wert);
+        if (r && Number.isInteger(v) && v >= r[0] && v <= r[1]) ok.push({ ...a, wert: v }); else bad++;
+      } else if ((a?.typ === "entfernen" || a?.typ === "hinzufuegen") && pack.BY[a.slug] && !(a.typ === "hinzufuegen" && pack.BLOCKED.has(a.slug))) ok.push(a); else bad++;
     }
     return { ok, bad };
   } catch { return { ok: [], bad: 0, err: "Kein gültiger JSON-Block gefunden." }; }

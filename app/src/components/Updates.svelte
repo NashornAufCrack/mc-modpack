@@ -28,19 +28,25 @@
 
     <h2>Neu in den letzten 7 Tagen</h2>
     {#if recent.length}
-      <ul class="list">{#each recent as x}<li>{#if pack.BY[x.slug]}<button class="lnk" onclick={() => { ui.view = "bauen"; ui.detail = x.slug; }}>{pack.BY[x.slug].name}</button>{:else}<span>{x.name}</span> <span class="badge plain">Bibliothek</span>{/if} <span class="badge plain">{T[x.typ]}</span> <span class="mono muted">{x.von} → {x.auf}</span>{#if x.art !== "release"} <span class="badge warn">{x.art}</span>{/if} <span class="muted small">{fmt(x.tag)}</span></li>{/each}</ul>
+      <ul class="list">{#each recent as x}<li>{#if pack.BY[x.slug]}<button class="lnk" onclick={() => (ui.detail = x.slug)}>{pack.BY[x.slug].name}</button>{:else}<span>{x.name}</span> <span class="badge plain">Bibliothek</span>{/if} <span class="badge plain">{T[x.typ]}</span> <span class="mono muted">{x.von} → {x.auf}</span>{#if x.art !== "release"} <span class="badge warn">{x.art}</span>{/if} <span class="muted small">{fmt(x.tag)}</span></li>{/each}</ul>
     {:else}<p class="muted">Keine neuen Versionen in dieser Woche.</p>{/if}
 
     {#if u.verfuegbar?.length}
       <h2>Verfügbar, aber bewusst nicht übernommen</h2>
-      <p class="muted small">Festgelegte Versionen (Sodium, Iris, Voxy, Photon) und Sprünge von einer stabilen Version auf eine Beta wechseln nie automatisch.</p>
-      <ul class="list">{#each u.verfuegbar as v}<li><b>{pack.BY[v.slug]?.name || v.name}</b> <span class="mono muted">{v.aktuell} → {v.neu}</span> <span class="badge {v.grund.startsWith('fest') ? 'info' : 'warn'}">{v.grund}</span></li>{/each}</ul>
+      <p class="muted small">Festgelegte Versionen (Sodium, Iris, Voxy, Photon) und Sprünge von einer stabilen Version auf eine Beta wechseln nie automatisch. Updates, deren neue Pflicht-Abhängigkeit es für 26.3 nicht gibt, werden ebenfalls zurückgehalten.</p>
+      <ul class="list">{#each u.verfuegbar as v}<li><b>{pack.BY[v.slug]?.name || v.name}</b> <span class="mono muted">{v.aktuell} → {v.neu}</span> <span class="badge {v.grund.startsWith('fest') ? 'info' : v.grund.startsWith('Abh') ? 'bad' : 'warn'}">{v.grund}</span></li>{/each}</ul>
     {/if}
 
     {#if u.next}
       <h2>Nächste Minecraft-Version {u.next.version}</h2>
       <div class="meter"><div class="track"><i style="width:{(u.next.ready / u.next.total) * 100}%"></i></div><b>{u.next.ready} / {u.next.total}</b></div>
       <p class="muted small">So viele der empfohlenen Inhalte gibt es schon für {u.next.version}.</p>
+    {/if}
+
+    {#if pack.ohneBasis.length}
+      <h2>Ausgeblendet: Basis fehlt für 26.3</h2>
+      <p class="muted small">Diese Einträge brauchen etwas, das es für 26.3 noch nicht gibt. Sie erscheinen wieder, sobald es eine passende Version gibt.</p>
+      <ul class="list">{#each pack.ohneBasis as o}<li><b>{o.name}</b> <span class="muted small">braucht {o.fehlt.join(", ")}</span></li>{/each}</ul>
     {/if}
 
     {#if pack.outdated.length}

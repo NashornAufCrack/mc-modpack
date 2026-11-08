@@ -7,6 +7,8 @@ try: old = json.load(open("data/rp-check.json"))
 except Exception: old = {}
 def num(v):
     if isinstance(v, list): return float(f"{v[0]}.{v[1] if len(v) > 1 else 0}")
+    if isinstance(v, str):  # z. B. "97.1.x" in manchen pack.mcmeta
+        m = re.match(r"\d+(\.\d+)?", v.strip()); return float(m.group(0)) if m else 0.0
     return float(v)
 def rng(m):
     p = m.get("pack", {})
@@ -20,7 +22,8 @@ def rng(m):
 out = {}
 for s, f in files.items():
     if (f[8] if len(f) > 8 else "m") != "r": continue
-    if s in old and old[s].get("sha1") == f[2]: out[s] = old[s]; continue
+    # gespeichertes Ergebnis wiederverwenden; „nicht prüfbar“ höchstens 3 Läufe lang (vorübergehende Fehler)
+    if s in old and old[s].get("sha1") == f[2] and (not old[s].get("grund", "").startswith("nicht prüfbar") or old[s].get("versuche", 1) >= 3): out[s] = old[s]; continue
     try:
         data = urllib.request.urlopen(urllib.request.Request(f[0], headers={"User-Agent": "mc-modpack rpcheck"}), timeout=60).read()
         z = zipfile.ZipFile(io.BytesIO(data)); name = next(n for n in z.namelist() if n.rsplit("/", 1)[-1] == "pack.mcmeta" and n.count("/") <= 1)
@@ -33,7 +36,8 @@ for s, f in files.items():
         ok = lo <= FMT + 0.0001 and hi >= 97
         out[s] = {"sha1": f[2], "ok": ok, "von": lo, "bis": hi, "grund": "" if ok else f"Pack-Format {lo}–{hi}, 26.3 braucht {FMT}"}
     except Exception as e:
-        out[s] = {"sha1": f[2], "ok": True, "grund": "nicht prüfbar: " + str(e)[:80]}
+        n = old.get(s, {}).get("versuche", 0) + 1 if old.get(s, {}).get("sha1") == f[2] else 1
+        out[s] = {"sha1": f[2], "ok": True, "grund": "nicht prüfbar: " + str(e)[:80], "versuche": n}
 json.dump(out, open("data/rp-check.json", "w"), indent=0)
 app.setdefault("x", {})["rpbad"] = sorted(s for s, v in out.items() if not v["ok"])
 json.dump(app, open("data/app-data.json", "w"))

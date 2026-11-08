@@ -5,11 +5,14 @@
   let { g }: { g: Gruppe } = $props();
   const opts = $derived(g.mods.filter(s => pack.BY[s] && pack.data.files[s]));
   const chosen = $derived(opts.find(s => pack.sel.has(s)) || null);
+  /** Option wählen: Konflikte außerhalb der Gruppe laufen über denselben Dialog wie bei den Kacheln */
   function choose(s: string | null) {
     if (s === chosen) return;
-    pack.set(s || opts[0], !!s, opts.filter(o => o !== s));
-    if (!s) opts.forEach(o => pack.sel.has(o) && pack.set(o, false));
-    ui.say(s ? `${g.titel}: ${pack.name(s)}` : `${g.titel}: keins`, true);
+    if (!s) { pack.snapshot(); const n = new Set(pack.sel); opts.forEach(o => { if (!pack.LOCKED.has(o)) n.delete(o); }); pack.sel = n; pack.save(); ui.say(`${g.titel}: keins`, true); return; }
+    const bl = pack.BLOCKED.get(s); if (bl) { ui.pick(s, true); return; }
+    const all = pack.clashes(s); const outside = all.filter(c => !(c.grp && c.grp.id === g.id));
+    if (outside.length) { ui.conflict = { x: s, cl: all }; return; }
+    pack.set(s, true, opts.filter(o => o !== s)); ui.say(`${g.titel}: ${pack.name(s)}`, true);
   }
 </script>
 

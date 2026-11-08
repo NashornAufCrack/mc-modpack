@@ -1139,31 +1139,28 @@
    "text": "Nvidium schaltet sich bei aktiven Shadern selbst ab und wirkt nur ohne Shader."
   },
   {
-   "art": "D",
+   "art": "T",
    "mods": [
     "photon-shader",
     "lambdynamiclights"
    ],
-   "text": "Beide machen Licht in der Hand. In Photon ausgeschaltet.",
-   "erledigt": true
+   "text": "Beide machen Licht in der Hand, zusammen doppelt hell. Im Spiel in Photon ausschalten: Optionen › Grafikeinstellungen › Shaderpakete › Photon › Shaderpaket-Einstellungen › Lighting › „Handheld Lighting“ auf Off."
   },
   {
-   "art": "D",
+   "art": "T",
    "mods": [
     "photon-shader",
     "particle-rain"
    ],
-   "text": "Beide machen Sandsturm und Nebel. Je eine Seite ausgeschaltet.",
-   "erledigt": true
+   "text": "Beide machen Sandstürme in der Wüste. Im Spiel in Photon ausschalten: Optionen › Grafikeinstellungen › Shaderpakete › Photon › Shaderpaket-Einstellungen › World › „Desert Sandstorm“ auf Off."
   },
   {
-   "art": "D",
+   "art": "S",
    "mods": [
     "particle-rain",
     "immersive-storms"
    ],
-   "text": "Immersive Storms schaltet seine Sandstürme selbst ab.",
-   "erledigt": true
+   "text": "Immersive Storms schaltet seine Sandstürme selbst ab, wenn Particle Rain dabei ist."
   },
   {
    "art": "A",
@@ -1432,14 +1429,6 @@
     "visual-armor-trims"
    ],
    "text": "Beide ändern Rüstungsbesatz-Texturen; Reihenfolge entscheidet."
-  },
-  {
-   "art": "D",
-   "mods": [
-    "pegasus",
-    "photon-shader"
-   ],
-   "text": "Nur ein Shader gleichzeitig aktiv. Photon ist Standard, Pegasus die schnellere Alternative."
   },
   {
    "art": "S",

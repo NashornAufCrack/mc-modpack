@@ -6,7 +6,13 @@
   let fps = $state<Fps | null>(null); let msg = $state(""); let link = $state(""); let note = $state(""); let txt = $state("");
   let hist = $state<any[]>([]);
   try { hist = JSON.parse(localStorage.getItem("mk-tests") || "[]"); } catch {}
-  async function file(e: Event) { const f = (e.currentTarget as HTMLInputElement).files?.[0]; if (!f) return; fps = parseFps(await f.text()); msg = fps ? "" : "Diese Datei kenne ich nicht. Bitte die fps.csv aus dem Test-Kit nehmen."; }
+  async function file(e: Event) {
+    const f = (e.currentTarget as HTMLInputElement).files?.[0]; if (!f) return;
+    try { fps = parseFps(await f.text()); } catch { fps = null; }
+    msg = fps ? "" : "Diese Datei kenne ich nicht oder sie ist leer. Bitte die fps.csv aus dem Test-Kit nehmen.";
+  }
+  // Für den Test braucht das Pack spark (Profil-Link) – sonst fehlt auch die TEST-ANLEITUNG.txt im Export
+  const hasSpark = $derived(pack.resolve().mods.has("spark"));
   function save() {
     if (!fps) { msg = "Bitte zuerst die fps.csv hochladen."; return; }
     if (link && !/^https:\/\/spark\.lucko\.me\//.test(link)) { msg = "Der spark-Link beginnt mit https://spark.lucko.me/"; return; }
@@ -15,7 +21,7 @@
   }
   function gen() { txt = prompt(fps || hist[0] || null, link, note); navigator.clipboard?.writeText(txt).then(() => ui.say("Text kopiert – in den Chat oder deine KI einfügen")); }
   const STEPS = [
-    ["Test-Kit laden", "Benchmark-Datapack, FPS-Messung.bat und Anleitung in einer ZIP. Beim Export ist spark automatisch dabei, wenn du testen willst."],
+    ["Test-Kit laden", "Benchmark-Datapack, FPS-Messung.bat und Anleitung in einer ZIP. Dein Pack braucht dafür die Mod spark (siehe unten)."],
     ["Einmal starten", "Pack importieren und Minecraft einmal bis ins Hauptmenü starten."],
     ["Testwelt", `Neue Welt mit Seed ${TESTSEED}, Kreativ, Cheats an. Unter „Datenpakete“ die Benchmark-Datapack.zip hineinziehen. Nach dem Erstellen 1–2 Minuten warten.`],
     ["Messen", "FPS-Messung.bat starten (Admin bestätigen). Im Spiel /function bench:start und /sparkc profiler start --timeout 180 eingeben, dann in der .bat eine Taste drücken."],
@@ -27,6 +33,9 @@
   <h1>Pack testen</h1>
   <p class="muted lead">Ein Datapack fliegt dich 3 Minuten lang über dieselbe Strecke (Tag, Nacht, Regen), ein kleines Windows-Programm misst jedes Bild. Du lädst nur die Messdatei hoch, den Rest rechnet die Seite.</p>
   <ol class="steps">{#each STEPS as [t, d], i}<li><span class="n">{i + 1}</span><div><b>{t}</b><p class="muted">{d}</p>{#if i === 0}<a class="btn" href={KIT}>Test-Kit herunterladen</a>{/if}</div></li>{/each}</ol>
+  {#if pack.BY.spark}
+    <p class="spark {hasSpark ? 'ok' : 'warn'}">{#if hasSpark}✓ spark ist in deinem Pack.{:else}spark fehlt noch in deinem Pack. <button class="btn sm" onclick={() => ui.pick("spark", true)}>spark hinzufügen</button> Danach das Pack neu exportieren.{/if}</p>
+  {/if}
   <div class="card-surface box">
     <label class="btn primary file">fps.csv wählen<input type="file" accept=".csv,text/csv" onchange={file} /></label>
     {#if fps}<div class="res"><div><b>{fps.avg}</b><span>FPS Ø</span></div><div><b>{fps.low1}</b><span>1 %-Tief</span></div><div><b>{fps.low01}</b><span>0,1 %-Tief</span></div><div><b>{fps.stutter}</b><span>Ruckler</span></div></div>{/if}
@@ -44,8 +53,12 @@
   .steps { list-style: none; padding: 0; display: grid; gap: .8rem; }
   .steps li { display: grid; grid-template-columns: 2.2rem 1fr; gap: .8rem; } .n { width: 2.2rem; height: 2.2rem; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--ok); font-weight: 700; }
   .steps p { margin: .1rem 0 .4rem; }
-  .box { padding: 1.1rem; display: grid; gap: .8rem; margin: 1.4rem 0; } .box label { display: grid; gap: .3rem; font-size: .85rem; color: var(--muted); }
-  .file { justify-self: start; } .file input { display: none; }
+  .spark { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; padding: .6rem .8rem; border-radius: 10px; border: 1px solid var(--line); margin: 1rem 0 0; }
+  .spark.ok { color: var(--ok); } .spark.warn { border-color: var(--warn); background: var(--warn-soft); }
+  .box { padding: 1.1rem; display: grid; gap: .8rem; margin: 1.4rem 0; } .box label:not(.btn) { display: grid; gap: .3rem; font-size: .85rem; color: var(--muted); }
+  /* Datei-Auswahl bleibt per Tastatur erreichbar: Eingabefeld nur optisch versteckt */
+  .file { justify-self: start; position: relative; } .file input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+  .file:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
   .res { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; } .res b { display: block; font: 600 1.6rem var(--mono); } .res span { font-size: .78rem; color: var(--muted); }
   .row { display: flex; gap: .5rem; flex-wrap: wrap; } .mono { font: .8rem var(--mono); }
   table { width: 100%; border-collapse: collapse; } th, td { text-align: left; padding: .4rem; border-bottom: 1px solid var(--line); }

@@ -18,7 +18,8 @@ def ff(args): subprocess.run(["ffmpeg", "-loglevel", "error", "-y", *args], chec
 done = 0
 for m in cand:
     s = m["slug"]; f = files[s]
-    if s in out and out[s].get("sha1") == f[2]: continue
+    # Fehler (z. B. Download-Abbruch) höchstens 3 Läufe lang neu versuchen
+    if s in out and out[s].get("sha1") == f[2] and (not out[s].get("fehler") or out[s].get("versuche", 1) >= 3): continue
     try:
         data = urllib.request.urlopen(urllib.request.Request(f[0], headers={"User-Agent": "mc-modpack sounds"}), timeout=120).read()
         z = zipfile.ZipFile(io.BytesIO(data))
@@ -53,6 +54,7 @@ for m in cand:
                 proben.append({"datei": ziel, "titel": label(d)})
         out[s] = {"sha1": f[2], "proben": proben}; done += 1
     except Exception as e:
-        out[s] = {"sha1": f[2], "proben": [], "fehler": str(e)[:120]}
+        n = out[s].get("versuche", 0) + 1 if s in out and out[s].get("sha1") == f[2] else 1
+        out[s] = {"sha1": f[2], "proben": [], "fehler": str(e)[:120], "versuche": n}
 json.dump(out, open("data/sounds.json", "w"), indent=0)
 print(done, "neu verarbeitet;", sum(1 for v in out.values() if v["proben"]), "Einträge mit Hörproben")

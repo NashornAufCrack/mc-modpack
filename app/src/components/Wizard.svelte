@@ -7,7 +7,9 @@
   $effect(() => { open = ui.wizard; });
   let w: Record<string, any> = $state({});
   let step = $state(0);
-  $effect(() => { if (ui.wizard) { w = { w: 2560, h: 1440, hz: 144, ...pack.wiz }; step = 0; } });
+  // Fortschritt bleibt erhalten, wenn der Dialog versehentlich geschlossen wird; neu ab Schritt 1 erst nach „Übernehmen“
+  let started = false;
+  $effect(() => { if (ui.wizard && !started) { w = { w: 2560, h: 1440, hz: 144, ...pack.wiz }; step = 0; started = true; } });
   type Q = { k: string; t: string; ex: string; img?: string; o?: [string, string, string?][] };
   const Qs: Q[] = [
     { k: "srv", t: "Wo spielst du?", ex: "Auf einem normalen Server dürfen nur Mods laufen, die allein auf deinem PC arbeiten. Gameplay- und Welt-Mods bräuchten die Mod auch auf dem Server.", o: [["vanilla", "Auf dem Vanilla-Server von Freunden", "Nur Optik, Sound und Komfort"], ["own", "Einzelspieler oder eigener Server", "Alles möglich, auch Gameplay und Welt"]] },
@@ -26,11 +28,11 @@
   const answered = $derived(step >= N || (q.k === "mon" ? Number(w.w) > 0 && Number(w.h) > 0 && Number(w.hz) > 0 && !!w.sync : !!w[q.k] && (q.k !== "shader" || w.shader === "no" || !!w.shaderpack)));
   const preview = $derived(step >= N ? plan(w) : null);
   function choose(k: string, v: string) { w[k] = v; if (k === "shader" && v === "yes" && !w.shaderpack) w.shaderpack = shaderChoices(w)[0][0]; }
-  function finish() { const p = applyPlan(w); ui.wizard = false; ui.filters = new Set(["sug"]); ui.say(`Fertig: ${p.add.length} Vorschläge übernommen, FPS-Limit ${p.fps}`, true); }
+  function finish() { started = false; const p = applyPlan(w); ui.wizard = false; ui.filters = new Set(["sug"]); ui.say(`Fertig: ${p.add.length} Vorschläge übernommen, FPS-Limit ${p.fps}`, true); }
 </script>
 
 <Modal bind:open title="Assistent" width="720px" onclose={() => (ui.wizard = false)}>
-  <div class="prog" aria-label="Fortschritt"><span style="width:{(Math.min(step, N) / N) * 100}%"></span></div>
+  <div class="prog" role="progressbar" aria-label="Fortschritt" aria-valuemin="0" aria-valuemax={N} aria-valuenow={Math.min(step, N)}><span style="width:{(Math.min(step, N) / N) * 100}%"></span></div>
   <p class="stepno muted">{step < N ? `Schritt ${step + 1} von ${N}` : "Vorschau"}</p>
   {#if step < N}
     <h3>{q.t}</h3>
@@ -59,7 +61,7 @@
     <h3>Das würde der Assistent einstellen</h3>
     <ul class="sum">
       <li><b>{preview.add.length}</b> Mods und Packs werden ausgewählt (Leistung & Pflicht-Mods sind immer dabei)</li>
-      <li>FPS-Limit <b>{preview.fps}</b>, Sichtweite <b>{preview.rd}</b> Chunks, Arbeitsspeicher ca. <b>{Math.min(pack.ramGB(), preview.ram)} GB</b></li>
+      <li>FPS-Limit <b>{preview.fps}</b>, Sichtweite <b>{preview.rd}</b> Chunks, Arbeitsspeicher ca. <b>{pack.ramGB(pack.resolve(new Set([...pack.LOCKED, ...preview.add])), Number(w.ram || 0))} GB</b></li>
       {#if w.shader === "yes"}<li>Shader: <b>{pack.name(w.shaderpack)}</b> (Qualität stellst du im Spiel im Shader-Menü ein)</li>{/if}
       {#if w.lod !== "none"}<li>Fernsicht: <b>Voxy</b></li>{/if}
       <li>Deine bisherige Auswahl wird ersetzt (Rückgängig ist möglich).</li>

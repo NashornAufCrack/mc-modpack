@@ -1,15 +1,16 @@
 <script lang="ts">
   import { SOUNDBASE } from "../lib/data";
   import Modal from "./Modal.svelte";
-  import { pack, PT_1, CATS } from "../lib/pack.svelte";
+  import { pack, PT_1, CATS, DEP_IGNORE } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
   const ART: Record<string, [string, string]> = { K: ["Konflikt", "bad"], D: ["Nur eins", "warn"], T: ["Testen", "info"], A: ["Gehört zusammen", "ok"], S: ["Passt gut", "ok"] };
   let open = $state(false);
   $effect(() => { open = !!ui.detail; });
   const s = $derived(ui.detail || ""); const m = $derived(pack.BY[s]);
-  const imgs = $derived(m ? pack.img(s) : []); const vids = $derived(m ? pack.videos(s) : []);
+  const gal = $derived(m ? pack.gallery(s) : []); const imgs = $derived(gal.map(g => g.thumb)); const vids = $derived(m ? pack.videos(s) : []);
+  const bl = $derived(pack.BLOCKED.get(s));
   const det = $derived(pack.data.x.details[s] || {});
-  const deps = $derived(m ? [...new Set((pack.data.files[s]?.[5] || []).concat(pack.implicit(s)))] : []);
+  const deps = $derived(m ? [...new Set<string>((pack.data.files[s]?.[5] || []).concat(pack.implicit(s)))].filter(d => !DEP_IGNORE.has(d)) : []);
   const rel = $derived(m ? pack.relInfo(s) : []);
   let play = $state<string | null>(null);
   $effect(() => { s; play = null; });
@@ -21,8 +22,8 @@
     <div class="top">
       <div class="media">
         {#if imgs.length}
-          <button class="hero" onclick={() => (ui.lightbox = { slug: s, i: 0 })}><img referrerpolicy="no-referrer" src={pack.imgHQ(s)[0] || imgs[0]} alt="Bild von {m.name}" /></button>
-          {#if imgs.length > 1}<div class="strip">{#each imgs.slice(1, 9) as u, i}<button onclick={() => (ui.lightbox = { slug: s, i: i + 1 })}><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).parentElement!.remove()} /></button>{/each}</div>{/if}
+          <button class="hero" onclick={() => (ui.lightbox = { slug: s, i: 0 })}><img referrerpolicy="no-referrer" src={gal[0].full} alt="Bild von {m.name}" /></button>
+          {#if imgs.length > 1}<div class="strip">{#each imgs.slice(1, 9) as u, i}<button onclick={() => (ui.lightbox = { slug: s, i: i + 1 })} aria-label="Bild {i + 2} von {m.name} vergrößern"><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).parentElement!.remove()} /></button>{/each}</div>{/if}
         {:else}<div class="noimg muted">Noch keine Bilder – kommen über die Medien-Pipeline.</div>{/if}
       </div>
       <div class="facts">
@@ -31,9 +32,11 @@
           <span class="badge {m.ampel === 'R' ? 'bad' : m.ampel === 'Y' ? 'warn' : 'ok'}">{m.ampel === "R" ? "Server nötig" : m.ampel === "Y" ? "Server optional" : "Nur Client"}</span></div>
         <p class="small muted">Version {pack.data.files[s]?.[6] || "–"}{m.downloadsK ? ` · ${fmtK(m.downloadsK)} Downloads` : ""}</p>
         {#if m.cf && !pack.data.files[s]}<p class="small warn">Der Autor erlaubt keinen automatischen Download. Die Datei musst du einmal selbst von CurseForge laden und in den mods-Ordner legen. Die Website erinnert dich beim Export daran.</p>{/if}
+        {#if bl}<p class="small warn">Nicht wählbar: verträgt sich nicht mit {bl.map(y => pack.name(y)).join(", ")}, das fest im Leistungspaket steckt.</p>{/if}
         {#if deps.length}<p class="small muted">Bringt automatisch mit: {deps.map(d => pack.name(d)).join(", ")}</p>{/if}
         <div class="act">
           {#if pack.LOCKED.has(s)}<span class="badge ok">immer dabei</span>
+          {:else if bl}<span class="badge bad">nicht wählbar</span>
           {:else}<button class="btn {pack.sel.has(s) ? '' : 'primary'}" onclick={() => ui.pick(s)}>{pack.sel.has(s) ? "Aus dem Pack entfernen" : "Zum Pack hinzufügen"}</button>{/if}
           {#if m.cf}<a class="btn ghost" href={m.cf} target="_blank" rel="noopener">CurseForge ↗</a>{:else}<a class="btn ghost" href="https://modrinth.com/project/{s}" target="_blank" rel="noopener">Modrinth ↗</a>{/if}
         </div>
@@ -48,7 +51,7 @@
       <h3>Videos</h3>
       <div class="vids">
         {#each vids as v}
-          {#if play === v.id}<iframe class="yt" src="https://www.youtube-nocookie.com/embed/{v.id}?autoplay=1" title={v.titel || m.name} allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+          {#if play === v.id}<iframe class="yt" src="https://www.youtube-nocookie.com/embed/{v.id}?autoplay=1" referrerpolicy="strict-origin-when-cross-origin" title={v.titel || m.name} allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
           {:else}<button class="vcard" onclick={() => (play = v.id)}><img referrerpolicy="no-referrer" src="https://i.ytimg.com/vi/{v.id}/mqdefault.jpg" alt="" loading="lazy" /><span class="pl">▶</span><span class="vt">{v.titel || "Video ansehen"}</span></button>{/if}
         {/each}
       </div>

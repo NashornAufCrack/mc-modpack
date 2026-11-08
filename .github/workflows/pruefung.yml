@@ -1,0 +1,46 @@
+name: Prüfung
+# Prüft nach jeder Änderung an Website oder Katalogdaten (auch nach dem täglichen Update-Check),
+# ob Daten stimmig sind, die Website baut und alle Abläufe inkl. Exporte funktionieren. Schreibt nichts ins Repo.
+on:
+  push:
+    paths:
+      - "app/**"
+      - "qa/**"
+      - "data/app-data.json"
+      - "scripts/check-updates.mjs"
+      - ".github/workflows/pruefung.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pruefung
+  cancel-in-progress: true
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Daten prüfen
+        run: python3 qa/datacheck.py --ci
+      - name: Website: Typprüfung und Build
+        working-directory: app
+        run: |
+          npm ci --no-audit --no-fund
+          npm run check
+          npm run build
+      - name: Abläufe testen (Playwright, axe)
+        run: |
+          cd qa && npm ci --no-audit --no-fund && npx playwright install --with-deps chromium && cd ..
+          python3 -m http.server 8765 >/dev/null 2>&1 &
+          sleep 1
+          node qa/e2e.js qa/out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pruefbericht
+          path: qa/out/e2e-report.json
+          if-no-files-found: ignore

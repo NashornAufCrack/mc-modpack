@@ -9,6 +9,7 @@
   const size = $derived([...r.mods, ...r.libs].reduce((a, s) => a + (pack.data.files[s]?.[4] || 0), 0));
   const red = $derived([...r.mods].filter(s => pack.BY[s].ampel === "R" && pack.BY[s].cat !== "S"));
   const probs = $derived(pack.problems());
+  const tips = $derived(pack.tips(r));
   const manual = $derived((pack.sel, manualList()));
   const diff = $derived(pack.presetDiff());
   const pname = $derived(PRESETS.find(p => p.id === pack.preset?.id)?.name);
@@ -26,7 +27,7 @@
   function reset() { if (!armed) { armed = true; setTimeout(() => (armed = false), 4000); return; } pack.resetAll(); armed = false; ui.say("Alles zurückgesetzt"); }
 </script>
 
-<aside class="bar" aria-label="Dein Pack">
+<aside class="bar" id="pack" tabindex="-1" aria-label="Dein Pack">
   {#if pack.preset}
     <div class="presetbox">
       <div class="ph"><span class="badge preset">Vorlage</span><b>{pname}</b></div>
@@ -39,7 +40,7 @@
   {/if}
   <h2>Dein Pack</h2>
   <div class="stats">
-    <div><b>{cnt("m")}</b><span>Mods</span></div><div><b>{cnt("r")}</b><span>Packs</span></div><div><b>{cnt("s")}</b><span>Shader</span></div><div><b>{r.libs.size}</b><span>Bibliotheken</span></div>
+    <div><b>{cnt("m")}</b><span>Mods</span></div><div><b>{cnt("r")}</b><span>Packs</span></div><div><b>{cnt("s")}</b><span>Shader</span></div>{#if cnt("d")}<div><b>{cnt("d")}</b><span>Datapacks</span></div>{/if}<div><b>{r.libs.size}</b><span>Bibliotheken</span></div>
   </div>
   {#if r.libs.size}<details class="libs"><summary>{r.libs.size} Bibliotheken kommen automatisch mit</summary><p>Hilfs-Mods, die andere Mods zum Laufen brauchen. Du musst nichts tun.</p><ul>{#each [...r.libs].sort() as l}<li>{pack.BY[l]?.name || pack.data.files[l]?.[7] || l}</li>{/each}</ul></details>{/if}
   <div class="meter"><span>Leistungsbedarf</span><div class="track"><i class={load.t} style="width:{Math.min(100, (load.c / 45) * 100)}%"></i></div><b class={load.t}>{load.l}</b></div>
@@ -50,6 +51,12 @@
       {#each probs as p}<div class="prob"><span>{pack.name(p.a)} + {pack.name(p.b)}</span><button class="btn sm" onclick={() => { pack.set(p.b, false); ui.pick(p.b, true); }}>Klären</button></div>{/each}
     </div>
   {:else}<p class="state ok">Keine Konflikte, keine Doppelungen</p>{/if}
+  {#if tips.length}
+    <details class="tipbox"><summary><b>{tips.length} {tips.length === 1 ? "Tipp" : "Tipps"} zu deiner Auswahl</b></summary>
+      <ul>{#each tips as t}<li><b>{t.mods.map(x => pack.name(x)).join(" + ")}:</b> {t.text}</li>{/each}</ul>
+      <p class="small muted">Steht auch in der LIES-MICH.txt im exportierten Pack.</p>
+    </details>
+  {/if}
   {#if open}<p class="small muted">{open} Entscheidungen noch offen (optional)</p>{/if}
   <div class="tools">
     <button class="btn sm" onclick={() => (ui.tool = "rp")}>Pack-Reihenfolge</button>
@@ -63,7 +70,7 @@
   <button class="btn sm ghost" disabled={busy} onclick={() => go("server")}>Server-Pack (.mrpack)</button>
   {#if st}<p class="small" role="status">{st}</p>{/if}
   {#if manual.length}<div class="warnbox" style="border-color:var(--warn);background:var(--warn-soft)"><b>Selbst herunterladen ({manual.length})</b>{#each manual as s}<a href={pack.BY[s].cf} target="_blank" rel="noopener">{pack.name(s)} ↗</a>{/each}<span class="small">Diese CurseForge-Autoren erlauben keinen automatischen Download. Datei laden und in den Ordner mods legen.</span></div>{/if}
-  <div class="two"><button class="btn sm ghost" onclick={share}>Teilen-Link</button><button class="btn sm ghost" onclick={() => pack.undo()}>↶ Rückgängig</button></div>
+  <div class="two"><button class="btn sm ghost" onclick={share}>Teilen-Link</button><button class="btn sm ghost" onclick={() => ui.undo()}>↶ Rückgängig</button></div>
   <button class="btn sm ghost danger" onclick={reset}>{armed ? "Wirklich alles löschen? Nochmal klicken" : "Alles zurücksetzen"}</button>
 </aside>
 
@@ -74,7 +81,9 @@
   .ph { display: flex; gap: .5rem; align-items: center; }
   .link { background: none; border: 0; padding: 0; color: var(--preset); font: 500 .84rem var(--font); cursor: pointer; }
   .diff { list-style: none; margin: 0; padding: 0; font-size: .8rem; max-height: 9rem; overflow: auto; width: 100%; } .diff .p { color: var(--ok); } .diff .m { color: var(--bad); text-decoration: line-through; }
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; }
+  .stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); text-align: center; }
+  .tipbox { border: 1px solid var(--line-2); border-radius: 10px; padding: .55rem .7rem; font-size: .84rem; }
+  .tipbox summary { cursor: pointer; } .tipbox ul { margin: .5rem 0 .3rem; padding-left: 1.1rem; display: grid; gap: .4rem; }
   .stats b { display: block; font: 600 1.4rem var(--mono); } .stats span { font-size: .72rem; color: var(--muted); }
   .meter { display: grid; grid-template-columns: auto 1fr auto; gap: .5rem; align-items: center; font-size: .82rem; }
   .track { height: .45rem; border-radius: 9px; background: var(--bg-2); overflow: hidden; } .track i { display: block; height: 100%; border-radius: 9px; }

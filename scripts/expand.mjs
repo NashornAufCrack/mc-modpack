@@ -111,6 +111,10 @@ for (const p of Object.values(idSlug)) {
     out.files[p.slug] = [f.url, f.filename, f.hashes.sha1, f.hashes.sha512, f.size, v.dependencies.filter(d => d.dependency_type === "required" && d.project_id).map(d => d.project_id), v.version_number, p.title, "m"]; } catch {}
   await sleep(200);
 }
+// Auch die Abhängigkeiten der nachgeladenen Bibliotheken in Slugs übersetzen (fehlende holt der Workflow „Abhängigkeiten“)
+const rest = [...new Set(Object.values(out.files).flatMap(f => f[5]).filter(x => !idSlug[x] && !out.files[x] && !files0[x]))];
+for (let i = 0; i < rest.length; i += 80) { try { for (const p of await mr(`/projects?ids=${encodeURIComponent(JSON.stringify(rest.slice(i, i + 80)))}`)) idSlug[p.id] = p; } catch (e) { log.push(String(e)); } }
+for (const f of Object.values(out.files)) f[5] = f[5].map(id => idSlug[id]?.slug || id);
 
 // ---------- CurseForge: nur was es nicht auf Modrinth gibt ----------
 const cfC = cand.curseforge.filter(c => c.datei && c.datei.versionen.includes("26.3") && c.datei.versionen.includes("Fabric"));
