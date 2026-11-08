@@ -1,0 +1,24 @@
+name: Abhängigkeiten
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Erweitern", "Update-Check"]
+    types: [completed]
+permissions:
+  contents: write
+concurrency: deps
+jobs:
+  deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/fixdeps.mjs
+      - run: |
+          git config user.name "abhaengigkeiten"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/deps-fix.json
+          git diff --cached --quiet || git commit -m "Abhängigkeiten $(date +%F)"
+          for i in 1 2 3 4; do git pull --rebase -X theirs -q && git push && break; sleep $((i*7)); done
