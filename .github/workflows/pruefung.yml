@@ -24,15 +24,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Daten prüfen
+      - name: "Daten prüfen"
         run: python3 qa/datacheck.py --ci
-      - name: Website: Typprüfung und Build
+      - name: "Website: Typprüfung und Build"
         working-directory: app
         run: |
           npm ci --no-audit --no-fund
           npm run check
           npm run build
-      - name: Abläufe testen (Playwright, axe)
+      - name: "Abläufe testen (Playwright, axe)"
         run: |
           cd qa && npm ci --no-audit --no-fund && npx playwright install --with-deps chromium && cd ..
           python3 -m http.server 8765 >/dev/null 2>&1 &
