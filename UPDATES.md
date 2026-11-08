@@ -1,6 +1,6 @@
 # Update-Stand (26.3)
 
-Zuletzt geprüft: 2026-11-07
+Zuletzt geprüft: 2026-11-08
 
 ## Neue Versionen in den letzten 7 Tagen (automatisch übernommen)
 
@@ -11,13 +11,21 @@ Zuletzt geprüft: 2026-11-07
 - 2026-11-07: **Clutter No More** (Mod) 3.1.2+26.3-fabric → 3.1.3+26.3-fabric
 - 2026-11-07: **ChoiceTheorem's Overhauled Village** (Mod) 4.2.1 → 4.2.2
 - 2026-11-07: **Punchy! Moves** (Mod) 1.0.7 → 1.0.8 (beta)
+- 2026-11-08: **Better Block Entities** (Mod) 1.4.0+mc26.3 → 1.4.1+mc26.3
+- 2026-11-08: **Punchy!** (Mod) 3.1b → 3.2
+- 2026-11-08: **ChoiceTheorem's Overhauled Village** (Mod) 4.2.2 → 4.2.2a
+- 2026-11-08: **Diorama** (Mod) 0.7.0+26.3 → 0.8.0+26.3
+- 2026-11-08: **Fusion (Connected Textures)** (Mod) 1.3.16-fabric-mc26.3 → 1.3.16a-fabric-mc26.3
+- 2026-11-08: **Punchy! x Tiny Takeover** (Mod) 2.0.4 → 2.0.5
+- 2026-11-08: **optigui** (Mod) 2.3.0-beta.11+26.1 → 2.3.0-beta.11+26.3 (beta)
+- 2026-11-08: **Beautify: Refabricated** (Mod) 3.6.5-fabric+26.3 → 3.6.6-fabric+26.3
 
 
 ## Verfügbar, aber nicht automatisch übernommen (14)
 
-- Sodium: mc26.3-0.9.2-fabric → mc26.3-0.9.3-beta.3-fabric (festgelegte Version)
-- Reese's Sodium Options: mc26.3-2.2.5+fabric → mc26.3-2.2.6-beta.1+fabric (nur als beta)
-- Sodium Extra: mc26.3-0.9.5+fabric → mc26.3-0.9.6-beta.1+fabric (nur als beta)
+- Sodium: mc26.3-0.9.2-fabric → mc26.3-0.9.3-beta.4-fabric (festgelegte Version)
+- Reese's Sodium Options: mc26.3-2.2.5+fabric → mc26.3-2.2.6-beta.2+fabric (nur als beta)
+- Sodium Extra: mc26.3-0.9.5+fabric → mc26.3-0.9.6-beta.2+fabric (nur als beta)
 - Animatica: 0.6.3+26.3 → 0.7.0+beta.4+26.3-fabric (nur als beta)
 - Detail Armor Bar: 5.3.2-26.3-fabric → 5.3.3-beta.1-26.3-fabric (nur als beta)
 - Tectonic: 3.0.32-fabric-26.3 → 3.1.0+beta2-fabric-26.3 (nur als beta)
@@ -31,7 +39,7 @@ Zuletzt geprüft: 2026-11-07
 - Pegasus Shaders: 0.5 → 0.8.1 (nur als beta)
 
 
-## Ohne neue Version seit über einer Woche (610)
+## Ohne neue Version seit über einer Woche (623)
 
 Sortiert nach Alter der aktuellen Datei.
 
@@ -247,6 +255,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Default HD Sun and Moon: 1.3.3.7 (seit 2026-09-18)
 - Borderless Glass: 1.0.2-mc26.3 (seit 2026-09-18)
 - Renewed Bookshelf: 1.0.2-mc26.3 (seit 2026-09-18)
+- Connected Rocks: 3.1.1+mc26.2-26.3 (seit 2026-09-18)
 - Nature's Compass: 26.3-2.5.1-fabric (seit 2026-09-19)
 - Explorer's Compass: 26.3-2.5.2-fabric (seit 2026-09-19)
 - Snow Under Trees: v1.6.1 (seit 2026-09-19)
@@ -471,8 +480,6 @@ Sortiert nach Alter der aktuellen Datei.
 - Weskerson's 3D Items: 2.5.5 (seit 2026-10-04)
 - Signpost: 2.04.1 (seit 2026-10-04)
 - Packed Packs: 2.3.1+26.3 (seit 2026-10-05)
-- Fusion (Connected Textures): 1.3.16-fabric-mc26.3 (seit 2026-10-05)
-- Punchy! x Tiny Takeover: 2.0.4 (seit 2026-10-05)
 - Horseman: 1.7.5 (seit 2026-10-05)
 - Auto Clicker: 26.3.0.1 (seit 2026-10-05)
 - Sodium Extra Information: 2.9.1 (seit 2026-10-05)
@@ -505,6 +512,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Shield Fixes: 2.1.0+26.3 (seit 2026-10-09)
 - Friends&Foes - Beekeeper Hut (Fabric/Quilt): fabric-3.0.4+mc26.3 (seit 2026-10-09)
 - Lovely Snails: 1.4.0+26.3 (seit 2026-10-09)
+- Immersive Interfaces - Mod Support Unofficial: 2.1.2 (seit 2026-10-09)
 - Particle Interactions: 0.10.5+26.3-fabric (seit 2026-10-10)
 - Inventory Particles: 3.3.0+26.3+fabric (seit 2026-10-10)
 - Particle Core: 0.3.3+fix1+26.2 (seit 2026-10-10)
@@ -539,7 +547,6 @@ Sortiert nach Alter der aktuellen Datei.
 - Carpet Extra Extras: 26.3-1.5.0 (seit 2026-10-15)
 - AdoraBuild: Structures: 2.12 (seit 2026-10-15)
 - Promenade: 6.0.2+fabric (seit 2026-10-15)
-- Better Block Entities: 1.4.0+mc26.3 (seit 2026-10-16)
 - Better Biome Blend: 26.3-1.4.1-fabric (seit 2026-10-16)
 - Chat Animation: 1.3.5+fabric-26.3 (seit 2026-10-16)
 - Advanced Loot Info (ALI): 26.3-2.5.0 (seit 2026-10-16)
@@ -575,6 +582,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Villager Names: 26.3.0-8.9-fabric+forge+neo (seit 2026-10-20)
 - ItemPhysic: 1.8.18 (seit 2026-10-20)
 - Cave Spider Spawn: 26.3.0-1.5-fabric+forge+neo (seit 2026-10-20)
+- Nature X (Resource Pack): 26.0.1 (seit 2026-10-20)
 - Grassier Grass: 1.4.5 (seit 2026-10-21)
 - Wandering Trader May Leave: 26.3.0-2.0-fabric+forge+neo (seit 2026-10-21)
 - Naturalist: 2.0.7+26.3-fabric (seit 2026-10-21)
@@ -645,4 +653,17 @@ Sortiert nach Alter der aktuellen Datei.
 - Fast Noise: 1.1.2+26.3 (seit 2026-10-30)
 - Underlay: 1.0.5-hotfix.1 (seit 2026-10-30)
 - Healing Campfire: 26.3.0-7.1-fabric+forge+neo (seit 2026-10-30)
+- Variants & Ventures: fabric-1.0.29+mc26.3 (seit 2026-10-31)
+- Dungeons and Taverns: 6.1.0+mod (seit 2026-10-31)
+- Matcha Flavoured: 1.12.9+mod (seit 2026-10-31)
+- Ixeris: 4.6.11+26.3-fabric (seit 2026-10-31)
+- Iris & Oculus Search: 1.8.4-fabric (seit 2026-10-31)
+- Fabrishot: 1.19.0 (seit 2026-10-31)
+- Atmosfera: 2.7.4+mc26.3 (seit 2026-10-31)
+- Shoulder Surfing Reloaded: 26.3-5.3.0+fabric (seit 2026-10-31)
+- Fresh Animations: Extensions: 1.10.1 (seit 2026-10-31)
+- Visual Effects+: 1.4.0 (seit 2026-10-31)
+- Animated Totem of Undying: 1.1.4 (seit 2026-10-31)
+- Mellow: 3.5 (seit 2026-10-31)
+- rainbow's foliage: polytone: 2.2 (seit 2026-10-31)
 

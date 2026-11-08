@@ -1385,5 +1385,19 @@
 "von": 15.0,
 "bis": 420.0,
 "grund": ""
+},
+"immersive-interfaces-mod-support-unofficial": {
+"sha1": "3b5a88c947fe299f20e9ae236e113355fadc89f5",
+"ok": true,
+"von": 15.0,
+"bis": 999.0,
+"grund": ""
+},
+"connected-rocks": {
+"sha1": "e1fbf05a601b2be32c63e21f15e0f03f017bf784",
+"ok": true,
+"von": 88.0,
+"bis": 97.1,
+"grund": ""
 }
 }
