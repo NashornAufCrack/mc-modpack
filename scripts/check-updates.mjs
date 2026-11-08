@@ -2,6 +2,7 @@
 // automatisch übernehmen (data/files.json + data/app-data.json), und festhalten, was keine neue Version hat.
 // Schreibt data/updates.json (für die Website) und UPDATES.md (Update-Datei).
 import fs from "node:fs";
+import { writeRss } from "./rss.mjs";
 const A = "https://api.modrinth.com/v2";
 const MC = "26.3";
 const UA = { "User-Agent": "NashornAufCrack/mc-modpack update-check (github.com/NashornAufCrack/mc-modpack)" };
@@ -110,7 +111,9 @@ const verlauf = [...(prev.verlauf || []).filter(x => x.datum !== today), ...(heu
 const alt = Object.entries(stand).filter(([, v]) => v.seit).sort((a, b) => a[1].seit.localeCompare(b[1].seit));
 const woche = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
 const ohneNeue = alt.filter(([s, v]) => v.seit < woche && NAME[s]).map(([s, v]) => ({ slug: s, name: NAME[s] || s, version: v.version, seit: v.seit }));
-fs.writeFileSync("data/updates.json", JSON.stringify({ checked: new Date().toISOString(), mc: MC, updates, verlauf, ohneNeue, verfuegbar, stand, next }, null, 0));
+const UPD = { checked: new Date().toISOString(), mc: MC, updates, verlauf, ohneNeue, verfuegbar, stand, next };
+fs.writeFileSync("data/updates.json", JSON.stringify(UPD, null, 0));
+writeRss(UPD); // RSS-Feed data/updates.xml
 
 const T = { m: "Mod", r: "Resource Pack", s: "Shader", d: "Datapack" };
 const md = [`# Update-Stand (${MC})`, "", `Zuletzt geprüft: ${today}`, "",

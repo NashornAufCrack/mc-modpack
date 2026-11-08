@@ -1,5 +1,6 @@
 // Schlanke Medien-Datei für die Website: nur Bilder und freigegebene Videos (ohne Prüf-Notizen, Links, Suchspuren).
 // Läuft am Ende von media.mjs und kann allein laufen, z. B. nach einer Video-Prüfung (data/video-review.json).
+// b/hd: Vorschaubild liegt selbst gehostet unter media/yt/ (scripts/yt-thumbs.py), sonst lädt die Website es von YouTube.
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 
@@ -13,7 +14,7 @@ export function writeMediaApp(media = JSON.parse(fs.readFileSync("data/media.jso
     const v = (Array.isArray(e.videos) ? e.videos : [])
       .map(x => ({ ...x, status: REV[s + ":" + x.id] || x.status }))
       .filter(x => x.status !== "nein" && x.status !== "review").slice(0, 3)
-      .map(x => (x.titel ? { id: x.id, titel: x.titel } : { id: x.id }));
+      .map(x => ({ id: x.id, ...(x.titel ? { titel: x.titel } : {}), ...(fs.existsSync(`media/yt/${x.id}.webp`) ? { b: 1 } : {}), ...(fs.existsSync(`media/yt/${x.id}-hd.webp`) ? { hd: 1 } : {}) }));
     if (v.length) o.videos = v;
     if (Object.keys(o).length) out[s] = o;
   }

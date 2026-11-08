@@ -59,6 +59,35 @@ export async function exportMrpack(name: string, server: boolean, st: Status) {
   await save(await zip.generateAsync({ type: "blob", compression: "DEFLATE" }), safe(name) + (server ? "-Server" : "") + ".mrpack");
   st(server ? "Server-Pack heruntergeladen." : `Heruntergeladen. In der Modrinth App hineinziehen, danach Arbeitsspeicher auf ${pack.ramGB(r)} GB stellen.`);
 }
+// packwiz: Pack als Textdateien (pack.toml, index.toml, je Datei eine .pw.toml) für Server-Admins und Git
+const tq = (v: string) => JSON.stringify(v); // TOML-Basisstrings verstehen dieselben Escapes wie JSON
+async function sha256(t: string) { return [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)))].map(b => b.toString(16).padStart(2, "0")).join(""); }
+export async function exportPackwiz(name: string, st: Status) {
+  const { r, all } = exportSet(false); const zip = new JSZip(); const root = safe(name) + "-packwiz/";
+  const idx: string[] = [];
+  for (const s of [...all].sort()) {
+    const f = pack.data.files[s]; if (!f) continue; const m = pack.BY[s];
+    const mr = f[0].match(/^https:\/\/cdn\.modrinth\.com\/data\/([A-Za-z0-9]+)\/versions\/([A-Za-z0-9]+)\//);
+    const toml = `name = ${tq(m?.name || f[7] || s)}\nfilename = ${tq(fname(s))}\nside = ${tq(m?.ampel === "G" ? "client" : "both")}\n\n[download]\nurl = ${tq(f[0])}\nhash-format = "sha512"\nhash = ${tq(f[3])}\n`
+      + (mr ? `\n[update]\n[update.modrinth]\nmod-id = ${tq(mr[1])}\nversion = ${tq(mr[2])}\n` : "");
+    const path = dirOf(s) + "/" + s + ".pw.toml"; zip.file(root + path, toml);
+    idx.push(`[[files]]\nfile = ${tq(path)}\nhash = ${tq(await sha256(toml))}\nmetafile = true\n`);
+  }
+  // Einstellungen nur beim ersten Installieren setzen, spätere eigene Änderungen bleiben (preserve)
+  for (const [path, c] of Object.entries(packFiles())) { zip.file(root + path, c); idx.push(`[[files]]\nfile = ${tq(path)}\nhash = ${tq(await sha256(c))}\npreserve = true\n`); }
+  const index = `hash-format = "sha256"\n\n` + idx.join("\n");
+  zip.file(root + "index.toml", index);
+  zip.file(root + "pack.toml", `name = ${tq(name)}\nauthor = "Mod-Katalog 26.3"\nversion = "1.0.0"\npack-format = "packwiz:1.1.0"\n\n[index]\nfile = "index.toml"\nhash-format = "sha256"\nhash = ${tq(await sha256(index))}\n\n[versions]\nfabric = "0.20.1"\nminecraft = "26.3"\n`);
+  zip.file(root + "LIES-MICH-packwiz.txt", `packwiz-Pack „${name}“ (Minecraft 26.3, Fabric 0.20.1, ${pack.ramGB(r)} GB Arbeitsspeicher)\n\n`
+    + `1. Den Ordner auf GitHub (Pages) oder einen Webserver hochladen.\n`
+    + `2. Server: packwiz-installer-bootstrap.jar in den Server-Ordner legen und vor dem Start ausführen:\n   java -jar packwiz-installer-bootstrap.jar -g -s server https://DEINE-SEITE/pack.toml\n`
+    + `3. Spieler: in Prism Launcher die Instanz mit dem Pre-Launch-Befehl\n   "$INST_JAVA" -jar packwiz-installer-bootstrap.jar https://DEINE-SEITE/pack.toml\n   starten; neue Versionen kommen dann bei jedem Start automatisch.\n`
+    + `4. Aktualisieren: neu exportieren oder mit dem packwiz-Programm „packwiz update --all“ ausführen und hochladen.\n\n`
+    + `Reine Client-Mods (side = "client") installiert der Server nicht. Einstellungsdateien (preserve) werden nur beim ersten Mal gesetzt.\n`
+    + `packwiz: https://packwiz.infra.link · Installer: https://github.com/packwiz/packwiz-installer-bootstrap\n`);
+  await save(await zip.generateAsync({ type: "blob", compression: "DEFLATE" }), safe(name) + "-packwiz.zip");
+  st(`packwiz-Ordner heruntergeladen (${all.length} Dateien). Anleitung in LIES-MICH-packwiz.txt.`);
+}
 export async function exportPrism(name: string, st: Status) {
   const { r, all } = exportSet(false); const zip = new JSZip();
   zip.file("instance.cfg", `[General]\nConfigVersion=1.2\nInstanceType=OneSix\nname=${name}\nOverrideMemory=true\nMaxMemAlloc=${pack.ramGB(r) * 1024}\nMinMemAlloc=1024\nnotes=Erstellt mit dem Mod-Katalog 26.3\n`);

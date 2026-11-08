@@ -20,7 +20,7 @@ jobs:
           git config user.name "update-check"
           git config user.email "actions@users.noreply.github.com"
           for i in 1 2 3 4; do
-            git add data/updates.json data/files.json data/app-data.json data/rp-check.json quelle/files.json UPDATES.md
+            git add data/updates.json data/updates.xml data/files.json data/app-data.json data/rp-check.json quelle/files.json UPDATES.md
             git diff --cached --quiet && break
             git commit -q -m "Update-Check $(date +%F)"
             git push -q && break

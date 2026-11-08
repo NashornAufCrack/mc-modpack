@@ -5,6 +5,7 @@ const { chromium, devices } = require('playwright');
 const JSZip = require('jszip');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const OUT = process.argv[2] || '.';
 const BASE = process.env.BASE || 'http://localhost:8765/neu/';
 const REPO = process.env.REPO || path.resolve(__dirname, '..');
@@ -93,6 +94,23 @@ async function validateMrpack(buf, label, { server = false, allow = [] } = {}) {
   R.info[label] = info;
   return { idx, slugs, z };
 }
+// packwiz: Index-Hash in pack.toml, Hash jeder Datei im Index, Download-Angaben je .pw.toml
+async function validatePackwiz(buf, label) {
+  const z = await JSZip.loadAsync(buf); const sha = t => crypto.createHash('sha256').update(t).digest('hex');
+  const pt = Object.keys(z.files).find(f => /(^|\/)pack\.toml$/.test(f)); if (!pt) { fail(label + ' pack.toml fehlt'); return { meta: 0 }; }
+  const root = pt.slice(0, -'pack.toml'.length);
+  const packT = await z.file(pt).async('string'); const index = await z.file(root + 'index.toml')?.async('string');
+  if (index == null) { fail(label + ' index.toml fehlt'); return { meta: 0 }; }
+  const ih = packT.match(/\[index\][\s\S]*?hash = "([0-9a-f]{64})"/); if (!ih || ih[1] !== sha(index)) fail(label + ' Index-Hash in pack.toml');
+  if (!/minecraft = "26\.3"/.test(packT) || !/fabric = "\d/.test(packT)) fail(label + ' Versionen in pack.toml');
+  const entries = [...index.matchAll(/\[\[files\]\]\nfile = "([^"]+)"\nhash = "([0-9a-f]{64})"/g)]; let meta = 0;
+  for (const [, f, h] of entries) {
+    const c = await z.file(root + f)?.async('string'); if (c == null) { fail(label + ' Datei aus dem Index fehlt', f); continue; }
+    if (sha(c) !== h) fail(label + ' Hash passt nicht', f);
+    if (f.endsWith('.pw.toml')) { meta++; if (!/\[download\]\nurl = "https:\/\/[^"]+"\nhash-format = "sha512"\nhash = "[0-9a-f]{128}"/.test(c)) fail(label + ' Download-Angaben', f); }
+  }
+  return { meta, files: entries.length };
+}
 async function download(p, buttonText) {
   const [dl] = await Promise.all([p.waitForEvent('download', { timeout: 60000 }), p.getByRole('button', { name: buttonText, exact: true }).click()]);
   const fp = path.join(OUT, dl.suggestedFilename()); await dl.saveAs(fp); return { buf: fs.readFileSync(fp), name: dl.suggestedFilename() };
@@ -143,7 +161,7 @@ async function download(p, buttonText) {
       const st = await stats(p); R.info['Vorlage ' + preset] = st;
       if (st.conflictsText) fail(`Vorlage ${preset} hat Konflikte`, st.conflictsText);
       const m = await download(p, 'Modpack-Datei (.mrpack)');
-      await validateMrpack(m.buf, 'mrpack ' + preset);
+      const mv = await validateMrpack(m.buf, 'mrpack ' + preset);
       if (preset === 'Vanilla Plus') {
         const s = await download(p, 'Server-Pack (.mrpack)'); const sv0 = await validateMrpack(s.buf, 'server ' + preset, { server: true });
         if (!sv0.slugs.has('carpet')) fail('Carpet fehlt im Server-Pack (harmlose Werkzeuge sind vorausgewählt)');
@@ -155,6 +173,8 @@ async function download(p, buttonText) {
         if (sv1.slugs.has('mobfilter')) fail('Abgewähltes Werkzeug trotzdem im Server-Pack', 'mobfilter');
         if (!sv1.slugs.has('tt20')) fail('Gewähltes Werkzeug fehlt im Server-Pack', 'tt20');
         R.info.serverAuswahl = await p.locator('details.srv summary').textContent();
+        const pw = await validatePackwiz((await download(p, 'packwiz-Ordner (.zip)')).buf, 'packwiz ' + preset); R.info.packwiz = pw;
+        if (pw.meta !== mv.idx.files.length) fail('packwiz: Anzahl Dateien weicht vom .mrpack ab', `${pw.meta} statt ${mv.idx.files.length}`);
         // Prism: externe Jars werden durch Platzhalter ersetzt
         const [dl] = await Promise.all([p.waitForEvent('download', { timeout: 180000 }), p.getByRole('button', { name: 'Komplette Prism-Instanz (.zip)' }).click()]);
         const fp = path.join(OUT, dl.suggestedFilename()); await dl.saveAs(fp);

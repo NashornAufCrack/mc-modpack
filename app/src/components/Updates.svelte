@@ -16,6 +16,7 @@
 <section class="wrap">
   <h1>Update-Stand</h1>
   <p class="muted lead">Jeden Tag prüft die Website alle Mods, Shader, Resource Packs und Datapacks auf neue Versionen für Minecraft 26.3 und übernimmt sie automatisch. Dein nächster Download hat also immer die neuesten Dateien.</p>
+  <p class="small"><a href="https://nashornaufcrack.github.io/mc-modpack/data/updates.xml" target="_blank" rel="noopener">RSS-Feed abonnieren</a> <span class="muted">· neue Versionen jeden Tag im Feed-Reader</span></p>
   {#if !done}<p class="muted">Lade …</p>
   {:else if !u}<p class="muted">Der Update-Stand ist nur auf der Website sichtbar (oder der erste Lauf steht noch aus).</p>
   {:else}

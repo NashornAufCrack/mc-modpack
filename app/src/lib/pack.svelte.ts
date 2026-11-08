@@ -1,5 +1,6 @@
 // Zentrale Pack-Logik: Auswahl, Abhängigkeiten, Konflikte, Einstellungen, Vorlagen, Speicherung.
 import type { AppData, Media, Mod, Gruppe } from "./data";
+import { thumb } from "./data";
 import { COST, BOOST, SETDEF, BASE } from "./const";
 import LZString from "lz-string";
 
@@ -80,8 +81,8 @@ class Pack {
   }
   name = (s: string) => this.BY[s]?.name || this.data.files[s]?.[7] || s;
   /** Standbild eines geprüften Videos, falls ein Eintrag keine Bilder hat */
-  #vidImg(s: string, q: string) { return this.videos(s).slice(0, 3).map(v => `https://i.ytimg.com/vi/${v.id}/${q}.jpg`); }
-  imgHQ(s: string): string[] { const m = this.media[s]; return m?.hq?.length ? m.hq : m?.bilder?.length ? m.bilder : this.BY[s]?.img?.length ? this.BY[s].img! : this.#vidImg(s, "maxresdefault"); }
+  #vidImg(s: string, big: boolean) { return this.videos(s).slice(0, 3).map(v => thumb(v, big)); }
+  imgHQ(s: string): string[] { const m = this.media[s]; return m?.hq?.length ? m.hq : m?.bilder?.length ? m.bilder : this.BY[s]?.img?.length ? this.BY[s].img! : this.#vidImg(s, true); }
   /** Bildergalerie als Paare (Vorschau, Vollbild) in derselben Reihenfolge wie img(): Vorschau-Index = Lightbox-Index.
    *  Modrinth-Vorschauen (…/<hash>_350.webp) und Originale (…/<hash>.png) teilen den Hash, CurseForge den Dateinamen. */
   gallery(s: string): { thumb: string; full: string }[] {
@@ -91,7 +92,7 @@ class Pack {
     for (const u of hq) if (!used.has(u)) out.push({ thumb: u, full: u });
     return out;
   }
-  img(s: string): string[] { const m = this.media[s]; return m?.bilder?.length ? m.bilder : this.BY[s]?.img?.length ? this.BY[s].img! : this.#vidImg(s, "hqdefault"); }
+  img(s: string): string[] { const m = this.media[s]; return m?.bilder?.length ? m.bilder : this.BY[s]?.img?.length ? this.BY[s].img! : this.#vidImg(s, false); }
   videos(s: string) { const v = this.media[s]?.videos || []; const yt = this.data.x.details[s]?.yt || []; const out = v.filter(x => x.status !== "nein" && x.status !== "review").slice(0, 3); for (const id of yt) if (!out.some(o => o.id === id)) out.push({ id, quelle: "beschreibung", punkte: 10 }); return out.slice(0, 4); }
   cost = (s: string) => (BOOST.has(s) ? 0 : ((COST as any)[s] ?? 1));
   /** Typ eines Eintrags (auch für Bibliotheken ohne Katalogeintrag) */

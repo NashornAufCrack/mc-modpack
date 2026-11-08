@@ -12,7 +12,7 @@ export type Gruppe = { id: string; titel: string; mods: string[]; text: string }
 export type Beziehung = { art: "K" | "D" | "T" | "A" | "S"; mods: string[]; text: string; erledigt?: boolean };
 export type CfgItem = { k: string; t: "bool" | "num" | "str"; d: any; h?: string; o?: string[] };
 export type CfgFile = { file: string; fmt: "json" | "json5" | "toml" | "props"; items: CfgItem[] };
-export type Video = { id: string; quelle: string; punkte: number; titel?: string; kanal?: string; status?: string; warum?: string[] };
+export type Video = { id: string; quelle: string; punkte: number; titel?: string; kanal?: string; status?: string; warum?: string[]; b?: number; hd?: number };
 export type Media = { bilder?: string[]; hq?: string[]; icon?: string | null; videos?: Video[] };
 export type AppData = {
   mods: Mod[]; files: Record<string, any[]>; dec: { gruppen: Gruppe[]; beziehungen: Beziehung[]; entscheidungen: any[] }; settings: any;
@@ -27,6 +27,9 @@ export type Upd = { slug: string; name: string; typ: string; von: string; auf: s
 export type Probe = { datei: string; titel: string };
 /** Hörproben: Pfade sind relativ zum Repo-Wurzelordner */
 export const SOUNDBASE = DATA + "../";
+/** Selbst gehostete YouTube-Vorschaubilder (scripts/yt-thumbs.py); fehlt eines, lädt die Seite es von YouTube */
+export const thumb = (v: { id: string; b?: number; hd?: number }, big = false) =>
+  big && v.hd ? `${SOUNDBASE}media/yt/${v.id}-hd.webp` : v.b ? `${SOUNDBASE}media/yt/${v.id}.webp` : `https://i.ytimg.com/vi/${v.id}/${big ? "maxresdefault" : "hqdefault"}.jpg`;
 export async function loadSounds(): Promise<Record<string, { proben: Probe[] }>> { if (ARTIFACT) return {}; try { const r = await fetch(DATA + "sounds.json"); return r.ok ? r.json() : {}; } catch { return {}; } }
 export async function loadUpdates(): Promise<Updates | null> { if (ARTIFACT) return null; try { const r = await fetch(DATA + "updates.json", { cache: "no-cache" }); return r.ok ? r.json() : null; } catch { return null; } }
 export async function loadData(): Promise<{ data: AppData; media: Record<string, Media> }> {

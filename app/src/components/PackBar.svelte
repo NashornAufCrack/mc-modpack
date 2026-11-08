@@ -1,7 +1,7 @@
 <script lang="ts">
   import { pack, PRESETS } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
-  import { exportMrpack, exportPrism, exportSet, manualList } from "../lib/export";
+  import { exportMrpack, exportPackwiz, exportPrism, exportSet, manualList } from "../lib/export";
 
   const r = $derived(pack.resolve());
   const cnt = (t: string) => [...r.mods].filter(s => (pack.BY[s].pt || "m") === t).length;
@@ -19,10 +19,10 @@
   const srvCount = $derived(srvList.filter(m => inSrv.has(m.slug)).length);
   let name = $state(pack.cfg._name || "Mein Pack"); let st = $state(""); let busy = $state(false);
   let showDiff = $state(false);
-  async function go(kind: "prism" | "mrpack" | "server") {
+  async function go(kind: "prism" | "mrpack" | "server" | "packwiz") {
     if (probs.length) { st = `Erst die ${probs.length} Konflikte klären. Im fertigen Pack darf nichts doppelt sein.`; return; }
     busy = true; pack.cfg = { ...pack.cfg, _name: name }; pack.save();
-    try { kind === "prism" ? await exportPrism(name, t => (st = t)) : await exportMrpack(name, kind === "server", t => (st = t)); }
+    try { kind === "prism" ? await exportPrism(name, t => (st = t)) : kind === "packwiz" ? await exportPackwiz(name, t => (st = t)) : await exportMrpack(name, kind === "server", t => (st = t)); }
     catch (e) { st = "Fehler beim Export: " + e; } busy = false;
   }
   function share() { const u = pack.shareUrl(); navigator.clipboard?.writeText(u).then(() => ui.say("Link kopiert"), () => ui.say(u)); }
@@ -85,6 +85,8 @@
       {/each}
     </ul>
   </details>
+  <button class="btn sm ghost" disabled={busy} onclick={() => go("packwiz")}>packwiz-Ordner (.zip)</button>
+  <p class="hint">Für Server-Admins: das Pack als Textdateien zum Hochladen; Server und Spieler holen Updates dann automatisch.</p>
   {#if st}<p class="small" role="status">{st}</p>{/if}
   {#if manual.length}<div class="warnbox" style="border-color:var(--warn);background:var(--warn-soft)"><b>Selbst herunterladen ({manual.length})</b>{#each manual as s}<a href={pack.BY[s].cf} target="_blank" rel="noopener">{pack.name(s)} ↗</a>{/each}<span class="small">Diese CurseForge-Autoren erlauben keinen automatischen Download. Datei laden und in den Ordner mods legen.</span></div>{/if}
   <div class="two"><button class="btn sm ghost" onclick={share}>Teilen-Link</button><button class="btn sm ghost" onclick={() => ui.undo()}>↶ Rückgängig</button></div>

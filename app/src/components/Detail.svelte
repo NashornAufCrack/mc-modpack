@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SOUNDBASE } from "../lib/data";
+  import { SOUNDBASE, thumb } from "../lib/data";
   import Modal from "./Modal.svelte";
   import { pack, PT_1, CATS, DEP_IGNORE } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
@@ -54,7 +54,7 @@
       <div class="vids">
         {#each vids as v}
           {#if play === v.id}<iframe class="yt" src="https://www.youtube-nocookie.com/embed/{v.id}?autoplay=1" referrerpolicy="strict-origin-when-cross-origin" title={v.titel || m.name} allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-          {:else}<button class="vcard" onclick={() => (play = v.id)}><img referrerpolicy="no-referrer" src="https://i.ytimg.com/vi/{v.id}/mqdefault.jpg" alt="" loading="lazy" /><span class="pl">▶</span><span class="vt">{v.titel || "Video ansehen"}</span></button>{/if}
+          {:else}<button class="vcard" onclick={() => (play = v.id)}><img referrerpolicy="no-referrer" src={thumb(v)} alt="" loading="lazy" /><span class="pl">▶</span><span class="vt">{v.titel || "Video ansehen"}</span></button>{/if}
         {/each}
       </div>
       <p class="small muted">Videos laden erst beim Klick (YouTube ohne Cookies).</p>
