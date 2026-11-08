@@ -1,18 +1,18 @@
 {
- "stand": "2026-11-08T19:41:56.122Z",
+ "stand": "2026-11-08T20:51:01.866Z",
  "eintraege": 715,
  "mitBildern": 643,
  "hdOderVideo": 619,
- "mitVideoSicher": 454,
- "mitVideoReview": 247,
+ "mitVideoSicher": 456,
+ "mitVideoReview": 249,
  "log": [
   "CurseForge-Key: funktioniert",
-  "CurseForge-Bildersuche für Modrinth-Einträge: 18, mit Bildern: 10",
+  "CurseForge-Bildersuche für Modrinth-Einträge: 0, mit Bildern: 0",
   "YouTube-Key: funktioniert",
-  "Suche gestoppt bei accurate-block-placement-reborn: 429",
-  "YouTube-Suchen in diesem Lauf: 7, noch offen: 275",
-  "yt-dlp-Suchen: 18, mit Treffer: 2, noch offen: 0",
-  "GitHub-README: 4 Repos geprüft, 0 mit Bildern",
-  "Auflösung gemessen: 246 Bilder"
+  "Suche gestoppt bei talkbubbles: 429",
+  "YouTube-Suchen in diesem Lauf: 5, noch offen: 271",
+  "yt-dlp-Suchen: 1, mit Treffer: 0, noch offen: 0",
+  "GitHub-README: 0 Repos geprüft, 0 mit Bildern",
+  "Auflösung gemessen: 0 Bilder"
  ]
 }
