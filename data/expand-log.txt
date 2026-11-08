@@ -34,7 +34,7 @@ Wunsch schon im Katalog: Fresh Flower Pots Rotated -> fresh-flower-pots-rotated
 Wunsch schon im Katalog: Immersive Interfaces Mod Support Unofficial -> immersive-interfaces-mod-support-unofficial
 Wunsch schon im Katalog: Immersive Interfaces Mod Support -> immersive-interfaces-mod-support-unofficial
 Wunsch schon im Katalog: Connected Rocks -> connected-rocks
-Gewünscht: kerria-opt, animaticam, animated-gui, exordium, ebe, figura, true-darkness, cave-dust, enhanced-attack-indicator, interactic, no-fade, better-third-person, leawind-third-person, cit-resewn, sodium-dynamic-lights, nyfs-spiders, effective, auditory, euphonium, mixintrace, highlight, voxy-seam-fix, wandering-traveler, ar1-animated-typing, icb, olafs-relatively-placed-blocks, clickoptimizer, ancient-cities, qraftys-dappled-villages, better-candles, better-moss, hanging-leaves, simple-overlays, jutting-ores, lumenite-shaders, beautify-shaders, lumarit, shiroi-visuals, komorebi-shaders
+Gewünscht: kerria-opt, animaticam, animated-gui, exordium, ebe, figura, true-darkness, cave-dust, enhanced-attack-indicator, interactic, no-fade, better-third-person, leawind-third-person, cit-resewn, sodium-dynamic-lights, nyfs-spiders, effective, auditory, euphonium, mixintrace, highlight
 keine 26.3-Datei: kerria-opt
 keine 26.3-Datei: animaticam
 keine 26.3-Datei: animated-gui
@@ -57,4 +57,4 @@ keine 26.3-Datei: euphonium
 keine 26.3-Datei: mixintrace
 keine 26.3-Datei: highlight
 CurseForge: 1004 mit 26.3-Fabric-Datei, 186 nicht auf Modrinth, ausgewählt: cinematic-interactions, studious-keybinds, timber-tales-dynamic-tree-system, improved-inventory-tabs, weather-glass, ping
-Neu: 369 Einträge, 364 Dateien
+Neu: 351 Einträge, 345 Dateien
