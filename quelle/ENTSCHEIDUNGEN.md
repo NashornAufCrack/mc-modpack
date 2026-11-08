@@ -1,6 +1,6 @@
 # Perfektes MC Modpack – Entscheidungen & offene Punkte
 
-Stand: 08.11.2026 (nach dem Audit)
+Stand: 08.11.2026 abends (Antworten zum Audit und Feature-Entscheidungen)
 
 ## Festgelegt
 - Zwei Packs als Schichten: Basis „Vanilla Visual“ (nur clientseitig) + Schicht „Vanilla Plus“
@@ -16,7 +16,9 @@ Stand: 08.11.2026 (nach dem Audit)
 - Resource Packs nur, wenn pack.mcmeta 26.3 (Format 97.1) unterstützt.
 - Jeden Sonntag: Update-Bericht + Vorschläge für neue Mods, Aufnahme nur nach Rücksprache. Der Bericht nennt auch das Ergebnis der „Prüfung“.
 - Datapacks wirken über Global Packs (kommt automatisch mit) in jeder neu erstellten Welt; sie stecken in .mrpack, Prism-Instanz und Server-Pack.
-- Mods im Konflikt mit dem festen Leistungspaket (Moonrise, AsyncParticles, Particle Core) sind sichtbar, aber als „nicht wählbar“ markiert.
+- Alles, was mit dem festen Leistungspaket nicht zusammen funktioniert oder es nur doppelt, fliegt raus (08.11. abends): Moonrise, AsyncParticles, Particle Core (Konflikt mit C2ME/Async bzw. Smart Particles), Cull Leaves, Better Block Entities, Packet Fixer (doppeln MoreCulling, OBE, XXL Packets). Die Website blendet solche Einträge künftig von selbst aus und nennt sie auf der Update-Seite; die Datenprüfung meldet sie als Fehler.
+- Server-Pack (08.11. abends): harmlose Technik-Werkzeuge kommen automatisch hinein, auch Carpet mit Erweiterungen und Chunky. AutoModpack (bräuchte jeder Spieler), Chunky Offline (startet von selbst eine Vorgenerierung mit 10.000 Blöcken Radius) und TT20 (ändert Spielabläufe bei Lag) nur, wenn gewählt (Feld `nichtAuto`). Neue Server-Werkzeuge, die von selbst etwas an Welt oder Spielablauf ändern, bekommen ebenfalls `nichtAuto`.
+- Video-Prüfung über die Prüfseite (https://claude.ai/artifact/Vhs2mkJz1cYP8XUjH8ySvG), damit die Hauptseite nutzbar bleibt. Der Sonntagslauf übernimmt die Urteile (`scripts/urteile-import.mjs`); zurückgenommene Urteile werden wieder offen.
 - Einträge, deren Pflicht-Abhängigkeit es für 26.3 nicht gibt, werden ausgeblendet und auf der Update-Seite genannt (z. B. Bare Bones x Fresh Animations, Basis Bare Bones nur bis 1.21.9).
 - Vorlage „Nur Performance“ = nur das feste Leistungspaket (ohne Krypton).
 - Teilen-Links speichern Mod-Namen (#p=…); alte #pack-Links werden noch gelesen.
@@ -29,10 +31,15 @@ Stand: 08.11.2026 (nach dem Audit)
 - Shader: mehrere wählbar, im Spiel ist immer einer aktiv. Ausschließen nur, was genau dasselbe macht oder sich schadet.
 - Fancy World Animations nicht zusammen mit Animated Doors bzw. Swinging Lanterns (die beiden untereinander schon)
 - Frei kombinierbar: Umgebungs-Partikel (Hinweis auf mögliche Doppel-Effekte), Erz-Packs, Biome-Mods, Nature X
-- Partikel-Optimierer: Smart Particles steckt fest im Leistungspaket; AsyncParticles und Particle Core sind deshalb nicht wählbar.
+- Partikel-Optimierer: Smart Particles steckt fest im Leistungspaket; AsyncParticles und Particle Core sind deshalb raus.
+
+## Feature-Liste – Tizianos Entscheidungen (08.11.2026, im Audit-Dokument)
+- Ja: Starttest je Vorlage, Abhängigkeits-Check aus den Mod-Dateien, Absturz-Hilfe, deutsche Launcher-Anleitungen, Video-Prüfseite (erledigt), Website baut sich selbst, Grafik-Warnung im Assistenten, Shader und Fernsicht (Voxy-Verträglichkeit je Shader), Server-Pack wählbar, Symbolbilder für Technik-Mods, Vorher-nachher-Regler für Shader, Textur-Vorschau im Browser, YouTube-Vorschaubilder selbst hosten, packwiz-Export und RSS-Feed
+- Muss noch genauer besprochen werden: Pack importieren, mehrere Packs speichern und vergleichen, TikTok-Videos als Quelle
+- Noch offen: Änderungsprotokolle auf der Update-Seite
 
 ## Offene Punkte
 - Zukunftsplan für die nächste Minecraft-Version (besprechen)
-- 79 wählbare Einträge ohne HD-Bild, Video oder Hörprobe; 409 Videos warten auf Sichtprüfung (Stand 08.11.)
-- Fragen aus dem Audit (Dokument „Mod-Katalog 26.3 – Audit, Optimierung & Feature-Liste“): Server-Werkzeuge automatisch ins Server-Pack?, nicht wählbare Mods behalten oder entfernen?, Video-Prüfung per Kontaktbögen oder Prüfseite?, Netzzugang für YouTube/github.io
-- Feature-Liste mit 18 Ideen: Entscheidung pro Zeile im Audit-Dokument
+- 78 wählbare Einträge ohne HD-Bild, Video oder Hörprobe; 399 Videos warten auf der Prüfseite (Stand 08.11. abends)
+- Netzzugang für YouTube, i.ytimg, github.io, Fabric, CurseForge, mclo.gs: Anleitung geschickt (Edit cloud environment → Network access → Custom), noch nicht freigegeben
+- Feature-Liste: drei Punkte besprechen, einer offen (siehe oben)

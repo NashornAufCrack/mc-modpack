@@ -1,5 +1,12 @@
 # Umbau-Plan Mod-Katalog 26.3
 
+## Nach deinen Antworten (08.11.2026, abends)
+
+- Umgesetzt: Server-Pack-Regel (`nichtAuto` für AutoModpack, Chunky Offline, TT20), 6 Mods mit Konflikt oder Doppelung zum Leistungspaket entfernt, Website blendet solche Einträge künftig selbst aus.
+- Prüfseite für Videos: https://claude.ai/artifact/Vhs2mkJz1cYP8XUjH8ySvG. Bildbögen baut der Workflow „Prüfseite“ (`scripts/pruefseite.py`), Urteile übernimmt `scripts/urteile-import.mjs` (Sonntagslauf, Aufgabe 1b). Auf der Seite entschiedene Videos bleiben dort änderbar.
+- Feature-Umsetzung in dieser Reihenfolge (klein zuerst): Website baut sich selbst → Server-Pack wählbar → Grafik-Warnung → Shader und Fernsicht → packwiz-Export und RSS-Feed → YouTube-Vorschaubilder selbst hosten → Symbolbilder für Technik-Mods → Abhängigkeits-Check aus den Mod-Dateien → Absturz-Hilfe → Starttest je Vorlage → Launcher-Anleitungen → Vorher-nachher-Regler (Bilder von Tiziano) → Textur-Vorschau.
+- Zu besprechen: Pack importieren, mehrere Packs speichern und vergleichen, TikTok als Quelle; offen: Änderungsprotokolle.
+
 ## Audit, Optimierung & Feature-Liste (08.11.2026)
 
 Vollständige Durchsicht von Website-Code, Abläufen, Katalogdaten und Medien, mit Browser-Tests (Playwright, axe) und einem unabhängigen Zweitprüfer. Details, Fehlertabelle und Feature-Liste: Dokument „Mod-Katalog 26.3 – Audit, Optimierung & Feature-Liste“ (https://claude.ai/artifact/Wa5jeWL9xwzzEuM6n6NCqZ).
