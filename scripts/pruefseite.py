@@ -1,4 +1,6 @@
-# Daten für die Prüfseite (Artifact „Video-Prüfung“): alle Videos mit Status „review“, die noch kein Urteil haben.
+# Daten für die Prüfseite (Artifact „Videoprüfung Mod-Katalog“): alle Videos mit Status „review“, die noch kein Urteil haben,
+# plus die schon auf der Prüfseite entschiedenen (data/pruefseite-urteile.json), damit man diese Urteile noch ändern kann.
+# Übernahme der Urteile in die Website: scripts/urteile-import.mjs.
 # Pro Video eine Kachel aus 6 Bildern (192×108): links 2 Bilder der Mod, rechts Titelbild und Szenen bei 25/50/75 %.
 # Je 20 Kacheln ein Bildbogen (Sprite). Ergebnis: pruefung/daten.json + pruefung/bogen-NN.jpg
 # Läuft auf GitHub (Workflow „Prüfseite“), weil die YouTube-Vorschaubilder nur von dort erreichbar sind.
@@ -9,16 +11,18 @@ media = json.load(open("data/media.json")); app = json.load(open("data/app-data.
 mods = {m["slug"]: m for m in app["mods"]}
 hidden = set(app["x"].get("rpbad", [])) | set((app["x"].get("basisfehlt") or {}).keys())
 done = json.load(open("data/video-review.json")) if os.path.exists("data/video-review.json") else {}
+seite = json.load(open("data/pruefseite-urteile.json")) if os.path.exists("data/pruefseite-urteile.json") else {}
 sounds = json.load(open("data/sounds.json")) if os.path.exists("data/sounds.json") else {}
 
 def has_media(s):
     e = media.get(s, {})
     return (e.get("breite") or 0) >= 1280 or any(v.get("status") in ("auto", "ok") for v in e.get("videos", [])) or bool(sounds.get(s, {}).get("proben"))
 
+key = lambda s, v: f"{s}:{v['id']}"
 items = [(s, v) for s, e in media.items() if s in mods and s not in hidden
-         for v in e.get("videos", []) if v.get("status") == "review" and f"{s}:{v['id']}" not in done]
-# zuerst Einträge ganz ohne gute Medien, dann die beliebtesten
-items.sort(key=lambda t: (has_media(t[0]), -(mods[t[0]].get("downloadsK") or 0), -(t[1].get("punkte") or 0)))
+         for v in e.get("videos", []) if key(s, v) in seite or (v.get("status") == "review" and key(s, v) not in done)]
+# zuerst offene Videos (darin Einträge ganz ohne gute Medien, dann die beliebtesten), schon auf der Seite entschiedene am Ende
+items.sort(key=lambda t: (key(*t) in seite, has_media(t[0]), -(mods[t[0]].get("downloadsK") or 0), -(t[1].get("punkte") or 0)))
 
 FW, FH, COLS, ROWS = 192, 108, 4, 5
 TW, TH = 3 * FW, 2 * FH
@@ -71,4 +75,5 @@ for bi in range(0, len(items), per):
 import datetime
 json.dump({"stand": datetime.date.today().isoformat(), "spalten": COLS, "zeilen": ROWS, "items": out},
           open("pruefung/daten.json", "w"), ensure_ascii=False, separators=(",", ":"))
-print(len(out), "Videos auf", (len(out) + per - 1) // per, "Bögen;", sum(1 for x in out if x["luecke"]), "davon bei Einträgen ohne gute Medien")
+print(len(out), "Videos auf", (len(out) + per - 1) // per, "Bögen;", sum(1 for x in out if x["k"] in seite), "davon schon entschieden,",
+      sum(1 for x in out if x["luecke"]), "bei Einträgen ohne gute Medien")
