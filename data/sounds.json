@@ -167,7 +167,7 @@
 "proben": []
 },
 "fancy-crops": {
-"sha1": "788e5169eb064b696b2e20d4c5d998cceb387a2e",
+"sha1": "a247188ff93c19045cda4344d80e3cb6e1b00494",
 "proben": []
 },
 "clearer-slot-highlight": {
@@ -612,6 +612,26 @@
 },
 "connected-rocks": {
 "sha1": "e1fbf05a601b2be32c63e21f15e0f03f017bf784",
+"proben": []
+},
+"better-candles": {
+"sha1": "1d7e96698cc7549eb857d534d0cd9c0d39b3a7bd",
+"proben": []
+},
+"better-moss": {
+"sha1": "966e03e34aeabbe551ae79603510f56422b04c25",
+"proben": []
+},
+"hanging-leaves": {
+"sha1": "c47f0efb70b34de164252682fc1b05bc6358e692",
+"proben": []
+},
+"simple-overlays": {
+"sha1": "86faea776836d413d679439fa96a2f9a169e7a4f",
+"proben": []
+},
+"jutting-ores": {
+"sha1": "f3c66f5ef9ef5b9a594347cadcc59afee5019a86",
 "proben": []
 }
 }
