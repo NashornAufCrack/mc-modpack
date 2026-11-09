@@ -67,9 +67,9 @@
     <div class="start-check-box ok">
       <div class="sc-head">
         <span class="sc-icon">🛡️</span>
-        <div>
-          <b>Start-Sicherheit: Bestanden</b>
-          <div class="small muted">Dein Pack ist startfähig (Absturz-Check vor dem Export)</div>
+        <div class="sc-title-col">
+          <b class="sc-title">Start-Sicherheit: Bestanden</b>
+          <div class="small sc-subtitle">Dein Pack ist startfähig (Absturz-Check vor dem Export)</div>
         </div>
       </div>
       <ul class="sc-list small">
@@ -83,9 +83,9 @@
     <div class="start-check-box bad">
       <div class="sc-head">
         <span class="sc-icon">⚠️</span>
-        <div>
-          <b>Start-Check: {check.errors.length} Absturz-Gefahr(en)</b>
-          <div class="small">Dieses Pack würde beim Starten abstürzen! Wähle eine Lösung:</div>
+        <div class="sc-title-col">
+          <b class="sc-title">Start-Check: {check.issues && check.issues.length ? check.issues.length : check.errors.length} {((check.issues && check.issues.length) || check.errors.length) === 1 ? 'Absturz-Gefahr' : 'Absturz-Gefahren'}</b>
+          <div class="small sc-subtitle">Dieses Pack würde beim Starten abstürzen! Wähle eine Lösung:</div>
         </div>
       </div>
 
@@ -306,7 +306,7 @@
   .small { font-size: .8rem; margin: 0; }
   .state { margin: 0; padding: .45rem .6rem; border-radius: 8px; font-size: .84rem; font-weight: 500; }
   .state.ok { background: var(--accent-soft); color: var(--ok); } .state.bad { background: var(--bad-soft); color: var(--bad); }
-  .warnbox, .checkerr { border: 1px solid var(--bad); background: var(--bad-soft); border-radius: 10px; padding: .55rem .65rem; display: grid; gap: .35rem; font-size: .84rem; }
+  .warnbox, .checkerr { flex-shrink: 0; border: 1px solid var(--bad); background: var(--bad-soft); border-radius: 10px; padding: .55rem .65rem; display: grid; gap: .35rem; font-size: .84rem; }
   .prob { display: flex; justify-content: space-between; gap: .5rem; align-items: center; }
   .tools, .two { display: flex; gap: .4rem; flex-wrap: wrap; } .two > * { flex: 1; }
   .ram { margin: 0; padding: .5rem .6rem; border-radius: 8px; background: var(--warn-soft); border: 1px solid var(--warn); font-size: .8rem; }
@@ -320,40 +320,51 @@
 
   .start-check-box {
     border-radius: var(--radius);
-    padding: .75rem;
+    padding: .85rem;
     border: 1px solid var(--line);
-    display: grid;
-    gap: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
+    flex-shrink: 0 !important;
+    min-height: fit-content !important;
+    overflow: visible !important;
   }
   .start-check-box.ok { background: var(--accent-soft); border-color: var(--accent); }
   .start-check-box.bad { background: var(--bad-soft); border-color: var(--bad); }
-  .sc-head { display: flex; align-items: center; gap: .6rem; }
-  .sc-icon { font-size: 1.3rem; flex-shrink: 0; }
-  .sc-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .15rem; color: var(--fg); opacity: .9; }
+  .sc-head { display: flex; align-items: flex-start; gap: .65rem; flex-shrink: 0; }
+  .sc-icon { font-size: 1.35rem; line-height: 1.2; flex-shrink: 0; }
+  .sc-title-col { display: flex; flex-direction: column; gap: .2rem; min-width: 0; flex: 1; }
+  .sc-title { font-size: .95rem; font-weight: 700; line-height: 1.3; color: var(--fg); word-break: break-word; overflow-wrap: anywhere; }
+  .sc-subtitle { font-size: .8rem; line-height: 1.35; color: var(--muted); word-break: break-word; overflow-wrap: anywhere; }
+  .sc-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .2rem; color: var(--fg); opacity: .95; font-size: .82rem; }
 
   .issue-list {
     display: flex;
     flex-direction: column;
     gap: .65rem;
-    margin-top: .3rem;
+    margin-top: .2rem;
+    width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    flex-shrink: 0;
   }
   .issue-card {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: .65rem;
+    padding: .75rem;
     display: flex;
     flex-direction: column;
-    gap: .45rem;
+    gap: .5rem;
+    width: 100%;
     max-width: 100%;
     box-sizing: border-box;
     overflow-wrap: anywhere;
     word-break: break-word;
+    flex-shrink: 0;
   }
   .issue-header {
     display: flex;
