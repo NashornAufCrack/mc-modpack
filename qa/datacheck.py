@@ -2,9 +2,9 @@
 # Aufruf im Repo-Ordner: python3 qa/datacheck.py [--ci]
 # FEHLER (Exit-Code 1 mit --ci) machen Exporte kaputt; HINWEISE sind Pflege-Aufgaben.
 import json, re, sys, collections, os
-A = json.load(open('data/app-data.json')); F = A['files']; M = A['mods']; D = A['dec']; BY = {m['slug']: m for m in M}
-Me = json.load(open('data/media.json')) if os.path.exists('data/media.json') else {}
-S = json.load(open('data/sounds.json')) if os.path.exists('data/sounds.json') else {}
+A = json.load(open('data/app-data.json', encoding='utf-8')); F = A['files']; M = A['mods']; D = A['dec']; BY = {m['slug']: m for m in M}
+Me = json.load(open('data/media.json', encoding='utf-8')) if os.path.exists('data/media.json') else {}
+S = json.load(open('data/sounds.json', encoding='utf-8')) if os.path.exists('data/sounds.json') else {}
 x = A.get('x', {}); rpbad = set(x.get('rpbad', [])); basis = set((x.get('basisfehlt') or {}).keys())
 IGNORE = {'qsl', 'quilted-fabric-api', 'connector', 'modefite-item-definition-backport'}
 ALLOWED = {'cdn.modrinth.com', 'github.com', 'raw.githubusercontent.com', 'gitlab.com'}

@@ -20,6 +20,20 @@ export const CATS: Record<string, { t: string; n: string }> = {
   T: { t: "Welt & Terrain", n: "Verändert die Weltgenerierung. Wirkt nur in neuen Gebieten oder neuen Welten." },
   S: { t: "Server & Technik", n: "Werkzeuge für Server und Technik-Spieler. Beim Server-Pack sind die harmlosen vorausgewählt, AutoModpack, Chunky Offline und TT20 nur auf Wunsch; dort lässt sich jedes einzeln an- und abwählen." },
 };
+export interface PackIssue {
+  id: string;
+  type: "break" | "conflict" | "missing_dep" | "mc_incompatible" | "other";
+  title: string;
+  detail: string;
+  modA?: string;
+  modB?: string;
+  isLockedA?: boolean;
+  isLockedB?: boolean;
+  cascadeA?: string[];
+  cascadeB?: string[];
+  canAddB?: boolean;
+}
+
 export const PRESETS = [
   { id: "perf", name: "Nur Performance", text: "Maximale FPS, Vanilla-Optik. Ideal für schwache PCs oder PvP." },
   { id: "visual", name: "Vanilla Visual", text: "Schöner, aber läuft auf jedem Vanilla-Server. Shader, Animationen, Sounds." },
@@ -176,24 +190,97 @@ class Pack {
   /** Vorab-Start-Check: Prüft das fertige Modpack auf fehlende Abhängigkeiten, Konflikte, doppelte Dateien und kaputte Configs */
   verifyPack(r = this.resolve(), fnameFn?: (s: string) => string) {
     const errors: string[] = [];
+    const issues: PackIssue[] = [];
+    const seenIssueKeys = new Set<string>();
     const all = [...r.mods, ...r.libs];
     let checkedDeps = 0;
     for (const s of all) {
       const f = this.data.files[s];
-      if (!f) { errors.push(`Datei-Eintrag fehlt für „${this.name(s)}“ (${s}).`); continue; }
-      if (!String(f[0] || "").startsWith("https://")) errors.push(`Ungültige Download-URL für „${this.name(s)}“.`);
-      if (!/^[0-9a-f]{40}$/i.test(String(f[2] || "")) || !/^[0-9a-f]{128}$/i.test(String(f[3] || ""))) errors.push(`Prüfsumme (SHA1/SHA512) unvollständig bei „${this.name(s)}“.`);
-      if (!(Number(f[4]) > 0)) errors.push(`Dateigröße 0 Bytes bei „${this.name(s)}“.`);
+      if (!f) {
+        errors.push(`Datei-Eintrag fehlt für „${this.name(s)}“ (${s}).`);
+        issues.push({ id: `file-missing-${s}`, type: "other", title: `Datei-Eintrag fehlt: „${this.name(s)}“`, detail: `Für ${s} existiert kein Download-Eintrag in den Katalogdaten.`, modA: s, isLockedA: this.LOCKED.has(s) });
+        continue;
+      }
+      if (!String(f[0] || "").startsWith("https://")) {
+        const msg = `Ungültige Download-URL für „${this.name(s)}“.`;
+        errors.push(msg);
+        issues.push({ id: `url-${s}`, type: "other", title: `Download-Fehler: „${this.name(s)}“`, detail: msg, modA: s, isLockedA: this.LOCKED.has(s) });
+      }
+      if (!/^[0-9a-f]{40}$/i.test(String(f[2] || "")) || !/^[0-9a-f]{128}$/i.test(String(f[3] || ""))) {
+        const msg = `Prüfsumme (SHA1/SHA512) unvollständig bei „${this.name(s)}“.`;
+        errors.push(msg);
+        issues.push({ id: `hash-${s}`, type: "other", title: `Prüfsummen-Fehler: „${this.name(s)}“`, detail: msg, modA: s, isLockedA: this.LOCKED.has(s) });
+      }
+      if (!(Number(f[4]) > 0)) {
+        const msg = `Dateigröße 0 Bytes bei „${this.name(s)}“.`;
+        errors.push(msg);
+        issues.push({ id: `size-${s}`, type: "other", title: `Dateigröße 0: „${this.name(s)}“`, detail: msg, modA: s, isLockedA: this.LOCKED.has(s) });
+      }
       const deps = f[5].concat(this.implicit(s));
       for (const d of deps) {
         if (DEP_IGNORE.has(d)) continue;
         checkedDeps++;
-        if (!r.mods.has(d) && !r.libs.has(d)) errors.push(`Pflicht-Abhängigkeit „${this.name(d)}“ für „${this.name(s)}“ fehlt im Pack.`);
+        if (!r.mods.has(d) && !r.libs.has(d)) {
+          const msg = `Pflicht-Abhängigkeit „${this.name(d)}“ für „${this.name(s)}“ fehlt im Pack.`;
+          errors.push(msg);
+          const k = `dep-${s}-${d}`;
+          if (!seenIssueKeys.has(k)) {
+            seenIssueKeys.add(k);
+            issues.push({
+              id: k,
+              type: "missing_dep",
+              title: `Pflicht-Abhängigkeit fehlt: „${this.name(d)}“`,
+              detail: `„${this.name(s)}“ benötigt „${this.name(d)}“, um fehlerfrei zu starten.`,
+              modA: s,
+              modB: d,
+              isLockedA: this.LOCKED.has(s),
+              isLockedB: false,
+              canAddB: !!this.data.files[d] || !!this.BY[d],
+              cascadeA: this.cascadeDependentsOf(s)
+            });
+          }
+        }
       }
-      if (this.BLOCKED.has(s)) errors.push(`„${this.name(s)}“ kollidiert mit dem festen Leistungspaket (${this.BLOCKED.get(s)!.map(y => this.name(y)).join(", ")}).`);
+      if (this.BLOCKED.has(s)) {
+        const blockedBy = this.BLOCKED.get(s)!;
+        const msg = `„${this.name(s)}“ kollidiert mit dem festen Leistungspaket (${blockedBy.map(y => this.name(y)).join(", ")}).`;
+        errors.push(msg);
+        const k = `blocked-${s}`;
+        if (!seenIssueKeys.has(k)) {
+          seenIssueKeys.add(k);
+          issues.push({
+            id: k,
+            type: "break",
+            title: `Kollision mit Leistungspaket: „${this.name(s)}“`,
+            detail: `${msg} Pflichtmods können für maximale Performance und Stabilität nicht entfernt werden.`,
+            modA: s,
+            modB: blockedBy[0],
+            isLockedA: false,
+            isLockedB: true,
+            cascadeA: this.cascadeDependentsOf(s)
+          });
+        }
+      }
     }
     for (const p of this.problems()) {
-      errors.push(`Unaufgelöster Konflikt zwischen „${this.name(p.a)}“ und „${this.name(p.b)}“: ${p.text}`);
+      const msg = `Unaufgelöster Konflikt zwischen „${this.name(p.a)}“ und „${this.name(p.b)}“: ${p.text}`;
+      errors.push(msg);
+      const k = "prob-" + [p.a, p.b].sort().join("-");
+      if (!seenIssueKeys.has(k)) {
+        seenIssueKeys.add(k);
+        issues.push({
+          id: k,
+          type: "conflict",
+          title: `Konflikt: „${this.name(p.a)}“ vs. „${this.name(p.b)}“`,
+          detail: p.text,
+          modA: p.a,
+          modB: p.b,
+          isLockedA: this.LOCKED.has(p.a),
+          isLockedB: this.LOCKED.has(p.b),
+          cascadeA: this.cascadeDependentsOf(p.a),
+          cascadeB: this.cascadeDependentsOf(p.b)
+        });
+      }
     }
     // Echter Fabric Loader Kompatibilitäts-Check (breaks, conflicts, minecraft-Version aus fabric.mod.json)
     const jarRules = this.data.jar_rules || {};
@@ -204,7 +291,15 @@ class Pack {
       activeModIds.set(mid, s);
       activeModIds.set(s, s);
     }
-    const cleanVer = (v: string) => (String(v || "").split("+")[0].split("-")[0].match(/\d+/g) || ["0"]).map(Number);
+    const cleanVer = (v: string): number[] => {
+      let s = String(v || "").trim();
+      s = s.replace(/^[vV]\.?/, "");
+      const sub = s.replace(/^(?:mc\d+(?:\.\d+)*[_-]|fabric-\d+(?:\.\d+)*[_-]|fabric-)/i, "");
+      if (sub) s = sub;
+      s = s.split("+")[0].split("-")[0];
+      const parts = s.match(/\d+/g);
+      return parts && parts.length ? parts.map(Number) : [0];
+    };
     const matchVer = (actual: string, constraint: any): boolean => {
       if (Array.isArray(constraint)) return constraint.some(c => matchVer(actual, c));
       const c = String(constraint || "").trim();
@@ -220,7 +315,7 @@ class Pack {
         const cmp = (x: number[], y: number[]) => { for (let i = 0; i < l; i++) { if (x[i] < y[i]) return -1; if (x[i] > y[i]) return 1; } return 0; };
         return cmp(a, lo) >= 0 && cmp(a, hi) < 0;
       }
-      const m = c.match(/^(<=|<|>=|>|=)?\s*([0-9a-zA-Z._-]+)$/);
+      const m = c.match(/^(<=|<|>=|>|=|~|\^)?\s*([0-9a-zA-Z._-]+)$/);
       if (!m) return true;
       const op = m[1] || "=", req = cleanVer(m[2]);
       const l = Math.max(act.length, req.length);
@@ -228,6 +323,7 @@ class Pack {
       const r = req.concat(new Array(l - req.length).fill(0));
       let cmp = 0;
       for (let i = 0; i < l; i++) { if (a[i] < r[i]) { cmp = -1; break; } if (a[i] > r[i]) { cmp = 1; break; } }
+      if (op === "~" || op === "^") return cmp === 0;
       if (op === "<=") return cmp <= 0;
       if (op === "<") return cmp < 0;
       if (op === ">=") return cmp >= 0;
@@ -238,16 +334,48 @@ class Pack {
       const rule = jarRules[s];
       if (!rule) continue;
       if (rule.mc && !matchVer("26.3", rule.mc)) {
-        errors.push(`Mod „${this.name(s)}“ erfordert Minecraft ${rule.mc}, ist aber inkompatibel mit 26.3!`);
+        const msg = `Mod „${this.name(s)}“ erfordert Minecraft ${rule.mc}, ist aber inkompatibel mit 26.3!`;
+        errors.push(msg);
+        const k = "mc-" + s;
+        if (!seenIssueKeys.has(k)) {
+          seenIssueKeys.add(k);
+          issues.push({
+            id: k,
+            type: "mc_incompatible",
+            title: `„${this.name(s)}“ ist inkompatibel mit Minecraft 26.3`,
+            detail: `Das Mod-Manifest setzt Minecraft ${rule.mc} voraus.`,
+            modA: s,
+            isLockedA: this.LOCKED.has(s),
+            cascadeA: this.cascadeDependentsOf(s)
+          });
+        }
       }
       if (rule.breaks) {
         for (const [targetMid, constraint] of Object.entries(rule.breaks)) {
           if (activeModIds.has(targetMid)) {
             const targetSlug = activeModIds.get(targetMid)!;
+            if (targetSlug === s) continue;
             const targetFile = this.data.files[targetSlug];
             const targetVer = targetFile?.[6] || "";
             if (constraint === "*" || matchVer(targetVer, constraint)) {
-              errors.push(`Inkompatibilität: „${this.name(s)}“ schließt „${this.name(targetSlug)}“ (Version ${targetVer || constraint}) aus!`);
+              const msg = `Inkompatibilität: „${this.name(s)}“ schließt „${this.name(targetSlug)}“ (Version ${targetVer || constraint}) aus!`;
+              errors.push(msg);
+              const k = "break-" + [s, targetSlug].sort().join("-");
+              if (!seenIssueKeys.has(k)) {
+                seenIssueKeys.add(k);
+                issues.push({
+                  id: k,
+                  type: "break",
+                  title: `Inkompatibilität: „${this.name(s)}“ vs. „${this.name(targetSlug)}“`,
+                  detail: `„${this.name(s)}“ schließt „${this.name(targetSlug)}“ (Version ${targetVer || constraint}) technisch aus.`,
+                  modA: s,
+                  modB: targetSlug,
+                  isLockedA: this.LOCKED.has(s),
+                  isLockedB: this.LOCKED.has(targetSlug),
+                  cascadeA: this.cascadeDependentsOf(s),
+                  cascadeB: this.cascadeDependentsOf(targetSlug)
+                });
+              }
             }
           }
         }
@@ -256,7 +384,25 @@ class Pack {
         for (const [targetMid, constraint] of Object.entries(rule.conflicts)) {
           if (activeModIds.has(targetMid)) {
             const targetSlug = activeModIds.get(targetMid)!;
-            errors.push(`Kollision: „${this.name(s)}“ hat einen unlösbaren Konflikt mit „${this.name(targetSlug)}“!`);
+            if (targetSlug === s) continue;
+            const msg = `Kollision: „${this.name(s)}“ hat einen unlösbaren Konflikt mit „${this.name(targetSlug)}“!`;
+            errors.push(msg);
+            const k = "conflict-" + [s, targetSlug].sort().join("-");
+            if (!seenIssueKeys.has(k)) {
+              seenIssueKeys.add(k);
+              issues.push({
+                id: k,
+                type: "conflict",
+                title: `Kollision: „${this.name(s)}“ vs. „${this.name(targetSlug)}“`,
+                detail: `Die Mods können laut JAR-Manifest nicht gleichzeitig ausgeführt werden.`,
+                modA: s,
+                modB: targetSlug,
+                isLockedA: this.LOCKED.has(s),
+                isLockedB: this.LOCKED.has(targetSlug),
+                cascadeA: this.cascadeDependentsOf(s),
+                cascadeB: this.cascadeDependentsOf(targetSlug)
+              });
+            }
           }
         }
       }
@@ -267,7 +413,20 @@ class Pack {
         const t = this.typ(s);
         const dir = t === "r" ? "resourcepacks" : t === "s" ? "shaderpacks" : t === "d" ? "datapacks" : "mods";
         const p = (dir + "/" + fnameFn(s)).toLowerCase();
-        if (seenPath.has(p)) errors.push(`Doppelter Dateiname im Zielordner: ${p} (${this.name(seenPath.get(p)!)} & ${this.name(s)})`);
+        if (seenPath.has(p)) {
+          const msg = `Doppelter Dateiname im Zielordner: ${p} (${this.name(seenPath.get(p)!)} & ${this.name(s)})`;
+          errors.push(msg);
+          issues.push({
+            id: `dupe-${p}`,
+            type: "other",
+            title: `Doppelter Dateiname: ${p}`,
+            detail: msg,
+            modA: seenPath.get(p)!,
+            modB: s,
+            isLockedA: this.LOCKED.has(seenPath.get(p)!),
+            isLockedB: this.LOCKED.has(s)
+          });
+        }
         else seenPath.set(p, s);
       }
     }
@@ -278,15 +437,26 @@ class Pack {
       for (const [k, content] of Object.entries(cfgs)) {
         checkedConfigs++;
         if (k.endsWith(".json") || k.endsWith(".rpo")) {
-          try { JSON.parse(content); } catch { errors.push(`Fehlerhafte JSON-Syntax in generierter Datei „${k}“.`); }
+          try { JSON.parse(content); } catch {
+            const msg = `Fehlerhafte JSON-Syntax in generierter Datei „${k}“.`;
+            errors.push(msg);
+            issues.push({ id: `cfg-syntax-${k}`, type: "other", title: `Konfigurationsfehler: ${k}`, detail: msg });
+          }
         }
-        if (!content || !content.trim()) errors.push(`Leere generierte Konfigurationsdatei „${k}“.`);
+        if (!content || !content.trim()) {
+          const msg = `Leere generierte Konfigurationsdatei „${k}“.`;
+          errors.push(msg);
+          issues.push({ id: `cfg-empty-${k}`, type: "other", title: `Leere Konfiguration: ${k}`, detail: msg });
+        }
       }
     } catch (e: any) {
-      errors.push(`Fehler beim Erzeugen der Konfigurationsdateien: ${e?.message || e}`);
+      const msg = `Fehler beim Erzeugen der Konfigurationsdateien: ${e?.message || e}`;
+      errors.push(msg);
+      issues.push({ id: "cfg-build-err", type: "other", title: "Fehler beim Erzeugen der Konfiguration", detail: msg });
     }
-    return { ok: errors.length === 0, errors, checkedFiles: all.length, checkedDeps, checkedConfigs };
+    return { ok: errors.length === 0, errors, issues, checkedFiles: all.length, checkedDeps, checkedConfigs };
   }
+
   /** Konflikte von x gegen eine Menge */
   clashes(x: string, S: Set<string> = this.sel) {
     const res: { y: string; text: string; art: string; grp?: Gruppe; dec?: any }[] = [];
@@ -309,6 +479,37 @@ class Pack {
     const h = this.history.pop(); if (!h) return false;
     this.sel = new Set(h.sel); this.preset = h.preset; this.sug = new Set(h.sug); this.wiz = h.wiz;
     const c = { ...this.cfg }; if (h.base) c._base = h.base; else delete c._base; this.cfg = c; this.save(); return true;
+  }
+  cascadeDependentsOf(targetSlug: string, inSel: Set<string> = this.sel): string[] {
+    const cascade = new Set<string>();
+    const queue = [targetSlug];
+    while (queue.length > 0) {
+      const cur = queue.shift()!;
+      for (const s of inSel) {
+        if (s === cur || cascade.has(s) || s === targetSlug) continue;
+        const f = this.data.files[s];
+        const deps = (f ? f[5] : []).concat(this.implicit(s));
+        if (deps.includes(cur)) {
+          cascade.add(s);
+          queue.push(s);
+        }
+      }
+    }
+    return [...cascade];
+  }
+  removeWithCascade(targetSlug: string) {
+    if (this.LOCKED.has(targetSlug)) return;
+    const toDrop = this.cascadeDependentsOf(targetSlug);
+    this.snapshot();
+    const n = new Set(this.sel);
+    n.delete(targetSlug);
+    for (const d of toDrop) {
+      if (!this.LOCKED.has(d)) {
+        n.delete(d);
+      }
+    }
+    this.sel = n;
+    this.save();
   }
   set(x: string, on: boolean, drop: string[] = []) {
     this.snapshot(); const n = new Set(this.sel);

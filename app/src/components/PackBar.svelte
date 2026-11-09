@@ -59,8 +59,8 @@
   <p class="small muted">{(size / 1048576).toFixed(0)} MB · {pack.ramGB(r)} GB Arbeitsspeicher · MC 26.3 Fabric</p>
   <p class="state {red.length ? 'bad' : 'ok'}">{red.length ? `${red.length} Mods brauchen einen eigenen Server` : "Läuft auf jedem Vanilla-Server"}</p>
   {#if probs.length}
-    <div class="warnbox"><b>{probs.length} Konflikte</b>
-      {#each probs as p}<div class="prob"><span>{pack.name(p.a)} + {pack.name(p.b)}</span><button class="btn sm" onclick={() => { pack.set(p.b, false); ui.pick(p.b, true); }}>Klären</button></div>{/each}
+    <div class="warnbox"><b>{probs.length} {probs.length === 1 ? 'Konflikt' : 'Konflikte'} gefunden</b>
+      <span class="small">Lösungen und Konsequenzen werden direkt im Start-Check unten angeboten.</span>
     </div>
   {:else}<p class="state ok">Keine Konflikte, keine Doppelungen</p>{/if}
   {#if check.ok}
@@ -85,11 +85,145 @@
         <span class="sc-icon">⚠️</span>
         <div>
           <b>Start-Check: {check.errors.length} Absturz-Gefahr(en)</b>
-          <div class="small">Dieses Pack würde beim Starten abstürzen!</div>
+          <div class="small">Dieses Pack würde beim Starten abstürzen! Wähle eine Lösung:</div>
         </div>
       </div>
-      <ul class="errs">{#each check.errors.slice(0, 8) as e}<li>{e}</li>{/each}</ul>
-      {#if check.errors.length > 8}<span class="small">… und {check.errors.length - 8} weitere</span>{/if}
+
+      {#if check.issues && check.issues.length}
+        <div class="issue-list">
+          {#each check.issues as iss (iss.id)}
+            <div class="issue-card">
+              <div class="issue-header">
+                <span class="badge {iss.type === 'break' ? 'bad' : iss.type === 'missing_dep' ? 'warn' : 'bad'}">
+                  {iss.type === 'break' ? 'Inkompatibel' : iss.type === 'missing_dep' ? 'Abhängigkeit fehlt' : iss.type === 'mc_incompatible' ? 'Minecraft-Version' : 'Konflikt'}
+                </span>
+                <b>{iss.title}</b>
+              </div>
+              <p class="issue-detail">{iss.detail}</p>
+
+              <div class="issue-actions">
+                {#if iss.type === "mc_incompatible" && iss.modA}
+                  {#if !iss.isLockedA}
+                    <div class="act-col">
+                      <button class="btn sm danger" onclick={() => pack.removeWithCascade(iss.modA!)}>
+                        „{pack.name(iss.modA)}“ entfernen
+                      </button>
+                      <div class="consequence">
+                        {#if iss.cascadeA && iss.cascadeA.length}
+                          Folge: Deaktiviert auch {iss.cascadeA.map(s => pack.name(s)).join(", ")}.
+                        {:else}
+                          Folge: {pack.name(iss.modA)} wird aus dem Pack genommen.
+                        {/if}
+                      </div>
+                    </div>
+                  {:else}
+                    <span class="badge warn small">Pflichtmod kann nicht entfernt werden.</span>
+                  {/if}
+
+                {:else if iss.type === "missing_dep" && iss.modA && iss.modB}
+                  <div class="action-grid">
+                    {#if iss.canAddB}
+                      <div class="act-col">
+                        <button class="btn sm primary" onclick={() => pack.set(iss.modB!, true)}>
+                          + „{pack.name(iss.modB)}“ hinzufügen
+                        </button>
+                        <div class="consequence">Empfohlen: Installiert die benötigte Voraussetzung.</div>
+                      </div>
+                    {/if}
+                    {#if !iss.isLockedA}
+                      <div class="act-col">
+                        <button class="btn sm danger" onclick={() => pack.removeWithCascade(iss.modA!)}>
+                          „{pack.name(iss.modA)}“ entfernen
+                        </button>
+                        <div class="consequence">
+                          {#if iss.cascadeA && iss.cascadeA.length}
+                            Folge: Deaktiviert auch {iss.cascadeA.map(s => pack.name(s)).join(", ")}.
+                          {:else}
+                            Folge: {pack.name(iss.modA)} wird nicht geladen.
+                          {/if}
+                        </div>
+                      </div>
+                    {/if}
+                  </div>
+
+                {:else if iss.modA && iss.modB}
+                  <!-- Fall 1: Mod A ist Pflichtmod -->
+                  {#if iss.isLockedA && !iss.isLockedB}
+                    <div class="locked-note">
+                      <span class="badge locked-badge">Pflicht</span>
+                      <span><b>{pack.name(iss.modA)}</b> ist im Pflicht-Leistungspaket unverzichtbar.</span>
+                    </div>
+                    <div class="act-col">
+                      <button class="btn sm danger full-w" onclick={() => pack.removeWithCascade(iss.modB!)}>
+                        „{pack.name(iss.modB)}“ entfernen (Konflikt lösen)
+                      </button>
+                      <div class="consequence">
+                        {#if iss.cascadeB && iss.cascadeB.length}
+                          Folge: Deaktiviert zusätzlich {iss.cascadeB.map(s => pack.name(s)).join(", ")}.
+                        {:else}
+                          Folge: Nur {pack.name(iss.modB)} wird aus dem Pack genommen.
+                        {/if}
+                      </div>
+                    </div>
+
+                  <!-- Fall 2: Mod B ist Pflichtmod -->
+                  {:else if iss.isLockedB && !iss.isLockedA}
+                    <div class="locked-note">
+                      <span class="badge locked-badge">Pflicht</span>
+                      <span><b>{pack.name(iss.modB)}</b> ist im Pflicht-Leistungspaket unverzichtbar.</span>
+                    </div>
+                    <div class="act-col">
+                      <button class="btn sm danger full-w" onclick={() => pack.removeWithCascade(iss.modA!)}>
+                        „{pack.name(iss.modA)}“ entfernen (Konflikt lösen)
+                      </button>
+                      <div class="consequence">
+                        {#if iss.cascadeA && iss.cascadeA.length}
+                          Folge: Deaktiviert zusätzlich {iss.cascadeA.map(s => pack.name(s)).join(", ")}.
+                        {:else}
+                          Folge: Nur {pack.name(iss.modA)} wird aus dem Pack genommen.
+                        {/if}
+                      </div>
+                    </div>
+
+                  <!-- Fall 3: Beide optional - Nutzer wählt selbst! -->
+                  {:else if !iss.isLockedA && !iss.isLockedB}
+                    <div class="choice-title small"><b>Lösung wählen:</b> Welchen Mod möchtest du behalten?</div>
+                    <div class="action-grid">
+                      <div class="act-col">
+                        <button class="btn sm" onclick={() => pack.removeWithCascade(iss.modB!)}>
+                          „{pack.name(iss.modA)}“ behalten
+                        </button>
+                        <div class="consequence">
+                          <b>Entfernt:</b> {pack.name(iss.modB)}
+                          {#if iss.cascadeB && iss.cascadeB.length}
+                            <br /><span>Zieht ab: {iss.cascadeB.map(s => pack.name(s)).join(", ")}</span>
+                          {/if}
+                        </div>
+                      </div>
+                      <div class="act-col">
+                        <button class="btn sm" onclick={() => pack.removeWithCascade(iss.modA!)}>
+                          „{pack.name(iss.modB)}“ behalten
+                        </button>
+                        <div class="consequence">
+                          <b>Entfernt:</b> {pack.name(iss.modA)}
+                          {#if iss.cascadeA && iss.cascadeA.length}
+                            <br /><span>Zieht ab: {iss.cascadeA.map(s => pack.name(s)).join(", ")}</span>
+                          {/if}
+                        </div>
+                      </div>
+                    </div>
+                  {/if}
+                {:else}
+                  <div class="err-fallback">{iss.detail}</div>
+                {/if}
+              </div>
+            </div>
+          {/each}
+        </div>
+      {:else}
+        <ul class="errs">{#each check.errors.slice(0, 8) as e}<li>{e}</li>{/each}</ul>
+        {#if check.errors.length > 8}<span class="small">… und {check.errors.length - 8} weitere</span>{/if}
+      {/if}
     </div>
   {/if}
   {#if autos.length}
@@ -190,4 +324,19 @@
   .sc-head { display: flex; align-items: center; gap: .6rem; }
   .sc-icon { font-size: 1.3rem; }
   .sc-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .15rem; color: var(--fg); opacity: .9; }
+
+  .issue-list { display: grid; gap: .6rem; margin-top: .4rem; }
+  .issue-card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .65rem .75rem; display: grid; gap: .4rem; }
+  .issue-header { display: flex; align-items: center; gap: .45rem; flex-wrap: wrap; font-size: .86rem; }
+  .issue-detail { margin: 0; font-size: .78rem; color: var(--muted); line-height: 1.35; }
+  .issue-actions { display: grid; gap: .35rem; margin-top: .2rem; }
+  .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: .45rem; }
+  .act-col { display: flex; flex-direction: column; gap: .2rem; }
+  .act-col button { width: 100%; text-align: center; }
+  .full-w { width: 100%; }
+  .consequence { font-size: .73rem; line-height: 1.25; color: var(--muted); }
+  .locked-note { display: flex; align-items: center; gap: .4rem; padding: .25rem .45rem; background: var(--surface-2); border-radius: 6px; font-size: .76rem; }
+  .locked-badge { background: var(--accent); color: var(--accent-fg, #fff); font-size: .7rem; padding: .1rem .35rem; border-radius: 4px; }
+  .choice-title { margin-bottom: .15rem; color: var(--fg); }
+  .err-fallback { font-size: .78rem; color: var(--bad); }
 </style>

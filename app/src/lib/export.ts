@@ -56,20 +56,54 @@ export function startCheck() {
   const r = pack.resolve();
   const v = pack.verifyPack(r, fname);
   const errors = [...v.errors];
+  const issues = [...v.issues];
   const files = packFiles();
   for (const [p, c] of Object.entries(files)) {
     if (p.endsWith("options.txt")) {
       for (const line of c.split("\n").filter(Boolean)) {
         const [k, val] = [line.slice(0, line.indexOf(":")), line.slice(line.indexOf(":") + 1)];
-        if (!k || line.indexOf(":") < 0) { errors.push(`Ungültige Zeile in ${p}: ${line}`); continue; }
-        if (["renderDistance", "simulationDistance", "maxFps", "mipmapLevels", "biomeBlendRadius"].includes(k) && !/^\d+$/.test(val)) errors.push(`${p}: ${k} ist keine Zahl (${val}).`);
-        if (k === "resourcePacks") { try { const a = JSON.parse(val); if (!Array.isArray(a)) throw 0; for (const x of a) if (x !== "vanilla" && !String(x).startsWith("file/")) errors.push(`${p}: unbekannter Resource-Pack-Eintrag ${x}.`); } catch { errors.push(`${p}: Resource-Pack-Liste ist kein gültiges JSON.`); } }
+        if (!k || line.indexOf(":") < 0) {
+          const msg = `Ungültige Zeile in ${p}: ${line}`;
+          errors.push(msg);
+          issues.push({ id: `opt-invalid-${p}`, type: "other", title: `Konfigurationsfehler in ${p}`, detail: msg });
+          continue;
+        }
+        if (["renderDistance", "simulationDistance", "maxFps", "mipmapLevels", "biomeBlendRadius"].includes(k) && !/^\d+$/.test(val)) {
+          const msg = `${p}: ${k} ist keine Zahl (${val}).`;
+          errors.push(msg);
+          issues.push({ id: `opt-num-${k}`, type: "other", title: `Ungültiger Wert in ${p}`, detail: msg });
+        }
+        if (k === "resourcePacks") {
+          try {
+            const a = JSON.parse(val);
+            if (!Array.isArray(a)) throw 0;
+            for (const x of a) {
+              if (x !== "vanilla" && !String(x).startsWith("file/")) {
+                const msg = `${p}: unbekannter Resource-Pack-Eintrag ${x}.`;
+                errors.push(msg);
+                issues.push({ id: `rp-unknown-${x}`, type: "other", title: "Unbekanntes Resource-Pack", detail: msg });
+              }
+            }
+          } catch {
+            const msg = `${p}: Resource-Pack-Liste ist kein gültiges JSON.`;
+            errors.push(msg);
+            issues.push({ id: "rp-json", type: "other", title: "Resource-Pack Syntaxfehler", detail: msg });
+          }
+        }
       }
     }
-    if (p === "config/iris.properties") { const sp = (c.match(/^shaderPack=(.+)$/m) || [])[1]; if (!sp || ![...r.mods].some(s => pack.typ(s) === "s" && fname(s) === sp)) errors.push(`iris.properties verweist auf einen Shader, der nicht im Pack ist (${sp}).`); }
+    if (p === "config/iris.properties") {
+      const sp = (c.match(/^shaderPack=(.+)$/m) || [])[1];
+      if (!sp || ![...r.mods].some(s => pack.typ(s) === "s" && fname(s) === sp)) {
+        const msg = `iris.properties verweist auf einen Shader, der nicht im Pack ist (${sp}).`;
+        errors.push(msg);
+        issues.push({ id: "iris-sp", type: "other", title: "Shader-Zuordnungsfehler", detail: msg });
+      }
+    }
   }
-  return { ...v, ok: errors.length === 0, errors, total: Object.keys(files).length };
+  return { ...v, ok: errors.length === 0, errors, issues, total: Object.keys(files).length };
 }
+
 async function save(blob: Blob, name: string) { const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); }
 const safe = (n: string) => n.replace(/[^\w\- ]+/g, "").replace(/\s+/g, "-") || "Mein-Pack";
 export async function exportMrpack(name: string, server: boolean, st: Status) {
