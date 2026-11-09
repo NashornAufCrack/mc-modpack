@@ -16690,7 +16690,6 @@
       "https://media.forgecdn.net/attachments/description/1587186/description_72304823-67d2-4e40-8bcc-9b1725dfc92d.png"
     ],
     "bilder": [
-      "https://media.forgecdn.net/attachments/1756/689/mcpedl-png.png",
       "https://media.forgecdn.net/attachments/description/1587186/description_f0045c1d-e3bc-4ab7-8cc0-dae1a7e44bec.png",
       "https://media.forgecdn.net/attachments/description/1587186/description_ca298044-1dcd-401e-8a9c-42f0035f0107.png",
       "https://media.forgecdn.net/attachments/description/1587186/description_d4246dfe-a7d1-4909-965a-c117d8941d61.png",
@@ -16698,6 +16697,24 @@
       "https://media.forgecdn.net/attachments/description/1587186/description_1ea59849-6b92-44a6-8d55-c823dacc3744.png",
       "https://media.forgecdn.net/attachments/description/1587186/description_36f69b74-cff6-47eb-8749-ae6ba212019c.png",
       "https://media.forgecdn.net/attachments/description/1587186/description_72304823-67d2-4e40-8bcc-9b1725dfc92d.png"
+    ],
+    "videos": [
+      {
+        "id": "K2vIgUQY7KY",
+        "titel": "THE BEST TREE CHOPPING MOD! (Timber Tales Mod)",
+        "kanal": "TommySoBored",
+        "punkte": 10,
+        "status": "ok",
+        "quelle": "curated"
+      },
+      {
+        "id": "ypRawouJkzw",
+        "titel": "Timber Tales | Dynamic Tree System Showcase",
+        "kanal": "Mhavin",
+        "punkte": 10,
+        "status": "ok",
+        "quelle": "curated"
+      }
     ]
   },
   "voxy-seam-fix": {

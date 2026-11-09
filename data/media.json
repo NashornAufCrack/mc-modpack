@@ -35851,7 +35851,6 @@
   },
   "timber-tales-dynamic-tree-system": {
     "bilder": [
-      "https://media.forgecdn.net/attachments/1756/689/mcpedl-png.png",
       "https://media.forgecdn.net/attachments/description/1587186/description_f0045c1d-e3bc-4ab7-8cc0-dae1a7e44bec.png",
       "https://media.forgecdn.net/attachments/description/1587186/description_ca298044-1dcd-401e-8a9c-42f0035f0107.png",
       "https://media.forgecdn.net/attachments/description/1587186/description_d4246dfe-a7d1-4909-965a-c117d8941d61.png",
@@ -35871,7 +35870,24 @@
     ],
     "icon": "https://media.forgecdn.net/avatars/1926/801/639199425934213554.png",
     "dlp": "2026-11-07",
-    "videos": [],
+    "videos": [
+      {
+        "id": "K2vIgUQY7KY",
+        "titel": "THE BEST TREE CHOPPING MOD! (Timber Tales Mod)",
+        "kanal": "TommySoBored",
+        "punkte": 10,
+        "status": "ok",
+        "quelle": "curated"
+      },
+      {
+        "id": "ypRawouJkzw",
+        "titel": "Timber Tales | Dynamic Tree System Showcase",
+        "kanal": "Mhavin",
+        "punkte": 10,
+        "status": "ok",
+        "quelle": "curated"
+      }
+    ],
     "breite": 850,
     "dlp2": "2026-11-07",
     "readme": "2026-11-09"
