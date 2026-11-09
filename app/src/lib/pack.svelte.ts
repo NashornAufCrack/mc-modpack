@@ -89,7 +89,7 @@ class Pack {
       const s = m.slug;
       const me = media[s];
       const vRaw = me?.videos || [];
-      const yt = hasMedia ? [] : (data.x.details[s]?.yt || []);
+      const yt = data.x.details[s]?.yt || [];
       const seenV = new Set<string>();
       const vOut: Video[] = vRaw.filter(x => x.status !== "nein" && x.status !== "review" && !seenV.has(x.id) && !!seenV.add(x.id)).slice(0, 3);
       for (const id of yt) if (!vOut.some(o => o.id === id)) vOut.push({ id, quelle: "beschreibung", punkte: 10 });
@@ -99,14 +99,31 @@ class Pack {
       const vidBig = vids.slice(0, 3).map(v => thumb(v, true));
       this.#IMGS[s] = me?.bilder?.length ? me.bilder : m.img?.length ? m.img : vidThumb;
       this.#IMGS_HQ[s] = me?.hq?.length ? me.hq : me?.bilder?.length ? me.bilder : m.img?.length ? m.img : vidBig;
-      this.#SEARCH[s] = normQ(m.name + " " + m.sub + " " + m.notiz + " " + s);
+      const searchParts = [
+        m.name,
+        m.sub,
+        m.notiz,
+        s,
+        CATS[m.cat]?.t || "",
+        m.pt === "s" ? "shader shaderpack schatten" : m.pt === "r" ? "resourcepack resource pack textur texture texturen 3d" : m.pt === "d" ? "datapack data pack" : "mod",
+        vids.length ? "video videos clip youtube yt showcase trailer" : "",
+        m.rolle === "K" ? "empfohlen recommended tipp top must-have" : "",
+        m.ampel !== "R" && m.cat !== "S" ? "vanilla client-only" : "server",
+        (data.x.details[s]?.txt || "").slice(0, 200)
+      ];
+      this.#SEARCH[s] = normQ(searchParts.filter(Boolean).join(" "));
     }
     this.sel = new Set(this.LOCKED);
     this.load();
     this.ready = true;
   }
   name = (s: string) => this.BY[s]?.name || this.data.files[s]?.[7] || s;
-  matches(s: string, q: string) { return !q || (this.#SEARCH[s] || "").includes(q); }
+  matches(s: string, q: string) {
+    if (!q) return true;
+    if ((this.#SEARCH[s] || "").includes(q)) return true;
+    if (this.proben(s).length > 0 && (q === "audio" || q === "sound" || q === "ton" || q === "musik" || q === "horprobe" || q === "proben")) return true;
+    return false;
+  }
   imgHQ(s: string): string[] { return this.#IMGS_HQ[s] || []; }
   /** Bildergalerie als Paare (Vorschau, Vollbild) in derselben Reihenfolge wie img(): Vorschau-Index = Lightbox-Index.
    *  Modrinth-Vorschauen (…/<hash>_350.webp) und Originale (…/<hash>.png) teilen den Hash, CurseForge den Dateinamen. */

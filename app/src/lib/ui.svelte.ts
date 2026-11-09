@@ -9,7 +9,7 @@ class UI {
   q = $state("");
   filters = $state(new Set<string>());
   detail = $state<string | null>(null);
-  lightbox = $state<{ slug: string; i: number } | null>(null);
+  lightbox = $state<{ slug: string; i: number; video?: string } | null>(null);
   wizard = $state(false);
   tool = $state<"rp" | "ai" | null>(null);
   conflict = $state<{ x: string; cl: ReturnType<typeof pack.clashes> } | null>(null);
