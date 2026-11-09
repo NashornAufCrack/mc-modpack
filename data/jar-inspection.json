@@ -1747,7 +1747,9 @@
       "java": ">=25",
       "fabric-api": "*"
     },
-    "breaks": {},
+    "breaks": {
+      "pixelshot": "*"
+    },
     "recommends": {},
     "suggests": {},
     "conflicts": {}
@@ -3752,7 +3754,9 @@
       "forgeconfigapiport": "*",
       "puzzleslib": ">=26.3.0"
     },
-    "breaks": {},
+    "breaks": {
+      "last-world-panorama": "*"
+    },
     "recommends": {},
     "suggests": {},
     "conflicts": {}

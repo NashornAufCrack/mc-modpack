@@ -33618,6 +33618,14 @@
           "cameraoverhaul",
           "punchymoves"
         ]
+      },
+      {
+        "art": "K",
+        "mods": [
+          "pixelshot",
+          "last-world-panorama"
+        ],
+        "text": "Pixelshot und Last World Panorama greifen beide auf die interne Panorama-Screenshot-Funktion zu (Mixin-Kollision) und führen gemeinsam zu einem Absturz beim Spielstart."
       }
     ],
     "gruppen": [
@@ -37120,7 +37128,9 @@
     "last-world-panorama": {
       "id": "last-world-panorama",
       "mc": "~26.3",
-      "breaks": {},
+      "breaks": {
+        "pixelshot": "*"
+      },
       "conflicts": {}
     },
     "dynamiccrosshair": {
@@ -37869,7 +37879,9 @@
     "pixelshot": {
       "id": "pixelshot",
       "mc": "~26.3-",
-      "breaks": {},
+      "breaks": {
+        "last-world-panorama": "*"
+      },
       "conflicts": {}
     },
     "easegui": {

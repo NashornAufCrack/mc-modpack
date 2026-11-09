@@ -3,6 +3,9 @@ import re
 import sys
 from pathlib import Path
 
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+
 REPO_DIR = Path(__file__).resolve().parent.parent
 APP_PATH = REPO_DIR / "data" / "app-data.json"
 FILES_PATH = REPO_DIR / "data" / "files.json"
@@ -176,6 +179,21 @@ if __name__ == "__main__":
     # 4. Einzelcheck für Wandering Traveler
     ok_wt = test_mod_set(list(LOCKED) + ["wandering-traveler", "collective"], "Pack mit Wandering Traveler")
     all_ok = all_ok and ok_wt
+
+    # 5. Kollisions- und Loesungscheck: Pixelshot vs. Last World Panorama
+    print("\n--- TEST: Mixin-Kollisionserkennung und Konfliktloesung ---")
+    has_collision = not test_mod_set(list(LOCKED) + ["pixelshot", "last-world-panorama"], "Kollision: Pixelshot + Last World Panorama (Erwartet: FEHLER)")
+    if has_collision:
+        print("  🎯 Start-Check hat den unvereinbaren Mixin-Konflikt zwischen Pixelshot und Last World Panorama erfolgreich abgefangen!")
+    else:
+        print("  ❌ FEHLER: Der Konflikt zwischen Pixelshot und Last World Panorama wurde NICHT erkannt!")
+        all_ok = False
+
+    ok_pix = test_mod_set(list(LOCKED) + ["pixelshot"], "Loesung 1: Nur Pixelshot gewaehlt")
+    all_ok = all_ok and ok_pix
+
+    ok_pano = test_mod_set(list(LOCKED) + ["last-world-panorama"], "Loesung 2: Nur Last World Panorama gewaehlt")
+    all_ok = all_ok and ok_pano
 
     if not all_ok:
         print("\n❌ TEST FEHLGESCHLAGEN: Mindestens ein Pack weist Absturzrisiken auf!")

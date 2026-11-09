@@ -192,6 +192,7 @@ class Pack {
     const errors: string[] = [];
     const issues: PackIssue[] = [];
     const seenIssueKeys = new Set<string>();
+    const seenConflictPairs = new Set<string>();
     const all = [...r.mods, ...r.libs];
     let checkedDeps = 0;
     for (const s of all) {
@@ -265,9 +266,10 @@ class Pack {
     for (const p of this.problems()) {
       const msg = `Unaufgelöster Konflikt zwischen „${this.name(p.a)}“ und „${this.name(p.b)}“: ${p.text}`;
       errors.push(msg);
+      const pairKey = [p.a, p.b].sort().join("|");
       const k = "prob-" + [p.a, p.b].sort().join("-");
-      if (!seenIssueKeys.has(k)) {
-        seenIssueKeys.add(k);
+      if (!seenConflictPairs.has(pairKey)) {
+        seenConflictPairs.add(pairKey);
         issues.push({
           id: k,
           type: "conflict",
@@ -392,9 +394,10 @@ class Pack {
             if (constraint === "*" || matchVer(targetVer, constraint)) {
               const msg = `Inkompatibilität: „${this.name(s)}“ schließt „${this.name(targetSlug)}“ (Version ${targetVer || constraint}) aus!`;
               errors.push(msg);
+              const pairKey = [s, targetSlug].sort().join("|");
               const k = "break-" + [s, targetSlug].sort().join("-");
-              if (!seenIssueKeys.has(k)) {
-                seenIssueKeys.add(k);
+              if (!seenConflictPairs.has(pairKey)) {
+                seenConflictPairs.add(pairKey);
                 issues.push({
                   id: k,
                   type: "break",
@@ -419,9 +422,10 @@ class Pack {
             if (targetSlug === s) continue;
             const msg = `Kollision: „${this.name(s)}“ hat einen unlösbaren Konflikt mit „${this.name(targetSlug)}“!`;
             errors.push(msg);
+            const pairKey = [s, targetSlug].sort().join("|");
             const k = "conflict-" + [s, targetSlug].sort().join("-");
-            if (!seenIssueKeys.has(k)) {
-              seenIssueKeys.add(k);
+            if (!seenConflictPairs.has(pairKey)) {
+              seenConflictPairs.add(pairKey);
               issues.push({
                 id: k,
                 type: "conflict",
