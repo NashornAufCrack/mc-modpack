@@ -9,6 +9,7 @@ export function writeMediaApp(media = JSON.parse(fs.readFileSync("data/media.jso
   const out = {};
   for (const [s, e] of Object.entries(media)) {
     const o = {};
+    if (e.icon) o.icon = e.icon;
     if (e.hq?.length) o.hq = e.hq;
     if (e.bilder?.length) o.bilder = e.bilder;
     const seen = new Set();

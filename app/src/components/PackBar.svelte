@@ -10,6 +10,7 @@
   const red = $derived([...r.mods].filter(s => pack.BY[s].ampel === "R" && pack.BY[s].cat !== "S"));
   const probs = $derived(pack.problems());
   const tips = $derived(pack.tips(r));
+  const autos = $derived(pack.autos(r));
   const manual = $derived((pack.sel, manualList()));
   const diff = $derived(pack.presetDiff());
   const pname = $derived(PRESETS.find(p => p.id === pack.preset?.id)?.name);
@@ -54,6 +55,12 @@
       {#each probs as p}<div class="prob"><span>{pack.name(p.a)} + {pack.name(p.b)}</span><button class="btn sm" onclick={() => { pack.set(p.b, false); ui.pick(p.b, true); }}>Klären</button></div>{/each}
     </div>
   {:else}<p class="state ok">Keine Konflikte, keine Doppelungen</p>{/if}
+  {#if autos.length}
+    <details class="autobox"><summary><b>{autos.length} {autos.length === 1 ? "Teil-Überschneidung" : "Teil-Überschneidungen"} automatisch abgestimmt</b></summary>
+      <ul>{#each autos as a}<li><b>{[a.slug, ...a.partners].map(x => pack.name(x)).join(" + ")}:</b> {a.text}</li>{/each}</ul>
+      <p class="small muted">Beide werden geladen – die Einstellungen werden beim Export direkt in den Config-Dateien gesetzt.</p>
+    </details>
+  {/if}
   {#if tips.length}
     <details class="tipbox"><summary><b>{tips.length} {tips.length === 1 ? "Tipp" : "Tipps"} zu deiner Auswahl</b></summary>
       <ul>{#each tips as t}<li><b>{t.mods.map(x => pack.name(x)).join(" + ")}:</b> {t.text}</li>{/each}</ul>
@@ -107,8 +114,9 @@
   .srv li { display: grid; gap: .1rem; }
   .srv label { display: flex; gap: .45rem; align-items: center; cursor: pointer; }
   .srv input { width: 1rem; height: 1rem; accent-color: var(--accent); }
-  .tipbox { border: 1px solid var(--line-2); border-radius: 10px; padding: .55rem .7rem; font-size: .84rem; }
-  .tipbox summary { cursor: pointer; } .tipbox ul { margin: .5rem 0 .3rem; padding-left: 1.1rem; display: grid; gap: .4rem; }
+  .tipbox, .autobox { border: 1px solid var(--line-2); border-radius: 10px; padding: .55rem .7rem; font-size: .84rem; }
+  .autobox { border-color: var(--accent); }
+  .tipbox summary, .autobox summary { cursor: pointer; } .tipbox ul, .autobox ul { margin: .5rem 0 .3rem; padding-left: 1.1rem; display: grid; gap: .4rem; }
   .stats b { display: block; font: 600 1.4rem var(--mono); } .stats span { font-size: .72rem; color: var(--muted); }
   .meter { display: grid; grid-template-columns: auto 1fr auto; gap: .5rem; align-items: center; font-size: .82rem; }
   .track { height: .45rem; border-radius: 9px; background: var(--bg-2); overflow: hidden; } .track i { display: block; height: 100%; border-radius: 9px; }

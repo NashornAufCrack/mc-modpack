@@ -12,8 +12,19 @@
   const det = $derived(pack.data.x.details[s] || {});
   const deps = $derived(m ? [...new Set<string>((pack.data.files[s]?.[5] || []).concat(pack.implicit(s)))].filter(d => !DEP_IGNORE.has(d)) : []);
   const rel = $derived(m ? pack.relInfo(s) : []);
+  const autos = $derived(m ? pack.autoRules(s) : []);
   let play = $state<string | null>(null);
-  $effect(() => { s; play = null; });
+  let cmp = $state(false);
+  let cmpA = $state(0);
+  let cmpB = $state(1);
+  let split = $state(50);
+  $effect(() => { s; play = null; cmp = false; cmpA = 0; cmpB = 1; split = 50; });
+  function pickThumb(idx: number) {
+    if (!cmp) { ui.lightbox = { slug: s, i: idx }; return; }
+    if (idx === cmpA) return;
+    if (idx === cmpB) { [cmpA, cmpB] = [cmpB, cmpA]; return; }
+    cmpB = idx;
+  }
   const fmtK = (k: number) => (k >= 1000 ? (k / 1000).toFixed(k >= 10000 ? 0 : 1).replace(".", ",") + " Mio" : k + " Tsd");
 </script>
 
@@ -22,8 +33,30 @@
     <div class="top">
       <div class="media">
         {#if imgs.length}
-          <button class="hero" onclick={() => (ui.lightbox = { slug: s, i: 0 })}><img referrerpolicy="no-referrer" src={gal[0].full} alt="Bild von {m.name}" /></button>
-          {#if imgs.length > 1}<div class="strip">{#each imgs.slice(1, 9) as u, i}<button onclick={() => (ui.lightbox = { slug: s, i: i + 1 })} aria-label="Bild {i + 2} von {m.name} vergrößern"><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).parentElement!.remove()} /></button>{/each}</div>{/if}
+          {#if cmp && gal.length >= 2}
+            <div class="cmpbox">
+              <img class="cmpimg" referrerpolicy="no-referrer" src={gal[cmpB]?.full || gal[0].full} alt="Vergleichsbild B ({cmpB + 1}) von {m.name}" />
+              <img class="cmpimg clip" style="clip-path:inset(0 {100 - split}% 0 0)" referrerpolicy="no-referrer" src={gal[cmpA]?.full || gal[0].full} alt="Vergleichsbild A ({cmpA + 1}) von {m.name}" />
+              <div class="cmpline" style="left:{split}%" aria-hidden="true"><span class="cmphandle">⇄</span></div>
+              <span class="cmplbl l" aria-hidden="true">Bild {cmpA + 1}</span>
+              <span class="cmplbl r" aria-hidden="true">Bild {cmpB + 1}</span>
+              <input class="cmprange" type="range" min="0" max="100" bind:value={split} aria-label="Schieberegler für Bildvergleich" />
+            </div>
+          {:else}
+            <button class="hero" onclick={() => (ui.lightbox = { slug: s, i: 0 })}><img referrerpolicy="no-referrer" src={gal[0].full} alt="Bild von {m.name}" /></button>
+          {/if}
+          {#if imgs.length > 1}
+            <div class="mbar">
+              <button class="btn sm ghost" aria-pressed={cmp} onclick={() => (cmp = !cmp)}>⇄ {cmp ? "Vergleich beenden" : "Bilder vergleichen"}</button>
+              {#if cmp}<span class="small muted">Regler ziehen · Klick unten wechselt das rechte Bild</span>{/if}
+            </div>
+            <div class="strip">
+              {#each imgs.slice(cmp ? 0 : 1, 9) as u, idx}
+                {@const realIdx = cmp ? idx : idx + 1}
+                <button class:selA={cmp && realIdx === cmpA} class:selB={cmp && realIdx === cmpB} onclick={() => pickThumb(realIdx)} aria-label={cmp ? `Bild ${realIdx + 1} für Vergleich wählen` : `Bild ${realIdx + 1} von ${m.name} vergrößern`}><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).parentElement!.remove()} /></button>
+              {/each}
+            </div>
+          {/if}
         {:else}<div class="noimg muted">Noch keine Bilder – kommen über die Medien-Pipeline.</div>{/if}
       </div>
       <div class="facts">
@@ -65,6 +98,13 @@
         {#each rel as x}<li><span class="badge {ART[x.art]?.[1] || 'plain'}">{ART[x.art]?.[0] || x.art}</span> {x.others.map(o => pack.name(o)).join(", ")}: <span class="muted">{x.text}</span></li>{/each}
       </ul>
     {/if}
+    {#if autos.length}
+      <h3>Automatische Feinabstimmung (Teil-Überschneidungen)</h3>
+      <p class="small muted">Wenn du diese Mods/Packs kombinierst, werden beide geladen und die doppelte Teilfunktion beim Export automatisch in den Config-Dateien abgeschaltet:</p>
+      <ul class="rel">
+        {#each autos as a}<li><span class="badge {a.active ? 'ok' : 'info'}">{a.active ? "Aktiv im Pack" : "Automatisch"}</span> mit {a.others.map(o => pack.name(o)).join(" / ")}: <span class="muted">{a.text}</span></li>{/each}
+      </ul>
+    {/if}
     {#if det.txt}<details class="long"><summary>Ausführliche Beschreibung (Projektseite, Englisch)</summary><p>{det.txt}</p></details>{/if}
   {/if}
 </Modal>
@@ -73,8 +113,17 @@
   .top { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.2rem; }
   .hero { display: block; width: 100%; padding: 0; border: 0; border-radius: 12px; overflow: hidden; cursor: zoom-in; background: var(--bg-2); aspect-ratio: 16/9; }
   .hero img { width: 100%; height: 100%; object-fit: cover; }
+  .cmpbox { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: var(--bg-2); user-select: none; }
+  .cmpimg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+  .cmpline { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; box-shadow: 0 0 6px rgb(0 0 0 / .6); pointer-events: none; transform: translateX(-1px); }
+  .cmphandle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 2rem; height: 2rem; border-radius: 50%; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; font-weight: 700; font-size: .85rem; box-shadow: 0 2px 8px rgb(0 0 0 / .45); }
+  .cmplbl { position: absolute; bottom: .45rem; padding: .15rem .45rem; border-radius: 6px; background: rgb(0 0 0 / .7); color: #fff; font: 600 .72rem var(--font); pointer-events: none; }
+  .cmplbl.l { left: .5rem; } .cmplbl.r { right: .5rem; }
+  .cmprange { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+  .mbar { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; margin-top: .4rem; }
   .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: .35rem; margin-top: .35rem; }
-  .strip button { padding: 0; border: 0; border-radius: 8px; overflow: hidden; aspect-ratio: 16/10; cursor: zoom-in; background: var(--bg-2); } .strip img { width: 100%; height: 100%; object-fit: cover; }
+  .strip button { padding: 0; border: 2px solid transparent; border-radius: 8px; overflow: hidden; aspect-ratio: 16/10; cursor: zoom-in; background: var(--bg-2); } .strip img { width: 100%; height: 100%; object-fit: cover; }
+  .strip button.selA { border-color: var(--accent); } .strip button.selB { border-color: var(--info); }
   .noimg { aspect-ratio: 16/9; display: grid; place-items: center; border: 1px dashed var(--line-2); border-radius: 12px; font-size: .85rem; padding: 1rem; text-align: center; }
   .lead { margin: 0 0 .6rem; font-size: 1.02rem; }
   .tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .5rem; }

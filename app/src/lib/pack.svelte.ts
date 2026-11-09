@@ -2,6 +2,7 @@
 import type { AppData, Media, Mod, Gruppe } from "./data";
 import { thumb } from "./data";
 import { COST, BOOST, SETDEF, BASE } from "./const";
+import { activeAutos, rulesForSlug } from "./auto-cfg";
 import LZString from "lz-string";
 
 export const IMPLICIT: Record<string, string[]> = {"immersive-interfaces-mod-support-unofficial":["shrimps-immersive-interfaces"],"connected-rocks":["continuity"],"rainbows-foliage":["polytone"],"fresh-animations":["entity-model-features","entitytexturefeatures"],"fresh-animations-extensions":["fresh-animations"],"fa-player-extension":["fresh-animations"],"just-expressions":["entity-model-features"],"hyper-punchy":["punchy-fpa"],"fresh-food-for-hyper-punchy":["hyper-punchy"],"punchymoves":["fluid-foolish"],"connected-paths":["continuity"],"new-glowing-ores":["continuity"],"detailed-animations":["entity-model-features","entitytexturefeatures"],"als-piglins-revamped-x-fresh-animations":["fresh-animations"],"als-zombies-revamped-x-fresh-animations":["fresh-animations"],"als-enderman-revamped-x-fresh-animations":["fresh-animations"],"als-skeletons-revamped-x-fresh-animations":["fresh-animations"],"assorted-allays-x-fresh-animations":["fresh-animations"],"bare-bones-x-fresh-animations":["fresh-animations"],"fresh-skeleton-physics":["fresh-animations"]};
@@ -93,6 +94,7 @@ class Pack {
     return out;
   }
   img(s: string): string[] { const m = this.media[s]; return m?.bilder?.length ? m.bilder : this.BY[s]?.img?.length ? this.BY[s].img! : this.#vidImg(s, false); }
+  icon(s: string): string { return this.media[s]?.icon || this.img(s)[0] || ""; }
   videos(s: string) { const v = this.media[s]?.videos || []; const yt = Object.keys(this.media).length ? [] : (this.data.x.details[s]?.yt || []); const seen = new Set<string>(); const out = v.filter(x => x.status !== "nein" && x.status !== "review" && !seen.has(x.id) && !!seen.add(x.id)).slice(0, 3); for (const id of yt) if (!out.some(o => o.id === id)) out.push({ id, quelle: "beschreibung", punkte: 10 }); return out.slice(0, 4); }
   cost = (s: string) => (BOOST.has(s) ? 0 : ((COST as any)[s] ?? 1));
   /** Typ eines Eintrags (auch für Bibliotheken ohne Katalogeintrag) */
@@ -105,6 +107,10 @@ class Pack {
     if (r.mods.has("voxy")) for (const s of r.mods) { const v = this.BY[s]?.voxy; if (v && v.s !== "ja") t.push({ mods: ["voxy", s], text: v.t }); }
     return t;
   }
+  /** Automatische Config-Feinabstimmungen für Teil-Überschneidungen im aktuellen Pack */
+  autos(r = this.resolve()) { return activeAutos(r.mods); }
+  /** Automatische Feinabstimmungs-Regeln für einen einzelnen Eintrag */
+  autoRules(s: string, r = this.resolve()) { return rulesForSlug(s, r.mods); }
   resolve(sel: Set<string> = this.sel) {
     const mods = new Set<string>(), libs = new Set<string>(); const stack = [...sel];
     while (stack.length) { const s = stack.pop()!; if (mods.has(s) || libs.has(s) || DEP_IGNORE.has(s)) continue; const f = this.data.files[s]; if (!f) continue; (this.BY[s] ? mods : libs).add(s); for (const d of f[5].concat(this.implicit(s))) stack.push(d); }

@@ -2,6 +2,7 @@
 import JSZip from "jszip";
 import { pack } from "./pack.svelte";
 import { rpTopDown } from "./rp";
+import { buildAutoConfigFiles } from "./auto-cfg";
 
 export const KIT = "https://nashornaufcrack.github.io/mc-modpack/downloads/Test-Kit.zip";
 export const TESTSEED = "-4172144997902289642";
@@ -28,9 +29,11 @@ export function packFiles() {
   const sp = [...r.mods].find(s => pack.BY[s].pt === "s");
   if (sp && r.mods.has("iris")) { files["config/iris.properties"] = "enableShaders=true\nshaderPack=" + fname(sp) + "\n";
   }
-  const manual = manualList(); const tips = pack.tips(r); const dp = [...r.mods].some(s => pack.typ(s) === "d");
+  Object.assign(files, buildAutoConfigFiles(r.mods, pack.data.x.rpo || {}, fname, (s, k) => pack.cv(s, k)));
+  const manual = manualList(); const tips = pack.tips(r); const autos = pack.autos(r); const dp = [...r.mods].some(s => pack.typ(s) === "d");
   files["LIES-MICH.txt"] = `Erstellt mit dem Mod-Katalog 26.3 (${new Date().toLocaleDateString("de-DE")}).\nResource-Pack-Reihenfolge, Sichtweite und FPS-Limit sind schon gesetzt.\nArbeitsspeicher: ${pack.ramGB(r)} GB.\n`
     + (dp ? "\nDatapacks liegen im Ordner datapacks und werden von Global Packs in jede NEU erstellte Welt geladen.\n" : "")
+    + (autos.length ? `\nAUTOMATISCH AUFEINANDER ABGESTIMMT (bereits in den Config-Dateien gesetzt):\n${autos.map(a => "- " + [a.slug, ...a.partners].map(x => pack.name(x)).join(" + ") + ": " + a.text).join("\n")}\n` : "")
     + (tips.length ? `\nNACH DEM ERSTEN START EINSTELLEN:\n${tips.map(t => "- " + t.mods.map(x => pack.name(x)).join(" + ") + ": " + t.text).join("\n")}\n` : "")
     + (manual.length ? `\nBITTE SELBST HERUNTERLADEN und in den Ordner mods legen (der Autor erlaubt keinen automatischen Download):\n${manual.map(s => "- " + pack.name(s) + ": " + pack.BY[s].cf).join("\n")}\n` : "");
   if (r.mods.has("spark")) files["TEST-ANLEITUNG.txt"] = "Test-Kit: " + KIT + "\nSeed: " + TESTSEED + "\n";

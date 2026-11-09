@@ -1,9 +1,10 @@
 <script lang="ts">
   import type { Gruppe } from "../lib/data";
-  import { pack } from "../lib/pack.svelte";
+  import { pack, PT_1 } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
   let { g }: { g: Gruppe } = $props();
-  const opts = $derived(g.mods.filter(s => pack.BY[s] && pack.data.files[s]));
+  const opts = $derived(g.mods.filter(s => pack.BY[s] && (pack.data.files[s] || pack.BY[s].cf)));
+  const mixedPt = $derived(new Set(opts.map(s => pack.BY[s].pt || "m")).size > 1);
   const chosen = $derived(opts.find(s => pack.sel.has(s)) || null);
   /** Option wählen: Konflikte außerhalb der Gruppe laufen über denselben Dialog wie bei den Kacheln */
   function choose(s: string | null) {
@@ -21,11 +22,11 @@
   <p class="muted">{g.text}</p>
   <div class="opts" role="radiogroup" aria-label={g.titel}>
     {#each opts as s}
-      {@const m = pack.BY[s]}{@const img = pack.img(s)[0]}
+      {@const m = pack.BY[s]}{@const img = pack.img(s)[0] || pack.icon(s)}
       <div class="opt" class:on={chosen === s}>
         <button class="pick" role="radio" aria-checked={chosen === s} onclick={() => choose(s)}>
           <span class="im">{#if img}<img referrerpolicy="no-referrer" src={img} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).remove()} />{/if}<span class="ph" aria-hidden="true">{pack.proben(s).length ? "♪" : m.name.slice(0, 1)}</span></span>
-          <span class="nm"><span class="dot"></span>{m.name}</span>
+          <span class="nm"><span class="dot"></span>{m.name}{#if mixedPt}<span class="badge plain">{PT_1[m.pt || "m"]}</span>{/if}</span>
           <span class="nt">{m.notiz}</span>
         </button>
         <button class="btn sm ghost info" onclick={() => (ui.detail = s)}>Details</button>
@@ -44,7 +45,7 @@
   .opt.on { border-color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
   .pick { display: flex; flex-direction: column; width: 100%; padding: 0 0 2.2rem; border: 0; background: none; color: var(--fg); text-align: left; cursor: pointer; font: inherit; }
   .im { position: relative; height: 5.5rem; background: var(--bg-2); display: grid; place-items: center; overflow: hidden; } .im img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; } .im .ph { font: 700 1.8rem var(--font); color: var(--muted); }
-  .nm { display: flex; align-items: center; gap: .4rem; padding: .5rem .6rem 0; font-weight: 600; font-size: .88rem; }
+  .nm { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; padding: .5rem .6rem 0; font-weight: 600; font-size: .88rem; }
   .dot { width: .85rem; height: .85rem; flex: none; border-radius: 50%; border: 2px solid var(--line-2); }
   .on .dot { border-color: var(--accent); background: radial-gradient(var(--accent) 45%, transparent 50%); }
   .nt { padding: .2rem .6rem 0; font-size: .76rem; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }

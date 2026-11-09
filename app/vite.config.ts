@@ -9,6 +9,6 @@ export default defineConfig(({ mode }) => ({
   plugins: [svelte(), tailwindcss(), ...(mode === 'artifact' ? [viteSingleFile()] : [])],
   build: mode === 'artifact'
     ? { outDir: 'dist-artifact', assetsInlineLimit: 100000000, chunkSizeWarningLimit: 5000 }
-    : { outDir: '../neu', emptyOutDir: true, chunkSizeWarningLimit: 2000 },
+    : { outDir: process.env.VITE_OUT || '../neu', emptyOutDir: true, chunkSizeWarningLimit: 2000 },
   server: { fs: { allow: ['..'] } },
 }))

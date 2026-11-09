@@ -7,7 +7,7 @@
   import PerfPack from "./PerfPack.svelte";
   import type { Mod } from "../lib/data";
 
-  const XF = [["sel", "Ausgewählt"], ["rec", "Empfohlen"], ["van", "Läuft auf Vanilla-Server"], ["sug", "Vom Assistenten"]] as const;
+  const XF = [["sel", "Ausgewählt"], ["rec", "Empfohlen"], ["van", "Läuft auf Vanilla-Server"], ["vid", "Mit Video"], ["snd", "Mit Hörprobe"], ["sug", "Vom Assistenten"]] as const;
   const TABNOTE: Record<string, string> = {
     m: "Mods verändern das Spiel selbst. Filtere nach Bereich oder suche direkt.",
     s: "Shader berechnen Licht, Schatten, Wasser und Himmel neu. Du kannst mehrere mitnehmen und im Spiel zwischen ihnen wechseln. Iris kommt automatisch mit.",
@@ -19,7 +19,8 @@
     const q = norm(ui.q.trim()); const f = ui.filters;
     return pack.data.mods.filter(m => (pack.data.files[m.slug] || m.cf) && (m.pt || "m") === ui.tab && (ui.tab !== "m" || !ui.sub || m.cat === ui.sub) && (!ui.sub2 || m.sub === ui.sub2)
       && (!!q || !pack.LOCKED.has(m.slug)) && (!q || norm(m.name + " " + m.sub + " " + m.notiz + " " + m.slug).includes(q))
-      && (!f.has("sel") || pack.sel.has(m.slug)) && (!f.has("rec") || m.rolle === "K") && (!f.has("van") || (m.ampel !== "R" && m.cat !== "S")) && (!f.has("sug") || pack.sug.has(m.slug)));
+      && (!f.has("sel") || pack.sel.has(m.slug)) && (!f.has("rec") || m.rolle === "K") && (!f.has("van") || (m.ampel !== "R" && m.cat !== "S"))
+      && (!f.has("vid") || pack.videos(m.slug).length > 0) && (!f.has("snd") || pack.proben(m.slug).length > 0) && (!f.has("sug") || pack.sug.has(m.slug)));
   });
   const subs = $derived.by(() => { const c: Record<string, number> = {}; for (const m of pack.data.mods) if (m.cat === ui.sub && (m.pt || "m") === "m" && (pack.data.files[m.slug] || m.cf) && !pack.LOCKED.has(m.slug)) c[m.sub] = (c[m.sub] || 0) + 1; return Object.entries(c).sort((a, b) => b[1] - a[1]); });
   // Gruppen mit einem fest eingebauten Mitglied sind keine echte Wahl: deren andere Mitglieder erscheinen als „nicht wählbar“

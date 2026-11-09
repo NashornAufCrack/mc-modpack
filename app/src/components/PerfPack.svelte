@@ -5,7 +5,7 @@
   const list = $derived(pack.data.mods.filter(m => pack.LOCKED.has(m.slug)).sort((a, b) => Number(b.sub === "Performance") - Number(a.sub === "Performance") || (b.downloadsK || 0) - (a.downloadsK || 0)));
   const perf = $derived(list.filter(m => m.sub === "Performance"));
   const base = $derived(list.filter(m => m.sub !== "Performance"));
-  const icon = (s: string) => pack.img(s)[0];
+  const icon = (s: string) => pack.icon(s);
 </script>
 
 <section class="pp" aria-labelledby="pp-h">
