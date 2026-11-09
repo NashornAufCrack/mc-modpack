@@ -1,0 +1,3394 @@
+[
+  {
+    "slug": "remove-terralith-intro-message",
+    "name": "Remove Stardust Labs Intro Message",
+    "pt": "mod",
+    "desc": "A datapack/mod to remove the intro message that appears with Stardust Labs projects.",
+    "dl": 4049173,
+    "follows": 276,
+    "icon": "https://cdn.modrinth.com/data/sk4iFZGy/0844e9e08271943a1c3f4d0e2b57533212ffc2e4_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "Wk7b_VCPuBU",
+      "url": "https://www.youtube.com/watch?v=Wk7b_VCPuBU",
+      "title": "Intro"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "weatherrefind",
+    "name": "WeatherRefind",
+    "pt": "mod",
+    "desc": "Replaces vanilla rain & snow with improved, more polished particles. Less visual clutter, more atmosphere.",
+    "dl": 47958,
+    "follows": 44,
+    "icon": "https://cdn.modrinth.com/data/Qyzsewil/708c58dfc8848bad7dc7022b53615c632f9b4e8f_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/Qyzsewil/images/e78defc53bb3b0c151c2075c3e174343fa8a368b_350.webp",
+      "https://cdn.modrinth.com/data/Qyzsewil/images/2e9b7a2db8fe5c01f0e30d129163ff855bc97607_350.webp",
+      "https://cdn.modrinth.com/data/Qyzsewil/images/2b03b4c86b47ff97fdbd7667617de43b37870b2d_350.webp",
+      "https://cdn.modrinth.com/data/Qyzsewil/images/051ffbdee4444a23e190930be1d178fef725f070_350.webp"
+    ],
+    "source_video": {
+      "id": "Wk7b_VCPuBU",
+      "url": "https://www.youtube.com/watch?v=Wk7b_VCPuBU",
+      "title": "Clutter No More (NeoForge, Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "enderscape-polymer",
+    "name": "Polymer Patch for Enderscape",
+    "pt": "mod",
+    "desc": "A Polymer Patch mod for Enderscape, allowing it to work fully server side!",
+    "dl": 11970,
+    "follows": 20,
+    "icon": "https://cdn.modrinth.com/data/pR93ykIA/924a2732218a2912877cc2b36636825a2d62e7ef.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/pR93ykIA/images/31b9bc1a29c874f0ee11705377eb68a303bc037d_350.webp"
+    ],
+    "source_video": {
+      "id": "Wk7b_VCPuBU",
+      "url": "https://www.youtube.com/watch?v=Wk7b_VCPuBU",
+      "title": "Enderscape (NeoForge, Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "return-my-gold-farm",
+    "name": "Return my XP farm",
+    "pt": "mod",
+    "desc": "Always drop experience from zombified piglins if they were angry at player",
+    "dl": 7714,
+    "follows": 35,
+    "icon": "https://cdn.modrinth.com/data/kuRpWzg6/1b8786a186a512597a8c061cfb52d76c09b825b0.png",
+    "gallery": [],
+    "source_video": {
+      "id": "Wk7b_VCPuBU",
+      "url": "https://www.youtube.com/watch?v=Wk7b_VCPuBU",
+      "title": "Zombified Player (NeoForge, Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "landmines",
+    "name": "Landmines",
+    "pt": "mod",
+    "desc": "Landmines adds landmines that can explode, teleport, throw potions, and much more!",
+    "dl": 133210,
+    "follows": 48,
+    "icon": "https://cdn.modrinth.com/data/umx3sWHn/6c789b76e035d5585b09e8a351db00d2e7bec57c_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "Wk7b_VCPuBU",
+      "url": "https://www.youtube.com/watch?v=Wk7b_VCPuBU",
+      "title": "Landmines (NeoForge, Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "reimagined-intro",
+    "name": "Reimagined Intro v3",
+    "pt": "mod",
+    "desc": "Reimagine your Minecraft startup with a sleek new cinematic sequence!",
+    "dl": 556474,
+    "follows": 657,
+    "icon": "https://cdn.modrinth.com/data/BsnF5g7E/eb8770abdaeaa191612c08e737876bb8dafce794.gif",
+    "gallery": [],
+    "source_video": {
+      "id": "-s0UlXCmuI0",
+      "url": "https://www.youtube.com/watch?v=-s0UlXCmuI0",
+      "title": "INTRO"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "mielons-the-sift",
+    "name": "Mielon's The Sift 2.0",
+    "pt": "mod",
+    "desc": "Explore The Sift: a strange dimension of Ichor, sculk, ancient life and resonant souls.",
+    "dl": 324583,
+    "follows": 358,
+    "icon": "https://cdn.modrinth.com/data/j0IfTxBq/1c915be0e740f0f3bb6c104dc15cee209b038587_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/j0IfTxBq/images/27ee7aebe86ffe0bdb1e0b29ff37f3f708604dc2_350.webp",
+      "https://cdn.modrinth.com/data/j0IfTxBq/images/6c291bb44de69f71b1a4d9431723c3d958c4028a_350.webp",
+      "https://cdn.modrinth.com/data/j0IfTxBq/images/4184d95d1727f1e3567d169f532a180edc8e7327_350.webp",
+      "https://cdn.modrinth.com/data/j0IfTxBq/images/807058c7d164d45f7c05dc2dd7dabcd14b421452_350.webp"
+    ],
+    "source_video": {
+      "id": "-s0UlXCmuI0",
+      "url": "https://www.youtube.com/watch?v=-s0UlXCmuI0",
+      "title": "Mielon's The Sift"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "client-maps",
+    "name": "Client Maps",
+    "pt": "mod",
+    "desc": "Save map data locally, leave servers without losing map data.\nUseful with Map In Slot, Minihud, Tweakeroo and other in inventory map display mods.",
+    "dl": 141048,
+    "follows": 109,
+    "icon": "https://cdn.modrinth.com/data/K7BL4mb2/9761dc774ba2b5c0fc74e9327497779bf1931f24.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/K7BL4mb2/images/9f15001da59a99de18c4da9191ca10fe529a3f09.png",
+      "https://cdn.modrinth.com/data/K7BL4mb2/images/7592b32849ff61dfb76abbdc15c983c9f7ff62fd.png",
+      "https://cdn.modrinth.com/data/K7BL4mb2/images/94a246449af0846ae225d24387f2c8f263db4438.png"
+    ],
+    "source_video": {
+      "id": "-s0UlXCmuI0",
+      "url": "https://www.youtube.com/watch?v=-s0UlXCmuI0",
+      "title": "3D Maps"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "moogs-glow-up",
+    "name": "Moog's Glow Up",
+    "pt": "mod",
+    "desc": "I thought glow ink was pretty cool but didn't have enough uses, so I added a bunch of vanilla-feeling features that make it more fun to play around with.",
+    "dl": 285352,
+    "follows": 72,
+    "icon": "https://cdn.modrinth.com/data/iLlwyhcZ/6d50a401bea51580939f225fdcac51b17ed652bd.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "-s0UlXCmuI0",
+      "url": "https://www.youtube.com/watch?v=-s0UlXCmuI0",
+      "title": "Moog's Glow Up"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "better-intro",
+    "name": "Better Intro",
+    "pt": "mod",
+    "desc": "This is a better intro that make the mc java intro much better!",
+    "dl": 5030,
+    "follows": 13,
+    "icon": "https://cdn.modrinth.com/data/3EzqbPOi/a37ff01949a24740760ee165582487882a72648e_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "7fMY_LH5dqw",
+      "url": "https://www.youtube.com/watch?v=7fMY_LH5dqw",
+      "title": "INTRO"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "better-dappled-forest",
+    "name": "Dappled Forest but Better",
+    "pt": "mod",
+    "desc": "This pack aims to upgrade the Dappled Forest without the sacrifice of the vanilla vibe!",
+    "dl": 2096,
+    "follows": 25,
+    "icon": "https://cdn.modrinth.com/data/scOnSLZ4/5a799f1183855eb120611308101fd4f85a4810f8_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/scOnSLZ4/images/695fd28c83521dc3bc5049ced6607bdbe4b50a8d_350.webp",
+      "https://cdn.modrinth.com/data/scOnSLZ4/images/4651d331815e540eb418303dd991d057f40a085b_350.webp",
+      "https://cdn.modrinth.com/data/scOnSLZ4/images/2dc04a0f6bbe620fa13cc11d1b08be1a8bdf5da5_350.webp",
+      "https://cdn.modrinth.com/data/scOnSLZ4/images/0e6e5a682827bb0dfa2be16878d93a6dbd827407_350.webp"
+    ],
+    "source_video": {
+      "id": "7fMY_LH5dqw",
+      "url": "https://www.youtube.com/watch?v=7fMY_LH5dqw",
+      "title": "DAPPLED FOREST SHOWCASE"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "tbirds-structures",
+    "name": "The T-Birds Structure Collection",
+    "pt": "mod",
+    "desc": "Adds several brand-new structures to the Vanilla Overworld!",
+    "dl": 3816,
+    "follows": 14,
+    "icon": "https://cdn.modrinth.com/data/Xrg2orjy/716b8e8b16d621b767c62151775663893330ef92_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/Xrg2orjy/images/fc696d19ae198d1ee87658573a7d134e97c4e7c6.png",
+      "https://cdn.modrinth.com/data/Xrg2orjy/images/c1c1b5ad2478e4c15b8d1f53eda219804fe9578a.png",
+      "https://cdn.modrinth.com/data/Xrg2orjy/images/51bd27e6d9752d102dc49439689f1d879cac7295.png",
+      "https://cdn.modrinth.com/data/Xrg2orjy/images/ebf1623bb6f43383a12e877d2a1d55450f4321d4.png"
+    ],
+    "source_video": {
+      "id": "7fMY_LH5dqw",
+      "url": "https://www.youtube.com/watch?v=7fMY_LH5dqw",
+      "title": "BRAND NEW STRUCTURES"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "creeper-fireworks-mod",
+    "name": "Creeper Fireworks Mod",
+    "pt": "mod",
+    "desc": "Fine tuned creeper mob griefing that changes how creeper explosions are handled. Fireworks still work even if mob griefing is disabled.\n\nThis is a mod, not a datapack, so all other mods are supported that modify or extend creepers.",
+    "dl": 63572,
+    "follows": 17,
+    "icon": "https://cdn.modrinth.com/data/RdiVEh3O/46ff9c07d93cc34da1004cac9bb611bd89882de6_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "7fMY_LH5dqw",
+      "url": "https://www.youtube.com/watch?v=7fMY_LH5dqw",
+      "title": "OTHER CHANGES"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "basicsmod",
+    "name": "BasicsMod",
+    "pt": "mod",
+    "desc": "BasicsMod is the Fabric-native answer to all your server's core needs, bringing the ESSENTIALS features you love with a distinct focus on effort.",
+    "dl": 1690,
+    "follows": 6,
+    "icon": "https://cdn.modrinth.com/data/oGMuWpcf/b33efe8566dc0320b2e906f7a1f8d823d3fa09b9_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "jBprAP357A8",
+      "url": "https://www.youtube.com/watch?v=jBprAP357A8",
+      "title": "Basics"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "seasonal-the-harvest",
+    "name": "Seasonal: The wicked harvest (halloween)",
+    "pt": "mod",
+    "desc": "This mod adds halloween themed content with new mobs, structures and a final boss. After killing the boss you are able to get a scarecrow to work for your farm :)",
+    "dl": 793,
+    "follows": 3,
+    "icon": "https://cdn.modrinth.com/data/9Ccufds1/664f39ec84cea3e54dbf51ba1f602972db012987.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/9Ccufds1/images/ad67e39dfff006883887ae1e3a35c9d9088d4320.gif",
+      "https://cdn.modrinth.com/data/9Ccufds1/images/4ab24796000369114a2bd08aefc81574bbd08309_350.webp",
+      "https://cdn.modrinth.com/data/9Ccufds1/images/9a7feb671ea392bc745acb146d0eff26b6cc1281.gif",
+      "https://cdn.modrinth.com/data/9Ccufds1/images/f9610e05d5e67d88b5e95fc70a01935dce756607_350.webp"
+    ],
+    "source_video": {
+      "id": "NPFx3DG10A0",
+      "url": "https://www.youtube.com/watch?v=NPFx3DG10A0",
+      "title": "Seasonal: The Wicked Harvest (Fabric/NeoForge 26.1.2 – 26.3)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "rpg-adventurer",
+    "name": "RPG Adventurer",
+    "pt": "mod",
+    "desc": "Turns minecraft into an RPG with levels, stats, new weapons, useful items, blocks, mobs and a LOT of other features.",
+    "dl": 2561,
+    "follows": 14,
+    "icon": "https://cdn.modrinth.com/data/qeRS5Id5/237438361987a8be5f890e44f4cc1220efce08e9.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/qeRS5Id5/images/68b0886caa5a9ff0ce6ae5691c109e9b6e47ff83_350.webp",
+      "https://cdn.modrinth.com/data/qeRS5Id5/images/d24104959e7af2b9c041b131db306f968cffd59d_350.webp",
+      "https://cdn.modrinth.com/data/qeRS5Id5/images/c4971df792fe1840bc7b37038f676636f1ad2b15_350.webp",
+      "https://cdn.modrinth.com/data/qeRS5Id5/images/ec55845f7bce7ba87e7fc77a818ca691752dfa8e_350.webp"
+    ],
+    "source_video": {
+      "id": "NPFx3DG10A0",
+      "url": "https://www.youtube.com/watch?v=NPFx3DG10A0",
+      "title": "RPG Adventurer (Fabric 26.3)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "fantasy_armor",
+    "name": "Fantasy Armor (Medieval Series)",
+    "pt": "mod",
+    "desc": "New armor sets with 3D models in medieval fantasy style.",
+    "dl": 694516,
+    "follows": 611,
+    "icon": "https://cdn.modrinth.com/data/oVmpjYQ5/aed7454978e2850d9202afe4ca7129df58f30388_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/oVmpjYQ5/images/1de0eaab6bff57e2a03ba325ea36905906c10cff_350.webp",
+      "https://cdn.modrinth.com/data/oVmpjYQ5/images/c573684207de281663a493ed8d8e6b46c1670090_350.webp",
+      "https://cdn.modrinth.com/data/oVmpjYQ5/images/e8bb31baf3204457e6723bf8762a174554bfe667_350.webp",
+      "https://cdn.modrinth.com/data/oVmpjYQ5/images/1b2d0ebc0930c1e40f76d37b5d967dade89b6fbe_350.webp"
+    ],
+    "source_video": {
+      "id": "NPFx3DG10A0",
+      "url": "https://www.youtube.com/watch?v=NPFx3DG10A0",
+      "title": "Fantasy Armor (Medieval Series) (Forge/Fabric/NeoForge 1.19.4 – 26.3)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "alexs-caves-continued",
+    "name": "Alex's Caves Continued",
+    "pt": "mod",
+    "desc": "Alex's Caves Continued aims to port and update the original mod to keep it alive and working for newer versions.",
+    "dl": 61762,
+    "follows": 50,
+    "icon": "https://cdn.modrinth.com/data/cO2CvXug/3abb43c034ecdbb0ea5c3065168bd6b123c46b55.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/cO2CvXug/images/b90704353847898eff83fbb0636003a8790d6a48_350.webp",
+      "https://cdn.modrinth.com/data/cO2CvXug/images/ff7cc32a60f95e9b0f28b24a8d673c1025cb8dd6_350.webp",
+      "https://cdn.modrinth.com/data/cO2CvXug/images/dc61c1cb53918ba57f032913870d31f9c09292ac_350.webp"
+    ],
+    "source_video": {
+      "id": "XperzeV_PkE",
+      "url": "https://www.youtube.com/watch?v=XperzeV_PkE",
+      "title": "Alex's Caves Continued (Forge/NeoForge/Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "elytra-chestplate-swapper",
+    "name": "Elytra/Chestplate Swapper",
+    "pt": "mod",
+    "desc": "A simple quality of life mod that swaps between chestplate and elytra on a keystroke.",
+    "dl": 271309,
+    "follows": 134,
+    "icon": "https://cdn.modrinth.com/data/bnA2BmQ7/ab57289fde1e596c68c1c851d6ec15a45c151a63_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "XperzeV_PkE",
+      "url": "https://www.youtube.com/watch?v=XperzeV_PkE",
+      "title": "Elytra/Chestplate Swapper (Forge/NeoForge/Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "item-particles",
+    "name": "Item Particles",
+    "pt": "mod",
+    "desc": "Beautiful particles for your world items! Dropped, held, frames and shelfs items support!",
+    "dl": 9662,
+    "follows": 70,
+    "icon": "https://cdn.modrinth.com/data/dsnMvk2s/6ba5c552186a3dc89e77feabcbdf1ef219d630eb_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "XperzeV_PkE",
+      "url": "https://www.youtube.com/watch?v=XperzeV_PkE",
+      "title": "Item Particles (Forge/NeoForge/Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "oneconfig",
+    "name": "OneConfig",
+    "pt": "mod",
+    "desc": "Access all your mod settings in one place, with a sleek and intuitive interface. By Polyfrost, best with OneClient.",
+    "dl": 1233786,
+    "follows": 169,
+    "icon": "https://cdn.modrinth.com/data/AibBIVmj/073a92ecc8bb5650456758f1a58990801de64db5_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/AibBIVmj/images/76c2790ef10bbe8b82d68c0ba9000265d54f782f_350.webp"
+    ],
+    "source_video": {
+      "id": "XperzeV_PkE",
+      "url": "https://www.youtube.com/watch?v=XperzeV_PkE",
+      "title": "OneConfig (Forge/Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "betternetherportals",
+    "name": "Better Nether Portals",
+    "pt": "mod",
+    "desc": "Build Nether portals in any shape or orientation, closed obsidian frame, light with flint and steel, and walk through.",
+    "dl": 13479,
+    "follows": 35,
+    "icon": "https://cdn.modrinth.com/data/bi0HAGC0/1acdf59c429cfd1d400776b20b2baaacf4c02aca_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/bi0HAGC0/images/674124902479a68a99e4e47203c37c3fd69085dd_350.webp",
+      "https://cdn.modrinth.com/data/bi0HAGC0/images/4f2768cc868109bf45c3496e191506c194c42e8c_350.webp"
+    ],
+    "source_video": {
+      "id": "XperzeV_PkE",
+      "url": "https://www.youtube.com/watch?v=XperzeV_PkE",
+      "title": "Better Nether Portals (Forge/NeoForge/Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "pulse-trims",
+    "name": "Pulse Trims",
+    "pt": "mod",
+    "desc": "Makes armor trims glow and pulse.",
+    "dl": 13014,
+    "follows": 49,
+    "icon": "https://cdn.modrinth.com/data/5YOjKSuq/c5e7e98357b21b73b10928967bf9ca301f81d0a1.gif",
+    "gallery": [
+      "https://cdn.modrinth.com/data/5YOjKSuq/images/75ca2405db5c65b7dda99607b5b786e34684ba27_350.webp",
+      "https://cdn.modrinth.com/data/5YOjKSuq/images/51438726fb8c4a99044644f0c609360c2ab9db4e_350.webp",
+      "https://cdn.modrinth.com/data/5YOjKSuq/images/c14385b549c06790c62dae14e04a40a349c51828_350.webp",
+      "https://cdn.modrinth.com/data/5YOjKSuq/images/6d3189741f9ff0a37d5be1300429a4a3c21fad4e_350.webp"
+    ],
+    "source_video": {
+      "id": "XperzeV_PkE",
+      "url": "https://www.youtube.com/watch?v=XperzeV_PkE",
+      "title": "Pulse Trims (Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "hoverboards",
+    "name": "Hoverboards",
+    "pt": "mod",
+    "desc": "HOVERBOARDS!! Rideable, dyeable hoverboards with glowing light trails",
+    "dl": 3846,
+    "follows": 26,
+    "icon": "https://cdn.modrinth.com/data/hFwdrY43/96969e0f60fa4c262bdd66c3f0ed59340f4ce398_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/hFwdrY43/images/1e0fb79e75cf49e3b145dd54a64c7d29a4cd44fa.gif",
+      "https://cdn.modrinth.com/data/hFwdrY43/images/b2098fc07edea87869e33b3ef884949955b27c58_350.webp",
+      "https://cdn.modrinth.com/data/hFwdrY43/images/1d82cfbd48c6530e67bd5148e221359c161b45d2_350.webp"
+    ],
+    "source_video": {
+      "id": "XperzeV_PkE",
+      "url": "https://www.youtube.com/watch?v=XperzeV_PkE",
+      "title": "Hoverboards (Forge/NeoForge/Fabric)"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "sulfur-caves-plus",
+    "name": "Sulfur Caves Plus",
+    "pt": "mod",
+    "desc": "New content for Sulfur Caves biome: Corrosion, Sulfur Spiders and more!",
+    "dl": 6651,
+    "follows": 47,
+    "icon": "https://cdn.modrinth.com/data/BEXcDSgJ/899bdb9c51ab7f9add46da72898a846c027b25ee_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/BEXcDSgJ/images/cefedfbbcc9eb3511c4e33bff1d365b75a4fa3bb_350.webp",
+      "https://cdn.modrinth.com/data/BEXcDSgJ/images/b22d1add2acb2c1fc65805d5a8971297772da03c_350.webp"
+    ],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Sulfur Caves Plus"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "screenshot-gallery",
+    "name": "Screenshot Gallery",
+    "pt": "mod",
+    "desc": "in game gallery to see your screenshots",
+    "dl": 137110,
+    "follows": 130,
+    "icon": "https://cdn.modrinth.com/data/IhVCYgCW/3d1c63e511cccf36350179f12d2ebfa3f61c1108_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/IhVCYgCW/images/e5d5404e496bf42f2b15245e3cd184b6803576c9_350.webp",
+      "https://cdn.modrinth.com/data/IhVCYgCW/images/de80b246d9fc7e657ddc249ed863a00909e93a72_350.webp",
+      "https://cdn.modrinth.com/data/IhVCYgCW/images/e93472c677dbc040fcaf9980ab29a12c94e388b6_350.webp",
+      "https://cdn.modrinth.com/data/IhVCYgCW/images/bb55c8bfa232f86e50e20b75b720f42b6738419b_350.webp"
+    ],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Screenshot Gallery"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "cinematic-zoom-fabric",
+    "name": "Cinematic Zoom (Fabric)",
+    "pt": "mod",
+    "desc": "Smooth, cinematic zoom for Minecraft with animated black bars, per-frame easing, and optional mouse wheel control. Built for Fabric 1.21.7-1.21.11.",
+    "dl": 232166,
+    "follows": 127,
+    "icon": "https://cdn.modrinth.com/data/LBKcRJTu/931dc065724dfdf4af904157dba3cfc2f31a2168_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Cinematic Zoom"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "ziplines-rezipped",
+    "name": "Ziplines: Rezipped!",
+    "pt": "mod",
+    "desc": "Satisfactory inspired ziplines in Minecraft!",
+    "dl": 99048,
+    "follows": 206,
+    "icon": "https://cdn.modrinth.com/data/C1MoWQlb/e7b151769211877cd25bf036cd94f5b47cf6e418.png",
+    "gallery": [],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Ziplines Rezipped"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "yori3os-grappling-hooks",
+    "name": "Yori3o's Grappling Hooks",
+    "pt": "mod",
+    "desc": "Adds vanilla-like and physically realistic grappling hooks.",
+    "dl": 250223,
+    "follows": 303,
+    "icon": "https://cdn.modrinth.com/data/t1p8V2nl/1ea80fa3cdf14dfd560674c6af9b15f7b578468c_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/t1p8V2nl/images/d7e6ee01facb61377d9af2e5bc98c646dda761b2_350.webp"
+    ],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Yori3o's Grappling Hooks"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "sb-enchantment-effects",
+    "name": "Enchantment Effects",
+    "pt": "mod",
+    "desc": "Make enchantments feel powerful with sounds and particle effects!",
+    "dl": 21615,
+    "follows": 142,
+    "icon": "https://cdn.modrinth.com/data/pXo36Na4/c4a8cbe112394a681fb4b5aa291bb2b9f64f4fc0_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/pXo36Na4/images/7d0e0a88793220a989748aa3890a4a50c7c5b858_350.webp",
+      "https://cdn.modrinth.com/data/pXo36Na4/images/2285b0a2f3d1fec7bbd462813efcf98a0db643b5_350.webp",
+      "https://cdn.modrinth.com/data/pXo36Na4/images/f70ade2273485f42184cfcc3b7022490c921d3e9_350.webp",
+      "https://cdn.modrinth.com/data/pXo36Na4/images/8732393003502bbfa811351d32c410282d04cf53_350.webp"
+    ],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Enchantment Effects"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "inventory-item-groups",
+    "name": "Inventory Item Groups",
+    "pt": "mod",
+    "desc": "Adds groups of items to the inventory in the creative game mode",
+    "dl": 29264,
+    "follows": 110,
+    "icon": "https://cdn.modrinth.com/data/adriDDJt/b5c5b8ced5a1acd5aec8d0937b46058b2660194e.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/adriDDJt/images/6c58f0201fc5c0fbb659b3f3722f22c9fb777d25_350.webp",
+      "https://cdn.modrinth.com/data/adriDDJt/images/1422fbf0c53d30cb69a0c0328444c9fa5063267a_350.webp",
+      "https://cdn.modrinth.com/data/adriDDJt/images/89cc8c07170a9bcdfa77d348bf6f5c5e85638b2c_350.webp",
+      "https://cdn.modrinth.com/data/adriDDJt/images/d4c0e91e8f40ecb0cae2f747ee5a0d972b658f88_350.webp"
+    ],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Inventory Item Groups"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "qv-stump",
+    "name": "QvStump",
+    "pt": "mod",
+    "desc": "Cut log into boards with an axe!",
+    "dl": 27111,
+    "follows": 13,
+    "icon": "https://cdn.modrinth.com/data/uPKvUvm4/4db609fe3a4784c2b1417bf195cc971699cb3a07_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/uPKvUvm4/images/5759f850b7e1254ad43f46c81a397a47b7516402.gif",
+      "https://cdn.modrinth.com/data/uPKvUvm4/images/bbeba5101caa63ad65293242d43e21b323c269ca_350.webp",
+      "https://cdn.modrinth.com/data/uPKvUvm4/images/4b6e13aef35338d16b507c3ab49f27f68104d669_350.webp"
+    ],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Stump"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "more-babies",
+    "name": "More Babies",
+    "pt": "mod",
+    "desc": "Adds more baby mobs! Baby Blaze, Creeper, Enderman, Shulker and many more...",
+    "dl": 135361,
+    "follows": 163,
+    "icon": "https://cdn.modrinth.com/data/ZK4bBM3B/854207d8a40096a987eda04dd715b11169ec25d8_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/ZK4bBM3B/images/1643fd66341b53a80732e7104dbf9c7060ebb271_350.webp",
+      "https://cdn.modrinth.com/data/ZK4bBM3B/images/5d71b4cd5f81622e91230b281b9c10de9c00900f_350.webp",
+      "https://cdn.modrinth.com/data/ZK4bBM3B/images/c51afd6a501135143fa23509fa3cecfb619cd4c6_350.webp",
+      "https://cdn.modrinth.com/data/ZK4bBM3B/images/68f232b5f6d82b0daada0c42d5121a9408c22593_350.webp"
+    ],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "More Babies"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "reach-behind",
+    "name": "Reach Behind",
+    "pt": "mod",
+    "desc": "Click through decorations and interact with the blocks behind them.",
+    "dl": 405477,
+    "follows": 128,
+    "icon": "https://cdn.modrinth.com/data/MDljZreW/d3127b4ea0bd4dd304192fbcacc7a693d424d3cb_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Reach Behind"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "name-tag-upgrade",
+    "name": "Name Tag Upgrade",
+    "pt": "mod",
+    "desc": "Smarter name tags with renaming on the go and handy quality-of-life improvements.",
+    "dl": 16899,
+    "follows": 47,
+    "icon": "https://cdn.modrinth.com/data/d7LHtwd7/ee739aca1ebc64b811c6021cae2e9c03181335e3_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Name Tag Upgrade"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "palettinator",
+    "name": "Palettinator",
+    "pt": "mod",
+    "desc": "Browse, generate, preview & publish Minecraft block palettes in game. With a built-in GUI runs server-side, so even vanilla clients can use it.",
+    "dl": 4099,
+    "follows": 34,
+    "icon": "https://cdn.modrinth.com/data/xDxM36HS/d93804f2c407e090bae0ccf88f44013609b4b448.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/xDxM36HS/images/827df9e023f0c530684442359d9aaa8bd8f63b28_350.webp",
+      "https://cdn.modrinth.com/data/xDxM36HS/images/9feca234ebeb1e5ac5c9c1bc0d8591f6b3bc7a5a_350.webp",
+      "https://cdn.modrinth.com/data/xDxM36HS/images/8caab08a95626dc9e94c37da33d6083867bd96ff_350.webp"
+    ],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Palettinator"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "hovering-hotbar",
+    "name": "Hovering Hotbar",
+    "pt": "mod",
+    "desc": "Makes your hotbar seemingly float in place by shifting it a few pixels upward.",
+    "dl": 8151,
+    "follows": 33,
+    "icon": "https://cdn.modrinth.com/data/IJ4PIJR2/bde6712dce56725339fb01d162b9b76d12735bce_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Hovering Hotbar"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "falling-leaves-plus",
+    "name": "Falling Leaves Plus",
+    "pt": "mod",
+    "desc": "Beautiful tree-specific falling leaves with branches, acorns, cones, and more.",
+    "dl": 44347,
+    "follows": 123,
+    "icon": "https://cdn.modrinth.com/data/PZyzzLjz/5c55cbf79e31f146371c9196c3ed748aa51e94f2_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "gyLC3wHpzMc",
+      "url": "https://www.youtube.com/watch?v=gyLC3wHpzMc",
+      "title": "Falling Leaves Plus"
+    },
+    "query": "minecraft mods 26.3 showcase"
+  },
+  {
+    "slug": "chefs-delight",
+    "name": "Chef's Delight - Farmer's Delight Villagers",
+    "pt": "mod",
+    "desc": "Add-on for the Farmer's Delight mod. Adds 2 new professions to villagers. Chef and Cook.\n\nDepends on Farmer's Delight.",
+    "dl": 9399226,
+    "follows": 1000,
+    "icon": "https://cdn.modrinth.com/data/pvcsfne4/4c31bd820651aaea721c87186a1007a415f1311e_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/pvcsfne4/images/d56449788024587c0ff8f344089b26cc9aee6df2_350.webp",
+      "https://cdn.modrinth.com/data/pvcsfne4/images/d00f4fc0c90ef42133ef64087b4d83021aefc685_350.webp",
+      "https://cdn.modrinth.com/data/pvcsfne4/images/bd5fa519b7ed8c214340042a98260af44e70372f_350.webp",
+      "https://cdn.modrinth.com/data/pvcsfne4/images/d8c9e4026a31e87ed8e71b0630848bb964c79ce6_350.webp"
+    ],
+    "source_video": {
+      "id": "MelZXIQ0hto",
+      "url": "https://www.youtube.com/watch?v=MelZXIQ0hto",
+      "title": "Farmer's Delight"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "windchime",
+    "name": "wind chimes",
+    "pt": "mod",
+    "desc": "gentle windchimes with smooth animations that sway and ring in the breeze",
+    "dl": 29126,
+    "follows": 35,
+    "icon": "https://cdn.modrinth.com/data/I6BSgJNV/b5f04446ad4555509d134dee3a610656620189f3.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/I6BSgJNV/images/d1aac71b0d373a24031f586da9e9485064b11297_350.webp",
+      "https://cdn.modrinth.com/data/I6BSgJNV/images/e27332e6368b3411ca12fcb10047c83d5c69a2a2_350.webp",
+      "https://cdn.modrinth.com/data/I6BSgJNV/images/98ea7353564684fc46c47af67d569be7cfd30de9_350.webp"
+    ],
+    "source_video": {
+      "id": "MelZXIQ0hto",
+      "url": "https://www.youtube.com/watch?v=MelZXIQ0hto",
+      "title": "Chimes"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "fallingtrees",
+    "name": "FallingTrees",
+    "pt": "mod",
+    "desc": "Break trees faster than ever!",
+    "dl": 29286,
+    "follows": 22,
+    "icon": "https://cdn.modrinth.com/data/SalvUeCN/a1106ec13b49358f3f09b6734b090ab1768cb56b.png",
+    "gallery": [],
+    "source_video": {
+      "id": "MelZXIQ0hto",
+      "url": "https://www.youtube.com/watch?v=MelZXIQ0hto",
+      "title": "Falling Tree"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "ji-afk-cinematic",
+    "name": "Ji AFK Cinematic",
+    "pt": "mod",
+    "desc": "AFK Cinematics in 4K with immersive camera system",
+    "dl": 199034,
+    "follows": 200,
+    "icon": "https://cdn.modrinth.com/data/NYveE6yC/9ef01cd299c7924946d23938ccdb84571bffe911.gif",
+    "gallery": [
+      "https://cdn.modrinth.com/data/NYveE6yC/images/6054e61cb59a4e07f1ad705daa3b0754b988af78_350.webp",
+      "https://cdn.modrinth.com/data/NYveE6yC/images/76b468342f5a7398ba89888564d247e3bca294fd_350.webp",
+      "https://cdn.modrinth.com/data/NYveE6yC/images/5281783127b3397ca1dca2b5b8c88d378f59fcc3_350.webp",
+      "https://cdn.modrinth.com/data/NYveE6yC/images/8c1b97aa4f0fb604c2b571a93099e714849155e2_350.webp"
+    ],
+    "source_video": {
+      "id": "cVi5zdcp1kM",
+      "url": "https://www.youtube.com/watch?v=cVi5zdcp1kM",
+      "title": "8. AFK Cinematics"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "falling-wind",
+    "name": "Falling Wind",
+    "pt": "mod",
+    "desc": "A simple mod that adds dynamic wind sounds while you're falling, using the elytra sound effect.",
+    "dl": 5792,
+    "follows": 26,
+    "icon": "https://cdn.modrinth.com/data/noBoACg0/5718434edb55e1e9347df0a20318990b31841cad_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/noBoACg0/images/41840c6dc9fba690611511471cbd054e309c8484_350.webp"
+    ],
+    "source_video": {
+      "id": "cVi5zdcp1kM",
+      "url": "https://www.youtube.com/watch?v=cVi5zdcp1kM",
+      "title": "9. Dynamic Elytra"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "hero-of-the-village-plus-better-villagers-and-extra-trades",
+    "name": "Hero of the Village Plus - Better Villagers and Extra Trades",
+    "pt": "mod",
+    "desc": "✨ A better, more complete and meaningful Hero of the Village effect granting better trades!",
+    "dl": 15325,
+    "follows": 29,
+    "icon": "https://cdn.modrinth.com/data/Jcr6svMa/ba6060efac148d5d2aa6e2afd6e9769855f63138_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/Jcr6svMa/images/993311fa70405d5cd31830bcc83259aa401f43d3.gif",
+      "https://cdn.modrinth.com/data/Jcr6svMa/images/bab01bfe72f299874662aa424ada076af0109054_350.webp",
+      "https://cdn.modrinth.com/data/Jcr6svMa/images/88bedb6906949879dc3f1d4b1a26dcdbb2870a1b.gif",
+      "https://cdn.modrinth.com/data/Jcr6svMa/images/190a51697eed559db0abbe062fd325c91105d16a_350.webp"
+    ],
+    "source_video": {
+      "id": "1gK0yxTEwJo",
+      "url": "https://www.youtube.com/watch?v=1gK0yxTEwJo",
+      "title": "Village/Villagers"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "snowballs-freeze-mobs",
+    "name": "Snowballs Freeze Mobs",
+    "pt": "mod",
+    "desc": "☃️ Hitting mobs with a snowball will freeze them for a configurable amount of time.",
+    "dl": 702049,
+    "follows": 178,
+    "icon": "https://cdn.modrinth.com/data/ETKe9DNz/2bd8b13e3f8da2ff17f531ca7a9516c750f6c75b_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "1gK0yxTEwJo",
+      "url": "https://www.youtube.com/watch?v=1gK0yxTEwJo",
+      "title": "Mobs"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "fire-extinguisher",
+    "name": "Fire Extinguisher 🧯",
+    "pt": "mod",
+    "desc": "Essential items like a fire extinguisher, fire axe, and other useful tools are necessary to effectively extinguish a fire.",
+    "dl": 40012,
+    "follows": 68,
+    "icon": "https://cdn.modrinth.com/data/GlhPy70K/7798f7ccd40070b3be94853ce737b982eae8798d_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/GlhPy70K/images/bbb27c796276a0b3f33503d7b0be1b331fdcbd99.gif",
+      "https://cdn.modrinth.com/data/GlhPy70K/images/93a4d3db2ac0a65ae0ef193d3ff9be31c9a09a04_350.webp",
+      "https://cdn.modrinth.com/data/GlhPy70K/images/4f0d7f452b1d1b5e01bd3f57b1d7cc320a882644.png",
+      "https://cdn.modrinth.com/data/GlhPy70K/images/4a1df4be8902478275903c48dd013f3a92468221.png"
+    ],
+    "source_video": {
+      "id": "1gK0yxTEwJo",
+      "url": "https://www.youtube.com/watch?v=1gK0yxTEwJo",
+      "title": "Useful Items/Tools"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "magic-vibe-decorations",
+    "name": "Magic Vibe Decorations",
+    "pt": "mod",
+    "desc": "A collection of witchy decorations and crystals. Some crystals provide protective effects.",
+    "dl": 1834844,
+    "follows": 231,
+    "icon": "https://cdn.modrinth.com/data/MPAgKQOE/b979eccb983419ad8f7fff89bb8bfe861002942d_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/MPAgKQOE/images/01162718f7e6a6280fd40a49e87791af786482fe_350.webp",
+      "https://cdn.modrinth.com/data/MPAgKQOE/images/86587937c53eae4b2edee57f74b2fd76f6d499a1_350.webp",
+      "https://cdn.modrinth.com/data/MPAgKQOE/images/7c4400821a084fca5f8c30bf09567fa7ab761915_350.webp",
+      "https://cdn.modrinth.com/data/MPAgKQOE/images/aaa2dc1b290ba1c8d7969be681d23ea21c9b9d30_350.webp"
+    ],
+    "source_video": {
+      "id": "1gK0yxTEwJo",
+      "url": "https://www.youtube.com/watch?v=1gK0yxTEwJo",
+      "title": "Decorations"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "vmtu",
+    "name": "VM Translation Utility",
+    "pt": "mod",
+    "desc": "The VM Chinese Translation Group mod is used to check Chinese localization patches and some other utility features",
+    "dl": 292290,
+    "follows": 26,
+    "icon": "https://cdn.modrinth.com/data/wvCSIW08/ab052d500a7c6b8f9eaa23e6265a614825085c5e_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "1gK0yxTEwJo",
+      "url": "https://www.youtube.com/watch?v=1gK0yxTEwJo",
+      "title": "Utility"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "misctweaks",
+    "name": "MiscTweaks",
+    "pt": "mod",
+    "desc": "Lightweight mod that adds a few QoL features and patches out gameplay annoyances",
+    "dl": 2147605,
+    "follows": 49,
+    "icon": "https://cdn.modrinth.com/data/9sMkzzYU/8019fc71309e70f771258dbc5af96cb09b9ba7db_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "1gK0yxTEwJo",
+      "url": "https://www.youtube.com/watch?v=1gK0yxTEwJo",
+      "title": "Misc."
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "paladins-furniture",
+    "name": "Paladin's Furniture Mod",
+    "pt": "mod",
+    "desc": "A Modern Furniture mod for Minecraft where things are functional!",
+    "dl": 1813500,
+    "follows": 871,
+    "icon": "https://cdn.modrinth.com/data/SISz7Qd3/b58200a406964618cfff087e0610d6729b24f784_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/SISz7Qd3/images/e58cb931845b9d22d5c8c62d550a8bda58a6e95e_350.webp",
+      "https://cdn.modrinth.com/data/SISz7Qd3/images/bbc79f8efdb4565da5c4e1045e9a6944778f409f_350.webp",
+      "https://cdn.modrinth.com/data/SISz7Qd3/images/897b410dffd83a5fc6e09ac384f4c2f3a53ddb41_350.webp"
+    ],
+    "source_video": {
+      "id": "YmzPaVewalw",
+      "url": "https://www.youtube.com/watch?v=YmzPaVewalw",
+      "title": "Paladin's Furniture"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "ancient-structures",
+    "name": "Ancient Structures",
+    "pt": "mod",
+    "desc": "Adds handcrafted structures from ancient civilizations (Mayan, Roman, Japanese, Germanic) with custom loot, mobs, and secrets",
+    "dl": 93103,
+    "follows": 152,
+    "icon": "https://cdn.modrinth.com/data/gZp8ofn3/cc3bc38a3170b8e7c89fd7467c2bfd1d530058ea_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/gZp8ofn3/images/8d07fb6600ea4cd1d014e9b8300ce6f9e64d3126_350.webp",
+      "https://cdn.modrinth.com/data/gZp8ofn3/images/03d40ed254e2b56b9a75c467c9445d93bd05f3ed_350.webp",
+      "https://cdn.modrinth.com/data/gZp8ofn3/images/c55e1b511f899958990d5d914bf3a47629ede074_350.webp",
+      "https://cdn.modrinth.com/data/gZp8ofn3/images/727ccb63ab15f113f07465d6c71d8557f7da3d4b_350.webp"
+    ],
+    "source_video": {
+      "id": "YmzPaVewalw",
+      "url": "https://www.youtube.com/watch?v=YmzPaVewalw",
+      "title": "Handcrafted"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "subauth",
+    "name": "SubAuth",
+    "pt": "mod",
+    "desc": "Automatic whitelisting for your Twitch subscribers!",
+    "dl": 638,
+    "follows": 3,
+    "icon": "https://cdn.modrinth.com/data/VgP58azb/f3e81557cf0cb48ba3fc00ac44091e2fe42bf835_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "YmzPaVewalw",
+      "url": "https://www.youtube.com/watch?v=YmzPaVewalw",
+      "title": "Subscribe!"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "more-delight",
+    "name": "More Delight (for Farmer's Delight)",
+    "pt": "mod",
+    "desc": "Extra meals, knives, and ingredients for Farmer's Delight that improve your culinary experience.",
+    "dl": 5132341,
+    "follows": 1406,
+    "icon": "https://cdn.modrinth.com/data/znHQQtuU/a0b97c0306ac9507bca7b81059fb146051596e08.gif",
+    "gallery": [
+      "https://cdn.modrinth.com/data/znHQQtuU/images/27bb6c3e8395f95c97edf0d984dde6fb975fb3cb_350.webp",
+      "https://cdn.modrinth.com/data/znHQQtuU/images/da9859b1b093bd7b6644c67bb914cc8e9380748a_350.webp",
+      "https://cdn.modrinth.com/data/znHQQtuU/images/a4fea698a2456411074a32470222c5ff5ff35be5_350.webp",
+      "https://cdn.modrinth.com/data/znHQQtuU/images/f60125c5fe3d4fb56cc0ba18e3a3ac2d2aba3bfd_350.webp"
+    ],
+    "source_video": {
+      "id": "fOU0pmI5s6s",
+      "url": "https://www.youtube.com/watch?v=fOU0pmI5s6s",
+      "title": "Farmers Delight"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "crate-delight",
+    "name": "Crate Delight",
+    "pt": "mod",
+    "desc": "Useful crates and bags that will save you storage and look great.",
+    "dl": 3942292,
+    "follows": 1084,
+    "icon": "https://cdn.modrinth.com/data/9rlXSyLg/1451f1af5cc41240ae8bbb166727bd0bdab5c5ab.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/9rlXSyLg/images/13fb357cc7be4a89a84f6f90470330d6d118d27d_350.webp",
+      "https://cdn.modrinth.com/data/9rlXSyLg/images/ac48c15698e2ad1353f6cbf4059f707781bc524b_350.webp",
+      "https://cdn.modrinth.com/data/9rlXSyLg/images/d957f9e9d1ee3d4d53806d3e8ba8349c0e3336ba_350.webp",
+      "https://cdn.modrinth.com/data/9rlXSyLg/images/634d076704bfd82c304b9d27eedc53cdec358cb8_350.webp"
+    ],
+    "source_video": {
+      "id": "fOU0pmI5s6s",
+      "url": "https://www.youtube.com/watch?v=fOU0pmI5s6s",
+      "title": "Crate Delight"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "display-delight-fabric",
+    "name": "Display Delight Fabric",
+    "pt": "mod",
+    "desc": "Allows to place every food item in Farmer's Delight and friends in 3D",
+    "dl": 203081,
+    "follows": 190,
+    "icon": "https://cdn.modrinth.com/data/jK2xMxSG/eaeb2708002a54f9728c3e9b1876d5c7f8417255.png",
+    "gallery": [],
+    "source_video": {
+      "id": "fOU0pmI5s6s",
+      "url": "https://www.youtube.com/watch?v=fOU0pmI5s6s",
+      "title": "DIsplay Delight"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "only-excavators",
+    "name": "Only Excavators",
+    "pt": "mod",
+    "desc": "A simple mod that adds various type of excavators, that mine 3x1 area",
+    "dl": 1033884,
+    "follows": 63,
+    "icon": "https://cdn.modrinth.com/data/xkayuCFC/ade9a985d00b636419e08563e3ed12d0799cf6d9.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/xkayuCFC/images/776ca6902fca96c4adcec89a12aa78e95a5e199b_350.webp"
+    ],
+    "source_video": {
+      "id": "fOU0pmI5s6s",
+      "url": "https://www.youtube.com/watch?v=fOU0pmI5s6s",
+      "title": "Only Excavators"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "only-hammers",
+    "name": "Only Hammers",
+    "pt": "mod",
+    "desc": "A simple mod that adds various type of hammers, that mine 3x1 area",
+    "dl": 348323,
+    "follows": 143,
+    "icon": "https://cdn.modrinth.com/data/p5wmRC3H/83bbedcfdd23ade75e50c58ca646e566111322e5.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/p5wmRC3H/images/5c9cb7a974598242889c78a89a238c2afcdc436a_350.webp"
+    ],
+    "source_video": {
+      "id": "fOU0pmI5s6s",
+      "url": "https://www.youtube.com/watch?v=fOU0pmI5s6s",
+      "title": "Only Hammers"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "plushables",
+    "name": "Plushables",
+    "pt": "mod",
+    "desc": "Cute plushies for your home",
+    "dl": 251842,
+    "follows": 242,
+    "icon": "https://cdn.modrinth.com/data/bpUgmHBo/3c1629636cf8f39828a6cf8d2dc7293876459d89_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/bpUgmHBo/images/4dc548ddd13fe9d2546fe5dc396e1b789d5c8653_350.webp",
+      "https://cdn.modrinth.com/data/bpUgmHBo/images/523d1c4be9526bfd096a88f761b81ecc704908cd_350.webp",
+      "https://cdn.modrinth.com/data/bpUgmHBo/images/23aa5b3b5089d7f73a2097a331c7a17f8bcca3ad_350.webp",
+      "https://cdn.modrinth.com/data/bpUgmHBo/images/2ed01b380405c080444bc7a1ad8e0ee8b2a9e2aa_350.webp"
+    ],
+    "source_video": {
+      "id": "fOU0pmI5s6s",
+      "url": "https://www.youtube.com/watch?v=fOU0pmI5s6s",
+      "title": "Plushables"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "rose-gold-equipment",
+    "name": "Rose Gold Equipment",
+    "pt": "mod",
+    "desc": "Combine copper and gold to craft rose gold! A highly enchantable tougher version of gold equipment!",
+    "dl": 54042,
+    "follows": 130,
+    "icon": "https://cdn.modrinth.com/data/ZpZffQVs/9aa0d80e3373f0ad2080bb1f741054885055e654.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/ZpZffQVs/images/af7d27c0db05644b6b40107d96190b3f999f6976_350.webp",
+      "https://cdn.modrinth.com/data/ZpZffQVs/images/b933194bca1c2bc91592ea4a732279446beb2deb_350.webp",
+      "https://cdn.modrinth.com/data/ZpZffQVs/images/ceaa478ba8584efad944a9b554e2ec2b43ae6a05_350.webp"
+    ],
+    "source_video": {
+      "id": "fOU0pmI5s6s",
+      "url": "https://www.youtube.com/watch?v=fOU0pmI5s6s",
+      "title": "Rose Gold Equipment"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "too-many-paintings",
+    "name": "Too Many Paintings!",
+    "pt": "mod",
+    "desc": "More paintings for Minecraft, includes popular paintings too!",
+    "dl": 710061,
+    "follows": 495,
+    "icon": "https://cdn.modrinth.com/data/T8Fpxcl7/19dc4f269ab9a523537d01a2cff429f8288860df.gif",
+    "gallery": [
+      "https://cdn.modrinth.com/data/T8Fpxcl7/images/a32194caab66553b220ce455fa9f6d7d050fecb3.png",
+      "https://cdn.modrinth.com/data/T8Fpxcl7/images/b2d0181c9de5cc5c2b778de2105fa8329eeb1d33_350.webp"
+    ],
+    "source_video": {
+      "id": "fOU0pmI5s6s",
+      "url": "https://www.youtube.com/watch?v=fOU0pmI5s6s",
+      "title": "Too Many Paintings"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "worldweaver",
+    "name": "World Weaver",
+    "pt": "mod",
+    "desc": "A Fabric utility mod that aims to streamline common modding\ntasks, particularly those related to world creation. As a successor to BCLib, WoVer is intended to eventually take its\nplace.",
+    "dl": 2000950,
+    "follows": 160,
+    "icon": "https://cdn.modrinth.com/data/RiN8rDVs/f38c47b3c1839f2c72c14055626e8f95799e2a73_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "fOU0pmI5s6s",
+      "url": "https://www.youtube.com/watch?v=fOU0pmI5s6s",
+      "title": "Particular"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "scholar",
+    "name": "Scholar",
+    "pt": "mod",
+    "desc": "Two-page book editing/viewing, easy formatting, colored books, literate mobs and other book-related improvements",
+    "dl": 2908701,
+    "follows": 864,
+    "icon": "https://cdn.modrinth.com/data/fX4dIQCo/a859aee72bc023682d50f4d42501765eed8887e3.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/fX4dIQCo/images/739923078ba5f56b64ae627af2ca90366644f9e1_350.webp",
+      "https://cdn.modrinth.com/data/fX4dIQCo/images/aa69af12dcb138171e015ddcfb18d93a85b19bc3_350.webp",
+      "https://cdn.modrinth.com/data/fX4dIQCo/images/5c6230f82cf9a4b89ac940fe9df34080279a0e2f.png"
+    ],
+    "source_video": {
+      "id": "fOU0pmI5s6s",
+      "url": "https://www.youtube.com/watch?v=fOU0pmI5s6s",
+      "title": "Scholar"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "assorted-terrain",
+    "name": "Assorted Terrain",
+    "pt": "mod",
+    "desc": "Adds randomite ore, desert wells, crop fields, melons, stray saplings, tree stumps, cactus fields and sand pits.",
+    "dl": 302,
+    "follows": 1,
+    "icon": "https://cdn.modrinth.com/data/xacF7be7/b2c7151a3a5435f270f5cd7eacddf8048c7ff4fe_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/xacF7be7/images/44b7deadfab55d3cd4e9dd71d9bd1fc3178da86a_350.webp",
+      "https://cdn.modrinth.com/data/xacF7be7/images/d4640552411c6960decd66e4090b36fb0ab37804_350.webp",
+      "https://cdn.modrinth.com/data/xacF7be7/images/9993f4da10342d1a115352f0aa99e4c8f67dabed_350.webp",
+      "https://cdn.modrinth.com/data/xacF7be7/images/6f5e63a098bdc1a2a28c8b3a019a1880feaa4d9f_350.webp"
+    ],
+    "source_video": {
+      "id": "E-Pnhr57MeU",
+      "url": "https://www.youtube.com/watch?v=E-Pnhr57MeU",
+      "title": "Terrain Mods"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "sky-aesthetics",
+    "name": "Sky Aesthetics",
+    "pt": "mod",
+    "desc": "Change the minecraft skybox as you wish!",
+    "dl": 85518,
+    "follows": 165,
+    "icon": "https://cdn.modrinth.com/data/2zaNpyqY/4c14501752e697004aa53b42176b8ddc5c783af2_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/2zaNpyqY/images/5c8a7eaf46151e1de5c706ffb44562529ec72d78_350.webp"
+    ],
+    "source_video": {
+      "id": "E-Pnhr57MeU",
+      "url": "https://www.youtube.com/watch?v=E-Pnhr57MeU",
+      "title": "Aesthetic Mods"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "resourcify",
+    "name": "Resourcify",
+    "pt": "mod",
+    "desc": "In-game resource pack, data pack and shader browser and updater.",
+    "dl": 13732222,
+    "follows": 3055,
+    "icon": "https://cdn.modrinth.com/data/RLzHAoZe/a353989ea9f0f124ebe7cf3e67274c2d72751431_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/RLzHAoZe/images/d1f39e319080fcd6a7f11ea733ad99ab01ba5881_350.webp",
+      "https://cdn.modrinth.com/data/RLzHAoZe/images/add4077f00276b6de512ac6eba516064f0e7357d_350.webp",
+      "https://cdn.modrinth.com/data/RLzHAoZe/images/731da72989bc5c8ce955898e8fbc6214c4b0dd53_350.webp"
+    ],
+    "source_video": {
+      "id": "E-Pnhr57MeU",
+      "url": "https://www.youtube.com/watch?v=E-Pnhr57MeU",
+      "title": "Shader Pack"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "hot-reload-resource-packs",
+    "name": "Hot-Reload Resource Packs",
+    "pt": "mod",
+    "desc": "Reloads resource packs when changes to the resourcepacks folder are made.",
+    "dl": 19179,
+    "follows": 13,
+    "icon": "https://cdn.modrinth.com/data/8xOCApGi/fd27c06abeb94e4d17cfbb796ee7b9ea92f2bc0d_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "E-Pnhr57MeU",
+      "url": "https://www.youtube.com/watch?v=E-Pnhr57MeU",
+      "title": "Resource Packs"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "camerao",
+    "name": "Camerao",
+    "pt": "mod",
+    "desc": "Most feature packed camera utility while still being minimal.",
+    "dl": 384,
+    "follows": 0,
+    "icon": "https://cdn.modrinth.com/data/fKpM0IBf/f53720e35e31966e0236f3fb33035ca11402cd2e_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/fKpM0IBf/images/d48e5db713c3115ad35ec71c189815737a4b7b0c_350.webp",
+      "https://cdn.modrinth.com/data/fKpM0IBf/images/a9831cd72cdb83a20b8e24c034077ea58b3f460d_350.webp",
+      "https://cdn.modrinth.com/data/fKpM0IBf/images/a9bbfe25b908bd27783f3baddda5f100c2ef52e0_350.webp"
+    ],
+    "source_video": {
+      "id": "E-Pnhr57MeU",
+      "url": "https://www.youtube.com/watch?v=E-Pnhr57MeU",
+      "title": "Utility/Camera Mods"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "classic-farlands",
+    "name": "Classic Farlands",
+    "pt": "mod",
+    "desc": "Brings the classic style of Far Lands to 1.21+",
+    "dl": 87347,
+    "follows": 153,
+    "icon": "https://cdn.modrinth.com/data/GJPO8KoR/63301885240d8eac4e0ec54511bd3ede9f9e3864_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/GJPO8KoR/images/4c33b09026f46301feb28cae6d3442f96f7f07cf_350.webp",
+      "https://cdn.modrinth.com/data/GJPO8KoR/images/1379a402c0645ba3b364fcc5fe11c0ea80b0117d_350.webp",
+      "https://cdn.modrinth.com/data/GJPO8KoR/images/72d8fa10394b24b773db897f6641053f401693a7_350.webp"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Classic Farlands"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "homesteads",
+    "name": "Homesteads - Villager Expansion & New Professions",
+    "pt": "mod",
+    "desc": "Homesteads is for the villagers who would prefer to forge their own path in the wilds. This mod adds 5 new Villagers, the Beekeeper, The Lumberjack, The Trapper, The Prospector and The Forager. As well as a variety of new structures for them to inhabit.",
+    "dl": 77411,
+    "follows": 208,
+    "icon": "https://cdn.modrinth.com/data/6ItsEKMh/9a6e96ae8bf9255c16a4521c607ddd75dcea803e.gif",
+    "gallery": [
+      "https://cdn.modrinth.com/data/6ItsEKMh/images/f0e008034acd95f2825e608067473b1dbf5e9ad1_350.webp",
+      "https://cdn.modrinth.com/data/6ItsEKMh/images/8f9e383ec9d95f5ec7166323a5315633417e59cd_350.webp",
+      "https://cdn.modrinth.com/data/6ItsEKMh/images/d3981f3ac57c1d8f938fe3d0326ab41269354ef3_350.webp",
+      "https://cdn.modrinth.com/data/6ItsEKMh/images/d3c5ad8afccfbe998abfa401f4eb4e1c2b061ffa_350.webp"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Homesteads Villager Expansion"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "vanilla-outsider-true-sleep",
+    "name": "VO: True Sleep",
+    "pt": "mod",
+    "desc": "Don't skip the night—speed it up. A seamless, simulation-preserving sleep overhaul for Minecraft.",
+    "dl": 6450,
+    "follows": 22,
+    "icon": "https://cdn.modrinth.com/data/AYb0NDWE/55d89e5be7f105b350a387cebe4146cd4e3833ab_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/AYb0NDWE/images/6b87fd550f4277bef67bdd707787ed947e8f0f33_350.webp"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Seamless Sleep"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "untitled-duck-mod",
+    "name": "Untitled Duck Mod",
+    "pt": "mod",
+    "desc": "Ducks and Geese for Forge and Fabric!",
+    "dl": 2097075,
+    "follows": 392,
+    "icon": "https://cdn.modrinth.com/data/ojFjz7JF/f1ebf8eec6b8fc3f801d2f994d04663c81a50c05_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/ojFjz7JF/images/9aa8a20ddb05ccb0d8017c73fbc7940174d13704_350.webp",
+      "https://cdn.modrinth.com/data/ojFjz7JF/images/130e8bdf8cbbfe3531dab85aaa1c4320329d3870_350.webp",
+      "https://cdn.modrinth.com/data/ojFjz7JF/images/adbccae1c8ac65e0e0b0ef112959fce0f1a0c275_350.webp",
+      "https://cdn.modrinth.com/data/ojFjz7JF/images/722461b0e4404cf11321780f72337a2f714e09c8_350.webp"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Untitled Duck Mod"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "instant-feedback",
+    "name": "Instant Feedback",
+    "pt": "mod",
+    "desc": "Implements the most requested features from feedback.minecraft.net",
+    "dl": 27650,
+    "follows": 167,
+    "icon": "https://cdn.modrinth.com/data/pcDsJNzK/cf31e4030b5a572c2c8dc96b85e9bb0dbcd6a03d_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/pcDsJNzK/images/ee682df53ff06a0c06884f45ba75abdcd5da8cda_350.webp",
+      "https://cdn.modrinth.com/data/pcDsJNzK/images/3e41660455d967e57de45c9f64874d6bee338db2_350.webp",
+      "https://cdn.modrinth.com/data/pcDsJNzK/images/f7698bcd91f446981e98388b4a09a9671cdf7df4_350.webp",
+      "https://cdn.modrinth.com/data/pcDsJNzK/images/caca8543217fbdc68cc6d1d98044023e8c6dba9d_350.webp"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Instant Feedback"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "happy-ghast-but-fast-10x-speed",
+    "name": "Happy Ghast but Fast (10x Speed)",
+    "pt": "mod",
+    "desc": "This makes the happy ghast faster using Minecraft attributes",
+    "dl": 2452,
+    "follows": 1,
+    "icon": "https://cdn.modrinth.com/data/CCoEO7kq/8dfcb73ff6c759211ff0525ba0195371dbf51a85_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Speed Happy Ghast"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "convenient-effects",
+    "name": "Convenient Effects",
+    "pt": "mod",
+    "desc": "Better potion effects, because even potions deserve a little glow-up with some polish and finesse.",
+    "dl": 87548,
+    "follows": 149,
+    "icon": "https://cdn.modrinth.com/data/BEVhblTh/dfc5cc4ce0416a4549876828ff0ecb108bd4f229_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Convenient Effects"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "hurl",
+    "name": "Hurl: Throwable Maces",
+    "pt": "mod",
+    "desc": "Throwable Maces and new corresponding effects for vanilla mace and trident enchantments.",
+    "dl": 7031,
+    "follows": 37,
+    "icon": "https://cdn.modrinth.com/data/aIPHvVbO/8e53599ee75b0cf891824655edbdeae26874b126_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/aIPHvVbO/images/b78b26a3b919a83d96deacde945eeb99dc48be98_350.webp",
+      "https://cdn.modrinth.com/data/aIPHvVbO/images/3a7dcd13ccf6e51dbb8bd25545382a0f49ef99a3_350.webp",
+      "https://cdn.modrinth.com/data/aIPHvVbO/images/fbddf736cfcf9d85e06c2563e3e5a7638771e29c_350.webp",
+      "https://cdn.modrinth.com/data/aIPHvVbO/images/fa7b067306eedad9f60dc0ef041224cbf647f199_350.webp"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Hurl"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "show-durability",
+    "name": "Show Durability",
+    "pt": "mod",
+    "desc": "Show the durability of items in inventories and in the hotbar directly on the items with a number.",
+    "dl": 382492,
+    "follows": 253,
+    "icon": "https://cdn.modrinth.com/data/g2HPYy8r/icon.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/g2HPYy8r/images/6a42513523fc3f58937304b46f01e58f7440b719_350.webp",
+      "https://cdn.modrinth.com/data/g2HPYy8r/images/09a47752f9758b01fe098064bb78dd950c04db38_350.webp"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Show Durability"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "uncraft-everything",
+    "name": "Uncraft Everything",
+    "pt": "mod",
+    "desc": "Crafted wrong item? Uncraft everything with this mod!",
+    "dl": 286707,
+    "follows": 147,
+    "icon": "https://cdn.modrinth.com/data/9cz66Qto/7cfdf1e53a0da6aed3fb4acd8b3fa9881ab49cb6_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/9cz66Qto/images/0d7026073b276b840cef946232a1c1a1af0f548a.png",
+      "https://cdn.modrinth.com/data/9cz66Qto/images/d9ed8dab6564f4f3153c4a14b39230141c53d6f1_350.webp",
+      "https://cdn.modrinth.com/data/9cz66Qto/images/f4bb7a3d2b67f7779b5ab413db05470b10e8b3eb_350.webp"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Uncraft Everything"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "bloomcraft",
+    "name": "Bloomcraft",
+    "pt": "mod",
+    "desc": "Flower-covered mooblooms and cluckblooms bring fresh color and life to your world!",
+    "dl": 19024,
+    "follows": 82,
+    "icon": "https://cdn.modrinth.com/data/i6w1VobP/70553fd447898ada8101206d4be4d1f00f168c16_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Bloomcraft"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "itemstats",
+    "name": "Item Stat Tracker",
+    "pt": "mod",
+    "desc": "Track usage stats on all of your gear!",
+    "dl": 22888,
+    "follows": 74,
+    "icon": "https://cdn.modrinth.com/data/ow5rRJYD/85a085b84c4605fb03aaa57a65d61f47f41ae261.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/ow5rRJYD/images/b2e6a3abeef3e9a0a83af9a6e6aa60f9bc4012a2.png",
+      "https://cdn.modrinth.com/data/ow5rRJYD/images/843267f6d5e221bbf58410302c40a3b5427d5f9e.png",
+      "https://cdn.modrinth.com/data/ow5rRJYD/images/6e2fbccc346141420fd31fbeda0d82223e966cdd.png"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Item Stat Tracker"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "adaptive-slot-cursor",
+    "name": "Adaptive Slot Cursor",
+    "pt": "mod",
+    "desc": "Changes the cursor based on hovering slots or dragging items in inventories",
+    "dl": 4563,
+    "follows": 30,
+    "icon": "https://cdn.modrinth.com/data/FTdXYa1j/5301ee1ac702a16ba6bde7cb10ac852bf0a1ecf6.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/FTdXYa1j/images/09e2adb4c60f8f3b8f017eefd54b42b6089684b0.gif"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Adaptive Slot Cursor"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "fashionable-copper-golems",
+    "name": "Copper Golem Hats",
+    "pt": "mod",
+    "desc": "Put any item on a copper golem's head as a hat. Shift + right-click to add it, shears to remove it",
+    "dl": 2479,
+    "follows": 6,
+    "icon": "https://cdn.modrinth.com/data/cnhPQ7CA/56e0141e3a71301a12ed17cc5d44c8deedaadce1_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/cnhPQ7CA/images/8137a5518d1d1a4af563f2d8d17f107098750b19.gif"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Copper Golem Hats"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "bucket-of-frog",
+    "name": "Bucket of Frog",
+    "pt": "mod",
+    "desc": "Capture frogs in buckets and carry them safely with you",
+    "dl": 15292,
+    "follows": 43,
+    "icon": "https://cdn.modrinth.com/data/K49NhW9E/899b17217bf90b8b2ebf7431d3a1c6d7c5edf07b.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/K49NhW9E/images/4eeddf47e4a757d4426caed6c746116bc5f0fe5a.png",
+      "https://cdn.modrinth.com/data/K49NhW9E/images/ebf846ac06ba961b004666ff30d986af2d21c4fc.png",
+      "https://cdn.modrinth.com/data/K49NhW9E/images/851310618ed11d4624fbd100f810bcf4e79be2f6.png"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Bucket of Frog"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "potion-cauldron",
+    "name": "Potion Cauldron",
+    "pt": "mod",
+    "desc": "Brings the potion cauldron feature from bedrock edition.",
+    "dl": 245577,
+    "follows": 267,
+    "icon": "https://cdn.modrinth.com/data/yTSyrZpM/672dd7644365427f42f680764110b34cb1afd5ae_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/yTSyrZpM/images/e5762c95f9e6372d9e91c847a75b53439173b787.gif"
+    ],
+    "source_video": {
+      "id": "bhCdlYhLbic",
+      "url": "https://www.youtube.com/watch?v=bhCdlYhLbic",
+      "title": "Potion Cauldron"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "shulker-in-shulker",
+    "name": "Shulker-In-Shulker",
+    "pt": "mod",
+    "desc": "Shulker in Shulker lets you store shulker boxes inside other shulker boxes, making inventory management simpler and more flexible. No more clutter—pack smarter and carry more, all while keeping the vanilla feel intact.",
+    "dl": 8577,
+    "follows": 9,
+    "icon": "https://cdn.modrinth.com/data/MOGBHn24/0ec263c83ebb7639b2e1c42ad5e9d59954f45bf9.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/MOGBHn24/images/e1b71cee91ef3cb698c79af993ad6835715c7359_350.webp"
+    ],
+    "source_video": {
+      "id": "Wk7b_VCPuBU",
+      "url": "https://www.youtube.com/watch?v=Wk7b_VCPuBU",
+      "title": "Clutter No More (NeoForge, Fabric)"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "rubble-colony",
+    "name": "Rubble Colony",
+    "pt": "mod",
+    "desc": "A datapack for Enderscape that adds a Rubblemite variant for every rock in Minecraft",
+    "dl": 570,
+    "follows": 23,
+    "icon": "https://cdn.modrinth.com/data/JXNbGotZ/a63e0f740270a1466ab96153cf94a7b84809ab10_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/JXNbGotZ/images/20ec28e763b2047d2e368b126cc5d8d7b043cef0_350.webp",
+      "https://cdn.modrinth.com/data/JXNbGotZ/images/0a700db4e50936b9b5ab335755c770cbc7f2564b_350.webp",
+      "https://cdn.modrinth.com/data/JXNbGotZ/images/58670b38d398ce2ee7a25b5495dc0da93d4456e0_350.webp",
+      "https://cdn.modrinth.com/data/JXNbGotZ/images/eef59b7c1e73e5a3213b6870d4ab94040e7e87d8_350.webp"
+    ],
+    "source_video": {
+      "id": "Wk7b_VCPuBU",
+      "url": "https://www.youtube.com/watch?v=Wk7b_VCPuBU",
+      "title": "Enderscape (NeoForge, Fabric)"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "dungeons-and-taverns-ancient-city-overhaul",
+    "name": "Dungeons and Taverns Ancient City Overhaul",
+    "pt": "mod",
+    "desc": "Standalone Splinter version of Dungeons and Taverns Ancient City Overhaul",
+    "dl": 4587715,
+    "follows": 984,
+    "icon": "https://cdn.modrinth.com/data/DNuNq5bb/7860ffd35ef9e89ff4b7a809d3ebab79a9a4709b_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/DNuNq5bb/images/4585e86bfcdbea190931ec890721ddcf479d31b3_350.webp",
+      "https://cdn.modrinth.com/data/DNuNq5bb/images/f2edf1f3c08ce23be687a7b79794c3c196341c66_350.webp",
+      "https://cdn.modrinth.com/data/DNuNq5bb/images/f40a260f24a1074604a6e201fb065705edf493a0_350.webp",
+      "https://cdn.modrinth.com/data/DNuNq5bb/images/f2042f52d30d003c5f9af5dd4f8b94610844cd12_350.webp"
+    ],
+    "source_video": {
+      "id": "UvSgik4TDYQ",
+      "url": "https://www.youtube.com/watch?v=UvSgik4TDYQ",
+      "title": "Dungeons and Taverns"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "it-takes-a-pillage-continuation",
+    "name": "It Takes a Pillage Continuation",
+    "pt": "mod",
+    "desc": "The Pillagers have expanded their Civilization! They have set up encampments and fortresses all over the world! Do you have what it takes to overcome these new threats, and seize their precious loot?",
+    "dl": 1189468,
+    "follows": 431,
+    "icon": "https://cdn.modrinth.com/data/QOJOg1gE/305970c55e689be5950c9cdf60fa08c49c8cad7b_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/QOJOg1gE/images/22cac2fcee59fb3c9f823ee3a04987d893d9ea68_350.webp",
+      "https://cdn.modrinth.com/data/QOJOg1gE/images/07f666fa28b057917ae02a3810ff446529404bbd_350.webp",
+      "https://cdn.modrinth.com/data/QOJOg1gE/images/a4d2e070db5391a89450337cf8148be5de39e6f3_350.webp",
+      "https://cdn.modrinth.com/data/QOJOg1gE/images/3843421435675baea703fc0fde0e34c36e248b5b_350.webp"
+    ],
+    "source_video": {
+      "id": "UvSgik4TDYQ",
+      "url": "https://www.youtube.com/watch?v=UvSgik4TDYQ",
+      "title": "It Takes a Pillage"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "incendium-build-height",
+    "name": "Incendium Build Height",
+    "pt": "mod",
+    "desc": "Increase the Nether build height to 384 for use with the Incendium datapack/mod",
+    "dl": 1397,
+    "follows": 3,
+    "icon": "https://cdn.modrinth.com/data/9Glvh2ww/bfee059d92845b22156cc154038cd49e1e3c0bca_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "UvSgik4TDYQ",
+      "url": "https://www.youtube.com/watch?v=UvSgik4TDYQ",
+      "title": "Incendium"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "mclabs-addons",
+    "name": "MCLabs Addons",
+    "pt": "mod",
+    "desc": "A client-side mod for MCLabs that takes the information the server already tells you in chat and puts it where you can actually see it. (Lol)",
+    "dl": 650,
+    "follows": 2,
+    "icon": "https://cdn.modrinth.com/data/W09tZtbv/e7902ed54ab14584c6938272453aa4d370ef4e90_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/W09tZtbv/images/03197a6a1ff6c3d3186635159a174442ce997b7c_350.webp",
+      "https://cdn.modrinth.com/data/W09tZtbv/images/0b0d38e07d4a66d8c54ee72d596d2adf5e053a8c_350.webp"
+    ],
+    "source_video": {
+      "id": "UvSgik4TDYQ",
+      "url": "https://www.youtube.com/watch?v=UvSgik4TDYQ",
+      "title": "Jade"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "jei",
+    "name": "Just Enough Items (JEI)",
+    "pt": "mod",
+    "desc": "View Items and Recipes",
+    "dl": 85104121,
+    "follows": 11769,
+    "icon": "https://cdn.modrinth.com/data/u6dRKJwZ/4a3f18ac0d096c9f8e9176984c44be4e58f94c89_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/u6dRKJwZ/images/7e845f89fbd1cece7cbec9474c193d500d34e5d9_350.webp",
+      "https://cdn.modrinth.com/data/u6dRKJwZ/images/3eeba45a5139933d338cb1b3d93ba341693f9ed8_350.webp",
+      "https://cdn.modrinth.com/data/u6dRKJwZ/images/631c360143228a749271d1b01e8c3d9963f9b495_350.webp",
+      "https://cdn.modrinth.com/data/u6dRKJwZ/images/8638bee21682cf82d79f8e841816866aeb13c6a6_350.webp"
+    ],
+    "source_video": {
+      "id": "UvSgik4TDYQ",
+      "url": "https://www.youtube.com/watch?v=UvSgik4TDYQ",
+      "title": "JEI (Just Enough Items)"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "appleskinplusminus",
+    "name": "Appleskin+LungeFix",
+    "pt": "mod",
+    "desc": "Always on saturation and exhaustion HUD visualization, with no language changes and a minimal layout. Not compatible with AppleSkin, remove AppleSkin first.",
+    "dl": 10073,
+    "follows": 6,
+    "icon": "https://cdn.modrinth.com/data/DROUMbsz/5bc0b69fad1912a87a461984c4ecacad79b3111d_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/DROUMbsz/images/93be8d19cd5660e0f29efe958f1454e2930a8984_350.webp"
+    ],
+    "source_video": {
+      "id": "UvSgik4TDYQ",
+      "url": "https://www.youtube.com/watch?v=UvSgik4TDYQ",
+      "title": "AppleSkin"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "trinkets-lantern-support",
+    "name": "Trinkets Lantern Support",
+    "pt": "mod",
+    "desc": "A datapack enabling Lantern support for Trinkets Updated slots (works with LambDynamicLights!)",
+    "dl": 16162,
+    "follows": 23,
+    "icon": "https://cdn.modrinth.com/data/Rxg5piNV/5400952c8f4ebfd1e58e8e7ab36fc8e80be0af59.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/Rxg5piNV/images/611937d4b7e7ea5a3577ad098de55fcb8e78b6c9_350.webp"
+    ],
+    "source_video": {
+      "id": "UvSgik4TDYQ",
+      "url": "https://www.youtube.com/watch?v=UvSgik4TDYQ",
+      "title": "LambDynamicLights"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "better-nature",
+    "name": "Better Nature",
+    "pt": "mod",
+    "desc": "This mostly client side mod adds mushrooms to trees, insects, 3D leaves, new plants, and new animals compatible with vanilla clients",
+    "dl": 32840,
+    "follows": 59,
+    "icon": "https://cdn.modrinth.com/data/T1QVd6Ni/4f1e58519d0fd830d9f2b34217f3331c70e653eb.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/T1QVd6Ni/images/556aef920283308acfbdd51bd55d2acd12edf231_350.webp",
+      "https://cdn.modrinth.com/data/T1QVd6Ni/images/53a03e5f42de3c866c6bebcea967a085b9e48d5c_350.webp",
+      "https://cdn.modrinth.com/data/T1QVd6Ni/images/49d5bdd5a2eaa1d0cd3093f62d386bcc9f843f08_350.webp",
+      "https://cdn.modrinth.com/data/T1QVd6Ni/images/e0344c7822380d7a8cefb9a9e9aef5ab2e89a06c_350.webp"
+    ],
+    "source_video": {
+      "id": "H1FGrBgJbV0",
+      "url": "https://www.youtube.com/watch?v=H1FGrBgJbV0",
+      "title": "Nature X"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "lumalight",
+    "name": "lumaLight",
+    "pt": "mod",
+    "desc": "Colorful client-side lighting, outlines, bloom, and a biome-aware cartoon atmosphere without shader packs.",
+    "dl": 27091,
+    "follows": 145,
+    "icon": "https://cdn.modrinth.com/data/YYLuU3ee/5149382fbe19d5ac212efb573288621090ea7fd9_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/YYLuU3ee/images/f7b46a69b415738085788ae912617b0878f8f2bb_350.webp",
+      "https://cdn.modrinth.com/data/YYLuU3ee/images/450824c64fefca50221a13b32565cef964e78670_350.webp",
+      "https://cdn.modrinth.com/data/YYLuU3ee/images/a9a59a5f51b7b5da323e66856b5d5422bf9f79f2_350.webp",
+      "https://cdn.modrinth.com/data/YYLuU3ee/images/341c879c2c1f5a4a8955bc425f8dfe23a50777e2_350.webp"
+    ],
+    "source_video": {
+      "id": "H1FGrBgJbV0",
+      "url": "https://www.youtube.com/watch?v=H1FGrBgJbV0",
+      "title": "Biome Bloom"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "celestia-sky",
+    "name": "Celestia: Shooting Stars",
+    "pt": "mod",
+    "desc": "Celestia adds synchronized meteor showers to the Overworld. The server calculates the trajectory and appearance so all players see the exact same streak at the same time.",
+    "dl": 12188,
+    "follows": 51,
+    "icon": "https://cdn.modrinth.com/data/wNm4ZRCd/d33259c5f05e4156bd7d05589939170a6c386864_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/wNm4ZRCd/images/11155f8f13031e66186a282d575c44078e1a2949_350.webp",
+      "https://cdn.modrinth.com/data/wNm4ZRCd/images/36930f532fa4c1eef93b50e47faa89d8023a0285.gif",
+      "https://cdn.modrinth.com/data/wNm4ZRCd/images/6c2dbeb54c5c4b6ba44d6cae4c0ed35a5fb12d1c_350.webp"
+    ],
+    "source_video": {
+      "id": "H1FGrBgJbV0",
+      "url": "https://www.youtube.com/watch?v=H1FGrBgJbV0",
+      "title": "Ex Meteor Shower"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "illager-expansion-polymer",
+    "name": "Illager Expansion Recrafted",
+    "pt": "mod",
+    "desc": "A Fabric Server Side Mod that focuses on expanding content surrounding the mysterious Illagers in Minecraft!",
+    "dl": 43546,
+    "follows": 156,
+    "icon": "https://cdn.modrinth.com/data/zkp424MG/c126b2250296df774e0cde79cc0a81c67302911c_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/zkp424MG/images/cef53cc5afa7ee8db1c4ac243fbb433c2ac03b7a_350.webp",
+      "https://cdn.modrinth.com/data/zkp424MG/images/420842d12b2a49a0003d56b0c7a78921ead3154f_350.webp",
+      "https://cdn.modrinth.com/data/zkp424MG/images/fe3f601396bc13602c82ea7b4116c068a9e281e5_350.webp",
+      "https://cdn.modrinth.com/data/zkp424MG/images/03e3d3444f00d08cbc24031cf281c929c6442511_350.webp"
+    ],
+    "source_video": {
+      "id": "H1FGrBgJbV0",
+      "url": "https://www.youtube.com/watch?v=H1FGrBgJbV0",
+      "title": "Recrafted"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "world-alive",
+    "name": "World Alive: Ambient birds and wildlife",
+    "pt": "mod",
+    "desc": "Particle based client side ambient birds and wildlife, based on cosy critters and creepy crawlies. Also contains other ambient things such as mirages in the desert, distant players on horseback, distant boats in the ocean.",
+    "dl": 34266,
+    "follows": 161,
+    "icon": "https://cdn.modrinth.com/data/YFkuYUFq/88d1627116dd45c1febbf06c14310823148a9a76_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/YFkuYUFq/images/9a7f92428a61be596eb9290de440433ebf540310_350.webp"
+    ],
+    "source_video": {
+      "id": "H1FGrBgJbV0",
+      "url": "https://www.youtube.com/watch?v=H1FGrBgJbV0",
+      "title": "Cosy Critters and creepy crawlies"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "wakes-reforged",
+    "name": "Wakes Reforged",
+    "pt": "mod",
+    "desc": "Wakes aims to add simple wakes that fit the spirit of vanilla",
+    "dl": 1076169,
+    "follows": 295,
+    "icon": "https://cdn.modrinth.com/data/E0SdeAoH/f655ca1093b28f2c02cafd1577160513d121a8fa_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "H1FGrBgJbV0",
+      "url": "https://www.youtube.com/watch?v=H1FGrBgJbV0",
+      "title": "Wakes"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "mini-vfx",
+    "name": "mini-vfx",
+    "pt": "mod",
+    "desc": "Small serverside effects for dropped items and more!",
+    "dl": 9493,
+    "follows": 40,
+    "icon": "https://cdn.modrinth.com/data/nRbtqf92/10070373f51be10cb42685a89a4991c6e749b7f6.png",
+    "gallery": [],
+    "source_video": {
+      "id": "H1FGrBgJbV0",
+      "url": "https://www.youtube.com/watch?v=H1FGrBgJbV0",
+      "title": "VFX"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "alive-well",
+    "name": "Alive Well",
+    "pt": "mod",
+    "desc": "Difficult survival mod specifically designed for the modpack 'Dangerous World'",
+    "dl": 59701,
+    "follows": 1,
+    "icon": "https://cdn.modrinth.com/data/bbY4H7Rx/9bab99e279ae0fc0cc86ede9144c92171b601713_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/bbY4H7Rx/images/46fccdc3aa38dc6147d6d07350f14fa5f938270e.png",
+      "https://cdn.modrinth.com/data/bbY4H7Rx/images/a44a2ef17110e73093b6246254540c775b4bbde4.png"
+    ],
+    "source_video": {
+      "id": "H1FGrBgJbV0",
+      "url": "https://www.youtube.com/watch?v=H1FGrBgJbV0",
+      "title": "MC Alive"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "auroraslanterns",
+    "name": "Aurora's Lanterns",
+    "pt": "mod",
+    "desc": "A mod all about lanterns and other light sources, focusing on small details.",
+    "dl": 22037,
+    "follows": 70,
+    "icon": "https://cdn.modrinth.com/data/xABbFTq3/847edae09611081c6455b1bd76726d1389db3526.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/xABbFTq3/images/eed68c6744c77e4d830aa1ab5a17383e2e81824d.png",
+      "https://cdn.modrinth.com/data/xABbFTq3/images/6536d194fbb63fbf4e962668341d92ecbdb192b0_350.webp",
+      "https://cdn.modrinth.com/data/xABbFTq3/images/792a74a8997a26632fbf4fab0b338f35b88ef940_350.webp"
+    ],
+    "source_video": {
+      "id": "H1FGrBgJbV0",
+      "url": "https://www.youtube.com/watch?v=H1FGrBgJbV0",
+      "title": "Auroras"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "hendrixs-better-spring-to-life",
+    "name": "Hendrix's Better Spring to Life",
+    "pt": "mod",
+    "desc": "Improve the Minecraft Forests with new Hollow Logs, Firefly Jars, new ambient mobs and more!",
+    "dl": 8824,
+    "follows": 44,
+    "icon": "https://cdn.modrinth.com/data/FwTcHrQD/c55ee2c154e6127a45aef33023b1859c651780ad_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/FwTcHrQD/images/784bb9f2c2ef5dd5ef9787a13ebf73582b785bdc_350.webp",
+      "https://cdn.modrinth.com/data/FwTcHrQD/images/efa2c4d4705e35e93665d0f050fff0ee12584375_350.webp",
+      "https://cdn.modrinth.com/data/FwTcHrQD/images/3705b9c6894d31e5e06a094780b3a62ba90edf42_350.webp",
+      "https://cdn.modrinth.com/data/FwTcHrQD/images/8371b9b94332e45f6f0dc5ad8be6ffa4b50bb4df_350.webp"
+    ],
+    "source_video": {
+      "id": "H1FGrBgJbV0",
+      "url": "https://www.youtube.com/watch?v=H1FGrBgJbV0",
+      "title": "More Ambient Mods!"
+    },
+    "query": "minecraft aesthetic mods 26.3 fabric"
+  },
+  {
+    "slug": "lite-shaders",
+    "name": "E-LITE shaders (MakeUp edit)",
+    "pt": "shader",
+    "desc": "A MakeUp - Ultra Fast shaders edit that is highly customizable, beautiful, and fast!",
+    "dl": 1682870,
+    "follows": 385,
+    "icon": "https://cdn.modrinth.com/data/LTvf5Tji/072376c650c8cec851cae74e2686599454d446f8_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/LTvf5Tji/images/20136478b4568176829c5af5b16b2f7a32dc8540_350.webp",
+      "https://cdn.modrinth.com/data/LTvf5Tji/images/e1566b9f6ff88a89289062f72367f69879672aab_350.webp",
+      "https://cdn.modrinth.com/data/LTvf5Tji/images/b174f344585f2078c2e693e53b863a153bf043d2_350.webp",
+      "https://cdn.modrinth.com/data/LTvf5Tji/images/397fb3c532c815e46747cea69ede141e0c13e1e7_350.webp"
+    ],
+    "source_video": {
+      "id": "pOzIYahmT2g",
+      "url": "https://www.youtube.com/watch?v=pOzIYahmT2g",
+      "title": "MakeUp Ultra Fast Shaders"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "spooklementary",
+    "name": "Spooklementary",
+    "pt": "shader",
+    "desc": "A Spooky, very moody and atmospheric Complementary Shaders Edit",
+    "dl": 3336751,
+    "follows": 873,
+    "icon": "https://cdn.modrinth.com/data/6uJCfiCH/d99992fa45df7ab13ec3b20e357fe1930c10f381_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/6uJCfiCH/images/16b942e3d1b6221726192776df5bb7482c3cf55f_350.webp",
+      "https://cdn.modrinth.com/data/6uJCfiCH/images/121b7487ceef2872e396c902a3ec858ffc115f39_350.webp",
+      "https://cdn.modrinth.com/data/6uJCfiCH/images/1948965f5909faf35c8ef0fdb38488cc3d8e8191_350.webp",
+      "https://cdn.modrinth.com/data/6uJCfiCH/images/1d060c5201baa78d7d43e0bac0ecd3e84a809e1a_350.webp"
+    ],
+    "source_video": {
+      "id": "pOzIYahmT2g",
+      "url": "https://www.youtube.com/watch?v=pOzIYahmT2g",
+      "title": "Complementary Shaders"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "opal-shaders",
+    "name": "OPAL Shaders",
+    "pt": "shader",
+    "desc": "OPAL Shaders is a shaderpack for Minecraft Java Edition based on BSL Shaders created by Capt Tatsu.\nIt aims to blend a fantasy atmosphere with natural colors and contrast while staying true to Minecraft's original style.",
+    "dl": 396465,
+    "follows": 261,
+    "icon": "https://cdn.modrinth.com/data/w8N6pbsN/976c04d34460dc4a9e4abcf59f7dd46bba487371_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/w8N6pbsN/images/90ce23670ccd44cbcc4379e423a3bb0d9df75464_350.webp",
+      "https://cdn.modrinth.com/data/w8N6pbsN/images/d4b23531463b05688d5be89397ec6be2e43ab1c7_350.webp",
+      "https://cdn.modrinth.com/data/w8N6pbsN/images/12c04e06704a1c4a659beb29d869d7390d07b403_350.webp",
+      "https://cdn.modrinth.com/data/w8N6pbsN/images/d13217ccc10a458bc69ea90f608e5e43fdf825e9_350.webp"
+    ],
+    "source_video": {
+      "id": "pOzIYahmT2g",
+      "url": "https://www.youtube.com/watch?v=pOzIYahmT2g",
+      "title": "BSL Shaders"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "luminol-republic-shader",
+    "name": "Luminol Republic Shader",
+    "pt": "shader",
+    "desc": "Atmospheric, warm-toned shaders for Iris with realistic waves, godrays, soft shadows and natural grey-teal water. Six profiles, from Potato to Ultra.",
+    "dl": 1721,
+    "follows": 0,
+    "icon": "https://cdn.modrinth.com/data/kNFcEjhS/56764d322890af76c8299dfcf116db4a93355064.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/kNFcEjhS/images/d8dd2e142f8e6b80b62b4aca7f265db5c089a9c7_350.webp",
+      "https://cdn.modrinth.com/data/kNFcEjhS/images/c6d9fb46f195bd525fca3ff4016361ecfd4880d1_350.webp",
+      "https://cdn.modrinth.com/data/kNFcEjhS/images/a1eff351faaa3f42efb891e5b7827a4f41715972_350.webp",
+      "https://cdn.modrinth.com/data/kNFcEjhS/images/b1e6804b244e62d306f6ee22f96033ad30b2d721_350.webp"
+    ],
+    "source_video": {
+      "id": "pOzIYahmT2g",
+      "url": "https://www.youtube.com/watch?v=pOzIYahmT2g",
+      "title": "Top 3 ULTRA Realistic Shaders for Minecraft Java 26.3 (Iris \\u0026 OptiFine)"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "energy-shaders-java",
+    "name": "Energy Shaders Java",
+    "pt": "shader",
+    "desc": "Energy Shaders for Java. A vanilla Minecraft shaderpack that aims on making the game more vibrant and aesthetic. Giving Minecraft a completely new Style. No Optifine/Iris required!",
+    "dl": 97782,
+    "follows": 89,
+    "icon": "https://cdn.modrinth.com/data/Kqx96bgP/f000c8e1d08df0a1639539cb44f328131d8cfad8_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/Kqx96bgP/images/fc985a759811e9f67b5c5dd817768fc0a4ec4e4e_350.webp",
+      "https://cdn.modrinth.com/data/Kqx96bgP/images/f93317cbc5379cc2822e7243026dbda427c34733_350.webp",
+      "https://cdn.modrinth.com/data/Kqx96bgP/images/6575a71187b89b7b1bfa3718fc8be6713b67425b_350.webp",
+      "https://cdn.modrinth.com/data/Kqx96bgP/images/0b32fab4186c2ebc23735cc0f2c4e9fa8bc86010_350.webp"
+    ],
+    "source_video": {
+      "id": "OHzwdZY8IVI",
+      "url": "https://www.youtube.com/watch?v=OHzwdZY8IVI",
+      "title": "Iris Shaders for Minecraft 26.3: Shaders Off vs On \\u0026 How to Install"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "reverie_shader",
+    "name": "Reverie",
+    "pt": "shader",
+    "desc": "Shader with a foggy and warm look. It leverages new features added by Iris for effects previously impossible to achieve.",
+    "dl": 436518,
+    "follows": 243,
+    "icon": "https://cdn.modrinth.com/data/frac8sks/2d85a0f09daa3823864adda07c23f4338f755ac1_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/frac8sks/images/ae7df48f1b7a7a4cb81e353d5bc42c251e95ab7f_350.webp",
+      "https://cdn.modrinth.com/data/frac8sks/images/1a9730a7210110fd6a5d2d89415bb8d6e0c87849_350.webp",
+      "https://cdn.modrinth.com/data/frac8sks/images/39494f30e4f7ee96d49d0b0cdb6d2d2373ba3c89_350.webp",
+      "https://cdn.modrinth.com/data/frac8sks/images/33c64ad7ff8ed41559ff8423081b4d4372a8e437_350.webp"
+    ],
+    "source_video": {
+      "id": "re4SWPlWJNc",
+      "url": "https://www.youtube.com/watch?v=re4SWPlWJNc",
+      "title": "Iris for Minecraft 26.3"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "zyko-shaders-for-low-end-pcs",
+    "name": "ZYKO SHADERS FOR LOW-END PCs",
+    "pt": "shader",
+    "desc": "zyko shaders are made for lowend pcs it runs perfectly with good graphics",
+    "dl": 470,
+    "follows": 1,
+    "icon": "https://cdn.modrinth.com/data/XUPdRkWv/5e31bdf0e421ea4df22811b5101527dd3d9075a3_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/XUPdRkWv/images/5be0dc3a72285557ef596c8efd99a533ccd0cb6a_350.webp",
+      "https://cdn.modrinth.com/data/XUPdRkWv/images/9182ac12abfe66c2dd9d1c5069f4ab191332d257_350.webp",
+      "https://cdn.modrinth.com/data/XUPdRkWv/images/004baeb518ae3a17e4da091f632cf50c719f202b_350.webp"
+    ],
+    "source_video": {
+      "id": "F3NokbTL6No",
+      "url": "https://www.youtube.com/watch?v=F3NokbTL6No",
+      "title": "Top 5 Minecraft Shaders for 26.3 (2026)"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "body-camera-shader",
+    "name": "Body Camera",
+    "pt": "shader",
+    "desc": "Adds a body camera effect",
+    "dl": 1461477,
+    "follows": 520,
+    "icon": "https://cdn.modrinth.com/data/by2i3tnt/b09cb3cb97a7914396947025ea96818b62f6ec24.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/by2i3tnt/images/3be877330d71e58a1b2941356fa5fd02a8db7a29_350.webp",
+      "https://cdn.modrinth.com/data/by2i3tnt/images/56a69481739e49bafcf1cec5e816f0395ef6fed0_350.webp",
+      "https://cdn.modrinth.com/data/by2i3tnt/images/c5331ac7775045914f4dfb84a4e78fba51459d0f_350.webp",
+      "https://cdn.modrinth.com/data/by2i3tnt/images/a328209f29fba546d1fe10d447bd904af9e0d2db_350.webp"
+    ],
+    "source_video": {
+      "id": "nNt4uAB7-zM",
+      "url": "https://www.youtube.com/watch?v=nNt4uAB7-zM",
+      "title": "Body Camera Shader"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "renderpearl",
+    "name": "RenderPearl",
+    "pt": "shader",
+    "desc": "Clean, high performance shaders for modern hardware",
+    "dl": 1435624,
+    "follows": 463,
+    "icon": "https://cdn.modrinth.com/data/BrRak9pu/5da818a17671dd9fc72f3ed184183ceca4a0d5b3.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/BrRak9pu/images/ca4c103984c68ebd3706560e472201e85fd56c62_350.webp",
+      "https://cdn.modrinth.com/data/BrRak9pu/images/4758d0b259188bf15980f6afd002fe96f2a236d0_350.webp",
+      "https://cdn.modrinth.com/data/BrRak9pu/images/ae74bd67e5cc1158804d28bbbf9409e15952d0d5_350.webp",
+      "https://cdn.modrinth.com/data/BrRak9pu/images/bc76d1999a1cbb01f5d4fe3c3b172b7ae2786132_350.webp"
+    ],
+    "source_video": {
+      "id": "nNt4uAB7-zM",
+      "url": "https://www.youtube.com/watch?v=nNt4uAB7-zM",
+      "title": "RenderPearl"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "vertalux",
+    "name": "VertaLux",
+    "pt": "shader",
+    "desc": "A shaderpack designed to bring stunning realism to your Minecraft world while remaining completely survival-friendly. Experience beautiful 3D volumetric clouds, pixel-perfect shadows, and gorgeous oceans without compromising your daily gameplay.\nPlease not",
+    "dl": 10123,
+    "follows": 13,
+    "icon": "https://cdn.modrinth.com/data/ZroHvBI3/0c3fe3544916820565a81965c301775c73b1c18d_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/ZroHvBI3/images/912caab1e454aab299039fc2ed9528adde9b501a_350.webp",
+      "https://cdn.modrinth.com/data/ZroHvBI3/images/985b2d9f75b2ec9ffe7c16f8a2e0fb9e1438bb4b_350.webp",
+      "https://cdn.modrinth.com/data/ZroHvBI3/images/e1b882af90ab46fe7aaf53735331038f891a0f1c_350.webp",
+      "https://cdn.modrinth.com/data/ZroHvBI3/images/b30dc55dde1e64af8f9e01e658e465440ea125b2_350.webp"
+    ],
+    "source_video": {
+      "id": "nNt4uAB7-zM",
+      "url": "https://www.youtube.com/watch?v=nNt4uAB7-zM",
+      "title": "Lux V1"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "bloop-shaders",
+    "name": "Bloop Shaders",
+    "pt": "shader",
+    "desc": "A shader aimed at maximum speed while maintaining good visuals.\n\nScalable from low to high end computers.",
+    "dl": 1949195,
+    "follows": 509,
+    "icon": "https://cdn.modrinth.com/data/Q6RQF9Oa/8280ff5dd20a1076fc1f7bc6cf68bb6c6d52c3be_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/Q6RQF9Oa/images/fffaec035f6c2e7a51e951bd17a4085764643f61_350.webp",
+      "https://cdn.modrinth.com/data/Q6RQF9Oa/images/8f38fe65a8a0a1c033149a6bf08329fc006fe92a_350.webp",
+      "https://cdn.modrinth.com/data/Q6RQF9Oa/images/59d75c7f134243240548ef3522ac0f337ed6b030_350.webp",
+      "https://cdn.modrinth.com/data/Q6RQF9Oa/images/17c8a9643bdab527aa7a7a9d3780e637151f96d7_350.webp"
+    ],
+    "source_video": {
+      "id": "nNt4uAB7-zM",
+      "url": "https://www.youtube.com/watch?v=nNt4uAB7-zM",
+      "title": "Bloop Shaders"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "semirealistic-shader",
+    "name": "SemiRealistic Shader",
+    "pt": "shader",
+    "desc": "Lightweight sky & water shader for OptiFine and Iris (1.16.5–26.3). Adds realistic volumetric clouds, sun and moon with phases, god rays, sun glare and lens flare, plus waves that reflect the sky, sun and moon. No shadows, vanilla lighting stays.",
+    "dl": 519,
+    "follows": 0,
+    "icon": "https://cdn.modrinth.com/data/9K2PaGW5/a1afb6c21d5448510480906414fb5a7786bcad99_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/9K2PaGW5/images/5635083ac41f5331350451908691f67c1e9dbe5a_350.webp",
+      "https://cdn.modrinth.com/data/9K2PaGW5/images/c1d4c1e871c990fe34d1d65bc6120a2277af5ced_350.webp"
+    ],
+    "source_video": {
+      "id": "nNt4uAB7-zM",
+      "url": "https://www.youtube.com/watch?v=nNt4uAB7-zM",
+      "title": "Vanilla Plus Shader"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "baked-potato-shaders",
+    "name": "Baked Potato Shaders",
+    "pt": "shader",
+    "desc": "Baked Potato is a lightweight shader pack designed for players who want better visuals without sacrificing performance.",
+    "dl": 38745,
+    "follows": 6,
+    "icon": "https://cdn.modrinth.com/data/x1ZfjCSo/802cb4a3a8f42d8ea7bf75336d1a9a4b622f37aa_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/x1ZfjCSo/images/79a2d6217650ad0b9aed52d17f5c94234e4acb80_350.webp",
+      "https://cdn.modrinth.com/data/x1ZfjCSo/images/81c1bc5b554c86e792b0e0669575986e269e0e57_350.webp",
+      "https://cdn.modrinth.com/data/x1ZfjCSo/images/2c9f208cdd88ffb5d181ea28ea83a31d024e9475_350.webp",
+      "https://cdn.modrinth.com/data/x1ZfjCSo/images/cb2d08cd5f464f952bf2cc2d60448d721e62de4f_350.webp"
+    ],
+    "source_video": {
+      "id": "nNt4uAB7-zM",
+      "url": "https://www.youtube.com/watch?v=nNt4uAB7-zM",
+      "title": "Potato Shaders"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "trickeds-shaders",
+    "name": "Tricked Shaders",
+    "pt": "shader",
+    "desc": "Based on Mellow Shader, a modified version to reduce brightness and make the game look better while maintaining good performance and vanilla feel.",
+    "dl": 95044,
+    "follows": 31,
+    "icon": "https://cdn.modrinth.com/data/ZhCRyz0a/73721bc06d9520f26c9db978e81ae089a1c11eca_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/ZhCRyz0a/images/b59fb123d4999a00db150fb51abe1c2338484c18_350.webp",
+      "https://cdn.modrinth.com/data/ZhCRyz0a/images/f3aebf34ae52a89f12ce7503ac53d1350a910cb6_350.webp"
+    ],
+    "source_video": {
+      "id": "nNt4uAB7-zM",
+      "url": "https://www.youtube.com/watch?v=nNt4uAB7-zM",
+      "title": "Mellow"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "miniature-shader",
+    "name": "Miniature Shader",
+    "pt": "shader",
+    "desc": "Extremely lightweight with shadows and reflections",
+    "dl": 5134518,
+    "follows": 1913,
+    "icon": "https://cdn.modrinth.com/data/UaS8ROxa/85f373314addaf840d9c8667c797da6e0f7e7034_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/beec07b07d81705fadb724a4ffa45851a43c0d3b_350.webp",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/c58e9242e2023df43e1ec1d58daa978e51f2ea15_350.webp",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/21f85c1d28d0b4e58437095b3381e07556ce5f92_350.webp",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/b905d96029a9c59ceb6668f1a2e058c127bd392b_350.webp"
+    ],
+    "source_video": {
+      "id": "nNt4uAB7-zM",
+      "url": "https://www.youtube.com/watch?v=nNt4uAB7-zM",
+      "title": "Miniature Shader"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "bettervoxels",
+    "name": "Better Voxels",
+    "pt": "shader",
+    "desc": "Rethinking Voxels Fork | Every legendary feature you ever wanted in a shader. Combined. Optimized. Perfected.",
+    "dl": 60881,
+    "follows": 48,
+    "icon": "https://cdn.modrinth.com/data/TUoQmbZR/c9f3c02e9923d04095b4c23ccf011c69f2b4f838_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/TUoQmbZR/images/77061ab4e4d58db28b060d01f0b73b1438726945_350.webp",
+      "https://cdn.modrinth.com/data/TUoQmbZR/images/f3dbc1ec5a6d68e443a3804f2ed495a33e031054_350.webp",
+      "https://cdn.modrinth.com/data/TUoQmbZR/images/81ac40a6e90e6e0fb2309af87dd1d1fccf10437c_350.webp",
+      "https://cdn.modrinth.com/data/TUoQmbZR/images/d850cec6a2378b25e13e8c7c2bb621238170cb7a_350.webp"
+    ],
+    "source_video": {
+      "id": "nNt4uAB7-zM",
+      "url": "https://www.youtube.com/watch?v=nNt4uAB7-zM",
+      "title": "Rethinking Voxels"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "hyperion-shaders",
+    "name": "Hyperion Shaders",
+    "pt": "shader",
+    "desc": "An enhanced edition of Photon Shaders featuring critical fixes for beacon beams across all dimensions, entity nametag darkening, and improved rendering.",
+    "dl": 3954,
+    "follows": 0,
+    "icon": "https://cdn.modrinth.com/data/ZQ2ILXE5/8eee5c315dfb1eac5049871503768a65dc5c63b7_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/ZQ2ILXE5/images/435a728d28026cf901a4bab938c148f73d022793_350.webp",
+      "https://cdn.modrinth.com/data/ZQ2ILXE5/images/a4b6f3ddda7bce368abd35acce77fc94283ae351_350.webp",
+      "https://cdn.modrinth.com/data/ZQ2ILXE5/images/01c25fbccb06c0c0a9b7948e304cd8d61e55e010_350.webp"
+    ],
+    "source_video": {
+      "id": "nNt4uAB7-zM",
+      "url": "https://www.youtube.com/watch?v=nNt4uAB7-zM",
+      "title": "Photon Shaders"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "bcr-shades",
+    "name": "BCR shades",
+    "pt": "shader",
+    "desc": "A visual and preformance upgrade to Complementary Reimagined.",
+    "dl": 454,
+    "follows": 1,
+    "icon": "https://cdn.modrinth.com/data/NRNJNS9V/efc1eb9d62f08fe38ad865e7b9ebb3631ba5eff9_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/NRNJNS9V/images/605e412d68748767edccf8b5688d179c2d0cfd6a_350.webp",
+      "https://cdn.modrinth.com/data/NRNJNS9V/images/db62ce287a5a58e269805b6221a062028b450022_350.webp",
+      "https://cdn.modrinth.com/data/NRNJNS9V/images/aa4f819bb083be603b1d8e30cd89d22e2931003b_350.webp",
+      "https://cdn.modrinth.com/data/NRNJNS9V/images/e684dfd84b11c4974e01ab533d9c54c6dbaf1a0e_350.webp"
+    ],
+    "source_video": {
+      "id": "T0YVQN5FhRA",
+      "url": "https://www.youtube.com/watch?v=T0YVQN5FhRA",
+      "title": "Complementary (Reimagined)"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "lumen-shaders",
+    "name": "Lumen Shaders",
+    "pt": "shader",
+    "desc": "A highly customizable, BSL-style shader for Iris and OptiFine. Delivers gorgeous lighting, cinematic post-processing, and soft shadows optimized to be beautiful without melting your GPU.",
+    "dl": 2721,
+    "follows": 2,
+    "icon": "https://cdn.modrinth.com/data/bkRolebi/b7b8f797d315dbce65035cde36bfe298d91dc207_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/bkRolebi/images/d79c9513bc3c5e55d4c93f83c612c3d8de3685bb_350.webp",
+      "https://cdn.modrinth.com/data/bkRolebi/images/ad5e384930f863249a52421c2b8f85afde7a46f8_350.webp",
+      "https://cdn.modrinth.com/data/bkRolebi/images/f28d46d06759f96f078b9be51a971c62ee1e9e3d_350.webp",
+      "https://cdn.modrinth.com/data/bkRolebi/images/a779b14c05627987a99807ad9ba9fd2342967c83_350.webp"
+    ],
+    "source_video": {
+      "id": "T0YVQN5FhRA",
+      "url": "https://www.youtube.com/watch?v=T0YVQN5FhRA",
+      "title": "BSL"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "bvs",
+    "name": "BVS - Best Vanilla Shader",
+    "pt": "shader",
+    "desc": "Very Simple and Best shader for You!",
+    "dl": 686739,
+    "follows": 219,
+    "icon": "https://cdn.modrinth.com/data/chKtnjkM/27416b0b021c5c846ebf3e22f8d31b4fd3f90e42.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/chKtnjkM/images/46679475fc5da38e5a52b70feb55edf9af3c38bc_350.webp",
+      "https://cdn.modrinth.com/data/chKtnjkM/images/509e587520b632a8115c9ba232c9b0bf960d1d84_350.webp",
+      "https://cdn.modrinth.com/data/chKtnjkM/images/15c59760e9997833d2354dc5e889d618b4c56771_350.webp",
+      "https://cdn.modrinth.com/data/chKtnjkM/images/1ccf6b942183203ab6fecb741cea7d26ecfd12c5_350.webp"
+    ],
+    "source_video": {
+      "id": "T0YVQN5FhRA",
+      "url": "https://www.youtube.com/watch?v=T0YVQN5FhRA",
+      "title": "Best Minecraft Shader 2025"
+    },
+    "query": "best minecraft shaders 26.3 iris"
+  },
+  {
+    "slug": "srcw-mining-intro",
+    "name": "SRCW Mining Intro",
+    "pt": "resourcepack",
+    "desc": "Replaces the menu music with the Minecraft World track intro from Sonic Racing: CrossWorlds.",
+    "dl": 241,
+    "follows": 2,
+    "icon": "https://cdn.modrinth.com/data/mMbnOmzv/2aaaf9975badc3208535075bef5fef1d3c522993_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "HfSXhRqwEAU",
+      "url": "https://www.youtube.com/watch?v=HfSXhRqwEAU",
+      "title": "Intro"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "normal-swords",
+    "name": "Normal Swords",
+    "pt": "resourcepack",
+    "desc": "This pack restores the vanilla sword while keeping it unobstrusive. If you dont like how swords look in other texture packs, use this as an overlay to override the texture pack's sword. It keeps the vanilla animation and length but making it smaller.",
+    "dl": 452,
+    "follows": 1,
+    "icon": "https://cdn.modrinth.com/data/d95DsTrt/2ee8314ff91af903c1888e70ca2a2d4184737dc7.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/d95DsTrt/images/f5a56fd8f6cce5226c28ee0101afc1d16d83ecee_350.webp",
+      "https://cdn.modrinth.com/data/d95DsTrt/images/4ff5a598d21df7e955a2a8bc327a1df525db77eb_350.webp",
+      "https://cdn.modrinth.com/data/d95DsTrt/images/b7566920ea746f01e825f6bede4022281b51dbf1_350.webp"
+    ],
+    "source_video": {
+      "id": "HfSXhRqwEAU",
+      "url": "https://www.youtube.com/watch?v=HfSXhRqwEAU",
+      "title": "How To Use Texture Packs In Minecraft"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "kawaikute-gomen-music-disc",
+    "name": "Kawaikute Gomen Music Disc",
+    "pt": "resourcepack",
+    "desc": "This resourcepack replaces the wait music disc with Kawaikute Gomen Music Disc (the outro of Roshindere/Alya sometimes hides her feelings in russian)",
+    "dl": 2491,
+    "follows": 2,
+    "icon": "https://cdn.modrinth.com/data/QBAbXJHa/77c9508ab4f2f639b98bd27d069b94447f60f7a4_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "HfSXhRqwEAU",
+      "url": "https://www.youtube.com/watch?v=HfSXhRqwEAU",
+      "title": "Outro"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "faithful-64x-fusion-glowing-ores-addon",
+    "name": "Faithful Fusion Glowing Ores 64x Addon",
+    "pt": "resourcepack",
+    "desc": "Addon for Faithful 64x texture pack. Make Ores Glow for non-Optifine users.",
+    "dl": 6783,
+    "follows": 5,
+    "icon": "https://cdn.modrinth.com/data/ph2BmwYS/58244d682337aef22242af72ff8d5c4cf87a8f2d_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/ph2BmwYS/images/d566153125f3d6c9fad3dc72c184bec9706897fa_350.webp",
+      "https://cdn.modrinth.com/data/ph2BmwYS/images/5d114b241580ca16a79a5823ebd6c6bf0c4ad3af_350.webp"
+    ],
+    "source_video": {
+      "id": "32YTDalzJvY",
+      "url": "https://www.youtube.com/watch?v=32YTDalzJvY",
+      "title": "Faithful 64x Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "anti-xray-pack",
+    "name": "Anti Xray",
+    "pt": "resourcepack",
+    "desc": "This is a simple resource pack which tries to prevent xray texture packs in 1.15+ when used as a server resource pack.",
+    "dl": 691692,
+    "follows": 141,
+    "icon": "https://cdn.modrinth.com/data/L6A5jvYc/56997b4c7d05f70664e024b0c0544d5cdeb6aa93_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/L6A5jvYc/images/5ba0d5157bcc3f86dfc91fb0ef6792010230a6bc_350.webp",
+      "https://cdn.modrinth.com/data/L6A5jvYc/images/5919b0394877ba07cbe82a9d04a3b3f43e26eb11_350.webp",
+      "https://cdn.modrinth.com/data/L6A5jvYc/images/328a386dab0b430d8bb2c4e9fd1e0502b95164e8_350.webp",
+      "https://cdn.modrinth.com/data/L6A5jvYc/images/6f0e4e47eebb482a06cdd35414f6f468e812d21b_350.webp"
+    ],
+    "source_video": {
+      "id": "32YTDalzJvY",
+      "url": "https://www.youtube.com/watch?v=32YTDalzJvY",
+      "title": "XRay Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "bare-bones-pbr-x-fresh-animations",
+    "name": "Bare Bones PBR x Fresh Animations",
+    "pt": "resourcepack",
+    "desc": "This pack adds specular texture to Fresh Animations | Reflective and emissive like the trailers !",
+    "dl": 22163,
+    "follows": 21,
+    "icon": "https://cdn.modrinth.com/data/8K3B1T4J/befc1dd4c62b08c347aeee40b60d183a231a2432_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/8K3B1T4J/images/71fccf576e299fdf9268c8a459ae81dcf7e336af_350.webp",
+      "https://cdn.modrinth.com/data/8K3B1T4J/images/1a6ee29f1c29d414caef95179e5e44eb4a81166c_350.webp",
+      "https://cdn.modrinth.com/data/8K3B1T4J/images/dc436e36fb1e1ece7a9dfc79afa41f7dfd7be1ef_350.webp",
+      "https://cdn.modrinth.com/data/8K3B1T4J/images/b3f9ff36e61b08f9f24b295ad0332fe4fd7184d0_350.webp"
+    ],
+    "source_video": {
+      "id": "32YTDalzJvY",
+      "url": "https://www.youtube.com/watch?v=32YTDalzJvY",
+      "title": "Fresh Animations Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "fullbright-sp",
+    "name": "Fullbright SP",
+    "pt": "resourcepack",
+    "desc": "Fullbright SP texture pack (Sodium with PolyTone)",
+    "dl": 166281,
+    "follows": 36,
+    "icon": "https://cdn.modrinth.com/data/RgVos2bo/625bf2722e27eb6b50a8eff3eb03c3842437241d_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/RgVos2bo/images/2a8b9866dc4e9aa9f902d47da110c8821fbf4f03_350.webp",
+      "https://cdn.modrinth.com/data/RgVos2bo/images/ebb2170d4ed045ea971e9cd96ce7441a8555e5d6_350.webp",
+      "https://cdn.modrinth.com/data/RgVos2bo/images/69d666e87d8e555bdad04a8a39bac037774feb99_350.webp",
+      "https://cdn.modrinth.com/data/RgVos2bo/images/f06b121dda3467bd6f0d4af2183170bc2c930caf_350.webp"
+    ],
+    "source_video": {
+      "id": "32YTDalzJvY",
+      "url": "https://www.youtube.com/watch?v=32YTDalzJvY",
+      "title": "FullBright Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "introverted-villagers",
+    "name": "Silent Villagers",
+    "pt": "resourcepack",
+    "desc": "Villagers shut up. All of them. Forever.\nMutes every villager sound — idle mumbles, hurt noises, trade jingles, death screams. They still work, they just don't talk.\nNo dependencies. Drop in and done.",
+    "dl": 77,
+    "follows": 2,
+    "icon": "https://cdn.modrinth.com/data/H2xvdBTI/2b49504623e5ba36762c0b82c62d9a41e22321a3_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/H2xvdBTI/images/8884ab7547c8b64f1acddd8e6b45cddace526959_350.webp"
+    ],
+    "source_video": {
+      "id": "JnMemD7g84k",
+      "url": "https://www.youtube.com/watch?v=JnMemD7g84k",
+      "title": "Intro"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "mace-fusion",
+    "name": "Mace Fusion",
+    "pt": "resourcepack",
+    "desc": "Mace Fusion gives the Minecraft mace a cleaner, more polished look with a refined 3D model",
+    "dl": 596073,
+    "follows": 42,
+    "icon": "https://cdn.modrinth.com/data/8262nqZo/20fa99597eb7edd136167121e085252164f953bb.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/8262nqZo/images/968fc447241ea05230c20fb95df32d64145bbd5e_350.webp"
+    ],
+    "source_video": {
+      "id": "JnMemD7g84k",
+      "url": "https://www.youtube.com/watch?v=JnMemD7g84k",
+      "title": "Mace Fusion"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "cozy-beds",
+    "name": "Cozy Beds",
+    "pt": "resourcepack",
+    "desc": "Sleep covered in blankets! Also adds bunk beds.",
+    "dl": 52704,
+    "follows": 211,
+    "icon": "https://cdn.modrinth.com/data/CBvbD9Yz/64ebab59e6c8cf51cb2b66e31c3471ca2b47f3bc_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/CBvbD9Yz/images/fb74e43ba3eb030de634c2a6c9f760d2bce8d498_350.webp",
+      "https://cdn.modrinth.com/data/CBvbD9Yz/images/5de4e068441f75c4dc96222d676d390aa7c1b9f8_350.webp",
+      "https://cdn.modrinth.com/data/CBvbD9Yz/images/7eb7137f7217e607e9a3272fa2fc8c96949c4b78_350.webp",
+      "https://cdn.modrinth.com/data/CBvbD9Yz/images/ec0a1085ba8bdee90b6a84b049067c608ba7423a_350.webp"
+    ],
+    "source_video": {
+      "id": "JnMemD7g84k",
+      "url": "https://www.youtube.com/watch?v=JnMemD7g84k",
+      "title": "Cozy Beds"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "overlays",
+    "name": "Overlay’s",
+    "pt": "resourcepack",
+    "desc": "26.3 × Adds seamless block overlays, blending compatible blocks together for a more natural and detailed world.",
+    "dl": 500227,
+    "follows": 395,
+    "icon": "https://cdn.modrinth.com/data/1PGegzf5/756ccb39f87d42b60f075fda8ff4fb159808b31f.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/1PGegzf5/images/4d40f738f11fb6dd65d3c8e0d952449cc817a92d_350.webp",
+      "https://cdn.modrinth.com/data/1PGegzf5/images/2079991915b12b9450867d4dd5153b94fbfd89b2_350.webp",
+      "https://cdn.modrinth.com/data/1PGegzf5/images/9d08f7ee2304f41b8f2123f6725f29b8ed095321_350.webp",
+      "https://cdn.modrinth.com/data/1PGegzf5/images/9b61c92636c43f578936dc30c66e67ef79f914f1_350.webp"
+    ],
+    "source_video": {
+      "id": "JnMemD7g84k",
+      "url": "https://www.youtube.com/watch?v=JnMemD7g84k",
+      "title": "Overlay’s"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "weskersons-nature",
+    "name": "Weskerson's Nature",
+    "pt": "resourcepack",
+    "desc": "Transform your gameplay with custom 3D flora. Say goodbye to 2D textures and hello to lush, volumetric flowers and fungi!",
+    "dl": 59318,
+    "follows": 250,
+    "icon": "https://cdn.modrinth.com/data/UVgG00wM/cfb6c84a3d378aacda1c03d21c94ba6e90d1fd63_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/UVgG00wM/images/d19ea1fa2b435e56570b81bd66d751011f0d1218_350.webp",
+      "https://cdn.modrinth.com/data/UVgG00wM/images/c9c64008485109ac3312f577e458b83dee4b088e_350.webp",
+      "https://cdn.modrinth.com/data/UVgG00wM/images/49d7233c36c285e5c03b06f07a3fdc31002022e8_350.webp",
+      "https://cdn.modrinth.com/data/UVgG00wM/images/4486f534787099ebfcd10346d19522e3ad748165_350.webp"
+    ],
+    "source_video": {
+      "id": "JnMemD7g84k",
+      "url": "https://www.youtube.com/watch?v=JnMemD7g84k",
+      "title": "Weskerson's Nature"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "modded-omelet",
+    "name": "Modded Omelet - Modern Spawn Eggs",
+    "pt": "resourcepack",
+    "desc": "Modded Omelet is a resource pack made to not only backport the new spawn egg textures of 1.21.5 to older versions, but also adapt the spawn eggs of mods to match this new style.",
+    "dl": 907117,
+    "follows": 100,
+    "icon": "https://cdn.modrinth.com/data/SrktyNSI/0765255098a7a89a7e93ff769555e681d7fd402e.gif",
+    "gallery": [
+      "https://cdn.modrinth.com/data/SrktyNSI/images/f65f3d32e5c137097467782b93b12b81e3dae9b0.png",
+      "https://cdn.modrinth.com/data/SrktyNSI/images/86c0b31aaf742afde16daa775059820cdd745ecc_350.webp"
+    ],
+    "source_video": {
+      "id": "JnMemD7g84k",
+      "url": "https://www.youtube.com/watch?v=JnMemD7g84k",
+      "title": "Modded Omelet - Modern Spawn Eggs"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "armored-legacy",
+    "name": "Armored Legacy",
+    "pt": "resourcepack",
+    "desc": "New armor models and textures using EMF and ETF",
+    "dl": 302133,
+    "follows": 421,
+    "icon": "https://cdn.modrinth.com/data/zwmalH7z/7d106964fb20c33b2e5ba8c842189aff4d9ece1e_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/zwmalH7z/images/d6f0d8a446e06525d6501c94d390a4603f728ace_350.webp",
+      "https://cdn.modrinth.com/data/zwmalH7z/images/7d291957174490a870da04aa3e460fd9aa515f0e.png",
+      "https://cdn.modrinth.com/data/zwmalH7z/images/71b06ee0a34fac4135db4ba68627f57f65d9eadf_350.webp",
+      "https://cdn.modrinth.com/data/zwmalH7z/images/b592e7854ca198e1cc2d68badd53cc58b0ffbc92_350.webp"
+    ],
+    "source_video": {
+      "id": "JnMemD7g84k",
+      "url": "https://www.youtube.com/watch?v=JnMemD7g84k",
+      "title": "Armored Legacy"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "colored-axolotl-buckets-classic-bare-bones-addon",
+    "name": "Colored Axolotl Buckets-Classic Bare Bones Addon",
+    "pt": "resourcepack",
+    "desc": "This texture pack combines the (colored axolotl buckets) and (Bare Bones) textures. This makes the game more detailed. You can see which axolotl is which color",
+    "dl": 23636,
+    "follows": 29,
+    "icon": "https://cdn.modrinth.com/data/3Z26uOdN/2227b253f78848507015aa1273a84e830051ac3d_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/3Z26uOdN/images/b14210795131878bdef161cbd5b1c189ba5b086b.png",
+      "https://cdn.modrinth.com/data/3Z26uOdN/images/76b2e201d7dcaf6af93f35689981b8a95d2b78d8.png"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "Bare Bones Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "atomic-vanilla",
+    "name": "Atomic Delight Vanilla",
+    "pt": "resourcepack",
+    "desc": "MoZhI ArZaN’s professional Vanilla+ texture pack. Featuring Fresh Animations support, animated textures, and shader compatibility, it delivers a high-performance, visually enhanced experience optimized for survival and PvP.",
+    "dl": 7110,
+    "follows": 12,
+    "icon": "https://cdn.modrinth.com/data/yOcvc16d/7f6b38220270b43ccb31eb9a9d9d9016048f1cff.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/yOcvc16d/images/a2b2a218795a304505395e92204dd6cdbd77aa11_350.webp",
+      "https://cdn.modrinth.com/data/yOcvc16d/images/eb010a60b3c163d56270387be605a759fc9f17aa_350.webp",
+      "https://cdn.modrinth.com/data/yOcvc16d/images/6be1afa85ee91deaebecbfe0deea37d10ff3eabd_350.webp",
+      "https://cdn.modrinth.com/data/yOcvc16d/images/260c435ae685ec26f455f7e727f58763bc8152c3_350.webp"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "Fresh Animations Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "fakexray",
+    "name": "Fake xray",
+    "pt": "resourcepack",
+    "desc": "A fake xray texture pack to trick your friends",
+    "dl": 1302,
+    "follows": 0,
+    "icon": "https://cdn.modrinth.com/data/SiaUVYfT/32b27d4468e6ae3f3e407637bf83fe9f6147fbf7_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/SiaUVYfT/images/84a3b3055b3a8bb5277626528c0d258558b0d601_350.webp",
+      "https://cdn.modrinth.com/data/SiaUVYfT/images/06d3ef3da499fdc0a4e52de934497e660b8f056f_350.webp"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "XRay Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "glowminer",
+    "name": "GlowMiner",
+    "pt": "resourcepack",
+    "desc": "Makes ores glow, no shaders required. This texture pack adds emissive features to create visible glowing ores.",
+    "dl": 5159,
+    "follows": 2,
+    "icon": "https://cdn.modrinth.com/data/rRoHaegA/cb2513fb15870fcd166e4fc2f34bb238ab7afa2d_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/rRoHaegA/images/0a00e05504421b8a8d09978cfaaa8608068129ad_350.webp",
+      "https://cdn.modrinth.com/data/rRoHaegA/images/fba97952f8737d8f7feda6e618ebd445ba6b9b0c_350.webp",
+      "https://cdn.modrinth.com/data/rRoHaegA/images/c5804cf9dd0be57e2fd31bd246573cb95c66f743_350.webp",
+      "https://cdn.modrinth.com/data/rRoHaegA/images/4bac767c6d4274b44131de975d7ffd2e2a772773_350.webp"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "Visible Ores Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "classic-texture-pvp-pack",
+    "name": "Classic Texture PvP Pack",
+    "pt": "resourcepack",
+    "desc": "Best Classic PvP Pack combines nostalgic Minecraft textures with lower fire, a lower shield, clearer slot highlights, fixed leggings, and a bold capitalized font. Made for Java 26.3 and other",
+    "dl": 69,
+    "follows": 0,
+    "icon": "https://cdn.modrinth.com/data/6lYSHIJu/39d7cd4dc2366da8524d327d50741ab423916adf.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/6lYSHIJu/images/0e7fd9e9283374f046b91da2ecc3889ea851e5a3_350.webp"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "Classic 3D Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "firedragons-custom-models",
+    "name": "FireDragon's Custom Models",
+    "pt": "resourcepack",
+    "desc": "This texture pack adds name dependent textures/models to Minecraft, allowing for lots of customization. Has custom items, mobs, armor, and elytras",
+    "dl": 159,
+    "follows": 1,
+    "icon": "https://cdn.modrinth.com/data/p2srASIy/3074ca9ed21ab23a48366635d17e4296dbc6ff50_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/p2srASIy/images/78f239e705650975c8754b03cac708230aa01c52.png",
+      "https://cdn.modrinth.com/data/p2srASIy/images/21fbe6c27a5881878f3560de68aca2b562ef6ccd.png",
+      "https://cdn.modrinth.com/data/p2srASIy/images/04bf1b358968dc671877283b7f03de440e11df1f.png",
+      "https://cdn.modrinth.com/data/p2srASIy/images/1959843798be1b484590a165451fe889abea0d11_350.webp"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "Elytras+ Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "classic-faithful-32x",
+    "name": "Classic Faithful 32x",
+    "pt": "resourcepack",
+    "desc": "A double-resolution texture pack that continues Vattic’s original Faithful 32x32 pack with the classic textures.",
+    "dl": 220372,
+    "follows": 127,
+    "icon": "https://cdn.modrinth.com/data/bkFF9W8s/b0a7b0a1c33a022fb5fd76f8c112ba6863225e19.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/bkFF9W8s/images/cd0e0062ff39b99a8bbc35c81e656f3e691bca13_350.webp",
+      "https://cdn.modrinth.com/data/bkFF9W8s/images/b54f1b8470141a05a8edbb16835e459b5e8a4129_350.webp",
+      "https://cdn.modrinth.com/data/bkFF9W8s/images/7b4179601c33bd035378dfb32caf769e97bedb20_350.webp",
+      "https://cdn.modrinth.com/data/bkFF9W8s/images/d924ada4d94eecbab6bfaa775428239c3fa395a3_350.webp"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "Faithful Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "plastic-texture-pack",
+    "name": "Plastic Texture Pack",
+    "pt": "resourcepack",
+    "desc": "Make your worlds simple, colorful and vibrant! \n\nA port from Legacy Console Edition.",
+    "dl": 831181,
+    "follows": 526,
+    "icon": "https://cdn.modrinth.com/data/meEXwbr9/770e36a855375d291ea82a6cb093a9340b5e38cc.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/meEXwbr9/images/cc6713b109265ba55bd0d0400d67541853856c0c_350.webp",
+      "https://cdn.modrinth.com/data/meEXwbr9/images/2ef6b13fcb700c36db256ced8563745decfca2c2_350.webp",
+      "https://cdn.modrinth.com/data/meEXwbr9/images/cfcb76ea22d0ab2d707061a04ca21310c97ad635_350.webp",
+      "https://cdn.modrinth.com/data/meEXwbr9/images/e496338443ebc48d9b9567e5196eff16bff692b2_350.webp"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "Plastic Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "city-texture-pack",
+    "name": "City Texture Pack",
+    "pt": "resourcepack",
+    "desc": "Free your inner architect and shape the world around you.\n\nA port from Legacy Console Edition.",
+    "dl": 449414,
+    "follows": 135,
+    "icon": "https://cdn.modrinth.com/data/IcRlkcNt/7eef503a801aef36b478cae945f7118310883113.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/IcRlkcNt/images/ddaf24fe6383c149e9a86d66cc4e68d8cd4ec670_350.webp"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "City Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "nokes-sword-and-pvp-textures",
+    "name": "Nokes Sword and PVP textures",
+    "pt": "resourcepack",
+    "desc": "This texture pack has many improvments to the main textures of the game including low fire, low shield, small items, and many more which will hopefully improve your pvp skills :)",
+    "dl": 13779,
+    "follows": 2,
+    "icon": "https://cdn.modrinth.com/data/rx2LDAc9/06d2865849c8248e1fe5626e7bdd2d689e8bd482.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/rx2LDAc9/images/568dafd1cc67174db8a1831419f31f9a0f56c8fb_350.webp",
+      "https://cdn.modrinth.com/data/rx2LDAc9/images/e8a3ca3e0d5a45db1742c5cdb86458a297aaa646_350.webp",
+      "https://cdn.modrinth.com/data/rx2LDAc9/images/2d5e5f134e14836230defe7b625699486231fc53_350.webp"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "Low Fire Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "ddm-transparent-player-bg",
+    "name": "Transparent Player BG for Default Dark Mode",
+    "pt": "resourcepack",
+    "desc": "Makes the area behind the player in the inventory transparent, made for the Default Dark Mode texture pack.",
+    "dl": 750,
+    "follows": 0,
+    "icon": "https://cdn.modrinth.com/data/rLzIVOX6/1b518e59a5c4e936cb48c734a3b410249af25323_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/rLzIVOX6/images/1407416839ad935448c9c47252ff0c3cf0c3396b_350.webp",
+      "https://cdn.modrinth.com/data/rLzIVOX6/images/14158358491bb5a3971c6d29353d342fab4dce82_350.webp"
+    ],
+    "source_video": {
+      "id": "HzCEzKq5NFs",
+      "url": "https://www.youtube.com/watch?v=HzCEzKq5NFs",
+      "title": "Dark Mode Texture Pack"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "animated-hearts",
+    "name": "Animated Hearts",
+    "pt": "resourcepack",
+    "desc": "Animated - pulsing heart icons for your Minecraft health bar",
+    "dl": 420,
+    "follows": 2,
+    "icon": "https://cdn.modrinth.com/data/95qgryoK/70fca35d6e6814c9c14e7ced25803387f6c9879c.gif",
+    "gallery": [
+      "https://cdn.modrinth.com/data/95qgryoK/images/40d2e1e071088009582587e30dc5659ce5ec3ed1.gif"
+    ],
+    "source_video": {
+      "id": "S2hpCCTagLc",
+      "url": "https://www.youtube.com/watch?v=S2hpCCTagLc",
+      "title": "Animated Hearts (Forge/Fabric/NeoForge)"
+    },
+    "query": "minecraft 26.3 resource packs showcase"
+  },
+  {
+    "slug": "experience-orb-optimizer",
+    "name": "[EOO] Experience Orb Optimizer",
+    "pt": "mod",
+    "desc": "A lightweight Minecraft datapack that combines nearby experience orbs to reduce entity clutter and keep XP collection more manageable.",
+    "dl": 36,
+    "follows": 0,
+    "icon": "https://cdn.modrinth.com/data/zrHftCh7/e2f09d390cd494de09e35218fd8b72bebca77b8c_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/zrHftCh7/images/3633791821d78c3ea3e3661e8971ab66e95e667f_350.webp",
+      "https://cdn.modrinth.com/data/zrHftCh7/images/9a19ec76dc77ce08b03675b754372ad8a4a831d9_350.webp"
+    ],
+    "source_video": {
+      "id": "dLJkOLMjWv8",
+      "url": "https://www.youtube.com/watch?v=dLJkOLMjWv8",
+      "title": "Introduction"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "a-breach-happened",
+    "name": "A Breach Happened",
+    "pt": "mod",
+    "desc": "A Breach Happened is a psychological horror data pack that introduces 3 new entities and tons of events such as random signs, world events, weird terrain, weird sounds, creepy music, creepy atmosphere and decently large story.",
+    "dl": 79412,
+    "follows": 92,
+    "icon": "https://cdn.modrinth.com/data/UzkWePRG/c247e30f3e9a1261ed5028b7b29eb01b138374a9_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/UzkWePRG/images/24b2e56cf9d47c147d20e6c30b9b1ec553972700_350.webp",
+      "https://cdn.modrinth.com/data/UzkWePRG/images/492c1225a268576f057f0f2c5f7b3f1e57c0e976_350.webp",
+      "https://cdn.modrinth.com/data/UzkWePRG/images/5c07e7094bee325febe9538331e9304325716e38_350.webp",
+      "https://cdn.modrinth.com/data/UzkWePRG/images/febb5e09bb16a9ce91be629e7f2644834fcbc721_350.webp"
+    ],
+    "source_video": {
+      "id": "ZwmogE_9xmQ",
+      "url": "https://www.youtube.com/watch?v=ZwmogE_9xmQ",
+      "title": "Intro"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "dynamic-torches",
+    "name": "Dynamic Lights",
+    "pt": "mod",
+    "desc": "Adds dynamic lights for players, items, mobs, etc.",
+    "dl": 830089,
+    "follows": 665,
+    "icon": "https://cdn.modrinth.com/data/AK1n0IqM/aaafa5ece7b21224016b4c345cd2bcd092b39718_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/AK1n0IqM/images/c34666665ca6f8c47629e0758d2670c0d020fc1b_350.webp",
+      "https://cdn.modrinth.com/data/AK1n0IqM/images/f0c45513138d64c43f854445d4c43c2788980227_350.webp",
+      "https://cdn.modrinth.com/data/AK1n0IqM/images/28b51c7b159b85893ee287f14069881ad9e944c2_350.webp",
+      "https://cdn.modrinth.com/data/AK1n0IqM/images/c2aa8a4cb1b169d763e59a6c685a7870af326fce_350.webp"
+    ],
+    "source_video": {
+      "id": "ZwmogE_9xmQ",
+      "url": "https://www.youtube.com/watch?v=ZwmogE_9xmQ",
+      "title": "Dynamic Torches"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "explorify",
+    "name": "Explorify",
+    "pt": "mod",
+    "desc": "A simplistic, vanilla-friendly collection of new structures.",
+    "dl": 9967941,
+    "follows": 3271,
+    "icon": "https://cdn.modrinth.com/data/HSfsxuTo/e036a417f857abd937326db5c131296ad88bad5b_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/HSfsxuTo/images/3299eba2e77e49ae812bd81e766eb1bb0af5f261_350.webp",
+      "https://cdn.modrinth.com/data/HSfsxuTo/images/278adc1fef24355d7160e532457ce13526a671a2_350.webp",
+      "https://cdn.modrinth.com/data/HSfsxuTo/images/0cc3e69a1833012c81216aba81b6260eb79dd5d1_350.webp",
+      "https://cdn.modrinth.com/data/HSfsxuTo/images/8d98154623fba550b5b865417fdb87e5edf44dbf_350.webp"
+    ],
+    "source_video": {
+      "id": "ZwmogE_9xmQ",
+      "url": "https://www.youtube.com/watch?v=ZwmogE_9xmQ",
+      "title": "Explorify"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "vanilla-refresh",
+    "name": "Vanilla Refresh",
+    "pt": "mod",
+    "desc": "Enhancing Minecraft's experience with a variety of 30+ QOL features, like player sitting and a day counter.",
+    "dl": 3287180,
+    "follows": 3405,
+    "icon": "https://cdn.modrinth.com/data/gWO6Zqey/4d6ac282afe713a4413cc8f230942c61a1b3c6e0_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/gWO6Zqey/images/02f06459af59f952a3f32329b1ed4f95fb92edd3_350.webp",
+      "https://cdn.modrinth.com/data/gWO6Zqey/images/3406078d9cfb40bb160e630b7d09b3544277afb2.gif",
+      "https://cdn.modrinth.com/data/gWO6Zqey/images/fd862111acde5ec0890f72a75133b1c897b4be84.png",
+      "https://cdn.modrinth.com/data/gWO6Zqey/images/6232042651bfab1fb1f208d992305a851bbb1a02_350.webp"
+    ],
+    "source_video": {
+      "id": "ZwmogE_9xmQ",
+      "url": "https://www.youtube.com/watch?v=ZwmogE_9xmQ",
+      "title": "Vanilla Refresh"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "wandering-trader-maps",
+    "name": "Wandering Trader Maps",
+    "pt": "mod",
+    "desc": "Now Wandering Traders can trade maps of any structure!",
+    "dl": 7931,
+    "follows": 33,
+    "icon": "https://cdn.modrinth.com/data/FWd8OQg3/2fdb8695aae95b4f8acb41849284bbc1c00e2b01_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/FWd8OQg3/images/a81033d6839bad5d650861b22671b7356195b90e_350.webp",
+      "https://cdn.modrinth.com/data/FWd8OQg3/images/399940f6f1083d55fb21e885d7d7daa8a753de27_350.webp",
+      "https://cdn.modrinth.com/data/FWd8OQg3/images/b7b80b66fd42058cfcc1833f2013c5fc7056f894_350.webp",
+      "https://cdn.modrinth.com/data/FWd8OQg3/images/6b29a506bc80cfe5aa1cd32ab5b0d421c9c4e39a_350.webp"
+    ],
+    "source_video": {
+      "id": "-s0UlXCmuI0",
+      "url": "https://www.youtube.com/watch?v=-s0UlXCmuI0",
+      "title": "3D Maps"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "racks",
+    "name": "Racks",
+    "pt": "mod",
+    "desc": "Your tools and weapons will no longer envy the armor stands.\nFrom now on, they will also have their own exhibition space!",
+    "dl": 68857,
+    "follows": 381,
+    "icon": "https://cdn.modrinth.com/data/Ws2vw51R/9197f1533caa55781a49aa6d14a3b5332e18e06c_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/Ws2vw51R/images/6484a45ebd050d4a34c99f331983885e5dd055b9_350.webp",
+      "https://cdn.modrinth.com/data/Ws2vw51R/images/193d163b1a42d292477df211f021cc1a0efe7ecf_350.webp",
+      "https://cdn.modrinth.com/data/Ws2vw51R/images/a26c52c76db2dcaca54446aad0d1296a60684f36_350.webp",
+      "https://cdn.modrinth.com/data/Ws2vw51R/images/f69151a211873afdc96a6bc70b6f197bf75abc90_350.webp"
+    ],
+    "source_video": {
+      "id": "C4fQ2_wco_Q",
+      "url": "https://www.youtube.com/watch?v=C4fQ2_wco_Q",
+      "title": "Racks"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "fastpath-og",
+    "name": "Fast Path Original",
+    "pt": "mod",
+    "desc": "You run faster when running on a path (original from planetminecraft)",
+    "dl": 804,
+    "follows": 1,
+    "icon": "https://cdn.modrinth.com/data/uIBAq0Jm/8d0c9724dfc44a1ed1f3428875fdedbfff7f13e5_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "C4fQ2_wco_Q",
+      "url": "https://www.youtube.com/watch?v=C4fQ2_wco_Q",
+      "title": "Fast Path"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "stks-tool-trims",
+    "name": "STK's Tool Trims",
+    "pt": "mod",
+    "desc": "Apply vanilla armor trims to tools and weapons.",
+    "dl": 28185,
+    "follows": 78,
+    "icon": "https://cdn.modrinth.com/data/fcJsw206/81626f31059c3dd95595badee5ef3f0ab59dfd12.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/fcJsw206/images/bc4fc5a5c968e5e2d2ac0f6cd6b094f456eab7d1.jpeg",
+      "https://cdn.modrinth.com/data/fcJsw206/images/9d826e4f5f7c85f83a5bcbe29ecf9f61fa3a3a62.jpeg",
+      "https://cdn.modrinth.com/data/fcJsw206/images/5008b3d6b34eef965365a31b212da59fe37829b1.jpeg",
+      "https://cdn.modrinth.com/data/fcJsw206/images/234c7c56f7caf84ccd08a0664100b92005a11b61.jpeg"
+    ],
+    "source_video": {
+      "id": "C4fQ2_wco_Q",
+      "url": "https://www.youtube.com/watch?v=C4fQ2_wco_Q",
+      "title": "Tool Trims"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "dungeons-and-taverns-stronghold-overhaul",
+    "name": "Dungeons and Taverns Stronghold Overhaul",
+    "pt": "mod",
+    "desc": "This Datapack, the Standalone version of Dungeons and Taverns Overhaul of the Stronghold, Overhauls the Stronghold from the ground up With 417 Different rooms and 5 sub stronghold types\nFair warning, your world will Freeze Upon first Structure generation.",
+    "dl": 3136114,
+    "follows": 1218,
+    "icon": "https://cdn.modrinth.com/data/rYocd2LE/5494b7d3fae40e7909129ddd209ac43f2ed94547_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/rYocd2LE/images/1fd2cda0199451503e9929a13d0a5dc9b4499e54_350.webp",
+      "https://cdn.modrinth.com/data/rYocd2LE/images/4d25db10c065e133a68dc3ebf2a62cb8a3f79079_350.webp",
+      "https://cdn.modrinth.com/data/rYocd2LE/images/64668e04d03b1489c0c7bd0559ba21d1c6f41f7e_350.webp",
+      "https://cdn.modrinth.com/data/rYocd2LE/images/d9058ee53bfe089cb2316e9e92a2b0f29286904a_350.webp"
+    ],
+    "source_video": {
+      "id": "KIDY80UD1rQ",
+      "url": "https://www.youtube.com/watch?v=KIDY80UD1rQ",
+      "title": "Dungeons and Taverns"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "stellarity",
+    "name": "Stellarity",
+    "pt": "mod",
+    "desc": "Extreme rehaul of The End in a unique fantasy style, combined with biome and structure overhauls, new items, weapons and plenty of other content to discover.",
+    "dl": 1045373,
+    "follows": 1910,
+    "icon": "https://cdn.modrinth.com/data/bZgeDzN8/334f13776890a2b288269a3bbdbd6719719524fe_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/bZgeDzN8/images/b5dec8f98df7200694e90ff3e6922239308d9940_350.webp",
+      "https://cdn.modrinth.com/data/bZgeDzN8/images/f1f258c0824c58bae454e25748927851b74aa165_350.webp",
+      "https://cdn.modrinth.com/data/bZgeDzN8/images/b4b215d7318e9a070a8fbddf2ab8655ebb201e05_350.webp",
+      "https://cdn.modrinth.com/data/bZgeDzN8/images/20a1959d6e8ccac3a81dfb814ef4e0cc9eaa0446_350.webp"
+    ],
+    "source_video": {
+      "id": "KIDY80UD1rQ",
+      "url": "https://www.youtube.com/watch?v=KIDY80UD1rQ",
+      "title": "Stellarity"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "william-wythers-overhauled-overworld-datapack",
+    "name": "William Wythers' Overhauled Overworld (Datapack)",
+    "pt": "mod",
+    "desc": "In Overhauled Overworld I seek to re-create the vanilla overworld in a way that makes a more realistic, cohesive and atmospheric world.",
+    "dl": 265475,
+    "follows": 460,
+    "icon": "https://cdn.modrinth.com/data/4pbhwMQz/14f50fa0d5165cd9b05f0bfe57a32482815257fe_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/4pbhwMQz/images/f746a06097f969da8a4169eaf2cb71e603b77938_350.webp",
+      "https://cdn.modrinth.com/data/4pbhwMQz/images/d66299ada004aceac152cf8b85c3fb37b9197adc_350.webp",
+      "https://cdn.modrinth.com/data/4pbhwMQz/images/24fdf2057e193cbc4e0e64f2afb7995718132891_350.webp",
+      "https://cdn.modrinth.com/data/4pbhwMQz/images/f31c0f94cc2a2281a3810760bcd85f2826125155_350.webp"
+    ],
+    "source_video": {
+      "id": "KIDY80UD1rQ",
+      "url": "https://www.youtube.com/watch?v=KIDY80UD1rQ",
+      "title": "William Wythers' Overhauled Overworld"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "ashships",
+    "name": "Ash Ships",
+    "pt": "mod",
+    "desc": "Generates ships sailing across your Minecraft oceans!",
+    "dl": 1558,
+    "follows": 8,
+    "icon": "https://cdn.modrinth.com/data/KKJyMuRo/07556d88e45cc5f6bdb13f51a3f4d3af39357176_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/KKJyMuRo/images/86a3c55ad5d48c241e8e95b0afa8f0391e15d20d_350.webp",
+      "https://cdn.modrinth.com/data/KKJyMuRo/images/8ca6b8a4dfdb63bea5a3a2b93ba76e2a810e727d_350.webp",
+      "https://cdn.modrinth.com/data/KKJyMuRo/images/a592e423a5e31a9d362b9089538f4d7caa50555c_350.webp"
+    ],
+    "source_video": {
+      "id": "KIDY80UD1rQ",
+      "url": "https://www.youtube.com/watch?v=KIDY80UD1rQ",
+      "title": "Ships"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "blazeandcaves-advancements-pack-incendium-version",
+    "name": "BlazeandCave's Advancements Pack Incendium Version",
+    "pt": "mod",
+    "desc": "Incendium-Compatible Edition of the BlazeandCave's Advancements Pack",
+    "dl": 8651,
+    "follows": 33,
+    "icon": "https://cdn.modrinth.com/data/cSRCej4K/143c43ed1f176eaf9e355bb37ea5f55902b66983.png",
+    "gallery": [],
+    "source_video": {
+      "id": "KIDY80UD1rQ",
+      "url": "https://www.youtube.com/watch?v=KIDY80UD1rQ",
+      "title": "Incendium"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "dungeons-and-taverns-jungle-temple-overhaul",
+    "name": "Dungeons and Taverns Jungle Temple Overhaul",
+    "pt": "mod",
+    "desc": "Overhauls Jungle Temples with 4 Variants using new loot tables alongside the Vanilla Loot Table and can have archeology elements inside as well as new puzzles",
+    "dl": 1010745,
+    "follows": 520,
+    "icon": "https://cdn.modrinth.com/data/oHjYCS0f/aa9ba9f1d6e5e87edb05ca18acc2737b2de6fcb3_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/oHjYCS0f/images/39a322cb5ff76acc88b1eb4508e5f9188fb77bc9_350.webp",
+      "https://cdn.modrinth.com/data/oHjYCS0f/images/5b46c6023261e16e5375f49e7460435872d7ed4a_350.webp",
+      "https://cdn.modrinth.com/data/oHjYCS0f/images/4dd9e156769742b7019b08f2443ca34cb156ad7e_350.webp",
+      "https://cdn.modrinth.com/data/oHjYCS0f/images/3932aa4174b49f395e39e1393f9871c3f582c2c5_350.webp"
+    ],
+    "source_video": {
+      "id": "35K0jTiCi5I",
+      "url": "https://www.youtube.com/watch?v=35K0jTiCi5I",
+      "title": "Loot Tables"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "beacon-commands",
+    "name": "Beacon Commands",
+    "pt": "mod",
+    "desc": "Tired of having to build pyramids everywhere or move them as you move outside the beacon range? \nthis datapack gives you commands to all the effects a beacon can give you.",
+    "dl": 1800,
+    "follows": 4,
+    "icon": "https://cdn.modrinth.com/data/CL6fwWat/d715280e5267750235d3df783a1562b75a677f5c_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "35K0jTiCi5I",
+      "url": "https://www.youtube.com/watch?v=35K0jTiCi5I",
+      "title": "Commands"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "silvers-datapack-tags-library",
+    "name": "Silver's Datapack Tags Library | DTL",
+    "pt": "mod",
+    "desc": "a Light Weight Datapack used by most of my big projects!",
+    "dl": 10281,
+    "follows": 1,
+    "icon": "https://cdn.modrinth.com/data/n2UxUWXF/9e275357f100b32ecc4698072d508f68bf867cdd_96.webp",
+    "gallery": [],
+    "source_video": {
+      "id": "35K0jTiCi5I",
+      "url": "https://www.youtube.com/watch?v=35K0jTiCi5I",
+      "title": "Tags"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "generationless-shrines",
+    "name": "Generationless Shrines",
+    "pt": "mod",
+    "desc": "A data pack that adds new buildable structures to the game.\nEffect Shrines, but without the world generation features.",
+    "dl": 15,
+    "follows": 1,
+    "icon": "https://cdn.modrinth.com/data/XHYn9myB/fe7292a5d6055642ff72c91f2a58fcafb3b2cdeb.png",
+    "gallery": [],
+    "source_video": {
+      "id": "35K0jTiCi5I",
+      "url": "https://www.youtube.com/watch?v=35K0jTiCi5I",
+      "title": "World Generation - Features"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "shader-lenses",
+    "name": "Shader Lenses",
+    "pt": "mod",
+    "desc": "Craftable Lenses and Glasses that apply post-effect shaders.",
+    "dl": 103,
+    "follows": 3,
+    "icon": "https://cdn.modrinth.com/data/zwDGP189/461144adbe1596df96406f542e3e3ac148499e65_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/zwDGP189/images/ad66bbe39b3e7b776e92fa9042b347d93e556b87_350.webp",
+      "https://cdn.modrinth.com/data/zwDGP189/images/fa3e1f0ba2c187b47179ab5263b14a34d35ae962_350.webp",
+      "https://cdn.modrinth.com/data/zwDGP189/images/a148dec5403fdd1a6b22433f63ed7f99e60b296c_350.webp",
+      "https://cdn.modrinth.com/data/zwDGP189/images/b4eedaefc56a36a7e940634ee1fcec7c922c0673_350.webp"
+    ],
+    "source_video": {
+      "id": "35K0jTiCi5I",
+      "url": "https://www.youtube.com/watch?v=35K0jTiCi5I",
+      "title": "Shaders"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "simple-vanilla-commands",
+    "name": "Simple Commands",
+    "pt": "mod",
+    "desc": "Adds 3 simple commands to the game. To sit, lie down and put any item on your head!",
+    "dl": 702,
+    "follows": 4,
+    "icon": "https://cdn.modrinth.com/data/1LgXJuUy/d2ce0352e4ccfacb7fc20473a514d1c70a4a1207_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/1LgXJuUy/images/7fed74e8aa3e27093edda407f36e26e68e462460_350.webp",
+      "https://cdn.modrinth.com/data/1LgXJuUy/images/5652f60a2445a344e07205d629bbd01d604d7c2c_350.webp",
+      "https://cdn.modrinth.com/data/1LgXJuUy/images/183baafc217c96139339cc721ce2371d8698b439.png"
+    ],
+    "source_video": {
+      "id": "4YZv3zXndb8",
+      "url": "https://www.youtube.com/watch?v=4YZv3zXndb8",
+      "title": "Commands"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "gardeners-dream",
+    "name": "Gardener's Dream",
+    "pt": "mod",
+    "desc": "Allows you to place any plant in flower pots, decorated pots, player heads and half-pots (NEW).\nSurvival friendly! No resource pack required!",
+    "dl": 1676303,
+    "follows": 616,
+    "icon": "https://cdn.modrinth.com/data/cPfmk5E3/9234e8723d1a1b2e4b2e4e4337b4d93b03ce7acf.jpeg",
+    "gallery": [
+      "https://cdn.modrinth.com/data/cPfmk5E3/images/eafbdb58fc5ca02c4ddde869e3c57c8929c33668_350.webp",
+      "https://cdn.modrinth.com/data/cPfmk5E3/images/e83a1f90e0eb94f902554abc9154c275f8d918eb_350.webp",
+      "https://cdn.modrinth.com/data/cPfmk5E3/images/4098b0bd650cb43fe45f09105798212d6f173ba2_350.webp",
+      "https://cdn.modrinth.com/data/cPfmk5E3/images/e18236585bd4008e3b719fa1a1536fd974bbdf79_350.webp"
+    ],
+    "source_video": {
+      "id": "4YZv3zXndb8",
+      "url": "https://www.youtube.com/watch?v=4YZv3zXndb8",
+      "title": "Decorated Pots"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "musical-instruments-pack",
+    "name": "Musical Instruments Pack",
+    "pt": "mod",
+    "desc": "Adds Vanilla-like Playable Musical Instruments to the game!",
+    "dl": 18912,
+    "follows": 70,
+    "icon": "https://cdn.modrinth.com/data/HuBDzYkQ/7b7a694ddae1f1fbaed4969e19607d7ca1769293_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/HuBDzYkQ/images/7fa08a8d826844a9b76cbb854e9b1127947ece29_350.webp",
+      "https://cdn.modrinth.com/data/HuBDzYkQ/images/e7df3bcc523bcbd40088ed217fcdebf561afa6e4_350.webp",
+      "https://cdn.modrinth.com/data/HuBDzYkQ/images/291d6adc7792249e0bba23bcab4c011d52e254ac_350.webp",
+      "https://cdn.modrinth.com/data/HuBDzYkQ/images/6264b8a82ec5eb498cebb7d0470de08777db970b_350.webp"
+    ],
+    "source_video": {
+      "id": "4YZv3zXndb8",
+      "url": "https://www.youtube.com/watch?v=4YZv3zXndb8",
+      "title": "Instruments"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "sword-trims",
+    "name": "Sword Armor Trims",
+    "pt": "mod",
+    "desc": "Make all swords trimmable with all template and materials, upgrade your sword with more than 1300 different looks !",
+    "dl": 23062,
+    "follows": 24,
+    "icon": "https://cdn.modrinth.com/data/7FeSRrUo/b393d32971abfed52ad3da015836356f33967e11.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/7FeSRrUo/images/0da65576b869709e1cda2aef3cadad3ba5e60fcb_350.webp",
+      "https://cdn.modrinth.com/data/7FeSRrUo/images/ce71eab86bff0dfd60f61e7a132bb4568159601a.webp"
+    ],
+    "source_video": {
+      "id": "4YZv3zXndb8",
+      "url": "https://www.youtube.com/watch?v=4YZv3zXndb8",
+      "title": "Armor Trims"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "waterfall-particles",
+    "name": "Waterfall Particles",
+    "pt": "mod",
+    "desc": "This datapack adds particles to waterfalls",
+    "dl": 52894,
+    "follows": 24,
+    "icon": "https://cdn.modrinth.com/data/xfx6mq9s/ddabd764457222b2fa7f319022582dcea11b7751_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/xfx6mq9s/images/c924da056431d2c995f1b190f60513b73f249b9d_350.webp"
+    ],
+    "source_video": {
+      "id": "4YZv3zXndb8",
+      "url": "https://www.youtube.com/watch?v=4YZv3zXndb8",
+      "title": "Particles"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "structures-mod",
+    "name": "Structures",
+    "pt": "mod",
+    "desc": "An extensive mod that adds new structures to your game.",
+    "dl": 170099,
+    "follows": 147,
+    "icon": "https://cdn.modrinth.com/data/6lxFhM2b/2cd7d875e51b14866d03822cdb0cbac3c14b2137_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/6lxFhM2b/images/a090709f26969e2ca80965c8d6e96e819046246d_350.webp",
+      "https://cdn.modrinth.com/data/6lxFhM2b/images/66c78e7f7c33aff4bb4b482671fffb495c2dddf1_350.webp",
+      "https://cdn.modrinth.com/data/6lxFhM2b/images/2f274f5dccc9b8bd8dba32c6b29574409c94bb7a_350.webp",
+      "https://cdn.modrinth.com/data/6lxFhM2b/images/e40ce5ed8f4f4d319ee1f63b9061386b67781e33_350.webp"
+    ],
+    "source_video": {
+      "id": "4YZv3zXndb8",
+      "url": "https://www.youtube.com/watch?v=4YZv3zXndb8",
+      "title": "Structures"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "toomanyfeatures",
+    "name": "Too Many Features",
+    "pt": "mod",
+    "desc": "50+ toggleable quality of life features, from veinminer to waypoints.",
+    "dl": 44,
+    "follows": 2,
+    "icon": "https://cdn.modrinth.com/data/uinbyTGn/d94c1db62afec07c65578e3a610fc27eaaf1d09f.png",
+    "gallery": [
+      "https://cdn.modrinth.com/data/uinbyTGn/images/21b72d942adce4b6b33abc7e91214829a9d4ca94_350.webp",
+      "https://cdn.modrinth.com/data/uinbyTGn/images/1cb00e0096b3430d10df6f52e9a27486f14e4027_350.webp",
+      "https://cdn.modrinth.com/data/uinbyTGn/images/f4f72816c88b1f2d20fe89cb2ffb73a7e4e566b4_350.webp",
+      "https://cdn.modrinth.com/data/uinbyTGn/images/c2a62c89b75aa1fc062f7f90f9b854d246993af7_350.webp"
+    ],
+    "source_video": {
+      "id": "4YZv3zXndb8",
+      "url": "https://www.youtube.com/watch?v=4YZv3zXndb8",
+      "title": "Features"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "nice-name-tags",
+    "name": "Nice Name Tags",
+    "pt": "mod",
+    "desc": "Change entity behavior with name tags - make mobs silent, keep them as babies, change villager types, and more.",
+    "dl": 3260,
+    "follows": 10,
+    "icon": "https://cdn.modrinth.com/data/9v4Ep7kA/4383810a7dea7378224d2196744b986349a9bf23_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/9v4Ep7kA/images/c2fe34b9326f703b8ccdc4491cb426c97d25566e_350.webp"
+    ],
+    "source_video": {
+      "id": "4YZv3zXndb8",
+      "url": "https://www.youtube.com/watch?v=4YZv3zXndb8",
+      "title": "Tags"
+    },
+    "query": "minecraft 26.3 datapacks"
+  },
+  {
+    "slug": "ketkets-furnicraft",
+    "name": "FurniCraft",
+    "pt": "mod",
+    "desc": "Furnish your creations with a wide variety of unique furniture in the vanilla style, without the need for any resource packs.",
+    "dl": 457979,
+    "follows": 786,
+    "icon": "https://cdn.modrinth.com/data/7OgRKPcG/def383e4961abd140e1d3cfbb9f1cdc7bffa1075_96.webp",
+    "gallery": [
+      "https://cdn.modrinth.com/data/7OgRKPcG/images/e54a287bcd26b8a27db07119228d29ab40a57a54_350.webp",
+      "https://cdn.modrinth.com/data/7OgRKPcG/images/727824c2f3e912aea6bbb9ce9c59da0f6f4abef1_350.webp",
+      "https://cdn.modrinth.com/data/7OgRKPcG/images/1655e2acadf50777919db99c051807fcff4b2b20_350.webp",
+      "https://cdn.modrinth.com/data/7OgRKPcG/images/84de783d9f5d56c67d486e59527294dbf582ae53_350.webp"
+    ],
+    "source_video": {
+      "id": "4YZv3zXndb8",
+      "url": "https://www.youtube.com/watch?v=4YZv3zXndb8",
+      "title": "Resource Packs"
+    },
+    "query": "minecraft 26.3 datapacks"
+  }
+]
