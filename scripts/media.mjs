@@ -99,13 +99,27 @@ for (let i = 0; i < slugs.length; i += 80) {
 // ---------- Stufe B: CurseForge (Screenshots + Beschreibungs-HTML + eingebettete Videos) ----------
 const CF = process.env.CURSEFORGE_API_KEY;
 if (CF) {
+  const nn = x => String(x || "").toLowerCase().replace(/\[.*?\]|\(.*?\)/g, "").replace(/[^a-z0-9]/g, "");
   const t = await fetch("https://api.curseforge.com/v1/games/432", { headers: { "x-api-key": CF, Accept: "application/json" } });
   log.push("CurseForge-Key: " + (t.ok ? "funktioniert" : "Fehler " + t.status));
   if (t.ok) for (const m of mods.filter(m => m.cf)) {
     const slug = String(m.cf).split("/").filter(Boolean).pop();
-    const r = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&slug=${encodeURIComponent(slug)}`, { headers: { "x-api-key": CF, Accept: "application/json" } });
-    if (!r.ok) continue;
-    const d = (await r.json()).data?.[0]; if (!d) continue;
+    let d = null;
+    try {
+      const r = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&slug=${encodeURIComponent(slug)}&searchFilter=${encodeURIComponent(slug)}`, { headers: { "x-api-key": CF, Accept: "application/json" } });
+      if (r.ok) {
+        const list = (await r.json()).data || [];
+        d = list.find(c => c.slug === slug) || list[0];
+      }
+      if (!d) {
+        const r2 = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&searchFilter=${encodeURIComponent(cleanSearchName(m.name))}`, { headers: { "x-api-key": CF, Accept: "application/json" } });
+        if (r2.ok) {
+          const list2 = (await r2.json()).data || [];
+          d = list2.find(c => c.slug === slug || nn(c.name) === nn(m.name));
+        }
+      }
+    } catch {}
+    if (!d) continue;
     let bodyImgs = [], bodyYt = [];
     try {
       const dr = await fetch(`https://api.curseforge.com/v1/mods/${d.id}/description`, { headers: { "x-api-key": CF, Accept: "application/json" } });
