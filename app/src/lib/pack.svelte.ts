@@ -195,6 +195,72 @@ class Pack {
     for (const p of this.problems()) {
       errors.push(`Unaufgelöster Konflikt zwischen „${this.name(p.a)}“ und „${this.name(p.b)}“: ${p.text}`);
     }
+    // Echter Fabric Loader Kompatibilitäts-Check (breaks, conflicts, minecraft-Version aus fabric.mod.json)
+    const jarRules = this.data.jar_rules || {};
+    const activeModIds = new Map<string, string>();
+    for (const s of all) {
+      const rule = jarRules[s];
+      const mid = rule?.id || s;
+      activeModIds.set(mid, s);
+      activeModIds.set(s, s);
+    }
+    const cleanVer = (v: string) => (String(v || "").split("+")[0].split("-")[0].match(/\d+/g) || ["0"]).map(Number);
+    const matchVer = (actual: string, constraint: any): boolean => {
+      if (Array.isArray(constraint)) return constraint.some(c => matchVer(actual, c));
+      const c = String(constraint || "").trim();
+      if (!c || c === "*") return true;
+      const act = cleanVer(actual);
+      const rangeM = c.match(/^>=\s*([0-9.]+)\s*<\s*([0-9.]+)$/);
+      if (rangeM) {
+        const low = cleanVer(rangeM[1]), high = cleanVer(rangeM[2]);
+        const l = Math.max(act.length, low.length, high.length);
+        const a = act.concat(new Array(l - act.length).fill(0));
+        const lo = low.concat(new Array(l - low.length).fill(0));
+        const hi = high.concat(new Array(l - high.length).fill(0));
+        const cmp = (x: number[], y: number[]) => { for (let i = 0; i < l; i++) { if (x[i] < y[i]) return -1; if (x[i] > y[i]) return 1; } return 0; };
+        return cmp(a, lo) >= 0 && cmp(a, hi) < 0;
+      }
+      const m = c.match(/^(<=|<|>=|>|=)?\s*([0-9a-zA-Z._-]+)$/);
+      if (!m) return true;
+      const op = m[1] || "=", req = cleanVer(m[2]);
+      const l = Math.max(act.length, req.length);
+      const a = act.concat(new Array(l - act.length).fill(0));
+      const r = req.concat(new Array(l - req.length).fill(0));
+      let cmp = 0;
+      for (let i = 0; i < l; i++) { if (a[i] < r[i]) { cmp = -1; break; } if (a[i] > r[i]) { cmp = 1; break; } }
+      if (op === "<=") return cmp <= 0;
+      if (op === "<") return cmp < 0;
+      if (op === ">=") return cmp >= 0;
+      if (op === ">") return cmp > 0;
+      return cmp === 0;
+    };
+    for (const s of all) {
+      const rule = jarRules[s];
+      if (!rule) continue;
+      if (rule.mc && !matchVer("26.3", rule.mc)) {
+        errors.push(`Mod „${this.name(s)}“ erfordert Minecraft ${rule.mc}, ist aber inkompatibel mit 26.3!`);
+      }
+      if (rule.breaks) {
+        for (const [targetMid, constraint] of Object.entries(rule.breaks)) {
+          if (activeModIds.has(targetMid)) {
+            const targetSlug = activeModIds.get(targetMid)!;
+            const targetFile = this.data.files[targetSlug];
+            const targetVer = targetFile?.[6] || "";
+            if (constraint === "*" || matchVer(targetVer, constraint)) {
+              errors.push(`Inkompatibilität: „${this.name(s)}“ schließt „${this.name(targetSlug)}“ (Version ${targetVer || constraint}) aus!`);
+            }
+          }
+        }
+      }
+      if (rule.conflicts) {
+        for (const [targetMid, constraint] of Object.entries(rule.conflicts)) {
+          if (activeModIds.has(targetMid)) {
+            const targetSlug = activeModIds.get(targetMid)!;
+            errors.push(`Kollision: „${this.name(s)}“ hat einen unlösbaren Konflikt mit „${this.name(targetSlug)}“!`);
+          }
+        }
+      }
+    }
     if (fnameFn) {
       const seenPath = new Map<string, string>();
       for (const s of all) {

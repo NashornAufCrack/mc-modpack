@@ -17545,7 +17545,7 @@
       "ueberschneidung": "",
       "pt": "m",
       "gal": 20,
-      "vn": "1.6.0+fabric",
+      "vn": "1.1.0+mc26.x-fabric",
       "img": [
         "https://cdn.modrinth.com/data/kZlMne3t/images/f73671157fe020b4fdf9b73152abbd8818a6b704.png",
         "https://cdn.modrinth.com/data/kZlMne3t/images/70dca2c4d9c756c74ef5f6d80eada2dd555c9f94.png",
@@ -18540,16 +18540,16 @@
       "m"
     ],
     "moreculling": [
-      "https://cdn.modrinth.com/data/51shyZVL/versions/loquqFkT/moreculling-fabric-26.3-1.9.2.jar",
-      "moreculling-fabric-26.3-1.9.2.jar",
-      "4acecf7b1414950c6eb853a8ff2820a7eb2b0069",
-      "af1671ac30eee64bed3ef5eb874e71944ad6c41a084119d8416954bfedd969cfc2a10ae5760054e2f99ff3ad0fd57751f5248b046a20c3d71e49c7edcc03ca8a",
-      297119,
+      "https://cdn.modrinth.com/data/51shyZVL/versions/5jIORlSK/moreculling-fabric-26.3-1.9.1.jar",
+      "moreculling-fabric-26.3-1.9.1.jar",
+      "2c768b910eb1cb3fcb880bcacc7dbf9c0678ce06",
+      "93ae8cfe7b07391ca2966a86a60798fe7f37c2092545ed52a74d01a405b66cc5ecb236e303dc5c966a5d1ac20480e88c4f35b1d7b75a31c790a32bf58551a909",
+      297173,
       [
         "cloth-config"
       ],
-      "1.9.2",
-      "",
+      "1.9.1",
+      "More Culling",
       "m"
     ],
     "modernfix-mvus": [
@@ -32171,17 +32171,16 @@
       "m"
     ],
     "wandering-traveler": [
-      "https://cdn.modrinth.com/data/kZlMne3t/versions/Nl5ALDqA/wanderingtraveler-fabric-1.6.0.jar",
-      "wanderingtraveler-fabric-1.6.0.jar",
-      "60882030659d9501d9b4671f63a6dc34f9627dc8",
-      "a30448538c31f663e8d99060fd6b43282edbc338ee9f17bfc8a899ae3c0d2099cb22ba5b523072ee5f038d885d5627e3282e95b07c4761caabe0a67ebac8940c",
-      6506347,
+      "https://cdn.modrinth.com/data/kZlMne3t/versions/3C1jxVWX/wanderingtraveler-fabric-26.x-1.1.0.jar",
+      "wanderingtraveler-fabric-26.x-1.1.0.jar",
+      "cd027c910223ecb8f7f636cfce06fc15f8f861f1",
+      "ed1ce75138001a5ff620d27229ffaf3418572f3ec8f8eb9f05f27b59ce509e65ba79f77e3fda07c6dbba482f09e1c6e7d2ad5daf2dd8806a63eeaff90db51693",
+      8933055,
       [
-        "fabric-api",
         "cloth-config"
       ],
-      "1.6.0+fabric",
-      "",
+      "1.1.0+mc26.x-fabric",
+      "Wandering Traveler",
       "m"
     ],
     "ar1-animated-typing": [
@@ -36328,5 +36327,5008 @@
       "transparent-gui-and-hud",
       "xalis-enhanced-vanilla"
     ]
+  },
+  "jar_rules": {
+    "sodium": {
+      "id": "sodium",
+      "mc": "26.3.x",
+      "breaks": {
+        "embeddium": "*",
+        "optifabric": "*",
+        "canvas": "*",
+        "vulkanmod": "*",
+        "optimalaim": "<2.0.0",
+        "sodium-blendingregistry": "*",
+        "ocrenderfix_sodium": "*",
+        "betterfpsdist": "<=1.21-4.5",
+        "bobby": "<5.2.4",
+        "chunksfadein": "<2.0.2-1.21.2",
+        "cull-less-leaves": "<=1.3.0",
+        "cullleaves": "<=3.4.0-fabric",
+        "custom_hud": "<3.4.2",
+        "farsight": "<=1.21-4.3",
+        "iceberg": "<1.2.7",
+        "iris": "<=1.11.2",
+        "movingelevators": "<=1.4.7",
+        "notenoughcrashes": "<4.4.8",
+        "noxesium": "<2.3.3",
+        "reeses-sodium-options": "<=2.2.0",
+        "fabric-api": "<0.145.1",
+        "sodium-extra": "<0.8.0",
+        "audio_engine_tweaks": "<1.2.12",
+        "sspb": "<6.0.0",
+        "moreculling": "<1.6.0-beta.2",
+        "simply-no-shading": "<7.6.2",
+        "betterend": "<=21.0.11",
+        "enchanteds_sodium_options": "<1.0.1"
+      },
+      "conflicts": {}
+    },
+    "lithium": {
+      "id": "lithium",
+      "mc": "~26.3",
+      "breaks": {
+        "optifabric": "*"
+      },
+      "conflicts": {}
+    },
+    "ferrite-core": {
+      "id": "ferritecore",
+      "mc": ">=26.1 <27",
+      "breaks": {
+        "hydrogen": "<=0.3"
+      },
+      "conflicts": {}
+    },
+    "immediatelyfast": {
+      "id": "immediatelyfast",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "entityculling": {
+      "id": "entityculling",
+      "mc": "~26.3",
+      "breaks": {
+        "tlskincape": "*"
+      },
+      "conflicts": {}
+    },
+    "moreculling": {
+      "id": "moreculling",
+      "mc": ">=26.3",
+      "breaks": {
+        "sodium": "<=0.6.6",
+        "fabric-api": "<=0.145.2"
+      },
+      "conflicts": {}
+    },
+    "modernfix-mvus": {
+      "id": "modernfix",
+      "mc": "~26.3-",
+      "breaks": {
+        "dashloader": "<5.0.0-beta.1"
+      },
+      "conflicts": {}
+    },
+    "badoptimizations": {
+      "id": "badoptimizations",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dynamic-fps": {
+      "id": "dynamic_fps",
+      "mc": ">=26.2.0-",
+      "breaks": {},
+      "conflicts": {
+        "optifabric": "*",
+        "smoothmenu": "*"
+      }
+    },
+    "krypton": {
+      "id": "krypton",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "c2me-fabric": {
+      "id": "c2me",
+      "mc": ">1.21.11",
+      "breaks": {
+        "tic_tacs": "*",
+        "optifabric": "*"
+      },
+      "conflicts": {
+        "dynview": "*",
+        "betterchunkloading": "*"
+      }
+    },
+    "scalablelux": {
+      "id": "scalablelux",
+      "mc": ">=26.3-rc.1",
+      "breaks": {
+        "phosphor": "*"
+      },
+      "conflicts": {}
+    },
+    "nvidium": {
+      "id": "nvidium",
+      "mc": [
+        "26.3"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "rsls": {
+      "id": "rsls",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fabric-api": {
+      "id": "fabric-api",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "modmenu": {
+      "id": "modmenu",
+      "mc": ">=26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "reeses-sodium-options": {
+      "id": "reeses-sodium-options",
+      "mc": "~26.3",
+      "breaks": {
+        "iris": "<1.1.4",
+        "sodium-extra": "<0.5.3",
+        "sodium": "<0.5.8"
+      },
+      "conflicts": {}
+    },
+    "sodium-extra": {
+      "id": "sodium-extra",
+      "mc": "26.3",
+      "breaks": {
+        "iris": "<1.7.0",
+        "reeses-sodium-options": "<1.8.4"
+      },
+      "conflicts": {}
+    },
+    "controlling": {
+      "id": "controlling",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "cherished-worlds": {
+      "id": "cherishedworlds",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "delete-worlds-to-trash": {
+      "id": "deleteworldstotrash",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fastquit": {
+      "id": "fastquit",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "rrls": {
+      "id": "rrls",
+      "mc": ">=26.3",
+      "breaks": {
+        "forgeconfigapiport": "<26.3.0"
+      },
+      "conflicts": {
+        "dynamicfps": "*",
+        "dark-loading-screen": ">=1.6.18"
+      }
+    },
+    "borderless-fullscreen": {
+      "id": "fullscreenfix",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "cubes-without-borders": {
+      "id": "cwb",
+      "mc": ">=26.3 <99.99.99",
+      "breaks": {
+        "borderlessmining": "*",
+        "fullscreenfix": "*",
+        "borderless_windowed_vulkan": "*",
+        "borderless-windowed": "*",
+        "borderlesswindow": "*",
+        "borderlesswindowed": "*",
+        "fullscreenborderless": "*",
+        "borderlessfullscreen": "*",
+        "concentration": "*",
+        "framevoid": "*",
+        "windowstitlebardelete": "*",
+        "deborder": "*",
+        "gyo": "*",
+        "perfect_presentation": "*",
+        "borderless-fullscreen": "*",
+        "simpleqol": "*",
+        "fw": "*"
+      },
+      "conflicts": {}
+    },
+    "crash-assistant": {
+      "id": "crash_assistant",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "debugify": {
+      "id": "debugify",
+      "mc": "=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "no-chat-reports": {
+      "id": "nochatreports",
+      "mc": [
+        ">=26.3"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "packed-packs": {
+      "id": "packed_packs",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "iris": {
+      "id": "iris",
+      "mc": null,
+      "breaks": {
+        "embeddium": "*",
+        "iris-explorer": "*",
+        "originsenhanced": "<=1.3.2",
+        "colormatic": "<=3.0.0",
+        "bedrockwaters": "<=1.6.0",
+        "batchedentityrendering": "*",
+        "canvas": "*",
+        "optifabric": "*",
+        "worldeditcui": "<1.18.1",
+        "physicsmod": "<=3.0.13",
+        "distanthorizons": "<=3.2.0",
+        "immersive_portals": "<=1.4.2"
+      },
+      "conflicts": {}
+    },
+    "euphoria-patches": {
+      "id": "euphoria_patcher",
+      "mc": ">=1.14.0",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "distanthorizons": {
+      "id": "distanthorizons",
+      "mc": [
+        "26.3"
+      ],
+      "breaks": {
+        "vertigo": "*"
+      },
+      "conflicts": {}
+    },
+    "voxy": {
+      "id": "voxy",
+      "mc": [
+        ">=26.3- <=26.3",
+        "~26.3"
+      ],
+      "breaks": {
+        "iris": ">=1.12-",
+        "voxyworldgenv2": "=2.2.2"
+      },
+      "conflicts": {}
+    },
+    "bobby": {
+      "id": "bobby",
+      "mc": "~26.3",
+      "breaks": {
+        "sodium": "<0.6.0"
+      },
+      "conflicts": {}
+    },
+    "continuity": {
+      "id": "continuity",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "lambdynamiclights": {
+      "id": "lambdynlights",
+      "mc": "~26.3-",
+      "breaks": {
+        "optifabric": "*",
+        "sodiumdynamiclights": "*",
+        "ryoamiclights": "*"
+      },
+      "conflicts": {}
+    },
+    "visuality": {
+      "id": "visuality",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fallingleaves": {
+      "id": "fallingleaves",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "particle-rain": {
+      "id": "particlerain",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "coolrain": {
+      "id": "coolrain",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "particle-interactions": {
+      "id": "eg_particle_interactions",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-smoke": {
+      "id": "bettersmoke",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wakes": {
+      "id": "wakes",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "windy": {
+      "id": "windy",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "grassier-grass": {
+      "id": "grassiergrass",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "lambdabettergrass": {
+      "id": "lambdabettergrass",
+      "mc": "~26.3-",
+      "breaks": {
+        "optifabric": "*"
+      },
+      "conflicts": {}
+    },
+    "better-biome-blend": {
+      "id": "betterbiomeblend",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-clouds": {
+      "id": "betterclouds",
+      "mc": [
+        "~26.3"
+      ],
+      "breaks": {
+        "vulkanmod": "*",
+        "iris": "<1.6.0",
+        "immersive_portals": "*"
+      },
+      "conflicts": {}
+    },
+    "sodium-shadowy-path-blocks": {
+      "id": "sspb",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "chunks-fade-in": {
+      "id": "chunksfadein",
+      "mc": ">=26.3",
+      "breaks": {
+        "iris": "<1.10.7",
+        "optifabric": "*"
+      },
+      "conflicts": {}
+    },
+    "fwa": {
+      "id": "fwa",
+      "mc": ">26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "snow-imprints": {
+      "id": "softimprints",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "footprintparticle": {
+      "id": "footprintparticle",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "immersive-storms": {
+      "id": "immersive-storms",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "explosive-enhancement": {
+      "id": "explosiveenhancement",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "make_bubbles_pop": {
+      "id": "make_bubbles_pop",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "atmospherics": {
+      "id": "atmospherics",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ambient-environment": {
+      "id": "ambientenvironment",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-end-sky": {
+      "id": "better_end_sky",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "streams-reflowing": {
+      "id": "streamsreflowing",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wet-sand": {
+      "id": "wet-sand",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "spyglass-astronomy": {
+      "id": "spyglass_astronomy",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "physicsmod": {
+      "id": "physicsmod",
+      "mc": "~26.3-",
+      "breaks": {
+        "entity_model_features": "<3",
+        "entity_texture_features": "<7"
+      },
+      "conflicts": {}
+    },
+    "entitytexturefeatures": {
+      "id": "entity_texture_features",
+      "mc": "*",
+      "breaks": {
+        "optifabric": "*",
+        "entity_model_features": "<3.3",
+        "entity_sound_features": "<0.8.2"
+      },
+      "conflicts": {}
+    },
+    "entity-model-features": {
+      "id": "entity_model_features",
+      "mc": "*",
+      "breaks": {
+        "optifabric": "*",
+        "cem": "*",
+        "entity_texture_features": "<7.2",
+        "entity_sound_features": "<0.8.2"
+      },
+      "conflicts": {}
+    },
+    "not-enough-animations": {
+      "id": "notenoughanimations",
+      "mc": "~26.3",
+      "breaks": {
+        "tlskincape": "*"
+      },
+      "conflicts": {}
+    },
+    "3dskinlayers": {
+      "id": "skinlayers3d",
+      "mc": "~26.3",
+      "breaks": {
+        "tlskincape": "*"
+      },
+      "conflicts": {}
+    },
+    "first-person-model": {
+      "id": "firstperson",
+      "mc": "~26.3",
+      "breaks": {
+        "tlskincape": "*",
+        "FastAnim": "*"
+      },
+      "conflicts": {}
+    },
+    "cameraoverhaul": {
+      "id": "cameraoverhaul",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "punchy-fpa": {
+      "id": "punchy",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wavey-capes": {
+      "id": "waveycapes",
+      "mc": "~26.3",
+      "breaks": {
+        "tlskincape": "*"
+      },
+      "conflicts": {}
+    },
+    "elytra-physics": {
+      "id": "elytra_physics",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "smooth-swapping": {
+      "id": "smoothswapping",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "animaticarefabricated": {
+      "id": "animatica",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-animations-collection": {
+      "id": "betteranimationscollection",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "inventory-particles": {
+      "id": "inventory_particles",
+      "mc": ">=26.3",
+      "breaks": {
+        "particle_effects": "<1.5.0",
+        "inventory_interactions": "<2.1.0"
+      },
+      "conflicts": {}
+    },
+    "do-a-barrel-roll": {
+      "id": "do_a_barrel_roll",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "optifabric": "*",
+        "controlify": "<2.0.0-beta.9"
+      },
+      "conflicts": {}
+    },
+    "cinematic-respawn": {
+      "id": "cinematic_respawn",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "sound-physics-remastered": {
+      "id": "sound_physics_remastered",
+      "mc": "26.3.x",
+      "breaks": {
+        "soundphysics": "*",
+        "voicechat_api": "<2.6.0"
+      },
+      "conflicts": {}
+    },
+    "ambientsounds": {
+      "id": "ambientsounds",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "presence-footsteps": {
+      "id": "presencefootsteps",
+      "mc": ">=26.3-rc.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "sound": {
+      "id": "sounds",
+      "mc": "=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dripsounds": {
+      "id": "waterdripsound",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "esf": {
+      "id": "entity_sound_features",
+      "mc": "*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "xaeros-minimap": {
+      "id": "xaerominimap",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "openpartiesandclaims": "<0.32.4",
+        "xaeroworldmap": "<1.47.1"
+      },
+      "conflicts": {}
+    },
+    "xaeros-world-map": {
+      "id": "xaeroworldmap",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "openpartiesandclaims": "<0.32.4",
+        "xaerominimap": "<26.6.1",
+        "xaerobetterpvp": "<26.6.1"
+      },
+      "conflicts": {}
+    },
+    "journeymap": {
+      "id": "journeymap",
+      "mc": ">=1.20.6",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "appleskin": {
+      "id": "appleskin",
+      "mc": null,
+      "breaks": {
+        "roughlyenoughitems": "<6.0.306-alpha"
+      },
+      "conflicts": {}
+    },
+    "jade": {
+      "id": "jade",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "zoomify": {
+      "id": "zoomify",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "betterf3": {
+      "id": "betterf3",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "status-effect-bars": {
+      "id": "status-effect-bars",
+      "mc": ">=26.2-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "detail-armor-bar-reconstructed": {
+      "id": "detailabreconst",
+      "mc": ">26.2 <=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "shulkerboxtooltip": {
+      "id": "shulkerboxtooltip",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "chat-heads": {
+      "id": "chat_heads",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mouse-tweaks": {
+      "id": "mousetweaks",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "inventory-profiles-next": {
+      "id": "inventoryprofilesnext",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "immersive-ui": {
+      "id": "immersiveui",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "spatial-gui": {
+      "id": "spatial_gui",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "immersive-hotbar": {
+      "id": "immersive-hotbar",
+      "mc": ">=26.3- <26.4-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "smooth-scroll": {
+      "id": "smoothscroll",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "chatanimation": {
+      "id": "chatanimation",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-advancements": {
+      "id": "betteradvancements",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "smooth-loading-screen": {
+      "id": "smoothloadingscreen",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "last-world-panorama": {
+      "id": "last-world-panorama",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dynamiccrosshair": {
+      "id": "dynamiccrosshair",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "freecam": {
+      "id": "freecam",
+      "mc": ">=26.3.0 <26.4.0-0",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "flashback": {
+      "id": "flashback",
+      "mc": ">26.2 <26.4",
+      "breaks": {
+        "iris": "<1.10.9",
+        "voicechat_api": "<2.6.24"
+      },
+      "conflicts": {}
+    },
+    "rightclickharvest": {
+      "id": "rightclickharvest",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "carry-on": {
+      "id": "carryon",
+      "mc": ">=26.3 <27",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "visual-workbench": {
+      "id": "visualworkbench",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "easy-anvils": {
+      "id": "easyanvils",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "easy-magic": {
+      "id": "easymagic",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "easy-shulker-boxes": {
+      "id": "easyshulkerboxes",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "natures-compass": {
+      "id": "naturescompass",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "explorers-compass": {
+      "id": "explorerscompass",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "universal-graves": {
+      "id": "universal-graves",
+      "mc": ">=26.2-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "crawl": {
+      "id": "crawl",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "double-doors": {
+      "id": "doubledoors",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "leaves-be-gone": {
+      "id": "leavesbegone",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "trade-cycling": {
+      "id": "trade_cycling",
+      "mc": "26.3.x",
+      "breaks": {
+        "easy_villagers": "*",
+        "fabric-api": "<0.160.6+26.3"
+      },
+      "conflicts": {}
+    },
+    "items-displayed": {
+      "id": "items_displayed",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "armor-poser": {
+      "id": "armorposer",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ping-wheel": {
+      "id": "pingwheel",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "e4mc": {
+      "id": "e4mc",
+      "mc": ">=26.1-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "simple-voice-chat": {
+      "id": "voicechat",
+      "mc": "26.3.x",
+      "breaks": {
+        "fabric-api": "<0.160.5+26.3",
+        "sound_physics_remastered": "<1.5.2"
+      },
+      "conflicts": {}
+    },
+    "little-joys": {
+      "id": "littlejoys",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wandering-trader-may-leave": {
+      "id": "wanderingtradermayleave",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "villager-names-serilum": {
+      "id": "villagernames",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "friends-and-foes": {
+      "id": "friendsandfoes",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "variants-and-ventures": {
+      "id": "variantsandventures",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "naturalist": {
+      "id": "naturalist",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-archeology": {
+      "id": "betterarcheology",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "farmers-delight-refabricated": {
+      "id": "farmersdelight",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {
+        "rrv": "<8.0.0"
+      }
+    },
+    "serene-seasons": {
+      "id": "sereneseasons",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "waystones": {
+      "id": "waystones",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tectonic": {
+      "id": "tectonic",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "continents": {
+      "id": "continents",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "geophilic": {
+      "id": "geophilic",
+      "mc": ">=1.20",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "clifftree": {
+      "id": "clifftree",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wwoo": {
+      "id": "wwoo",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wilder-wild": {
+      "id": "wilderwild",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "climate-rivers": {
+      "id": "climaterivers",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "snow-under-trees": {
+      "id": "snowundertrees",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "biomes-o-plenty": {
+      "id": "biomesoplenty",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "amplified-nether": {
+      "id": "amplified_nether",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "incendium": {
+      "id": "incendium",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "nullscape": {
+      "id": "nullscape",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "structory": {
+      "id": "structory",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "structory-towers": {
+      "id": "structory_towers",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "towns-and-towers": {
+      "id": "t_and_t",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ct-overhaul-village": {
+      "id": "ctov",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "repurposed-structures-fabric": {
+      "id": "repurposed_structures",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "sparsestructures": {
+      "id": "sparsestructures",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "chunky": {
+      "id": "chunky",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "punchymoves": {
+      "id": "punchy_moves",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "enchanted-fishing-line": {
+      "id": "enchanted_fishing_line",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "interactivestuff": {
+      "id": "interactivestuff",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "living-horizon": {
+      "id": "livinghorizon",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "diorama-map": {
+      "id": "diorama",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ggtu": {
+      "id": "resolutionscaler",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "orthocamera": {
+      "id": "orthocamera",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "enderscape": {
+      "id": "enderscape",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "clutternomore": {
+      "id": "clutternomore",
+      "mc": "~26.3",
+      "breaks": {
+        "jei": [
+          "<31.0.0.3",
+          ">=32"
+        ],
+        "rrv": [
+          "<8.2.0",
+          ">=9"
+        ],
+        "controlify": [
+          "<3.0.0-beta.3",
+          ">=4"
+        ],
+        "mousetweaks": [
+          "<2.31",
+          ">=3"
+        ],
+        "modmenu": [
+          "<21.0.0-beta.1",
+          ">=22"
+        ],
+        "fractal": [
+          "<1.6.0",
+          ">=2"
+        ]
+      },
+      "conflicts": {}
+    },
+    "offgrid": {
+      "id": "offgrid",
+      "mc": "~26.3",
+      "breaks": {
+        "clutternomore": [
+          "<3.0.0",
+          ">=4.0.0"
+        ],
+        "sodium": [
+          "<0.9.2",
+          ">=0.10"
+        ],
+        "lithium": [
+          "<0.26.1",
+          ">=0.27"
+        ],
+        "jade": [
+          "<26.3",
+          ">=26.4"
+        ],
+        "scalablelux": [
+          "<0.3.0-alpha.0.4",
+          ">=0.4"
+        ],
+        "moonrise": [
+          "<1.2.0",
+          ">=1.3"
+        ],
+        "iris": [
+          "<1.11.5",
+          ">=1.12"
+        ],
+        "connectiblechains": [
+          "<2.4.1",
+          ">=2.6"
+        ]
+      },
+      "conflicts": {}
+    },
+    "spooky-doors": {
+      "id": "spookydoors",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "zombified-player": {
+      "id": "zombifiedplayer",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "icys-better-horses": {
+      "id": "icys-better-horses",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "placeholder-api": {
+      "id": "placeholder-api",
+      "mc": ">=26.2-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "frozenlib": {
+      "id": "frozenlib",
+      "mc": "~26.3-",
+      "breaks": {
+        "fabric-language-kotlin": "<1.14.1+kotlin.2.4.20"
+      },
+      "conflicts": {}
+    },
+    "resourceful-lib": {
+      "id": "resourcefullib",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "collective": {
+      "id": "collective",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "puzzles-lib": {
+      "id": "puzzleslib",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "searchables": {
+      "id": "searchables",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "architectury-api": {
+      "id": "architectury",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "midnightlib": {
+      "id": "midnightlib",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "cloth-config": {
+      "id": "cloth-config",
+      "mc": ">=26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mossylib": {
+      "id": "mossylib",
+      "mc": "*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mru": {
+      "id": "mru",
+      "mc": "=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "balm": {
+      "id": "balm",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "respackopts": {
+      "id": "respackopts",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {
+        "libjf": "<3.0.0",
+        "feather": "*",
+        "quilt_loader": "*",
+        "connectormod": "*"
+      }
+    },
+    "cicada": {
+      "id": "cicada",
+      "mc": ">=26.3- <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "resourceful-config": {
+      "id": "resourcefulconfig",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "creativecore": {
+      "id": "creativecore",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "shogi": {
+      "id": "shogi",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "modonomicon": {
+      "id": "modonomicon",
+      "mc": ">=1.20.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "polytone": {
+      "id": "polytone",
+      "mc": ">=26.3 <26.3.1",
+      "breaks": {
+        "sodium": "<0.9",
+        "nautilus_studio": "<26.2-1.11.0"
+      },
+      "conflicts": {}
+    },
+    "shatterbyte-lib": {
+      "id": "shatterlib",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "jamlib": {
+      "id": "jamlib",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "libipn": {
+      "id": "libipn",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "glitchcore": {
+      "id": "glitchcore",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "moogs-structure-lib": {
+      "id": "moogs_structures",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "forge-config-api-port": {
+      "id": "forgeconfigapiport",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "geckolib": {
+      "id": "geckolib",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fzzy-config": {
+      "id": "fzzy_config",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "cristel-lib": {
+      "id": "cristellib",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "lithostitched": {
+      "id": "lithostitched",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "yacl": {
+      "id": "yet_another_config_lib_v3",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "eclipseui": {
+      "id": "eclipseui",
+      "mc": ">26.2 <=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "libjf": {
+      "id": "libjf",
+      "mc": "*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "spark": {
+      "id": "spark",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "async": {
+      "id": "async",
+      "mc": ">=26.1",
+      "breaks": {
+        "moonrise": "*",
+        "openpartiesandclaims": "*",
+        "acceleratedrecoiling": "*"
+      },
+      "conflicts": {}
+    },
+    "entity-view-distance": {
+      "id": "entity-view-distance",
+      "mc": ">=26.1-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ixeris": {
+      "id": "ixeris",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "iceberg": {
+      "id": "iceberg",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "prism-lib": {
+      "id": "prism",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "baguettelib": {
+      "id": "baguettelib",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tcdcommons": {
+      "id": "tcdcommons",
+      "mc": ">=26.3- <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "raised": {
+      "id": "raised",
+      "mc": ">=26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "auto-gui-scaler": {
+      "id": "guiscaler",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "item-highlighter": {
+      "id": "highlighter",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "legendary-tooltips": {
+      "id": "legendarytooltips",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "item-borders": {
+      "id": "itemborders",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "achievement-style": {
+      "id": "achievementstyle",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "afk-cinematics": {
+      "id": "afkcinematics",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "pixelshot": {
+      "id": "pixelshot",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "easegui": {
+      "id": "easegui",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fresh-armor-bar": {
+      "id": "fresh-armor-bar",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fusion-connected-textures": {
+      "id": "fusion",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "irissearch": {
+      "id": "iris_search",
+      "mc": ">=1.20.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "boat-item-view": {
+      "id": "boatiview",
+      "mc": ">=26.3 <=26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "3d-maps": {
+      "id": "maps3d",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bookshelf-inspector": {
+      "id": "bookshelfinspector",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "my_totem_doll": {
+      "id": "my_totem_doll",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wakes-reforged": {
+      "id": "wakes",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "particle-effects": {
+      "id": "particle_effects",
+      "mc": ">=26.3",
+      "breaks": {
+        "inventory_particles": "<2.0.1"
+      },
+      "conflicts": {}
+    },
+    "inventory-essentials": {
+      "id": "inventoryessentials",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-stats": {
+      "id": "betterstats",
+      "mc": ">=26.3- <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tiny-takeover-x-punchy": {
+      "id": "punchy_puppies",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "sound-physics-perfected": {
+      "id": "sound_physics_perfected",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "sound-culling": {
+      "id": "soundculling",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "particular-reforged": {
+      "id": "particular",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "perception": {
+      "id": "perception",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "clumps": {
+      "id": "clumps",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "language-reload": {
+      "id": "languagereload",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "enchantment-descriptions": {
+      "id": "enchdesc",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "prickle": {
+      "id": "prickle",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "litematica": {
+      "id": "litematica",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "malilib": "<0.30.2-"
+      },
+      "conflicts": {}
+    },
+    "malilib": {
+      "id": "malilib",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "sodium": "<0.9.2-",
+        "iris": "<1.11.6-",
+        "itemscroller": "<0.33.1-",
+        "litematica": "<0.29.1-",
+        "minihud": "<0.41.2-",
+        "tweakeroo": "<0.30.1-"
+      },
+      "conflicts": {}
+    },
+    "rei": {
+      "id": "roughlyenoughitems",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "lmd": {
+      "id": "letmedespawn",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "almanac": {
+      "id": "almanac",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "capes": {
+      "id": "capes",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "attributefix": {
+      "id": "attributefix",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fabrishot": {
+      "id": "fabrishot",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "default-options": {
+      "id": "defaultoptions",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "cut-through": {
+      "id": "cutthrough",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "advancement-plaques": {
+      "id": "advancementplaques",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {
+        "canvas": "*"
+      }
+    },
+    "vmp-fabric": {
+      "id": "vmp",
+      "mc": ">=1.20.2-beta.2",
+      "breaks": {
+        "optifabric": "*"
+      },
+      "conflicts": {}
+    },
+    "invmove": {
+      "id": "invmove",
+      "mc": ">=26.3",
+      "breaks": {
+        "invmove_compat": "<0.4.0"
+      },
+      "conflicts": {}
+    },
+    "pick-up-notifier": {
+      "id": "pickupnotifier",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "notenoughcrashes": {
+      "id": "notenoughcrashes",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "durability-tooltip": {
+      "id": "durabilitytooltip",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "supermartijn642s-config-lib": {
+      "id": "supermartijn642configlib",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "resourcify": {
+      "id": "resourcify",
+      "mc": "~26.3-rc",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "carpet": {
+      "id": "carpet",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "advanced-netherite": {
+      "id": "advancednetherite",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "inventoryhudplus": {
+      "id": "inventoryhud",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "client-tweaks": {
+      "id": "clienttweaks",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "crafting-tweaks": {
+      "id": "craftingtweaks",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "overflowing-bars": {
+      "id": "overflowingbars",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "neruina": {
+      "id": "neruina",
+      "mc": "~26.3",
+      "breaks": {
+        "eer": "*"
+      },
+      "conflicts": {}
+    },
+    "configurable": {
+      "id": "configurable",
+      "mc": ">=26.1 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ukulib": {
+      "id": "ukulib",
+      "mc": "^26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "zfastnoise": {
+      "id": "zfastnoise",
+      "mc": "~26.3",
+      "breaks": {
+        "moonrise": "*",
+        "antixray": "*",
+        "noisium": "*",
+        "noisiumed": "*"
+      },
+      "conflicts": {}
+    },
+    "noxesium": {
+      "id": "noxesium",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "notenoughrecipebook": {
+      "id": "nerb",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "structure-layout-optimizer": {
+      "id": "structure_layout_optimizer",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "justenoughbreeding": {
+      "id": "justenoughbreeding",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "advanced-loot-info": {
+      "id": "ali",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "advanced-core-info": {
+      "id": "aci",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tweakeroo": {
+      "id": "tweakeroo",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "malilib": "<0.30.2-"
+      },
+      "conflicts": {}
+    },
+    "configmanager": {
+      "id": "config_manager",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "spawn-animations": {
+      "id": "spawnanimations",
+      "mc": ">=1.17 <=26.3.9",
+      "breaks": {},
+      "conflicts": {
+        "pehkui": "<3.4.0"
+      }
+    },
+    "better-compatibility-checker": {
+      "id": "bcc",
+      "mc": ">=26.3.0",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bl4cks-sit": {
+      "id": "sit",
+      "mc": ">=26.1.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "configured-defaults": {
+      "id": "configureddefaults",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "kleeslabs": {
+      "id": "kleeslabs",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "roughly-enough-professions-rep": {
+      "id": "roughlyenoughprofessions",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "trashslot": {
+      "id": "trashslot",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "clientsort": {
+      "id": "clientsort",
+      "mc": [
+        ">26.2 <27"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "held-item-info": {
+      "id": "held-item-info",
+      "mc": ">=26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "elytra-trims": {
+      "id": "elytratrims",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fpsdisplay": {
+      "id": "fpsdisplay",
+      "mc": [
+        "~26.3"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "snow": {
+      "id": "snow",
+      "mc": "=26.3",
+      "breaks": {
+        "snowrealmagic": "*",
+        "snowundertrees": "*"
+      },
+      "conflicts": {}
+    },
+    "soundsbegone": {
+      "id": "soundsbegone",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "universal-bone-meal": {
+      "id": "universalbonemeal",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "diagonal-walls": {
+      "id": "diagonalwalls",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "diagonal-windows": {
+      "id": "diagonalwindows",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "grind-enchantments": {
+      "id": "grindenchantments",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "armor-statues": {
+      "id": "armorstatues",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fast-item-frames": {
+      "id": "fastitemframes",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "connected-glass": {
+      "id": "connectedglass",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "supermartijn642s-core-lib": {
+      "id": "supermartijn642corelib",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-climbing": {
+      "id": "better_climbing",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "leave-my-bars-alone": {
+      "id": "leavemybarsalone",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tooltip-scroll": {
+      "id": "tooltipscroll",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "simple-discord-rpc": {
+      "id": "simplerpc",
+      "mc": ">=1.18.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "craterlib": {
+      "id": "craterlib",
+      "mc": "*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "commandkeys": {
+      "id": "commandkeys",
+      "mc": [
+        ">26.2 <27"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "itemphysic": {
+      "id": "itemphysic",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "item-scroller": {
+      "id": "itemscroller",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "malilib": "<0.30.2-"
+      },
+      "conflicts": {}
+    },
+    "smooth-gui": {
+      "id": "smoothgui",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "crops-love-rain": {
+      "id": "cropsloverain",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "a-good-place": {
+      "id": "a_good_place",
+      "mc": ">=26.3- <=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bow-infinity-fix": {
+      "id": "bowinfinityfix",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "block-runner": {
+      "id": "blockrunner",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "asynclogger": {
+      "id": "asynclogger",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "xxl-packets": {
+      "id": "xxlpackets",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "stack-refill": {
+      "id": "stackrefill",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "itemlocks": {
+      "id": "ktnilcks",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "naturally-trimmed": {
+      "id": "naturally_trimmed",
+      "mc": ">=26.3.0 <26.4.0",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "voice-chat-interaction": {
+      "id": "vcinteraction",
+      "mc": "26.3.x",
+      "breaks": {
+        "fabric-api": "<0.160.5+26.3"
+      },
+      "conflicts": {}
+    },
+    "data-anchor": {
+      "id": "dataanchor",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "obe": {
+      "id": "obe",
+      "mc": "~26.3-alpha.1",
+      "breaks": {
+        "entity_model_features": "<3.3.2-fabric-26.3",
+        "entitytexturefeatures": "<7.2.1-fabric-26.3"
+      },
+      "conflicts": {}
+    },
+    "horseman": {
+      "id": "horseman",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {
+        "horsebuff": "*"
+      }
+    },
+    "this-rocks": {
+      "id": "rocks",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tweakermore": {
+      "id": "tweakermore",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "litematica": "<0.0.0-",
+        "minihud": "<0.40.6",
+        "tweakeroo": "<0.29.4"
+      },
+      "conflicts": {}
+    },
+    "universal-enchants": {
+      "id": "universalenchants",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "axolotl-buckets": {
+      "id": "axolotlbuckets",
+      "mc": "26.3.*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fog": {
+      "id": "fog",
+      "mc": "=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "centered-crosshair": {
+      "id": "centered-crosshair",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "nbt-autocomplete": {
+      "id": "nbtac",
+      "mc": ">=26.3",
+      "breaks": {
+        "nbt_ac": "*"
+      },
+      "conflicts": {}
+    },
+    "uwrad": {
+      "id": "unsafe-world-random-access-detector",
+      "mc": ">1.21.11",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "underlay": {
+      "id": "underlay",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "biolith": {
+      "id": "biolith",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "carpet-tis-addition": {
+      "id": "carpet-tis-addition",
+      "mc": ">=26.3",
+      "breaks": {
+        "lithium": "<0.21.3",
+        "litematica": "<0.28.3",
+        "servux": "<0.11.2"
+      },
+      "conflicts": {}
+    },
+    "auto-clicker": {
+      "id": "autoclicker",
+      "mc": ">=26.3.0",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "crashpatch": {
+      "id": "crashpatch",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "oneconfig": {
+      "id": "oneconfig",
+      "mc": "26.3.x",
+      "breaks": {
+        "chattweaks": "<1.2.3",
+        "crashpatch": "<2.2.3",
+        "evergreenhud": "<3.9.13",
+        "polydium": "<1.2.0",
+        "polyplus": "<1.4.0"
+      },
+      "conflicts": {}
+    },
+    "custom-crosshair-mod": {
+      "id": "custom-crosshair-mod",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bettersmithingtable": {
+      "id": "better_smithing_table",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "async-pack-scan": {
+      "id": "async-pack-scan",
+      "mc": "*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "held-item-tooltips": {
+      "id": "helditemtooltips",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "custom-fov-illusive": {
+      "id": "customfov",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "chiseled-bookshelf-visualizer": {
+      "id": "chiseledbookshelfvisualizer",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "anvians-lib": {
+      "id": "anvianslib",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ping-view": {
+      "id": "pingview",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "clear-fog": {
+      "id": "nofog",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "liteminer": {
+      "id": "liteminer",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "konfig": {
+      "id": "konfig",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "amber": {
+      "id": "amber",
+      "mc": "*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "armor-hud": {
+      "id": "armor_hud",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "vectorientation": {
+      "id": "vectorientation",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "resourcepackcached": {
+      "id": "rpc",
+      "mc": ">=26.1 <=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dis-enchanting-table": {
+      "id": "disenchanting_table",
+      "mc": ">=26.2 <27",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "displaycase": {
+      "id": "display_case",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "monolib": {
+      "id": "monolib",
+      "mc": ">=26.2 <27",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "stack-to-nearby-chests": {
+      "id": "stack-to-nearby-chests",
+      "mc": ">=26.3",
+      "breaks": {
+        "optifabric": "*"
+      },
+      "conflicts": {}
+    },
+    "scaffolding-drops-nearby": {
+      "id": "scaffoldingdropsnearby",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "accelerated-decay": {
+      "id": "accelerateddecay",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "leaf-me-alone": {
+      "id": "leafmealone",
+      "mc": ">=26.1-alpha.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "iris-shader-folder": {
+      "id": "iris_shader_folder",
+      "mc": ">=1.16",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macrokeybinds": {
+      "id": "macrokeybinds",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "simple-armor-hud": {
+      "id": "simple-armor-hud",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "breakfree": {
+      "id": "breakfree",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "voxy-worldgen": {
+      "id": "voxyworldgenv3",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "distinct-potions": {
+      "id": "distinctpotions",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "effectual": {
+      "id": "effectual",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tlib": {
+      "id": "tlib",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "twod_projectiles": {
+      "id": "twod_projectiles",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "animated-doors": {
+      "id": "animated_doors",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "reconnectible-chains": {
+      "id": "connectiblechains",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "consumableoptimizer": {
+      "id": "consumableoptimizer",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-capes": {
+      "id": "bettercapes",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "walksylib": {
+      "id": "walksylib",
+      "mc": "26.3",
+      "breaks": {
+        "ambience": "<2.2.0",
+        "anchoroptimizer": "<1.3.0",
+        "clientkits": "<2.1.0",
+        "clientprojectiles": "<1.1.0",
+        "consumableoptimizer": "<2.2.3",
+        "crossbowoptimizer": "<1.1.0",
+        "crosshairaddons": "<2.2.0",
+        "customhitboxes": "<3.0.0",
+        "nodeathanimation": "<2.1.0",
+        "rebindquickswap": "<2.1.0",
+        "shieldfixes": "<2.1.0",
+        "shieldstatus": "<4.2.0",
+        "speareffects": "<1.1.0",
+        "walksypopchams": "<1.1.0",
+        "rawinputbuffer": "<1.2.0"
+      },
+      "conflicts": {}
+    },
+    "clear-waterlavapowdersnow": {
+      "id": "clearwaterlava",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "trample-no-more": {
+      "id": "tramplenomore",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bookshelf-lib": {
+      "id": "bookshelf",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "more-mobs": {
+      "id": "moremobs",
+      "mc": ">=1.14 <=26.3.9",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "areas": {
+      "id": "areas",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "keep-my-soil-tilled": {
+      "id": "keepmysoiltilled",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "superresolution": {
+      "id": "super_resolution",
+      "mc": "~26.3",
+      "breaks": {
+        "resolutioncontrol-plus-plus": "*",
+        "resolutioncontrol-plus": "*",
+        "resolutioncontrol": "*",
+        "renderscale": "*",
+        "gpu_booster": "*",
+        "gpu_tape": "*"
+      },
+      "conflicts": {}
+    },
+    "heart-crystals": {
+      "id": "heart_crystals",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "more-villagers-re-employed": {
+      "id": "morevillagers",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "villagerapi": {
+      "id": "villagerapi",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fast-trading": {
+      "id": "fasttrading",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "view-distance-fix": {
+      "id": "viewdistancefix",
+      "mc": "26.3.x",
+      "breaks": {
+        "fabric-api": "<0.160.5+26.3"
+      },
+      "conflicts": {}
+    },
+    "invisible-frames-mod": {
+      "id": "invisibleframes",
+      "mc": "26.3.*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "swinging-lanterns": {
+      "id": "swinginglanterns",
+      "mc": ">=26.3.0-0 <26.4.0-0",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "atmosfera": {
+      "id": "atmosfera",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {
+        "charmonium": "*",
+        "mambience": "*",
+        "primalwinter": "*"
+      }
+    },
+    "overflowparticles": {
+      "id": "overflowparticles",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "multi-key-bindings": {
+      "id": "multi-key-bindings",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "sodium-extra-information": {
+      "id": "sodiumextrainformation",
+      "mc": ">=26.1",
+      "breaks": {
+        "iris": "<1.7.0",
+        "reeses-sodium-options": "<1.4.2"
+      },
+      "conflicts": {}
+    },
+    "real-arrow-tip": {
+      "id": "real-arrow-tip",
+      "mc": ">=26",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mobfilter": {
+      "id": "mobfilter",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "smartblockplacement": {
+      "id": "smartblockplacement",
+      "mc": "26.*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "carpet-org-addition": {
+      "id": "carpet-org-addition",
+      "mc": "26.3.*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "immersivemc": {
+      "id": "immersivemc",
+      "mc": ">=1.20.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "cosy-critters": {
+      "id": "cosycritters",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "immersivemusicmod": {
+      "id": "timm",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bettercommandblockui": {
+      "id": "bettercommandblockui",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tt20": {
+      "id": "tt20",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bindcommands": {
+      "id": "bind_cmd",
+      "mc": ">=26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "client-commands": {
+      "id": "clientcommands",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "chest-tracker-port": {
+      "id": "chesttracker",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mobexplosiongriefinggamerule": {
+      "id": "mob_explosion_griefing",
+      "mc": ">=26.1 <=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "litematica-server-paster": {
+      "id": "litematica-server-paster",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wither-spawn-animation": {
+      "id": "wither_spawn_animation",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "additional-lanterns": {
+      "id": "additionallanterns",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "too-cheap": {
+      "id": "too-cheap",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ripple": {
+      "id": "ripple",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "rescale": {
+      "id": "rescale",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mc2-interactive-foliage": {
+      "id": "mc2_interactivefoliage",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "sway": {
+      "id": "sway",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "luna-slimes": {
+      "id": "lunaslimes",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "carpet-ams-addition": {
+      "id": "carpet-ams-addition",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "moremousetweaks": {
+      "id": "moremousetweaks",
+      "mc": [
+        ">26.2 <27"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "aitk": {
+      "id": "aitk",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "countereds-terrain-slabs": {
+      "id": "terrain_slabs",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mclogs": {
+      "id": "mclogs",
+      "mc": [
+        ">=26.1",
+        "<26.4"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "talkingheads": {
+      "id": "talkingheads",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "not-enough-animations-emf-compat": {
+      "id": "emf_compat_not_enough_animations",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "emf-compat-core": {
+      "id": "emf_compat_core",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "smart-particles": {
+      "id": "smart_particles",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-render-distance": {
+      "id": "betterrenderdistance",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "head-in-the-clouds": {
+      "id": "head_in_the_clouds",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "hold-that-chunk-v2": {
+      "id": "hold_that_chunk_2",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "furnace-recycle": {
+      "id": "furnacerecycle",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "simple-resource-loader": {
+      "id": "simpleresourceloader",
+      "mc": ">=1.21",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "chunkyborder": {
+      "id": "chunkyborder",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "lanterns-bow": {
+      "id": "walllanterns",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "invview": {
+      "id": "invview",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "voxy-extra": {
+      "id": "voxy-extra",
+      "mc": "~26.3",
+      "breaks": {
+        "voxy-replaymod-compat": "*"
+      },
+      "conflicts": {}
+    },
+    "voxy-server-side": {
+      "id": "lss",
+      "mc": ">=26.3 <26.4-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "schematicpreview": {
+      "id": "schematicpreview",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "the-one-probe": {
+      "id": "theoneprobe",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dense-flowers": {
+      "id": "dense-flowers",
+      "mc": ">=26",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "inventory-interactions": {
+      "id": "inventory_interactions",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "telepistons": {
+      "id": "telepistons",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "styled-nicknames": {
+      "id": "styled-nicknames",
+      "mc": ">=26.1-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "not-interested": {
+      "id": "not_interested",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "custom-glint": {
+      "id": "customglint",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "vanity": {
+      "id": "vanityslots",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "configuration": {
+      "id": "configuration",
+      "mc": "^26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "trinkets-updated": {
+      "id": "trinkets_updated",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "modlistmemory": {
+      "id": "modlistmemory",
+      "mc": [
+        ">26.1.2 <27"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "villager-converting": {
+      "id": "villagerconverting",
+      "mc": "26.3.*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "sort-it-out": {
+      "id": "sort_it_out",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "technomodel": {
+      "id": "technomodel",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wilder-flowers": {
+      "id": "wilderflowers",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "stormies-spiders": {
+      "id": "stormiespiders",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "nocturnal-bats": {
+      "id": "nocturnal-bats",
+      "mc": ">=26",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "critical-strike": {
+      "id": "critical_strike",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ambience-v2": {
+      "id": "ambience",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "boatview360": {
+      "id": "boatview360",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "craftable-notch-apple": {
+      "id": "craftableenchantedgoldenapple",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "end-villager-outpost": {
+      "id": "end_villager_outpost",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "puddles-floods": {
+      "id": "puddleflood",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-boat-movement": {
+      "id": "bbm",
+      "mc": ">26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "golem-spawn-animation": {
+      "id": "golem_spawn_animation",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "hey-wiki": {
+      "id": "heywiki",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "enchanting-commands": {
+      "id": "enchantingcommands",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "distant-horizons-seedgen": {
+      "id": "seedrenderer",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "cave-spider-spawn": {
+      "id": "cavespiderspawn",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "easy-install": {
+      "id": "easy-install",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "keyoverlay": {
+      "id": "keyoverlay",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "inventive-inventory": {
+      "id": "inventive-inventory",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "sleep-warp-updated": {
+      "id": "sleepwarp",
+      "mc": ">=26.2-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "essentialaddons": {
+      "id": "essential-addons",
+      "mc": "~26.3",
+      "breaks": {
+        "lithium": "<0.13.0"
+      },
+      "conflicts": {}
+    },
+    "i-see-you-over-there": {
+      "id": "i-see-you-over-there",
+      "mc": "^26",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "carpet-extra-extras": {
+      "id": "carpet-extra-extras",
+      "mc": [
+        "26.2",
+        "26.3"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "lambda": {
+      "id": "lambda",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "stupid-block-animations": {
+      "id": "stupid-block-animations",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wavify": {
+      "id": "wavify",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "jei-worldgen": {
+      "id": "jeiworldgen",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "eroding-stone-entities": {
+      "id": "erodingstoneentities",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "giant-natural-additions": {
+      "id": "giant_natural_additions",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "jei": {
+      "id": "jei",
+      "mc": null,
+      "breaks": {
+        "mezz_config_gui": "<0.5.9"
+      },
+      "conflicts": {}
+    },
+    "veinminer-client": {
+      "id": "veinminer_client",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fancymenu": {
+      "id": "fancymenu",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "rinku": "<3.0.5",
+        "drippyloadingscreen": "<3.0.0",
+        "fmextension_audio": "*",
+        "fmextension_video": "*",
+        "rrls": "<4.0.1",
+        "watermedia": "<3.0.0.22",
+        "wm_binaries": "<3.0.0.5",
+        "wakes": "*"
+      },
+      "conflicts": {}
+    },
+    "terrablender": {
+      "id": "terrablender",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "morechathistory": {
+      "id": "morechathistory",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "optigui": {
+      "id": "optigui",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "puzzle": {
+      "id": "puzzle",
+      "mc": ">=26.3",
+      "breaks": {
+        "entity_texture_features": "<7.0.0",
+        "entity_model_features": "<3.0.0"
+      },
+      "conflicts": {}
+    },
+    "netherportalfix": {
+      "id": "netherportalfix",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fast-ip-ping": {
+      "id": "fastipping",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "controlify": {
+      "id": "controlify",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "athena-ctm": {
+      "id": "athena",
+      "mc": ">=1.21.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "open-parties-and-claims": {
+      "id": "openpartiesandclaims",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "opaccreatesupport": "*"
+      },
+      "conflicts": {}
+    },
+    "drippy-loading-screen": {
+      "id": "drippyloadingscreen",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "travelersbackpack": {
+      "id": "travelersbackpack",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "toms-storage": {
+      "id": "toms_storage",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "enhancedvisuals": {
+      "id": "enhancedvisuals",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "yeetus-experimentus": {
+      "id": "yeetusexperimentus",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "servercore": {
+      "id": "servercore",
+      "mc": ">=26.3-",
+      "breaks": {
+        "cardboard": "*"
+      },
+      "conflicts": {}
+    },
+    "paginatedadvancements": {
+      "id": "paginatedadvancements",
+      "mc": ">=26.3",
+      "breaks": {
+        "advancements-enlarger": "*",
+        "advancementinfo": "*"
+      },
+      "conflicts": {}
+    },
+    "bettergrassify": {
+      "id": "bettergrass",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "main-menu-credits": {
+      "id": "main_menu_credits",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-combat": {
+      "id": "bettercombat",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "globalpacks": {
+      "id": "globalpacks",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "betterend": {
+      "id": "betterend",
+      "mc": [
+        "26.3"
+      ],
+      "breaks": {
+        "bclib": "<26.302.1",
+        "wover": "<26.302.1",
+        "wunderlib": "<26.301.4"
+      },
+      "conflicts": {}
+    },
+    "justenoughcharacters": {
+      "id": "jecharacters",
+      "mc": ">=21.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bisect-mod": {
+      "id": "bhmenu",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "skyboxify": {
+      "id": "skyboxify",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "nuit": {
+      "id": "nuit",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "imblocker-original": {
+      "id": "imblocker",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "gamma-utils": {
+      "id": "gammautils",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "axiom": {
+      "id": "axiom",
+      "mc": ">26.2 <26.4",
+      "breaks": {
+        "sodium": "<=0.5.0",
+        "optifabric": "*",
+        "immersive_portals": "<=6.0.6",
+        "clientspoofer": "*",
+        "opsec": "*"
+      },
+      "conflicts": {}
+    },
+    "craftpresence": {
+      "id": "craftpresence",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "betternether": {
+      "id": "betternether",
+      "mc": [
+        "26.3"
+      ],
+      "breaks": {
+        "bclib": "<26.302.1",
+        "wover": "<26.302.1",
+        "wunderlib": "<26.301.4",
+        "jei": ">=31.0.0 <31.10.0.63"
+      },
+      "conflicts": {}
+    },
+    "shoulder-surfing-reloaded": {
+      "id": "shouldersurfing",
+      "mc": ">=26.3",
+      "breaks": {
+        "betterthirdperson": "*",
+        "camerautils": "*",
+        "nimble": "*",
+        "valkyrienskies": "<=2.4.11"
+      },
+      "conflicts": {
+        "theoneprobe": "*"
+      }
+    },
+    "resource-pack-overrides": {
+      "id": "resourcepackoverrides",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "xaeroplus": {
+      "id": "xaeroplus",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "alternate-current": {
+      "id": "alternate-current",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "azurelib": {
+      "id": "azurelib",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-windows": {
+      "id": "mcwwindows",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "diagonal-fences": {
+      "id": "diagonalfences",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "the-lost-cities": {
+      "id": "lostcities",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-fences-and-walls": {
+      "id": "mcwfences",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "blur-plus": {
+      "id": "blur",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "unilib": {
+      "id": "unilib",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "starter-kit": {
+      "id": "starterkit",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "beautify-refabricated": {
+      "id": "beautify",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "just-zoom": {
+      "id": "justzoom",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "stoneworks": {
+      "id": "stoneworks",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "nuit-interop": {
+      "id": "nuit_interop",
+      "mc": "~26.3-rc.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "hardcore-revival": {
+      "id": "hardcorerevival",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ukus-armor-hud": {
+      "id": "ukus-armor-hud",
+      "mc": ">=26.3",
+      "breaks": {
+        "armor_hud": "*"
+      },
+      "conflicts": {}
+    },
+    "macaws-bridges": {
+      "id": "mcwbridges",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "trading-post": {
+      "id": "tradingpost",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "villages-and-pillages": {
+      "id": "villagesandpillages",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "villagersplus": {
+      "id": "villagersplus",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "rechiseled": {
+      "id": "rechiseled",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "animal_feeding_trough": {
+      "id": "animal_feeding_trough",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "magnum-torch": {
+      "id": "magnumtorch",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "adorabuild-structures": {
+      "id": "adorabuild_structures",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-doors": {
+      "id": "mcwdoors",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "viafabricplus": {
+      "id": "viafabricplus",
+      "mc": "26.3",
+      "breaks": {
+        "viafabric": "*"
+      },
+      "conflicts": {}
+    },
+    "tslatentitystatus": {
+      "id": "tslatentitystatus",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-roofs": {
+      "id": "mcwroofs",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "enchanting-infuser": {
+      "id": "enchantinginfuser",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "forcecloseworldloadingscreen": {
+      "id": "forcecloseworldloadingscreen",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "oh-the-trees-youll-grow": {
+      "id": "ohthetreesyoullgrow",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "emotecraft": {
+      "id": "emotecraft",
+      "mc": ">=26.3",
+      "breaks": {
+        "bendable_cuboids": "<2.0.4+mc.26.2",
+        "grimac": "*",
+        "online_emotes": "*"
+      },
+      "conflicts": {}
+    },
+    "fps-reducer": {
+      "id": "fpsreducer",
+      "mc": ">=26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tree-harvester": {
+      "id": "treeharvester",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-stairs": {
+      "id": "mcwstairs",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "srdp": {
+      "id": "sdrp",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bartering-station": {
+      "id": "barteringstation",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "auth-me": {
+      "id": "authme",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-furniture": {
+      "id": "mcwfurnitures",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "full-brightness-toggle": {
+      "id": "fullbrightnesstoggle",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "chatpatches": {
+      "id": "chatpatches",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {
+        "morechathistory": "*"
+      }
+    },
+    "better-selection": {
+      "id": "better-selection",
+      "mc": [
+        "26.2",
+        "26.3"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "formations": {
+      "id": "formations",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "just-enough-resources-jer": {
+      "id": "jeresources",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "difficulty-lock": {
+      "id": "difficultylock",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "nether-chested": {
+      "id": "netherchested",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "weaponmaster": {
+      "id": "weaponmaster_ydm",
+      "mc": ">=1.21.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "smartbrainlib": {
+      "id": "smartbrainlib",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bridging-mod": {
+      "id": "bridgingmod",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "minihud": {
+      "id": "minihud",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "malilib": "<0.30.2-"
+      },
+      "conflicts": {}
+    },
+    "combat-roll": {
+      "id": "combat_roll",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "formations-nether": {
+      "id": "formationsnether",
+      "mc": ">=1.21",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tool-stats": {
+      "id": "toolstats",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "explorations": {
+      "id": "explorations",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "endrem": {
+      "id": "endrem",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "formations-overworld": {
+      "id": "formationsoverworld",
+      "mc": ">=1.21",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "camera-utils": {
+      "id": "camerautils",
+      "mc": "26.3.x",
+      "breaks": {
+        "fabric-api": "<0.160.5+26.3",
+        "gravitychanger": "*"
+      },
+      "conflicts": {
+        "optifabric": "*"
+      }
+    },
+    "cape-provider": {
+      "id": "cape-provider",
+      "mc": null,
+      "breaks": {
+        "capes": "*"
+      },
+      "conflicts": {
+        "minecraftcapes": "*",
+        "capemod": "*",
+        "cicada": "*",
+        "bettercapes": "*"
+      }
+    },
+    "fadeless": {
+      "id": "fadeless",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "biome-replacer": {
+      "id": "biome_replacer",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ecologics": {
+      "id": "ecologics",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "music-notification": {
+      "id": "musicnotification",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "in-game-account-switcher": {
+      "id": "ias",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-paths-and-pavings": {
+      "id": "mcwpaths",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "promenade": {
+      "id": "promenade",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "the-graveyard-fabric": {
+      "id": "graveyard",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "silk": {
+      "id": "silk-all",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-f1-reborn": {
+      "id": "betterf1",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "betterdays": {
+      "id": "betterdays",
+      "mc": [
+        ">26.2-"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mindful-darkness": {
+      "id": "mindfuldarkness",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-paintings": {
+      "id": "mcwpaintings",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "gnetum": {
+      "id": "gnetum",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "marlow-crystal-optimizer": {
+      "id": "marlowcrystal",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "reacharound": {
+      "id": "reacharound",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ranged-weapon-api": {
+      "id": "ranged_weapon_api",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "extreme_sound_muffler": {
+      "id": "extremesoundmuffler",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "search-on-mcmod": {
+      "id": "searchonmcmod",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-nether-map": {
+      "id": "nethermap",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "more-delight": {
+      "id": "moredelight",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "structure-pool-api": {
+      "id": "structure_pool_api",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-trapdoors": {
+      "id": "mcwtrpdoors",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "totemcounter": {
+      "id": "totemcounter",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "yuushya-townscape": {
+      "id": "yuushya",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ok-zoomer": {
+      "id": "ok_zoomer",
+      "mc": ">=26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "huge-structure-blocks": {
+      "id": "hugestructureblocks",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "better-tridents": {
+      "id": "bettertridents",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dark-loading-screen": {
+      "id": "dark-loading-screen",
+      "mc": ">=26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "skills": {
+      "id": "puffish_skills",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "move-subtitles": {
+      "id": "movesubtitles",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-holidays": {
+      "id": "mcwholidays",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "longer-chat-history": {
+      "id": "longerchathistory",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "common-network": {
+      "id": "commonnetworking",
+      "mc": ">=1.19.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "toadlib": {
+      "id": "toadlib",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "shield-statuses": {
+      "id": "shieldstatus",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "storagedrawers": {
+      "id": "storagedrawers",
+      "mc": ">=26.3.0 <26.4.0",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "statuseffecttimer": {
+      "id": "statuseffecttimer",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "serverpingerfixer": {
+      "id": "serverpingerfixer",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "accurate-block-placement-reborn": {
+      "id": "accurateblockplacement",
+      "mc": ">=26.3",
+      "breaks": {
+        "nmc": "*"
+      },
+      "conflicts": {}
+    },
+    "macaws-lights-and-lamps": {
+      "id": "mcwlights",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macos-input-fixes": {
+      "id": "macos_input_fixes_helper",
+      "mc": ">=1.14",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "plasmo-voice": {
+      "id": "plasmovoice",
+      "mc": ">26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "no-chat-restrictions": {
+      "id": "nochatrestrictions",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "in-control": {
+      "id": "incontrol",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "betterhurtcam": {
+      "id": "betterhurtcam",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "lighty": {
+      "id": "lighty",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "seasonhud-fabric": {
+      "id": "seasonhud",
+      "mc": "~26.3",
+      "breaks": {
+        "seasons": "<2.4.2-BETA",
+        "sereneseasons": "<9.1.0.0",
+        "xaerominimap": "<25.3.0",
+        "journeymap": "<26.1.2-6.0.0",
+        "ftbchunks": "<26.1.0.0"
+      },
+      "conflicts": {}
+    },
+    "female-gender": {
+      "id": "female_gender_mod",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "wildfire_gender": "*"
+      },
+      "conflicts": {
+        "skinlayers": "*",
+        "essential": "*",
+        "essential-loader": "*"
+      }
+    },
+    "talkbubbles": {
+      "id": "talkbubbles",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dismount-entity": {
+      "id": "dismountentity",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "crate-delight": {
+      "id": "cratedelight",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "complete-shield-fixes": {
+      "id": "shieldfixes",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "skinshuffle": {
+      "id": "skinshuffle",
+      "mc": ">26.2 <27",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ubes-delight": {
+      "id": "ubesdelight",
+      "mc": ">=26.3 <=26.3",
+      "breaks": {},
+      "conflicts": {
+        "rrv": "<8.0.0"
+      }
+    },
+    "friends-and-foes-beekeeper-hut-fabric": {
+      "id": "beekeeperhut",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "inventory-management": {
+      "id": "inventorymanagement",
+      "mc": "26.3.*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tiny-skeletons": {
+      "id": "tinyskeletons",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "nrb": {
+      "id": "noreportbutton",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "smooth-scrolling-refurbished": {
+      "id": "smoothscrollingrefurbished",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "inventory-sorting": {
+      "id": "inventorysorter",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "superflat-world-no-slimes": {
+      "id": "superflatworldnoslimes",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "boids": {
+      "id": "boids",
+      "mc": ">=26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "herdspanic": {
+      "id": "herdspanic",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "attributes": {
+      "id": "puffish_attributes",
+      "mc": ">=26.3",
+      "breaks": {
+        "puffish_skills": "<0.12.0"
+      },
+      "conflicts": {}
+    },
+    "calcmod": {
+      "id": "calcmod",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mavapi": {
+      "id": "mavapi",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mavm": {
+      "id": "mavm",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "itemphysic-lite": {
+      "id": "itemphysiclite",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tiertagger": {
+      "id": "tiertagger",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "structurify": {
+      "id": "structurify",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "inventory-totem": {
+      "id": "inventorytotem",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "just-hammers": {
+      "id": "justhammers",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "patpat": {
+      "id": "patpat",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "spyglass-improvements": {
+      "id": "spyglass_improvements",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "custom-player-models": {
+      "id": "cpm",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "scribble": {
+      "id": "scribble",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "healing-campfire": {
+      "id": "healingcampfire",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "litematica-printer": {
+      "id": "litematica_printer",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "malilib": "<0.30.1-",
+        "litematica": "<0.29.0-"
+      },
+      "conflicts": {}
+    },
+    "vivecraft": {
+      "id": "vivecraft",
+      "mc": [
+        "26.3.x"
+      ],
+      "breaks": {
+        "sodium": [
+          "0.4.11+build.25",
+          "0.4.11+build.26"
+        ]
+      },
+      "conflicts": {}
+    },
+    "luckperms": {
+      "id": "luckperms",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "extended-drawers": {
+      "id": "extended_drawers",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "rustic-delight": {
+      "id": "rusticdelight",
+      "mc": ">=26.3 <=26.3",
+      "breaks": {
+        "rusticdelightrefabricated": "*"
+      },
+      "conflicts": {}
+    },
+    "freelook": {
+      "id": "freelook",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ijm-tweaks": {
+      "id": "ijmtweaks",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "xp-storage": {
+      "id": "xp_storage",
+      "mc": ">=26.3- <26.4-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "glowing-torchflower": {
+      "id": "glowing-torchflower",
+      "mc": ">=26.2-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dark-paintings": {
+      "id": "darkpaintings",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "scholar": {
+      "id": "scholar",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "friendly-fire": {
+      "id": "friendlyfire",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "xp-tome": {
+      "id": "xpbook",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "more-armor-trims": {
+      "id": "more_armor_trims",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "toms-trading-network": {
+      "id": "toms_trading_network",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "infinite-trading": {
+      "id": "infinitetrading",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "max-health-fix": {
+      "id": "maxhealthfix",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "combat-hitboxes": {
+      "id": "combat-hitboxes",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "tax-free-levels": {
+      "id": "taxfreelevels",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "friends-and-foes-flowery-mooblooms-fabric": {
+      "id": "flowerymooblooms",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "stylish-effects": {
+      "id": "stylisheffects",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "bactromod": {
+      "id": "bactromod",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "axes-are-weapons": {
+      "id": "axesareweapons",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "terrestria": {
+      "id": "terrestria",
+      "mc": ">=26.3- <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "skyblock-profile-viewer": {
+      "id": "skyblockpv",
+      "mc": "26.3.x",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "elevatormod": {
+      "id": "elevatorid",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "crosshair-addons-public": {
+      "id": "crosshairaddons",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "echo-chest": {
+      "id": "echochest",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "easy-elytra-takeoff": {
+      "id": "easyelytratakeoff",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "3d-placeable-food": {
+      "id": "placeable_food",
+      "mc": [
+        "~26.2",
+        "~26.3"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "smooth-skies": {
+      "id": "smoothskies",
+      "mc": ">=26.3",
+      "breaks": {
+        "clearvoid": "*",
+        "clear-skies": "*"
+      },
+      "conflicts": {}
+    },
+    "sound-controller": {
+      "id": "soundcontroller",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "enderite-mod": {
+      "id": "enderitemod",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "pro-placer": {
+      "id": "proplacer",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "viafabric": {
+      "id": "viafabric",
+      "mc": [
+        "26.1",
+        "26.1.1",
+        "26.1.2",
+        "26.2",
+        "26.3"
+      ],
+      "breaks": {
+        "viafabricplus": "*"
+      },
+      "conflicts": {}
+    },
+    "skyocean": {
+      "id": "skyocean",
+      "mc": "26.3.x",
+      "breaks": {
+        "clientspoofer": "*"
+      },
+      "conflicts": {}
+    },
+    "tough-as-nails": {
+      "id": "toughasnails",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "construction-wand-fabric": {
+      "id": "constructionwand",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "horse-expert": {
+      "id": "horseexpert",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "clickthrough-plus": {
+      "id": "clickthrough",
+      "mc": ">26.2",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "storage-delight": {
+      "id": "storagedelight",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "misctweaks": {
+      "id": "misctweaks",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "effecttimerplus": {
+      "id": "effecttimerplus",
+      "mc": [
+        ">26.2 <27"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "peek": {
+      "id": "peek",
+      "mc": "26.3.x",
+      "breaks": {
+        "fabric-api": "<0.160.5+26.3"
+      },
+      "conflicts": {
+        "enhancedblockentities": "*"
+      }
+    },
+    "itemswapper": {
+      "id": "itemswapper",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wits": {
+      "id": "wits",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "untitled-duck-mod": {
+      "id": "untitledduckmod",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "renderscale": {
+      "id": "renderscale",
+      "mc": "26.3.*",
+      "breaks": {
+        "resolutioncontrol": "*",
+        "resolutioncontrol-plus": "*",
+        "resolutioncontrol-plus-plus": "*",
+        "superresolution": "*"
+      },
+      "conflicts": {}
+    },
+    "camerapture": {
+      "id": "camerapture",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dark-utilities": {
+      "id": "darkutils",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "worldweaver": {
+      "id": "wover",
+      "mc": [
+        "26.3"
+      ],
+      "breaks": {
+        "wunderlib": "<26.301.4",
+        "polymer-common": "0.18.3"
+      },
+      "conflicts": {}
+    },
+    "get-it-together-drops": {
+      "id": "getittogetherdrops",
+      "mc": ">=26.1.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "chatting": {
+      "id": "chatting",
+      "mc": "~26.3",
+      "breaks": {
+        "chatpatches": "*"
+      },
+      "conflicts": {}
+    },
+    "ydms-mobhealthbar": {
+      "id": "mobhealthbar",
+      "mc": ">=1.20.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "pickup-notifications": {
+      "id": "pickupnotifications",
+      "mc": "26.3.*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "skinrestorer": {
+      "id": "skinrestorer",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "macaws-biomes-o-plenty": {
+      "id": "mcwbiomesoplenty",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "lovely_snails": {
+      "id": "lovely_snails",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fancy-toasts": {
+      "id": "fancytoasts",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "variants-cit": {
+      "id": "variants-cit",
+      "mc": "^26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "vanillahud": {
+      "id": "vanillahud",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mob-lassos": {
+      "id": "moblassos",
+      "mc": "~26.3-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dragon-drops-elytra": {
+      "id": "dragondropselytra",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "foodeffecttooltips": {
+      "id": "foodeffecttooltips",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "paperdoll": {
+      "id": "paperdoll",
+      "mc": "~26.3",
+      "breaks": {
+        "tlskincape": "*"
+      },
+      "conflicts": {}
+    },
+    "biome-spawn-point": {
+      "id": "biomespawnpoint",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "paladins-furniture": {
+      "id": "pfm",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "sodium": "<=0.6.5"
+      },
+      "conflicts": {}
+    },
+    "respawnable-pets": {
+      "id": "respawnable_pets",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "gca": {
+      "id": "gca_wrapper",
+      "mc": "*",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "addadd": {
+      "id": "additionaladditions",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "fresh-block-animations": {
+      "id": "fresh-blocks-animation",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "cpa": {
+      "id": "cpa",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ears": {
+      "id": "ears",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "delight-lib": {
+      "id": "delightlib",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "konkrete": {
+      "id": "konkrete",
+      "mc": ">=26.3 <26.4",
+      "breaks": {
+        "drippyloadingscreen": "<3.0.1",
+        "fancymenu": "<3.1.0"
+      },
+      "conflicts": {}
+    },
+    "nanite-library": {
+      "id": "nanitelibrary",
+      "mc": ">=26.3.0 <27.0.0",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "nyctography": {
+      "id": "nyctography",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "melody": {
+      "id": "melody",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "runelic": {
+      "id": "runelic",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "pig-pen-cipher": {
+      "id": "pigpen",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "villagerstradingplus": {
+      "id": "villagertradingplus",
+      "mc": ">=26.3 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "strawberrylib": {
+      "id": "strawberrylib",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "addonslib": {
+      "id": "addonslib",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "catharsis": {
+      "id": "catharsis",
+      "mc": "26.3.x",
+      "breaks": {
+        "resource_tree": "*"
+      },
+      "conflicts": {}
+    },
+    "bclib": {
+      "id": "bclib",
+      "mc": [
+        "26.3"
+      ],
+      "breaks": {
+        "wunderlib": "<26.301.4",
+        "wover": "<26.302.1"
+      },
+      "conflicts": {}
+    },
+    "mixson": {
+      "id": "mixson",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "player-animation-library": {
+      "id": "player_animation_library",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "mezzconfig": {
+      "id": "mezz_config",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "cinematic-interactions": {
+      "id": "cinematic",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "studious-keybinds": {
+      "id": "studiouskeybinds",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "signpost": {
+      "id": "signpost",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "slabbed": {
+      "id": "slabbed",
+      "mc": [
+        "26.2",
+        "26.3"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "texture-builder": {
+      "id": "texturebuilder",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "improved-inventory-tabs": {
+      "id": "inventorytabs",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ping": {
+      "id": "ping",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "weather-glass": {
+      "id": "weatherglass",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "timber-tales-dynamic-tree-system": {
+      "id": "timber_tales",
+      "mc": "=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dynamicsurroundingsfabric": {
+      "id": "dsurround",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wthit": {
+      "id": "wthit",
+      "mc": ">=26.3-",
+      "breaks": {
+        "roughlyenoughitems": "<9.0.462"
+      },
+      "conflicts": {}
+    },
+    "repurposed-structures-farmers-delight-compat": {
+      "id": "repurposed_structures_farmers_delight_compat",
+      "mc": ">=26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "voxy-seam-fix": {
+      "id": "voxy-seam-fix",
+      "mc": ">=1.21.9",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "wandering-traveler": {
+      "id": "wanderingtraveler",
+      "mc": ">=26.1 <26.4",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "ar1-animated-typing": {
+      "id": "ar1-animated-typing",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "icb": {
+      "id": "ice_caves_backport",
+      "mc": "26.3",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "olafs-relatively-placed-blocks": {
+      "id": "relativeblocks",
+      "mc": [
+        ">=26.3",
+        "<26.4"
+      ],
+      "breaks": {},
+      "conflicts": {}
+    },
+    "clickoptimizer": {
+      "id": "subtick-input-engine",
+      "mc": ">=26.1",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "badpackets": {
+      "id": "badpackets",
+      "mc": ">=26.1-",
+      "breaks": {},
+      "conflicts": {}
+    },
+    "dont-punch-my-tacz": {
+      "id": "dontpunchmytacz",
+      "mc": ">=26.1 <27",
+      "breaks": {},
+      "conflicts": {}
+    }
   }
 }

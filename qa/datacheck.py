@@ -49,6 +49,81 @@ for m in M:
 for b in D['beziehungen']:
     if b['art'] in ('K', 'D') and any(s in LOCKED for s in b['mods']) and any(s not in LOCKED for s in b['mods']):
         err['Konflikt mit festem Leistungspaket (Eintrag entfernen)'].append(' + '.join(b['mods']))
+
+# 2c JAR-Inspektion: Breaks gegen das feste Leistungspaket und Minecraft 26.3 Kompatibilität
+def clean_ver(v):
+    v = re.sub(r'^(?:mc)?[0-9.]+[_-]?', '', str(v)) if any(str(v).startswith(p) for p in ['mc26', 'fabric-26']) else str(v)
+    v = v.split('+')[0].split('-')[0]
+    parts = re.findall(r'\d+', v)
+    return [int(p) for p in parts] if parts else [0]
+
+def cmp_ver(v1, v2):
+    l = max(len(v1), len(v2))
+    a = v1 + [0]*(l-len(v1)); b = v2 + [0]*(l-len(v2))
+    for i in range(l):
+        if a[i] < b[i]: return -1
+        if a[i] > b[i]: return 1
+    return 0
+
+def is_mc26_compatible(constraint):
+    if isinstance(constraint, list): return any(is_mc26_compatible(c) for c in constraint)
+    c = str(constraint).strip()
+    if not c or c == '*': return True
+    if c.startswith('26.3') or '26.*' in c or c.startswith('^26') or c.startswith('~26'): return True
+    rm = re.match(r'^(>=|>)\s*([0-9a-zA-Z._-]+)\s*(<=|<)\s*([0-9a-zA-Z._-]+)$', c)
+    if rm:
+        op1, low, op2, high = rm.groups()
+        l = clean_ver(low); h = clean_ver(high); act = [26, 3]
+        ok1 = (cmp_ver(act, l) >= 0) if op1 == '>=' else (cmp_ver(act, l) > 0)
+        ok2 = (cmp_ver(act, h) <= 0) if op2 == '<=' else (cmp_ver(act, h) < 0)
+        return ok1 and ok2
+    m_low = re.match(r'^(>=|>)\s*([0-9a-zA-Z._-]+)$', c)
+    if m_low:
+        op, low = m_low.groups()
+        l = clean_ver(low); act = [26, 3]
+        return (cmp_ver(act, l) >= 0) if op == '>=' else (cmp_ver(act, l) > 0)
+    m_hi = re.match(r'^(<=|<|=|==)?\s*([0-9a-zA-Z._-]+)$', c)
+    if m_hi:
+        op, hi = m_hi.groups()
+        op = op or '='
+        h = clean_ver(hi); act = [26, 3]
+        c_val = cmp_ver(act, h)
+        if op == '<=': return c_val <= 0
+        if op == '<': return c_val < 0
+        if op in ('=', '=='): return c_val == 0
+    return False
+
+def match_ver(actual, constraint):
+    if isinstance(constraint, list): return any(match_ver(actual, c) for c in constraint)
+    constraint = str(constraint).strip()
+    if not constraint or constraint == '*': return True
+    act = clean_ver(actual)
+    m = re.match(r'^(<=|<|>=|>|=|~|\^)?\s*([0-9a-zA-Z._+-]+)$', constraint)
+    if not m: return False
+    op, req_s = m.groups()[0] or '=', m.groups()[1]
+    req = clean_ver(req_s)
+    c = cmp_ver(act, req)
+    if op in ('~', '^', '=', '=='): return c == 0
+    if op == '<=': return c <= 0
+    if op == '<': return c < 0
+    if op == '>=': return c >= 0
+    if op == '>': return c > 0
+    return c == 0
+
+if os.path.exists('data/jar-inspection.json'):
+    INSP = json.load(open('data/jar-inspection.json'))
+    for s, f in F.items():
+        if len(f) > 8 and f[8] != 'm': continue
+        info = INSP.get(s, {})
+        mc = info.get('depends', {}).get('minecraft')
+        if mc and not is_mc26_compatible(mc):
+            err['Mod inkompatibel mit Minecraft 26.3 (fabric.mod.json)'].append(f"{s}: erfordert {mc}")
+        breaks = info.get('breaks', {})
+        for target, constraint in breaks.items():
+            if target in LOCKED and target in F:
+                t_ver = F[target][6]
+                if constraint == '*' or match_ver(t_ver, constraint):
+                    err['Mod kollidiert mit festem Leistungspaket (breaks in JAR)'].append(f"{s} schließt {target} ({constraint}) aus")
 # 3 Gruppen und Beziehungen
 for g in D['gruppen']:
     for s in g['mods']:

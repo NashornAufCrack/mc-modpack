@@ -17,7 +17,7 @@ const LOADERS = { m: ["fabric"], r: ["minecraft"], s: ["iris", "optifine"], d: [
 const isMR = s => String(files[s][0]).startsWith("https://cdn.modrinth.com/");
 const today = new Date().toISOString().slice(0, 10);
 // Vom Nutzer festgelegte Versionen: nie automatisch ändern, nur melden
-const PIN = new Set(["sodium", "iris", "voxy", "photon-shader"]);
+const PIN = new Set(["sodium", "iris", "voxy", "photon-shader", "moreculling", "wandering-traveler"]);
 const isPre = v => /alpha|beta|pre|rc|snapshot/i.test(String(v));
 const verfuegbar = [];
 

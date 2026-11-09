@@ -105,8 +105,8 @@
     "conflicts": {}
   },
   "moreculling": {
-    "sha1": "4acecf7b1414950c6eb853a8ff2820a7eb2b0069",
-    "version": "1.9.2",
+    "sha1": "2c768b910eb1cb3fcb880bcacc7dbf9c0678ce06",
+    "version": "1.9.1",
     "mod_id": "moreculling",
     "depends": {
       "fabricloader": ">=0.15.0",
@@ -115,12 +115,12 @@
       "cloth-config": ">=16.0.0"
     },
     "breaks": {
-      "sodium": "<=0.9.3-beta.1",
+      "sodium": "<=0.6.6",
       "fabric-api": "<=0.145.2"
     },
     "recommends": {},
     "suggests": {
-      "sodium": ">=0.9.3-beta.2",
+      "sodium": ">=0.6.7",
       "fabric-api": ">=0.145.3"
     },
     "conflicts": {}
@@ -12851,12 +12851,20 @@
     "conflicts": {}
   },
   "wandering-traveler": {
-    "sha1": "60882030659d9501d9b4671f63a6dc34f9627dc8",
-    "version": "1.6.0+fabric",
-    "mod_id": "wanderingtraveler_monolith",
-    "depends": {},
+    "sha1": "cd027c910223ecb8f7f636cfce06fc15f8f861f1",
+    "version": "1.1.0+mc26.x-fabric",
+    "mod_id": "wanderingtraveler",
+    "depends": {
+      "fabricloader": ">=0.19.3",
+      "fabric-api": "*",
+      "minecraft": ">=26.1 <26.4",
+      "java": ">=25",
+      "cloth-config2": "*"
+    },
     "breaks": {},
-    "recommends": {},
+    "recommends": {
+      "modmenu": "*"
+    },
     "suggests": {},
     "conflicts": {}
   },
@@ -12955,6 +12963,226 @@
     "depends": {
       "minecraft": ">=26.1-",
       "fabricloader": ">=0.18.4"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {},
+    "conflicts": {}
+  },
+  "dont-punch-my-tacz": {
+    "sha1": "891eb83a03b939d3f70204702cb78441efd74507",
+    "version": "v0.5.2-26.x-fabric",
+    "mod_id": "dontpunchmytacz",
+    "depends": {
+      "fabricloader": ">=0.19.5",
+      "minecraft": ">=26.1 <27",
+      "java": ">=25"
+    },
+    "breaks": {},
+    "recommends": {
+      "punchy": "*"
+    },
+    "suggests": {
+      "tacz": "*",
+      "lrtactical": "*",
+      "create": "*",
+      "carryon": "*"
+    },
+    "conflicts": {}
+  },
+  "euphoria-patches": {
+    "sha1": "3e2d5b02476337413fb1afba9bf74f9383338daf",
+    "version": "1.10.5-r5.9.3-fabric",
+    "mod_id": "euphoria_patcher",
+    "depends": {
+      "fabricloader": ">=0.15.0",
+      "minecraft": ">=1.14.0"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {},
+    "conflicts": {}
+  },
+  "particle-interactions": {
+    "sha1": "360c432a7f0c295f10a4e0530b6900bb85558aee",
+    "version": "0.10.5+26.3-fabric",
+    "mod_id": "eg_particle_interactions",
+    "depends": {
+      "minecraft": ">=26.3 <26.4",
+      "fabricloader": ">=0.19"
+    },
+    "breaks": {},
+    "recommends": {
+      "fabric-api": ">=0.160.5+26.3"
+    },
+    "suggests": {},
+    "conflicts": {}
+  },
+  "entitytexturefeatures": {
+    "sha1": "29f48f42d72007ce13b4678fac5b2ef5986879e4",
+    "version": "7.2.7-fabric-26.3",
+    "mod_id": "entity_texture_features",
+    "depends": {
+      "fabricloader": "*",
+      "minecraft": "*"
+    },
+    "breaks": {
+      "optifabric": "*",
+      "entity_model_features": "<3.3",
+      "entity_sound_features": "<0.8.2"
+    },
+    "recommends": {},
+    "suggests": {
+      "modmenu": "*"
+    },
+    "conflicts": {}
+  },
+  "entity-model-features": {
+    "sha1": "2d076285c7e0671165fc86a827e62ce88ddcd201",
+    "version": "3.3.12-fabric-26.3",
+    "mod_id": "entity_model_features",
+    "depends": {
+      "fabricloader": "*",
+      "minecraft": "*",
+      "entity_texture_features": ">=7.2"
+    },
+    "breaks": {
+      "optifabric": "*",
+      "cem": "*",
+      "entity_texture_features": "<7.2",
+      "entity_sound_features": "<0.8.2"
+    },
+    "recommends": {},
+    "suggests": {},
+    "conflicts": {}
+  },
+  "esf": {
+    "sha1": "4398bc8c1d199b9c7a7bef7368c028ef3a65062f",
+    "version": "0.8.2-fabric-26.1",
+    "mod_id": "entity_sound_features",
+    "depends": {
+      "fabricloader": "*",
+      "minecraft": "*",
+      "entity_texture_features": ">=7.2",
+      "entity_model_features": ">=3.3"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {},
+    "conflicts": {}
+  },
+  "spatial-gui": {
+    "sha1": "1b56341807fb27033aad417ef00850b859fe40d0",
+    "version": "1.11.0-fabric+26.3",
+    "mod_id": "spatial_gui",
+    "depends": {
+      "fabricloader": ">=0.19.3",
+      "fabric-api": "*",
+      "minecraft": "26.3",
+      "yet_another_config_lib_v3": ">=3.9.7+26.3-fabric"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {},
+    "conflicts": {}
+  },
+  "irissearch": {
+    "sha1": "5dcb1770d1d4d72152322f7838389bf7d9d896ee",
+    "version": "1.8.4-fabric",
+    "mod_id": "iris_search",
+    "depends": {
+      "minecraft": ">=1.20.1",
+      "iris": "*"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {},
+    "conflicts": {}
+  },
+  "immersivemc": {
+    "sha1": "aad94f9ae0a187972541c756880e10cef86b6b1b",
+    "version": "1.6.0-beta1",
+    "mod_id": "immersivemc",
+    "depends": {
+      "fabric-api": "*",
+      "minecraft": ">=1.20.2"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {},
+    "conflicts": {}
+  },
+  "bettergrassify": {
+    "sha1": "626f74d3265d140f80ebb5ca1703f43ba07ff1bd",
+    "version": "1.8.8+fabric.26.3",
+    "mod_id": "bettergrass",
+    "depends": {
+      "minecraft": ">=26.3",
+      "fabricloader": "*",
+      "fabric-api": "*"
+    },
+    "breaks": {},
+    "recommends": {
+      "cloth-config": "*"
+    },
+    "suggests": {},
+    "conflicts": {}
+  },
+  "betterend": {
+    "sha1": "4f4a63b8ff6cc8f7656ba79eeb00ad8e8580588d",
+    "version": "26.302.1",
+    "mod_id": "betterend",
+    "depends": {
+      "fabricloader": ">=0.19.0",
+      "fabric-api": ">=0.155.0",
+      "java": ">=25",
+      "minecraft": [
+        "26.3"
+      ],
+      "bclib": "26.302.x",
+      "wover": "26.302.x",
+      "wunderlib": "26.301.x"
+    },
+    "breaks": {
+      "bclib": "<26.302.1",
+      "wover": "<26.302.1",
+      "wunderlib": "<26.301.4"
+    },
+    "recommends": {},
+    "suggests": {
+      "jei": ">=31.10.0.63",
+      "blockus": ">=2.0.2",
+      "nourish": ">=1.2.0",
+      "colored_lights": ">=1.0.3",
+      "trinkets": ">=3.7.0"
+    },
+    "conflicts": {}
+  },
+  "weaponmaster": {
+    "sha1": "6e393e646f40e426851255f1673a26d64d4bf53e",
+    "version": "fabric-26.3-4.4.4",
+    "mod_id": "weaponmaster_ydm",
+    "depends": {
+      "fabricloader": ">=0.16.8",
+      "minecraft": ">=1.21.1",
+      "java": ">=17",
+      "fabric-api": "*"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {
+      "another-mod": "*"
+    },
+    "conflicts": {}
+  },
+  "macos-input-fixes": {
+    "sha1": "8b648b1aa371af7c9450f5d4a1463a9f6372d32d",
+    "version": "1.16",
+    "mod_id": "macos_input_fixes_helper",
+    "depends": {
+      "fabricloader": ">=0.18.5",
+      "minecraft": ">=1.14",
+      "java": ">=8"
     },
     "breaks": {},
     "recommends": {},

@@ -57,16 +57,16 @@
     "m"
   ],
   "moreculling": [
-    "https://cdn.modrinth.com/data/51shyZVL/versions/loquqFkT/moreculling-fabric-26.3-1.9.2.jar",
-    "moreculling-fabric-26.3-1.9.2.jar",
-    "4acecf7b1414950c6eb853a8ff2820a7eb2b0069",
-    "af1671ac30eee64bed3ef5eb874e71944ad6c41a084119d8416954bfedd969cfc2a10ae5760054e2f99ff3ad0fd57751f5248b046a20c3d71e49c7edcc03ca8a",
-    297119,
+    "https://cdn.modrinth.com/data/51shyZVL/versions/5jIORlSK/moreculling-fabric-26.3-1.9.1.jar",
+    "moreculling-fabric-26.3-1.9.1.jar",
+    "2c768b910eb1cb3fcb880bcacc7dbf9c0678ce06",
+    "93ae8cfe7b07391ca2966a86a60798fe7f37c2092545ed52a74d01a405b66cc5ecb236e303dc5c966a5d1ac20480e88c4f35b1d7b75a31c790a32bf58551a909",
+    297173,
     [
       "cloth-config"
     ],
-    "1.9.2",
-    "",
+    "1.9.1",
+    "More Culling",
     "m"
   ],
   "modernfix-mvus": [
@@ -13688,17 +13688,16 @@
     "m"
   ],
   "wandering-traveler": [
-    "https://cdn.modrinth.com/data/kZlMne3t/versions/Nl5ALDqA/wanderingtraveler-fabric-1.6.0.jar",
-    "wanderingtraveler-fabric-1.6.0.jar",
-    "60882030659d9501d9b4671f63a6dc34f9627dc8",
-    "a30448538c31f663e8d99060fd6b43282edbc338ee9f17bfc8a899ae3c0d2099cb22ba5b523072ee5f038d885d5627e3282e95b07c4761caabe0a67ebac8940c",
-    6506347,
+    "https://cdn.modrinth.com/data/kZlMne3t/versions/3C1jxVWX/wanderingtraveler-fabric-26.x-1.1.0.jar",
+    "wanderingtraveler-fabric-26.x-1.1.0.jar",
+    "cd027c910223ecb8f7f636cfce06fc15f8f861f1",
+    "ed1ce75138001a5ff620d27229ffaf3418572f3ec8f8eb9f05f27b59ce509e65ba79f77e3fda07c6dbba482f09e1c6e7d2ad5daf2dd8806a63eeaff90db51693",
+    8933055,
     [
-      "fabric-api",
       "cloth-config"
     ],
-    "1.6.0+fabric",
-    "",
+    "1.1.0+mc26.x-fabric",
+    "Wandering Traveler",
     "m"
   ],
   "ar1-animated-typing": [

@@ -1,0 +1,22 @@
+name: Runtime-Start-Test
+# Prüft alle Vorlagen und Packs mit dem echten Fabric Loader Resolver auf Startfähigkeit.
+# Erkennt sofort Inkompatibilitäten, Mixin-Kollisionen und falsche Minecraft-Versionen.
+on:
+  push:
+    paths:
+      - "data/files.json"
+      - "data/app-data.json"
+      - "data/jar-inspection.json"
+      - "scripts/solve_pack_compatibility.py"
+      - ".github/workflows/runtime-test.yml"
+  workflow_dispatch:
+jobs:
+  fabric-runtime-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: "Fabric Loader Kompatibilitäts- und Kollisionstest aller Packs"
+        run: python3 scripts/solve_pack_compatibility.py

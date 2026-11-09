@@ -118,11 +118,11 @@
   </div>
   <p class="ram"><b>Arbeitsspeicher: {pack.ramGB(r)} GB</b> · Prism stellt ihn automatisch ein. In der Modrinth App musst du ihn nach dem Import selbst setzen (Instanz › Einstellungen › Java), sonst stürzt das Spiel beim Start ab. <a href="#crash" onclick={() => (ui.view = "crash")} style="display:inline-block; margin-top:.25rem; color:inherit; text-decoration:underline">Spiel stürzt ab? Zur Absturz-Hilfe →</a></p>
   <label class="lbl">Name<input class="field" bind:value={name} /></label>
-  <button class="btn primary big" disabled={busy} onclick={() => go("mrpack")}>Modpack-Datei (.mrpack)</button>
+  <button class="btn primary big" disabled={busy || !check.ok} onclick={() => go("mrpack")}>Modpack-Datei (.mrpack)</button>
   <p class="hint">Klein und schnell. Importieren in Modrinth App, Prism oder ATLauncher, die Mods lädt der Launcher selbst.</p>
-  <button class="btn" disabled={busy} onclick={() => go("prism")}>Komplette Prism-Instanz (.zip)</button>
+  <button class="btn" disabled={busy || !check.ok} onclick={() => go("prism")}>Komplette Prism-Instanz (.zip)</button>
   <p class="hint">Alle Dateien schon drin und Arbeitsspeicher eingestellt. Größer, der Download dauert etwas.</p>
-  <button class="btn sm ghost" disabled={busy} onclick={() => go("server")}>Server-Pack (.mrpack)</button>
+  <button class="btn sm ghost" disabled={busy || !check.ok} onclick={() => go("server")}>Server-Pack (.mrpack)</button>
   <details class="srv">
     <summary>Server-Werkzeuge: {srvCount} von {srvList.length} dabei</summary>
     <p class="small muted">Harmlose sind vorausgewählt. Was du abwählst, bleibt draußen, außer ein anderes Werkzeug braucht es.</p>

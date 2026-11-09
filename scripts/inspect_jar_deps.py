@@ -74,7 +74,8 @@ for slug, f in mods_to_inspect:
         fmj_content = None
 
         if "fabric.mod.json" in zf.namelist():
-            fmj_content = json.loads(zf.read("fabric.mod.json").decode("utf-8", errors="ignore"))
+            raw_text = zf.read("fabric.mod.json").decode("utf-8-sig", errors="ignore")
+            fmj_content = json.loads(raw_text, strict=False)
 
         if fmj_content:
             mod_id = fmj_content.get("id")
