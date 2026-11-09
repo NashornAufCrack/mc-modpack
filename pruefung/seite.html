@@ -95,9 +95,10 @@
   <header class="head">
     <div>
       <h1>Foto- &amp; Video-Prüfung</h1>
-      <p class="lead">Klicke direkt auf ein Foto, um es zwischen <b>Behalten</b> und <b>Rauswerfen</b> umzuschalten. Bei Videos kannst du reinhören/anschauen und entscheiden. Alle Entscheidungen werden sofort lokal gespeichert.</p>
+      <p class="lead">Klicke direkt auf ein Foto, um es zwischen <b>Behalten</b> und <b>Rauswerfen</b> umzuschalten. Bei Videos kannst du reinhören/anschauen und bewerten. <b>Jeder Klick wird automatisch live auf deiner Festplatte gespeichert.</b> Wenn du fertig bist, sag mir im Chat einfach <b>„Bin fertig“</b> – du musst nichts manuell kopieren!</p>
     </div>
     <div class="stats-bar">
+      <div class="stat-pill" id="live-server-pill">⚪ Verbindung wird geprüft...</div>
       <div class="stat-pill bad"><b id="cnt-bad-imgs">0</b> Fotos aussortiert</div>
       <div class="stat-pill"><b id="cnt-ok-vids">0</b> Videos bestätigt</div>
       <div class="stat-pill bad"><b id="cnt-bad-vids">0</b> Videos aussortiert</div>
@@ -147,11 +148,70 @@
 
   const $ = id => document.getElementById(id);
 
-  function saveStorage() {
+  let serverConnected = false;
+  let saveTimer = null;
+
+  async function checkServer() {
+    const pill = $("live-server-pill");
+    try {
+      const res = await fetch("http://127.0.0.1:8765/api/status");
+      if (res.ok) {
+        serverConnected = true;
+        pill.innerHTML = `🟢 <b>Live verbunden</b> — Speichert direkt auf Festplatte`;
+        pill.style.borderColor = "var(--accent)";
+        pill.style.background = "var(--accent-soft)";
+
+        try {
+          const rUrteile = await fetch("http://127.0.0.1:8765/api/urteile");
+          if (rUrteile.ok) {
+            const serverUrteile = await rUrteile.json();
+            for (const [slug, list] of Object.entries(serverUrteile.rejected_imgs || {})) {
+              const cur = storage.rejected_imgs[slug] || [];
+              storage.rejected_imgs[slug] = Array.from(new Set([...cur, ...list]));
+            }
+            for (const [k, st] of Object.entries(serverUrteile.video_status || {})) {
+              if (!storage.video_status[k]) storage.video_status[k] = st;
+            }
+            saveStorage(false);
+          }
+        } catch {}
+        return true;
+      }
+    } catch {}
+
+    serverConnected = false;
+    pill.innerHTML = `🟡 <b>Browser-Speicher aktiv</b>`;
+    pill.title = "Starte den lokalen Server 'scripts/pruef_server.py', um direkt auf die Festplatte zu schreiben.";
+    return false;
+  }
+
+  function saveStorage(postToServer = true) {
     try {
       localStorage.setItem("mk-media-curation-v1", JSON.stringify(storage));
     } catch {}
     updateStats();
+
+    if (serverConnected && postToServer) {
+      if (saveTimer) clearTimeout(saveTimer);
+      const pill = $("live-server-pill");
+      pill.innerHTML = `💾 <b>Speichere...</b>`;
+      saveTimer = setTimeout(async () => {
+        try {
+          const res = await fetch("http://127.0.0.1:8765/api/save", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(storage)
+          });
+          if (res.ok) {
+            pill.innerHTML = `🟢 <b>Gespeichert!</b> Sag im Chat 'Bin fertig'`;
+          } else {
+            pill.innerHTML = `⚠️ <b>Speichern fehlgeschlagen</b>`;
+          }
+        } catch (e) {
+          pill.innerHTML = `⚠️ <b>Verbindung verloren</b>`;
+        }
+      }, 250);
+    }
   }
 
   function updateStats() {
@@ -171,6 +231,7 @@
   }
 
   async function init() {
+    await checkServer();
     if (window.CATALOG_EMBED && window.CATALOG_EMBED.appData && window.CATALOG_EMBED.mediaData) {
       appData = window.CATALOG_EMBED.appData;
       mediaData = window.CATALOG_EMBED.mediaData;
