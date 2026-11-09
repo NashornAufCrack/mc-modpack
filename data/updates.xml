@@ -6,7 +6,14 @@
   <atom:link href="https://nashornaufcrack.github.io/mc-modpack/data/updates.xml" rel="self" type="application/rss+xml"/>
   <description>Neue Versionen der Mods, Shader, Resource Packs und Datapacks im Mod-Katalog (Minecraft 26.3, Fabric). Täglich geprüft.</description>
   <language>de-de</language>
-  <lastBuildDate>Sun, 08 Nov 2026 19:40:16 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 09 Nov 2026 13:51:43 GMT</lastBuildDate>
+  <item>
+    <title>09.11.2026: 4 neue Versionen</title>
+    <link>https://nashornaufcrack.github.io/mc-modpack/neu/#updates</link>
+    <guid isPermaLink="false">mc-modpack-updates-2026-11-09</guid>
+    <pubDate>Mon, 09 Nov 2026 12:00:00 GMT</pubDate>
+    <description>&lt;ul&gt;&lt;li&gt;&lt;b&gt;Carry On&lt;/b&gt; (Mod): 2.12.1 → 2.12.2&lt;/li&gt;&lt;li&gt;&lt;b&gt;Easy Shulker Boxes&lt;/b&gt; (Mod): 26.3.3 → 26.3.4&lt;/li&gt;&lt;li&gt;&lt;b&gt;EMF Compat: Core&lt;/b&gt; (Mod): 2.3.2 → 2.4.0&lt;/li&gt;&lt;li&gt;&lt;b&gt;the-one-probe&lt;/b&gt; (Mod): 26.3-16.0.1-fabric → 26.3-16.0.2-fabric&lt;/li&gt;&lt;/ul&gt;</description>
+  </item>
   <item>
     <title>08.11.2026: 15 neue Versionen</title>
     <link>https://nashornaufcrack.github.io/mc-modpack/neu/#updates</link>

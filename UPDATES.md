@@ -1,6 +1,6 @@
 # Update-Stand (26.3)
 
-Zuletzt geprüft: 2026-11-08
+Zuletzt geprüft: 2026-11-09
 
 ## Neue Versionen in den letzten 7 Tagen (automatisch übernommen)
 
@@ -26,11 +26,16 @@ Zuletzt geprüft: 2026-11-08
 - 2026-11-08: **Voxy Extra** (Mod) 0.2.8 → 0.3.0+26.3
 - 2026-11-08: **tree-harvester** (Mod) 26.3.0-11.0-fabric+forge+neo → 26.3.0-11.1-fabric+forge+neo
 - 2026-11-08: **Fancy Crops** (Resource Pack) 1.3 → 1.4
+- 2026-11-09: **Carry On** (Mod) 2.12.1 → 2.12.2
+- 2026-11-09: **Easy Shulker Boxes** (Mod) 26.3.3 → 26.3.4
+- 2026-11-09: **EMF Compat: Core** (Mod) 2.3.2 → 2.4.0
+- 2026-11-09: **the-one-probe** (Mod) 26.3-16.0.1-fabric → 26.3-16.0.2-fabric
 
 
-## Verfügbar, aber nicht automatisch übernommen (14)
+## Verfügbar, aber nicht automatisch übernommen (16)
 
 - Sodium: mc26.3-0.9.2-fabric → mc26.3-0.9.3-beta.4-fabric (festgelegte Version)
+- More Culling: 1.9.1 → 1.9.2 (festgelegte Version)
 - Reese's Sodium Options: mc26.3-2.2.5+fabric → mc26.3-2.2.6-beta.3+fabric (nur als beta)
 - Sodium Extra: mc26.3-0.9.5+fabric → mc26.3-0.9.6-beta.3+fabric (nur als beta)
 - Animatica: 0.6.3+26.3 → 0.7.0+beta.4+26.3-fabric (nur als beta)
@@ -38,15 +43,16 @@ Zuletzt geprüft: 2026-11-08
 - Tectonic: 3.0.32-fabric-26.3 → 3.1.0+beta2-fabric-26.3 (nur als beta)
 - Biomes O' Plenty: 26.3.0.0.7 → 26.3.0.0.16 (nur als beta)
 - jei: 31.14.0.72 → 31.17.0.109 (nur als beta)
-- plasmo-voice: fabric-26.3-2.1.17 → fabric-26.3-2.2.0-beta.2 (nur als beta)
+- plasmo-voice: fabric-26.3-2.1.17 → fabric-26.3-2.2.0-beta.3 (nur als beta)
 - viaversion: 5.12.2 → 5.12.3-SNAPSHOT+1119 (nur als beta)
 - x-plus-autofish: 1.5.1-fabric-mc26.3 → 2.0.0-fabric-mc26.3 (nur als beta)
 - viabackwards: 5.12.2 → 5.12.3-SNAPSHOT+668 (nur als beta)
+- Wandering Traveler: 1.1.0+mc26.x-fabric → 1.6.0+fabric (festgelegte Version)
 - 3D Harnesses x Fresh Animations: 3.0.1 → 3.0.2 (nur als beta)
 - Pegasus Shaders: 0.5 → 0.8.1 (nur als beta)
 
 
-## Ohne neue Version seit über einer Woche (633)
+## Ohne neue Version seit über einer Woche (647)
 
 Sortiert nach Alter der aktuellen Datei.
 
@@ -62,6 +68,7 @@ Sortiert nach Alter der aktuellen Datei.
 - 3D crops Revamped: 3 (seit 2025-05-19)
 - Excalibur | Lootr Support: 1.1 (seit 2025-09-16)
 - Better Flame Particles: 3.1 (seit 2025-09-19)
+- Blue Netherite: 1.2.1 (seit 2025-09-30)
 - (Bee's) Fluffy Carpets and Wool: 1.1 (seit 2025-10-11)
 - (Bee's) Blockier Goat Horn: 1.2 (seit 2025-10-11)
 - AL's Zombies Revamped x Fresh Animations: 1.4.1 (seit 2025-11-22)
@@ -113,6 +120,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Simple Discord RPC: 4.1.4 (seit 2026-07-22)
 - Dimanic Beds: v3 (seit 2026-07-25)
 - Grim kingdoms: Lost structures & ruins Vanilla Edition: 2.0.0 (seit 2026-07-27)
+- Miniature Shader: 2.19 (seit 2026-07-29)
 - FastQuit: 3.1.5+mc26.2 (seit 2026-07-30)
 - Animated 3D Wind Charge: 1.1 (seit 2026-08-01)
 - Nocturnal Bats: 1.1.0+26.1.2 (seit 2026-08-15)
@@ -124,6 +132,7 @@ Sortiert nach Alter der aktuellen Datei.
 - I see you over there!: 1.0.5+26.1.2 (seit 2026-08-30)
 - Enchanted Books: Re-covered: 4.0 (seit 2026-08-30)
 - XK Redstone Display: 26.3.0 (seit 2026-08-31)
+- Excalibur | Fresh Animations Support: 1.10.5_1 (seit 2026-08-31)
 - Entity Sound Features: 0.8.2-fabric-26.1 (seit 2026-09-01)
 - Server Pinger Fixer: 1.1.1 (seit 2026-09-06)
 - Universal Graves: 3.13.0+26.3 (seit 2026-09-10)
@@ -143,7 +152,6 @@ Sortiert nach Alter der aktuellen Datei.
 - Falling Leaves: 2.0.8+26.3 (seit 2026-09-15)
 - Presence Footsteps: 1.14.0+26.3 (seit 2026-09-15)
 - Mouse Tweaks: 26.3-2.31-fabric (seit 2026-09-15)
-- Packet Fixer: 3.3.6 (seit 2026-09-15)
 - Map Preview Icons: 0.2.0+mod (seit 2026-09-15)
 - Bookshelf Inspector: 2.4+26.3 (seit 2026-09-15)
 - Very Many Players (Fabric): 0.2.0+beta.7.238+26.3 (seit 2026-09-15)
@@ -259,6 +267,8 @@ Sortiert nach Alter der aktuellen Datei.
 - Better Lanterns: 1.4.0-mc26.2+26.3 (seit 2026-09-18)
 - Connected Paths: 3.1.1+mc26.2-26.3 (seit 2026-09-18)
 - 3D Ladders: 1.2.2-mc26.3 (seit 2026-09-18)
+- Default HD 128x: 1.8.2.7 (seit 2026-09-18)
+- Default HD 512x: 1.5.2.7 (seit 2026-09-18)
 - Default HD Sun and Moon: 1.3.3.7 (seit 2026-09-18)
 - Borderless Glass: 1.0.2-mc26.3 (seit 2026-09-18)
 - Renewed Bookshelf: 1.0.2-mc26.3 (seit 2026-09-18)
@@ -300,6 +310,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Smooth Skies: 2.12.2 (seit 2026-09-20)
 - Animated Items: 1.6.3 (seit 2026-09-20)
 - Rethoughted Spawn Eggs: 1.5.1 (seit 2026-09-20)
+- Don't Punch My TACZ: v0.5.2-26.x-fabric (seit 2026-09-20)
 - Do a Barrel Roll: 3.8.5+26.3-fabric (seit 2026-09-21)
 - Flashback: 0.43.6 (seit 2026-09-21)
 - Serene Seasons: 26.1.2.0.7 (seit 2026-09-21)
@@ -328,6 +339,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Armor Statues: 26.3.0 (seit 2026-09-22)
 - Luna Slimes: 1.10-mc26.3-fabric (seit 2026-09-22)
 - mclo.gs: 3.3.4 (seit 2026-09-22)
+- Excalibur: 26.3_01 (seit 2026-09-22)
 - Nvidium: 0.4.4-beta7-26.3 (seit 2026-09-23)
 - Mod Menu: 21.0.0 (seit 2026-09-23)
 - Spyglass Astronomy: 1.0.27-mc26.3 (seit 2026-09-23)
@@ -362,6 +374,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Visual: Armor Trims: 4.3 (seit 2026-09-24)
 - Luminous Lanterns x Punchy!: 1.1 (seit 2026-09-24)
 - Glowing 3D Totem: 1.3.2 (seit 2026-09-24)
+- Wandering Traveler: 1.1.0+mc26.x-fabric (seit 2026-09-24)
 - ModernFix-mVUS: 5.27.20-build.2 (seit 2026-09-25)
 - Cherished Worlds: 18.0.0+26.3 (seit 2026-09-25)
 - Biomes O' Plenty: 26.3.0.0.7 (seit 2026-09-25)
@@ -526,8 +539,6 @@ Sortiert nach Alter der aktuellen Datei.
 - Komorebi Shaders: 26.3 (seit 2026-10-09)
 - Particle Interactions: 0.10.5+26.3-fabric (seit 2026-10-10)
 - Inventory Particles: 3.3.0+26.3+fabric (seit 2026-10-10)
-- Particle Core: 0.3.3+fix1+26.2 (seit 2026-10-10)
-- Cull Leaves: 4.1.2+26.3-fabric (seit 2026-10-10)
 - Just Enough Breeding (JEBr): 3.4.1 (seit 2026-10-10)
 - Roughly Enough Professions (REP): 10.0.0 (seit 2026-10-10)
 - Consumable Optimizer: 2.2.3+26.3 (seit 2026-10-10)
@@ -545,6 +556,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Animatica: 0.6.3+26.3 (seit 2026-10-13)
 - Trade Cycling: fabric-1.0.23+26.3 (seit 2026-10-13)
 - Bow Infinity Fix: 3.4.0 (seit 2026-10-13)
+- Full Brightness Toggle: 26.3.0-4.9-fabric+forge+neo (seit 2026-10-13)
 - Better Candles: 1.1.0-mc26.3 (seit 2026-10-13)
 - Enderscape: 3.0.5+mc26.3 (seit 2026-10-14)
 - Not Enough Crashes: 4.5.1+26.3-fabric (seit 2026-10-14)
@@ -553,7 +565,6 @@ Sortiert nach Alter der aktuellen Datei.
 - Wavify: 1.2.1 (seit 2026-10-14)
 - Armor Stand Arms: v2.7.1 (seit 2026-10-14)
 - Entity Model Features: 3.3.12-fabric-26.3 (seit 2026-10-15)
-- Easy Shulker Boxes: 26.3.3 (seit 2026-10-15)
 - Wilder Wild: 4.3.3-mc26.3-fabric (seit 2026-10-15)
 - Sound Physics Perfected: 1.17.7 (seit 2026-10-15)
 - Iris/Oculus Shader Folder: 1.4.3-fabric (seit 2026-10-15)
@@ -575,11 +586,9 @@ Sortiert nach Alter der aktuellen Datei.
 - Fog: 1.12.1+26.3-fabric (seit 2026-10-17)
 - Eroding Stone Entities: 26.3.0-4.9-fabric+forge+neo (seit 2026-10-17)
 - 3D Skin Layers: 1.11.4 (seit 2026-10-18)
-- AsyncParticles: 26.3.2.1 (seit 2026-10-18)
 - Perception: 0.1.6.1+26.3 (seit 2026-10-18)
 - Stack to Nearby Chests: 0.5.20 (seit 2026-10-18)
 - ReplayMod: 26.3-2.6.28 (seit 2026-10-18)
-- Wandering Traveler: 1.6.0+fabric (seit 2026-10-18)
 - Voxy: 0.2.20-beta (seit 2026-10-19)
 - AmbientSounds: 6.3.11 (seit 2026-10-19)
 - Immersive UI: 0.3.7+26.3 (seit 2026-10-19)
@@ -640,6 +649,7 @@ Sortiert nach Alter der aktuellen Datei.
 - Simple Armor Hud: 1.10.0-26.3 (seit 2026-10-25)
 - fresh block animations: 1.4-rc.3-hotfix (seit 2026-10-25)
 - Fresh Buckets: 1.3 (seit 2026-10-25)
+- Bray's Zombie Overhaul x Fresh Animations: 1.5 (seit 2026-10-25)
 - Texture Builder: 1.1.0 (seit 2026-10-25)
 - Cinematic Respawn: 26.3-fabric-1.4.3 (seit 2026-10-26)
 - Friends & Foes: fabric-5.0.4+mc26.3 (seit 2026-10-26)
@@ -680,7 +690,17 @@ Sortiert nach Alter der aktuellen Datei.
 - Shoulder Surfing Reloaded: 26.3-5.3.0+fabric (seit 2026-10-31)
 - Fresh Animations: Extensions: 1.10.1 (seit 2026-10-31)
 - Visual Effects+: 1.4.0 (seit 2026-10-31)
+- Fresh Animations: Quivers: 2.3.0 (seit 2026-10-31)
 - Animated Totem of Undying: 1.1.4 (seit 2026-10-31)
+- Stained Glass Ultra: 4.2 (seit 2026-10-31)
 - Mellow: 3.5 (seit 2026-10-31)
 - rainbow's foliage: polytone: 2.2 (seit 2026-10-31)
+- More Culling: 1.9.1 (seit 2026-11-01)
+- Not Enough Animations: 1.12.7 (seit 2026-11-01)
+- AFK Cinematics: 1.11.26+mc26.3 (seit 2026-11-01)
+- This Rocks!: 1.10.0+26.3-fabric (seit 2026-11-01)
+- BetterEnd: 26.302.1 (seit 2026-11-01)
+- BetterNether: 26.302.1 (seit 2026-11-01)
+- Fresh Animations: 1.11.2 (seit 2026-11-01)
+- Fresh Seeds: 1.3.2 (seit 2026-11-01)
 
