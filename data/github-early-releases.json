@@ -1,0 +1,437 @@
+[
+  {
+    "slug": "sodium",
+    "repo": "CaffeineMC/sodium-fabric",
+    "cur_ver": "mc26.3-0.9.2-fabric",
+    "gh_tag": "mc26.3-0.9.3-beta.4",
+    "gh_name": "Sodium 0.9.3-beta.4 for Minecraft 26.3",
+    "published": "2026-11-08",
+    "prerelease": true,
+    "url": "https://github.com/CaffeineMC/sodium/releases/tag/mc26.3-0.9.3-beta.4",
+    "assets": []
+  },
+  {
+    "slug": "lithium",
+    "repo": "CaffeineMC/lithium-fabric",
+    "cur_ver": "mc26.3-0.26.3-fabric",
+    "gh_tag": "mc26.3-0.26.3",
+    "gh_name": "Lithium 0.26.3 for Minecraft 26.3.x Fabric and Neoforge",
+    "published": "2026-10-28",
+    "prerelease": false,
+    "url": "https://github.com/CaffeineMC/lithium/releases/tag/mc26.3-0.26.3",
+    "assets": [
+      {
+        "name": "lithium-0.26.3+mc26.3-api.jar",
+        "url": "https://github.com/CaffeineMC/lithium/releases/download/mc26.3-0.26.3/lithium-0.26.3%2Bmc26.3-api.jar"
+      },
+      {
+        "name": "lithium-fabric-0.26.3+mc26.3.jar",
+        "url": "https://github.com/CaffeineMC/lithium/releases/download/mc26.3-0.26.3/lithium-fabric-0.26.3%2Bmc26.3.jar"
+      },
+      {
+        "name": "lithium-neoforge-0.26.3+mc26.3.jar",
+        "url": "https://github.com/CaffeineMC/lithium/releases/download/mc26.3-0.26.3/lithium-neoforge-0.26.3%2Bmc26.3.jar"
+      }
+    ]
+  },
+  {
+    "slug": "bobby",
+    "repo": "Johni0702/bobby",
+    "cur_ver": "5.2.16+mc26.3",
+    "gh_tag": "v5.2.16+mc26.3",
+    "gh_name": "Version 5.2.16 for Minecraft 26.3",
+    "published": "2026-10-06",
+    "prerelease": false,
+    "url": "https://github.com/Johni0702/bobby/releases/tag/v5.2.16%2Bmc26.3",
+    "assets": [
+      {
+        "name": "bobby-5.2.16+mc26.3.jar",
+        "url": "https://github.com/Johni0702/bobby/releases/download/v5.2.16%2Bmc26.3/bobby-5.2.16%2Bmc26.3.jar"
+      }
+    ]
+  },
+  {
+    "slug": "rrls",
+    "repo": "dima-dencep/rrls",
+    "cur_ver": "5.2.8+mc26.3",
+    "gh_tag": "26.3-5.2.8",
+    "gh_name": "[26.3] v5.2.8",
+    "published": "2026-09-17",
+    "prerelease": false,
+    "url": "https://github.com/dima-dencep/rrls/releases/tag/26.3-5.2.8",
+    "assets": [
+      {
+        "name": "rrls-5.2.8+mc.26.3.jar",
+        "url": "https://github.com/dima-dencep/rrls/releases/download/26.3-5.2.8/rrls-5.2.8%2Bmc.26.3.jar"
+      }
+    ]
+  },
+  {
+    "slug": "cubes-without-borders",
+    "repo": "Kira-NT/cubes-without-borders",
+    "cur_ver": "5.0.0+26.3",
+    "gh_tag": "v5.0.0",
+    "gh_name": "v5.0.0",
+    "published": "2026-10-24",
+    "prerelease": false,
+    "url": "https://github.com/Kira-NT/cubes-without-borders/releases/tag/v5.0.0",
+    "assets": [
+      {
+        "name": "cwb-5.0.0+1.14.0.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.14.0.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.14.0.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.14.0.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.14.0.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.14.0.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.14.0.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.14.0.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.15.0.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.15.0.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.15.0.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.15.0.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.15.0.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.15.0.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.15.0.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.15.0.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.16.0.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.16.0.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.16.0.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.16.0.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.16.0.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.16.0.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.16.0.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.16.0.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.17.0.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.17.0.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.17.0.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.17.0.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.17.0.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.17.0.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.17.0.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.17.0.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.18.0.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.18.0.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.18.0.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.18.0.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.18.2.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.18.2.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.18.2.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.18.2.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.19.0.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.19.0.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.19.0.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.19.0.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.19.0.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.19.0.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.19.0.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.19.0.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.19.3.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.19.3.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.19.3.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.19.3.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.19.3.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.19.3.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.19.3.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.19.3.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.20.0.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.20.0.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.20.0.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.20.0.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.20.0.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.20.0.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.20.0.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.20.0.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.20.5.neoforge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.20.5.neoforge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.20.5.neoforge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.20.5.neoforge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.0.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.0.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.0.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.0.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.0.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.0.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.0.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.0.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.0.neoforge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.0.neoforge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.0.neoforge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.0.neoforge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.11.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.11.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.11.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.11.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.11.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.11.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.11.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.11.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.11.neoforge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.11.neoforge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.11.neoforge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.11.neoforge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.2.fabric-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.2.fabric-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.2.fabric.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.2.fabric.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.2.neoforge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.2.neoforge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.2.neoforge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.2.neoforge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.9.forge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.9.forge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.9.forge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.9.forge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.9.neoforge-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.9.neoforge-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+1.21.9.neoforge.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B1.21.9.neoforge.jar"
+      },
+      {
+        "name": "cwb-5.0.0+26.1-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B26.1-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+26.1.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B26.1.jar"
+      },
+      {
+        "name": "cwb-5.0.0+26.2-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B26.2-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+26.2.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B26.2.jar"
+      },
+      {
+        "name": "cwb-5.0.0+26.3-sources.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B26.3-sources.jar"
+      },
+      {
+        "name": "cwb-5.0.0+26.3.jar",
+        "url": "https://github.com/Kira-NT/cubes-without-borders/releases/download/v5.0.0/cwb-5.0.0%2B26.3.jar"
+      }
+    ]
+  },
+  {
+    "slug": "reeses-sodium-options",
+    "repo": "FlashyReese/reeses-sodium-options",
+    "cur_ver": "mc26.3-2.2.5+fabric",
+    "gh_tag": "mc26.3-2.2.6-beta.3",
+    "gh_name": "mc26.3-2.2.6-beta.3",
+    "published": "2026-11-08",
+    "prerelease": true,
+    "url": "https://github.com/FlashyReese/reeses-sodium-options/releases/tag/mc26.3-2.2.6-beta.3",
+    "assets": [
+      {
+        "name": "reeses-sodium-options-fabric-2.2.6-beta.3+mc26.3-dev.jar",
+        "url": "https://github.com/FlashyReese/reeses-sodium-options/releases/download/mc26.3-2.2.6-beta.3/reeses-sodium-options-fabric-2.2.6-beta.3%2Bmc26.3-dev.jar"
+      },
+      {
+        "name": "reeses-sodium-options-fabric-2.2.6-beta.3+mc26.3.jar",
+        "url": "https://github.com/FlashyReese/reeses-sodium-options/releases/download/mc26.3-2.2.6-beta.3/reeses-sodium-options-fabric-2.2.6-beta.3%2Bmc26.3.jar"
+      },
+      {
+        "name": "reeses-sodium-options-neoforge-2.2.6-beta.3+mc26.3-dev.jar",
+        "url": "https://github.com/FlashyReese/reeses-sodium-options/releases/download/mc26.3-2.2.6-beta.3/reeses-sodium-options-neoforge-2.2.6-beta.3%2Bmc26.3-dev.jar"
+      },
+      {
+        "name": "reeses-sodium-options-neoforge-2.2.6-beta.3+mc26.3.jar",
+        "url": "https://github.com/FlashyReese/reeses-sodium-options/releases/download/mc26.3-2.2.6-beta.3/reeses-sodium-options-neoforge-2.2.6-beta.3%2Bmc26.3.jar"
+      }
+    ]
+  },
+  {
+    "slug": "cherished-worlds",
+    "repo": "illusivesoulworks/cherishedworlds",
+    "cur_ver": "18.0.0+26.3",
+    "gh_tag": "v18.0.0+26.3",
+    "gh_name": "18.0.0+26.3",
+    "published": "2026-09-25",
+    "prerelease": false,
+    "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/tag/v18.0.0%2B26.3",
+    "assets": [
+      {
+        "name": "cherishedworlds-fabric-18.0.0+26.3-javadoc.jar",
+        "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/download/v18.0.0%2B26.3/cherishedworlds-fabric-18.0.0%2B26.3-javadoc.jar"
+      },
+      {
+        "name": "cherishedworlds-fabric-18.0.0+26.3-sources.jar",
+        "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/download/v18.0.0%2B26.3/cherishedworlds-fabric-18.0.0%2B26.3-sources.jar"
+      },
+      {
+        "name": "cherishedworlds-fabric-18.0.0+26.3.jar",
+        "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/download/v18.0.0%2B26.3/cherishedworlds-fabric-18.0.0%2B26.3.jar"
+      },
+      {
+        "name": "cherishedworlds-forge-18.0.0+26.3-javadoc.jar",
+        "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/download/v18.0.0%2B26.3/cherishedworlds-forge-18.0.0%2B26.3-javadoc.jar"
+      },
+      {
+        "name": "cherishedworlds-forge-18.0.0+26.3-slim.jar",
+        "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/download/v18.0.0%2B26.3/cherishedworlds-forge-18.0.0%2B26.3-slim.jar"
+      },
+      {
+        "name": "cherishedworlds-forge-18.0.0+26.3-sources.jar",
+        "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/download/v18.0.0%2B26.3/cherishedworlds-forge-18.0.0%2B26.3-sources.jar"
+      },
+      {
+        "name": "cherishedworlds-forge-18.0.0+26.3.jar",
+        "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/download/v18.0.0%2B26.3/cherishedworlds-forge-18.0.0%2B26.3.jar"
+      },
+      {
+        "name": "cherishedworlds-neoforge-18.0.0+26.3-javadoc.jar",
+        "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/download/v18.0.0%2B26.3/cherishedworlds-neoforge-18.0.0%2B26.3-javadoc.jar"
+      },
+      {
+        "name": "cherishedworlds-neoforge-18.0.0+26.3-sources.jar",
+        "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/download/v18.0.0%2B26.3/cherishedworlds-neoforge-18.0.0%2B26.3-sources.jar"
+      },
+      {
+        "name": "cherishedworlds-neoforge-18.0.0+26.3.jar",
+        "url": "https://github.com/illusivesoulworks/cherishedworlds/releases/download/v18.0.0%2B26.3/cherishedworlds-neoforge-18.0.0%2B26.3.jar"
+      }
+    ]
+  },
+  {
+    "slug": "better-clouds",
+    "repo": "Qendolin/better-clouds",
+    "cur_ver": "1.15.0",
+    "gh_tag": "v1.15.0",
+    "gh_name": "v1.15.0",
+    "published": "2026-11-02",
+    "prerelease": false,
+    "url": "https://github.com/Qendolin/better-clouds/releases/tag/v1.15.0",
+    "assets": [
+      {
+        "name": "better-clouds-1.15.0+26.3-fabric.jar",
+        "url": "https://github.com/Qendolin/better-clouds/releases/download/v1.15.0/better-clouds-1.15.0%2B26.3-fabric.jar"
+      },
+      {
+        "name": "better-clouds-1.15.0+26.3-neoforge.jar",
+        "url": "https://github.com/Qendolin/better-clouds/releases/download/v1.15.0/better-clouds-1.15.0%2B26.3-neoforge.jar"
+      }
+    ]
+  },
+  {
+    "slug": "lambdabettergrass",
+    "repo": "LambdAurora/LambdaBetterGrass",
+    "cur_ver": "2.9.0+26.3",
+    "gh_tag": "v2.9.0+26.3",
+    "gh_name": "LambdaBetterGrass 2.9.0 (26.3)",
+    "published": "2026-09-16",
+    "prerelease": false,
+    "url": "https://github.com/LambdAurora/LambdaBetterGrass/releases/tag/v2.9.0%2B26.3",
+    "assets": [
+      {
+        "name": "lambdabettergrass-2.9.0+26.3.jar",
+        "url": "https://github.com/LambdAurora/LambdaBetterGrass/releases/download/v2.9.0%2B26.3/lambdabettergrass-2.9.0%2B26.3.jar"
+      }
+    ]
+  }
+]
