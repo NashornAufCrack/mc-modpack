@@ -965,7 +965,7 @@ export function buildAutoConfigFiles(
       const o = JSON.parse(raw);
       for (const [k, v] of changes) setDeep(o, k, v);
       out["config/" + file] = JSON.stringify(o, null, 2) + "\n";
-    } else {
+    } else if (fmt === "toml" || fmt === "props" || fmt === "json5") {
       let txt = raw;
       for (const [k, v] of changes) txt = patchText(txt, fmt, k, v);
       out["config/" + file] = txt;
