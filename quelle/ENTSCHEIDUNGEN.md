@@ -1,6 +1,6 @@
 # Perfektes MC Modpack – Entscheidungen & offene Punkte
 
-Stand: 08.11.2026 abends (Antworten zum Audit und Feature-Entscheidungen)
+Stand: 09.11.2026 (inkl. Schutzregeln gegen zu strenge Sperren)
 
 ## Festgelegt
 - Zwei Packs als Schichten: Basis „Vanilla Visual“ (nur clientseitig) + Schicht „Vanilla Plus“
@@ -25,9 +25,15 @@ Stand: 08.11.2026 abends (Antworten zum Audit und Feature-Entscheidungen)
 - Grundregel echte Doppelungen: nie zwei gleichzeitig im Pack. Doppelungen werden einzeln mit Tiziano geklärt.
 - Zugriff: Launcher-Ordner NUR LESEN; schreiben nur in A:\Claude Projekt 1. Downloads-Ordner nicht pauschal auflisten.
 
+## Schutzregeln gegen falsche Sperren (Pflicht-Check vor jeder Gruppe / `D`-Sperre)
+1. **In-Game-Toggle-Regel (Shader & Tasten-Mods):** Ein Shader (`pt === "s"`) oder eine im Spiel per Taste abschaltbare Mod (z. B. First-Person Model per `F6`) darf **niemals** per `gruppen` oder `beziehungen` (`K`/`D`) gegen eine Mod oder ein Resource Pack gesperrt werden (z. B. `better-clouds`, `dramatic-skys`, `sunbathing-godrays`), weil man den Shader im Spiel jederzeit per Taste `K` ausschalten kann und dann den Fallback behalten will. Wird in `qa/datacheck.py` automatisch geprüft!
+2. **Teil-Überschneidungs-Regel (Auto-Config statt Sperre):** Wenn Eintrag A noch mehr Funktionen hat als Eintrag B (z. B. `peek` für Bienenstöcke/Karten + Shulker, `betterdays` für Tageslänge + Schlaf, `fast-item-frames` für FPS/Farben + Unsichtbarkeit), wird **nicht gesperrt**, sondern beide bleiben wählbar und `app/src/lib/auto-cfg.ts` schaltet automatisch nur die doppelte Teilfunktion ab.
+3. **Teilbereichs- & Schichten-Regel (Resource Packs):** Wenn zwei Packs unterschiedliche Teilaspekte ändern (z. B. `emissive-trims` leuchtet am Körper vs. `visual-armor-trims` zeigt Muster-Icons im Inventar; `fresh-food` macht 3D-Modelle vs. `theones-eating-animation-pack` animiert das Essen), werden sie **nicht gesperrt**, sondern über `app/src/lib/rp.ts` (`RPRANK`) in `options.txt` in der richtigen Reihenfolge geschichtet.
+4. **Mod + Resource Pack Mischverbot:** Eine Mod (`m`) und ein Resource Pack (`r`) dürfen nicht ohne explizite Freigabe (`ALLOWED_MR_GROUPS` in `qa/datacheck.py`) in dieselbe Sperr-Gruppe gesteckt werden.
+
 ## Doppelungen – Tizianos Entscheidungen
 - Raus: Sound Physics Remastered (→ Perfected), Wakes Reforged (→ Wakes), CrashPatch, OneConfig-Familie, Held Item Tooltips, The One Probe, alle Sortierer außer ClientSort, Bind Commands + MacroKeybinds, Resourcify + Easy Install, YOSBR, Disenchanting Table, Glow Trims, Dynamic Crosshair, LiteMiner, FA-Einzelpacks, A Good Place, Round Trees
-- Nur eins wählbar (51 Gruppen), u. a.: Blätter (inkl. Cubic Leaves, Rainbow's Foliage), Menü-Optik, Minimap, Fadenkreuz, Effekt-Anzeige, Bäume fällen (FallingTree/Timber Tales), Block-Platzier-Animation (SBA/Fresh Block Animations), Fortschritte, Aufnahme (ReplayMod/Flashback), Better-Grass, Totem, Spawn-Eier, Betten, 3D-Laternen, 3D-Items, Pferde, End- und Nether-Umbau, Spieler-Animation Third Person (Punchy! Moves/NEA/CPA/Detailed/FA Player), Ego-Animation (Punchy/Interactive Stuff)
+- Nur eins wählbar (Gruppen), u. a.: Blätter (inkl. Cubic Leaves, Rainbow's Foliage), Menü-Optik, Minimap, Fadenkreuz, Effekt-Anzeige, Bäume fällen (FallingTree/Timber Tales), Block-Platzier-Animation (SBA/Fresh Block Animations), Fortschritte, Aufnahme (ReplayMod/Flashback), Better-Grass, Totem, Spawn-Eier, Betten, 3D-Laternen, 3D-Items, Pferde, End- und Nether-Umbau, Spieler-Animation Third Person (Punchy! Moves/NEA/CPA/Detailed/FA Player), Ego-Animation (Punchy/Interactive Stuff)
 - Shader: mehrere wählbar, im Spiel ist immer einer aktiv. Ausschließen nur, was genau dasselbe macht oder sich schadet.
 - Fancy World Animations nicht zusammen mit Animated Doors bzw. Swinging Lanterns (die beiden untereinander schon)
 - Frei kombinierbar: Umgebungs-Partikel (Hinweis auf mögliche Doppel-Effekte), Erz-Packs, Biome-Mods, Nature X

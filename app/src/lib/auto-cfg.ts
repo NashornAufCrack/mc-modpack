@@ -1,6 +1,6 @@
 // Automatische Feinabstimmung bei Teil-Überschneidungen:
 // Wenn zwei Mods/Packs/Shader teilweise dasselbe tun oder sich in einer Teilfunktion stören würden,
-// bleiben beide im Pack, aber die doppelte bzw. störende Teilfunktion wird in der Config automatisch abgeschaltet.
+// bleiben beide im Pack, aber die doppelte bzw. störende Teilfunktion wird in der Config oder Pack-Reihenfolge automatisch abgestimmt.
 import { TPL } from "./auto-tpl";
 import { SETDEF } from "./const";
 
@@ -10,9 +10,9 @@ export type AutoRule = {
   slug: string;
   /** Aktiv, sobald mindestens einer dieser Partner ebenfalls im Pack ist */
   when: string[];
-  /** Datei unter config/ (oder "shader:photon-shader" bzw. "rpo:<slug>") */
+  /** Datei unter config/ (oder "shader:photon-shader", "rpo:<slug>" bzw. "options.txt") */
   file: string;
-  fmt: "toml" | "json" | "json5" | "props" | "shader" | "rpo";
+  fmt: "toml" | "json" | "json5" | "props" | "shader" | "rpo" | "rp-order";
   changes: [string, any][];
   text: string;
 };
@@ -45,6 +45,15 @@ export const AUTO_RULES: AutoRule[] = [
     fmt: "shader",
     changes: [["RAIN_PUDDLES", false]],
     text: "Shader-Regenpfützen in Photon deaktiviert, da Puddles & Floods echte Pfützen in der Welt bildet."
+  },
+  {
+    id: "betterclouds-shader",
+    slug: "better-clouds",
+    when: ["photon-shader", "complementary-reimagined", "complementary-unbound", "bsl-shaders", "solas-shader", "bliss-shader"],
+    file: "betterclouds-v1.json",
+    fmt: "json",
+    changes: [["shaderSupport", true], ["irisSupport", true]],
+    text: "Shader-Kompatibilität in Better Clouds aktiviert – und falls du den Shader im Spiel per Taste K ausschaltest, hast du sofort trotzdem 3D-Wolken."
   },
 
   // --- Partikel & Umgebungs-Mods untereinander ---
@@ -287,6 +296,78 @@ export const AUTO_RULES: AutoRule[] = [
 
   // --- Gameplay, Türen, Kamera, Spieler-Animationen & HUD ---
   {
+    id: "fpm-punchy-hands",
+    slug: "first-person-model",
+    when: ["punchy-fpa", "interactivestuff"],
+    file: "firstperson.json",
+    fmt: "json",
+    changes: [["autoVanillaHands", true], ["vanillaHandsMode", "ALL_ITEMS"], ["dynamicMode", true]],
+    text: "Dynamischer Hand-Modus in First-Person Model aktiviert: Beim Runterschauen siehst du Körper & Beine, beim Halten von Items deine animierten Ego-Hände (und per F6 kannst du jederzeit umschalten)."
+  },
+  {
+    id: "peek-shulker",
+    slug: "peek",
+    when: ["shulkerboxtooltip", "easy-shulker-boxes"],
+    file: "peek.json",
+    fmt: "json",
+    changes: [["showShulkerBoxItemHint", false], ["showShulkerBoxBlockHint", false]],
+    text: "Shulkerkisten-Tooltip in Peek deaktiviert, damit Peek weiterhin Bienenstöcke, Karten, Endertruhen & Kompass zeigt, während deine Shulker-Mod die Shulkerkisten übernimmt."
+  },
+  {
+    id: "easyshulker-tooltip",
+    slug: "easy-shulker-boxes",
+    when: ["shulkerboxtooltip"],
+    file: "easyshulkerboxes-client.toml",
+    fmt: "toml",
+    changes: [["tooltip.extra_tooltip_contents", "NONE"]],
+    text: "Eigenen Tooltip in Easy Shulker Boxes ausgeblendet: Easy Shulker Boxes regelt das Ein-/Auspacken per Rechtsklick im Inventar, Shulker Box Tooltip zeichnet die Vorschau."
+  },
+  {
+    id: "coolrain-gentler",
+    slug: "coolrain",
+    when: ["gentler-weather-sounds"],
+    file: "coolrain.json",
+    fmt: "json",
+    changes: [["rainVolume", 0.65]],
+    text: "Lautstärke in Cool Rain harmonisiert: Cool Rain liefert die Aufprallgeräusche auf Blech, Glas, Holz & Laub, während Gentler Weather Sounds den Grundregen und Donner sanfter macht."
+  },
+  {
+    id: "betterdays-sleepwarp",
+    slug: "betterdays",
+    when: ["sleep-warp-updated"],
+    file: "betterdays.json",
+    fmt: "json",
+    changes: [["enableSleepFeature", false]],
+    text: "Schlaf-Vorspulen in Better Days deaktiviert, damit Better Days die Tag-/Nachtlänge steuert und SleepWarp das Vorspulen der Nacht allein übernimmt."
+  },
+  {
+    id: "rrls-smoothload",
+    slug: "rrls",
+    when: ["smooth-loading-screen"],
+    file: "rrls.toml",
+    fmt: "toml",
+    changes: [["fadeOut", true]],
+    text: "Weiches Ausblenden in Remove Reloading Screen aktiviert: Smooth Loading Screen animiert den Spielstart, RRLS lädt Resource Packs im laufenden Spiel im Hintergrund."
+  },
+  {
+    id: "fastframes-invis",
+    slug: "fast-item-frames",
+    when: ["invisible-frames-mod"],
+    file: "fastitemframes-server.toml",
+    fmt: "toml",
+    changes: [["general.glass_pane_invisibility", false]],
+    text: "Glasscheiben-Rezept in Fast Item Frames deaktiviert: Fast Item Frames liefert mehr FPS und färbbare Rahmen, Invisible Frames das Unsichtbarmachen per Schleichen+Rechtsklick."
+  },
+  {
+    id: "stylisheffects-vanilla",
+    slug: "stylish-effects",
+    when: ["status-effect-bars", "statuseffecttimer"],
+    file: "stylisheffects-client.toml",
+    fmt: "toml",
+    changes: [["renderers.gui.respect_vanilla_widgets", true]],
+    text: "Kompatibilitätsmodus in Stylish Effects aktiviert, damit sich die Effekt-Anzeigen nicht überlagern."
+  },
+  {
     id: "doors-double",
     slug: "animated-doors",
     when: ["double-doors"],
@@ -348,6 +429,15 @@ export const AUTO_RULES: AutoRule[] = [
     fmt: "toml",
     changes: [["improved_mount_gui", false]],
     text: "Reit-Leisten-Umbau in Horseman deaktiviert, damit er nicht mit deiner Reit-HUD-Mod kollidiert."
+  },
+  {
+    id: "horseman-icy",
+    slug: "horseman",
+    when: ["icys-better-horses"],
+    file: "horseman-client.toml",
+    fmt: "toml",
+    changes: [["switch_inventory.enabled", false]],
+    text: "Inventar-Umschalter in Horseman angepasst, damit Icy's Better Horses für Bindung, Zucht & Ausrüstung und Horseman für ruhigeres Reiten, Schwimmen & Anbinden zusammenarbeiten."
   },
   {
     id: "detailarmor-hearts",
@@ -429,6 +519,44 @@ export const AUTO_RULES: AutoRule[] = [
     fmt: "json5",
     changes: [["enableRarityParticles", false]],
     text: "Seltenheits-Partikel im Inventar in Immersive UI deaktiviert, um doppelte Effekte im Slot zu vermeiden."
+  },
+
+  // --- Resource Packs mit automatischer Schicht-Reihenfolge in options.txt ---
+  {
+    id: "rp-fa-creepers",
+    slug: "fresh-animations-extensions",
+    when: ["als-creepers-revamped"],
+    file: "options.txt",
+    fmt: "rp-order",
+    changes: [],
+    text: "AL's Creepers Revamped wird in options.txt automatisch über FA+All Extensions geladen: AL's übernimmt die Creeper, FA+All Extensions alle übrigen Mobs."
+  },
+  {
+    id: "rp-3d-tools",
+    slug: "tools-and-utils",
+    when: ["3d-default", "actually-3d-stuff"],
+    file: "options.txt",
+    fmt: "rp-order",
+    changes: [],
+    text: "Weskerson's 3D Items wird in options.txt automatisch über dein allgemeines 3D-Pack gelegt, damit Werkzeuge im Inventar flach bleiben und in der Hand 3D sind."
+  },
+  {
+    id: "rp-trims-order",
+    slug: "emissive-trims",
+    when: ["visual-armor-trims"],
+    file: "options.txt",
+    fmt: "rp-order",
+    changes: [],
+    text: "Emissive Trims und Visual Armor Trims werden automatisch passend gereiht: Im Inventar siehst du die Besatz-Muster als Icons, am Körper leuchten sie im Dunkeln."
+  },
+  {
+    id: "rp-food-eat",
+    slug: "fresh-food",
+    when: ["theones-eating-animation-pack"],
+    file: "options.txt",
+    fmt: "rp-order",
+    changes: [],
+    text: "Ess-Animation und Fresh Food werden in options.txt automatisch abgestimmt, sodass 3D-Essensmodelle und Abbeißen-Animationen zusammen funktionieren."
   },
 
   // --- Resource Packs mit Respackopts (.rpo) ---
@@ -648,6 +776,7 @@ export function buildAutoConfigFiles(
   const byFile = new Map<string, { fmt: AutoRule["fmt"]; slug: string; changes: [string, any][] }>();
 
   for (const r of AUTO_RULES) {
+    if (r.fmt === "rp-order") continue;
     if (!mods.has(r.slug)) continue;
     if (!r.when.some(w => mods.has(w))) continue;
     let entry = byFile.get(r.file);

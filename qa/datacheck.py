@@ -8,6 +8,7 @@ S = json.load(open('data/sounds.json')) if os.path.exists('data/sounds.json') el
 x = A.get('x', {}); rpbad = set(x.get('rpbad', [])); basis = set((x.get('basisfehlt') or {}).keys())
 IGNORE = {'qsl', 'quilted-fabric-api', 'connector', 'modefite-item-definition-backport'}
 ALLOWED = {'cdn.modrinth.com', 'github.com', 'raw.githubusercontent.com', 'gitlab.com'}
+ALLOWED_MR_GROUPS = {'playeranim', 'guitex', 'bettergrass', 'grasslook'}
 err, note = collections.defaultdict(list), collections.defaultdict(list)
 LOCKED = {m['slug'] for m in M if (m['cat'] == 'P' and m.get('rolle') == 'K') or m.get('pflicht')}
 vis = [m for m in M if (m['slug'] in F or m.get('cf')) and m['slug'] not in rpbad and m['slug'] not in basis]
@@ -53,11 +54,14 @@ for g in D['gruppen']:
     for s in g['mods']:
         if s not in BY: err['Gruppe verweist auf fehlenden Eintrag'].append(f"{g['id']}: {s}")
     if any(s in LOCKED for s in g['mods']): note['Gruppe mit fest eingebautem Mitglied (andere nicht wählbar)'].append(f"{g['id']}: {g['mods']}")
+    pts = {(BY.get(s, {}).get('pt') or 'm') for s in g['mods'] if s in BY}
+    if 's' in pts: err['Shader darf nicht in einer Sperr-Gruppe stehen (im Spiel abschaltbar)'].append(f"{g['id']}: {g['mods']}")
+    if {'m', 'r'}.issubset(pts) and g['id'] not in ALLOWED_MR_GROUPS: err['Ungenehmigte Mod+ResourcePack-Sperrgruppe (besser per Auto-Config lösen)'].append(f"{g['id']}: {g['mods']}")
 for b in D['beziehungen']:
     for s in b['mods']:
         if s not in BY: err['Beziehung verweist auf fehlenden Eintrag'].append(f"{b['art']} {b['mods']}")
     if b.get('erledigt'): note['Beziehung „erledigt“ ohne Wirkung'].append(f"{' + '.join(b['mods'])}")
-    if b['art'] in ('K', 'D') and all((BY.get(s, {}).get('pt') or 'm') == 's' for s in b['mods']): err['Shader schließen sich aus (Entscheidung: mehrere erlaubt)'].append(' + '.join(b['mods']))
+    if b['art'] in ('K', 'D') and any((BY.get(s, {}).get('pt') or 'm') == 's' for s in b['mods']): err['Shader darf nicht per K/D gesperrt werden (im Spiel abschaltbar, Hinweis T oder Auto-Config nutzen)'].append(' + '.join(b['mods']))
 # 4 Katalogtexte
 EN = set('''a an the of to in for on with as by at from it its is are be been was were this that these those your you we our us can will would more most all
 any some no not but or and if so than then when while because into out up down over under just only also very much many new adds add makes make allows allow
