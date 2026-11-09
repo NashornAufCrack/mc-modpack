@@ -33626,6 +33626,30 @@
           "last-world-panorama"
         ],
         "text": "Pixelshot und Last World Panorama greifen beide auf die interne Panorama-Screenshot-Funktion zu (Mixin-Kollision) und führen gemeinsam zu einem Absturz beim Spielstart."
+      },
+      {
+        "art": "K",
+        "mods": [
+          "krypton",
+          "e4mc"
+        ],
+        "text": "Krypton und e4mc greifen beide per Mixin-Redirect auf die Netzwerk-Verschlüsselung (ServerLoginPacketListenerImpl) zu und führen gemeinsam zu einem Absturz beim Start."
+      },
+      {
+        "art": "K",
+        "mods": [
+          "vmp-fabric",
+          "voxy-worldgen"
+        ],
+        "text": "Very Many Players (VMP) und Voxygen greifen beide per Mixin-Redirect auf die Spieler-Tracking-Prüfung (ChunkMap.updatePlayer) zu und führen gemeinsam zu einem Absturz."
+      },
+      {
+        "art": "K",
+        "mods": [
+          "punchymoves",
+          "better-capes"
+        ],
+        "text": "Punchy! Moves und Better Capes greifen beide per Mixin-Redirect auf das Rendern von Umhängen (CapeLayer.submit) zu und führen gemeinsam zu einem Absturz beim Rendern."
       }
     ],
     "gruppen": [
@@ -36437,7 +36461,9 @@
     "krypton": {
       "id": "krypton",
       "mc": ">=26.2",
-      "breaks": {},
+      "breaks": {
+        "e4mc": "*"
+      },
       "conflicts": {}
     },
     "c2me-fabric": {
@@ -37256,7 +37282,9 @@
     "e4mc": {
       "id": "e4mc",
       "mc": ">=26.1-",
-      "breaks": {},
+      "breaks": {
+        "krypton": "*"
+      },
       "conflicts": {}
     },
     "simple-voice-chat": {
@@ -37447,7 +37475,10 @@
     "punchymoves": {
       "id": "punchy_moves",
       "mc": "26.3",
-      "breaks": {},
+      "breaks": {
+        "bettercapes": "*",
+        "better-capes": "*"
+      },
       "conflicts": {}
     },
     "enchanted-fishing-line": {
@@ -38093,7 +38124,9 @@
       "id": "vmp",
       "mc": ">=1.20.2-beta.2",
       "breaks": {
-        "optifabric": "*"
+        "optifabric": "*",
+        "voxyworldgenv3": "*",
+        "voxy-worldgen": "*"
       },
       "conflicts": {}
     },
@@ -38791,7 +38824,10 @@
     "voxy-worldgen": {
       "id": "voxyworldgenv3",
       "mc": "~26.3",
-      "breaks": {},
+      "breaks": {
+        "vmp": "*",
+        "vmp-fabric": "*"
+      },
       "conflicts": {}
     },
     "distinct-potions": {
@@ -38839,7 +38875,10 @@
     "better-capes": {
       "id": "bettercapes",
       "mc": "26.3",
-      "breaks": {},
+      "breaks": {
+        "punchy_moves": "*",
+        "punchymoves": "*"
+      },
       "conflicts": {}
     },
     "walksylib": {

@@ -195,6 +195,48 @@ if __name__ == "__main__":
     ok_pano = test_mod_set(list(LOCKED) + ["last-world-panorama"], "Loesung 2: Nur Last World Panorama gewaehlt")
     all_ok = all_ok and ok_pano
 
+    # 6. Kollisions- und Loesungscheck: Krypton vs. e4mc (Crypt.getCipher Redirect)
+    has_krypton_collision = not test_mod_set(list(LOCKED) + ["krypton", "e4mc"], "Kollision: Krypton + e4mc (Erwartet: FEHLER)")
+    if has_krypton_collision:
+        print("  🎯 Start-Check hat den fatalen Mixin-Redirect-Konflikt zwischen Krypton und e4mc (ServerLoginPacketListenerImpl) erfolgreich abgefangen!")
+    else:
+        print("  ❌ FEHLER: Der Konflikt zwischen Krypton und e4mc wurde NICHT erkannt!")
+        all_ok = False
+
+    ok_krypton = test_mod_set(list(LOCKED) + ["krypton"], "Loesung 1: Nur Krypton gewaehlt (Netzwerk-Optimierung)")
+    all_ok = all_ok and ok_krypton
+
+    ok_e4mc = test_mod_set(list(LOCKED) + ["e4mc"], "Loesung 2: Nur e4mc gewaehlt (LAN-Tunnel)")
+    all_ok = all_ok and ok_e4mc
+
+    # 7. Kollisions- und Loesungscheck: VMP vs. Voxygen (ChunkMap.isChunkTracked Redirect)
+    has_vmp_collision = not test_mod_set(list(LOCKED) + ["vmp-fabric", "voxy-worldgen"], "Kollision: VMP + Voxygen (Erwartet: FEHLER)")
+    if has_vmp_collision:
+        print("  🎯 Start-Check hat den Mixin-Redirect-Konflikt zwischen VMP und Voxygen (ChunkMap$TrackedEntity) erfolgreich abgefangen!")
+    else:
+        print("  ❌ FEHLER: Der Konflikt zwischen VMP und Voxygen wurde NICHT erkannt!")
+        all_ok = False
+
+    ok_vmp = test_mod_set(list(LOCKED) + ["vmp-fabric"], "Loesung 1: Nur VMP gewaehlt")
+    all_ok = all_ok and ok_vmp
+
+    ok_voxy = test_mod_set(list(LOCKED) + ["voxy-worldgen"], "Loesung 2: Nur Voxygen gewaehlt")
+    all_ok = all_ok and ok_voxy
+
+    # 8. Kollisions- und Loesungscheck: Punchy! Moves vs. Better Capes (CapeLayer.submit Redirect)
+    has_cape_collision = not test_mod_set(list(LOCKED) + ["punchymoves", "better-capes"], "Kollision: Punchy! Moves + Better Capes (Erwartet: FEHLER)")
+    if has_cape_collision:
+        print("  🎯 Start-Check hat den Mixin-Redirect-Konflikt zwischen Punchy! Moves und Better Capes (CapeLayer) erfolgreich abgefangen!")
+    else:
+        print("  ❌ FEHLER: Der Konflikt zwischen Punchy! Moves und Better Capes wurde NICHT erkannt!")
+        all_ok = False
+
+    ok_punchy = test_mod_set(list(LOCKED) + ["punchymoves"], "Loesung 1: Nur Punchy! Moves gewaehlt")
+    all_ok = all_ok and ok_punchy
+
+    ok_capes = test_mod_set(list(LOCKED) + ["better-capes"], "Loesung 2: Nur Better Capes gewaehlt")
+    all_ok = all_ok and ok_capes
+
     if not all_ok:
         print("\n❌ TEST FEHLGESCHLAGEN: Mindestens ein Pack weist Absturzrisiken auf!")
         sys.exit(1)

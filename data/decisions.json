@@ -1172,6 +1172,30 @@
         "last-world-panorama"
       ],
       "text": "Pixelshot und Last World Panorama greifen beide auf die interne Panorama-Screenshot-Funktion zu (Mixin-Kollision) und führen gemeinsam zu einem Absturz beim Spielstart."
+    },
+    {
+      "art": "K",
+      "mods": [
+        "krypton",
+        "e4mc"
+      ],
+      "text": "Krypton und e4mc greifen beide per Mixin-Redirect auf die Netzwerk-Verschlüsselung (ServerLoginPacketListenerImpl) zu und führen gemeinsam zu einem Absturz beim Start."
+    },
+    {
+      "art": "K",
+      "mods": [
+        "vmp-fabric",
+        "voxy-worldgen"
+      ],
+      "text": "Very Many Players (VMP) und Voxygen greifen beide per Mixin-Redirect auf die Spieler-Tracking-Prüfung (ChunkMap.updatePlayer) zu und führen gemeinsam zu einem Absturz."
+    },
+    {
+      "art": "K",
+      "mods": [
+        "punchymoves",
+        "better-capes"
+      ],
+      "text": "Punchy! Moves und Better Capes greifen beide per Mixin-Redirect auf das Rendern von Umhängen (CapeLayer.submit) zu und führen gemeinsam zu einem Absturz beim Rendern."
     }
   ],
   "gruppen": [

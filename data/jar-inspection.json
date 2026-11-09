@@ -182,7 +182,9 @@
       "fabricloader": ">=0.18.4",
       "minecraft": ">=26.2"
     },
-    "breaks": {},
+    "breaks": {
+      "e4mc": "*"
+    },
     "recommends": {},
     "suggests": {},
     "conflicts": {}
@@ -2104,7 +2106,9 @@
       "fabric-api": "*",
       "minecraft": ">=26.1-"
     },
-    "breaks": {},
+    "breaks": {
+      "krypton": "*"
+    },
     "recommends": {},
     "suggests": {},
     "conflicts": {}
@@ -2701,7 +2705,10 @@
       "fabric-api": "*",
       "punchy_expressions": ">=1.0.3"
     },
-    "breaks": {},
+    "breaks": {
+      "bettercapes": "*",
+      "better-capes": "*"
+    },
     "recommends": {},
     "suggests": {},
     "conflicts": {}
@@ -4294,7 +4301,9 @@
       "java": ">=17"
     },
     "breaks": {
-      "optifabric": "*"
+      "optifabric": "*",
+      "voxyworldgenv3": "*",
+      "voxy-worldgen": "*"
     },
     "recommends": {},
     "suggests": {},
@@ -6142,7 +6151,10 @@
       "java": ">=25",
       "fabric-api": "*"
     },
-    "breaks": {},
+    "breaks": {
+      "vmp": "*",
+      "vmp-fabric": "*"
+    },
     "recommends": {},
     "suggests": {
       "voxy": "*",
@@ -6276,7 +6288,10 @@
       "fabric-api": "*",
       "minecraft": "26.3"
     },
-    "breaks": {},
+    "breaks": {
+      "punchy_moves": "*",
+      "punchymoves": "*"
+    },
     "recommends": {},
     "suggests": {},
     "conflicts": {}
