@@ -22,10 +22,10 @@
   <p class="muted">{g.text}</p>
   <div class="opts" role="radiogroup" aria-label={g.titel}>
     {#each opts as s}
-      {@const m = pack.BY[s]}{@const img = pack.img(s).find(u => !/\.gif(\?|$)/i.test(u)) || pack.img(s)[0]}
+      {@const m = pack.BY[s]}{@const img = pack.img(s)[0] || pack.icon(s)}
       <div class="opt" class:on={chosen === s}>
         <button class="pick" role="radio" aria-checked={chosen === s} onclick={() => choose(s)}>
-          <span class="im">{#if img}<img referrerpolicy="no-referrer" src={img} alt="" loading="lazy" decoding="async" onerror={(e) => (e.currentTarget as HTMLElement).remove()} />{/if}<span class="ph" aria-hidden="true">{pack.proben(s).length ? "♪" : m.name.slice(0, 1)}</span></span>
+          <span class="im">{#if img}<img referrerpolicy="no-referrer" src={img} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).remove()} />{/if}<span class="ph" aria-hidden="true">{pack.proben(s).length ? "♪" : m.name.slice(0, 1)}</span></span>
           <span class="nm"><span class="dot"></span>{m.name}{#if mixedPt}<span class="badge plain">{PT_1[m.pt || "m"]}</span>{/if}</span>
           <span class="nt">{m.notiz}</span>
         </button>

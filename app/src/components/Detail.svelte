@@ -48,8 +48,10 @@
           {/if}
           {#if imgs.length > 1}
             <div class="mbar">
-              <button class="btn sm ghost" aria-pressed={cmp} onclick={() => (cmp = !cmp)}>⇄ {cmp ? "Vergleich beenden" : "Bilder vergleichen"}</button>
-              {#if cmp}<span class="small muted">Regler ziehen · Klick unten wechselt das rechte Bild</span>{/if}
+              <button class="btn sm {m.pt === 'r' || m.pt === 's' ? 'primary' : 'ghost'}" aria-pressed={cmp} onclick={() => (cmp = !cmp)}>
+                ⇄ {cmp ? "Vergleich beenden" : m.pt === "r" ? "Textur-Vorschau (Vorher / Nachher)" : m.pt === "s" ? "Shader-Vergleich (Vorher / Nachher)" : "Bilder vergleichen"}
+              </button>
+              {#if cmp}<span class="small muted">Schieberegler ziehen · Klick unten wechselt das Vergleichsbild</span>{/if}
             </div>
             <div class="strip">
               {#each imgs.slice(cmp ? 0 : 1, 9) as u, idx}

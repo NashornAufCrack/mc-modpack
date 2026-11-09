@@ -8,8 +8,8 @@
   const on = $derived(pack.sel.has(m.slug));
   const lk = $derived(pack.LOCKED.has(m.slug));
   const bl = $derived(pack.BLOCKED.get(m.slug));
-  // Bis zu 3 Vorschaubilder, davon höchstens 1 GIF (mehrere GIFs gleichzeitig bremsen das Scrollen); i = Index in der Galerie
-  const imgs = $derived.by(() => { let g = 0; const out: { u: string; i: number }[] = []; pack.img(m.slug).forEach((u, i) => { if (out.length >= 3) return; if (/\.gif(\?|$)/i.test(u) && g++ >= 1) return; out.push({ u, i }); }); return out; });
+  const imgs = $derived(pack.img(m.slug).slice(0, 3));
+  const ico = $derived(imgs.length ? "" : pack.icon(m.slug));
   const fromPreset = $derived(!!pack.preset && pack.preset.base.includes(m.slug));
   const vids = $derived(pack.videos(m.slug).length);
   const snd = $derived(pack.proben(m.slug));
@@ -22,7 +22,7 @@
   <button class="hit" aria-pressed={on} aria-label="{m.name}: {lk ? 'immer dabei, Details zeigen' : bl ? 'nicht wählbar, Details zeigen' : on ? 'im Pack, klicken zum Entfernen' : 'klicken zum Hinzufügen'}" onclick={() => (lk || bl ? (ui.detail = m.slug) : ui.pick(m.slug))}></button>
   {#if !compact}
     <div class="thumbs">
-      {#each imgs as { u, i } (u)}<button class="zoom" onclick={() => (ui.lightbox = { slug: m.slug, i })} aria-label="Bild {i + 1} von {m.name} vergrößern"><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" decoding="async" onerror={(e) => (e.currentTarget as HTMLElement).parentElement?.remove()} /></button>{:else}{#if snd.length}<span class="ph sndph" aria-hidden="true">♪</span>{:else}<span class="ph">{m.name.slice(0, 1)}</span>{/if}{/each}
+      {#each imgs as u, i}<button class="zoom" onclick={() => (ui.lightbox = { slug: m.slug, i })} aria-label="Bild {i + 1} von {m.name} vergrößern"><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" decoding="async" onerror={(e) => (e.currentTarget as HTMLElement).parentElement?.remove()} /></button>{:else}{#if snd.length}<span class="ph sndph" aria-hidden="true">♪</span>{:else if ico}<span class="ph icoph" aria-hidden="true"><img referrerpolicy="no-referrer" src={ico} alt="" width="52" height="52" loading="lazy" decoding="async" onerror={(e) => (e.currentTarget as HTMLElement).remove()} /></span>{:else}<span class="ph">{m.name.slice(0, 1)}</span>{/if}{/each}
       {#if snd.length}<button class="play" onclick={toggle} aria-label="{playing ? 'Hörprobe stoppen' : 'Hörprobe abspielen'}: {m.name}">{playing ? "■" : "▶"} Hörprobe</button>{/if}
       {#if vids}<span class="vid" aria-hidden="true">▶ Video</span>{/if}
     </div>
@@ -58,6 +58,8 @@
   .zoom img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .more, .check { z-index: 2; } .check { pointer-events: none; }
   .ph { margin: auto; font: 700 2.4rem var(--mono); color: var(--line-2); }
+  .icoph { display: grid; place-items: center; width: 3.6rem; height: 3.6rem; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); overflow: hidden; box-shadow: 0 2px 8px rgb(0 0 0 / .18); }
+  .icoph img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .vid { position: absolute; left: .5rem; bottom: .5rem; padding: .1rem .45rem; border-radius: 6px; background: rgb(0 0 0 / .7); color: #fff; font: 600 .7rem var(--font); }
   .body { padding: .75rem .85rem 2.6rem; display: flex; flex-direction: column; gap: .3rem; }
   h3 { margin: 0; font-size: .98rem; font-weight: 650; line-height: 1.25; padding-right: 1.8rem; overflow-wrap: anywhere; }

@@ -95,7 +95,7 @@
   <div class="tools">
     <button class="btn sm" onclick={() => (ui.tool = "rp")}>Pack-Reihenfolge</button>
   </div>
-  <p class="ram"><b>Arbeitsspeicher: {pack.ramGB(r)} GB</b> · Prism stellt ihn automatisch ein. In der Modrinth App musst du ihn nach dem Import selbst setzen (Instanz › Einstellungen › Java), sonst stürzt das Spiel beim Start ab.</p>
+  <p class="ram"><b>Arbeitsspeicher: {pack.ramGB(r)} GB</b> · Prism stellt ihn automatisch ein. In der Modrinth App musst du ihn nach dem Import selbst setzen (Instanz › Einstellungen › Java), sonst stürzt das Spiel beim Start ab. <a href="#crash" onclick={() => (ui.view = "crash")} style="display:inline-block; margin-top:.25rem; color:inherit; text-decoration:underline">Spiel stürzt ab? Zur Absturz-Hilfe →</a></p>
   <label class="lbl">Name<input class="field" bind:value={name} /></label>
   <button class="btn primary big" disabled={busy} onclick={() => go("mrpack")}>Modpack-Datei (.mrpack)</button>
   <p class="hint">Klein und schnell. Importieren in Modrinth App, Prism oder ATLauncher, die Mods lädt der Launcher selbst.</p>

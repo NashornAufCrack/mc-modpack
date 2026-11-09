@@ -12,6 +12,7 @@
   import TestView from "./components/TestView.svelte";
   import Help from "./components/Help.svelte";
   import UpdatesView from "./components/Updates.svelte";
+  import CrashHelp from "./components/CrashHelp.svelte";
 
   let err = $state("");
   onMount(async () => {
@@ -23,12 +24,12 @@
   /** Hash-Navigation: Zurück/Vor im Browser und geteilte #pack-Links funktionieren auch ohne Neuladen */
   function route() {
     const v = location.hash.slice(1);
-    if (v === "testen" || v === "hilfe" || v === "updates" || v === "bauen") ui.view = v;
+    if (v === "testen" || v === "hilfe" || v === "updates" || v === "bauen" || v === "crash") ui.view = v;
     else if ((v.startsWith("p=") || v.startsWith("pack-")) && pack.ready) { const n = pack.importShared(); ui.view = "bauen"; if (n !== null) sharedMsg(n); }
     else if (!v) ui.view = "bauen";
   }
   const sharedMsg = (n: number) => ui.say(`Geteiltes Pack geladen${n ? ` (${n} Einträge gibt es nicht mehr)` : ""}. Deine vorige Auswahl holst du mit Rückgängig zurück.`, true);
-  const NAV = [["bauen", "Pack bauen", ""], ["testen", "Testen", ""], ["updates", "Updates", ""], ["hilfe", "Hilfe", " & Glossar"]] as const;
+  const NAV = [["bauen", "Pack bauen", ""], ["testen", "Testen", ""], ["updates", "Updates", ""], ["crash", "Absturz-Hilfe", ""], ["hilfe", "Hilfe", " & Glossar"]] as const;
   /** Logo: Seite neu laden und ganz oben starten (Auswahl bleibt, sie liegt im Browser-Speicher) */
   function reloadTop(e: MouseEvent) {
     e.preventDefault();
@@ -68,6 +69,7 @@
     {:else if ui.view === "bauen"}<Builder />
     {:else if ui.view === "testen"}<TestView />
     {:else if ui.view === "updates"}<UpdatesView />
+    {:else if ui.view === "crash"}<CrashHelp />
     {:else}<Help />{/if}
   </main>
 </div>
