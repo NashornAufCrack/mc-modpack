@@ -300,6 +300,47 @@ class Pack {
       const parts = s.match(/\d+/g);
       return parts && parts.length ? parts.map(Number) : [0];
     };
+    const cmpVer = (v1: number[], v2: number[]): number => {
+      const l = Math.max(v1.length, v2.length);
+      const a = v1.concat(new Array(l - v1.length).fill(0));
+      const b = v2.concat(new Array(l - v2.length).fill(0));
+      for (let i = 0; i < l; i++) {
+        if (a[i] < b[i]) return -1;
+        if (a[i] > b[i]) return 1;
+      }
+      return 0;
+    };
+    const isMc26Compatible = (constraint: any): boolean => {
+      if (Array.isArray(constraint)) return constraint.some(c => isMc26Compatible(c));
+      const c = String(constraint || "").trim();
+      if (!c || c === "*") return true;
+      if (c.startsWith("26.3") || c.includes("26.*") || c.startsWith("^26") || c.startsWith("~26")) return true;
+      const act = [26, 3];
+      const rm = c.match(/^(>=|>)\s*([0-9a-zA-Z._-]+)\s*(<=|<)\s*([0-9a-zA-Z._-]+)$/);
+      if (rm) {
+        const [, op1, low, op2, high] = rm;
+        const l = cleanVer(low), h = cleanVer(high);
+        const ok1 = op1 === ">=" ? cmpVer(act, l) >= 0 : cmpVer(act, l) > 0;
+        const ok2 = op2 === "<=" ? cmpVer(act, h) <= 0 : cmpVer(act, h) < 0;
+        return ok1 && ok2;
+      }
+      const mLow = c.match(/^(>=|>)\s*([0-9a-zA-Z._-]+)$/);
+      if (mLow) {
+        const [, op, low] = mLow;
+        const l = cleanVer(low);
+        return op === ">=" ? cmpVer(act, l) >= 0 : cmpVer(act, l) > 0;
+      }
+      const mHi = c.match(/^(<=|<|=|==)?\s*([0-9a-zA-Z._-]+)$/);
+      if (mHi) {
+        const [, op = "=", hi = ""] = mHi;
+        const h = cleanVer(hi);
+        const cVal = cmpVer(act, h);
+        if (op === "<=") return cVal <= 0;
+        if (op === "<") return cVal < 0;
+        if (op === "=" || op === "==") return cVal === 0;
+      }
+      return false;
+    };
     const matchVer = (actual: string, constraint: any): boolean => {
       if (Array.isArray(constraint)) return constraint.some(c => matchVer(actual, c));
       const c = String(constraint || "").trim();
@@ -308,21 +349,12 @@ class Pack {
       const rangeM = c.match(/^>=\s*([0-9.]+)\s*<\s*([0-9.]+)$/);
       if (rangeM) {
         const low = cleanVer(rangeM[1]), high = cleanVer(rangeM[2]);
-        const l = Math.max(act.length, low.length, high.length);
-        const a = act.concat(new Array(l - act.length).fill(0));
-        const lo = low.concat(new Array(l - low.length).fill(0));
-        const hi = high.concat(new Array(l - high.length).fill(0));
-        const cmp = (x: number[], y: number[]) => { for (let i = 0; i < l; i++) { if (x[i] < y[i]) return -1; if (x[i] > y[i]) return 1; } return 0; };
-        return cmp(a, lo) >= 0 && cmp(a, hi) < 0;
+        return cmpVer(act, low) >= 0 && cmpVer(act, high) < 0;
       }
       const m = c.match(/^(<=|<|>=|>|=|~|\^)?\s*([0-9a-zA-Z._-]+)$/);
       if (!m) return true;
       const op = m[1] || "=", req = cleanVer(m[2]);
-      const l = Math.max(act.length, req.length);
-      const a = act.concat(new Array(l - act.length).fill(0));
-      const r = req.concat(new Array(l - req.length).fill(0));
-      let cmp = 0;
-      for (let i = 0; i < l; i++) { if (a[i] < r[i]) { cmp = -1; break; } if (a[i] > r[i]) { cmp = 1; break; } }
+      const cmp = cmpVer(act, req);
       if (op === "~" || op === "^") return cmp === 0;
       if (op === "<=") return cmp <= 0;
       if (op === "<") return cmp < 0;
@@ -333,7 +365,7 @@ class Pack {
     for (const s of all) {
       const rule = jarRules[s];
       if (!rule) continue;
-      if (rule.mc && !matchVer("26.3", rule.mc)) {
+      if (rule.mc && !isMc26Compatible(rule.mc)) {
         const msg = `Mod „${this.name(s)}“ erfordert Minecraft ${rule.mc}, ist aber inkompatibel mit 26.3!`;
         errors.push(msg);
         const k = "mc-" + s;

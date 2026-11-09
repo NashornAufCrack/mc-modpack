@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const OUT = process.argv[2] || '.';
+if (!fs.existsSync(OUT)) fs.mkdirSync(OUT, { recursive: true });
 const BASE = process.env.BASE || 'http://localhost:8765/neu/';
 const REPO = process.env.REPO || path.resolve(__dirname, '..');
 const DATA = JSON.parse(fs.readFileSync(path.join(REPO, 'data/app-data.json'), 'utf8'));
@@ -421,7 +422,10 @@ async function download(p, buttonText) {
       if (p._errs.length) fail('Fehler auf dem Handy', p._errs);
       await ctx.close();
     }
-  } catch (e) { fail('Testabbruch', e.stack || String(e)); }
+  } catch (e) {
+    console.error('Testabbruch:', e);
+    fail('Testabbruch', e.stack || String(e));
+  }
   await browser.close();
   fs.writeFileSync(path.join(OUT, 'e2e-report.json'), JSON.stringify(R, null, 1));
   console.log('FEHLER:', R.fails.length, 'WARNUNGEN:', R.warns.length);

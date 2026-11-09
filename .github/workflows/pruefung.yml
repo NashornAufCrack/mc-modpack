@@ -43,6 +43,7 @@ jobs:
       - name: "Abläufe testen (Playwright, axe)"
         run: |
           cd qa && npm ci --no-audit --no-fund && npx playwright install --with-deps chromium && cd ..
+          mkdir -p qa/out
           python3 -m http.server 8765 >/dev/null 2>&1 &
           sleep 1
           BASE=http://localhost:8765/test/ node qa/e2e.js qa/out
