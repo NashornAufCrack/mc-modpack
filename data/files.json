@@ -1414,13 +1414,13 @@
     "m"
   ],
   "smooth-loading-screen": [
-    "https://cdn.modrinth.com/data/LkxC6kKT/versions/se60MXQu/smoothloadingscreen-1.0.9%2B26.3.jar",
-    "smoothloadingscreen-1.0.9+26.3.jar",
-    "ad4bb329cf7abb3c3de497e6a3d20a20c9c930be",
-    "904ca4c7f65b7eb10ae1c47ed1a86b01874148a53fff6b9399f88b3d83c794eb850b48b78401d1cc3407c750c239d6f56322d61928614b8e58d26857caab6aaa",
-    350499,
+    "https://cdn.modrinth.com/data/LkxC6kKT/versions/QQNzklub/smoothloadingscreen-1.0.10%2B26.3.jar",
+    "smoothloadingscreen-1.0.10+26.3.jar",
+    "a736a428359597179e80680e1a6871f7b9fa9e22",
+    "1de2da183eaca70f739c46b888203976cbea94e833e1483e8e57dcb77f48f230e3c5d251bc42fbd97f748fde312cabdaf28134da2b1f132e1e274b1c67c520db",
+    364560,
     [],
-    "1.0.9+26.3",
+    "1.0.10+26.3",
     "",
     "m"
   ],
@@ -2666,15 +2666,15 @@
     "m"
   ],
   "diorama-map": [
-    "https://cdn.modrinth.com/data/kwpTgbCk/versions/3PV309qj/diorama-0.8.0%2B26.3.jar",
-    "diorama-0.8.0+26.3.jar",
-    "8e3d2f6274e07f9d8f0dea996a6fc436757d59b2",
-    "5c78284490a3759b93e0869600c40ec33504f2023987c6e747d3b16a0484ee975238e7ba10007fd81909b51b5346377f3e08298cffd21437d57e975762742325",
-    1151689,
+    "https://cdn.modrinth.com/data/kwpTgbCk/versions/LMwkMy7V/diorama-0.8.1%2B26.3.jar",
+    "diorama-0.8.1+26.3.jar",
+    "5627714a359e51c18992cb63e6b70b92c1795c13",
+    "580a965fe71bea96ea142b2eb36c0f914ffd39fe82fcbd8d562281d104147d396f2840fd47138bef40290ce3214a03d31819356ad19257f003f60dfef931042e",
+    1155797,
     [
       "fabric-api"
     ],
-    "0.8.0+26.3",
+    "0.8.1+26.3",
     "",
     "m"
   ],
@@ -6614,13 +6614,13 @@
     "m"
   ],
   "the-one-probe": [
-    "https://cdn.modrinth.com/data/Eyw0UxEx/versions/HZnwJu7d/theoneprobe-26.3-16.0.0-fabric.jar",
-    "theoneprobe-26.3-16.0.0-fabric.jar",
-    "f3880030f7065249e031cba46a5bcb77dd630e1d",
-    "d1c7ab5a5e80692b071d7dfd5aef8be4df8fa1dde4736a8f90fe4a0f4dafc1f6765040ad04124400eef67ddb961571c92481bbb2f953ac30c02809155a295ebe",
-    350120,
+    "https://cdn.modrinth.com/data/Eyw0UxEx/versions/WjCq9WZi/theoneprobe-26.3-16.0.1-fabric.jar",
+    "theoneprobe-26.3-16.0.1-fabric.jar",
+    "2a6dc50703600825bfa1bd20aebbd99133fc7ac2",
+    "ce0271b062522c9a9a50e51a08ac700bfb2ce214db99d0a5968442d0d0d43a0a410e2ce455ec98f2b84b805a02e687b418fc76401d734d8bdbffd3cd078c4867",
+    350205,
     [],
-    "26.3-16.0.0-fabric",
+    "26.3-16.0.1-fabric",
     "",
     "m"
   ],

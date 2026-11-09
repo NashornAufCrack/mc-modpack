@@ -1,7 +1,37 @@
 {
-  "checked": "2026-11-08T19:40:16.308Z",
+  "checked": "2026-11-09T08:15:00.000Z",
   "mc": "26.3",
   "updates": [
+    {
+      "slug": "the-one-probe",
+      "name": "the-one-probe",
+      "typ": "m",
+      "von": "26.3-16.0.0-fabric",
+      "auf": "26.3-16.0.1-fabric",
+      "art": "release",
+      "datum": "2026-11-09",
+      "changelog": "## TheOneProbe 26.3-16.0.1-fabric\n- Fix a crash when looking at boats with Improved Transparency enabled"
+    },
+    {
+      "slug": "diorama-map",
+      "name": "diorama-map",
+      "typ": "m",
+      "von": "0.8.0+26.3",
+      "auf": "0.8.1+26.3",
+      "art": "release",
+      "datum": "2026-11-08",
+      "changelog": "Diorama 0.8.1 fixes a crash on world load with Immortalers Delight, and a long pause on world load in big modpacks.\n\n### Fixed\n\n- Worlds with Immortalers Delight, or another mod whose block models only work through the mod loader, no longer crash while loading on NeoForge 1.21.1 and Forge 1.20.1.\n- Big modpacks load worlds and reload resource packs (F3+T) much faster. Block colours are now worked out the first time the map comes across a block, instead of for every block in the pack at once.\n- The minimap no longer drops down from the corner when another mod, such as Inventory HUD+, draws the effect icons somewhere else."
+    },
+    {
+      "slug": "smooth-loading-screen",
+      "name": "smooth-loading-screen",
+      "typ": "m",
+      "von": "1.0.9+26.3",
+      "auf": "1.0.10+26.3",
+      "art": "release",
+      "datum": "2026-11-08",
+      "changelog": "Fixed missing terrain in loading panoramas on 26.3 and a crash on launch."
+    },
     {
       "slug": "moreculling",
       "name": "More Culling",

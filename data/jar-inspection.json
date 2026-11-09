@@ -1721,8 +1721,8 @@
     "conflicts": {}
   },
   "smooth-loading-screen": {
-    "sha1": "ad4bb329cf7abb3c3de497e6a3d20a20c9c930be",
-    "version": "1.0.9+26.3",
+    "sha1": "a736a428359597179e80680e1a6871f7b9fa9e22",
+    "version": "1.0.10+26.3",
     "mod_id": "smoothloadingscreen",
     "depends": {
       "fabricloader": ">=0.19.3",
@@ -2756,8 +2756,8 @@
     "conflicts": {}
   },
   "diorama-map": {
-    "sha1": "8e3d2f6274e07f9d8f0dea996a6fc436757d59b2",
-    "version": "0.8.0+26.3",
+    "sha1": "5627714a359e51c18992cb63e6b70b92c1795c13",
+    "version": "0.8.1+26.3",
     "mod_id": "diorama",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -7400,8 +7400,8 @@
     "conflicts": {}
   },
   "the-one-probe": {
-    "sha1": "f3880030f7065249e031cba46a5bcb77dd630e1d",
-    "version": "26.3-16.0.0-fabric",
+    "sha1": "2a6dc50703600825bfa1bd20aebbd99133fc7ac2",
+    "version": "26.3-16.0.1-fabric",
     "mod_id": "theoneprobe",
     "depends": {
       "fabricloader": ">=0.19.5",
