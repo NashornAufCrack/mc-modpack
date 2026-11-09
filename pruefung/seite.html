@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+  <script src="daten-embed.js"></script>
   <style>
     :root {
       --bg: #0f1311; --surface: #18201a; --surface-2: #212b23; --fg: #e6eee7; --muted: #95a397;
@@ -170,6 +171,12 @@
   }
 
   async function init() {
+    if (window.CATALOG_EMBED && window.CATALOG_EMBED.appData && window.CATALOG_EMBED.mediaData) {
+      appData = window.CATALOG_EMBED.appData;
+      mediaData = window.CATALOG_EMBED.mediaData;
+      filterList();
+      return;
+    }
     try {
       const [rApp, rMedia] = await Promise.all([
         fetch("../data/app-data.json").catch(() => fetch("data/app-data.json")),
@@ -179,7 +186,10 @@
       mediaData = await rMedia.json();
       filterList();
     } catch (e) {
-      $("mods-grid").innerHTML = `<div class="empty-note">Fehler beim Laden der Daten: ${e.message}</div>`;
+      $("mods-grid").innerHTML = `<div class="empty-note">
+        <p><b>Daten konnten nicht geladen werden:</b> ${e.message}</p>
+        <p>Wenn du die Datei direkt im Browser geöffnet hast (file://), stelle sicher, dass <code>daten-embed.js</code> im selben Ordner existiert.</p>
+      </div>`;
     }
   }
 

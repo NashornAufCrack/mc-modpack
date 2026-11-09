@@ -52,4 +52,13 @@ for fpath in ["data/media.json", "data/media-app.json"]:
         json.dump(media, f, ensure_ascii=False, indent=2)
     print(f"{fpath}: {img_rem} Bilder entfernt, {vid_upd} Videos aktualisiert.")
 
+if os.path.exists("data/app-data.json") and os.path.exists("data/media-app.json"):
+    with open("data/app-data.json", "r", encoding="utf-8") as f:
+        app_d = json.load(f)
+    with open("data/media-app.json", "r", encoding="utf-8") as f:
+        media_d = json.load(f)
+    with open("pruefung/daten-embed.js", "w", encoding="utf-8") as f:
+        f.write("window.CATALOG_EMBED = " + json.dumps({"appData": app_d, "mediaData": media_d}, ensure_ascii=False) + ";\n")
+    print("pruefung/daten-embed.js aktualisiert.")
+
 print("Fertig! Alle Urteile wurden dauerhaft in die Projektdaten übernommen.")
