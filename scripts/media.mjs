@@ -1,26 +1,42 @@
 // Medien-Pipeline: Bilder + Videos für jeden Katalog-Eintrag.
 // Stufe A: Modrinth (Galerie, Bilder und YouTube-Links aus der Beschreibung) – ohne Kontingent
-// Stufe B: CurseForge (nur Einträge mit CurseForge-Link) – Key: CURSEFORGE_API_KEY
+// Stufe B: CurseForge (Galerie + Beschreibungs-HTML für Bilder/GIFs/YouTube-Links) – Key: CURSEFORGE_API_KEY
 // Stufe C: YouTube-Suche mit Bewertung – Key: YOUTUBE_API_KEY, max. MAX_SEARCH Suchen pro Lauf
 import fs from "node:fs";
 import { writeMediaApp } from "./media-app.mjs";
 const UA = "NashornAufCrack/mc-modpack media-pipeline (github.com/NashornAufCrack/mc-modpack)";
 const MAX_SEARCH = Number(process.env.MAX_SEARCH || 90);
 const mods = JSON.parse(fs.readFileSync("data/mods.json", "utf8"));
+const files = fs.existsSync("data/files.json") ? JSON.parse(fs.readFileSync("data/files.json", "utf8")) : {};
 const OUT = "data/media.json";
 const media = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, "utf8")) : {};
 const log = [];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const ytIds = s => [...new Set([...String(s || "").matchAll(/(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=|shorts\/)|youtu\.be\/)([\w-]{11})/g)].map(m => m[1]))];
-const BAD_IMG_RE = /shields\.io|badge|discord|ko-?fi|patreon|bisect|nodecraft|shockbyte|sparked_banner|apexhosting|kinetichosting|bh-illusive|tr7zw\.github\.io\/uikit|yourkit\.com|yklogo|flaticon\.com|planetminecraft\.com\/images\/layout\/favicon|ewanhowell\.com\/assets\/images\/icons|paypal|curseforge\.com\/.*\/icons|\/icon\.|Fuzss\/modresources\/main\/pages\/commons\/headers\/|\/strip\.png|cdn\.serilum\.com\/description\/header|mods\.twelveiterations\.com\/img\/.*-header|DoomedArtemis\/ResourcePacksManager\/assets\/.*_title|Vi-Tul\/Recolourful-Containers-description\/.*(buttons|label\.png)|LopyMine\/Profile\/.*\/Template|quiqueck\/BCLib\/.*\/bclib_banner/i;
+const normImg = u => String(u || "").trim().replace(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/(raw|blob)\//i, "https://raw.githubusercontent.com/$1/");
+
+// Eigene Modrinth-Projekt-ID je Slug ermitteln, um fremde Mod-Icons/Werbebanner aus READMEs auszufiltern
+const ownPid = {};
+for (const m of mods) {
+  const f = files[m.slug];
+  const m1 = f && String(f[0] || "").match(/cdn\.modrinth\.com\/data\/([A-Za-z0-9]+)\//);
+  if (m1) ownPid[m.slug] = m1[1];
+}
+
+const BAD_IMG_RE = /shields\.io|badge|discord|ko-?fi|patreon|bisect|nodecraft|shockbyte|sparked_banner|apexhosting|kinetichosting|bh-illusive|tr7zw\.github\.io\/uikit|yourkit\.com|yklogo|flaticon\.com|planetminecraft\.com\/images\/layout\/favicon|ewanhowell\.com\/assets\/images\/icons|paypal|curseforge\.com\/.*\/icons|\/icon\.|Fuzss\/modresources\/main\/pages\/commons\/|\/strip\.png|cdn\.serilum\.com\/description\/header|mods\.twelveiterations\.com\/img\/.*-header|DoomedArtemis\/ResourcePacksManager\/assets\/.*_title|Vi-Tul\/Recolourful-Containers-description\/.*(buttons|label\.png)|LopyMine\/Profile\/.*\/Template|quiqueck\/BCLib\/.*\/bclib_banner|macaws.*banner|stardustlabs|fabric-api|requires-fabric/i;
 function badImgUrl(u, slug = "") {
-  if (BAD_IMG_RE.test(u)) return true;
-  const fm = String(u).match(/Fuzss\/modresources\/main\/pages\/data\/([^/]+)\/banner\.png/i);
+  const n = normImg(u);
+  if (BAD_IMG_RE.test(n)) return true;
+  if (/^https:\/\/cdn\.modrinth\.com\/data\/[A-Za-z0-9]+\/[^/]+\.(png|webp|jpe?g)(\?|$)/i.test(n)) return true;
+  const mr = n.match(/^https:\/\/cdn\.modrinth\.com\/data\/([A-Za-z0-9]+)\/images\//i);
+  if (mr && slug && ownPid[slug] && ownPid[slug] !== mr[1]) return true;
+  const fm = n.match(/Fuzss\/modresources\/main\/pages\/data\/([^/]+)\/banner\.png/i);
   if (fm && slug && fm[1].toLowerCase() !== slug.toLowerCase().replace(/[^a-z0-9]/g, "")) return true;
   return false;
 }
-const imgUrls = (s, slug = "") => [...new Set([...String(s || "").matchAll(/https:\/\/[^\s"')<>]+\.(?:png|jpe?g|gif|webp)(?:\?[^\s"')<>]*)?/gi)].map(m => m[0]))]
+const imgUrls = (s, slug = "") => [...new Set([...String(s || "").matchAll(/https:\/\/[^\s"')<>]+\.(?:png|jpe?g|gif|webp)(?:\?[^\s"')<>]*)?/gi)].map(m => normImg(m[0])))]
   .filter(u => !badImgUrl(u, slug));
+const cleanSearchName = s => String(s || "").split("|")[0].replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, " ").replace(/\s+/g, " ").trim() || String(s || "").replace(/[^\w\s-]/g, " ").replace(/\s+/g, " ").trim();
 const normTitle = s => String(s || "").replace(/([a-z])([A-Z0-9])/g, "$1 $2").replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/&/g, " and ").replace(/\+/g, " plus ").replace(/[^a-z0-9]+/g, " ").trim();
 const norm = s => normTitle(String(s || "").replace(/\(.*?\)|\[.*?\]/g, " "));
 const allModNorms = new Map(mods.map(m => [m.slug, norm(m.name)]).filter(([, n]) => n.length >= 3));
@@ -39,7 +55,7 @@ function hasNameInTitle(m, rawTitle) {
     if (m.slug === "low-fire-pack" && t.includes(" low on fire ")) continue;
     if (m.slug === "sound" && !t.includes(" sounds mod ")) continue;
     if (m.slug === "crawl" && (t.includes(" dungeon crawl ") || t.includes(" without any mod "))) continue;
-    if (m.slug === "ping" && (t.includes(" low ping ") || t.includes(" control your ping "))) continue;
+    if (m.slug === "ping" && (t.includes(" low ping ") || t.includes(" control your ping ") || !t.includes(" minecraft "))) continue;
     if (m.slug === "mob-heads" && t.includes(" just mob heads ")) continue;
     if (t.includes(" better than " + cand + " ") || t.includes(" alternative to " + cand + " ") || t.includes(" forget " + cand + " ")) continue;
     let longer = false;
@@ -51,8 +67,12 @@ function hasNameInTitle(m, rawTitle) {
 }
 const PT = { m: "mod", r: "resource pack", s: "shader", d: "datapack" };
 const mrGet = async p => { const r = await fetch("https://api.modrinth.com/v2" + p, { headers: { "User-Agent": UA } }); if (!r.ok) throw new Error(p + " " + r.status); return r.json(); };
-// Zusatzbilder (CurseForge-Suche, GitHub-README) liegen dauerhaft in e.extra und werden bei jedem Lauf angehängt
-const addExtra = (e, urls) => { e.extra = [...new Set([...(e.extra || []), ...urls])].slice(0, 12); e.hq = [...new Set([...(e.hq || []), ...urls])].slice(0, 16); e.bilder = [...new Set([...(e.bilder || []), ...urls])].slice(0, 16); };
+const addExtra = (e, urls) => {
+  const clean = urls.map(normImg);
+  e.extra = [...new Set([...(e.extra || []), ...clean])].slice(0, 12);
+  e.hq = [...new Set([...(e.hq || []), ...clean])].slice(0, 16);
+  e.bilder = [...new Set([...(e.bilder || []), ...clean])].slice(0, 16);
+};
 
 // ---------- Stufe A: Modrinth ----------
 const slugs = mods.filter(m => !m.cf).map(m => m.slug);
@@ -61,6 +81,7 @@ for (let i = 0; i < slugs.length; i += 80) {
   const r = await fetch("https://api.modrinth.com/v2/projects?ids=" + encodeURIComponent(JSON.stringify(ids)), { headers: { "User-Agent": UA } });
   if (!r.ok) { log.push("Modrinth " + r.status); continue; }
   for (const p of await r.json()) {
+    ownPid[p.slug] = p.id || ownPid[p.slug];
     const e = (media[p.slug] ||= {});
     if (e.extra?.length) e.extra = e.extra.filter(u => !badImgUrl(u, p.slug));
     const gal = (p.gallery || []).sort((a, b) => (b.featured - a.featured) || (a.ordering - b.ordering));
@@ -75,7 +96,7 @@ for (let i = 0; i < slugs.length; i += 80) {
   await sleep(300);
 }
 
-// ---------- Stufe B: CurseForge ----------
+// ---------- Stufe B: CurseForge (Screenshots + Beschreibungs-HTML + eingebettete Videos) ----------
 const CF = process.env.CURSEFORGE_API_KEY;
 if (CF) {
   const t = await fetch("https://api.curseforge.com/v1/games/432", { headers: { "x-api-key": CF, Accept: "application/json" } });
@@ -83,21 +104,46 @@ if (CF) {
   if (t.ok) for (const m of mods.filter(m => m.cf)) {
     const slug = String(m.cf).split("/").filter(Boolean).pop();
     const r = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&slug=${encodeURIComponent(slug)}`, { headers: { "x-api-key": CF, Accept: "application/json" } });
-    if (!r.ok) continue; const d = (await r.json()).data?.[0]; if (!d) continue;
-    const e = (media[m.slug] ||= {}); e.bilder = [...new Set([...(e.bilder || []), ...(d.screenshots || []).map(s => s.thumbnailUrl || s.url)])].slice(0, 16); e.hq = [...new Set([...(e.hq || e.bilder || []), ...(d.screenshots || []).map(s => s.url)])].slice(0, 16); e.icon = e.icon || d.logo?.url || null;
+    if (!r.ok) continue;
+    const d = (await r.json()).data?.[0]; if (!d) continue;
+    let bodyImgs = [], bodyYt = [];
+    try {
+      const dr = await fetch(`https://api.curseforge.com/v1/mods/${d.id}/description`, { headers: { "x-api-key": CF, Accept: "application/json" } });
+      if (dr.ok) {
+        const descHtml = (await dr.json()).data || "";
+        bodyImgs = imgUrls(descHtml, m.slug);
+        bodyYt = ytIds(descHtml).map(id => ({ id, quelle: "beschreibung", punkte: 10, status: "auto" }));
+      }
+    } catch {}
+    const e = (media[m.slug] ||= {});
+    const ssThumb = (d.screenshots || []).map(s => s.thumbnailUrl || s.url).filter(Boolean);
+    const ssFull = (d.screenshots || []).map(s => s.url || s.thumbnailUrl).filter(Boolean);
+    e.bilder = [...new Set([...ssThumb, ...bodyImgs, ...(e.bilder || [])])].slice(0, 16);
+    e.hq = [...new Set([...ssFull, ...bodyImgs, ...(e.hq || e.bilder || [])])].slice(0, 16);
+    e.icon = e.icon || d.logo?.url || null;
+    if (bodyYt.length) {
+      e.videos = [...bodyYt, ...(e.videos || []).filter(v => !bodyYt.some(b => b.id === v.id))];
+    }
+    if (d.links?.sourceUrl) e.links = { ...(e.links || {}), source: d.links.sourceUrl };
   }
 } else log.push("CurseForge-Key: fehlt");
 
-// ---------- Stufe B2: CurseForge-Screenshots auch für Modrinth-Einträge ohne gute Bilder (Namensabgleich) ----------
+// ---------- Stufe B2: CurseForge-Screenshots & Beschreibung auch für Modrinth-Einträge ohne gute Bilder ----------
 if (CF) {
   const nn = x => String(x || "").toLowerCase().replace(/\[.*?\]|\(.*?\)/g, "").replace(/[^a-z0-9]/g, "");
   let nb = 0, hit = 0;
   for (const m of mods.filter(m => !m.cf)) {
-    const e = media[m.slug] || {}; if ((e.breite || 0) >= 1280 || (e.cfSuche && e.cfSuche >= "2026-11-08")) continue; if (nb >= 300) break; nb++;
-    try { const r = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&searchFilter=${encodeURIComponent(m.name)}&pageSize=10&sortField=2&sortOrder=desc`, { headers: { "x-api-key": CF, Accept: "application/json" } });
+    const e = media[m.slug] || {}; if ((e.breite || 0) >= 1280 || (e.cfSuche && e.cfSuche >= "2026-11-08" && (e.bilder || []).length > 0)) continue; if (nb >= 300) break; nb++;
+    try { const r = await fetch(`https://api.curseforge.com/v1/mods/search?gameId=432&searchFilter=${encodeURIComponent(cleanSearchName(m.name))}&pageSize=10&sortField=2&sortOrder=desc`, { headers: { "x-api-key": CF, Accept: "application/json" } });
       const ee = (media[m.slug] ||= {}); ee.cfSuche = new Date().toISOString().slice(0, 10); if (!r.ok) continue;
-      const d = (await r.json()).data.find(c => nn(c.name) === nn(m.name) || c.slug === m.slug); if (!d || !(d.screenshots || []).length) continue; hit++;
-      addExtra(ee, d.screenshots.map(x => x.url));
+      const d = (await r.json()).data.find(c => nn(c.name) === nn(m.name) || c.slug === m.slug); if (!d) continue;
+      let foundUrls = (d.screenshots || []).map(x => x.url).filter(Boolean);
+      if (!foundUrls.length) {
+        const dr = await fetch(`https://api.curseforge.com/v1/mods/${d.id}/description`, { headers: { "x-api-key": CF, Accept: "application/json" } });
+        if (dr.ok) foundUrls = imgUrls((await dr.json()).data || "", m.slug);
+      }
+      if (!foundUrls.length) continue;
+      hit++; addExtra(ee, foundUrls);
     } catch {}
     await sleep(120);
   }
@@ -110,11 +156,14 @@ function score(m, v) {
   const rawT = v.snippet.title || "", t = normTitle(rawT), d = String(v.snippet.description || "").toLowerCase();
   let p = 0, why = [];
   const slugRe = new RegExp(`modrinth\\.com\\/(mod|resourcepack|shader|datapack|project)\\/${m.slug.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![a-z0-9_-])`);
-  if (slugRe.test(d)) { p += 2; why.push("Modrinth-Link in der Videobeschreibung"); }
+  const cfSlug = m.cf ? String(m.cf).split("/").filter(Boolean).pop().toLowerCase() : "";
+  const cfRe = cfSlug ? new RegExp(`curseforge\\.com\\/minecraft\\/[^/]+\\/${cfSlug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![a-z0-9_-])`) : null;
+  if (slugRe.test(d) || (cfRe && cfRe.test(d))) { p += 2; why.push("Projekt-Link in der Videobeschreibung"); }
   if (hasNameInTitle(m, rawT)) { p += 4; why.push("Name im Titel"); }
   if (/\b(mod|resource ?pack|texture ?pack|shader|shaders|datapack|data pack|showcase|review|spotlight|tutorial)\b/.test(t)) { p += 1; why.push("Typ im Titel"); }
   if (/\b(26\.\d|1\.21)\b/.test(rawT)) { p += 1; why.push("aktuelle Version"); }
-  if (/\b(mcpe|bedrock|pocket edition|mcaddon|addonminecraftpe|pe 1|vintage story|hytale|terraria|roblox|sims|gta|fortnite|ark survival)\b/.test(t)) { p -= 6; why.push("anderes Spiel / Bedrock"); }
+  if (/\b(mcpe|bedrock|pocket edition|mcaddon|addonminecraftpe|pe 1|vintage story|hytale|terraria|roblox|sims|gta|fortnite|ark survival|helldivers|deep rock galactic|valorant|overwatch)\b/.test(t)) { p -= 6; why.push("anderes Spiel / Bedrock"); }
+  if (!/\bminecraft\b/.test(t) && !/\bminecraft\b/.test(d) && norm(m.name).split(" ").length <= 1) { p -= 4; why.push("kein Minecraft-Bezug bei Kurzname"); }
   if (/\b(top ?\d+|\d+\+? ?(best|minecraft|mods|resource|texture|shader|datapack)|best (minecraft )?(mods|resource|texture|shader)|every minecraft|mods explained|packs compared|mods compared|tier ?list|modpack|let'?s play|let s play|episode ?\d+|smp)\b/.test(t) || /\bmods\b.*\bmods\b/.test(t)) { p -= 4; why.push("Sammelvideo"); }
   const dur = v.contentDetails?.duration || ""; const min = (+(dur.match(/(\d+)H/)?.[1] || 0)) * 60 + (+(dur.match(/(\d+)M/)?.[1] || 0));
   if (min > 25) { p -= 2; why.push("sehr lang"); }
@@ -129,7 +178,7 @@ if (YT) {
     let n = 0;
     for (const m of todo) {
       if (n >= MAX_SEARCH) break;
-      const q = `${m.name} minecraft ${PT[m.pt || "m"]}`;
+      const q = `${cleanSearchName(m.name)} minecraft ${PT[m.pt || "m"]}`;
       const r = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=8&q=${encodeURIComponent(q)}&key=${YT}`);
       n++;
       if (!r.ok) { log.push(`Suche gestoppt bei ${m.slug}: ${r.status}`); break; }
@@ -156,7 +205,8 @@ const todoD = mods.filter(m => { const e = media[m.slug] || {}; const ok = (e.vi
 let nd = 0, okD = 0;
 for (const m of todoD) {
   if (nd >= MAX_DLP) break; nd++;
-  const zweite = !!(media[m.slug] || {}).dlp; const q = zweite ? `${m.name} ${m.pt === "r" ? "texture pack" : m.pt === "s" ? "shaders" : "mod"} showcase` : `${m.name} minecraft ${PT[m.pt || "m"]}`;
+  const cname = cleanSearchName(m.name);
+  const zweite = !!(media[m.slug] || {}).dlp; const q = zweite ? `${cname} ${m.pt === "r" ? "texture pack" : m.pt === "s" ? "shaders" : "mod"} showcase` : `${cname} minecraft ${PT[m.pt || "m"]}`;
   let j; try { j = JSON.parse(execFileSync("yt-dlp", ["--flat-playlist", "-J", "--no-warnings", `ytsearch8:${q}`], { encoding: "utf8", timeout: 60000, maxBuffer: 1 << 24 })); }
   catch (e) { log.push(`yt-dlp Fehler bei ${m.slug}: ${String(e.stderr || e).slice(0, 160)}`); if (nd > 3 && !okD) break; continue; }
   const e = (media[m.slug] ||= {}); e[zweite ? "dlp2" : "dlp"] = new Date().toISOString().slice(0, 10);
@@ -171,9 +221,11 @@ log.push(`yt-dlp-Suchen: ${nd}, mit Treffer: ${okD}, noch offen: ${Math.max(0, t
 
 // ---------- Stufe F: Bilder/GIFs aus dem GitHub-README (für Einträge ohne gute Bilder) ----------
 {
-  const need = mods.filter(m => !m.cf && (media[m.slug]?.breite || 0) < 1280 && !media[m.slug]?.readme);
+  const need = mods.filter(m => (media[m.slug]?.breite || 0) < 1280 && !media[m.slug]?.readme);
   const src = {};
-  for (let i = 0; i < need.length; i += 80) { try { for (const p of await mrGet(`/projects?ids=${encodeURIComponent(JSON.stringify(need.slice(i, i + 80).map(m => m.slug)))}`)) src[p.slug] = p.source_url; } catch {} await sleep(200); }
+  const mrNeed = need.filter(m => !m.cf);
+  for (let i = 0; i < mrNeed.length; i += 80) { try { for (const p of await mrGet(`/projects?ids=${encodeURIComponent(JSON.stringify(mrNeed.slice(i, i + 80).map(m => m.slug)))}`)) src[p.slug] = p.source_url; } catch {} await sleep(200); }
+  for (const m of need.filter(x => x.cf)) if (media[m.slug]?.links?.source) src[m.slug] = media[m.slug].links.source;
   let nr = 0, hr = 0;
   for (const m of need) {
     const u = src[m.slug]; const g = u && String(u).match(/github\.com\/([^/]+)\/([^/#?]+)/i);
@@ -181,11 +233,11 @@ log.push(`yt-dlp-Suchen: ${nd}, mit Treffer: ${okD}, noch offen: ${Math.max(0, t
     const repo = g[1] + "/" + g[2].replace(/\.git$/, "");
     try {
       const r = await fetch(`https://api.github.com/repos/${repo}/readme`, { headers: { Accept: "application/vnd.github.raw", "User-Agent": "mc-modpack media", ...(process.env.GITHUB_TOKEN ? { Authorization: "Bearer " + process.env.GITHUB_TOKEN } : {}) } });
-      if (r.status === 404) e.readme = new Date().toISOString().slice(0, 10); // kein README: nicht erneut fragen
-      if (!r.ok) continue; e.readme = new Date().toISOString().slice(0, 10); const md = await r.text(); // sonst (Limit, Serverfehler) beim nächsten Lauf nochmal
+      if (r.status === 404) e.readme = new Date().toISOString().slice(0, 10);
+      if (!r.ok) continue; e.readme = new Date().toISOString().slice(0, 10); const md = await r.text();
       const raw = [...md.matchAll(/!\[[^\]]*\]\(\s*<?([^)\s>]+)/g), ...md.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)].map(x => x[1]);
       const imgs = [...new Set(raw.map(x => x.startsWith("http") ? x : `https://raw.githubusercontent.com/${repo}/HEAD/${x.replace(/^\.?\//, "")}`)
-        .map(x => x.replace(/github\.com\/([^/]+\/[^/]+)\/(blob|raw)\//, "raw.githubusercontent.com/$1/"))
+        .map(normImg)
         .filter(x => /\.(png|jpe?g|gif|webp)(\?|$)/i.test(x) || /user-attachments|githubusercontent\.com\/.*\/assets\//.test(x))
         .filter(x => !badImgUrl(x, m.slug) && !/logo|icon|banner|modrinth\.com\/.*\/(badge|compact)/i.test(x)))].slice(0, 8);
       if (imgs.length) { hr++; addExtra(e, imgs); }
@@ -208,7 +260,13 @@ function dims(b) {
   return null;
 }
 const DIMS = fs.existsSync("data/media-dims.json") ? JSON.parse(fs.readFileSync("data/media-dims.json", "utf8")) : {}; let measured = 0;
-const isStripOrTiny = u => { const d = DIMS[u]; if (!d || !d[0] || !d[1]) return false; return (d[1] < 48 || d[0] / d[1] > 8) && !/cdn\.modrinth\.com\/data\/[^/]+\/images\//.test(u); };
+const isStripOrTiny = u => {
+  const d = DIMS[u] || DIMS[u.replace(/_350\.webp$/, ".png")];
+  if (!d || !d[0] || !d[1]) return false;
+  const [w, h] = d;
+  // Winzige Badges/Icons (≤160 px quadratisch, < 200×100) und Banner-Streifen raus; echte kleine Vorher/Nachher-Bilder (256×256) bleiben
+  return w < 200 || h < 100 || (w === h && w <= 160) || w / h > 6;
+};
 for (const m of mods) {
   const e = media[m.slug]; if (!e) continue;
   const list = [...new Set([...(e.hq || []), ...(e.bilder || [])])];

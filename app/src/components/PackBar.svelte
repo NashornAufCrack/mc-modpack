@@ -1,7 +1,8 @@
 <script lang="ts">
   import { pack, PRESETS } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
-  import { exportMrpack, exportPackwiz, exportPrism, exportSet, manualList } from "../lib/export";
+  import { exportMrpack, exportPackwiz, exportPrism, exportSet, manualList, startCheck } from "../lib/export";
+  import { AUTO_RULES, type AutoMode } from "../lib/auto-cfg";
 
   const r = $derived(pack.resolve());
   const cnt = (t: string) => [...r.mods].filter(s => (pack.BY[s].pt || "m") === t).length;
@@ -20,8 +21,15 @@
   const srvCount = $derived(srvList.filter(m => inSrv.has(m.slug)).length);
   let name = $state(pack.cfg._name || "Mein Pack"); let st = $state(""); let busy = $state(false);
   let showDiff = $state(false);
+  // Start-Check: läuft bei jeder Änderung der Auswahl/Einstellungen und nochmal direkt vor dem Export
+  const check = $derived((pack.sel, pack.cfg, startCheck()));
+  let force = $state(false);
+  const altName = (id: string) => { const r = AUTO_RULES.find(x => x.id === id); return r?.alt ? pack.name(r.alt.slug) : ""; };
   async function go(kind: "prism" | "mrpack" | "server" | "packwiz") {
     if (probs.length) { st = `Erst die ${probs.length} Konflikte klären. Im fertigen Pack darf nichts doppelt sein.`; return; }
+    const c = startCheck();
+    if (!c.ok && !force) { force = true; setTimeout(() => (force = false), 8000); st = `Start-Check: ${c.errors.length} Problem(e) gefunden (siehe Kasten oben). Nochmal klicken, um trotzdem zu exportieren.`; return; }
+    force = false;
     busy = true; pack.cfg = { ...pack.cfg, _name: name }; pack.save();
     try { kind === "prism" ? await exportPrism(name, t => (st = t)) : kind === "packwiz" ? await exportPackwiz(name, t => (st = t)) : await exportMrpack(name, kind === "server", t => (st = t)); }
     catch (e) { st = "Fehler beim Export: " + e; } busy = false;
@@ -55,10 +63,26 @@
       {#each probs as p}<div class="prob"><span>{pack.name(p.a)} + {pack.name(p.b)}</span><button class="btn sm" onclick={() => { pack.set(p.b, false); ui.pick(p.b, true); }}>Klären</button></div>{/each}
     </div>
   {:else}<p class="state ok">Keine Konflikte, keine Doppelungen</p>{/if}
+  {#if check.ok}
+    <p class="state ok" title="Geprüft: alle Downloads mit Prüfsumme, alle Pflicht-Abhängigkeiten, keine doppelten Dateinamen, alle erzeugten Einstellungsdateien">✓ Start-Check bestanden: {check.checkedFiles} Dateien, {check.checkedDeps} Abhängigkeiten, {check.total} Einstellungsdateien geprüft</p>
+  {:else}
+    <div class="checkerr"><b>Start-Check: {check.errors.length} Problem(e)</b>
+      <ul class="errs">{#each check.errors.slice(0, 8) as e}<li>{e}</li>{/each}</ul>
+      {#if check.errors.length > 8}<span class="small">… und {check.errors.length - 8} weitere</span>{/if}
+    </div>
+  {/if}
   {#if autos.length}
-    <details class="autobox"><summary><b>{autos.length} {autos.length === 1 ? "Teil-Überschneidung" : "Teil-Überschneidungen"} automatisch abgestimmt</b></summary>
-      <ul>{#each autos as a}<li><b>{[a.slug, ...a.partners].map(x => pack.name(x)).join(" + ")}:</b> {a.text}</li>{/each}</ul>
-      <p class="small muted">Beide werden geladen – die Einstellungen werden beim Export direkt in den Config-Dateien gesetzt.</p>
+    <details class="autobox"><summary><b>{autos.length} {autos.length === 1 ? "Teil-Überschneidung" : "Teil-Überschneidungen"} – du entscheidest</b></summary>
+      <p class="small muted">Beide Mods werden geladen. Pro Fall kannst du wählen, welcher den doppelten Effekt übernimmt, oder beide anlassen (kann doppelte Partikel/Anzeigen geben, stürzt aber nicht ab).</p>
+      <ul>{#each autos as a (a.id)}
+        <li><b>{[a.slug, ...a.partners].map(x => pack.name(x)).join(" + ")}:</b> {a.text}
+          <select class="field sm" aria-label="Wer übernimmt den Effekt?" value={a.mode} onchange={e => pack.setAutoChoice(a.id, e.currentTarget.value as AutoMode)}>
+            <option value="std">Empfohlen (automatisch)</option>
+            {#if a.hasAlt}<option value="alt">Umgekehrt: {altName(a.id)} gibt ab</option>{/if}
+            {#if a.canOff}<option value="off">Beide anlassen</option>{/if}
+          </select>
+        </li>{/each}</ul>
+      <p class="small muted">Die Wahl wird beim Export direkt in die Config-Dateien geschrieben.</p>
     </details>
   {/if}
   {#if tips.length}
@@ -117,6 +141,8 @@
   .tipbox, .autobox { border: 1px solid var(--line-2); border-radius: 10px; padding: .55rem .7rem; font-size: .84rem; }
   .autobox { border-color: var(--accent); }
   .tipbox summary, .autobox summary { cursor: pointer; } .tipbox ul, .autobox ul { margin: .5rem 0 .3rem; padding-left: 1.1rem; display: grid; gap: .4rem; }
+  .autobox select { display: block; margin-top: .3rem; width: 100%; font-size: .8rem; padding: .25rem .4rem; }
+  .errs { margin: 0; padding-left: 1.1rem; display: grid; gap: .25rem; font-size: .8rem; }
   .stats b { display: block; font: 600 1.4rem var(--mono); } .stats span { font-size: .72rem; color: var(--muted); }
   .meter { display: grid; grid-template-columns: auto 1fr auto; gap: .5rem; align-items: center; font-size: .82rem; }
   .track { height: .45rem; border-radius: 9px; background: var(--bg-2); overflow: hidden; } .track i { display: block; height: 100%; border-radius: 9px; }
@@ -125,7 +151,7 @@
   .small { font-size: .8rem; margin: 0; }
   .state { margin: 0; padding: .45rem .6rem; border-radius: 8px; font-size: .84rem; font-weight: 500; }
   .state.ok { background: var(--accent-soft); color: var(--ok); } .state.bad { background: var(--bad-soft); color: var(--bad); }
-  .warnbox { border: 1px solid var(--bad); background: var(--bad-soft); border-radius: 10px; padding: .55rem .65rem; display: grid; gap: .35rem; font-size: .84rem; }
+  .warnbox, .checkerr { border: 1px solid var(--bad); background: var(--bad-soft); border-radius: 10px; padding: .55rem .65rem; display: grid; gap: .35rem; font-size: .84rem; }
   .prob { display: flex; justify-content: space-between; gap: .5rem; align-items: center; }
   .tools, .two { display: flex; gap: .4rem; flex-wrap: wrap; } .two > * { flex: 1; }
   .ram { margin: 0; padding: .5rem .6rem; border-radius: 8px; background: var(--warn-soft); border: 1px solid var(--warn); font-size: .8rem; }

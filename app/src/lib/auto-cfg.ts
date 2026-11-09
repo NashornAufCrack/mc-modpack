@@ -1,12 +1,23 @@
 // Automatische Feinabstimmung bei Teil-Überschneidungen:
 // Wenn zwei Mods/Packs/Shader teilweise dasselbe tun oder sich in einer Teilfunktion stören würden,
-// bleiben beide im Pack, aber die doppelte bzw. störende Teilfunktion wird in der Config oder Pack-Reihenfolge automatisch abgestimmt.
+// bleiben beide im Pack, aber die doppelte bzw. störende Teilfunktion wird in der Config oder Pack-Reihenfolge abgestimmt.
+// Der Nutzer kann bei jeder aktiven Regel selbst wählen, welcher Mod den Effekt übernimmt ("std" / "alt") oder ob beide aktiv bleiben ("off").
 import { TPL } from "./auto-tpl";
 import { SETDEF } from "./const";
 
+export type AutoMode = "std" | "alt" | "off";
+
+export type AutoAlt = {
+  slug: string;
+  file: string;
+  fmt: "toml" | "json" | "json5" | "props" | "shader" | "rpo" | "rp-order";
+  changes: [string, any][];
+  text: string;
+};
+
 export type AutoRule = {
   id: string;
-  /** Mod/Pack/Shader, dessen Einstellung angepasst wird */
+  /** Mod/Pack/Shader, dessen Einstellung im Standardfall angepasst wird */
   slug: string;
   /** Aktiv, sobald mindestens einer dieser Partner ebenfalls im Pack ist */
   when: string[];
@@ -15,6 +26,8 @@ export type AutoRule = {
   fmt: "toml" | "json" | "json5" | "props" | "shader" | "rpo" | "rp-order";
   changes: [string, any][];
   text: string;
+  /** Optionale Umkehr-Regel, falls der Nutzer lieber `slug` statt `when` für den Teil-Effekt bevorzugen möchte */
+  alt?: AutoAlt;
 };
 
 export const AUTO_RULES: AutoRule[] = [
@@ -64,7 +77,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "visuality.json",
     fmt: "json",
     changes: [["waterCircles.enabled", false]],
-    text: "Regenringe auf Wasser in Visuality deaktiviert, damit sie nicht doppelt gezeichnet werden."
+    text: "Regenringe auf Wasser in Visuality deaktiviert, damit deine andere Partikel-Mod sie zeichnet.",
+    alt: {
+      slug: "particular-reforged",
+      file: "particular-common.toml",
+      fmt: "toml",
+      changes: [["general.enabledEffects.rainRipples", false]],
+      text: "Regenringe auf Wasser in Particular deaktiviert, damit Visuality die Wasserringe zeichnet."
+    }
   },
   {
     id: "subtle-particular-env",
@@ -73,7 +93,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "subtle_effects/environment.toml",
     fmt: "toml",
     changes: [["waterfalls.waterfallsEnabled", false], ["fireflies.firefliesEnabled", false]],
-    text: "Wasserfall-Gischt und Glühwürmchen in Subtle Effects deaktiviert, da Particular sie bereits übernimmt."
+    text: "Wasserfall-Gischt und Glühwürmchen in Subtle Effects deaktiviert, da Particular sie übernimmt.",
+    alt: {
+      slug: "particular-reforged",
+      file: "particular-common.toml",
+      fmt: "toml",
+      changes: [["general.enabledEffects.waterfallSpray", false], ["general.enabledEffects.fireflies", false]],
+      text: "Wasserfall-Gischt und Glühwürmchen in Particular deaktiviert, damit Subtle Effects sie übernimmt."
+    }
   },
   {
     id: "subtle-particular-gen",
@@ -82,7 +109,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "subtle_effects/general.toml",
     fmt: "toml",
     changes: [["poppingBubbles", false], ["dropLandInFluidRipples", false], ["glowingLavaDrops", false]],
-    text: "Platzende Blasen, Tropfenringe und Lavatropfen in Subtle Effects deaktiviert, da Particular aktiv ist."
+    text: "Platzende Blasen, Tropfenringe und Lavatropfen in Subtle Effects deaktiviert, da Particular aktiv ist.",
+    alt: {
+      slug: "particular-reforged",
+      file: "particular-common.toml",
+      fmt: "toml",
+      changes: [["general.enabledEffects.poppingBubbles", false], ["general.enabledEffects.waterDripRipples", false]],
+      text: "Platzende Blasen und Tropfenringe in Particular deaktiviert, damit Subtle Effects sie übernimmt."
+    }
   },
   {
     id: "subtle-particular-blk",
@@ -91,7 +125,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "subtle_effects/blocks.toml",
     fmt: "toml",
     changes: [["cakeEatParticles", false], ["openingChestsSpawnsBubbles", false], ["openingBarrelsSpawnsBubbles", false], ["rainWaterRipples", false]],
-    text: "Kuchenkrümel, Truhen-Blasen und Regenringe in Subtle Effects deaktiviert, da Particular sie erzeugt."
+    text: "Kuchenkrümel, Truhen-Blasen und Regenringe in Subtle Effects deaktiviert, da Particular sie erzeugt.",
+    alt: {
+      slug: "particular-reforged",
+      file: "particular-common.toml",
+      fmt: "toml",
+      changes: [["general.enabledEffects.cakeEatingParticles", false], ["general.enabledEffects.chestBubbles", false], ["general.enabledEffects.barrelBubbles", false], ["general.enabledEffects.rainRipples", false]],
+      text: "Kuchenkrümel, Truhen-Blasen und Regenringe in Particular deaktiviert, damit Subtle Effects sie erzeugt."
+    }
   },
   {
     id: "subtle-prain",
@@ -172,7 +213,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "subtle_effects/blocks.toml",
     fmt: "toml",
     changes: [["openingChestsSpawnsBubbles", false], ["openingBarrelsSpawnsBubbles", false]],
-    text: "Truhen- und Fass-Blasen in Subtle Effects deaktiviert, da Make Bubbles Pop aktiv ist."
+    text: "Truhen- und Fass-Blasen in Subtle Effects deaktiviert, da Make Bubbles Pop aktiv ist.",
+    alt: {
+      slug: "make_bubbles_pop",
+      file: "make_bubbles_pop.json",
+      fmt: "json",
+      changes: [["CHEST_BUBBLES_ENABLED", false], ["BARREL_BUBBLES_ENABLED", false]],
+      text: "Truhen-Blasen in Make Bubbles Pop deaktiviert, damit Subtle Effects sie übernimmt."
+    }
   },
   {
     id: "particular-bubbles",
@@ -181,7 +229,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "particular-common.toml",
     fmt: "toml",
     changes: [["general.enabledEffects.poppingBubbles", false], ["general.enabledEffects.chestBubbles", false], ["general.enabledEffects.barrelBubbles", false]],
-    text: "Platzende Blasen und Truhen-Blasen in Particular deaktiviert, da Make Bubbles Pop aktiv ist."
+    text: "Platzende Blasen und Truhen-Blasen in Particular deaktiviert, da Make Bubbles Pop aktiv ist.",
+    alt: {
+      slug: "make_bubbles_pop",
+      file: "make_bubbles_pop.json",
+      fmt: "json",
+      changes: [["CHEST_BUBBLES_ENABLED", false], ["BARREL_BUBBLES_ENABLED", false]],
+      text: "Truhen-Blasen in Make Bubbles Pop deaktiviert, damit Particular sie übernimmt."
+    }
   },
   {
     id: "subtle-explosive",
@@ -208,7 +263,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "effectual.json",
     fmt: "json",
     changes: [["caveDust", false], ["bubbleChests", false], ["bubblePots", false]],
-    text: "Höhlenstaub und Truhen-Blasen in Effectual deaktiviert, da Particular diese übernimmt."
+    text: "Höhlenstaub und Truhen-Blasen in Effectual deaktiviert, da Particular diese übernimmt.",
+    alt: {
+      slug: "particular-reforged",
+      file: "particular-common.toml",
+      fmt: "toml",
+      changes: [["general.enabledEffects.caveDust", false], ["general.enabledEffects.chestBubbles", false], ["general.enabledEffects.barrelBubbles", false]],
+      text: "Höhlenstaub und Truhen-Blasen in Particular deaktiviert, damit Effectual sie übernimmt."
+    }
   },
   {
     id: "effectual-subtle",
@@ -217,7 +279,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "effectual.json",
     fmt: "json",
     changes: [["mouthSteam", false], ["runDust", false], ["bubbleChests", false], ["bubblePots", false]],
-    text: "Atemdampf, Laufstaub und Truhen-Blasen in Effectual deaktiviert, da Subtle Effects diese übernimmt."
+    text: "Atemdampf, Laufstaub und Truhen-Blasen in Effectual deaktiviert, da Subtle Effects diese übernimmt.",
+    alt: {
+      slug: "subtle-effects",
+      file: "subtle_effects/blocks.toml",
+      fmt: "toml",
+      changes: [["openingChestsSpawnsBubbles", false], ["openingBarrelsSpawnsBubbles", false]],
+      text: "Truhen-Blasen in Subtle Effects deaktiviert, damit Effectual diese Effekte übernimmt."
+    }
   },
   {
     id: "effectual-bubbles",
@@ -226,7 +295,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "effectual.json",
     fmt: "json",
     changes: [["bubbleChests", false], ["bubblePots", false]],
-    text: "Truhen-Blasen in Effectual deaktiviert, da Make Bubbles Pop aktiv ist."
+    text: "Truhen-Blasen in Effectual deaktiviert, da Make Bubbles Pop aktiv ist.",
+    alt: {
+      slug: "make_bubbles_pop",
+      file: "make_bubbles_pop.json",
+      fmt: "json",
+      changes: [["CHEST_BUBBLES_ENABLED", false], ["BARREL_BUBBLES_ENABLED", false]],
+      text: "Truhen-Blasen in Make Bubbles Pop deaktiviert, damit Effectual sie übernimmt."
+    }
   },
   {
     id: "effectual-footprints",
@@ -311,7 +387,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "peek.json",
     fmt: "json",
     changes: [["showShulkerBoxItemHint", false], ["showShulkerBoxBlockHint", false]],
-    text: "Shulkerkisten-Tooltip in Peek deaktiviert, damit Peek weiterhin Bienenstöcke, Karten, Endertruhen & Kompass zeigt, während deine Shulker-Mod die Shulkerkisten übernimmt."
+    text: "Shulkerkisten-Tooltip in Peek deaktiviert, damit Peek weiterhin Bienenstöcke, Karten, Endertruhen & Kompass zeigt, während deine Shulker-Mod die Shulkerkisten übernimmt.",
+    alt: {
+      slug: "easy-shulker-boxes",
+      file: "easyshulkerboxes-client.toml",
+      fmt: "toml",
+      changes: [["tooltip.extra_tooltip_contents", "NONE"]],
+      text: "Shulkerkisten-Tooltip in Easy Shulker Boxes deaktiviert, damit Peek die Shulker-Vorschau übernimmt."
+    }
   },
   {
     id: "easyshulker-tooltip",
@@ -428,7 +511,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "horseman-client.toml",
     fmt: "toml",
     changes: [["improved_mount_gui", false]],
-    text: "Reit-Leisten-Umbau in Horseman deaktiviert, damit er nicht mit deiner Reit-HUD-Mod kollidiert."
+    text: "Reit-Leisten-Umbau in Horseman deaktiviert, damit er nicht mit deiner Reit-HUD-Mod kollidiert.",
+    alt: {
+      slug: "simple-armor-hud",
+      file: "armorhud.properties",
+      fmt: "props",
+      changes: [["better_mount_hud", false]],
+      text: "Reit-HUD in Simple Armor Hud deaktiviert, damit Horseman die Reit-Leiste übernimmt."
+    }
   },
   {
     id: "horseman-icy",
@@ -491,7 +581,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "smoothgui.json",
     fmt: "json",
     changes: [["smoothHotbar", false]],
-    text: "Hotbar-Animation in Smooth GUI deaktiviert, da Immersive Hotbar die Hotbar animiert."
+    text: "Hotbar-Animation in Smooth GUI deaktiviert, da Immersive Hotbar die Hotbar animiert.",
+    alt: {
+      slug: "immersive-hotbar",
+      file: "immersive-hotbar.json5",
+      fmt: "json5",
+      changes: [["hotbarItemAnimationsEnabled", false], ["selectorScaleEnabled", false]],
+      text: "Hotbar-Animation in Immersive Hotbar deaktiviert, damit Smooth GUI die Hotbar animiert."
+    }
   },
   {
     id: "immui-hotbar",
@@ -529,7 +626,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "options.txt",
     fmt: "rp-order",
     changes: [],
-    text: "AL's Creepers Revamped wird in options.txt automatisch über FA+All Extensions geladen: AL's übernimmt die Creeper, FA+All Extensions alle übrigen Mobs."
+    text: "AL's Creepers Revamped wird in options.txt über FA+All Extensions geladen: AL's übernimmt die Creeper, FA+All Extensions alle übrigen Mobs.",
+    alt: {
+      slug: "als-creepers-revamped",
+      file: "options.txt",
+      fmt: "rp-order",
+      changes: [],
+      text: "FA+All Extensions wird in options.txt über AL's Creepers Revamped geladen."
+    }
   },
   {
     id: "rp-3d-tools",
@@ -538,7 +642,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "options.txt",
     fmt: "rp-order",
     changes: [],
-    text: "Weskerson's 3D Items wird in options.txt automatisch über dein allgemeines 3D-Pack gelegt, damit Werkzeuge im Inventar flach bleiben und in der Hand 3D sind."
+    text: "Weskerson's 3D Items wird in options.txt über dein allgemeines 3D-Pack gelegt, damit Werkzeuge im Inventar flach bleiben und in der Hand 3D sind.",
+    alt: {
+      slug: "3d-default",
+      file: "options.txt",
+      fmt: "rp-order",
+      changes: [],
+      text: "Dein allgemeines 3D-Pack wird in options.txt über Weskerson's 3D Items gelegt."
+    }
   },
   {
     id: "rp-trims-order",
@@ -547,7 +658,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "options.txt",
     fmt: "rp-order",
     changes: [],
-    text: "Emissive Trims und Visual Armor Trims werden automatisch passend gereiht: Im Inventar siehst du die Besatz-Muster als Icons, am Körper leuchten sie im Dunkeln."
+    text: "Emissive Trims liegt in options.txt über Visual Armor Trims: Im Inventar siehst du die Besatz-Muster als Icons, am Körper leuchten sie im Dunkeln.",
+    alt: {
+      slug: "visual-armor-trims",
+      file: "options.txt",
+      fmt: "rp-order",
+      changes: [],
+      text: "Visual Armor Trims liegt in options.txt über Emissive Trims."
+    }
   },
   {
     id: "rp-food-eat",
@@ -556,7 +674,14 @@ export const AUTO_RULES: AutoRule[] = [
     file: "options.txt",
     fmt: "rp-order",
     changes: [],
-    text: "Ess-Animation und Fresh Food werden in options.txt automatisch abgestimmt, sodass 3D-Essensmodelle und Abbeißen-Animationen zusammen funktionieren."
+    text: "TheOne's Eating Animation liegt über Fresh Food: Abbeißen-Animation beim Essen, 3D-Modelle bei den übrigen Lebensmitteln.",
+    alt: {
+      slug: "theones-eating-animation-pack",
+      file: "options.txt",
+      fmt: "rp-order",
+      changes: [],
+      text: "Fresh Food liegt in options.txt über TheOne's Eating Animation (3D-Essensmodelle haben Vorrang)."
+    }
   },
 
   // --- Resource Packs mit Respackopts (.rpo) ---
@@ -677,6 +802,9 @@ export type ActiveAuto = {
   partners: string[];
   file: string;
   text: string;
+  mode: AutoMode;
+  hasAlt: boolean;
+  canOff: boolean;
 };
 
 export type SlugAutoRule = {
@@ -685,26 +813,42 @@ export type SlugAutoRule = {
   others: string[];
   text: string;
   active: boolean;
+  mode: AutoMode;
+  hasAlt: boolean;
+  canOff: boolean;
 };
 
+function ruleStatus(r: AutoRule, mods: Set<string>, choices: Record<string, AutoMode> = {}) {
+  const mode: AutoMode = choices[r.id] || "std";
+  const hasAlt = !!(r.alt && mods.has(r.alt.slug));
+  const canOff = r.fmt !== "rp-order";
+  const effMode: AutoMode = mode === "alt" && !hasAlt ? "std" : mode === "off" && !canOff ? "std" : mode;
+  const text = effMode === "alt" && r.alt ? r.alt.text : effMode === "off" ? "Beide Teil-Effekte bleiben aktiv (automatische Abschaltung auf Wunsch deaktiviert)." : r.text;
+  const file = effMode === "alt" && r.alt ? r.alt.file : r.file;
+  return { mode: effMode, hasAlt, canOff, text, file };
+}
+
 /** Alle aktuell im Pack greifenden automatischen Feinabstimmungen */
-export function activeAutos(mods: Set<string>): ActiveAuto[] {
+export function activeAutos(mods: Set<string>, choices: Record<string, AutoMode> = {}): ActiveAuto[] {
   const out: ActiveAuto[] = [];
   for (const r of AUTO_RULES) {
     if (!mods.has(r.slug)) continue;
     const partners = r.when.filter(w => mods.has(w));
-    if (partners.length) out.push({ id: r.id, slug: r.slug, partners, file: r.file, text: r.text });
+    if (!partners.length) continue;
+    const st = ruleStatus(r, mods, choices);
+    out.push({ id: r.id, slug: r.slug, partners, file: st.file, text: st.text, mode: st.mode, hasAlt: st.hasAlt, canOff: st.canOff });
   }
   return out;
 }
 
 /** Alle Regeln, an denen ein bestimmter Eintrag (als Ziel oder Auslöser) beteiligt ist */
-export function rulesForSlug(slug: string, mods: Set<string>): SlugAutoRule[] {
+export function rulesForSlug(slug: string, mods: Set<string>, choices: Record<string, AutoMode> = {}): SlugAutoRule[] {
   return AUTO_RULES.filter(r => r.slug === slug || r.when.includes(slug)).map(r => {
     const activePartners = r.when.filter(w => mods.has(w));
     const active = mods.has(r.slug) && activePartners.length > 0;
     const others = r.slug === slug ? r.when : [r.slug];
-    return { id: r.id, slug: r.slug, others, text: r.text, active };
+    const st = ruleStatus(r, mods, choices);
+    return { id: r.id, slug: r.slug, others, text: st.text, active, mode: st.mode, hasAlt: st.hasAlt, canOff: st.canOff };
   });
 }
 
@@ -770,21 +914,25 @@ export function buildAutoConfigFiles(
   mods: Set<string>,
   rpoData: Record<string, { fn: string; data: any }>,
   fname: (s: string) => string,
-  cv: (slug: string, k: string) => any
+  cv: (slug: string, k: string) => any,
+  choices: Record<string, AutoMode> = {}
 ): Record<string, string> {
   const out: Record<string, string> = {};
   const byFile = new Map<string, { fmt: AutoRule["fmt"]; slug: string; changes: [string, any][] }>();
 
   for (const r of AUTO_RULES) {
-    if (r.fmt === "rp-order") continue;
     if (!mods.has(r.slug)) continue;
     if (!r.when.some(w => mods.has(w))) continue;
-    let entry = byFile.get(r.file);
+    const st = ruleStatus(r, mods, choices);
+    if (st.mode === "off") continue;
+    const target = st.mode === "alt" && r.alt ? r.alt : r;
+    if (target.fmt === "rp-order") continue;
+    let entry = byFile.get(target.file);
     if (!entry) {
-      entry = { fmt: r.fmt, slug: r.slug, changes: [] };
-      byFile.set(r.file, entry);
+      entry = { fmt: target.fmt, slug: target.slug, changes: [] };
+      byFile.set(target.file, entry);
     }
-    entry.changes.push(...r.changes);
+    entry.changes.push(...target.changes);
   }
 
   for (const [file, { fmt, slug, changes }] of byFile.entries()) {

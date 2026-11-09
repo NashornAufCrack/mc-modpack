@@ -4,7 +4,7 @@ import json, io, os, re, zipfile, subprocess, tempfile, urllib.request, collecti
 mods = json.load(open("data/mods.json")); files = json.load(open("data/files.json"))
 try: out = json.load(open("data/sounds.json"))
 except Exception: out = {}
-EXTRA = {"atmosfera", "ambientsounds", "immersivemusicmod", "spooky-doors", "vvi", "enhanced-audio", "gentler-weather-sounds"}
+EXTRA = {"atmosfera", "ambientsounds", "immersivemusicmod", "spooky-doors", "vvi", "enhanced-audio", "gentler-weather-sounds", "timber-tales-dynamic-tree-system", "cinematic-interactions", "particle-rain", "immersive-storms", "animated-doors", "dripsounds", "wilder-wild", "subtle-effects", "particular-reforged", "coolrain", "presence-footsteps", "sound", "sound-physics-remastered"}
 cand = [m for m in mods if m["slug"] in files and (m.get("sub") == "Sound" or m["slug"] in EXTRA or (m.get("pt") == "r"))]
 W = {"animals": "Tiere", "bird": "Vögel", "cave": "Höhle", "wind": "Wind", "water": "Wasser", "dirt": "Erde", "marble": "Marmor", "metalbar": "Metallgitter", "concrete": "Beton", "block": "Block", "ice": "Eis", "mob": "Mob", "villager": "Dorfbewohner", "step": "Schritte", "dig": "Abbauen", "random": "Verschiedenes", "liquid": "Flüssigkeiten", "ambient": "Umgebung", "weather": "Wetter", "forest": "Wald", "music": "Musik", "desert": "Wüste", "rain": "Regen", "door": "Tür", "wood": "Holz", "stone": "Stein", "grass": "Gras", "sand": "Sand", "snow": "Schnee", "gravel": "Kies", "leaves": "Blätter", "fire": "Feuer", "thunder": "Donner", "ui": "Menü", "animationssounds": "Animationen", "spookydoors": "Türen", "coolrain": "Regen", "ambientsounds": "Umgebung", "presencefootsteps": "Schritte", "timm": "Musik", "punchy": "Punchy"}
 def label(d):

@@ -1,8 +1,8 @@
-// Zentrale Pack-Logik: Auswahl, Abhängigkeiten, Konflikte, Einstellungen, Vorlagen, Speicherung.
-import type { AppData, Media, Mod, Gruppe } from "./data";
+// Zentrale Pack-Logik: Auswahl, Abhängigkeiten, Konflikte, Einstellungen, Vorlagen, Speicherung, Start-Check.
+import type { AppData, Media, Mod, Gruppe, Video } from "./data";
 import { thumb } from "./data";
 import { COST, BOOST, SETDEF, BASE } from "./const";
-import { activeAutos, rulesForSlug } from "./auto-cfg";
+import { activeAutos, rulesForSlug, buildAutoConfigFiles, type AutoMode } from "./auto-cfg";
 import LZString from "lz-string";
 
 export const IMPLICIT: Record<string, string[]> = {"immersive-interfaces-mod-support-unofficial":["shrimps-immersive-interfaces"],"connected-rocks":["continuity"],"rainbows-foliage":["polytone"],"fresh-animations":["entity-model-features","entitytexturefeatures"],"fresh-animations-extensions":["fresh-animations"],"fa-player-extension":["fresh-animations"],"just-expressions":["entity-model-features"],"hyper-punchy":["punchy-fpa"],"fresh-food-for-hyper-punchy":["hyper-punchy"],"punchymoves":["fluid-foolish"],"connected-paths":["continuity"],"new-glowing-ores":["continuity"],"detailed-animations":["entity-model-features","entitytexturefeatures"],"als-piglins-revamped-x-fresh-animations":["fresh-animations"],"als-zombies-revamped-x-fresh-animations":["fresh-animations"],"als-enderman-revamped-x-fresh-animations":["fresh-animations"],"als-skeletons-revamped-x-fresh-animations":["fresh-animations"],"assorted-allays-x-fresh-animations":["fresh-animations"],"bare-bones-x-fresh-animations":["fresh-animations"],"fresh-skeleton-physics":["fresh-animations"]};
@@ -26,6 +26,8 @@ export const PRESETS = [
   { id: "plus", name: "Vanilla Plus", text: "Visual plus Komfort und sanfte Gameplay-Verbesserungen. Für eigene Server." },
 ];
 // Krypton bewusst nicht: nachweislich Verbindungsprobleme im Client (siehe Leistungspaket-Hinweis)
+/** Suchtext normalisieren: klein, ohne Akzente (é → e) */
+export const normQ = (s: string) => String(s || "").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
 const PERF_SET = ["dynamic-fps","entityculling","moreculling","immediatelyfast","modernfix-mvus","badoptimizations","lithium","ferrite-core","c2me-fabric","scalablelux","sodium-extra","reeses-sodium-options"];
 
 class Pack {
@@ -40,6 +42,11 @@ class Pack {
   BY: Record<string, Mod> = {}; GROUPOF: Record<string, Gruppe> = {}; LOCKED = new Set<string>();
   /** nicht wählbar, weil im Konflikt mit einem fest eingebauten Mod (Wert: die festen Gegenspieler) */
   BLOCKED = new Map<string, string[]>();
+  /** Vorberechnete Caches für flüssiges Scrollen und verzögerungsfreie Suche */
+  #IMGS: Record<string, string[]> = {};
+  #IMGS_HQ: Record<string, string[]> = {};
+  #VIDS: Record<string, Video[]> = {};
+  #SEARCH: Record<string, string> = {};
   ready = $state(false);
   sel = $state(new Set<string>());
   cfg: Record<string, any> = $state({});
@@ -76,26 +83,43 @@ class Pack {
       data.dec.gruppen = data.dec.gruppen.map(g => ({ ...g, mods: g.mods.filter(s => !this.BLOCKED.has(s)) })).filter(g => g.mods.length >= 2);
       this.GROUPOF = {}; for (const g of data.dec.gruppen) g.mods.forEach(s => (this.GROUPOF[s] = g));
     }
+    // Medien & Suchtexte einmalig vorberechnen (verhindert tausendfache Array-Erzeugung beim Scrollen)
+    const hasMedia = Object.keys(media).length > 0;
+    for (const m of data.mods) {
+      const s = m.slug;
+      const me = media[s];
+      const vRaw = me?.videos || [];
+      const yt = hasMedia ? [] : (data.x.details[s]?.yt || []);
+      const seenV = new Set<string>();
+      const vOut: Video[] = vRaw.filter(x => x.status !== "nein" && x.status !== "review" && !seenV.has(x.id) && !!seenV.add(x.id)).slice(0, 3);
+      for (const id of yt) if (!vOut.some(o => o.id === id)) vOut.push({ id, quelle: "beschreibung", punkte: 10 });
+      const vids = vOut.slice(0, 4);
+      this.#VIDS[s] = vids;
+      const vidThumb = vids.slice(0, 3).map(v => thumb(v, false));
+      const vidBig = vids.slice(0, 3).map(v => thumb(v, true));
+      this.#IMGS[s] = me?.bilder?.length ? me.bilder : m.img?.length ? m.img : vidThumb;
+      this.#IMGS_HQ[s] = me?.hq?.length ? me.hq : me?.bilder?.length ? me.bilder : m.img?.length ? m.img : vidBig;
+      this.#SEARCH[s] = normQ(m.name + " " + m.sub + " " + m.notiz + " " + s);
+    }
     this.sel = new Set(this.LOCKED);
     this.load();
     this.ready = true;
   }
   name = (s: string) => this.BY[s]?.name || this.data.files[s]?.[7] || s;
-  /** Standbild eines geprüften Videos, falls ein Eintrag keine Bilder hat */
-  #vidImg(s: string, big: boolean) { return this.videos(s).slice(0, 3).map(v => thumb(v, big)); }
-  imgHQ(s: string): string[] { const m = this.media[s]; return m?.hq?.length ? m.hq : m?.bilder?.length ? m.bilder : this.BY[s]?.img?.length ? this.BY[s].img! : this.#vidImg(s, true); }
+  matches(s: string, q: string) { return !q || (this.#SEARCH[s] || "").includes(q); }
+  imgHQ(s: string): string[] { return this.#IMGS_HQ[s] || []; }
   /** Bildergalerie als Paare (Vorschau, Vollbild) in derselben Reihenfolge wie img(): Vorschau-Index = Lightbox-Index.
    *  Modrinth-Vorschauen (…/<hash>_350.webp) und Originale (…/<hash>.png) teilen den Hash, CurseForge den Dateinamen. */
   gallery(s: string): { thumb: string; full: string }[] {
     const key = (u: string) => (u.match(/\/images\/([0-9a-f]{40})/) || [])[1] || u.split("?")[0].split("/").pop() || u;
-    const hq = this.media[s]?.hq || []; const by = new Map(hq.map(u => [key(u), u]));
+    const hq = this.#IMGS_HQ[s] || []; const by = new Map(hq.map(u => [key(u), u]));
     const out = this.img(s).map(t => ({ thumb: t, full: by.get(key(t)) || t })); const used = new Set(out.map(o => o.full));
     for (const u of hq) if (!used.has(u)) out.push({ thumb: u, full: u });
     return out;
   }
-  img(s: string): string[] { const m = this.media[s]; return m?.bilder?.length ? m.bilder : this.BY[s]?.img?.length ? this.BY[s].img! : this.#vidImg(s, false); }
+  img(s: string): string[] { return this.#IMGS[s] || []; }
   icon(s: string): string { return this.media[s]?.icon || this.img(s)[0] || ""; }
-  videos(s: string) { const v = this.media[s]?.videos || []; const yt = Object.keys(this.media).length ? [] : (this.data.x.details[s]?.yt || []); const seen = new Set<string>(); const out = v.filter(x => x.status !== "nein" && x.status !== "review" && !seen.has(x.id) && !!seen.add(x.id)).slice(0, 3); for (const id of yt) if (!out.some(o => o.id === id)) out.push({ id, quelle: "beschreibung", punkte: 10 }); return out.slice(0, 4); }
+  videos(s: string): Video[] { return this.#VIDS[s] || []; }
   cost = (s: string) => (BOOST.has(s) ? 0 : ((COST as any)[s] ?? 1));
   /** Typ eines Eintrags (auch für Bibliotheken ohne Katalogeintrag) */
   typ(s: string) { return this.BY[s]?.pt || this.data.files[s]?.[8] || "m"; }
@@ -107,14 +131,70 @@ class Pack {
     if (r.mods.has("voxy")) for (const s of r.mods) { const v = this.BY[s]?.voxy; if (v && v.s !== "ja") t.push({ mods: ["voxy", s], text: v.t }); }
     return t;
   }
+  /** Nutzer-Entscheidung für Teil-Überschneidungen ("std" = Standard, "alt" = umgekehrt, "off" = beide anlassen) */
+  autoChoice(id: string): AutoMode { return this.cfg._auto?.[id] || "std"; }
+  setAutoChoice(id: string, mode: AutoMode) {
+    const cur = { ...(this.cfg._auto || {}) };
+    if (mode === "std") delete cur[id]; else cur[id] = mode;
+    this.cfg = { ...this.cfg, _auto: cur };
+    this.save();
+  }
   /** Automatische Config-Feinabstimmungen für Teil-Überschneidungen im aktuellen Pack */
-  autos(r = this.resolve()) { return activeAutos(r.mods); }
+  autos(r = this.resolve()) { return activeAutos(r.mods, this.cfg._auto || {}); }
   /** Automatische Feinabstimmungs-Regeln für einen einzelnen Eintrag */
-  autoRules(s: string, r = this.resolve()) { return rulesForSlug(s, r.mods); }
+  autoRules(s: string, r = this.resolve()) { return rulesForSlug(s, r.mods, this.cfg._auto || {}); }
   resolve(sel: Set<string> = this.sel) {
     const mods = new Set<string>(), libs = new Set<string>(); const stack = [...sel];
     while (stack.length) { const s = stack.pop()!; if (mods.has(s) || libs.has(s) || DEP_IGNORE.has(s)) continue; const f = this.data.files[s]; if (!f) continue; (this.BY[s] ? mods : libs).add(s); for (const d of f[5].concat(this.implicit(s))) stack.push(d); }
     return { mods, libs };
+  }
+  /** Vorab-Start-Check: Prüft das fertige Modpack auf fehlende Abhängigkeiten, Konflikte, doppelte Dateien und kaputte Configs */
+  verifyPack(r = this.resolve(), fnameFn?: (s: string) => string) {
+    const errors: string[] = [];
+    const all = [...r.mods, ...r.libs];
+    let checkedDeps = 0;
+    for (const s of all) {
+      const f = this.data.files[s];
+      if (!f) { errors.push(`Datei-Eintrag fehlt für „${this.name(s)}“ (${s}).`); continue; }
+      if (!String(f[0] || "").startsWith("https://")) errors.push(`Ungültige Download-URL für „${this.name(s)}“.`);
+      if (!/^[0-9a-f]{40}$/i.test(String(f[2] || "")) || !/^[0-9a-f]{128}$/i.test(String(f[3] || ""))) errors.push(`Prüfsumme (SHA1/SHA512) unvollständig bei „${this.name(s)}“.`);
+      if (!(Number(f[4]) > 0)) errors.push(`Dateigröße 0 Bytes bei „${this.name(s)}“.`);
+      const deps = f[5].concat(this.implicit(s));
+      for (const d of deps) {
+        if (DEP_IGNORE.has(d)) continue;
+        checkedDeps++;
+        if (!r.mods.has(d) && !r.libs.has(d)) errors.push(`Pflicht-Abhängigkeit „${this.name(d)}“ für „${this.name(s)}“ fehlt im Pack.`);
+      }
+      if (this.BLOCKED.has(s)) errors.push(`„${this.name(s)}“ kollidiert mit dem festen Leistungspaket (${this.BLOCKED.get(s)!.map(y => this.name(y)).join(", ")}).`);
+    }
+    for (const p of this.problems()) {
+      errors.push(`Unaufgelöster Konflikt zwischen „${this.name(p.a)}“ und „${this.name(p.b)}“: ${p.text}`);
+    }
+    if (fnameFn) {
+      const seenPath = new Map<string, string>();
+      for (const s of all) {
+        const t = this.typ(s);
+        const dir = t === "r" ? "resourcepacks" : t === "s" ? "shaderpacks" : t === "d" ? "datapacks" : "mods";
+        const p = (dir + "/" + fnameFn(s)).toLowerCase();
+        if (seenPath.has(p)) errors.push(`Doppelter Dateiname im Zielordner: ${p} (${this.name(seenPath.get(p)!)} & ${this.name(s)})`);
+        else seenPath.set(p, s);
+      }
+    }
+    let checkedConfigs = 0;
+    try {
+      const fn = fnameFn || ((s: string) => String(this.data.files[s]?.[1] || s));
+      const cfgs = buildAutoConfigFiles(r.mods, this.data.x.rpo || {}, fn, (s, k) => this.cv(s, k), this.cfg._auto || {});
+      for (const [k, content] of Object.entries(cfgs)) {
+        checkedConfigs++;
+        if (k.endsWith(".json") || k.endsWith(".rpo")) {
+          try { JSON.parse(content); } catch { errors.push(`Fehlerhafte JSON-Syntax in generierter Datei „${k}“.`); }
+        }
+        if (!content || !content.trim()) errors.push(`Leere generierte Konfigurationsdatei „${k}“.`);
+      }
+    } catch (e: any) {
+      errors.push(`Fehler beim Erzeugen der Konfigurationsdateien: ${e?.message || e}`);
+    }
+    return { ok: errors.length === 0, errors, checkedFiles: all.length, checkedDeps, checkedConfigs };
   }
   /** Konflikte von x gegen eine Menge */
   clashes(x: string, S: Set<string> = this.sel) {

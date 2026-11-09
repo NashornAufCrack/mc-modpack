@@ -2,6 +2,7 @@
   import { SOUNDBASE, thumb } from "../lib/data";
   import Modal from "./Modal.svelte";
   import { pack, PT_1, CATS, DEP_IGNORE } from "../lib/pack.svelte";
+  import { AUTO_RULES, type AutoMode } from "../lib/auto-cfg";
   import { ui } from "../lib/ui.svelte";
   const ART: Record<string, [string, string]> = { K: ["Konflikt", "bad"], D: ["Nur eins", "warn"], T: ["Testen", "info"], A: ["Gehört zusammen", "ok"], S: ["Passt gut", "ok"] };
   let open = $state(false);
@@ -100,9 +101,24 @@
     {/if}
     {#if autos.length}
       <h3>Automatische Feinabstimmung (Teil-Überschneidungen)</h3>
-      <p class="small muted">Wenn du diese Mods/Packs kombinierst, werden beide geladen und die doppelte Teilfunktion beim Export automatisch in den Config-Dateien abgeschaltet:</p>
+      <p class="small muted">Wenn du diese Mods/Packs kombinierst, werden beide geladen. Du kannst festlegen, welcher Mod den doppelten Effekt übernimmt, oder beide anlassen:</p>
       <ul class="rel">
-        {#each autos as a}<li><span class="badge {a.active ? 'ok' : 'info'}">{a.active ? "Aktiv im Pack" : "Automatisch"}</span> mit {a.others.map(o => pack.name(o)).join(" / ")}: <span class="muted">{a.text}</span></li>{/each}
+        {#each autos as a}
+          <li>
+            <div>
+              <span class="badge {a.active ? 'ok' : 'info'}">{a.active ? "Aktiv im Pack" : "Automatisch"}</span>
+              mit {a.others.map(o => pack.name(o)).join(" / ")}: <span class="muted">{a.text}</span>
+            </div>
+            {#if a.active}
+              {@const r = AUTO_RULES.find(x => x.id === a.id)}
+              <select class="field sm" style="margin-top:0.35rem; max-width:26rem;" aria-label="Wer übernimmt den Effekt?" value={a.mode} onchange={e => pack.setAutoChoice(a.id, e.currentTarget.value as AutoMode)}>
+                <option value="std">Empfohlen (automatisch)</option>
+                {#if a.hasAlt && r?.alt}<option value="alt">Umgekehrt: {pack.name(r.alt.slug)} gibt ab</option>{/if}
+                {#if a.canOff}<option value="off">Beide anlassen</option>{/if}
+              </select>
+            {/if}
+          </li>
+        {/each}
       </ul>
     {/if}
     {#if det.txt}<details class="long"><summary>Ausführliche Beschreibung (Projektseite, Englisch)</summary><p>{det.txt}</p></details>{/if}

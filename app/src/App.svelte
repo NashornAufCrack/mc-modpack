@@ -29,13 +29,29 @@
   }
   const sharedMsg = (n: number) => ui.say(`Geteiltes Pack geladen${n ? ` (${n} Einträge gibt es nicht mehr)` : ""}. Deine vorige Auswahl holst du mit Rückgängig zurück.`, true);
   const NAV = [["bauen", "Pack bauen", ""], ["testen", "Testen", ""], ["updates", "Updates", ""], ["hilfe", "Hilfe", " & Glossar"]] as const;
+  /** Logo: Seite neu laden und ganz oben starten (Auswahl bleibt, sie liegt im Browser-Speicher) */
+  function reloadTop(e: MouseEvent) {
+    e.preventDefault();
+    try { history.scrollRestoration = "manual"; } catch {}
+    window.scrollTo(0, 0);
+    try { history.replaceState(null, "", location.pathname + location.search + "#bauen"); } catch {}
+    location.reload();
+  }
+  /** Höhe der Kopfleiste als CSS-Variable, damit die festklebenden Tabs direkt darunter sitzen (Handy: zwei Zeilen) */
+  let topEl: HTMLElement | null = $state(null);
+  $effect(() => {
+    if (!topEl) return;
+    const set = () => document.documentElement.style.setProperty("--top-h", topEl!.offsetHeight + "px");
+    set(); const ro = new ResizeObserver(set); ro.observe(topEl);
+    return () => ro.disconnect();
+  });
 </script>
 
 <svelte:window onhashchange={route} />
 
 <div class="shell">
-  <header class="top">
-    <a class="brand" href="#bauen" onclick={() => (ui.view = "bauen")}>
+  <header class="top" bind:this={topEl}>
+    <a class="brand" href="#bauen" title="Neu laden und nach oben" onclick={reloadTop}>
       <span class="logo" aria-hidden="true"></span><span><b>Mod-Katalog</b> <span class="muted">26.3</span></span>
     </a>
     <nav aria-label="Bereiche">

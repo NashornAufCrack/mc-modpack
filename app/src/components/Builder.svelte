@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { pack, PT_T, CATS, PRESETS } from "../lib/pack.svelte";
+  import { pack, PT_T, CATS, PRESETS, normQ } from "../lib/pack.svelte";
+  import { tick } from "svelte";
   import { ui } from "../lib/ui.svelte";
   import ModCard from "./ModCard.svelte";
   import Decision from "./Decision.svelte";
@@ -14,17 +15,17 @@
     r: "Resource Packs tauschen Texturen, 3D-Modelle und Sounds aus. Die Reihenfolge setzt die Website automatisch richtig.",
     d: "Datapacks ändern Welt-Generierung oder Spielregeln und wirken nur in neuen Welten.",
   };
-  const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "");
   const items = $derived.by(() => {
-    const q = norm(ui.q.trim()); const f = ui.filters;
+    const q = normQ(ui.q.trim()); const f = ui.filters;
     return pack.data.mods.filter(m => (pack.data.files[m.slug] || m.cf) && (m.pt || "m") === ui.tab && (ui.tab !== "m" || !ui.sub || m.cat === ui.sub) && (!ui.sub2 || m.sub === ui.sub2)
-      && (!!q || !pack.LOCKED.has(m.slug)) && (!q || norm(m.name + " " + m.sub + " " + m.notiz + " " + m.slug).includes(q))
+      && (!!q || !pack.LOCKED.has(m.slug)) && pack.matches(m.slug, q)
       && (!f.has("sel") || pack.sel.has(m.slug)) && (!f.has("rec") || m.rolle === "K") && (!f.has("van") || (m.ampel !== "R" && m.cat !== "S"))
       && (!f.has("vid") || pack.videos(m.slug).length > 0) && (!f.has("snd") || pack.proben(m.slug).length > 0) && (!f.has("sug") || pack.sug.has(m.slug)));
   });
+  const itemSet = $derived(new Set(items.map(m => m.slug)));
   const subs = $derived.by(() => { const c: Record<string, number> = {}; for (const m of pack.data.mods) if (m.cat === ui.sub && (m.pt || "m") === "m" && (pack.data.files[m.slug] || m.cf) && !pack.LOCKED.has(m.slug)) c[m.sub] = (c[m.sub] || 0) + 1; return Object.entries(c).sort((a, b) => b[1] - a[1]); });
   // Gruppen mit einem fest eingebauten Mitglied sind keine echte Wahl: deren andere Mitglieder erscheinen als „nicht wählbar“
-  const groups = $derived(pack.data.dec.gruppen.filter(g => !g.mods.some(s => pack.LOCKED.has(s)) && g.mods.some(s => items.some(m => m.slug === s))));
+  const groups = $derived(pack.data.dec.gruppen.filter(g => !g.mods.some(s => pack.LOCKED.has(s)) && g.mods.some(s => itemSet.has(s))));
   const sections = $derived.by(() => {
     const inG = new Set(groups.flatMap(g => g.mods)); const out: { title: string; list: Mod[] }[] = [];
     const cats = ui.tab === "m" ? ["P", "V", "B", "G", "T", "S"] : [null];
@@ -35,7 +36,27 @@
     }
     return out;
   });
-  const count = (t: string) => { const all = pack.data.mods.filter(m => (m.pt || "m") === t && (pack.data.files[m.slug] || m.cf)); return [all.filter(m => pack.sel.has(m.slug)).length, all.length]; };
+  // Zähler je Tab einmal pro Auswahländerung berechnen statt bei jedem Rendern viermal alle Einträge zu durchsuchen
+  const counts = $derived.by(() => {
+    const c: Record<string, [number, number]> = { m: [0, 0], s: [0, 0], r: [0, 0], d: [0, 0] };
+    for (const m of pack.data.mods) { if (!(pack.data.files[m.slug] || m.cf)) continue; const t = c[m.pt || "m"]; if (!t) continue; t[1]++; if (pack.sel.has(m.slug)) t[0]++; }
+    return c;
+  });
+  // Tabs: gleicher Tab nochmal geklickt = nach oben; anderer Tab = dessen letzte Scroll-Position und Filter wiederherstellen
+  const tabMem: Record<string, { y: number; sub: string | null; sub2: string | null }> = {};
+  let tabsEl: HTMLElement | null = $state(null);
+  const listTop = () => { if (!tabsEl) return 0; const top = document.querySelector(".top") as HTMLElement | null; return Math.max(0, tabsEl.parentElement!.getBoundingClientRect().top + window.scrollY - (top?.offsetHeight || 0) - 8); };
+  async function selectTab(k: string) {
+    const lt = listTop();
+    if (ui.tab === k) { window.scrollTo({ top: window.scrollY > lt + 4 ? lt : 0, behavior: "smooth" }); return; }
+    tabMem[ui.tab] = { y: window.scrollY, sub: ui.sub, sub2: ui.sub2 };
+    const m = tabMem[k];
+    ui.tab = k as any; ui.sub = m?.sub ?? null; ui.sub2 = m?.sub2 ?? null;
+    await tick();
+    // Erster Besuch eines Tabs: am Listenanfang starten (nicht mitten in der Liste landen)
+    const y = m ? m.y : Math.min(window.scrollY, lt);
+    window.scrollTo({ top: y, behavior: "instant" as ScrollBehavior });
+  }
   let search: HTMLInputElement | null = $state(null);
   function hotkey(e: KeyboardEvent) {
     const t = e.target as HTMLElement; const typing = t?.closest?.("input, textarea, select, [contenteditable]");
@@ -70,10 +91,10 @@
 
 <div class="layout">
   <div class="main">
-    <div class="tabs" role="tablist" aria-label="Art">
+    <div class="tabs" role="tablist" aria-label="Art" bind:this={tabsEl}>
       {#each Object.entries(PT_T) as [k, l]}
-        {@const [s, n] = count(k)}
-        <button role="tab" aria-selected={ui.tab === k} class="tab" onclick={() => { ui.tab = k as any; ui.sub = null; ui.sub2 = null; }}>{l}<span>{s}/{n}</span></button>
+        {@const [s, n] = counts[k]}
+        <button role="tab" aria-selected={ui.tab === k} class="tab" title={ui.tab === k ? "Nochmal klicken: nach oben" : ""} onclick={() => selectTab(k)}>{l}<span>{s}/{n}</span></button>
       {/each}
     </div>
     <div class="filters">
@@ -100,7 +121,7 @@
     {#each sections as s, i (s.title)}
       <h2 class="sec">{s.title} <span class="muted">{s.list.length}</span></h2>
       <!-- Kacheln unterhalb des ersten Abschnitts erst beim Hinscrollen rendern (Platzhalterhöhe je Kachel, daher unabhängig von der Spaltenzahl) -->
-      <div class="grid" class:defer={i > 0}>{#each s.list as m (m.slug)}<ModCard {m} />{/each}</div>
+      <div class="grid">{#each s.list as m (m.slug)}<ModCard {m} />{/each}</div>
     {/each}
     {#if !items.length}<p class="empty muted">Nichts gefunden. Nimm einen Filter heraus oder ändere die Suche.</p>{/if}
   </div>
@@ -123,18 +144,21 @@
   .pname { font-weight: 650; display: flex; gap: .4rem; align-items: center; }
   .ptext { font-size: .82rem; color: var(--muted); }
   .layout { display: grid; grid-template-columns: minmax(0, 1fr) 21rem; gap: 1.5rem; align-items: start; }
-  .tabs { display: flex; gap: .35rem; border-bottom: 1px solid var(--line); overflow-x: auto; }
+  /* Tabs bleiben beim Scrollen oben stehen (unter der Kopfleiste), die Filter direkt darunter */
+  .tabs { --tabs-h: 2.75rem; position: sticky; top: var(--top-h, 3.6rem); z-index: 12; height: var(--tabs-h); background: var(--bg); display: flex; gap: .35rem; border-bottom: 1px solid var(--line); overflow-x: auto; overflow-y: hidden; }
   .tab { display: flex; gap: .5rem; align-items: baseline; padding: .6rem .9rem; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--muted); font: 600 .95rem var(--font); cursor: pointer; white-space: nowrap; }
   .tab span { font: 500 .72rem var(--mono); }
   .tab[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
-  .filters { position: sticky; top: 3.6rem; z-index: 10; background: var(--bg); padding: .8rem 0 .4rem; display: grid; gap: .55rem; }
+  .filters { position: sticky; top: calc(var(--top-h, 3.6rem) + 2.75rem); z-index: 10; background: var(--bg); padding: .8rem 0 .4rem; display: grid; gap: .55rem; }
   .chips { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; }
   .sep { width: 1px; height: 1.4rem; background: var(--line); margin: 0 .2rem; }
   .note { margin: 0; font-size: .85rem; }
   .sec { font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; font-weight: 650; margin: 1.6rem 0 .6rem; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); gap: .75rem; }
-  .grid.defer :global(.card) { content-visibility: auto; contain-intrinsic-size: auto none auto 290px; }
+  /* Kacheln außerhalb des Bildschirms werden nicht gezeichnet (Platzhalterhöhe je Kachel) – spart viel Rechenzeit beim Scrollen */
+  .grid :global(.card) { content-visibility: auto; contain-intrinsic-size: auto none auto 290px; }
   .dgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr)); gap: .75rem; }
+  .dgrid :global(.dec) { content-visibility: auto; contain-intrinsic-size: auto none auto 340px; }
   .empty { padding: 3rem 0; text-align: center; }
   .mobilebar { display: none; }
   @media (max-width: 1100px) { .layout { grid-template-columns: minmax(0, 1fr); } .hero { grid-template-columns: minmax(0, 1fr); }

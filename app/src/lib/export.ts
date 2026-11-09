@@ -29,7 +29,7 @@ export function packFiles() {
   const sp = [...r.mods].find(s => pack.BY[s].pt === "s");
   if (sp && r.mods.has("iris")) { files["config/iris.properties"] = "enableShaders=true\nshaderPack=" + fname(sp) + "\n";
   }
-  Object.assign(files, buildAutoConfigFiles(r.mods, pack.data.x.rpo || {}, fname, (s, k) => pack.cv(s, k)));
+  Object.assign(files, buildAutoConfigFiles(r.mods, pack.data.x.rpo || {}, fname, (s, k) => pack.cv(s, k), pack.cfg._auto || {}));
   const manual = manualList(); const tips = pack.tips(r); const autos = pack.autos(r); const dp = [...r.mods].some(s => pack.typ(s) === "d");
   files["LIES-MICH.txt"] = `Erstellt mit dem Mod-Katalog 26.3 (${new Date().toLocaleDateString("de-DE")}).\nResource-Pack-Reihenfolge, Sichtweite und FPS-Limit sind schon gesetzt.\nArbeitsspeicher: ${pack.ramGB(r)} GB.\n`
     + (dp ? "\nDatapacks liegen im Ordner datapacks und werden von Global Packs in jede NEU erstellte Welt geladen.\n" : "")
@@ -51,6 +51,25 @@ export function exportSet(server: boolean) {
   return { r, all };
 }
 export type Status = (t: string) => void;
+/** Start-Check vor jedem Export: Abhängigkeiten, Konflikte, doppelte Dateien, gültige Configs (inkl. options.txt und iris.properties) */
+export function startCheck() {
+  const r = pack.resolve();
+  const v = pack.verifyPack(r, fname);
+  const errors = [...v.errors];
+  const files = packFiles();
+  for (const [p, c] of Object.entries(files)) {
+    if (p.endsWith("options.txt")) {
+      for (const line of c.split("\n").filter(Boolean)) {
+        const [k, val] = [line.slice(0, line.indexOf(":")), line.slice(line.indexOf(":") + 1)];
+        if (!k || line.indexOf(":") < 0) { errors.push(`Ungültige Zeile in ${p}: ${line}`); continue; }
+        if (["renderDistance", "simulationDistance", "maxFps", "mipmapLevels", "biomeBlendRadius"].includes(k) && !/^\d+$/.test(val)) errors.push(`${p}: ${k} ist keine Zahl (${val}).`);
+        if (k === "resourcePacks") { try { const a = JSON.parse(val); if (!Array.isArray(a)) throw 0; for (const x of a) if (x !== "vanilla" && !String(x).startsWith("file/")) errors.push(`${p}: unbekannter Resource-Pack-Eintrag ${x}.`); } catch { errors.push(`${p}: Resource-Pack-Liste ist kein gültiges JSON.`); } }
+      }
+    }
+    if (p === "config/iris.properties") { const sp = (c.match(/^shaderPack=(.+)$/m) || [])[1]; if (!sp || ![...r.mods].some(s => pack.typ(s) === "s" && fname(s) === sp)) errors.push(`iris.properties verweist auf einen Shader, der nicht im Pack ist (${sp}).`); }
+  }
+  return { ...v, ok: errors.length === 0, errors, total: Object.keys(files).length };
+}
 async function save(blob: Blob, name: string) { const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); }
 const safe = (n: string) => n.replace(/[^\w\- ]+/g, "").replace(/\s+/g, "-") || "Mein-Pack";
 export async function exportMrpack(name: string, server: boolean, st: Status) {
