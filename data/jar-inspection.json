@@ -1843,8 +1843,8 @@
     "conflicts": {}
   },
   "carry-on": {
-    "sha1": "7e9e7b13f55eb28d6beee4bfeafbf0338d11a34f",
-    "version": "2.12.1",
+    "sha1": "d9b2a58314ac174d34c98e6ed9d3816bf06d5789",
+    "version": "2.12.2",
     "mod_id": "carryon",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -1906,16 +1906,16 @@
     "conflicts": {}
   },
   "easy-shulker-boxes": {
-    "sha1": "9ad8263061535a77c53d4f8a5794c6c33aaf9ba1",
-    "version": "26.3.3",
+    "sha1": "9c5f23c4277245c6b5a907044edee40f677df4a2",
+    "version": "26.3.4",
     "mod_id": "easyshulkerboxes",
     "depends": {
       "minecraft": "~26.3-",
-      "fabricloader": ">=0.19.5",
+      "fabricloader": ">=0.20.0",
       "fabric-api": ">=0.163.0",
       "forgeconfigapiport": "*",
       "iteminteractions": "*",
-      "puzzleslib": ">=26.3.12"
+      "puzzleslib": ">=26.3.16"
     },
     "breaks": {},
     "recommends": {},
@@ -7167,8 +7167,8 @@
     "conflicts": {}
   },
   "emf-compat-core": {
-    "sha1": "73a1ca31addbe24823f0494f0f26ab74d4102664",
-    "version": "2.3.2",
+    "sha1": "2c7241f3b4966e66884b1297a104e928e70bf71b",
+    "version": "2.4.0",
     "mod_id": "emf_compat_core",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -7419,8 +7419,8 @@
     "conflicts": {}
   },
   "the-one-probe": {
-    "sha1": "2a6dc50703600825bfa1bd20aebbd99133fc7ac2",
-    "version": "26.3-16.0.1-fabric",
+    "sha1": "21be6ffd7b1eb35f406dce9859106c0494baf3f6",
+    "version": "26.3-16.0.2-fabric",
     "mod_id": "theoneprobe",
     "depends": {
       "fabricloader": ">=0.19.5",
