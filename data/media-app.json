@@ -17184,5 +17184,301 @@
       "https://media.forgecdn.net/attachments/2021/974/2-png.png",
       "https://media.forgecdn.net/attachments/2021/975/1-png.png"
     ]
+  },
+  "default-hd-128x": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/orfTV6nk/images/694a2c224874871624e98bcca062ad73ee726393.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/9bc16268bc6a02d8d947e1bfb114aa3a443c6cb0.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/fd09d23e31a2a9ad465c2444a5f3933f91c28a30.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/d3fe49c838671f4911dab7c3026ede3a3a622eea.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/bfed40d46d694eb625df2933f7c3d6850872ea80.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/db6d84efc841c16fdf18ee62ea81ecf654845b0e.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/26f1509e3b7108e7cc328b9e7a5edff4d57bacba.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/8f4b16ab3bfd1ab1e40b78e7cffda4619c6ced96.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/70dfb04572db7376073f912b1c2771eea66276df.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/1747c349171036ab3de1f69ef921e2069686e072.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/c27ce0aa64a1171788bd00e8b80ab029af94c14a.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/042f4eb285cb338f89af056531e1f47b395da108.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/bf17f2808bc97398131ced0da7702579d5ceb6f3.png"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/orfTV6nk/images/694a2c224874871624e98bcca062ad73ee726393.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/9bc16268bc6a02d8d947e1bfb114aa3a443c6cb0.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/fd09d23e31a2a9ad465c2444a5f3933f91c28a30.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/d3fe49c838671f4911dab7c3026ede3a3a622eea.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/bfed40d46d694eb625df2933f7c3d6850872ea80.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/db6d84efc841c16fdf18ee62ea81ecf654845b0e.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/26f1509e3b7108e7cc328b9e7a5edff4d57bacba.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/8f4b16ab3bfd1ab1e40b78e7cffda4619c6ced96.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/70dfb04572db7376073f912b1c2771eea66276df.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/1747c349171036ab3de1f69ef921e2069686e072.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/c27ce0aa64a1171788bd00e8b80ab029af94c14a.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/042f4eb285cb338f89af056531e1f47b395da108.png",
+      "https://cdn.modrinth.com/data/orfTV6nk/images/bf17f2808bc97398131ced0da7702579d5ceb6f3.png"
+    ],
+    "icon": "https://cdn.modrinth.com/data/orfTV6nk/6fdf978987749000f98743f1dcdab09929985a8b_96.webp",
+    "videos": [],
+    "links": {
+      "source": null,
+      "wiki": null
+    }
+  },
+  "miniature-shader": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/beec07b07d81705fadb724a4ffa45851a43c0d3b.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/85be3936e6ae267ec08f5be8155e185b0068cef8.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/3a2375b76b269c3ea00f6c9383e758b45bbde8c3.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/be0dc20cd4247faecaef369ccd2b950cc59c1eed.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/cbdcb5c6e5fc7d520f01f5f95d2e6734e86a1dd9.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/08c36f7d67b1866582b08dbd0375070743e0391f.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/d21199631ff4d9b2d9949f44fa51348c5c2f342e.png"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/beec07b07d81705fadb724a4ffa45851a43c0d3b.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/85be3936e6ae267ec08f5be8155e185b0068cef8.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/3a2375b76b269c3ea00f6c9383e758b45bbde8c3.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/be0dc20cd4247faecaef369ccd2b950cc59c1eed.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/cbdcb5c6e5fc7d520f01f5f95d2e6734e86a1dd9.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/08c36f7d67b1866582b08dbd0375070743e0391f.png",
+      "https://cdn.modrinth.com/data/UaS8ROxa/images/d21199631ff4d9b2d9949f44fa51348c5c2f342e.png"
+    ],
+    "icon": "https://cdn.modrinth.com/data/UaS8ROxa/85f373314addaf840d9c8667c797da6e0f7e7034_96.webp",
+    "videos": [],
+    "links": {
+      "source": "https://github.com/mateuskreuch/minecraft-miniature-shader",
+      "wiki": null
+    }
+  },
+  "full-brightness-toggle": {
+    "bilder": [],
+    "hq": [],
+    "icon": "https://cdn.modrinth.com/data/aEK1KhsC/d1124e6ed9eb24a9e11649159cd7c7b26cf1a6be_96.webp",
+    "videos": [],
+    "links": {
+      "source": "https://github.com/Serilum/Full-Brightness-Toggle",
+      "wiki": null
+    }
+  },
+  "brays-zombie-overhaul-fresh-animations": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/52902bfae77abb2cda147b0ae9d9249b4a73d4dd.png",
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/45dfff6ac9e89df6bb155f6d6ef58f8d57742d73.png",
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/90fdaff62c3c1f99deedcc24f6559e54fdf8f2fb.png",
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/a8f0e51ca9459cd80dd143662b76137ff51135d7.png",
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/0a8bc14dc2df6ae19b8a03b260560019edb7efff.png",
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/7311404a934839408bda1225598e5a1c8f89ddb3.png"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/52902bfae77abb2cda147b0ae9d9249b4a73d4dd.png",
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/45dfff6ac9e89df6bb155f6d6ef58f8d57742d73.png",
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/90fdaff62c3c1f99deedcc24f6559e54fdf8f2fb.png",
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/a8f0e51ca9459cd80dd143662b76137ff51135d7.png",
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/0a8bc14dc2df6ae19b8a03b260560019edb7efff.png",
+      "https://cdn.modrinth.com/data/zxQU2hT0/images/7311404a934839408bda1225598e5a1c8f89ddb3.png"
+    ],
+    "icon": "https://cdn.modrinth.com/data/zxQU2hT0/a8994475ebd8bcdb2a41f2e4fce7331fd1d3741f_96.webp",
+    "videos": [],
+    "links": {
+      "source": "https://github.com/brays-packs/zombie-overhaul/tree/fresh-animation",
+      "wiki": null
+    }
+  },
+  "whimscape-x-fresh-animations": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/NbmssBLT/images/6f7b6008311bd3cc380e757c8ddb887fa095ce0e.png"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/NbmssBLT/images/6f7b6008311bd3cc380e757c8ddb887fa095ce0e.png"
+    ],
+    "icon": "https://cdn.modrinth.com/data/NbmssBLT/6dc09de89ce44969e2e4053794f816948fe32e3f_96.webp",
+    "videos": [],
+    "links": {
+      "source": null,
+      "wiki": null
+    }
+  },
+  "als-boss-rush-x-fresh-animations": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/xbzFxAxu/images/57ca4c61e72fa23bc8a335cb2a119aa13cfe07c0.png"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/xbzFxAxu/images/57ca4c61e72fa23bc8a335cb2a119aa13cfe07c0.png"
+    ],
+    "icon": "https://cdn.modrinth.com/data/xbzFxAxu/c474156a6efe06985e3f1cba3f8b808e5092dfbb_96.webp",
+    "videos": [],
+    "links": {
+      "source": null,
+      "wiki": null
+    }
+  },
+  "blue-netherite": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/OL1EGja1/images/390567dd92bbdd37f276c220adbe2f1fac9509e4.png",
+      "https://cdn.modrinth.com/data/OL1EGja1/images/7aefae9d81cb2f4c95a6edcbcb2f683285592aa8.png"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/OL1EGja1/images/390567dd92bbdd37f276c220adbe2f1fac9509e4.png",
+      "https://cdn.modrinth.com/data/OL1EGja1/images/7aefae9d81cb2f4c95a6edcbcb2f683285592aa8.png"
+    ],
+    "icon": "https://cdn.modrinth.com/data/OL1EGja1/3a1355e4d8848f4cd5cb7e9e7a40f89506135b05.png",
+    "videos": [],
+    "links": {
+      "source": null,
+      "wiki": null
+    }
+  },
+  "fresh-animations-quivers": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/T4pK4GiQ/images/940c7698c29735b4292d559320b2835062b9b5c1.png",
+      "https://cdn.modrinth.com/data/T4pK4GiQ/images/28f65a65ce93e5c7389aba97d5e5c7cd1eb86d07.png",
+      "https://cdn.modrinth.com/data/T4pK4GiQ/images/d7f873808204db8e0d8caa29bb1f681562099829.png",
+      "https://cdn.modrinth.com/data/T4pK4GiQ/images/48072c0df67ddbda04ced22126836733e3394e34.png",
+      "https://cdn.modrinth.com/data/T4pK4GiQ/images/1a361eaeeca406db26d057206f76d6124696694f.png"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/T4pK4GiQ/images/940c7698c29735b4292d559320b2835062b9b5c1.png",
+      "https://cdn.modrinth.com/data/T4pK4GiQ/images/28f65a65ce93e5c7389aba97d5e5c7cd1eb86d07.png",
+      "https://cdn.modrinth.com/data/T4pK4GiQ/images/d7f873808204db8e0d8caa29bb1f681562099829.png",
+      "https://cdn.modrinth.com/data/T4pK4GiQ/images/48072c0df67ddbda04ced22126836733e3394e34.png",
+      "https://cdn.modrinth.com/data/T4pK4GiQ/images/1a361eaeeca406db26d057206f76d6124696694f.png"
+    ],
+    "icon": "https://cdn.modrinth.com/data/T4pK4GiQ/1959c64f2ed6b08e5bede2db995d53731d89c048_96.webp",
+    "videos": [],
+    "links": {
+      "source": null,
+      "wiki": null
+    }
+  },
+  "default-hd-512x": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/26f1509e3b7108e7cc328b9e7a5edff4d57bacba.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/2ca0234f30aaa78224e941a7d892b645f54dba83.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/3e1193fbb85d6d89ccf8e62137998205255bb8fd.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/4914428c63159d916f7c008beba52e0f7e8a3ace.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/767ae7ea414e030034909e7298e111c719aa044b.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/7cc17d647aa2c8439e40b24b43ea9a03cb12f3fc.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/7e1a7f8e01410f97a5b4e7bf853277bf11aaaaf4.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/a2f65c6ab0036d855309705fde1b4888834e3387.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/c58d227ce6a5d7fe8e7cc127af4c9fa8b8607511.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/d155565bc5899ae1697afbf640d74b991428b512.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/db6d84efc841c16fdf18ee62ea81ecf654845b0e.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/f1a206031a20363e253cdf9d4b517f3772ffd6c3.png"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/26f1509e3b7108e7cc328b9e7a5edff4d57bacba.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/2ca0234f30aaa78224e941a7d892b645f54dba83.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/3e1193fbb85d6d89ccf8e62137998205255bb8fd.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/4914428c63159d916f7c008beba52e0f7e8a3ace.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/767ae7ea414e030034909e7298e111c719aa044b.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/7cc17d647aa2c8439e40b24b43ea9a03cb12f3fc.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/7e1a7f8e01410f97a5b4e7bf853277bf11aaaaf4.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/a2f65c6ab0036d855309705fde1b4888834e3387.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/c58d227ce6a5d7fe8e7cc127af4c9fa8b8607511.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/d155565bc5899ae1697afbf640d74b991428b512.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/db6d84efc841c16fdf18ee62ea81ecf654845b0e.png",
+      "https://cdn.modrinth.com/data/Vo7pxueF/images/f1a206031a20363e253cdf9d4b517f3772ffd6c3.png"
+    ],
+    "icon": "https://cdn.modrinth.com/data/Vo7pxueF/2ae8cc66f95f09e2efbeb17f1180b22e39972af7_96.webp",
+    "videos": [],
+    "links": {
+      "source": null,
+      "wiki": null
+    }
+  },
+  "excal": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/e49b4000e736db3babb1ec87e67b92e260d7603c.jpeg",
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/73cf43bc51509324648fc7455cabad4f15e3c13f.jpeg",
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/a4d82801e19fd6537283f72c6c3fd2e124be4aab.jpeg",
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/5c442259b7ffeb1d394d4e739fa0b7663d247ddd.jpeg",
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/6b8fc4fcf5ea22e1d5fd5ce7cf1cbd5b12e0e461.jpeg",
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/8f5a0c5ed1b29afe8072322051a71a15607f2533.jpeg"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/e49b4000e736db3babb1ec87e67b92e260d7603c.jpeg",
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/73cf43bc51509324648fc7455cabad4f15e3c13f.jpeg",
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/a4d82801e19fd6537283f72c6c3fd2e124be4aab.jpeg",
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/5c442259b7ffeb1d394d4e739fa0b7663d247ddd.jpeg",
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/6b8fc4fcf5ea22e1d5fd5ce7cf1cbd5b12e0e461.jpeg",
+      "https://cdn.modrinth.com/data/hJAzl1Bs/images/8f5a0c5ed1b29afe8072322051a71a15607f2533.jpeg"
+    ],
+    "icon": "https://cdn.modrinth.com/data/hJAzl1Bs/3a7829b21522be382f6a6507b93214b45e40cdd5_96.webp",
+    "videos": [],
+    "links": {
+      "source": null,
+      "wiki": null
+    }
+  },
+  "excalibur-fresh-animations": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/yiTthr0O/images/6efbff9fcbf85ae9b39e72deec3026b614980dc9.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/15148d805bbc52b40649ed594c6a8eabd5360e12.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/6dff3ebfa153b06c3095d3f562040a33a6a46d06.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/3915555d53aa3c1712347750bbf8fbaf0915eb37.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/20a77d2132ed58118d2d886a614606fd03713cce.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/0afb5b26025c05dffc0f2f12866c373c2bfb31b8.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/e74c2a5fe32b4c1b280a39b1ea23293260340b4f.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/b71432fa6212bc9124ebef3e61ff94615051b26a.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/a7781be8cd954265f2b46c4d3eaa371e9c0812ae.png"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/yiTthr0O/images/6efbff9fcbf85ae9b39e72deec3026b614980dc9.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/15148d805bbc52b40649ed594c6a8eabd5360e12.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/6dff3ebfa153b06c3095d3f562040a33a6a46d06.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/3915555d53aa3c1712347750bbf8fbaf0915eb37.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/20a77d2132ed58118d2d886a614606fd03713cce.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/0afb5b26025c05dffc0f2f12866c373c2bfb31b8.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/e74c2a5fe32b4c1b280a39b1ea23293260340b4f.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/b71432fa6212bc9124ebef3e61ff94615051b26a.png",
+      "https://cdn.modrinth.com/data/yiTthr0O/images/a7781be8cd954265f2b46c4d3eaa371e9c0812ae.png"
+    ],
+    "icon": "https://cdn.modrinth.com/data/yiTthr0O/b538c9baae5b8d3e81447ee55c9a6cc8d775f37e_96.webp",
+    "videos": [],
+    "links": {
+      "source": null,
+      "wiki": null
+    }
+  },
+  "stained-glass-ultra": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/YLJI8lfo/images/23b9a9154df99f472c1fa31b5ce9b41b3867febb.png",
+      "https://cdn.modrinth.com/data/YLJI8lfo/images/06f98b15fe97d2075a221af2872f9b4e08dfcc5d.png",
+      "https://cdn.modrinth.com/data/YLJI8lfo/images/026ad2a62450abbe761a32d1ca36cb429233bf9a.png",
+      "https://cdn.modrinth.com/data/YLJI8lfo/images/736411381e37126386ac85596c01070d838f338e.jpeg",
+      "https://cdn.modrinth.com/data/YLJI8lfo/images/c647d9198c43161608000e414c5e804b058988f1.jpeg"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/YLJI8lfo/images/23b9a9154df99f472c1fa31b5ce9b41b3867febb.png",
+      "https://cdn.modrinth.com/data/YLJI8lfo/images/06f98b15fe97d2075a221af2872f9b4e08dfcc5d.png",
+      "https://cdn.modrinth.com/data/YLJI8lfo/images/026ad2a62450abbe761a32d1ca36cb429233bf9a.png",
+      "https://cdn.modrinth.com/data/YLJI8lfo/images/736411381e37126386ac85596c01070d838f338e.jpeg",
+      "https://cdn.modrinth.com/data/YLJI8lfo/images/c647d9198c43161608000e414c5e804b058988f1.jpeg"
+    ],
+    "icon": "https://cdn.modrinth.com/data/YLJI8lfo/4fc522529fb4f8b82f8cab1c94fbcc398d1adc36.gif",
+    "videos": [],
+    "links": {
+      "source": null,
+      "wiki": null
+    }
+  },
+  "dont-punch-my-tacz": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/BdT7bXL2/images/fa1156dcc74a143e3e41f26778f504e0c8c16e8e.gif",
+      "https://cdn.modrinth.com/data/BdT7bXL2/images/cbbe5f10cc494b015d7c8a995b3932409c4f55ec.gif",
+      "https://cdn.modrinth.com/data/BdT7bXL2/images/0cc01dfbd98c70613b0cb74f0cdb20c47d897c31.gif",
+      "https://cdn.modrinth.com/data/BdT7bXL2/images/3b7b4227b768e4b39d21a99ed67f9b7b49d98234.gif"
+    ],
+    "hq": [
+      "https://cdn.modrinth.com/data/BdT7bXL2/images/fa1156dcc74a143e3e41f26778f504e0c8c16e8e.gif",
+      "https://cdn.modrinth.com/data/BdT7bXL2/images/cbbe5f10cc494b015d7c8a995b3932409c4f55ec.gif",
+      "https://cdn.modrinth.com/data/BdT7bXL2/images/0cc01dfbd98c70613b0cb74f0cdb20c47d897c31.gif",
+      "https://cdn.modrinth.com/data/BdT7bXL2/images/3b7b4227b768e4b39d21a99ed67f9b7b49d98234.gif"
+    ],
+    "icon": "https://cdn.modrinth.com/data/BdT7bXL2/849923670110c112290d7caa8fd30afb4680470c.png",
+    "videos": [],
+    "links": {
+      "source": "https://github.com/lloy9d/dont-punch-my-tacz",
+      "wiki": null
+    }
   }
 }

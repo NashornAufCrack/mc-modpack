@@ -5,7 +5,7 @@ import { COST, BOOST, SETDEF, BASE } from "./const";
 import { activeAutos, rulesForSlug, buildAutoConfigFiles, type AutoMode } from "./auto-cfg";
 import LZString from "lz-string";
 
-export const IMPLICIT: Record<string, string[]> = {"immersive-interfaces-mod-support-unofficial":["shrimps-immersive-interfaces"],"connected-rocks":["continuity"],"rainbows-foliage":["polytone"],"fresh-animations":["entity-model-features","entitytexturefeatures"],"fresh-animations-extensions":["fresh-animations"],"fa-player-extension":["fresh-animations"],"just-expressions":["entity-model-features"],"hyper-punchy":["punchy-fpa"],"fresh-food-for-hyper-punchy":["hyper-punchy"],"punchymoves":["fluid-foolish"],"connected-paths":["continuity"],"new-glowing-ores":["continuity"],"detailed-animations":["entity-model-features","entitytexturefeatures"],"als-piglins-revamped-x-fresh-animations":["fresh-animations"],"als-zombies-revamped-x-fresh-animations":["fresh-animations"],"als-enderman-revamped-x-fresh-animations":["fresh-animations"],"als-skeletons-revamped-x-fresh-animations":["fresh-animations"],"assorted-allays-x-fresh-animations":["fresh-animations"],"bare-bones-x-fresh-animations":["fresh-animations"],"fresh-skeleton-physics":["fresh-animations"]};
+export const IMPLICIT: Record<string, string[]> = {"immersive-interfaces-mod-support-unofficial":["shrimps-immersive-interfaces"],"connected-rocks":["continuity"],"rainbows-foliage":["polytone"],"fresh-animations":["entity-model-features","entitytexturefeatures"],"fresh-animations-extensions":["fresh-animations"],"fa-player-extension":["fresh-animations"],"just-expressions":["entity-model-features"],"hyper-punchy":["punchy-fpa"],"fresh-food-for-hyper-punchy":["hyper-punchy"],"punchymoves":["fluid-foolish"],"connected-paths":["continuity"],"new-glowing-ores":["continuity"],"detailed-animations":["entity-model-features","entitytexturefeatures"],"als-piglins-revamped-x-fresh-animations":["fresh-animations"],"als-zombies-revamped-x-fresh-animations":["fresh-animations"],"als-enderman-revamped-x-fresh-animations":["fresh-animations"],"als-skeletons-revamped-x-fresh-animations":["fresh-animations"],"assorted-allays-x-fresh-animations":["fresh-animations"],"bare-bones-x-fresh-animations":["fresh-animations"],"fresh-skeleton-physics":["fresh-animations"],"brays-zombie-overhaul-fresh-animations":["fresh-animations"],"whimscape-x-fresh-animations":["fresh-animations","whimscape"],"als-boss-rush-x-fresh-animations":["fresh-animations"],"fresh-animations-quivers":["fresh-animations"],"excalibur-fresh-animations":["fresh-animations","excal"]};
 /** Abhängigkeiten aus den Modrinth-Angaben, die für Fabric 26.3 keine Rolle spielen (Quilt, Forge-Brücke, Backports) */
 export const DEP_IGNORE = new Set(["qsl", "quilted-fabric-api", "connector", "modefite-item-definition-backport"]);
 /** Eine dieser Alternativen reicht: kommt nur dazu, wenn keine davon gewählt ist (Euphoria Patches läuft mit Reimagined oder Unbound) */
@@ -140,7 +140,15 @@ class Pack {
   cost = (s: string) => (BOOST.has(s) ? 0 : ((COST as any)[s] ?? 1));
   /** Typ eines Eintrags (auch für Bibliotheken ohne Katalogeintrag) */
   typ(s: string) { return this.BY[s]?.pt || this.data.files[s]?.[8] || "m"; }
-  implicit(s: string) { const t = this.typ(s); const alt = ONE_OF[s]; const base = alt ? (alt.some(a => this.sel.has(a)) ? [] : [alt[0]]) : (IMPLICIT[s] || []); return base.concat(t === "s" ? ["iris"] : []).concat(t === "d" ? ["globalpacks"] : []).concat(this.data.x.rpo[s] ? ["respackopts"] : []); }
+  implicit(s: string) {
+    const t = this.typ(s);
+    const alt = ONE_OF[s];
+    let base = alt ? (alt.some(a => this.sel.has(a)) ? [] : [alt[0]]) : (IMPLICIT[s] || []);
+    if ((s === "carry-on" || s === "punchy-fpa") && this.sel.has("carry-on") && this.sel.has("punchy-fpa")) {
+      base = base.concat(["dont-punch-my-tacz"]);
+    }
+    return base.concat(t === "s" ? ["iris"] : []).concat(t === "d" ? ["globalpacks"] : []).concat(this.data.x.rpo[s] ? ["respackopts"] : []);
+  }
   /** Tipps (Beziehungen „Testen“) für Einträge, die gemeinsam im Pack sind */
   tips(r = this.resolve()) {
     const t: { mods: string[]; text: string }[] = this.data.dec.beziehungen.filter(b => b.art === "T" && b.mods.filter(x => r.mods.has(x)).length >= 2).map(b => ({ mods: b.mods.filter(x => r.mods.has(x)), text: b.text }));
