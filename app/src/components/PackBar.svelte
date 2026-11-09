@@ -104,8 +104,8 @@
               <div class="issue-actions">
                 {#if iss.type === "mc_incompatible" && iss.modA}
                   {#if !iss.isLockedA}
-                    <div class="act-col">
-                      <button class="btn sm danger" onclick={() => pack.removeWithCascade(iss.modA!)}>
+                    <div class="solution-choice">
+                      <button class="btn sm danger solution-btn" onclick={() => pack.removeWithCascade(iss.modA!)}>
                         „{pack.name(iss.modA)}“ entfernen
                       </button>
                       <div class="consequence">
@@ -121,18 +121,18 @@
                   {/if}
 
                 {:else if iss.type === "missing_dep" && iss.modA && iss.modB}
-                  <div class="action-grid">
+                  <div class="solution-options">
                     {#if iss.canAddB}
-                      <div class="act-col">
-                        <button class="btn sm primary" onclick={() => pack.set(iss.modB!, true)}>
+                      <div class="solution-choice">
+                        <button class="btn sm primary solution-btn" onclick={() => pack.set(iss.modB!, true)}>
                           + „{pack.name(iss.modB)}“ hinzufügen
                         </button>
                         <div class="consequence">Empfohlen: Installiert die benötigte Voraussetzung.</div>
                       </div>
                     {/if}
                     {#if !iss.isLockedA}
-                      <div class="act-col">
-                        <button class="btn sm danger" onclick={() => pack.removeWithCascade(iss.modA!)}>
+                      <div class="solution-choice">
+                        <button class="btn sm danger solution-btn" onclick={() => pack.removeWithCascade(iss.modA!)}>
                           „{pack.name(iss.modA)}“ entfernen
                         </button>
                         <div class="consequence">
@@ -151,10 +151,10 @@
                   {#if iss.isLockedA && !iss.isLockedB}
                     <div class="locked-note">
                       <span class="badge locked-badge">Pflicht</span>
-                      <span><b>{pack.name(iss.modA)}</b> ist im Pflicht-Leistungspaket unverzichtbar.</span>
+                      <span class="locked-text"><b>{pack.name(iss.modA)}</b> ist im Pflicht-Leistungspaket unverzichtbar.</span>
                     </div>
-                    <div class="act-col">
-                      <button class="btn sm danger full-w" onclick={() => pack.removeWithCascade(iss.modB!)}>
+                    <div class="solution-choice">
+                      <button class="btn sm danger solution-btn" onclick={() => pack.removeWithCascade(iss.modB!)}>
                         „{pack.name(iss.modB)}“ entfernen (Konflikt lösen)
                       </button>
                       <div class="consequence">
@@ -170,10 +170,10 @@
                   {:else if iss.isLockedB && !iss.isLockedA}
                     <div class="locked-note">
                       <span class="badge locked-badge">Pflicht</span>
-                      <span><b>{pack.name(iss.modB)}</b> ist im Pflicht-Leistungspaket unverzichtbar.</span>
+                      <span class="locked-text"><b>{pack.name(iss.modB)}</b> ist im Pflicht-Leistungspaket unverzichtbar.</span>
                     </div>
-                    <div class="act-col">
-                      <button class="btn sm danger full-w" onclick={() => pack.removeWithCascade(iss.modA!)}>
+                    <div class="solution-choice">
+                      <button class="btn sm danger solution-btn" onclick={() => pack.removeWithCascade(iss.modA!)}>
                         „{pack.name(iss.modA)}“ entfernen (Konflikt lösen)
                       </button>
                       <div class="consequence">
@@ -187,10 +187,10 @@
 
                   <!-- Fall 3: Beide optional - Nutzer wählt selbst! -->
                   {:else if !iss.isLockedA && !iss.isLockedB}
-                    <div class="choice-title small"><b>Lösung wählen:</b> Welchen Mod möchtest du behalten?</div>
-                    <div class="action-grid">
-                      <div class="act-col">
-                        <button class="btn sm" onclick={() => pack.removeWithCascade(iss.modB!)}>
+                    <div class="choice-title"><b>Lösung wählen:</b> Welchen Mod möchtest du behalten?</div>
+                    <div class="solution-options">
+                      <div class="solution-choice">
+                        <button class="btn sm solution-btn" onclick={() => pack.removeWithCascade(iss.modB!)}>
                           „{pack.name(iss.modA)}“ behalten
                         </button>
                         <div class="consequence">
@@ -200,8 +200,8 @@
                           {/if}
                         </div>
                       </div>
-                      <div class="act-col">
-                        <button class="btn sm" onclick={() => pack.removeWithCascade(iss.modA!)}>
+                      <div class="solution-choice">
+                        <button class="btn sm solution-btn" onclick={() => pack.removeWithCascade(iss.modA!)}>
                           „{pack.name(iss.modB)}“ behalten
                         </button>
                         <div class="consequence">
@@ -318,25 +318,151 @@
   .danger { color: var(--bad); }
   @media (max-width: 1100px) { .bar { position: static; max-height: none; } }
 
-  .start-check-box { border-radius: var(--radius); padding: .7rem .85rem; border: 1px solid var(--line); display: grid; gap: .45rem; }
+  .start-check-box {
+    border-radius: var(--radius);
+    padding: .75rem;
+    border: 1px solid var(--line);
+    display: grid;
+    gap: .5rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
   .start-check-box.ok { background: var(--accent-soft); border-color: var(--accent); }
   .start-check-box.bad { background: var(--bad-soft); border-color: var(--bad); }
   .sc-head { display: flex; align-items: center; gap: .6rem; }
-  .sc-icon { font-size: 1.3rem; }
+  .sc-icon { font-size: 1.3rem; flex-shrink: 0; }
   .sc-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .15rem; color: var(--fg); opacity: .9; }
 
-  .issue-list { display: grid; gap: .6rem; margin-top: .4rem; }
-  .issue-card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .65rem .75rem; display: grid; gap: .4rem; }
-  .issue-header { display: flex; align-items: center; gap: .45rem; flex-wrap: wrap; font-size: .86rem; }
-  .issue-detail { margin: 0; font-size: .78rem; color: var(--muted); line-height: 1.35; }
-  .issue-actions { display: grid; gap: .35rem; margin-top: .2rem; }
-  .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: .45rem; }
-  .act-col { display: flex; flex-direction: column; gap: .2rem; }
-  .act-col button { width: 100%; text-align: center; }
-  .full-w { width: 100%; }
-  .consequence { font-size: .73rem; line-height: 1.25; color: var(--muted); }
-  .locked-note { display: flex; align-items: center; gap: .4rem; padding: .25rem .45rem; background: var(--surface-2); border-radius: 6px; font-size: .76rem; }
-  .locked-badge { background: var(--accent); color: var(--accent-fg, #fff); font-size: .7rem; padding: .1rem .35rem; border-radius: 4px; }
-  .choice-title { margin-bottom: .15rem; color: var(--fg); }
-  .err-fallback { font-size: .78rem; color: var(--bad); }
+  .issue-list {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    margin-top: .3rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .issue-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: .65rem;
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .issue-header {
+    display: flex;
+    align-items: flex-start;
+    gap: .45rem;
+    font-size: .84rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .issue-header b {
+    flex: 1;
+    min-width: 0;
+  }
+  .issue-detail {
+    margin: 0;
+    font-size: .78rem;
+    color: var(--muted);
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .issue-actions {
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+    margin-top: .15rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .solution-options {
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .solution-choice {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    padding: .45rem .55rem;
+    background: var(--surface-2);
+    border: 1px solid var(--line-2);
+    border-radius: 7px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .solution-btn {
+    width: 100% !important;
+    white-space: normal !important;
+    height: auto !important;
+    min-height: 2.1rem;
+    line-height: 1.3;
+    padding: .4rem .55rem;
+    text-align: center;
+    justify-content: center;
+    font-size: .82rem;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
+  }
+  .full-w {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  .consequence {
+    font-size: .73rem;
+    line-height: 1.3;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .locked-note {
+    display: flex;
+    align-items: flex-start;
+    gap: .4rem;
+    padding: .35rem .5rem;
+    background: var(--surface-2);
+    border: 1px solid var(--line-2);
+    border-radius: 6px;
+    font-size: .76rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    box-sizing: border-box;
+  }
+  .locked-badge {
+    background: var(--accent);
+    color: var(--accent-fg, #fff);
+    font-size: .68rem;
+    padding: .1rem .35rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .locked-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .choice-title {
+    margin: 0;
+    font-size: .78rem;
+    color: var(--fg);
+    line-height: 1.3;
+  }
+  .err-fallback {
+    font-size: .78rem;
+    color: var(--bad);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
 </style>
