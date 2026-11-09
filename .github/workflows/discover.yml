@@ -2,7 +2,7 @@ name: Kandidaten
 on:
   workflow_dispatch:
   schedule:
-    - cron: "23 3 * * 1"
+    - cron: "35 4 * * *" # Täglich um 04:35 UTC: sucht täglich nach neuen gehypten Mods & Packs
   push:
     paths:
       - "scripts/discover.mjs"

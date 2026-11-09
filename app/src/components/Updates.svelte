@@ -29,13 +29,43 @@
 
     <h2>Neu in den letzten 7 Tagen</h2>
     {#if recent.length}
-      <ul class="list">{#each recent as x}<li>{#if pack.BY[x.slug]}<button class="lnk" onclick={() => (ui.detail = x.slug)}>{pack.BY[x.slug].name}</button>{:else}<span>{x.name}</span> <span class="badge plain">Bibliothek</span>{/if} <span class="badge plain">{T[x.typ]}</span> <span class="mono muted">{x.von} → {x.auf}</span>{#if x.art !== "release"} <span class="badge warn">{x.art}</span>{/if} <span class="muted small">{fmt(x.tag)}</span></li>{/each}</ul>
+      <ul class="list">{#each recent as x}
+        <li class="upd-card">
+          <div class="upd-head">
+            {#if pack.BY[x.slug]}<button class="lnk" onclick={() => (ui.detail = x.slug)}>{pack.BY[x.slug].name}</button>{:else}<span>{x.name}</span> <span class="badge plain">Bibliothek</span>{/if}
+            <span class="badge plain">{T[x.typ]}</span>
+            <span class="mono muted">{x.von} → {x.auf}</span>
+            {#if x.art !== "release"} <span class="badge warn">{x.art}</span>{/if}
+            <span class="muted small">{fmt(x.tag)}</span>
+          </div>
+          {#if x.changelog}
+            <details class="cl-box">
+              <summary class="small">Changelog der Version anzeigen</summary>
+              <pre class="cl-text">{x.changelog}</pre>
+            </details>
+          {/if}
+        </li>
+      {/each}</ul>
     {:else}<p class="muted">Keine neuen Versionen in dieser Woche.</p>{/if}
 
     {#if u.verfuegbar?.length}
       <h2>Verfügbar, aber bewusst nicht übernommen</h2>
       <p class="muted small">Festgelegte Versionen (Sodium, Iris, Voxy, Photon) und Sprünge von einer stabilen Version auf eine Beta wechseln nie automatisch. Updates, deren neue Pflicht-Abhängigkeit es für 26.3 nicht gibt, werden ebenfalls zurückgehalten.</p>
-      <ul class="list">{#each u.verfuegbar as v}<li><b>{pack.BY[v.slug]?.name || v.name}</b> <span class="mono muted">{v.aktuell} → {v.neu}</span> <span class="badge {v.grund.startsWith('fest') ? 'info' : v.grund.startsWith('Abh') ? 'bad' : 'warn'}">{v.grund}</span></li>{/each}</ul>
+      <ul class="list">{#each u.verfuegbar as v}
+        <li class="upd-card">
+          <div class="upd-head">
+            <b>{pack.BY[v.slug]?.name || v.name}</b>
+            <span class="mono muted">{v.aktuell} → {v.neu}</span>
+            <span class="badge {v.grund.startsWith('fest') ? 'info' : v.grund.startsWith('Abh') ? 'bad' : 'warn'}">{v.grund}</span>
+          </div>
+          {#if v.changelog}
+            <details class="cl-box">
+              <summary class="small">Changelog der Version anzeigen</summary>
+              <pre class="cl-text">{v.changelog}</pre>
+            </details>
+          {/if}
+        </li>
+      {/each}</ul>
     {/if}
 
     {#if u.next}
@@ -83,4 +113,11 @@
   .mono { font-family: var(--mono); font-size: .8rem; } .small { font-size: .8rem; }
   .meter { display: grid; grid-template-columns: 1fr auto; gap: .6rem; align-items: center; max-width: 30rem; }
   .track { height: .5rem; border-radius: 9px; background: var(--bg-2); overflow: hidden; } .track i { display: block; height: 100%; background: var(--accent); }
+
+  .upd-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: .55rem .8rem; display: grid; gap: .35rem; }
+  .upd-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .45rem; }
+  .cl-box { margin-top: .2rem; padding-top: .3rem; border-top: 1px solid var(--line); }
+  .cl-box summary { cursor: pointer; color: var(--accent); font-weight: 500; user-select: none; }
+  .cl-box summary:hover { text-decoration: underline; }
+  .cl-text { font: .82rem/1.4 var(--mono); white-space: pre-wrap; word-break: break-word; background: var(--bg); padding: .5rem .75rem; border-radius: 6px; margin: .4rem 0 0; color: var(--fg); max-height: 250px; overflow-y: auto; border: 1px solid var(--line); }
 </style>

@@ -22,8 +22,8 @@ export type AppData = {
 export const ARTIFACT = import.meta.env.MODE === "artifact";
 const DATA = (import.meta.env.VITE_DATA as string) || "data/";
 
-export type Updates = { checked: string; mc: string; updates: Upd[]; verlauf: { datum: string; updates: Upd[] }[]; ohneNeue: { slug: string; name: string; version: string; seit: string }[]; verfuegbar?: { slug: string; name: string; aktuell: string; neu: string; grund: string }[]; next: { version: string; total: number; ready: number; missing: string[] } | null };
-export type Upd = { slug: string; name: string; typ: string; von: string; auf: string; art: string; datum: string };
+export type Updates = { checked: string; mc: string; updates: Upd[]; verlauf: { datum: string; updates: Upd[] }[]; ohneNeue: { slug: string; name: string; version: string; seit: string }[]; verfuegbar?: { slug: string; name: string; aktuell: string; neu: string; grund: string; changelog?: string | null }[]; next: { version: string; total: number; ready: number; missing: string[] } | null };
+export type Upd = { slug: string; name: string; typ: string; von: string; auf: string; art: string; datum: string; changelog?: string | null };
 export type Probe = { datei: string; titel: string };
 /** Hörproben: Pfade sind relativ zum Repo-Wurzelordner */
 export const SOUNDBASE = DATA + "../";

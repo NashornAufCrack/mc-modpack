@@ -33,12 +33,12 @@ for (const [t, loaders] of Object.entries(LOADERS)) {
     for (const s of part) {
       const v = upd[files[s][2]];
       if (v && v.files?.length && v.version_number !== files[s][6] && (PIN.has(s) || (v.version_type !== "release" && (curType[s] || (isPre(files[s][6]) ? "beta" : "release")) === "release"))) {
-        verfuegbar.push({ slug: s, name: NAME[s] || s, typ: t, aktuell: files[s][6], neu: v.version_number, art: v.version_type, grund: PIN.has(s) ? "festgelegte Version" : "nur als " + v.version_type });
+        verfuegbar.push({ slug: s, name: NAME[s] || s, typ: t, aktuell: files[s][6], neu: v.version_number, art: v.version_type, grund: PIN.has(s) ? "festgelegte Version" : "nur als " + v.version_type, changelog: v.changelog ? v.changelog.trim() : null });
         if (!stand[s] || stand[s].version !== files[s][6]) stand[s] = { version: files[s][6], seit: stand[s]?.seit || null };
       } else if (v && v.files?.length && v.version_number !== files[s][6]) {
         const f = v.files.find(x => x.primary) || v.files[0];
         const deps = v.dependencies.filter(d => d.dependency_type === "required" && d.project_id).map(d => d.project_id);
-        updates.push({ slug: s, name: NAME[s] || files[s][7] || s, typ: t, von: files[s][6], auf: v.version_number, art: v.version_type, datum: v.date_published.slice(0, 10), deps, alt: files[s], altStand: stand[s] });
+        updates.push({ slug: s, name: NAME[s] || files[s][7] || s, typ: t, von: files[s][6], auf: v.version_number, art: v.version_type, datum: v.date_published.slice(0, 10), deps, alt: files[s], altStand: stand[s], changelog: v.changelog ? v.changelog.trim() : null });
         files[s] = [f.url, f.filename, f.hashes.sha1, f.hashes.sha512, f.size, files[s][5], v.version_number, files[s][7], t];
         stand[s] = { version: v.version_number, seit: v.date_published.slice(0, 10) };
       } else if (!stand[s] || stand[s].version !== files[s][6]) stand[s] = { version: files[s][6], seit: stand[s]?.seit || null };

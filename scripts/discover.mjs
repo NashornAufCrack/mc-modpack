@@ -7,6 +7,8 @@ const mods = JSON.parse(fs.readFileSync("data/mods.json", "utf8"));
 const have = new Set(mods.map(m => m.slug));
 const norm = s => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
 const haveNames = new Set(mods.map(m => norm(m.name)));
+// Niemals dieselbe Mod zusätzlich als Datapack vorschlagen
+const existingMods = new Set(mods.filter(m => (m.pt || "m") === "m").map(m => norm(m.name)));
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const out = { modrinth: [], curseforge: [] };
 
@@ -16,7 +18,11 @@ for (const [pt, n] of [["mod", 600], ["resourcepack", 200], ["shader", 60], ["da
     const facets = [["versions:26.3"], ["project_type:" + pt]]; if (pt === "mod") facets.push(["categories:fabric"]);
     const r = await fetch(`https://api.modrinth.com/v2/search?index=downloads&limit=100&offset=${off}&facets=${encodeURIComponent(JSON.stringify(facets))}`, { headers: { "User-Agent": UA } });
     if (!r.ok) break; const hits = (await r.json()).hits; if (!hits.length) break;
-    for (const h of hits) if (!have.has(h.slug)) out.modrinth.push({ slug: h.slug, name: h.title, pt, desc: h.description, dl: h.downloads, follows: h.follows, cats: h.categories, client: h.client_side, server: h.server_side, icon: h.icon_url, gallery: h.gallery?.slice(0, 4) || [], updated: h.date_modified });
+    for (const h of hits) {
+      if (have.has(h.slug) || haveNames.has(norm(h.title))) continue;
+      if (pt === "datapack" && existingMods.has(norm(h.title))) continue;
+      out.modrinth.push({ slug: h.slug, name: h.title, pt, desc: h.description, dl: h.downloads, follows: h.follows, cats: h.categories, client: h.client_side, server: h.server_side, icon: h.icon_url, gallery: h.gallery?.slice(0, 4) || [], updated: h.date_modified });
+    }
     await sleep(250);
   }
 }
