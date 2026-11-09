@@ -1,267 +1,476 @@
-<title>Videoprüfung Mod-Katalog</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500&display=swap">
-<style>
-/* Layout: Kopf mit Fortschritt, Werkzeugleiste, Kartenraster (je Video eine Karte mit Bildstreifen), Seitenblättern. Arbeitswerkzeug, kein Schaufenster. */
-:root {
-  --bg: #eef2ee; --surface: #ffffff; --fg: #18201a; --muted: #56635a; --line: #d3dcd5;
-  --ok: #2f7d2a; --ok-soft: #e1f1dd; --bad: #b0261d; --bad-soft: #f8e1de; --accent: #2f6db5; --tile: #202622;
-  --font: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
-}
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #111613; --surface: #192019; --fg: #e4ebe5; --muted: #98a69b; --line: #2b352d;
-  --ok: #74cf62; --ok-soft: #1f3320; --bad: #ff7a6b; --bad-soft: #3a1f1c; --accent: #7fb2ef; --tile: #0c0f0d; color-scheme: dark } }
-:root[data-theme="dark"] {
-  --bg: #111613; --surface: #192019; --fg: #e4ebe5; --muted: #98a69b; --line: #2b352d;
-  --ok: #74cf62; --ok-soft: #1f3320; --bad: #ff7a6b; --bad-soft: #3a1f1c; --accent: #7fb2ef; --tile: #0c0f0d; color-scheme: dark }
-* { box-sizing: border-box; }
-body { background: var(--bg); color: var(--fg); font: 15px/1.45 var(--font); }
-.wrap { max-width: 1320px; margin: 0 auto; padding-block: 20px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 16px; }
-h1 { margin: 0; font-size: 1.6rem; letter-spacing: -.01em; text-wrap: balance; }
-.lead { margin: 4px 0 0; color: var(--muted); max-width: 70ch; }
-.head { display: grid; gap: 12px; }
-.counts { display: flex; flex-wrap: wrap; gap: 8px 20px; font-variant-numeric: tabular-nums; }
-.counts span { color: var(--muted); } .counts b { font: 500 1.05rem var(--mono); color: var(--fg); }
-.counts .ok b { color: var(--ok); } .counts .bad b { color: var(--bad); }
-.bar { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; display: flex; }
-.bar i { display: block; height: 100%; } .bar .ok { background: var(--ok); } .bar .bad { background: var(--bad); }
-.note { margin: 0; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); font-size: .9rem; }
-.note.warn { border-color: var(--bad); color: var(--fg); }
-.tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 8px; }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
-.chip { font: inherit; font-size: .9rem; border: 1px solid var(--line); background: var(--surface); color: var(--fg); padding: 6px 12px; border-radius: 99px; cursor: pointer; }
-.chip[aria-pressed="true"] { border-color: var(--fg); background: var(--fg); color: var(--bg); }
-.chip:focus-visible, .btn:focus-visible, .card:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-#q { font: inherit; padding: 6px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); min-width: 0; flex: 1 1 200px; max-width: 320px; }
-.keys { color: var(--muted); font-size: .82rem; margin-left: auto; }
-kbd { font: 500 .78rem var(--mono); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 0 5px; background: var(--surface); }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 14px; }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
-.card.ok { border-color: var(--ok); box-shadow: inset 0 0 0 1px var(--ok); }
-.card.bad { border-color: var(--bad); box-shadow: inset 0 0 0 1px var(--bad); }
-.tile { position: relative; aspect-ratio: 8 / 3; max-width: 100%; background-color: var(--tile); background-repeat: no-repeat; }
-.tile .lab { position: absolute; font: 500 .68rem var(--mono); color: #fff; background: rgb(0 0 0 / .62); padding: 1px 5px; border-radius: 4px; pointer-events: none; }
-.tile .split { position: absolute; top: 0; bottom: 0; left: 33.333%; width: 2px; background: rgb(255 255 255 / .55); }
-.body { padding: 10px 12px 12px; display: grid; gap: 6px; min-width: 0; }
-.row { display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; min-width: 0; }
-.mod { font-weight: 700; font-size: 1.02rem; }
-.badge { font-size: .74rem; border-radius: 99px; padding: 1px 8px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
-.badge.gap { border-color: var(--accent); color: var(--accent); }
-.vt { color: var(--fg); overflow-wrap: anywhere; } .vt a { color: inherit; }
-.meta { color: var(--muted); font-size: .84rem; overflow-wrap: anywhere; }
-.why { color: var(--muted); font-size: .8rem; }
-.act { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; align-items: center; }
-.btn { font: 700 .92rem var(--font); border-radius: 9px; padding: 8px 14px; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--fg); }
-.btn.ok { border-color: var(--ok); color: var(--ok); } .btn.ok[aria-pressed="true"] { background: var(--ok); color: var(--surface); }
-.btn.bad { border-color: var(--bad); color: var(--bad); } .btn.bad[aria-pressed="true"] { background: var(--bad); color: var(--surface); }
-.btn.link { border-color: transparent; color: var(--muted); font-weight: 400; padding-inline: 6px; }
-.btn:disabled { opacity: .5; cursor: not-allowed; }
-.pager { display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; font-variant-numeric: tabular-nums; }
-.empty { padding: 32px 16px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; }
-#status { margin: 0; min-height: 1.4em; color: var(--muted); font-size: .88rem; }
-@media (prefers-reduced-motion: no-preference) { .card { transition: border-color .15s, box-shadow .15s; } }
-@media (max-width: 640px) { .keys { display: none; } h1 { font-size: 1.35rem; } }
-</style>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foto- &amp; Video-Prüfung · Mod-Katalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+  <style>
+    :root {
+      --bg: #0f1311; --surface: #18201a; --surface-2: #212b23; --fg: #e6eee7; --muted: #95a397;
+      --line: #2e3a30; --line-2: #425245; --accent: #4ade80; --accent-soft: rgba(74, 222, 128, 0.12);
+      --bad: #f87171; --bad-soft: rgba(248, 113, 113, 0.15); --warn: #fbbf24;
+      --font: "Atkinson Hyperlegible", system-ui, sans-serif; --mono: "JetBrains Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 var(--font); }
+    .wrap { max-width: 1400px; margin: 0 auto; padding: 20px 24px 60px; }
+    header.head { display: grid; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+    h1 { margin: 0; font-size: 1.65rem; display: flex; align-items: center; gap: .6rem; }
+    .lead { margin: 0; color: var(--muted); font-size: .95rem; max-width: 80ch; }
+    .stats-bar { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; font-size: .88rem; }
+    .stat-pill { padding: 4px 12px; border-radius: 99px; background: var(--surface); border: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+    .stat-pill b { font-family: var(--mono); color: var(--accent); }
+    .stat-pill.bad b { color: var(--bad); }
+
+    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); padding: 12px 0; border-bottom: 1px solid var(--line); margin-bottom: 20px; }
+    .field { font: inherit; padding: 7px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); outline: none; }
+    .field:focus { border-color: var(--accent); }
+    .search-box { flex: 1 1 240px; min-width: 180px; }
+    .btn { font: 600 .86rem var(--font); padding: 7px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; display: inline-flex; align-items: center; gap: .4rem; transition: all .15s; }
+    .btn:hover { border-color: var(--line-2); background: var(--surface-2); }
+    .btn.primary { background: var(--accent); color: #042; border-color: var(--accent); font-weight: 700; }
+    .btn.primary:hover { opacity: .9; }
+    .btn.chip { border-radius: 99px; font-weight: 500; font-size: .84rem; padding: 5px 12px; }
+    .btn.chip.on { background: var(--fg); color: var(--bg); border-color: var(--fg); font-weight: 700; }
+    .btn.bad { color: var(--bad); border-color: var(--bad); }
+
+    .grid { display: grid; gap: 24px; }
+    .mod-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 14px; }
+    .mod-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+    .mod-title { font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: .5rem; }
+    .badge { font: 500 .75rem var(--mono); padding: 2px 8px; border-radius: 6px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); }
+    .badge.cat { color: var(--accent); border-color: var(--accent-soft); }
+    .mod-desc { margin: 0; font-size: .88rem; color: var(--muted); }
+
+    .sec-title { font-size: .84rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 6px; display: flex; justify-content: space-between; align-items: center; }
+    .sec-title span { font-weight: 400; text-transform: none; font-size: .8rem; }
+
+    /* Bild-Galerie */
+    .img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+    .img-card { position: relative; aspect-ratio: 16 / 10; border-radius: 8px; overflow: hidden; background: #000; border: 2px solid var(--line); cursor: pointer; transition: transform .15s, border-color .15s; user-select: none; }
+    .img-card:hover { transform: scale(1.02); border-color: var(--accent); }
+    .img-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .15s; }
+    .img-card.rejected { border-color: var(--bad); }
+    .img-card.rejected img { opacity: .25; filter: grayscale(1); }
+    .img-card.rejected::after { content: "✕ RAUS"; position: absolute; inset: 0; display: grid; place-items: center; background: rgba(220, 38, 38, 0.45); color: #fff; font: 800 1rem var(--mono); text-shadow: 0 1px 4px #000; }
+    .img-zoom { position: absolute; top: 4px; right: 4px; z-index: 5; background: rgba(0, 0, 0, 0.75); color: #fff; border: 0; border-radius: 4px; padding: 2px 6px; font-size: .75rem; cursor: pointer; }
+    .img-zoom:hover { background: var(--accent); color: #042; }
+
+    /* Video-Galerie */
+    .vid-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .vid-card { background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+    .vid-card.rejected { border-color: var(--bad); opacity: .6; }
+    .vid-card.approved { border-color: var(--accent); }
+    .vid-thumb { position: relative; aspect-ratio: 16 / 9; background: #000; cursor: pointer; }
+    .vid-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .vid-play { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0, 0, 0, 0.45); color: #fff; font-size: 1.8rem; }
+    .vid-card:hover .vid-play { background: rgba(0, 0, 0, 0.25); color: var(--accent); }
+    .vid-info { padding: 8px 10px; display: grid; gap: 4px; flex: 1; }
+    .vid-info h4 { margin: 0; font-size: .88rem; line-height: 1.25; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; }
+    .vid-meta { font-size: .78rem; color: var(--muted); }
+    .vid-acts { display: flex; gap: 6px; padding: 6px 10px 10px; border-top: 1px solid var(--line); }
+    .vid-acts .btn { flex: 1; justify-content: center; font-size: .8rem; padding: 5px 8px; }
+    .vid-acts .btn.ok-btn.on { background: var(--accent); color: #042; border-color: var(--accent); }
+    .vid-acts .btn.bad-btn.on { background: var(--bad); color: #fff; border-color: var(--bad); }
+
+    /* Modal für Großansicht */
+    .modal { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.85); display: none; place-items: center; padding: 20px; }
+    .modal.open { display: grid; }
+    .modal-content { max-width: 95vw; max-height: 90vh; display: grid; gap: 12px; text-align: center; }
+    .modal-content img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; }
+    .modal-content iframe { width: 85vw; max-width: 960px; aspect-ratio: 16 / 9; border: 0; border-radius: 8px; }
+    .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: 0; color: #fff; font-size: 2rem; cursor: pointer; }
+
+    .pager { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+    .empty-note { text-align: center; padding: 40px; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; }
+  </style>
+</head>
+<body>
 
 <div class="wrap">
   <header class="head">
     <div>
-      <h1>Videoprüfung Mod-Katalog</h1>
-      <p class="lead">Zeigt das Video wirklich diese Mod in Minecraft? Links stehen Bilder der Mod, rechts das Titelbild und Szenen bei 25, 50 und 75 Prozent des Videos. Freigegebene Videos erscheinen nach der nächsten Übernahme auf der Website.</p>
+      <h1>Foto- &amp; Video-Prüfung</h1>
+      <p class="lead">Klicke direkt auf ein Foto, um es zwischen <b>Behalten</b> und <b>Rauswerfen</b> umzuschalten. Bei Videos kannst du reinhören/anschauen und entscheiden. Alle Entscheidungen werden sofort lokal gespeichert.</p>
     </div>
-    <div class="counts" id="counts" aria-live="polite"></div>
-    <div class="bar" id="bar" aria-hidden="true"><i class="ok"></i><i class="bad"></i></div>
-    <p class="note" id="dbnote">Lade gespeicherte Urteile …</p>
+    <div class="stats-bar">
+      <div class="stat-pill bad"><b id="cnt-bad-imgs">0</b> Fotos aussortiert</div>
+      <div class="stat-pill"><b id="cnt-ok-vids">0</b> Videos bestätigt</div>
+      <div class="stat-pill bad"><b id="cnt-bad-vids">0</b> Videos aussortiert</div>
+      <div class="stat-pill"><b id="cnt-total-mods">0</b> Mods geladen</div>
+    </div>
   </header>
 
-  <div class="tools" role="toolbar" aria-label="Filter">
-    <button class="chip" data-f="offen" aria-pressed="true">Offen</button>
-    <button class="chip" data-f="ok" aria-pressed="false">Passt</button>
-    <button class="chip" data-f="bad" aria-pressed="false">Raus</button>
-    <button class="chip" data-f="alle" aria-pressed="false">Alle</button>
-    <button class="chip" id="gap" aria-pressed="false">Nur Einträge ohne gute Medien</button>
-    <button class="chip" id="dl" hidden>Urteile herunterladen (JSON)</button>
-    <input id="q" type="search" placeholder="Mod oder Video suchen" aria-label="Mod oder Video suchen">
-    <span class="keys"><kbd>P</kbd> passt · <kbd>R</kbd> raus · <kbd>Z</kbd> zurück · <kbd>J</kbd>/<kbd>K</kbd> weiter/zurück</span>
+  <div class="toolbar">
+    <input type="search" id="search" class="field search-box" placeholder="Mod suchen (z. B. golem, fallingtree, shader) …">
+    <button class="btn chip on" data-f="all">Alle</button>
+    <button class="btn chip" data-f="with-vids">Mit Videos</button>
+    <button class="btn chip" data-f="with-imgs">Viele Bilder (3+)</button>
+    <button class="btn chip" data-f="edited">Nur bearbeitete</button>
+    <button class="btn primary" id="btn-export">📥 Urteile herunterladen (JSON)</button>
+    <button class="btn" id="btn-copy">📋 JSON kopieren</button>
+    <button class="btn bad" id="btn-reset">↺ Zurücksetzen</button>
   </div>
 
-  <p id="status" role="status"></p>
-  <main class="grid" id="grid" aria-label="Videos"></main>
-  <nav class="pager" id="pager" aria-label="Seiten"></nav>
-  <p class="note">Passt: Das Video zeigt genau diese Mod oder dieses Pack in Minecraft. Raus: andere Mod, anderes Spiel, nur Reden ohne Spielszenen oder eine Liste vieler Mods, in der diese kaum vorkommt. Im Zweifel lieber offen lassen.</p>
+  <main class="grid" id="mods-grid"></main>
+  <nav class="pager" id="pager"></nav>
+</div>
+
+<!-- Modal für Großansicht / Video-Player -->
+<div class="modal" id="modal" onclick="closeModal(event)">
+  <button class="modal-close" onclick="closeModalDirect()">×</button>
+  <div class="modal-content" id="modal-box"></div>
 </div>
 
 <script>
 (() => {
-  const PER = 20;
-  const S = { data: null, items: [], urteile: new Map(), filter: "offen", gap: false, q: "", page: 0, db: null, uid: null, canWrite: false, focus: null };
-  const $ = id => document.getElementById(id);
-  const typName = { m: "Mod", r: "Resource Pack", s: "Shader", d: "Datapack" };
-  const pad = n => String(n).padStart(2, "0");
-  const say = t => { $("status").textContent = t; };
+  let appData = { mods: [] };
+  let mediaData = {};
+  let storage = { rejected_imgs: {}, video_status: {} };
 
-  function visible() {
-    const q = S.q.trim().toLowerCase();
-    return S.items.filter(x => {
-      const u = S.urteile.get(x.k)?.urteil;
-      if (S.filter === "offen" && u) return false;
-      if (S.filter === "ok" && u !== "ok") return false;
-      if (S.filter === "bad" && u !== "nein") return false;
-      if (S.gap && !x.luecke) return false;
-      if (q && !(x.name + " " + x.titel + " " + x.kanal).toLowerCase().includes(q)) return false;
+  try {
+    const s = localStorage.getItem("mk-media-curation-v1");
+    if (s) storage = JSON.parse(s);
+  } catch {}
+
+  const state = {
+    q: "",
+    filter: "all",
+    page: 0,
+    perPage: 25,
+    filteredMods: []
+  };
+
+  const $ = id => document.getElementById(id);
+
+  function saveStorage() {
+    try {
+      localStorage.setItem("mk-media-curation-v1", JSON.stringify(storage));
+    } catch {}
+    updateStats();
+  }
+
+  function updateStats() {
+    let badImgs = 0;
+    for (const list of Object.values(storage.rejected_imgs || {})) {
+      badImgs += list.length;
+    }
+    let okVids = 0, badVids = 0;
+    for (const st of Object.values(storage.video_status || {})) {
+      if (st === "ok") okVids++;
+      else if (st === "nein") badVids++;
+    }
+    $("cnt-bad-imgs").textContent = badImgs;
+    $("cnt-ok-vids").textContent = okVids;
+    $("cnt-bad-vids").textContent = badVids;
+    $("cnt-total-mods").textContent = appData.mods.length;
+  }
+
+  async function init() {
+    try {
+      const [rApp, rMedia] = await Promise.all([
+        fetch("../data/app-data.json").catch(() => fetch("data/app-data.json")),
+        fetch("../data/media-app.json").catch(() => fetch("data/media-app.json")).catch(() => fetch("../data/media.json"))
+      ]);
+      appData = await rApp.json();
+      mediaData = await rMedia.json();
+      filterList();
+    } catch (e) {
+      $("mods-grid").innerHTML = `<div class="empty-note">Fehler beim Laden der Daten: ${e.message}</div>`;
+    }
+  }
+
+  function filterList() {
+    const q = state.q.trim().toLowerCase();
+    const mods = appData.mods.filter(m => {
+      const me = mediaData[m.slug] || {};
+      const imgs = me.bilder || [];
+      const vids = me.videos || [];
+      
+      if (state.filter === "with-vids" && !vids.length) return false;
+      if (state.filter === "with-imgs" && imgs.length < 3) return false;
+      if (state.filter === "edited") {
+        const hasBadImg = (storage.rejected_imgs[m.slug] || []).length > 0;
+        const hasVidStatus = vids.some(v => storage.video_status[`${m.slug}:${v.id}`]);
+        if (!hasBadImg && !hasVidStatus) return false;
+      }
+
+      if (q) {
+        const searchStr = `${m.name} ${m.slug} ${m.sub || ""} ${m.notiz || ""}`.toLowerCase();
+        if (!searchStr.includes(q)) return false;
+      }
       return true;
     });
+
+    state.filteredMods = mods;
+    state.page = 0;
+    render();
   }
 
-  function counts() {
-    let ok = 0, bad = 0; for (const x of S.items) { const u = S.urteile.get(x.k)?.urteil; if (u === "ok") ok++; else if (u === "nein") bad++; }
-    const all = S.items.length, open = all - ok - bad;
-    const c = $("counts"); c.textContent = "";
-    for (const [cls, n, l] of [["", open, "offen"], ["ok", ok, "passt"], ["bad", bad, "raus"], ["", all, "insgesamt"]]) {
-      const s = document.createElement("span"); if (cls) s.className = cls; const b = document.createElement("b"); b.textContent = n; s.append(b, " " + l); c.append(s);
+  function render() {
+    updateStats();
+    const grid = $("mods-grid");
+    grid.innerHTML = "";
+
+    const total = state.filteredMods.length;
+    if (!total) {
+      grid.innerHTML = `<div class="empty-note">Keine passenden Mods gefunden.</div>`;
+      $("pager").innerHTML = "";
+      return;
     }
-    if (S.data) { const s = document.createElement("span"); s.textContent = "Stand " + new Date(S.data.stand).toLocaleDateString("de-DE"); c.append(s); }
-    const [iok, ibad] = $("bar").children; iok.style.width = (all ? ok / all * 100 : 0) + "%"; ibad.style.width = (all ? bad / all * 100 : 0) + "%";
-  }
 
-  function tile(x) {
-    const t = document.createElement("div"); t.className = "tile"; const cols = S.data.spalten, rows = S.data.zeilen;
-    t.style.backgroundImage = `url(bogen-${pad(x.b)}.jpg)`;
-    t.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
-    t.style.backgroundPosition = `${(x.t % cols) / (cols - 1) * 100}% ${Math.floor(x.t / cols) / (rows - 1) * 100}%`;
-    t.setAttribute("role", "img"); t.setAttribute("aria-label", `Links Bilder von ${x.name}, rechts Szenen aus dem Video ${x.titel}`);
-    const lab = (txt, css) => { const l = document.createElement("span"); l.className = "lab"; l.textContent = txt; Object.assign(l.style, css); return l; };
-    const sp = document.createElement("span"); sp.className = "split";
-    t.append(sp, lab("Mod", { left: "4px", top: "4px" }), lab("Titelbild", { left: "calc(33.333% + 6px)", top: "4px" }), lab("25 %", { left: "calc(66.666% + 4px)", top: "4px" }),
-      lab("50 %", { left: "calc(33.333% + 6px)", top: "calc(50% + 4px)" }), lab("75 %", { left: "calc(66.666% + 4px)", top: "calc(50% + 4px)" }));
-    return t;
-  }
+    const start = state.page * state.perPage;
+    const end = Math.min(start + state.perPage, total);
+    const slice = state.filteredMods.slice(start, end);
 
-  function card(x) {
-    const u = S.urteile.get(x.k)?.urteil;
-    const c = document.createElement("article"); c.className = "card" + (u === "ok" ? " ok" : u === "nein" ? " bad" : ""); c.tabIndex = 0; c.dataset.k = x.k;
-    c.setAttribute("aria-label", `${x.name}: ${x.titel}${u ? (u === "ok" ? ", passt" : ", raus") : ", offen"}`);
-    c.addEventListener("focus", () => { S.focus = x.k; });
-    const b = document.createElement("div"); b.className = "body";
-    const r1 = document.createElement("div"); r1.className = "row";
-    const n = document.createElement("span"); n.className = "mod"; n.textContent = x.name;
-    const ty = document.createElement("span"); ty.className = "badge"; ty.textContent = typName[x.typ] || "Mod";
-    r1.append(n, ty);
-    if (x.luecke) { const g = document.createElement("span"); g.className = "badge gap"; g.textContent = "noch ohne gute Medien"; r1.append(g); }
-    const no = document.createElement("div"); no.className = "meta"; no.textContent = x.notiz;
-    const vt = document.createElement("div"); vt.className = "vt"; const a = document.createElement("a"); a.href = "https://www.youtube.com/watch?v=" + encodeURIComponent(x.vid); a.target = "_blank"; a.rel = "noopener"; a.textContent = (x.titel || "Video") + " ↗"; vt.append(a);
-    const meta = document.createElement("div"); meta.className = "meta"; meta.textContent = [x.kanal, x.min ? Math.round(x.min) + " min" : "", x.punkte != null ? x.punkte + " Punkte" : ""].filter(Boolean).join(" · ");
-    b.append(r1, no, vt, meta);
-    if (x.warum && x.warum.length) { const w = document.createElement("div"); w.className = "why"; w.textContent = "Vorgeschlagen, weil: " + x.warum.join(", "); b.append(w); }
-    const act = document.createElement("div"); act.className = "act";
-    const bo = document.createElement("button"); bo.className = "btn ok"; bo.textContent = "Passt"; bo.setAttribute("aria-pressed", String(u === "ok")); bo.onclick = () => decide(x.k, "ok");
-    const bb = document.createElement("button"); bb.className = "btn bad"; bb.textContent = "Raus"; bb.setAttribute("aria-pressed", String(u === "nein")); bb.onclick = () => decide(x.k, "nein");
-    bo.disabled = bb.disabled = !S.canWrite;
-    act.append(bo, bb);
-    if (u && S.canWrite) { const z = document.createElement("button"); z.className = "btn link"; z.textContent = "Urteil zurücknehmen"; z.onclick = () => decide(x.k, null); act.append(z); }
-    b.append(act);
-    c.append(tile(x), b);
-    return c;
-  }
+    for (const m of slice) {
+      const me = mediaData[m.slug] || {};
+      const imgs = me.bilder || [];
+      const vids = me.videos || [];
+      const badImgSet = new Set(storage.rejected_imgs[m.slug] || []);
 
-  function render(keepFocus = true) {
-    if (!S.data) return;
-    counts();
-    const list = visible(); const pages = Math.max(1, Math.ceil(list.length / PER)); if (S.page >= pages) S.page = pages - 1;
-    const part = list.slice(S.page * PER, S.page * PER + PER);
-    const g = $("grid"); g.textContent = "";
-    if (!part.length) { const e = document.createElement("div"); e.className = "empty"; e.textContent = S.filter === "offen" && !S.q && !S.gap ? "Alles geprüft. Neue Videos kommen mit dem nächsten Medien-Lauf." : "Keine Videos für diesen Filter."; g.append(e); }
-    for (const x of part) g.append(card(x));
-    const p = $("pager"); p.textContent = "";
-    if (pages > 1) {
-      const mk = (t, to, dis) => { const b = document.createElement("button"); b.className = "chip"; b.textContent = t; b.disabled = dis; b.onclick = () => { S.page = to; render(false); window.scrollTo({ top: 0 }); }; return b; };
-      const info = document.createElement("span"); info.textContent = `Seite ${S.page + 1} von ${pages} · ${list.length} Videos`;
-      p.append(mk("‹ Zurück", S.page - 1, S.page === 0), info, mk("Weiter ›", S.page + 1, S.page >= pages - 1));
-    }
-    if (keepFocus && S.focus) { const el = g.querySelector(`[data-k="${CSS.escape(S.focus)}"]`); if (el && document.activeElement !== el && document.activeElement?.closest?.(".card")) el.focus({ preventScroll: true }); }
-  }
+      const card = document.createElement("article");
+      card.className = "mod-card";
 
-  function saveLocal() {
-    try { localStorage.setItem("mk-urteile", JSON.stringify(Object.fromEntries([...S.urteile].map(([id, v]) => [id, v.urteil])))); } catch {}
-  }
+      // Kopf
+      const head = document.createElement("div");
+      head.className = "mod-head";
+      head.innerHTML = `
+        <div class="mod-title">
+          <span>${m.name}</span>
+          <span class="badge cat">${m.sub || m.cat}</span>
+          <span class="badge">${m.pt === "s" ? "Shader" : m.pt === "r" ? "Resource Pack" : m.pt === "d" ? "Datapack" : "Mod"}</span>
+        </div>
+        <div class="mod-meta">
+          <a href="https://modrinth.com/mod/${m.slug}" target="_blank" rel="noopener" class="badge">Modrinth ↗</a>
+        </div>
+      `;
 
-  let busy = new Set();
-  async function decide(k, urteil) {
-    if (!S.canWrite || busy.has(k)) return;
-    busy.add(k);
-    const before = S.urteile.get(k);
-    // sofort zeigen, Speichern läuft im Hintergrund
-    if (urteil) S.urteile.set(k, { urteil }); else S.urteile.delete(k);
-    saveLocal();
-    const next = nextOpen(k);
-    render(false);
-    try {
-      if (S.db) {
-        const ref = S.db.collection("urteile").doc(k);
-        if (urteil) await ref.set({ urteil, am: new Date().toISOString(), wer: S.uid }); else await ref.delete();
+      const desc = document.createElement("p");
+      desc.className = "mod-desc";
+      desc.textContent = m.notiz || "";
+
+      card.append(head, desc);
+
+      // Bilder-Sektion
+      if (imgs.length) {
+        const imgSec = document.createElement("div");
+        imgSec.innerHTML = `<div class="sec-title">Fotos / Screenshots (${imgs.length}) <span>Klick auf ein Bild schaltet es an/aus</span></div>`;
+        const imgGrid = document.createElement("div");
+        imgGrid.className = "img-grid";
+
+        for (const u of imgs) {
+          const isBad = badImgSet.has(u);
+          const iCard = document.createElement("div");
+          iCard.className = "img-card" + (isBad ? " rejected" : "");
+          iCard.title = isBad ? "Als RAUS markiert (wird gelöscht) – Klick zum Wiederherstellen" : "Als PASST markiert – Klick zum Rauswerfen";
+          
+          const im = document.createElement("img");
+          im.src = u;
+          im.loading = "lazy";
+          im.referrerPolicy = "no-referrer";
+          im.onerror = () => { iCard.style.display = "none"; };
+
+          const zoomBtn = document.createElement("button");
+          zoomBtn.className = "img-zoom";
+          zoomBtn.textContent = "🔍";
+          zoomBtn.title = "Großansicht";
+          zoomBtn.onclick = (e) => {
+            e.stopPropagation();
+            openModalImg(u, m.name);
+          };
+
+          iCard.onclick = () => {
+            toggleImage(m.slug, u);
+          };
+
+          iCard.append(im, zoomBtn);
+          imgGrid.append(iCard);
+        }
+        imgSec.append(imgGrid);
+        card.append(imgSec);
+      } else {
+        const noImg = document.createElement("div");
+        noImg.className = "sec-title";
+        noImg.innerHTML = `Fotos: <span>Keine Screenshots vorhanden</span>`;
+        card.append(noImg);
       }
-      say(urteil ? (urteil === "ok" ? "Gespeichert: passt." : "Gespeichert: raus.") : "Urteil zurückgenommen.");
-      if (urteil && next) focusKey(next);
-    } catch (e) {
-      if (before) S.urteile.set(k, before); else S.urteile.delete(k); saveLocal(); render(false);
-      if (e && e.code === "invalid_argument") { S.canWrite = false; render(false); say("Du kannst hier nur ansehen, nicht speichern."); }
-      else say("Speichern hat nicht geklappt. Bitte gleich noch einmal klicken.");
-    } finally { busy.delete(k); }
-  }
-  function nextOpen(k) { const list = visible(); const i = list.findIndex(x => x.k === k); for (let j = i + 1; j < list.length; j++) if (!S.urteile.get(list[j].k)) return list[j].k; return null; }
-  function focusKey(k) {
-    const list = visible(); const i = list.findIndex(x => x.k === k); if (i < 0) return;
-    const pg = Math.floor(i / PER); if (pg !== S.page) { S.page = pg; render(false); }
-    S.focus = k; const el = $("grid").querySelector(`[data-k="${CSS.escape(k)}"]`); if (el) { el.focus({ preventScroll: true }); el.scrollIntoView({ block: "nearest" }); }
-  }
 
-  document.addEventListener("keydown", e => {
-    if (e.target.closest && e.target.closest("input, textarea, select") || e.altKey || e.ctrlKey || e.metaKey) return;
-    const card = document.activeElement?.closest?.(".card"); const key = e.key.toLowerCase();
-    const list = visible(); const i = card ? list.findIndex(x => x.k === card.dataset.k) : -1;
-    if (["j", "arrowdown", "arrowright"].includes(key)) { e.preventDefault(); const t = list[Math.min(list.length - 1, i + 1)]; if (t) focusKey(t.k); }
-    else if (["k", "arrowup", "arrowleft"].includes(key)) { e.preventDefault(); const t = list[Math.max(0, i - 1)]; if (t) focusKey(t.k); }
-    else if (card && (key === "p" || key === "1")) { e.preventDefault(); decide(card.dataset.k, "ok"); }
-    else if (card && (key === "r" || key === "2")) { e.preventDefault(); decide(card.dataset.k, "nein"); }
-    else if (card && (key === "z" || key === "backspace")) { e.preventDefault(); decide(card.dataset.k, null); }
-  });
-  document.querySelectorAll(".chip[data-f]").forEach(b => b.addEventListener("click", () => {
-    S.filter = b.dataset.f; S.page = 0; document.querySelectorAll(".chip[data-f]").forEach(x => x.setAttribute("aria-pressed", String(x === b))); render(false);
-  }));
-  $("gap").addEventListener("click", e => { S.gap = !S.gap; e.currentTarget.setAttribute("aria-pressed", String(S.gap)); S.page = 0; render(false); });
-  $("dl").addEventListener("click", () => {
-    const obj = Object.fromEntries([...S.urteile].sort((a, b) => a[0].localeCompare(b[0])).map(([k, v]) => [k, v.urteil]));
-    const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
-    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "video-review.json"; a.click(); URL.revokeObjectURL(a.href);
-  });
-  let qt; $("q").addEventListener("input", e => { clearTimeout(qt); qt = setTimeout(() => { S.q = e.target.value; S.page = 0; render(false); }, 150); });
+      // Videos-Sektion
+      if (vids.length) {
+        const vidSec = document.createElement("div");
+        vidSec.innerHTML = `<div class="sec-title">Videos (${vids.length}) <span>Klick auf das Video zum Abspielen</span></div>`;
+        const vidGrid = document.createElement("div");
+        vidGrid.className = "vid-grid";
 
-  // Daten der Bögen (mit der Seite veröffentlicht), dann die gespeicherten Urteile
-  fetch("daten.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => { S.data = d; S.items = d.items; render(); })
-    .catch(() => { $("grid").textContent = ""; const e = document.createElement("div"); e.className = "empty"; e.textContent = "Die Videoliste konnte nicht geladen werden. Seite bitte neu öffnen."; $("grid").append(e); });
+        for (const v of vids) {
+          const vKey = `${m.slug}:${v.id}`;
+          const curStatus = storage.video_status[vKey] || v.status;
+          const isOk = curStatus === "ok";
+          const isBad = curStatus === "nein";
 
-  (async () => {
-    const C = window.claude; const note = $("dbnote");
-    const db = C ? await C.use("db").catch(() => null) : null; const user = C ? await C.use("user").catch(() => null) : null;
-    if (!db) {
-      const m = new Map();
-      try { const r = await fetch("../data/video-review.json"); if (r.ok) for (const [k, v] of Object.entries(await r.json())) if (v === "ok" || v === "nein") m.set(k, { urteil: v }); } catch {}
-      try { const loc = JSON.parse(localStorage.getItem("mk-urteile") || "{}"); for (const [k, v] of Object.entries(loc)) if (v === "ok" || v === "nein") m.set(k, { urteil: v }); } catch {}
-      S.urteile = m; S.canWrite = true; $("dl").hidden = false;
-      note.textContent = "Lokaler Prüfmodus: Deine Urteile werden im Browser gespeichert und lassen sich jederzeit über „Urteile herunterladen (JSON)“ als video-review.json exportieren.";
-      note.classList.remove("warn"); render(); return;
+          const vCard = document.createElement("div");
+          vCard.className = "vid-card" + (isOk ? " approved" : isBad ? " rejected" : "");
+
+          const vThumb = document.createElement("div");
+          vThumb.className = "vid-thumb";
+          vThumb.innerHTML = `
+            <img src="https://i.ytimg.com/vi/${v.id}/mqdefault.jpg" loading="lazy" alt="" />
+            <span class="vid-play">▶</span>
+          `;
+          vThumb.onclick = () => openModalVid(v.id, v.titel || m.name);
+
+          const vInfo = document.createElement("div");
+          vInfo.className = "vid-info";
+          vInfo.innerHTML = `
+            <h4>${v.titel || "Video ansehen"}</h4>
+            <div class="vid-meta">${v.kanal ? v.kanal + " · " : ""}${v.minuten ? Math.round(v.minuten) + " Min" : ""}</div>
+          `;
+
+          const vActs = document.createElement("div");
+          vActs.className = "vid-acts";
+          vActs.innerHTML = `
+            <button class="btn ok-btn ${isOk ? 'on' : ''}">✓ Passt</button>
+            <button class="btn bad-btn ${isBad ? 'on' : ''}">✕ Raus</button>
+          `;
+
+          vActs.querySelector(".ok-btn").onclick = () => setVideo(m.slug, v.id, isOk ? null : "ok");
+          vActs.querySelector(".bad-btn").onclick = () => setVideo(m.slug, v.id, isBad ? null : "nein");
+
+          vCard.append(vThumb, vInfo, vActs);
+          vidGrid.append(vCard);
+        }
+        vidSec.append(vidGrid);
+        card.append(vidSec);
+      }
+
+      grid.append(card);
     }
-    S.db = db; S.uid = user ? await user.id() : null;
-    const can = user ? await user.can("data.write") : null; S.canWrite = can !== false; $("dl").hidden = false;
-    let timer = setTimeout(() => { note.textContent = "Die gespeicherten Urteile sind gerade nicht erreichbar. Neue Urteile werden trotzdem gespeichert, sobald die Verbindung steht."; note.classList.add("warn"); }, 10000);
-    db.collection("urteile").onSnapshot(snap => {
-      const m = new Map(); for (const d of snap.docs) { const v = d.data(); if (v && (v.urteil === "ok" || v.urteil === "nein")) m.set(d.id, v); }
-      S.urteile = m; saveLocal();
-      if (!snap.metadata.fromCache) { clearTimeout(timer); note.classList.remove("warn"); note.textContent = S.canWrite ? "Urteile werden sofort gespeichert und sind für Claude sichtbar." : "Du kannst hier nur ansehen, nicht speichern."; }
+
+    renderPager(total);
+  }
+
+  function toggleImage(slug, url) {
+    const list = storage.rejected_imgs[slug] || [];
+    const idx = list.indexOf(url);
+    if (idx >= 0) {
+      list.splice(idx, 1);
+      if (!list.length) delete storage.rejected_imgs[slug];
+    } else {
+      list.push(url);
+      storage.rejected_imgs[slug] = list;
+    }
+    saveStorage();
+    render();
+  }
+
+  function setVideo(slug, vidId, status) {
+    const k = `${slug}:${vidId}`;
+    if (!status) {
+      delete storage.video_status[k];
+    } else {
+      storage.video_status[k] = status;
+    }
+    saveStorage();
+    render();
+  }
+
+  function renderPager(total) {
+    const maxPage = Math.ceil(total / state.perPage);
+    const pager = $("pager");
+    pager.innerHTML = "";
+    if (maxPage <= 1) return;
+
+    if (state.page > 0) {
+      const prev = document.createElement("button");
+      prev.className = "btn";
+      prev.textContent = "‹ Vorherige";
+      prev.onclick = () => { state.page--; render(); window.scrollTo(0, 0); };
+      pager.append(prev);
+    }
+
+    const cur = document.createElement("span");
+    cur.style.padding = "6px 12px";
+    cur.textContent = `Seite ${state.page + 1} von ${maxPage}`;
+    pager.append(cur);
+
+    if (state.page < maxPage - 1) {
+      const next = document.createElement("button");
+      next.className = "btn";
+      next.textContent = "Nächste ›";
+      next.onclick = () => { state.page++; render(); window.scrollTo(0, 0); };
+      pager.append(next);
+    }
+  }
+
+  // Großansicht
+  window.openModalImg = (url, title) => {
+    $("modal-box").innerHTML = `<img src="${url}" alt="${title}" /><h3>${title}</h3>`;
+    $("modal").classList.add("open");
+  };
+
+  window.openModalVid = (id, title) => {
+    $("modal-box").innerHTML = `
+      <iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      <h3>${title}</h3>
+    `;
+    $("modal").classList.add("open");
+  };
+
+  window.closeModal = (e) => {
+    if (e.target.id === "modal") closeModalDirect();
+  };
+  window.closeModalDirect = () => {
+    $("modal").classList.remove("open");
+    $("modal-box").innerHTML = "";
+  };
+
+  // Suche & Filter
+  $("search").oninput = (e) => {
+    state.q = e.target.value;
+    filterList();
+  };
+
+  document.querySelectorAll(".toolbar .chip").forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll(".toolbar .chip").forEach(b => b.classList.remove("on"));
+      btn.classList.add("on");
+      state.filter = btn.dataset.f;
+      filterList();
+    };
+  });
+
+  // Export / Kopieren / Reset
+  $("btn-export").onclick = () => {
+    const jsonStr = JSON.stringify(storage, null, 2);
+    const blob = new Blob([jsonStr], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "media-urteile.json";
+    a.click();
+  };
+
+  $("btn-copy").onclick = () => {
+    const jsonStr = JSON.stringify(storage, null, 2);
+    navigator.clipboard.writeText(jsonStr).then(() => {
+      alert("Urteile in die Zwischenablage kopiert! Du kannst sie mir direkt in den Chat schicken.");
+    });
+  };
+
+  $("btn-reset").onclick = () => {
+    if (confirm("Möchtest du wirklich alle getroffenen Urteile zurücksetzen?")) {
+      storage = { rejected_imgs: {}, video_status: {} };
+      saveStorage();
       render();
-    }, err => { clearTimeout(timer); note.classList.add("warn"); note.textContent = "Die Urteile konnten nicht geladen werden (" + (err && err.code || "Fehler") + "). Bitte die Seite später neu öffnen."; });
-  })();
+    }
+  };
+
+  init();
 })();
 </script>
+
+</body>
+</html>

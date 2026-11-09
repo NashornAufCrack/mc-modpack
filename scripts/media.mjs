@@ -23,7 +23,7 @@ for (const m of mods) {
   if (m1) ownPid[m.slug] = m1[1];
 }
 
-const BAD_IMG_RE = /shields\.io|badge|discord|ko-?fi|patreon|bisect|nodecraft|shockbyte|sparked_banner|apexhosting|kinetichosting|bh-illusive|tr7zw\.github\.io\/uikit|yourkit\.com|yklogo|flaticon\.com|planetminecraft\.com\/images\/layout\/favicon|ewanhowell\.com\/assets\/images\/icons|paypal|curseforge\.com\/.*\/icons|\/icon\.|Fuzss\/modresources\/main\/pages\/commons\/|\/strip\.png|cdn\.serilum\.com\/description\/header|mods\.twelveiterations\.com\/img\/.*-header|DoomedArtemis\/ResourcePacksManager\/assets\/.*_title|Vi-Tul\/Recolourful-Containers-description\/.*(buttons|label\.png)|LopyMine\/Profile\/.*\/Template|quiqueck\/BCLib\/.*\/bclib_banner|macaws.*banner|stardustlabs|fabric-api|requires-fabric/i;
+const BAD_IMG_RE = /shields\.io|badge|discord|ko-?fi|patreon|bisect|nodecraft|shockbyte|sparked_banner|apexhosting|kinetichosting|bh-illusive|tr7zw\.github\.io\/uikit|yourkit\.com|yklogo|flaticon\.com|planetminecraft\.com\/images\/layout\/favicon|ewanhowell\.com\/assets\/images\/icons|paypal|curseforge\.com\/.*\/icons|\/icon\.|Fuzss\/modresources\/main\/pages\/commons\/|\/strip\.png|cdn\.serilum\.com\/description\/header|mods\.twelveiterations\.com\/img\/.*-header|DoomedArtemis\/ResourcePacksManager\/assets\/.*_title|Vi-Tul\/Recolourful-Containers-description\/.*(buttons|label\.png)|LopyMine\/Profile\/.*\/Template|quiqueck\/BCLib\/.*\/bclib_banner|macaws.*banner|stardustlabs|fabric-api|requires-fabric|donate|donation|support.?me|bymeacoffee|buy-me-a-coffee|ITIIVc1|1EGs51Y|J5FW8zh|7Nzi5ZV|MC_NU_HEADER|donate-mods|header\.png|replace_button|directories_icons|button\.png/i;
 function badImgUrl(u, slug = "") {
   const n = normImg(u);
   if (BAD_IMG_RE.test(n)) return true;
@@ -34,8 +34,32 @@ function badImgUrl(u, slug = "") {
   if (fm && slug && fm[1].toLowerCase() !== slug.toLowerCase().replace(/[^a-z0-9]/g, "")) return true;
   return false;
 }
-const imgUrls = (s, slug = "") => [...new Set([...String(s || "").matchAll(/https:\/\/[^\s"')<>]+\.(?:png|jpe?g|gif|webp)(?:\?[^\s"')<>]*)?/gi)].map(m => normImg(m[0])))]
-  .filter(u => !badImgUrl(u, slug));
+function imgUrls(rawHtml, slug = "") {
+  if (!rawHtml) return [];
+  const s = String(rawHtml);
+  const badUrls = new Set();
+  const mdLinks = s.matchAll(/\[!\[([^\]]*)\]\(([^)]+)\)\]\(([^)]+)\)/g);
+  for (const [, alt, img, href] of mdLinks) {
+    if (/discord|patreon|ko-?fi|paypal|donate|support|bymeacoffee|twitch|twitter|curseforge|modrinth|github/i.test(href) ||
+        /discord|patreon|ko-?fi|paypal|donate|support/i.test(alt)) {
+      badUrls.add(normImg(img));
+    }
+  }
+  const htmlLinks = s.matchAll(/<a\s+[^>]*href=["']([^"']+)["'][^>]*>[\s\S]*?<img\s+[^>]*src=["']([^"']+)["'][^>]*>[\s\S]*?<\/a>/gi);
+  for (const [, href, src] of htmlLinks) {
+    if (/discord|patreon|ko-?fi|paypal|donate|support|bymeacoffee|twitch|twitter|curseforge|modrinth|github/i.test(href)) {
+      badUrls.add(normImg(src));
+    }
+  }
+  const imgTags = s.matchAll(/<img\s+[^>]*src=["']([^"']+)["'][^>]*alt=["']([^"']+)["']/gi);
+  for (const [, src, alt] of imgTags) {
+    if (/discord|patreon|ko-?fi|paypal|donate|support/i.test(alt)) {
+      badUrls.add(normImg(src));
+    }
+  }
+  const all = [...s.matchAll(/https:\/\/[^\s"')<>]+\.(?:png|jpe?g|gif|webp)(?:\?[^\s"')<>]*)?/gi)].map(m => normImg(m[0]));
+  return [...new Set(all)].filter(u => !badImgUrl(u, slug) && !badUrls.has(u));
+}
 const cleanSearchName = s => String(s || "").split("|")[0].replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, " ").replace(/\s+/g, " ").trim() || String(s || "").replace(/[^\w\s-]/g, " ").replace(/\s+/g, " ").trim();
 const normTitle = s => String(s || "").replace(/([a-z])([A-Z0-9])/g, "$1 $2").replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/&/g, " and ").replace(/\+/g, " plus ").replace(/[^a-z0-9]+/g, " ").trim();
 const norm = s => normTitle(String(s || "").replace(/\(.*?\)|\[.*?\]/g, " "));
@@ -85,7 +109,7 @@ for (let i = 0; i < slugs.length; i += 80) {
     const e = (media[p.slug] ||= {});
     if (e.extra?.length) e.extra = e.extra.filter(u => !badImgUrl(u, p.slug));
     const gal = (p.gallery || []).sort((a, b) => (b.featured - a.featured) || (a.ordering - b.ordering));
-    const body = imgUrls(p.body, p.slug).filter(u => !gal.some(g => g.url === u || g.raw_url === u));
+    const body = gal.length >= 2 ? [] : imgUrls(p.body, p.slug).filter(u => !gal.some(g => g.url === u || g.raw_url === u));
     e.bilder = [...new Set([...gal.map(g => g.url), ...body, ...(e.extra || [])])].slice(0, 16);
     e.hq = [...new Set([...gal.map(g => g.raw_url || g.url), ...body, ...(e.extra || [])])].slice(0, 16);
     e.icon = p.icon_url || null;

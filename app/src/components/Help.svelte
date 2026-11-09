@@ -32,6 +32,14 @@
     <a class="btn primary sm" href="#crash" onclick={() => (ui.view = "crash")}>Zur Absturz-Hilfe →</a>
   </div>
 
+  <div class="card-surface crash-banner" style="background: var(--surface-2); border-color: var(--line-2);">
+    <div>
+      <b>Fotos &amp; Videos kuratieren</b>
+      <p class="muted">Mit unserem interaktiven Prüf-Werkzeug kannst du alle Mod-Bilder und YouTube-Videos durchklicken, unpassende Bilder rauswerfen und deine Auswahl speichern.</p>
+    </div>
+    <a class="btn sm" href="../pruefung/seite.html" target="_blank" rel="noopener">Zur Medien-Prüfung ↗</a>
+  </div>
+
   <h2>Installieren</h2>
   <div class="grid">{#each INST as [t, d]}<div class="card-surface it"><b>{t}</b><p class="muted">{d}</p></div>{/each}</div>
 
