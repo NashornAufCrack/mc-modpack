@@ -27,6 +27,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 20
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -61,7 +63,7 @@ jobs:
             git fetch -q origin main
             if ! git diff --quiet HEAD~1 origin/main -- app; then echo "Neuere Quellen auf main – der nächste Lauf veröffentlicht."; exit 0; fi
             if git diff --quiet HEAD origin/main -- test; then echo "Schon veröffentlicht."; exit 0; fi
-            if git rebase -q origin/main && git push -q origin HEAD:main; then echo "Testseite veröffentlicht."; exit 0; fi
+            if git rebase --autostash -q origin/main && git push -q origin HEAD:main; then echo "Testseite veröffentlicht."; exit 0; fi
             git rebase --abort 2>/dev/null || true
             sleep $((i * 5))
           done
