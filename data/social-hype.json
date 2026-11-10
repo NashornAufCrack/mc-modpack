@@ -4,7 +4,7 @@
     "name": "Remove Stardust Labs Intro Message",
     "pt": "mod",
     "desc": "A datapack/mod to remove the intro message that appears with Stardust Labs projects.",
-    "dl": 4049173,
+    "dl": 4051244,
     "follows": 276,
     "icon": "https://cdn.modrinth.com/data/sk4iFZGy/0844e9e08271943a1c3f4d0e2b57533212ffc2e4_96.webp",
     "gallery": [],
@@ -20,7 +20,7 @@
     "name": "WeatherRefind",
     "pt": "mod",
     "desc": "Replaces vanilla rain & snow with improved, more polished particles. Less visual clutter, more atmosphere.",
-    "dl": 47958,
+    "dl": 48451,
     "follows": 44,
     "icon": "https://cdn.modrinth.com/data/Qyzsewil/708c58dfc8848bad7dc7022b53615c632f9b4e8f_96.webp",
     "gallery": [
@@ -41,7 +41,7 @@
     "name": "Polymer Patch for Enderscape",
     "pt": "mod",
     "desc": "A Polymer Patch mod for Enderscape, allowing it to work fully server side!",
-    "dl": 11970,
+    "dl": 11986,
     "follows": 20,
     "icon": "https://cdn.modrinth.com/data/pR93ykIA/924a2732218a2912877cc2b36636825a2d62e7ef.png",
     "gallery": [
@@ -59,7 +59,7 @@
     "name": "Return my XP farm",
     "pt": "mod",
     "desc": "Always drop experience from zombified piglins if they were angry at player",
-    "dl": 7714,
+    "dl": 7727,
     "follows": 35,
     "icon": "https://cdn.modrinth.com/data/kuRpWzg6/1b8786a186a512597a8c061cfb52d76c09b825b0.png",
     "gallery": [],
@@ -75,7 +75,7 @@
     "name": "Landmines",
     "pt": "mod",
     "desc": "Landmines adds landmines that can explode, teleport, throw potions, and much more!",
-    "dl": 133210,
+    "dl": 133277,
     "follows": 48,
     "icon": "https://cdn.modrinth.com/data/umx3sWHn/6c789b76e035d5585b09e8a351db00d2e7bec57c_96.webp",
     "gallery": [],
@@ -91,8 +91,8 @@
     "name": "Reimagined Intro v3",
     "pt": "mod",
     "desc": "Reimagine your Minecraft startup with a sleek new cinematic sequence!",
-    "dl": 556474,
-    "follows": 657,
+    "dl": 557573,
+    "follows": 659,
     "icon": "https://cdn.modrinth.com/data/BsnF5g7E/eb8770abdaeaa191612c08e737876bb8dafce794.gif",
     "gallery": [],
     "source_video": {
@@ -125,7 +125,7 @@
     "name": "Craftable Gunpowder",
     "pt": "mod",
     "desc": "Craft gunpowder with sand, charcoal and magma blocks (1.20+) or potent sulfur, bone meal and charcoal (26.2+).",
-    "dl": 71481,
+    "dl": 71630,
     "follows": 64,
     "icon": "https://cdn.modrinth.com/data/SKou4IHt/04d408e95add6ab68f71475bd4bda9c5833ab790_96.webp",
     "gallery": [
@@ -143,7 +143,7 @@
     "name": "Seasonal: The wicked harvest (halloween)",
     "pt": "mod",
     "desc": "This mod adds halloween themed content with new mobs, structures and a final boss. After killing the boss you are able to get a scarecrow to work for your farm :)",
-    "dl": 793,
+    "dl": 807,
     "follows": 3,
     "icon": "https://cdn.modrinth.com/data/9Ccufds1/664f39ec84cea3e54dbf51ba1f602972db012987.png",
     "gallery": [
@@ -164,7 +164,7 @@
     "name": "E-LITE shaders (MakeUp edit)",
     "pt": "shader",
     "desc": "A MakeUp - Ultra Fast shaders edit that is highly customizable, beautiful, and fast!",
-    "dl": 1682870,
+    "dl": 1687255,
     "follows": 385,
     "icon": "https://cdn.modrinth.com/data/LTvf5Tji/072376c650c8cec851cae74e2686599454d446f8_96.webp",
     "gallery": [
@@ -185,7 +185,7 @@
     "name": "Faithful Fusion Glowing Ores 64x Addon",
     "pt": "resourcepack",
     "desc": "Addon for Faithful 64x texture pack. Make Ores Glow for non-Optifine users.",
-    "dl": 6783,
+    "dl": 6794,
     "follows": 5,
     "icon": "https://cdn.modrinth.com/data/ph2BmwYS/58244d682337aef22242af72ff8d5c4cf87a8f2d_96.webp",
     "gallery": [
@@ -204,8 +204,8 @@
     "name": "Anti Xray",
     "pt": "resourcepack",
     "desc": "This is a simple resource pack which tries to prevent xray texture packs in 1.15+ when used as a server resource pack.",
-    "dl": 691692,
-    "follows": 141,
+    "dl": 692395,
+    "follows": 142,
     "icon": "https://cdn.modrinth.com/data/L6A5jvYc/56997b4c7d05f70664e024b0c0544d5cdeb6aa93_96.webp",
     "gallery": [
       "https://cdn.modrinth.com/data/L6A5jvYc/images/5ba0d5157bcc3f86dfc91fb0ef6792010230a6bc_350.webp",
@@ -225,7 +225,7 @@
     "name": "Bare Bones PBR x Fresh Animations",
     "pt": "resourcepack",
     "desc": "This pack adds specular texture to Fresh Animations | Reflective and emissive like the trailers !",
-    "dl": 22163,
+    "dl": 22233,
     "follows": 21,
     "icon": "https://cdn.modrinth.com/data/8K3B1T4J/befc1dd4c62b08c347aeee40b60d183a231a2432_96.webp",
     "gallery": [
@@ -242,32 +242,11 @@
     "query": "minecraft 26.3 resource packs showcase"
   },
   {
-    "slug": "fullbright-sp",
-    "name": "Fullbright SP",
-    "pt": "resourcepack",
-    "desc": "Fullbright SP texture pack (Sodium with PolyTone)",
-    "dl": 166281,
-    "follows": 36,
-    "icon": "https://cdn.modrinth.com/data/RgVos2bo/625bf2722e27eb6b50a8eff3eb03c3842437241d_96.webp",
-    "gallery": [
-      "https://cdn.modrinth.com/data/RgVos2bo/images/2a8b9866dc4e9aa9f902d47da110c8821fbf4f03_350.webp",
-      "https://cdn.modrinth.com/data/RgVos2bo/images/ebb2170d4ed045ea971e9cd96ce7441a8555e5d6_350.webp",
-      "https://cdn.modrinth.com/data/RgVos2bo/images/69d666e87d8e555bdad04a8a39bac037774feb99_350.webp",
-      "https://cdn.modrinth.com/data/RgVos2bo/images/f06b121dda3467bd6f0d4af2183170bc2c930caf_350.webp"
-    ],
-    "source_video": {
-      "id": "32YTDalzJvY",
-      "url": "https://www.youtube.com/watch?v=32YTDalzJvY",
-      "title": "FullBright Texture Pack"
-    },
-    "query": "minecraft 26.3 resource packs showcase"
-  },
-  {
     "slug": "experience-orb-optimizer",
     "name": "[EOO] Experience Orb Optimizer",
     "pt": "mod",
     "desc": "A lightweight Minecraft datapack that combines nearby experience orbs to reduce entity clutter and keep XP collection more manageable.",
-    "dl": 36,
+    "dl": 39,
     "follows": 0,
     "icon": "https://cdn.modrinth.com/data/zrHftCh7/e2f09d390cd494de09e35218fd8b72bebca77b8c_96.webp",
     "gallery": [
@@ -278,48 +257,6 @@
       "id": "dLJkOLMjWv8",
       "url": "https://www.youtube.com/watch?v=dLJkOLMjWv8",
       "title": "Introduction"
-    },
-    "query": "minecraft 26.3 datapacks"
-  },
-  {
-    "slug": "dynamic-torches",
-    "name": "Dynamic Lights",
-    "pt": "mod",
-    "desc": "Adds dynamic lights for players, items, mobs, etc.",
-    "dl": 830089,
-    "follows": 665,
-    "icon": "https://cdn.modrinth.com/data/AK1n0IqM/aaafa5ece7b21224016b4c345cd2bcd092b39718_96.webp",
-    "gallery": [
-      "https://cdn.modrinth.com/data/AK1n0IqM/images/c34666665ca6f8c47629e0758d2670c0d020fc1b_350.webp",
-      "https://cdn.modrinth.com/data/AK1n0IqM/images/f0c45513138d64c43f854445d4c43c2788980227_350.webp",
-      "https://cdn.modrinth.com/data/AK1n0IqM/images/28b51c7b159b85893ee287f14069881ad9e944c2_350.webp",
-      "https://cdn.modrinth.com/data/AK1n0IqM/images/c2aa8a4cb1b169d763e59a6c685a7870af326fce_350.webp"
-    ],
-    "source_video": {
-      "id": "ZwmogE_9xmQ",
-      "url": "https://www.youtube.com/watch?v=ZwmogE_9xmQ",
-      "title": "Dynamic Torches"
-    },
-    "query": "minecraft 26.3 datapacks"
-  },
-  {
-    "slug": "explorify",
-    "name": "Explorify",
-    "pt": "mod",
-    "desc": "A simplistic, vanilla-friendly collection of new structures.",
-    "dl": 9967941,
-    "follows": 3271,
-    "icon": "https://cdn.modrinth.com/data/HSfsxuTo/e036a417f857abd937326db5c131296ad88bad5b_96.webp",
-    "gallery": [
-      "https://cdn.modrinth.com/data/HSfsxuTo/images/3299eba2e77e49ae812bd81e766eb1bb0af5f261_350.webp",
-      "https://cdn.modrinth.com/data/HSfsxuTo/images/278adc1fef24355d7160e532457ce13526a671a2_350.webp",
-      "https://cdn.modrinth.com/data/HSfsxuTo/images/0cc3e69a1833012c81216aba81b6260eb79dd5d1_350.webp",
-      "https://cdn.modrinth.com/data/HSfsxuTo/images/8d98154623fba550b5b865417fdb87e5edf44dbf_350.webp"
-    ],
-    "source_video": {
-      "id": "ZwmogE_9xmQ",
-      "url": "https://www.youtube.com/watch?v=ZwmogE_9xmQ",
-      "title": "Explorify"
     },
     "query": "minecraft 26.3 datapacks"
   }
