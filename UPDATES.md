@@ -1,6 +1,6 @@
 # Update-Stand (26.3)
 
-Zuletzt geprüft: 2026-11-09
+Zuletzt geprüft: 2026-11-10
 
 ## Neue Versionen in den letzten 7 Tagen (automatisch übernommen)
 
@@ -30,6 +30,20 @@ Zuletzt geprüft: 2026-11-09
 - 2026-11-09: **Easy Shulker Boxes** (Mod) 26.3.3 → 26.3.4
 - 2026-11-09: **EMF Compat: Core** (Mod) 2.3.2 → 2.4.0
 - 2026-11-09: **the-one-probe** (Mod) 26.3-16.0.1-fabric → 26.3-16.0.2-fabric
+- 2026-11-10: **Fabric API** (Mod) 0.165.2+26.3 → 0.166.0+26.3
+- 2026-11-10: **Punchy!** (Mod) 3.2 → 3.2a
+- 2026-11-10: **Offgrid** (Mod) 1.0.5+26.3-fabric → 1.0.6+26.3-fabric
+- 2026-11-10: **Collective** (Mod) 26.3.0-8.84-fabric+forge+neo → 26.3.0-8.85-fabric+forge+neo
+- 2026-11-10: **Elytra Trims** (Mod) 4.9.1 → 4.9.2
+- 2026-11-10: **clientcommands** (Mod) 2.16.3 → 2.16.4
+- 2026-11-10: **Lanterns Belong on Walls** (Mod) 3.4.0+26.3-fabric → 3.5.0+26.3-fabric
+- 2026-11-10: **fancymenu** (Mod) 3.9.14-26.3-fabric → 3.10.0-26.3-fabric
+- 2026-11-10: **azurelib** (Mod) 4.1.7 → 4.1.8
+- 2026-11-10: **Peek** (Mod) fabric-1.6.0+26.3 → fabric-1.6.1+26.3 (beta)
+- 2026-11-10: **MezzConfig** (Mod) 0.6.11 → 0.7.1 (beta)
+- 2026-11-10: **sophies-enchants** (Resource Pack) 2.3.0 → 2.3.1
+- 2026-11-10: **realiscraft-je-realistic-default-textures-1.1.0** (Resource Pack) 1.42.0 → 1.42.1
+- 2026-11-10: **Shiroi Visuals** (Shader) 26.3.10 → 26.3.11
 
 
 ## Verfügbar, aber nicht automatisch übernommen (16)
@@ -52,7 +66,7 @@ Zuletzt geprüft: 2026-11-09
 - Pegasus Shaders: 0.5 → 0.8.1 (nur als beta)
 
 
-## Ohne neue Version seit über einer Woche (647)
+## Ohne neue Version seit über einer Woche (656)
 
 Sortiert nach Alter der aktuellen Datei.
 
@@ -167,7 +181,6 @@ Sortiert nach Alter der aktuellen Datei.
 - BetterHurtCam: 1.15.0+mc26.3-fabric (seit 2026-09-15)
 - Skin Shuffle: 2.14.0+26.3-fabric (seit 2026-09-15)
 - Axes Are Weapons: 1.11.0-fabric-26.3 (seit 2026-09-15)
-- Peek: fabric-1.6.0+26.3 (seit 2026-09-15)
 - WITS (What Is This Structure?): 1.4.3+26.3-fabric (seit 2026-09-15)
 - Fast Better Grass: 26.3 (seit 2026-09-15)
 - Emissive Trims: 1.6 (seit 2026-09-15)
@@ -416,7 +429,6 @@ Sortiert nach Alter der aktuellen Datei.
 - Enchantment Descriptions: 26.3.0.2 (seit 2026-09-27)
 - Litematica: 0.29.1 (seit 2026-09-27)
 - Tweakeroo: 0.30.1 (seit 2026-09-27)
-- Elytra Trims: 4.9.1 (seit 2026-09-27)
 - Item Scroller: 0.33.1 (seit 2026-09-27)
 - Naturally Trimmed: 3.6.1 (seit 2026-09-27)
 - Distinct Potions: 26.3.0 (seit 2026-09-27)
@@ -593,7 +605,6 @@ Sortiert nach Alter der aktuellen Datei.
 - AmbientSounds: 6.3.11 (seit 2026-10-19)
 - Immersive UI: 0.3.7+26.3 (seit 2026-10-19)
 - Double Doors: 26.3.0-7.5-fabric+forge+neo (seit 2026-10-19)
-- clientcommands: 2.16.3 (seit 2026-10-19)
 - Interactive Foliage: 2.2.1-fabric+26.3 (seit 2026-10-19)
 - Day Counter 🌞✅: 121.0+mod (seit 2026-10-19)
 - Bray's Better Bow & Arrows: 1.2.5 (seit 2026-10-19)
@@ -675,7 +686,6 @@ Sortiert nach Alter der aktuellen Datei.
 - Hyper Punchy: 2.8 (seit 2026-10-29)
 - Just 3D Potions (Punchy!): 1.2 (seit 2026-10-29)
 - Refined Buckets: 3.0 (seit 2026-10-29)
-- Shiroi Visuals: 26.3.10 (seit 2026-10-29)
 - Fancy World Animations: 1.3.4 (seit 2026-10-30)
 - Fast Noise: 1.1.2+26.3 (seit 2026-10-30)
 - Underlay: 1.0.5-hotfix.1 (seit 2026-10-30)
@@ -703,4 +713,17 @@ Sortiert nach Alter der aktuellen Datei.
 - BetterNether: 26.302.1 (seit 2026-11-01)
 - Fresh Animations: 1.11.2 (seit 2026-11-01)
 - Fresh Seeds: 1.3.2 (seit 2026-11-01)
+- Better Clouds: 1.15.0 (seit 2026-11-02)
+- Little Joys: 26.3.0.2+fabric-26.3 (seit 2026-11-02)
+- Waystones: 26.3.0.2+fabric-26.3 (seit 2026-11-02)
+- Spooky Doors: 26.3.0.2+fabric-26.3 (seit 2026-11-02)
+- TrashSlot: 26.3.0.2+fabric-26.3 (seit 2026-11-02)
+- Snow: 3.0.1+26.3-fabric (seit 2026-11-02)
+- 2D Projectiles ➵: 1.1.1 (seit 2026-11-02)
+- ChunkDebug: 2.9.1+26.3 (seit 2026-11-02)
+- Traveler's Backpack: 26.3-11.4.3 (seit 2026-11-02)
+- YDM's MobHealthBar: fabric-26.3-2.3.4 (seit 2026-11-02)
+- Fluid & Foolish: 1.0.1 (seit 2026-11-02)
+- Beautiful Enchanted Books: 9.0.0 (seit 2026-11-02)
+- Solas: 3.9 (seit 2026-11-02)
 

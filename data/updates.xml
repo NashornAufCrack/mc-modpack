@@ -6,7 +6,14 @@
   <atom:link href="https://nashornaufcrack.github.io/mc-modpack/data/updates.xml" rel="self" type="application/rss+xml"/>
   <description>Neue Versionen der Mods, Shader, Resource Packs und Datapacks im Mod-Katalog (Minecraft 26.3, Fabric). Täglich geprüft.</description>
   <language>de-de</language>
-  <lastBuildDate>Mon, 09 Nov 2026 13:51:43 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 10 Nov 2026 13:26:38 GMT</lastBuildDate>
+  <item>
+    <title>10.11.2026: 14 neue Versionen</title>
+    <link>https://nashornaufcrack.github.io/mc-modpack/neu/#updates</link>
+    <guid isPermaLink="false">mc-modpack-updates-2026-11-10</guid>
+    <pubDate>Tue, 10 Nov 2026 12:00:00 GMT</pubDate>
+    <description>&lt;ul&gt;&lt;li&gt;&lt;b&gt;Fabric API&lt;/b&gt; (Mod): 0.165.2+26.3 → 0.166.0+26.3&lt;/li&gt;&lt;li&gt;&lt;b&gt;Punchy!&lt;/b&gt; (Mod): 3.2 → 3.2a&lt;/li&gt;&lt;li&gt;&lt;b&gt;Offgrid&lt;/b&gt; (Mod): 1.0.5+26.3-fabric → 1.0.6+26.3-fabric&lt;/li&gt;&lt;li&gt;&lt;b&gt;Collective&lt;/b&gt; (Mod): 26.3.0-8.84-fabric+forge+neo → 26.3.0-8.85-fabric+forge+neo&lt;/li&gt;&lt;li&gt;&lt;b&gt;Elytra Trims&lt;/b&gt; (Mod): 4.9.1 → 4.9.2&lt;/li&gt;&lt;li&gt;&lt;b&gt;clientcommands&lt;/b&gt; (Mod): 2.16.3 → 2.16.4&lt;/li&gt;&lt;li&gt;&lt;b&gt;Lanterns Belong on Walls&lt;/b&gt; (Mod): 3.4.0+26.3-fabric → 3.5.0+26.3-fabric&lt;/li&gt;&lt;li&gt;&lt;b&gt;fancymenu&lt;/b&gt; (Mod): 3.9.14-26.3-fabric → 3.10.0-26.3-fabric&lt;/li&gt;&lt;li&gt;&lt;b&gt;azurelib&lt;/b&gt; (Mod): 4.1.7 → 4.1.8&lt;/li&gt;&lt;li&gt;&lt;b&gt;Peek&lt;/b&gt; (Mod): fabric-1.6.0+26.3 → fabric-1.6.1+26.3 (beta)&lt;/li&gt;&lt;li&gt;&lt;b&gt;MezzConfig&lt;/b&gt; (Mod): 0.6.11 → 0.7.1 (beta)&lt;/li&gt;&lt;li&gt;&lt;b&gt;sophies-enchants&lt;/b&gt; (Resource Pack): 2.3.0 → 2.3.1&lt;/li&gt;&lt;li&gt;&lt;b&gt;realiscraft-je-realistic-default-textures-1.1.0&lt;/b&gt; (Resource Pack): 1.42.0 → 1.42.1&lt;/li&gt;&lt;li&gt;&lt;b&gt;Shiroi Visuals&lt;/b&gt; (Shader): 26.3.10 → 26.3.11&lt;/li&gt;&lt;/ul&gt;</description>
+  </item>
   <item>
     <title>09.11.2026: 4 neue Versionen</title>
     <link>https://nashornaufcrack.github.io/mc-modpack/neu/#updates</link>

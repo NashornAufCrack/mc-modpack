@@ -675,7 +675,7 @@
 "sha1": "26ec39bbd57936d7a1356218cff71b2eaef22b8e",
 "ok": true,
 "grund": "nicht pr\u00fcfbar: could not convert string to float: '97.1.3'",
-"versuche": 1
+"versuche": 2
 },
 "night-vision": {
 "sha1": "3dd6355f3e58a99ee3dc74081693af036f526ee3",
@@ -688,7 +688,7 @@
 "sha1": "c11d50686421335f1f54cae6c3878580faaf0360",
 "ok": true,
 "grund": "nicht pr\u00fcfbar: could not convert string to float: '97.1.0'",
-"versuche": 1
+"versuche": 2
 },
 "ashen": {
 "sha1": "a3645a8233ee6acbb4206cba7a411af15867729b",
@@ -806,7 +806,7 @@
 "sha1": "645e8e898db03a037ccc8c24e2dfb85cd1d96cec",
 "ok": true,
 "grund": "nicht pr\u00fcfbar: Extra data: line 8 column 1 (char 152)",
-"versuche": 1
+"versuche": 2
 },
 "actually-3d-stuff": {
 "sha1": "f1a414190b379292602a3f01c0add6e733fe3849",
@@ -851,7 +851,7 @@
 "grund": ""
 },
 "sophies-enchants": {
-"sha1": "4733f306837abaa1dac1399badc2efa9d1b60817",
+"sha1": "bb2e51eddc3ab1c0dc65001f33bdfc7c3ac60a7d",
 "ok": true,
 "von": 88.0,
 "bis": 900.0,
@@ -1299,7 +1299,7 @@
 "grund": ""
 },
 "realiscraft-je-realistic-default-textures-1.1.0": {
-"sha1": "e160cf45273fb4243f4963c6bef8aa432d01f22a",
+"sha1": "56a5e926649929400bcb2f8b45a4a3d395da10bb",
 "ok": true,
 "von": 65.0,
 "bis": 99.0,
