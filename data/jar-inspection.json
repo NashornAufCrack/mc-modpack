@@ -258,8 +258,8 @@
     "conflicts": {}
   },
   "fabric-api": {
-    "sha1": "2e364989e3f6efb97e1dbd12d80d835c7ab8c26c",
-    "version": "0.165.2+26.3",
+    "sha1": "7f16cfcd4ef3d225a21417907634957787b31a5f",
+    "version": "0.166.0+26.3",
     "mod_id": "fabric-api",
     "depends": {
       "fabricloader": ">=0.19.3",
@@ -1196,8 +1196,8 @@
     "conflicts": {}
   },
   "punchy-fpa": {
-    "sha1": "4e86a618be58060a3c2c9c85f7ff7947abce3c89",
-    "version": "3.2",
+    "sha1": "88b1c00d2bacfbe2dcd0e2badbd1a1785c26ba6d",
+    "version": "3.2a",
     "mod_id": "punchy",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -2870,8 +2870,8 @@
     "conflicts": {}
   },
   "offgrid": {
-    "sha1": "2cc45e65a6926e153f39c3e07817e7bd2c230575",
-    "version": "1.0.5+26.3-fabric",
+    "sha1": "652cbf47b1ee4f9a2c6fd2fd658811711c0fcfa9",
+    "version": "1.0.6+26.3-fabric",
     "mod_id": "offgrid",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -3044,8 +3044,8 @@
     "conflicts": {}
   },
   "collective": {
-    "sha1": "462a9df24a81a468ccd6c6e2f545d484222af4b3",
-    "version": "26.3.0-8.84-fabric+forge+neo",
+    "sha1": "045608f49a49d4baa395afc9a4212ac190db894b",
+    "version": "26.3.0-8.85-fabric+forge+neo",
     "mod_id": "collective",
     "depends": {
       "fabricloader": ">=0.19.0",
@@ -4870,8 +4870,8 @@
     "conflicts": {}
   },
   "elytra-trims": {
-    "sha1": "76553c51e0a4268e482d0a97711891f4e2a5bc36",
-    "version": "4.9.1",
+    "sha1": "fa188b5ae3b6d384533f8045a865fca6e5751a48",
+    "version": "4.9.2",
     "mod_id": "elytratrims",
     "depends": {
       "fabricloader": ">=0.19.0",
@@ -6780,8 +6780,8 @@
     "conflicts": {}
   },
   "client-commands": {
-    "sha1": "b1b136006dd5a65d6e0061b9d5d287830ef69b02",
-    "version": "2.16.3",
+    "sha1": "3d3f9899e12c7a7f7860c87945c06d1827402056",
+    "version": "2.16.4",
     "mod_id": "clientcommands",
     "depends": {
       "minecraft": "26.3",
@@ -7324,8 +7324,8 @@
     "conflicts": {}
   },
   "lanterns-bow": {
-    "sha1": "c3b05279318d318d36f062116875c3dbe220f03a",
-    "version": "3.4.0+26.3-fabric",
+    "sha1": "296825d2abf0f32d078765fe15e2cf110b289b9c",
+    "version": "3.5.0+26.3-fabric",
     "mod_id": "walllanterns",
     "depends": {
       "fabricloader": ">=0.18.4",
@@ -8289,8 +8289,8 @@
     "conflicts": {}
   },
   "fancymenu": {
-    "sha1": "0610f18c4f35521e8d378ba3eef41f2c496f1e61",
-    "version": "3.9.14-26.3-fabric",
+    "sha1": "5b66f6facc2418b956bf02b99be2660f8622eec1",
+    "version": "3.10.0-26.3-fabric",
     "mod_id": "fancymenu",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -8306,16 +8306,16 @@
       "fmextension_audio": "*",
       "fmextension_video": "*",
       "rrls": "<4.0.1",
-      "watermedia": "<3.0.0.22",
-      "wm_binaries": "<3.0.0.5",
-      "wakes": "*"
+      "watermedia": "<3.0.1",
+      "watermedia_binaries": "<3.0.1",
+      "wakes": "<0.7.3"
     },
     "recommends": {},
     "suggests": {
       "rinku": ">=3.0.5",
       "fancy_entity_renderer": ">=0.5.4",
-      "watermedia": ">=3.0.0.22",
-      "wm_binaries": ">=3.0.0.5"
+      "watermedia": ">=3.0.1",
+      "watermedia_binaries": ">=3.0.1"
     },
     "conflicts": {}
   },
@@ -8870,8 +8870,8 @@
     "conflicts": {}
   },
   "azurelib": {
-    "sha1": "847939d553c07cc95ce2a8d4826fa10bcf227799",
-    "version": "4.1.7",
+    "sha1": "d6dfcb8be6a7ca800ab5332091cd657c9ae25673",
+    "version": "4.1.8",
     "mod_id": "azurelib",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -11896,20 +11896,22 @@
     "conflicts": {}
   },
   "peek": {
-    "sha1": "ad6e1ef2257271cdd1cedeb32cddcab20b985689",
-    "version": "fabric-1.6.0+26.3",
+    "sha1": "c376c5f543e9aaa674d6fcd367f7beaa25151c78",
+    "version": "fabric-1.6.1+26.3",
     "mod_id": "peek",
     "depends": {
       "fabricloader": ">=0.19.3",
       "minecraft": "26.3.x"
     },
     "breaks": {
-      "fabric-api": "<0.160.5+26.3"
+      "fabric-api": "<0.160.5+26.3",
+      "betterblockentities": "<1.4.1+mc26.3"
     },
     "recommends": {},
     "suggests": {
-      "modmenu": ">=21.0.0-alpha.1",
-      "cloth-config2": ">=26.2.155"
+      "modmenu": ">=21.0.0",
+      "cloth-config2": ">=26.3.159",
+      "betterblockentities": ">=1.4.1+mc26.3"
     },
     "conflicts": {
       "enhancedblockentities": "*"
@@ -12635,8 +12637,8 @@
     "conflicts": {}
   },
   "mezzconfig": {
-    "sha1": "13fbc4c8700ffaeb1558b8d3082c3f648d350e1d",
-    "version": "0.6.11",
+    "sha1": "f09148f35a8c672d27160f19a0e7ded0db8ba8e8",
+    "version": "0.7.1",
     "mod_id": "mezz_config",
     "depends": {
       "fabricloader": ">=0.19.0",
