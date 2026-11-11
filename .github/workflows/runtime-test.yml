@@ -107,16 +107,55 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y mesa-utils libgl1-mesa-dri libglx-mesa0 libosmesa6 xvfb
+          echo "LIBGL_ALWAYS_SOFTWARE=1" >> "$GITHUB_ENV"
+          echo "GALLIUM_DRIVER=llvmpipe" >> "$GITHUB_ENV"
+          echo "SDL_VIDEO_DRIVER=x11" >> "$GITHUB_ENV"
+          echo "SDL_VIDEODRIVER=x11" >> "$GITHUB_ENV"
+          echo "SDL_OPENGL_FORCE_SRGB_FRAMEBUFFER=skip" >> "$GITHUB_ENV"
           echo "=== GLXINFO TEST IN XVFB ==="
           xvfb-run -a -s "-screen 0 1920x1080x24 +extension GLX +render -noreset" glxinfo | grep -E "OpenGL|direct rendering|server glx" || true
+          echo "=== SDL / GLX VISUAL CHECK ==="
+          xvfb-run -a -s "-screen 0 1920x1080x24 +extension GLX +render -noreset" python3 -c '
+          import ctypes
+          try:
+              gl = ctypes.CDLL("libGL.so.1")
+              x11 = ctypes.CDLL("libX11.so.6")
+              disp = x11.XOpenDisplay(None)
+              if disp:
+                  screen = x11.XDefaultScreen(disp)
+                  GLX_RENDER_TYPE = 0x8011
+                  GLX_RGBA_BIT = 0x00000001
+                  GLX_RED_SIZE = 8
+                  GLX_GREEN_SIZE = 9
+                  GLX_BLUE_SIZE = 10
+                  GLX_DEPTH_SIZE = 12
+                  GLX_DOUBLEBUFFER = 5
+                  GLX_FRAMEBUFFER_SRGB_CAPABLE_ARB = 0x20B2
+                  
+                  # 1. Ohne sRGB
+                  a1 = (ctypes.c_int * 13)(GLX_RENDER_TYPE, GLX_RGBA_BIT, GLX_RED_SIZE, 3, GLX_GREEN_SIZE, 3, GLX_BLUE_SIZE, 2, GLX_DEPTH_SIZE, 16, GLX_DOUBLEBUFFER, 1, 0)
+                  c1 = ctypes.c_int(0)
+                  gl.glXChooseFBConfig.restype = ctypes.c_void_p
+                  r1 = gl.glXChooseFBConfig(disp, screen, a1, ctypes.byref(c1))
+                  print(f"  -> FBConfigs OHNE sRGB: {c1.value}")
+                  
+                  # 2. Mit sRGB
+                  a2 = (ctypes.c_int * 15)(GLX_RENDER_TYPE, GLX_RGBA_BIT, GLX_RED_SIZE, 3, GLX_GREEN_SIZE, 3, GLX_BLUE_SIZE, 2, GLX_DEPTH_SIZE, 16, GLX_DOUBLEBUFFER, 1, GLX_FRAMEBUFFER_SRGB_CAPABLE_ARB, 1, 0)
+                  c2 = ctypes.c_int(0)
+                  r2 = gl.glXChooseFBConfig(disp, screen, a2, ctypes.byref(c2))
+                  print(f"  -> FBConfigs MIT sRGB: {c2.value}")
+          except Exception as e:
+              print("Check failed:", e)
+          ' || true
 
       - name: Headless Minecraft Client starten (Xvfb + mc-runtime-test)
         uses: headlesshq/mc-runtime-test@5.0.0
         env:
           LIBGL_ALWAYS_SOFTWARE: "1"
           GALLIUM_DRIVER: "llvmpipe"
-          MESA_GL_VERSION_OVERRIDE: "4.5"
-          MESA_GLSL_VERSION_OVERRIDE: "450"
+          SDL_VIDEO_DRIVER: "x11"
+          SDL_VIDEODRIVER: "x11"
+          SDL_OPENGL_FORCE_SRGB_FRAMEBUFFER: "skip"
         with:
           mc: "26.3"
           modloader: "fabric"
