@@ -5,7 +5,14 @@ import { AUTO_RULES } from "./auto-cfg";
 export const RPRANK: string[][] = [
   // 0: Spezifische Standalone-Fixes / Erweiterungen ganz oben
   ["fresh-flower-pots-rotated", "fresh-flower-pots", "fresh-skeleton-physics", "als-creepers-revamped"],
-  // 1: Fresh Animations Addons & Extensions (müssen VOR Fresh Animations geladen werden)
+  // 1: GUI, Interface, HUD, Menüs, Icons & Übersetzungen (Ganz oben, damit keine Texturpakete wie Nature X oder Faithful Menüs/Fonts überschreiben)
+  [
+    "icons", "clearer-slot-highlight", "enhanced-boss-bars", "hardcore-hearts",
+    "no-pumpkin-blur", "unique-dark", "cozyui-plus", "default-dark-mode",
+    "recolourful-containers-gui", "redstone-tweaks", "translations-for-sodium",
+    "shrimps-immersive-interfaces", "immersive-interfaces-mod-support-unofficial"
+  ],
+  // 2: Fresh Animations Addons & Extensions (müssen VOR Fresh Animations geladen werden)
   [
     "fresh-animations-extensions", "fa-player-extension", "just-expressions", "detailed-animations",
     "als-piglins-revamped-x-fresh-animations", "als-zombies-revamped-x-fresh-animations",
@@ -15,15 +22,15 @@ export const RPRANK: string[][] = [
     "brays-zombie-overhaul-fresh-animations", "whimscape-x-fresh-animations",
     "als-boss-rush-x-fresh-animations", "excalibur-fresh-animations"
   ],
-  // 2: Fresh Animations Core
+  // 3: Fresh Animations Core
   ["fresh-animations"],
-  // 3: Hand- & Ess-Animationen, Punchy-Addons
+  // 4: Hand- & Ess-Animationen, Punchy-Addons
   [
     "fresh-food-for-hyper-punchy", "3d-flint-steel-for-punchy", "drigo-3d-lanterns-x-punchy",
     "animated-3d-wind-charge-compatible-with-punchy", "hyper-punchy", "fluid-foolish",
     "theones-eating-animation-pack"
   ],
-  // 4: 3D-Items, Ausrüstung, Werkzeuge, Held Items & Mobs
+  // 5: 3D-Items, Ausrüstung, Werkzeuge, Held Items & Mobs
   [
     "brays-better-3d-bow", "amazing-mace-3d", "blockier-goat-horn", "animated-totem-of-undying",
     "glowing-3d-totem", "small-shield-totem", "small-held-items", "low-shield-pack",
@@ -33,11 +40,11 @@ export const RPRANK: string[][] = [
     "luminous-lanterns", "tools-and-utils", "bray-cyber-3d-enchanted-books",
     "nautilus3d", "animated-doors", "spooky-doors", "swinging-lanterns", "mob-crates"
   ],
-  // 5: Spezifische Shader-, Polytone- & Partikel-Vegetation (höchste Priorität bei Laub & Natur)
+  // 6: Spezifische Shader-, Polytone- & Partikel-Vegetation (höchste Priorität bei Laub & Natur)
   [
     "rainbows-foliage", "sunbathing-godrays", "visual-effects-plus"
   ],
-  // 6: Spezifische 3D-Weltblöcke, Vegetation, Laub, Möbel & Wege (überschreiben generische 3D-Packs)
+  // 7: Spezifische 3D-Weltblöcke, Vegetation, Laub, Möbel & Wege (überschreiben generische 3D-Packs)
   [
     "fwa", "better-lanterns", "better-candles", "torches-reimagined", "weskersons-torches",
     "rays-3d-rails", "minecarts-with-wheels", "3d-ladders", "rays-3d-ladders",
@@ -48,11 +55,11 @@ export const RPRANK: string[][] = [
     "better-moss", "fluffy-carpets", "emissive-trims",
     "animated-items", "xk-redstone-display", "excalibur-lootr-support"
   ],
-  // 7: Generische 3D-Welt & Block-Overhauls (Basis unter den spezifischen Packs)
+  // 8: Generische 3D-Welt & Block-Overhauls (Basis unter den spezifischen Packs)
   [
     "actually-3d-stuff", "nature-x", "3d-default"
   ],
-  // 8: Optische Effekte, Glühen, Partikel, Verzauberungen & Himmel
+  // 9: Optische Effekte, Glühen, Partikel, Verzauberungen & Himmel
   [
     "jutting-ores", "animated-ore", "subtly-glowing-ores", "new-glowing-ores",
     "glowing-glints", "visual-enchantments", "even-better-enchants", "beautiful-enchanted-books",
@@ -61,13 +68,6 @@ export const RPRANK: string[][] = [
     "blinking-ender-eyes", "low-on-fire", "low-fire-pack",
     "dramatic-skys", "default-hd-sun-and-moon"
   ],
-  // 9: GUI, HUD, Menüs, Icons & Übersetzungen (Icons oben, damit Fonts nicht überschrieben werden)
-  [
-    "icons", "clearer-slot-highlight", "enhanced-boss-bars", "hardcore-hearts",
-    "no-pumpkin-blur", "unique-dark", "cozyui-plus", "default-dark-mode",
-    "recolourful-containers-gui", "redstone-tweaks", "translations-for-sodium",
-    "shrimps-immersive-interfaces", "immersive-interfaces-mod-support-unofficial"
-  ],
   // 10: Audio & Geräusche
   ["vvi", "enhanced-audio", "gentler-weather-sounds"],
   // 11: Basis-Texturen / Komplett-Overhauls
@@ -75,17 +75,17 @@ export const RPRANK: string[][] = [
 ];
 
 function fallbackRank(s: string): number {
-  if (/fresh-animations|-fa-/.test(s)) return 1;
-  if (/punchy/.test(s)) return 3;
-  if (/3d|model|item|totem|bow|mace|sword|armor|tool/.test(s)) return 4;
-  if (/rainbow|polytone|godray/.test(s)) return 5;
-  if (/crop|leaf|leaves|grass|bush|tree|wood|rock|path|block|glass/.test(s)) return 6;
-  if (/nature-x|actually-3d/.test(s)) return 7;
-  if (/ore|glint|glow|enchant|flame|fire|sky|sun|moon|eye|effect/.test(s)) return 8;
-  if (/gui|ui|dark|icon|hud|bar|heart|menu|translat/.test(s)) return 9;
+  if (/gui|ui|dark|icon|hud|bar|heart|menu|translat/.test(s)) return 1;
+  if (/fresh-animations|-fa-/.test(s)) return 2;
+  if (/punchy/.test(s)) return 4;
+  if (/3d|model|item|totem|bow|mace|sword|armor|tool/.test(s)) return 5;
+  if (/rainbow|polytone|godray/.test(s)) return 6;
+  if (/crop|leaf|leaves|grass|bush|tree|wood|rock|path|block|glass/.test(s)) return 7;
+  if (/nature-x|actually-3d/.test(s)) return 8;
+  if (/ore|glint|glow|enchant|flame|fire|sky|sun|moon|eye|effect/.test(s)) return 9;
   if (/sound|audio|weather|voice/.test(s)) return 10;
   if (/vanilla|faithful|overhaul|pack/.test(s)) return 11;
-  return 8;
+  return 9;
 }
 
 export function rpAuto(rps: string[]) {
