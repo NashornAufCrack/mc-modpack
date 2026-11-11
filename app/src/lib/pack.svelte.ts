@@ -563,7 +563,7 @@ class Pack {
   cv(slug: string, k: string) { const def = (slug === "_base" ? BASE : (SETDEF as any)[slug]).items.find((i: any) => i.k === k); return this.cfg[slug] && k in this.cfg[slug] ? this.cfg[slug][k] : def.d; }
   setCv(slug: string, k: string, v: any) { this.cfg = { ...this.cfg, [slug]: { ...(this.cfg[slug] || {}), [k]: v } }; this.save(); }
   resetCv(slug: string, k: string) { const c = { ...(this.cfg[slug] || {}) }; delete c[k]; this.cfg = { ...this.cfg, [slug]: c }; this.save(); }
-  ramGB(r = this.resolve(), sys = Number(this.wiz.ram || 0)) { const n = r.mods.size + r.libs.size; let g = n < 60 ? 4 : n < 120 ? 6 : n < 250 ? 8 : 10; if (r.mods.has("voxy") || r.mods.has("distanthorizons")) g += 1; if (r.mods.has("faithful-64x")) g += 1; if (sys) g = Math.min(g, Math.floor(sys / 2)); return Math.max(3, Math.min(g, 12)); }
+  ramGB(r = this.resolve(), sys = Number(this.wiz.ram || 0)) { const n = r.mods.size + r.libs.size; let g = n < 60 ? 4 : n < 120 ? 6 : n < 250 ? 8 : 10; if (r.mods.has("voxy") || r.mods.has("distanthorizons")) g += 1; if (r.mods.has("faithful-64x")) g += 1; if (sys) g = Math.min(g, Math.floor(sys / 2)); return Math.max(3, Math.min(g, 10)); }
   load_() { const c = [...this.resolve().mods].filter(s => !this.LOCKED.has(s)).reduce((a, s) => a + this.cost(s), 0); return { c, l: c < 15 ? "Leicht" : c < 30 ? "Mittel" : "Schwer", t: c < 15 ? "ok" : c < 30 ? "warn" : "bad" }; }
   // Server-Pack: Werkzeuge einzeln wählbar. Vorauswahl: harmlose ja, „nichtAuto“ nur, wenn im Pack gewählt
   srvTools(r = this.resolve()) { return this.data.mods.filter(m => m.cat === "S" && this.data.files[m.slug] && (m.slug !== "voxy-server-side" || r.mods.has("voxy"))); }
