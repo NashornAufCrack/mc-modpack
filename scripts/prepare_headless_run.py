@@ -18,7 +18,14 @@ RUN_DIR = BASE_DIR / "run"
 
 # Mods, die auf Headless-Cloud-Servern ohne physische Grafikkarte (Vulkan/Mesh-Shader)
 # übersprungen werden müssen (werden lokal auf der RTX 3080 getestet)
-GPU_EXCLUSIVE = {"voxy", "voxy-server-side", "voxy-seam-fix"}
+GPU_EXCLUSIVE = {
+    "voxy",
+    "voxy-server-side",
+    "voxy-seam-fix",
+    "voxy-extra",
+    "voxy-worldgen",
+    "nvidium",
+}
 
 def load_data():
     with open(DATA_DIR / "files.json", "r", encoding="utf-8") as f:
