@@ -6,8 +6,12 @@ oder Versuch, dieselbe Mod als Datapack hinzuzufügen) strikt aus.
 Kategorisiert übersichtlich in Gameplay, Resource Packs, Shader, Datapacks & Social-Hypes.
 """
 
+import sys
 import json
 import re
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
 from pathlib import Path
 
 REPO_DIR = Path(__file__).resolve().parent.parent

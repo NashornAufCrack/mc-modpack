@@ -12,6 +12,9 @@ Fügt einen bestätigten Kandidaten vollautomatisch in den Katalog ein:
 
 import sys
 import json
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
 import urllib.request
 import urllib.parse
 import re
