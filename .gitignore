@@ -2,3 +2,5 @@ qa/node_modules/
 qa/out/
 __pycache__/
 *.pyc
+run/
+

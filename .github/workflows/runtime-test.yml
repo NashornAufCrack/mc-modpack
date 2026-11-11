@@ -1,22 +1,125 @@
 name: Runtime-Start-Test
-# Prüft alle Vorlagen und Packs mit dem echten Fabric Loader Resolver auf Startfähigkeit.
-# Erkennt sofort Inkompatibilitäten, Mixin-Kollisionen und falsche Minecraft-Versionen.
+# Prüft Packs auf Startfähigkeit, Mixin-Kollisionen, Resource Packs und Chunks.
+# Job 1: Statischer 2-Sekunden Pre-Check (Abhängigkeiten, Mixins, Breaks)
+# Job 2: Headless Client Boot & Stresstest (Xvfb, Weltbeitritt, Chunk-Flug, Mobs, 3D-Items)
+
 on:
   push:
     paths:
       - "data/files.json"
+      - "data/mods.json"
       - "data/app-data.json"
-      - "data/jar-inspection.json"
       - "scripts/solve_pack_compatibility.py"
+      - "scripts/prepare_headless_run.py"
       - ".github/workflows/runtime-test.yml"
   workflow_dispatch:
+    inputs:
+      preset:
+        description: "Preset zu testen (plus, visual, perf, oder custom)"
+        required: false
+        default: "plus"
+        type: choice
+        options:
+          - plus
+          - visual
+          - perf
+          - custom
+      mods:
+        description: "Kommagetrennte Liste oder JSON von Mod-Slugs (wenn custom)"
+        required: false
+        default: ""
+        type: string
+      resourcepacks:
+        description: "Kommagetrennte Liste oder JSON von Resource-Pack-Slugs"
+        required: false
+        default: ""
+        type: string
+
+concurrency:
+  group: runtime-test-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
 jobs:
-  fabric-runtime-check:
+  static-precheck:
+    name: "1. Statischer Kompatibilitäts- & Mixin-Precheck"
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Python 3.11 einrichten
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: "Fabric Loader Kompatibilitäts- und Kollisionstest aller Packs"
+
+      - name: Fabric Resolver & Kollisionstest ausführen
         run: python3 scripts/solve_pack_compatibility.py
+
+  headless-runtime-test:
+    name: "2. Headless Client-Stresstest (Welt-Flug & Resource Packs)"
+    needs: static-precheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Python 3.11 einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Java 21 (Temurin) einrichten
+        uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: "temurin"
+
+      - name: Mod-JARs cachen
+        uses: actions/cache@v4
+        with:
+          path: run/mods
+          key: mc-mods-26-3-${{ hashFiles('data/files.json') }}
+          restore-keys: |
+            mc-mods-26-3-
+
+      - name: Resource-Pack-ZIPs cachen
+        uses: actions/cache@v4
+        with:
+          path: run/resourcepacks
+          key: mc-rps-26-3-${{ hashFiles('data/files.json') }}
+          restore-keys: |
+            mc-rps-26-3-
+
+      - name: Test-Umgebung vorbereiten (Mods, Resource Packs, options.txt & Stress-Datapack)
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.preset }}" = "custom" ]; then
+            python3 scripts/prepare_headless_run.py --mods "${{ inputs.mods }}" --resourcepacks "${{ inputs.resourcepacks }}"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            python3 scripts/prepare_headless_run.py --preset "${{ inputs.preset }}"
+          else
+            python3 scripts/prepare_headless_run.py --preset "plus"
+          fi
+
+      - name: Headless Minecraft Client starten (Xvfb + mc-runtime-test)
+        uses: headlesshq/mc-runtime-test@v4.5.2
+        with:
+          mc: "26.3"
+          modloader: "fabric"
+          mc-runtime-test: "fabric"
+          dummy-assets: true
+          cache-mc: "github"
+          xvfb: true
+          headlessmc-command: '-lwjgl --retries 1 --jvm "-Xmx3G -Djava.awt.headless=false -DMcRuntimeGameTest=false"'
+
+      - name: Test-Logs sichern (bei Fehler oder Abbruch)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-test-logs
+          path: |
+            run/logs/
+            run/crash-reports/
+          if-no-files-found: ignore

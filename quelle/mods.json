@@ -24,7 +24,8 @@
       "https://cdn.modrinth.com/data/AANobbMI/images/6b0e58705156ba67a6d97a74b9f9ac05da69f502_350.webp",
       "https://cdn.modrinth.com/data/AANobbMI/images/b681a9e87daa53a0e85336a894db70427007149b_350.webp"
     ],
-    "seite": "client"
+    "seite": "client",
+    "lockGroup": "render-core"
   },
   {
     "slug": "lithium",
@@ -729,7 +730,8 @@
       "https://cdn.modrinth.com/data/YL57xq9U/images/44245979cecbf237a3b26f375a0dc4f3a21dcf3d_350.webp",
       "https://cdn.modrinth.com/data/YL57xq9U/images/d69f13ea9889652c02f8cf91a3e55c8ef7cd6316_350.webp"
     ],
-    "seite": "client"
+    "seite": "client",
+    "lockGroup": "render-core"
   },
   {
     "slug": "complementary-reimagined",
@@ -876,7 +878,8 @@
     "voxy": {
       "s": "ja",
       "t": "Unterstützt Voxy offiziell (ab v1.3)."
-    }
+    },
+    "lockGroup": "render-core"
   },
   {
     "slug": "solas-shader",
@@ -1020,7 +1023,8 @@
       "https://cdn.modrinth.com/data/fxxUqruK/images/e4bb76f5875f29095935066190981d86b08307a9_350.webp",
       "https://cdn.modrinth.com/data/fxxUqruK/images/4c41eca7952430b00a43f065ddefb0a7eae0ea90_350.webp"
     ],
-    "seite": "client"
+    "seite": "client",
+    "lockGroup": "render-core"
   },
   {
     "slug": "bobby",
@@ -11412,7 +11416,6 @@
       "https://cdn.modrinth.com/data/BX3at1x4/images/878fedc87a401a81914f20d3235bacbdd3063686_350.webp"
     ],
     "seite": "client",
-    "pflicht": true,
     "notiz_en": "Name any pig \"Technoblade\" to add his crown to its head."
   },
   {

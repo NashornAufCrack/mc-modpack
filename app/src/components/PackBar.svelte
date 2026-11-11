@@ -3,6 +3,7 @@
   import { ui } from "../lib/ui.svelte";
   import { exportMrpack, exportPackwiz, exportPrism, exportSet, manualList, startCheck } from "../lib/export";
   import { AUTO_RULES, type AutoMode } from "../lib/auto-cfg";
+  import { headlessTester } from "../lib/headless-test.svelte";
 
   const r = $derived(pack.resolve());
   const cnt = (t: string) => [...r.mods].filter(s => (pack.BY[s].pt || "m") === t).length;
@@ -19,6 +20,10 @@
   const srvList = $derived(pack.srvTools(r));
   const inSrv = $derived((pack.cfg, new Set(exportSet(true).all)));
   const srvCount = $derived(srvList.filter(m => inSrv.has(m.slug)).length);
+  const isCustom = $derived(!pack.preset || (diff && (diff.plus.length > 0 || diff.minus.length > 0)));
+  const selectedMods = $derived([...r.mods]);
+  const selectedRps = $derived([...r.mods].filter(s => pack.BY[s]?.pt === "r"));
+  const isTested = $derived(!isCustom || headlessTester.isTested(selectedMods, selectedRps));
   let name = $state(pack.cfg._name || "Mein Pack"); let st = $state(""); let busy = $state(false);
   let showDiff = $state(false);
   // Start-Check: läuft bei jeder Änderung der Auswahl/Einstellungen und nochmal direkt vor dem Export
@@ -251,12 +256,72 @@
     <button class="btn sm" onclick={() => (ui.tool = "rp")}>Pack-Reihenfolge</button>
   </div>
   <p class="ram"><b>Arbeitsspeicher: {pack.ramGB(r)} GB</b> · Prism stellt ihn automatisch ein. In der Modrinth App musst du ihn nach dem Import selbst setzen (Instanz › Einstellungen › Java), sonst stürzt das Spiel beim Start ab. <a href="#crash" onclick={() => (ui.view = "crash")} style="display:inline-block; margin-top:.25rem; color:inherit; text-decoration:underline">Spiel stürzt ab? Zur Absturz-Hilfe →</a></p>
+
+  {#if isCustom}
+    <div class="test-panel">
+      <div class="tp-head">
+        <span class="tp-icon">🧪</span>
+        <div class="tp-title-col">
+          <b>Headless-Stresstest (Cloud)</b>
+          <span class="badge {isTested ? 'ok' : headlessTester.isBusy ? 'info' : 'warn'}">
+            {isTested ? 'Geprüft & Stabil' : headlessTester.isBusy ? 'Test läuft...' : 'Test vor Download empfohlen'}
+          </span>
+        </div>
+      </div>
+      <p class="small muted">
+        Prüft dein individuelles Modpack auf einem 16 GB Linux-Runner in einer echten Minecraft-Testwelt (Chunk-Rundflug, Mobs für Fresh Animations, 3D-Items).
+      </p>
+
+      {#if headlessTester.isBusy}
+        <div class="tp-status running">
+          <span class="tp-spinner"></span>
+          <span class="small">{headlessTester.progress}</span>
+        </div>
+      {:else if isTested}
+        <div class="tp-status ok">
+          <span class="small">✓ 100 % fehlerfrei gestartet & getestet!</span>
+          {#if headlessTester.runUrl}
+            <a class="small link" href={headlessTester.runUrl} target="_blank" rel="noopener">GitHub Run ↗</a>
+          {/if}
+        </div>
+      {:else if headlessTester.state === "failed"}
+        <div class="tp-status bad">
+          <span class="small">❌ {headlessTester.error}</span>
+          {#if headlessTester.runUrl}
+            <a class="small link" href={headlessTester.runUrl} target="_blank" rel="noopener">Logs ansehen ↗</a>
+          {/if}
+        </div>
+      {/if}
+
+      <button
+        class="btn test-btn {isTested ? 'ghost' : 'primary'}"
+        disabled={headlessTester.isBusy || !check.ok}
+        onclick={() => headlessTester.runTest(selectedMods, selectedRps)}
+      >
+        {#if headlessTester.isBusy}
+          ⏳ Stresstest läuft...
+        {:else if isTested}
+          🔄 Stresstest erneut ausführen
+        {:else}
+          🧪 Modpack online testen
+        {/if}
+      </button>
+    </div>
+  {:else}
+    <div class="tp-preset-box">
+      <span class="small">🛡️ <b>Vorlage vorab geprüft:</b> Standard-Packs werden automatisch im CI-Stresstest validiert.</span>
+    </div>
+  {/if}
+
   <label class="lbl">Name<input class="field" bind:value={name} /></label>
-  <button class="btn primary big" disabled={busy || !check.ok} onclick={() => go("mrpack")}>Modpack-Datei (.mrpack)</button>
+  <button class="btn primary big" disabled={busy || !check.ok || (isCustom && !isTested && !force)} onclick={() => go("mrpack")}>Modpack-Datei (.mrpack)</button>
   <p class="hint">Klein und schnell. Importieren in Modrinth App, Prism oder ATLauncher, die Mods lädt der Launcher selbst.</p>
-  <button class="btn" disabled={busy || !check.ok} onclick={() => go("prism")}>Komplette Prism-Instanz (.zip)</button>
+  <button class="btn" disabled={busy || !check.ok || (isCustom && !isTested && !force)} onclick={() => go("prism")}>Komplette Prism-Instanz (.zip)</button>
   <p class="hint">Alle Dateien schon drin und Arbeitsspeicher eingestellt. Größer, der Download dauert etwas.</p>
-  <button class="btn sm ghost" disabled={busy || !check.ok} onclick={() => go("server")}>Server-Pack (.mrpack)</button>
+  <button class="btn sm ghost" disabled={busy || !check.ok || (isCustom && !isTested && !force)} onclick={() => go("server")}>Server-Pack (.mrpack)</button>
+  {#if isCustom && !isTested}
+    <p class="hint" style="color:var(--warn)">💡 Führe zuerst den Cloud-Stresstest durch, um die 100 %ige Stabilität zu bestätigen.</p>
+  {/if}
   <details class="srv">
     <summary>Server-Werkzeuge: {srvCount} von {srvList.length} dabei</summary>
     <p class="small muted">Harmlose sind vorausgewählt. Was du abwählst, bleibt draußen, außer ein anderes Werkzeug braucht es.</p>
@@ -475,5 +540,77 @@
     color: var(--bad);
     overflow-wrap: anywhere;
     word-break: break-word;
+  }
+  .test-panel {
+    border: 1px solid var(--accent);
+    background: var(--surface-2);
+    border-radius: 10px;
+    padding: .75rem .85rem;
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+    box-sizing: border-box;
+  }
+  .tp-head {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+  }
+  .tp-icon {
+    font-size: 1.25rem;
+  }
+  .tp-title-col {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .tp-status {
+    padding: .45rem .65rem;
+    border-radius: 6px;
+    font-size: .8rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .tp-status.running {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--accent);
+  }
+  .tp-status.ok {
+    background: var(--ok-soft, rgba(46, 122, 106, 0.15));
+    border: 1px solid var(--ok);
+    color: var(--ok);
+  }
+  .tp-status.bad {
+    background: var(--bad-soft, rgba(200, 60, 60, 0.15));
+    border: 1px solid var(--bad);
+    color: var(--bad);
+  }
+  .tp-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--accent);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: tp-spin .8s linear infinite;
+    flex-shrink: 0;
+  }
+  @keyframes tp-spin {
+    to { transform: rotate(360deg); }
+  }
+  .tp-preset-box {
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    padding: .5rem .7rem;
+    background: var(--surface-2);
+    color: var(--ok);
+  }
+  .test-btn {
+    width: 100%;
+    justify-content: center;
+    font-weight: 600;
   }
 </style>
