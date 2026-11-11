@@ -223,6 +223,28 @@ def setup_sodium_configs(run_dir: Path, repo_root: Path):
 
     print("  ✅ Sodium Fingerprint & Optionen geschrieben (Fenster-Modus fixiert).")
 
+def setup_mod_first_run_configs(run_dir: Path, repo_root: Path):
+    """
+    Unterdrückt mod-spezifische Ersteinrichtungs- und Tutorial-Screens (wie Punchy Moves TutorialScreen),
+    die sonst im Headless-Modus das Spiel pausieren und in Endlosschleifen laufen lassen.
+    """
+    targets = [run_dir, repo_root]
+    try:
+        home_mc = Path.home() / ".minecraft"
+        if home_mc.exists():
+            targets.append(home_mc)
+    except Exception:
+        pass
+
+    for base in targets:
+        # 1. Punchy Moves Tutorial-Marker
+        p_dir = base / "config" / "punchy_moves"
+        p_dir.mkdir(parents=True, exist_ok=True)
+        with open(p_dir / "tutorial_seen_v1", "w", encoding="utf-8") as f:
+            f.write("seen\n")
+
+    print("  ✅ Mod First-Run Marker geschrieben (Punchy Moves TutorialScreen unterdrückt).")
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Bereitet Headless-Run vor.")
@@ -384,6 +406,7 @@ def main():
 
     # 4b. Sodium-Fingerprint & Optionen schreiben (verhindert Vollbild-Zwang unter Linux/Xvfb)
     setup_sodium_configs(RUN_DIR, REPO_ROOT)
+    setup_mod_first_run_configs(RUN_DIR, REPO_ROOT)
 
     # 5. Stresstest-Datapack in Saves & Default-Pfade injizieren
     setup_stress_test_datapack(RUN_DIR / "saves" / "test_world")
