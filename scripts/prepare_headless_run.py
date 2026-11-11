@@ -303,6 +303,21 @@ def main():
         f.write("\n".join(options_lines) + "\n")
     print("  ✅ run/options.txt erstellt.")
 
+    # 4b. sodium-options.json schreiben (verhindert, dass Sodium auf Linux exclusiveFullscreen erzwingt)
+    config_dir = RUN_DIR / "config"
+    config_dir.mkdir(parents=True, exist_ok=True)
+    sodium_opts = {
+        "notifications": {
+            "has_edited_fullscreen_option": True
+        },
+        "advanced": {
+            "exclusive_fullscreen": False
+        }
+    }
+    with open(config_dir / "sodium-options.json", "w", encoding="utf-8") as f:
+        json.dump(sodium_opts, f, indent=2)
+    print("  ✅ run/config/sodium-options.json erstellt (Fenster-Modus fixiert).")
+
     # 5. Stresstest-Datapack in Saves injizieren
     setup_stress_test_datapack(RUN_DIR / "saves" / "test_world")
 
