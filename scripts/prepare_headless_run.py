@@ -18,7 +18,7 @@ RUN_DIR = BASE_DIR / "run"
 
 # Mods, die auf Headless-Cloud-Servern ohne physische Grafikkarte (Vulkan/Mesh-Shader)
 # übersprungen werden müssen (werden lokal auf der RTX 3080 getestet)
-GPU_EXCLUSIVE = {"voxy", "voxy-server-side"}
+GPU_EXCLUSIVE = {"voxy", "voxy-server-side", "voxy-seam-fix"}
 
 def load_data():
     with open(DATA_DIR / "files.json", "r", encoding="utf-8") as f:
@@ -162,25 +162,32 @@ def main():
 
     if args.preset:
         print(f"📦 Verwende Standard-Preset: {args.preset}")
-        # Aus mods.json Presets ermitteln
         with open(DATA_DIR / "mods.json", "r", encoding="utf-8") as f:
             all_mods = json.load(f)
-        for m in all_mods:
-            s = m["slug"]
-            pt = m.get("pt", "m")
-            cat = m.get("cat", "P")
-            rolle = m.get("rolle", "")
-            pflicht = m.get("pflicht", False)
 
-            if pt == "m":
-                if cat == "P" or pflicht or rolle == "K":
-                    selected_mods.append(s)
-                elif args.preset in ("visual", "plus") and cat in ("V", "B"):
-                    selected_mods.append(s)
-                elif args.preset == "plus":
-                    selected_mods.append(s)
-            elif pt == "r" and args.preset in ("visual", "plus"):
-                selected_rps.append(s)
+        LOCKED = {m["slug"] for m in all_mods if (m.get("cat") == "P" and m.get("rolle") == "K") or m.get("pflicht")}
+        PERF_SET = ["dynamic-fps", "entityculling", "moreculling", "immediatelyfast", "modernfix-mvus", "badoptimizations", "lithium", "ferrite-core", "c2me-fabric", "scalablelux", "sodium-extra", "reeses-sodium-options", "sodium"]
+
+        if args.preset == "perf":
+            selected_mods = list(LOCKED | set(PERF_SET))
+        elif args.preset == "visual":
+            vis = set(LOCKED | set(PERF_SET))
+            for m in all_mods:
+                if m.get("rolle") == "K" and m.get("cat") not in ("S", "G", "T") and m.get("ampel") != "R":
+                    if m.get("pt", "m") == "m":
+                        vis.add(m["slug"])
+                    elif m.get("pt") == "r":
+                        selected_rps.append(m["slug"])
+            selected_mods = list(vis)
+        elif args.preset == "plus":
+            plus = set(LOCKED | set(PERF_SET))
+            for m in all_mods:
+                if m.get("rolle") == "K" and m.get("cat") != "S":
+                    if m.get("pt", "m") == "m":
+                        plus.add(m["slug"])
+                    elif m.get("pt") == "r":
+                        selected_rps.append(m["slug"])
+            selected_mods = list(plus)
     else:
         # Benutzerdefinierte Liste
         if args.mods:
