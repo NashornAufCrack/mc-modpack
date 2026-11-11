@@ -275,6 +275,9 @@
       <div class="tp-status running">
         <span class="tp-spinner"></span>
         <span class="small">{headlessTester.progress}</span>
+        {#if headlessTester.runUrl}
+          <a class="small link" href={headlessTester.runUrl} target="_blank" rel="noopener">Live-Log ansehen ↗</a>
+        {/if}
       </div>
     {:else if isTested}
       <div class="tp-status ok">

@@ -73,11 +73,11 @@ export class HeadlessTester {
       this.state = "queued";
       this.progress = "Test in Warteschlange... Warte auf Start des Runners...";
 
-      // Run-ID finden durch Polling
+      // Run-ID finden durch Polling (bis zu 25 Versuche = 50s)
       const startTime = Date.now();
       let runId: number | null = null;
 
-      for (let attempt = 0; attempt < 15; attempt++) {
+      for (let attempt = 0; attempt < 25; attempt++) {
         await new Promise(r => setTimeout(r, 2000));
         const runsUrl = `https://api.github.com/repos/${this.repo}/actions/workflows/${this.workflow}/runs?event=workflow_dispatch&per_page=3`;
         const rRes = await fetch(runsUrl, {
@@ -89,8 +89,7 @@ export class HeadlessTester {
         if (rRes.ok) {
           const data = await rRes.json();
           const runs = data.workflow_runs || [];
-          // Finde den neuesten Run, der nach oder kurz vor unserem startTime erstellt wurde
-          const recentRun = runs.find((r: any) => new Date(r.created_at).getTime() >= startTime - 15000);
+          const recentRun = runs.find((r: any) => new Date(r.created_at).getTime() >= startTime - 20000);
           if (recentRun) {
             runId = recentRun.id;
             this.runUrl = recentRun.html_url;
@@ -100,20 +99,26 @@ export class HeadlessTester {
       }
 
       if (!runId) {
-        this.progress = "Test läuft auf GitHub Actions! (Klicke unten für Details)";
+        this.progress = "Test gestartet! Bitte prüfe den Live-Status direkt auf GitHub Actions.";
         this.runUrl = `https://github.com/${this.repo}/actions/workflows/${this.workflow}`;
         this.state = "running";
         return;
       }
 
-      // Live-Polling des Runs bis zum Abschluss
+      // Live-Polling des Runs bis zum Abschluss mit echten Schritt-Informationen & Live-Uhr
       this.state = "running";
       let pollCount = 0;
 
       while (true) {
-        await new Promise(r => setTimeout(r, 4000));
+        await new Promise(r => setTimeout(r, 3500));
         pollCount++;
 
+        const elapsedSec = Math.floor((Date.now() - startTime) / 1000);
+        const m = Math.floor(elapsedSec / 60);
+        const s = elapsedSec % 60;
+        const timeStr = `${m}m ${s < 10 ? "0" + s : s}s`;
+
+        // 1. Run-Gesamtstatus abfragen
         const checkRes = await fetch(`https://api.github.com/repos/${this.repo}/actions/runs/${runId}`, {
           headers: {
             "Accept": "application/vnd.github+json",
@@ -125,19 +130,47 @@ export class HeadlessTester {
         const runData = await checkRes.json();
         this.runUrl = runData.html_url;
 
-        if (runData.status === "in_progress") {
-          if (pollCount < 4) {
-            this.progress = "Runner gestartet. Lade Mods & Resource Packs in den Cache...";
-          } else if (pollCount < 10) {
-            this.progress = "Xvfb aktiv: Starte Minecraft 26.3 Headless-Client...";
-          } else {
-            this.progress = "Welt betreten! 25-Sekunden Chunk-Flug, Mob-Spawns & 3D-Items laufen...";
-          }
+        if (runData.status === "in_progress" || runData.status === "queued") {
+          let stepText = runData.status === "queued" ? "In Warteschlange..." : "Initialisiere Runner...";
+
+          // 2. Detaillierten Schritt aus den Jobs abfragen
+          try {
+            const jobsRes = await fetch(`https://api.github.com/repos/${this.repo}/actions/runs/${runId}/jobs`, {
+              headers: {
+                "Accept": "application/vnd.github+json",
+                "Authorization": `Bearer ${this.token}`
+              }
+            });
+            if (jobsRes.ok) {
+              const jData = await jobsRes.json();
+              const jobs = jData.jobs || [];
+              const activeJob = jobs.find((j: any) => j.status === "in_progress") || jobs[jobs.length - 1];
+              if (activeJob) {
+                const activeStep = (activeJob.steps || []).find((st: any) => st.status === "in_progress");
+                if (activeStep) {
+                  const sn = activeStep.name;
+                  if (sn.includes("Test-Umgebung") || sn.includes("JARs") || sn.includes("ZIPs")) {
+                    stepText = "Lade Mods & Resource-Packs herunter...";
+                  } else if (sn.includes("Mesa") || sn.includes("Treiber")) {
+                    stepText = "Richte Mesa-Software-GL & Xvfb ein...";
+                  } else if (sn.includes("Headless Minecraft Client")) {
+                    stepText = "Minecraft Client aktiv: Testwelt, Chunks & 3D-Models laufen...";
+                  } else {
+                    stepText = sn;
+                  }
+                } else if (activeJob.status === "completed") {
+                  stepText = "Schließe Test ab...";
+                }
+              }
+            }
+          } catch {}
+
+          this.progress = `⏳ ${timeStr} · ${stepText}`;
         } else if (runData.status === "completed") {
           if (runData.conclusion === "success") {
             this.state = "success";
             this.lastTestedSignature = sig;
-            this.progress = "✅ Headless-Stresstest erfolgreich bestanden! Welt & Models 100 % stabil.";
+            this.progress = `✓ Headless-Stresstest erfolgreich bestanden in ${timeStr}! Welt & Models 100 % stabil.`;
           } else {
             this.state = "failed";
             this.error = "Der Stresstest hat einen Fehler gemeldet. Bitte prüfe das GitHub-Log.";
@@ -145,10 +178,10 @@ export class HeadlessTester {
           break;
         }
 
-        // Timeout nach 6 Minuten
-        if (pollCount > 90) {
+        // Timeout nach 10 Minuten
+        if (pollCount > 150) {
           this.state = "failed";
-          this.error = "Zeitüberschreitung beim Warten auf das Testergebnis.";
+          this.error = "Zeitüberschreitung (10 Min) beim Warten auf das Testergebnis.";
           break;
         }
       }
