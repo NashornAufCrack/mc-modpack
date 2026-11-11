@@ -210,9 +210,23 @@ def main():
     print(f"🔍 Aufgelöste Mods ({len(all_mod_slugs)} Stück inkl. transitive Libraries)")
     print(f"🎨 Ausgewählte Resource Packs ({len(selected_rps)} Stück)")
 
-    # 1. Mods herunterladen
+    # 1. Mods herunterladen & Cache bereinigen
     mods_run_dir = RUN_DIR / "mods"
     mods_run_dir.mkdir(parents=True, exist_ok=True)
+
+    expected_mod_files = set()
+    for slug in all_mod_slugs:
+        if slug in GPU_EXCLUSIVE:
+            continue
+        entry = files.get(slug)
+        if entry and entry[1].endswith(".jar"):
+            expected_mod_files.add(sanitize_filename(entry[1]))
+
+    # Bereinige verwaiste JARs aus dem GitHub-Actions-Cache
+    for existing_file in mods_run_dir.glob("*.jar"):
+        if existing_file.name not in expected_mod_files:
+            print(f"  🧹 Entferne inaktive/alte Mod aus run/mods/: {existing_file.name}")
+            existing_file.unlink()
 
     for slug in all_mod_slugs:
         if slug in GPU_EXCLUSIVE:
@@ -229,9 +243,20 @@ def main():
         dest = mods_run_dir / safe_fname
         download_file(url, dest, sha1)
 
-    # 2. Resource Packs herunterladen
+    # 2. Resource Packs herunterladen & Cache bereinigen
     rp_folder = RUN_DIR / "resourcepacks" / "Modpack"
     rp_folder.mkdir(parents=True, exist_ok=True)
+
+    expected_rp_files = set()
+    for slug in selected_rps:
+        entry = files.get(slug)
+        if entry:
+            expected_rp_files.add(sanitize_filename(entry[1]))
+
+    for existing_file in rp_folder.glob("*.zip"):
+        if existing_file.name not in expected_rp_files:
+            print(f"  🧹 Entferne inaktives Resource Pack aus run/resourcepacks/Modpack/: {existing_file.name}")
+            existing_file.unlink()
 
     rp_filenames = []
     for slug in selected_rps:
