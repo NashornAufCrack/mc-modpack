@@ -59,7 +59,6 @@ hash = "3f529d5fd5e99dbcba1364cfc68eefc9235e6956dcd05f4c6554116f89d9c9c9"
 metafile = true
 
 [[files]]
-file = "mods/better-render-distance.pw.toml"
 hash = "04f904d413aed422638f0c19ac93c9ca75c5d06fd796ee39527cfd90be46104a"
 metafile = true
 

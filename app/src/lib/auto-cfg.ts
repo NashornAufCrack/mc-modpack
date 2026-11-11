@@ -617,6 +617,24 @@ export const AUTO_RULES: AutoRule[] = [
     changes: [["enableRarityParticles", false]],
     text: "Seltenheits-Partikel im Inventar in Immersive UI deaktiviert, um doppelte Effekte im Slot zu vermeiden."
   },
+  {
+    id: "moreculling-leaves",
+    slug: "moreculling",
+    when: ["bushier-bushes", "nature-x", "hanging-leaves", "rainbows-foliage", "better-leaves", "fancyfast-bushy-leaves", "cubic-leaves", "moreculling"],
+    file: "moreculling.toml",
+    fmt: "toml",
+    changes: [["leavesCullingMode", "DEFAULT"]],
+    text: "Laub-Culling in More Culling deaktiviert ('DEFAULT'), damit 3D-Laub, Bushy Leaves und Texturpakete (z. B. Nature X, Bushier Bushes, Hanging Leaves) sauber ohne Löcher gerendert werden."
+  },
+  {
+    id: "paperdoll-punchy",
+    slug: "paperdoll",
+    when: ["punchymoves"],
+    file: "options.txt",
+    fmt: "props",
+    changes: [],
+    text: "Hinweis: Paper Doll zeigt die prozeduralen Animationen von Punchy! Moves im HUD-Avatar nur teilweise bzw. statisch an."
+  },
 
   // --- Resource Packs mit automatischer Schicht-Reihenfolge in options.txt ---
   {

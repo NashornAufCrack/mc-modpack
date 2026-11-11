@@ -10757,32 +10757,6 @@
     "notiz_en": "A performance mod that greatly optimizes particle rendering and particle limits."
   },
   {
-    "slug": "better-render-distance",
-    "name": "Better Render Distance",
-    "cat": "P",
-    "sub": "Performance",
-    "ampel": "G",
-    "rolle": "K",
-    "downloadsK": 458,
-    "notiz": "Rendert die Sichtweite als Kugel statt Würfel und lässt unsichtbare Ecken weg.",
-    "quellen": [
-      "DU"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "m",
-    "gal": 2,
-    "vn": "1.2.2",
-    "img": [
-      "https://cdn.modrinth.com/data/iRXmuz7a/images/53d760a368b810b72e6605d902da309cd301577f_350.webp",
-      "https://cdn.modrinth.com/data/iRXmuz7a/images/4cb604aee85b6a9e531eea7ecd13bf40cecd0c21.png"
-    ],
-    "seite": "client",
-    "notiz_en": "Improves render distance by making it perfectly spherical, culling diagonal chunk sections and entities for better performance."
-  },
-  {
     "slug": "head-in-the-clouds",
     "name": "Head in the Clouds",
     "cat": "V",
@@ -12115,10 +12089,10 @@
     "name": "Wavify",
     "cat": "V",
     "sub": "Welt & Licht",
-    "ampel": "G",
+    "ampel": "Y",
     "rolle": "O",
     "downloadsK": 85,
-    "notiz": "Wellen an Stränden, Meeren und Flüssen.",
+    "notiz": "Wellen an Stränden & Meeren. (⚠️ Experimentell: Kann mit Shadern Texturfehler & Flackern verursachen).",
     "quellen": [
       "DU"
     ],
@@ -12797,10 +12771,10 @@
     "name": "Immersive Interfaces",
     "cat": "V",
     "sub": "Resource Packs",
-    "ampel": "G",
+    "ampel": "R",
     "rolle": "O",
     "downloadsK": 1628,
-    "notiz": "Jedes Menü bekommt ein eigenes, passendes Aussehen statt grauer Kästen.",
+    "notiz": "Jedes Menü bekommt ein eigenes Aussehen. (⚠️ Veraltet für 26.3: Core-Shader verkleinern das Inventar extrem).",
     "quellen": [
       "DU"
     ],
@@ -17439,10 +17413,10 @@
     "name": "Immersive Interfaces - Mod Support Unofficial",
     "cat": "V",
     "sub": "Resource Packs",
-    "ampel": "G",
+    "ampel": "R",
     "rolle": "O",
     "downloadsK": 296,
-    "notiz": "Bringt den Immersive-Interfaces-Look auch in Menüs von Mods. Braucht Immersive Interfaces, das automatisch mitkommt.",
+    "notiz": "Erweitert Immersive Interfaces. (⚠️ Veraltet für 26.3).",
     "quellen": [
       "AUTO"
     ],
