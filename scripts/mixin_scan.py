@@ -398,7 +398,7 @@ def cmd_guard():
         print("Kein git-Stand zum Vergleichen – übersprungen."); return
     index = load("data/mixin-index.json", {}) or {}
     if index.get("_v") != INDEX_VERSION: index = {}
-    old_index = {s: dict(e) for s, e in index.items()}
+    old_index = {s: dict(e) for s, e in index.items() if not s.startswith("_")}
     index = update_index(files, index)
     changed = [s for s in mod_files(files) if s in old_files and old_files[s][2] != files[s][2]]
     added = [s for s in mod_files(files) if s not in old_files]

@@ -1,0 +1,13 @@
+name = "ClickOptimizer"
+filename = "ClickOptimizer-26.1+.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/cTPK9sBU/versions/L8EIWaQe/ClickOptimizer-26.1%2B.jar"
+hash-format = "sha512"
+hash = "663c01e208c869f5367ccfb1f4e2dedf80552b03a6604d1c8f125e471b92eb866bc8fd5ff64d2be05be114c81bedf400239b977030e4d811a7df3f5af44fc85e"
+
+[update]
+[update.modrinth]
+mod-id = "cTPK9sBU"
+version = "L8EIWaQe"

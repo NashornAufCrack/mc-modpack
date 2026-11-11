@@ -1,0 +1,13 @@
+name = "WalksyLib"
+filename = "WalksyLib-2.0.5+26.3.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/7P86n6Vg/versions/xWphfskv/WalksyLib-2.0.5%2B26.3.jar"
+hash-format = "sha512"
+hash = "b7b77dd6201b36c81280271ca2b64cec2ddba4ecfb7ec1987ee4b74a331dc07c4643e8f082bea7284ab93e78178e8d783b7f11fb08f95c7f62341f28c3fcee4e"
+
+[update]
+[update.modrinth]
+mod-id = "7P86n6Vg"
+version = "xWphfskv"

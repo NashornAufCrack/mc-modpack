@@ -1,0 +1,13 @@
+name = "Consumable Optimizer"
+filename = "ConsumableOptimizer-2.2.3+26.3.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/4alTd2ag/versions/dSuycjDS/ConsumableOptimizer-2.2.3%2B26.3.jar"
+hash-format = "sha512"
+hash = "6d2ed373a00d81816a7522bfa850e505c9aa753424855a61d91e20582f4ccb4cb444f9249ffb4b0a3973a6fc48769143b4a1bc03f3d69aae57093e3bde61da82"
+
+[update]
+[update.modrinth]
+mod-id = "4alTd2ag"
+version = "dSuycjDS"

@@ -1,13 +1,13 @@
 name = "Spatial GUI"
-filename = "spatial-gui-1.11.0+26.3-fabric.jar"
+filename = "spatial-gui-1.11.1+26.3-fabric.jar"
 side = "client"
 
 [download]
-url = "https://cdn.modrinth.com/data/zLBn2IE4/versions/Z4kxGJvI/spatial-gui-1.11.0%2B26.3-fabric.jar"
+url = "https://cdn.modrinth.com/data/zLBn2IE4/versions/amLgW5yt/spatial-gui-1.11.1%2B26.3-fabric.jar"
 hash-format = "sha512"
-hash = "b11c80cdb7613ec38f3e52253a6eb9601ba70b75eada14cba84ee7fc1606896665303878eac7a0e71b894158bf3c7f46ddf0f1f3aa56c54ac9c97b313d8e55d6"
+hash = "4a3fd9375faef1029abf6bcf18d52fc3ea63c9fe91d34c2a38a532ed75d6002dbf3d72fb1af162a93dbc5161476c5a54e8c691e16550a937e69127f1782dcac4"
 
 [update]
 [update.modrinth]
 mod-id = "zLBn2IE4"
-version = "Z4kxGJvI"
+version = "amLgW5yt"

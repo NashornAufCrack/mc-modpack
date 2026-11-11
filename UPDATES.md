@@ -1,6 +1,6 @@
 # Update-Stand (26.3)
 
-Zuletzt geprüft: 2026-11-10
+Zuletzt geprüft: 2026-11-11
 
 ## Neue Versionen in den letzten 7 Tagen (automatisch übernommen)
 
@@ -44,9 +44,15 @@ Zuletzt geprüft: 2026-11-10
 - 2026-11-10: **sophies-enchants** (Resource Pack) 2.3.0 → 2.3.1
 - 2026-11-10: **realiscraft-je-realistic-default-textures-1.1.0** (Resource Pack) 1.42.0 → 1.42.1
 - 2026-11-10: **Shiroi Visuals** (Shader) 26.3.10 → 26.3.11
+- 2026-11-11: **Spatial GUI** (Mod) 1.11.0-fabric+26.3 → 1.11.1-fabric+26.3
+- 2026-11-11: **Diorama** (Mod) 0.8.1+26.3 → 0.9.0+26.3
+- 2026-11-11: **Collective** (Mod) 26.3.0-8.85-fabric+forge+neo → 26.3.0-8.86-fabric+forge+neo
+- 2026-11-11: **CreativeCore** (Mod) 2.14.24 → 2.14.25
+- 2026-11-11: **Olafs Relatively Placed Blocks** (Mod) 2.0.1 → 2.0.2
+- 2026-11-11: **Packet Fixer** (Mod) neu aufgenommen: 3.3.6
+- 2026-11-11: **Jump Over Fences** (Mod) neu aufgenommen: 1.14.1
 
-
-## Verfügbar, aber nicht automatisch übernommen (16)
+## Verfügbar, aber nicht automatisch übernommen (17)
 
 - Sodium: mc26.3-0.9.2-fabric → mc26.3-0.9.3-beta.4-fabric (festgelegte Version)
 - More Culling: 1.9.1 → 1.9.2 (festgelegte Version)
@@ -60,13 +66,13 @@ Zuletzt geprüft: 2026-11-10
 - plasmo-voice: fabric-26.3-2.1.17 → fabric-26.3-2.2.0-beta.3 (nur als beta)
 - viaversion: 5.12.2 → 5.12.3-SNAPSHOT+1119 (nur als beta)
 - x-plus-autofish: 1.5.1-fabric-mc26.3 → 2.0.0-fabric-mc26.3 (nur als beta)
-- viabackwards: 5.12.2 → 5.12.3-SNAPSHOT+668 (nur als beta)
+- viabackwards: 5.12.2 → 5.12.3-SNAPSHOT+669 (nur als beta)
 - Wandering Traveler: 1.1.0+mc26.x-fabric → 1.6.0+fabric (festgelegte Version)
 - 3D Harnesses x Fresh Animations: 3.0.1 → 3.0.2 (nur als beta)
 - Pegasus Shaders: 0.5 → 0.8.1 (nur als beta)
+- Shoulder Surfing Reloaded: 26.3-5.3.0+fabric → 26.3-5.3.1+fabric (zurückgehalten: Mixin-Kollision mit camera-utils (Camera.alignWithEntity → move(FFF)V) – wird täglich neu geprüft)
 
-
-## Ohne neue Version seit über einer Woche (656)
+## Ohne neue Version seit über einer Woche (670)
 
 Sortiert nach Alter der aktuellen Datei.
 
@@ -697,7 +703,6 @@ Sortiert nach Alter der aktuellen Datei.
 - Iris & Oculus Search: 1.8.4-fabric (seit 2026-10-31)
 - Fabrishot: 1.19.0 (seit 2026-10-31)
 - Atmosfera: 2.7.4+mc26.3 (seit 2026-10-31)
-- Shoulder Surfing Reloaded: 26.3-5.3.0+fabric (seit 2026-10-31)
 - Fresh Animations: Extensions: 1.10.1 (seit 2026-10-31)
 - Visual Effects+: 1.4.0 (seit 2026-10-31)
 - Fresh Animations: Quivers: 2.3.0 (seit 2026-10-31)
@@ -726,4 +731,19 @@ Sortiert nach Alter der aktuellen Datei.
 - Fluid & Foolish: 1.0.1 (seit 2026-11-02)
 - Beautiful Enchanted Books: 9.0.0 (seit 2026-11-02)
 - Solas: 3.9 (seit 2026-11-02)
+- Entity Texture Features: 7.2.7-fabric-26.3 (seit 2026-11-03)
+- Armor Poser: 16.0.2 (seit 2026-11-03)
+- CliffTree: 4.0.1-fabric-26.3 (seit 2026-11-03)
+- InteractiveStuff: 0.8.0+mc26.3 (seit 2026-11-03)
+- Let Me Despawn: 1.26.11.1 (seit 2026-11-03)
+- Crafting Tweaks: 26.3.0.2+fabric-26.3 (seit 2026-11-03)
+- Optimized Block Entities [OBE]: 1.2.1 (seit 2026-11-03)
+- Swinging Lanterns: 26.3-2.1.0 (seit 2026-11-03)
+- Vocal Villagers: 1.5 (seit 2026-11-03)
+- RAY's 3D Rails: 3.7 (seit 2026-11-03)
+- Drigo 3D Lanterns x Punchy: 1.1.0 (seit 2026-11-03)
+- Colossus : A world generation datapack: 1.5 (seit 2026-11-03)
+- Slabbed: 0.6.11-alpha+26.2-26.3 (seit 2026-11-03)
+- Ice Caves Backport: 0.1.11+26.3-fabric (seit 2026-11-03)
+- Whimscape x Fresh Animations: 26.1-26.3_r2 (seit 2026-11-03)
 

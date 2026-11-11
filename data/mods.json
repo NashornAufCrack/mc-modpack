@@ -2765,7 +2765,7 @@
     "ueberschneidung": "",
     "pt": "m",
     "gal": 1,
-    "vn": "1.0.10+26.3",
+    "vn": "1.0.9+26.3",
     "img": [
       "https://cdn.modrinth.com/data/LkxC6kKT/images/59f21ce20c0576748a44353f246e80f9afe6824e_350.webp"
     ],
@@ -5218,7 +5218,7 @@
     "ueberschneidung": "",
     "pt": "m",
     "gal": 4,
-    "vn": "0.8.1+26.3",
+    "vn": "0.7.0+26.3",
     "img": [
       "https://cdn.modrinth.com/data/kwpTgbCk/images/90b77a13234f08e58be1282edc2281afe501f8eb_350.webp",
       "https://cdn.modrinth.com/data/kwpTgbCk/images/5851d0377f2eea93edcfa195e1fa73c6adbb1ab3.gif",
@@ -17544,7 +17544,7 @@
     "ueberschneidung": "",
     "pt": "m",
     "gal": 20,
-    "vn": "1.1.0+mc26.x-fabric",
+    "vn": "1.6.0+fabric",
     "img": [
       "https://cdn.modrinth.com/data/kZlMne3t/images/f73671157fe020b4fdf9b73152abbd8818a6b704.png",
       "https://cdn.modrinth.com/data/kZlMne3t/images/70dca2c4d9c756c74ef5f6d80eada2dd555c9f94.png",
@@ -18138,329 +18138,14 @@
     }
   },
   {
-    "slug": "default-hd-128x",
-    "name": "Default HD 128x",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 5329,
-    "notiz": "Das klassische Minecraft-Aussehen in gestochen scharfer 128x HD-Auflösung.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 13,
-    "vn": "1.8.2.7",
-    "img": [
-      "https://cdn.modrinth.com/data/orfTV6nk/images/694a2c224874871624e98bcca062ad73ee726393.png",
-      "https://cdn.modrinth.com/data/orfTV6nk/images/9bc16268bc6a02d8d947e1bfb114aa3a443c6cb0.png",
-      "https://cdn.modrinth.com/data/orfTV6nk/images/fd09d23e31a2a9ad465c2444a5f3933f91c28a30.png",
-      "https://cdn.modrinth.com/data/orfTV6nk/images/d3fe49c838671f4911dab7c3026ede3a3a622eea.png"
-    ],
-    "seite": "client"
-  },
-  {
-    "slug": "miniature-shader",
-    "name": "Miniature Shader",
-    "cat": "V",
-    "sub": "Shader",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 5136,
-    "notiz": "Extrem leichtgewichtiger Shader mit dynamischen Schatten und Reflexionen, optimiert für maximale FPS.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "s",
-    "gal": 7,
-    "vn": "2.19",
-    "img": [
-      "https://cdn.modrinth.com/data/UaS8ROxa/images/beec07b07d81705fadb724a4ffa45851a43c0d3b.png",
-      "https://cdn.modrinth.com/data/UaS8ROxa/images/85be3936e6ae267ec08f5be8155e185b0068cef8.png",
-      "https://cdn.modrinth.com/data/UaS8ROxa/images/3a2375b76b269c3ea00f6c9383e758b45bbde8c3.png",
-      "https://cdn.modrinth.com/data/UaS8ROxa/images/be0dc20cd4247faecaef369ccd2b950cc59c1eed.png"
-    ],
-    "seite": "client",
-    "voxy": {
-      "s": "nein",
-      "t": "Miniature Shader hat keine native Voxy-Unterstützung."
-    }
-  },
-  {
-    "slug": "full-brightness-toggle",
-    "name": "Full Brightness Toggle",
-    "cat": "G",
-    "sub": "Gameplay",
-    "ampel": "Y",
-    "rolle": "O",
-    "downloadsK": 7427,
-    "notiz": "Taste 'G' drücken, um die Gamma-Helligkeit im Spiel auf Maximum (Fullbright-Nachtsicht) umzuschalten.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "m",
-    "gal": 0,
-    "vn": "26.3.0-4.9-fabric+forge+neo",
-    "img": [],
-    "seite": "client"
-  },
-  {
-    "slug": "brays-zombie-overhaul-fresh-animations",
-    "name": "Bray's Zombie Overhaul x Fresh Animations",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 856,
-    "notiz": "Überarbeitet alle Zombie-Modelle mit abwechslungsreichen Texturen, abgestimmt auf Fresh Animations.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 6,
-    "vn": "1.5",
-    "img": [
-      "https://cdn.modrinth.com/data/zxQU2hT0/images/52902bfae77abb2cda147b0ae9d9249b4a73d4dd.png",
-      "https://cdn.modrinth.com/data/zxQU2hT0/images/45dfff6ac9e89df6bb155f6d6ef58f8d57742d73.png",
-      "https://cdn.modrinth.com/data/zxQU2hT0/images/90fdaff62c3c1f99deedcc24f6559e54fdf8f2fb.png",
-      "https://cdn.modrinth.com/data/zxQU2hT0/images/a8f0e51ca9459cd80dd143662b76137ff51135d7.png"
-    ],
-    "seite": "client"
-  },
-  {
-    "slug": "whimscape-x-fresh-animations",
-    "name": "Whimscape x Fresh Animations",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 233,
-    "notiz": "Macht das beliebte Whimscape-Texturpaket nahtlos kompatibel mit Fresh Animations.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 1,
-    "vn": "26.1-26.3_r2",
-    "img": [
-      "https://cdn.modrinth.com/data/NbmssBLT/images/6f7b6008311bd3cc380e757c8ddb887fa095ce0e.png"
-    ],
-    "seite": "client"
-  },
-  {
-    "slug": "als-boss-rush-x-fresh-animations",
-    "name": "AL's Boss Rush x Fresh Animations",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 173,
-    "notiz": "Verbindet AL's Boss Rush Texturen mit lebendigen Fresh Animations Bewegungen.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 1,
-    "vn": "3.0",
-    "img": [
-      "https://cdn.modrinth.com/data/xbzFxAxu/images/57ca4c61e72fa23bc8a335cb2a119aa13cfe07c0.png"
-    ],
-    "seite": "client"
-  },
-  {
-    "slug": "blue-netherite",
-    "name": "Blue Netherite",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 1720,
-    "notiz": "Färbt antiken Schrott und Netherite blau ein, um das Finden und Farmen im Nether deutlich zu erleichtern.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 2,
-    "vn": "1.2.1",
-    "img": [
-      "https://cdn.modrinth.com/data/OL1EGja1/images/390567dd92bbdd37f276c220adbe2f1fac9509e4.png",
-      "https://cdn.modrinth.com/data/OL1EGja1/images/7aefae9d81cb2f4c95a6edcbcb2f683285592aa8.png"
-    ],
-    "seite": "client"
-  },
-  {
-    "slug": "fresh-animations-quivers",
-    "name": "Fresh Animations: Quivers",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 1028,
-    "notiz": "Gibt Skeletten und Strays Köcher auf den Rücken, offiziell abgestimmt auf Fresh Animations.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 5,
-    "vn": "2.3.0",
-    "img": [
-      "https://cdn.modrinth.com/data/T4pK4GiQ/images/940c7698c29735b4292d559320b2835062b9b5c1.png",
-      "https://cdn.modrinth.com/data/T4pK4GiQ/images/28f65a65ce93e5c7389aba97d5e5c7cd1eb86d07.png",
-      "https://cdn.modrinth.com/data/T4pK4GiQ/images/d7f873808204db8e0d8caa29bb1f681562099829.png",
-      "https://cdn.modrinth.com/data/T4pK4GiQ/images/48072c0df67ddbda04ced22126836733e3394e34.png"
-    ],
-    "seite": "client"
-  },
-  {
-    "slug": "default-hd-512x",
-    "name": "Default HD 512x",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 1234,
-    "notiz": "Das klassische Minecraft-Aussehen in ultra-detaillierter 512x Ultra-HD-Auflösung.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 12,
-    "vn": "1.5.2.7",
-    "img": [
-      "https://cdn.modrinth.com/data/Vo7pxueF/images/26f1509e3b7108e7cc328b9e7a5edff4d57bacba.png",
-      "https://cdn.modrinth.com/data/Vo7pxueF/images/2ca0234f30aaa78224e941a7d892b645f54dba83.png",
-      "https://cdn.modrinth.com/data/Vo7pxueF/images/3e1193fbb85d6d89ccf8e62137998205255bb8fd.png",
-      "https://cdn.modrinth.com/data/Vo7pxueF/images/4914428c63159d916f7c008beba52e0f7e8a3ace.png"
-    ],
-    "seite": "client"
-  },
-  {
-    "slug": "excal",
-    "name": "Excalibur",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 911,
-    "notiz": "Legendäres mittelalterliches Fantasy-Texturpaket mit liebevoll gestalteten Blöcken und Items.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 6,
-    "vn": "26.3_01",
-    "img": [
-      "https://cdn.modrinth.com/data/hJAzl1Bs/images/e49b4000e736db3babb1ec87e67b92e260d7603c.jpeg",
-      "https://cdn.modrinth.com/data/hJAzl1Bs/images/73cf43bc51509324648fc7455cabad4f15e3c13f.jpeg",
-      "https://cdn.modrinth.com/data/hJAzl1Bs/images/a4d82801e19fd6537283f72c6c3fd2e124be4aab.jpeg",
-      "https://cdn.modrinth.com/data/hJAzl1Bs/images/5c442259b7ffeb1d394d4e739fa0b7663d247ddd.jpeg"
-    ],
-    "seite": "client"
-  },
-  {
-    "slug": "excalibur-fresh-animations",
-    "name": "Excalibur | Fresh Animations Support",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 190,
-    "notiz": "Macht das Excalibur-Texturpaket nahtlos kompatibel mit den lebendigen Animationen von Fresh Animations.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 9,
-    "vn": "1.10.5_1",
-    "img": [
-      "https://cdn.modrinth.com/data/yiTthr0O/images/6efbff9fcbf85ae9b39e72deec3026b614980dc9.png",
-      "https://cdn.modrinth.com/data/yiTthr0O/images/15148d805bbc52b40649ed594c6a8eabd5360e12.png",
-      "https://cdn.modrinth.com/data/yiTthr0O/images/6dff3ebfa153b06c3095d3f562040a33a6a46d06.png",
-      "https://cdn.modrinth.com/data/yiTthr0O/images/3915555d53aa3c1712347750bbf8fbaf0915eb37.png"
-    ],
-    "seite": "client"
-  },
-  {
-    "slug": "stained-glass-ultra",
-    "name": "Stained Glass Ultra",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 507,
-    "notiz": "Kräftigeres, blickdicht gefärbtes Buntglas ohne verwaschene Transparenz.",
-    "quellen": [
-      "MR"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 5,
-    "vn": "4.2",
-    "img": [
-      "https://cdn.modrinth.com/data/YLJI8lfo/images/23b9a9154df99f472c1fa31b5ce9b41b3867febb.png",
-      "https://cdn.modrinth.com/data/YLJI8lfo/images/06f98b15fe97d2075a221af2872f9b4e08dfcc5d.png",
-      "https://cdn.modrinth.com/data/YLJI8lfo/images/026ad2a62450abbe761a32d1ca36cb429233bf9a.png",
-      "https://cdn.modrinth.com/data/YLJI8lfo/images/736411381e37126386ac85596c01070d838f338e.jpeg"
-    ],
-    "seite": "client"
-  },
-  {
-    "slug": "dont-punch-my-tacz",
-    "name": "Don't Punch My TACZ",
+    "slug": "packet-fixer",
+    "name": "Packet Fixer",
     "cat": "G",
     "sub": "Kompatibilität",
-    "ampel": "Y",
-    "rolle": "O",
-    "downloadsK": 22,
-    "notiz": "Behebt Animations- und Darstellungsfehler von Punchy mit TACZ, Carry On, Create und Schnelllade-Armbrüsten.",
+    "ampel": "G",
+    "rolle": "K",
+    "downloadsK": 31263,
+    "notiz": "Behebt Paket-, NBT- und Timeout-Fehler bei großen Datenmengen und Serververbindungen.",
     "quellen": [
       "MR"
     ],
@@ -18469,14 +18154,37 @@
     "einstellungen": null,
     "ueberschneidung": "",
     "pt": "m",
-    "gal": 4,
-    "vn": "v0.5.2-26.x-fabric",
+    "gal": 2,
+    "vn": "3.3.6",
     "img": [
-      "https://cdn.modrinth.com/data/BdT7bXL2/images/fa1156dcc74a143e3e41f26778f504e0c8c16e8e.gif",
-      "https://cdn.modrinth.com/data/BdT7bXL2/images/cbbe5f10cc494b015d7c8a995b3932409c4f55ec.gif",
-      "https://cdn.modrinth.com/data/BdT7bXL2/images/0cc01dfbd98c70613b0cb74f0cdb20c47d897c31.gif",
-      "https://cdn.modrinth.com/data/BdT7bXL2/images/3b7b4227b768e4b39d21a99ed67f9b7b49d98234.gif"
+      "https://i.ytimg.com/vi/utA4x9cOKas/maxresdefault.jpg",
+      "https://i.ytimg.com/vi/61qeJA981KM/maxresdefault.jpg"
     ],
-    "seite": "client"
+    "seite": "beide"
+  },
+  {
+    "slug": "jump-over-fences",
+    "name": "Jump Over Fences",
+    "cat": "G",
+    "sub": "Komfort",
+    "ampel": "G",
+    "rolle": "K",
+    "downloadsK": 7016,
+    "notiz": "Erlaubt normales Springen über Zäune und Mauern ohne Teppiche oder Leitern.",
+    "quellen": [
+      "MR"
+    ],
+    "mc": "26.3",
+    "loader": "fabric",
+    "einstellungen": null,
+    "ueberschneidung": "",
+    "pt": "m",
+    "gal": 2,
+    "vn": "1.14.1",
+    "img": [
+      "https://i.ytimg.com/vi/-u_H0hgaj6Y/maxresdefault.jpg",
+      "https://gitlab.com/uploads/-/system/project/avatar/22760791/jump_over_fences_forge.png"
+    ],
+    "seite": "beide"
   }
 ]

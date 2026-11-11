@@ -1,0 +1,13 @@
+name = "Jump Over Fences"
+filename = "Jump-Over-Fences-1.14.1-MC26.3-Fabric.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/4HeIHvIP/versions/y2WFK2Um/Jump-Over-Fences-1.14.1-MC26.3-Fabric.jar"
+hash-format = "sha512"
+hash = "da1976919cc4fb45f345e714d0aceefb11c287a7ac9d8de8ac9e15c08665c8b96b31c823db93c4be31fb77242c0858977842a1667548d422716f7c731e7a802b"
+
+[update]
+[update.modrinth]
+mod-id = "4HeIHvIP"
+version = "y2WFK2Um"

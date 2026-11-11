@@ -1,13 +1,13 @@
 name = "Punchy! Moves"
-filename = "punchy-moves-1.0.7-fabric-26.3.jar"
+filename = "punchy-moves-1.0.8-fabric-26.3.jar"
 side = "client"
 
 [download]
-url = "https://cdn.modrinth.com/data/mzgtK8pY/versions/dybumYKh/punchy-moves-1.0.7-fabric-26.3.jar"
+url = "https://cdn.modrinth.com/data/mzgtK8pY/versions/rTw3mcGP/punchy-moves-1.0.8-fabric-26.3.jar"
 hash-format = "sha512"
-hash = "cc278d764c8ff07a3219f5a2995b1e4d5102c0c8a1d73308a667e6fd6d93ada9a3e07ea610fd99df1eaa3b3d1beb9d965285e5925ec7dde65f680c40d739a032"
+hash = "11a05c2b49a5b85ec203fb86c61711010b2225a99ca6c96471e1ed4daad5d0796ccba57eb199d024551e2ad7544a818779d8bf8a68b20bfc7b3682348a19c515"
 
 [update]
 [update.modrinth]
 mod-id = "mzgtK8pY"
-version = "dybumYKh"
+version = "rTw3mcGP"

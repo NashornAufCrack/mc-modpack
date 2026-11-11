@@ -1,0 +1,13 @@
+name = "Better Render Distance"
+filename = "BetterRenderDistance-1.2.2+mc26.3.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/iRXmuz7a/versions/J3aafAmj/BetterRenderDistance-1.2.2%2Bmc26.3.jar"
+hash-format = "sha512"
+hash = "05317aa91f04e7b89f245d94024b6e5a490beb11d70eb59532011e6fbbf44033b2c4e1f279b6511676f6908c9541f23a994acfb8225e8489e735e69de74219e5"
+
+[update]
+[update.modrinth]
+mod-id = "iRXmuz7a"
+version = "J3aafAmj"

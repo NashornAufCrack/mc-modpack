@@ -1,0 +1,13 @@
+name = "I see you over there!"
+filename = "i-see-you-over-there-1.0.5+26.1.2.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/9XQIg3HN/versions/dQFdTplF/i-see-you-over-there-1.0.5%2B26.1.2.jar"
+hash-format = "sha512"
+hash = "dd5d5b3e6ba3b8c2000be3967e4d80a0a8f2aa63ccfc6f98104a068a1a02aa68b2c1e01cec5d1a4a7fa10c759cc8162fb95bebab6dccac16779a4583822b0fba"
+
+[update]
+[update.modrinth]
+mod-id = "9XQIg3HN"
+version = "dQFdTplF"

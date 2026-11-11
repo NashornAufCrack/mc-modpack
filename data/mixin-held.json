@@ -1,0 +1,15 @@
+{
+  "datum": "2026-11-11",
+  "zurueckgehalten": [
+    {
+      "slug": "shoulder-surfing-reloaded",
+      "partner": [
+        "camera-utils"
+      ],
+      "wo": "Camera.alignWithEntity → move(FFF)V",
+      "art": "redirect",
+      "neu": "26.3-5.3.1+fabric",
+      "aktuell": "26.3-5.3.0+fabric"
+    }
+  ]
+}
