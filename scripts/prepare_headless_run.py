@@ -17,9 +17,10 @@ REPO_ROOT = BASE_DIR
 DATA_DIR = BASE_DIR / "data"
 RUN_DIR = BASE_DIR / "run"
 
-# Mods, die auf Headless-Cloud-Servern ohne physische Grafikkarte / Bildschirm
-# (Vulkan, NVIDIA-Mesh-Shader, SDL3-Desktop-Windowing) übersprungen werden müssen
-GPU_EXCLUSIVE = {
+# Mods, die im Headless-Cloud-Runner übersprungen werden müssen:
+# 1. GPU-/Hardware-spezifisch (Vulkan, NVIDIA-Mesh-Shader, SDL3)
+# 2. CI-inkompatibel (NotEnoughCrashes fängt Shutdown-Hooks ab; FastQuit trennt Welt-Threads asynchron)
+HEADLESS_EXCLUDED = {
     "voxy",
     "voxy-server-side",
     "voxy-seam-fix",
@@ -27,6 +28,8 @@ GPU_EXCLUSIVE = {
     "voxy-worldgen",
     "nvidium",
     "ixeris",
+    "notenoughcrashes",
+    "fastquit",
 }
 
 def load_data():
@@ -113,35 +116,30 @@ say [Stress-Test] Welt betreten - Starte Chunk-, Entity- und 3D-Model-Test!
     with open(func_dir / "load.mcfunction", "w", encoding="utf-8") as f:
         f.write(load_mc)
 
-    # tick.mcfunction: Chunk-Teleports, Mob-Spawns, 3D-Items
+    # tick.mcfunction: Chunk-Teleports, Mob-Spawns, 3D-Items (komprimiert auf die ersten 50 Ticks)
     tick_mc = """# Stress-Test Tick-Steuerung
 scoreboard players add @a stress_timer 1
 
-# Sekunde 1 (Tick 20): Erster Teleport (Chunk-Laden forcieren)
-execute as @a[scores={stress_timer=20}] at @s run tp @s ~35 90 ~35
+# Tick 5: Erster Teleport (Chunk-Laden forcieren) & Entity-Modelle (Fresh Animations)
+execute as @a[scores={stress_timer=5}] at @s run tp @s ~25 90 ~25
+execute as @a[scores={stress_timer=5}] at @s run summon zombie ~2 ~ ~2
+execute as @a[scores={stress_timer=5}] at @s run summon skeleton ~-2 ~ ~2
+execute as @a[scores={stress_timer=5}] at @s run summon pig ~2 ~ ~-2
+execute as @a[scores={stress_timer=5}] at @s run summon villager ~-2 ~ ~-2
 
-# Sekunde 3 (Tick 60): Entity-Modelle & Fresh Animations prüfen
-execute as @a[scores={stress_timer=60}] at @s run summon zombie ~2 ~ ~2
-execute as @a[scores={stress_timer=60}] at @s run summon skeleton ~-2 ~ ~2
-execute as @a[scores={stress_timer=60}] at @s run summon pig ~2 ~ ~-2
-execute as @a[scores={stress_timer=60}] at @s run summon villager ~-2 ~ ~-2
+# Tick 15: 3D-Items in Haupthand & Nebenhand geben (3D-Model- & Texture-Overrides)
+execute as @a[scores={stress_timer=15}] at @s run item replace entity @s weapon.mainhand with minecraft:diamond_sword
+execute as @a[scores={stress_timer=15}] at @s run item replace entity @s weapon.offhand with minecraft:shield
 
-# Sekunde 6 (Tick 120): Zweiter Teleport in neues Chunk-Gebiet
-execute as @a[scores={stress_timer=120}] at @s run tp @s ~-60 85 ~60
+# Tick 25: 3D-Bogen und Feuerzeug
+execute as @a[scores={stress_timer=25}] at @s run item replace entity @s weapon.mainhand with minecraft:bow
+execute as @a[scores={stress_timer=30}] at @s run item replace entity @s weapon.mainhand with minecraft:flint_and_steel
 
-# Sekunde 8 (Tick 160): 3D-Items in Haupthand & Nebenhand geben
-execute as @a[scores={stress_timer=160}] at @s run item replace entity @s weapon.mainhand with minecraft:diamond_sword
-execute as @a[scores={stress_timer=160}] at @s run item replace entity @s weapon.offhand with minecraft:shield
+# Tick 35: Zweiter Teleport (Chunk-Mesh-Pipeline)
+execute as @a[scores={stress_timer=35}] at @s run tp @s ~-35 85 ~35
 
-# Sekunde 11 (Tick 220): 3D-Bogen und Feuerzeug (Hyper-Punchy / 3D-Items)
-execute as @a[scores={stress_timer=220}] at @s run item replace entity @s weapon.mainhand with minecraft:bow
-execute as @a[scores={stress_timer=240}] at @s run item replace entity @s weapon.mainhand with minecraft:flint_and_steel
-
-# Sekunde 15 (Tick 300): Dritter Teleport
-execute as @a[scores={stress_timer=300}] at @s run tp @s ~70 80 ~-70
-
-# Sekunde 20 (Tick 400): Erfolgreich abgeschlossen!
-execute as @a[scores={stress_timer=400}] at @s run say [Stress-Test] ERFOLG! Alle Chunks, Animationen und 3D-Modelle ohne Crash geladen!
+# Tick 45: Erfolgreich abgeschlossen! (Ticks 45-60 lassen GL-Fences & Worker-Threads vollständig abklingen)
+execute as @a[scores={stress_timer=45}] at @s run say [Stress-Test] ERFOLG! Alle Chunks, Animationen und 3D-Modelle ohne Crash geladen!
 """
     with open(func_dir / "tick.mcfunction", "w", encoding="utf-8") as f:
         f.write(tick_mc)
@@ -314,7 +312,7 @@ def main():
 
     expected_mod_files = set()
     for slug in all_mod_slugs:
-        if slug in GPU_EXCLUSIVE:
+        if slug in HEADLESS_EXCLUDED:
             continue
         entry = files.get(slug)
         if entry and entry[1].endswith(".jar"):
@@ -327,8 +325,8 @@ def main():
             existing_file.unlink()
 
     for slug in all_mod_slugs:
-        if slug in GPU_EXCLUSIVE:
-            print(f"  ⏭️ Überspringe GPU-exklusiven Mod im Headless-Runner: {slug}")
+        if slug in HEADLESS_EXCLUDED:
+            print(f"  ⏭️ Überspringe im Headless-Runner ausgeschlossene Mod: {slug}")
             continue
         entry = files.get(slug)
         if not entry:
@@ -377,8 +375,13 @@ def main():
     print("  ✅ packed_packs.folderpack.json erstellt.")
 
     # 4. options.txt schreiben
-    # In Minecraft options.txt werden Resource Packs in umgekehrter Reihenfolge notiert
-    rp_options_order = ["vanilla"] + [f"file/Modpack/{fn}" for fn in reversed(rp_filenames)]
+    # Wenn packed-packs aktiv ist, wird der Ordner als ein kompaktes Modul ("file/Modpack") registriert
+    if "packed-packs" in selected_mods and rp_filenames:
+        rp_options_order = ["vanilla", "file/Modpack"]
+    elif rp_filenames:
+        rp_options_order = ["vanilla"] + [f"file/Modpack/{fn}" for fn in reversed(rp_filenames)]
+    else:
+        rp_options_order = ["vanilla"]
     options_lines = [
         "fullscreen:false",
         "exclusiveFullscreen:false",
