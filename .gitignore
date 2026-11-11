@@ -3,4 +3,6 @@ qa/out/
 __pycache__/
 *.pyc
 run/
+config/
+options.txt
 

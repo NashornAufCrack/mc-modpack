@@ -13,6 +13,7 @@ import hashlib
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+REPO_ROOT = BASE_DIR
 DATA_DIR = BASE_DIR / "data"
 RUN_DIR = BASE_DIR / "run"
 
@@ -155,6 +156,73 @@ execute as @a[scores={stress_timer=400}] at @s run say [Stress-Test] ERFOLG! All
 
     print("  ✅ Stress-Test-Datapack erfolgreich generiert.")
 
+def setup_sodium_configs(run_dir: Path, repo_root: Path):
+    import time
+    
+    salt_hex = "12121212121212121212121212121212"
+    salt_bytes = bytes.fromhex(salt_hex)
+    game_path = str(run_dir.resolve())
+    
+    path_hash = hashlib.sha512(salt_bytes + game_path.encode("utf-8")).hexdigest()
+    uuid_hash = hashlib.sha512(salt_bytes + "c06f8906-4c8a-3911-9c65-8b1b22e1ffb1".encode("utf-8")).hexdigest()
+    
+    fingerprint = {
+        "v": 1,
+        "s": salt_hex,
+        "u": uuid_hash,
+        "p": path_hash,
+        "t": int(time.time() * 1000)
+    }
+    
+    sodium_opts = {
+        "notifications": {
+            "has_edited_fullscreen_option": True,
+            "has_seen_donation_prompt": True,
+            "has_cleared_donation_button": True
+        },
+        "advanced": {
+            "exclusive_fullscreen": False
+        }
+    }
+    
+    # 1. In run/config
+    config_dir = run_dir / "config"
+    config_dir.mkdir(parents=True, exist_ok=True)
+    with open(config_dir / "sodium-fingerprint.json", "w", encoding="utf-8") as f:
+        json.dump(fingerprint, f, indent=2)
+    with open(config_dir / "sodium-options.json", "w", encoding="utf-8") as f:
+        json.dump(sodium_opts, f, indent=2)
+        
+    # 2. In run/config/sodium/ (Fallback)
+    (config_dir / "sodium").mkdir(parents=True, exist_ok=True)
+    with open(config_dir / "sodium" / "fingerprint.json", "w", encoding="utf-8") as f:
+        json.dump(fingerprint, f, indent=2)
+        
+    # 3. In repo_root/config (falls Root als Game-Dir agiert)
+    repo_cfg = repo_root / "config"
+    repo_cfg.mkdir(parents=True, exist_ok=True)
+    repo_path_hash = hashlib.sha512(salt_bytes + str(repo_root.resolve()).encode("utf-8")).hexdigest()
+    repo_fingerprint = dict(fingerprint, p=repo_path_hash)
+    with open(repo_cfg / "sodium-fingerprint.json", "w", encoding="utf-8") as f:
+        json.dump(repo_fingerprint, f, indent=2)
+    with open(repo_cfg / "sodium-options.json", "w", encoding="utf-8") as f:
+        json.dump(sodium_opts, f, indent=2)
+
+    # 4. In ~/.minecraft/config falls vorhanden
+    try:
+        home_mc = Path.home() / ".minecraft"
+        if home_mc.exists():
+            home_cfg = home_mc / "config"
+            home_cfg.mkdir(parents=True, exist_ok=True)
+            with open(home_cfg / "sodium-fingerprint.json", "w", encoding="utf-8") as f:
+                json.dump(fingerprint, f, indent=2)
+            with open(home_cfg / "sodium-options.json", "w", encoding="utf-8") as f:
+                json.dump(sodium_opts, f, indent=2)
+    except Exception:
+        pass
+
+    print("  ✅ Sodium Fingerprint & Optionen geschrieben (Fenster-Modus fixiert).")
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Bereitet Headless-Run vor.")
@@ -291,6 +359,7 @@ def main():
     rp_options_order = ["vanilla"] + [f"file/Modpack/{fn}" for fn in reversed(rp_filenames)]
     options_lines = [
         "fullscreen:false",
+        "exclusiveFullscreen:false",
         "renderDistance:8",
         "simulationDistance:6",
         "maxFps:60",
@@ -299,27 +368,28 @@ def main():
         "biomeBlendRadius:2",
         f"resourcePacks:{json.dumps(rp_options_order)}"
     ]
+    options_text = "\n".join(options_lines) + "\n"
     with open(RUN_DIR / "options.txt", "w", encoding="utf-8") as f:
-        f.write("\n".join(options_lines) + "\n")
-    print("  ✅ run/options.txt erstellt.")
+        f.write(options_text)
+    with open(REPO_ROOT / "options.txt", "w", encoding="utf-8") as f:
+        f.write(options_text)
+    try:
+        home_mc = Path.home() / ".minecraft"
+        if home_mc.exists():
+            with open(home_mc / "options.txt", "w", encoding="utf-8") as f:
+                f.write(options_text)
+    except Exception:
+        pass
+    print("  ✅ options.txt erstellt (Fenster-Modus & Resource-Packs fixiert).")
 
-    # 4b. sodium-options.json schreiben (verhindert, dass Sodium auf Linux exclusiveFullscreen erzwingt)
-    config_dir = RUN_DIR / "config"
-    config_dir.mkdir(parents=True, exist_ok=True)
-    sodium_opts = {
-        "notifications": {
-            "has_edited_fullscreen_option": True
-        },
-        "advanced": {
-            "exclusive_fullscreen": False
-        }
-    }
-    with open(config_dir / "sodium-options.json", "w", encoding="utf-8") as f:
-        json.dump(sodium_opts, f, indent=2)
-    print("  ✅ run/config/sodium-options.json erstellt (Fenster-Modus fixiert).")
+    # 4b. Sodium-Fingerprint & Optionen schreiben (verhindert Vollbild-Zwang unter Linux/Xvfb)
+    setup_sodium_configs(RUN_DIR, REPO_ROOT)
 
-    # 5. Stresstest-Datapack in Saves injizieren
+    # 5. Stresstest-Datapack in Saves & Default-Pfade injizieren
     setup_stress_test_datapack(RUN_DIR / "saves" / "test_world")
+    setup_stress_test_datapack(RUN_DIR / "saves" / "New World")
+    setup_stress_test_datapack(RUN_DIR / "saves" / "world")
+    setup_stress_test_datapack(RUN_DIR / "datapacks" / "modpack_stress_test")
 
     print("\n🚀 Headless-Vorbereitung erfolgreich abgeschlossen!")
 
