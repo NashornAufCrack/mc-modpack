@@ -2,6 +2,8 @@
 # Aufruf im Repo-Ordner: python3 qa/datacheck.py [--ci]
 # FEHLER (Exit-Code 1 mit --ci) machen Exporte kaputt; HINWEISE sind Pflege-Aufgaben.
 import json, re, sys, collections, os
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+os.chdir(base_dir)
 A = json.load(open('data/app-data.json', encoding='utf-8')); F = A['files']; M = A['mods']; D = A['dec']; BY = {m['slug']: m for m in M}
 Me = json.load(open('data/media.json', encoding='utf-8')) if os.path.exists('data/media.json') else {}
 S = json.load(open('data/sounds.json', encoding='utf-8')) if os.path.exists('data/sounds.json') else {}
@@ -34,9 +36,8 @@ for s, f in F.items():
     if not re.fullmatch(r'[0-9a-f]{128}', sha512 or ''): err['sha512 fehlt/ungültig'].append(s)
     if not size or size <= 0: err['Größe 0'].append(s)
     if s in BY and (BY[s].get('pt') or 'm') != t: err['Typ Katalog ≠ Datei'].append(f"{s}: {BY[s].get('pt')} vs {t}")
-    if re.fullmatch(r'[A-Za-z0-9]{8}', ' '.join(deps) or 'x') is None:
-        for d in deps:
-            if re.fullmatch(r'[A-Za-z0-9]{8}', d) and d not in F and any(c.isupper() for c in d): note['Abhängigkeit als Projekt-ID statt Slug'].append(f'{s} → {d}')
+    for d in deps:
+        if re.fullmatch(r'[A-Za-z0-9]{8}', d) and d not in F and any(c.isupper() for c in d): note['Abhängigkeit als Projekt-ID statt Slug'].append(f'{s} → {d}')
 # 2 Abhängigkeiten
 for m in M:
     if m['slug'] in F:
@@ -111,7 +112,8 @@ def match_ver(actual, constraint):
     return c == 0
 
 if os.path.exists('data/jar-inspection.json'):
-    INSP = json.load(open('data/jar-inspection.json'))
+    with open('data/jar-inspection.json', encoding='utf-8') as f_insp:
+        INSP = json.load(f_insp)
     for s, f in F.items():
         if len(f) > 8 and f[8] != 'm': continue
         info = INSP.get(s, {})

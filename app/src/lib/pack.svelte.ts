@@ -560,7 +560,12 @@ class Pack {
   }
   presetDiff() { if (!this.preset) return null; const b = new Set(this.preset.base); return { plus: [...this.sel].filter(s => !b.has(s)), minus: [...b].filter(s => !this.sel.has(s)) }; }
   // Einstellungen
-  cv(slug: string, k: string) { const def = (slug === "_base" ? BASE : (SETDEF as any)[slug]).items.find((i: any) => i.k === k); return this.cfg[slug] && k in this.cfg[slug] ? this.cfg[slug][k] : def.d; }
+  cv(slug: string, k: string) {
+    if (this.cfg[slug] && k in this.cfg[slug]) return this.cfg[slug][k];
+    const group = slug === "_base" ? BASE : (SETDEF as any)[slug];
+    const def = group?.items?.find((i: any) => i.k === k);
+    return def?.d ?? "";
+  }
   setCv(slug: string, k: string, v: any) { this.cfg = { ...this.cfg, [slug]: { ...(this.cfg[slug] || {}), [k]: v } }; this.save(); }
   resetCv(slug: string, k: string) { const c = { ...(this.cfg[slug] || {}) }; delete c[k]; this.cfg = { ...this.cfg, [slug]: c }; this.save(); }
   ramGB(r = this.resolve(), sys = Number(this.wiz.ram || 0)) { const n = r.mods.size + r.libs.size; let g = n < 60 ? 4 : n < 120 ? 6 : n < 250 ? 8 : 10; if (r.mods.has("voxy") || r.mods.has("distanthorizons")) g += 1; if (r.mods.has("faithful-64x")) g += 1; if (sys) g = Math.min(g, Math.floor(sys / 2)); return Math.max(3, Math.min(g, 10)); }
@@ -579,7 +584,7 @@ class Pack {
   /** Auswahl aus einem geteilten Link (#p=… mit Slugs; alte #pack-… Links mit Positionen werden noch gelesen).
    *  Eigene Einstellungen bleiben, die vorige Auswahl ist per Rückgängig erreichbar, der Link verschwindet aus der Adresse. */
   /** Ergebnis des letzten Link-Imports (Anzahl nicht übernommener Einträge), für die Meldung in der Oberfläche */
-  imported: number | null = null;
+  imported: number | null = $state(null);
   importShared(): number | null {
     const h = location.hash; let slugs: string[] | null = null;
     if (h.startsWith("#p=")) { try { slugs = (LZString.decompressFromEncodedURIComponent(h.slice(3)) || "").split(",").filter(Boolean); } catch { slugs = []; } }

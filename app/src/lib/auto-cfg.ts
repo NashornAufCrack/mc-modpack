@@ -620,7 +620,7 @@ export const AUTO_RULES: AutoRule[] = [
   {
     id: "moreculling-leaves",
     slug: "moreculling",
-    when: ["bushier-bushes", "nature-x", "hanging-leaves", "rainbows-foliage", "better-leaves", "fancyfast-bushy-leaves", "cubic-leaves", "moreculling"],
+    when: ["bushier-bushes", "nature-x", "hanging-leaves", "rainbows-foliage", "better-leaves", "fancyfast-bushy-leaves", "cubic-leaves"],
     file: "moreculling.toml",
     fmt: "toml",
     changes: [["leavesCullingMode", "DEFAULT"]],
@@ -629,7 +629,7 @@ export const AUTO_RULES: AutoRule[] = [
   {
     id: "paperdoll-punchy",
     slug: "paperdoll",
-    when: ["punchymoves"],
+    when: ["punchymoves", "punchy-fpa"],
     file: "options.txt",
     fmt: "props",
     changes: [],
@@ -822,7 +822,7 @@ export const AUTO_RULES: AutoRule[] = [
   {
     id: "rpo-vexp-crosshair",
     slug: "vanilla-exp",
-    when: ["crosshair-indicator", "animated-crosshair", "clean-crosshair", "dot-crosshair", "adaptive-crosshair"],
+    when: ["centered-crosshair", "custom-crosshair-mod"],
     file: "rpo:vanilla-exp",
     fmt: "rpo",
     changes: [["HUD.crosshair", false]],
@@ -906,10 +906,10 @@ function patchText(t: string, fmt: "toml" | "props" | "json5", k: string, val: a
       const m = t.match(new RegExp("^\\s*\\[" + escRe(parts.join(".")) + "\\]\\s*$", "m"));
       if (!m || m.index === undefined) return t;
       a = m.index + m[0].length;
-      const next = t.slice(a).search(/^\s*\[/m);
+      const next = t.slice(a).search(/^\s*\[[A-Za-z0-9_".-]+\]\s*$/m);
       if (next >= 0) b = a + next;
     } else {
-      const firstSec = t.search(/^\s*\[/m);
+      const firstSec = t.search(/^\s*\[[A-Za-z0-9_".-]+\]\s*$/m);
       if (firstSec >= 0) b = firstSec;
     }
     const seg = t.slice(a, b).replace(

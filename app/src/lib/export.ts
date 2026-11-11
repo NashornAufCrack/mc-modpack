@@ -16,7 +16,7 @@ export function fname(s: string) {
     for (const [k, f] of Object.entries(pack.data.files)) { let n = String(f[1]); try { n = decodeURIComponent(n); } catch {} n = n.replace(/[\\/:*?"<>|]+/g, "_"); FN[k] = n; (by[n.toLowerCase()] ||= []).push(k); }
     for (const ks of Object.values(by)) if (ks.length > 1) for (const k of ks) FN[k] = k + "--" + FN[k];
   }
-  return FN[s];
+  return FN[s] || (s + ".jar");
 }
 export function folderpackJson(rps: string[]) {
   return JSON.stringify({
@@ -25,9 +25,9 @@ export function folderpackJson(rps: string[]) {
   }, null, 2) + "\n";
 }
 export function optionsTxt(mods: Set<string>) {
-  const B = (k: string) => pack.cv("_base", k); const rps = [...mods].filter(s => pack.BY[s]?.pt === "r");
+  const B = (k: string, def = "12") => String(pack.cv("_base", k) || def); const rps = [...mods].filter(s => pack.BY[s]?.pt === "r");
   const order = ["vanilla", ...rpTopDown(rps).reverse().map(s => "file/Modpack/" + fname(s))];
-  return [`renderDistance:${B("renderDistance")}`, `simulationDistance:${B("simulationDistance")}`, `maxFps:${B("maxFps")}`, "enableVsync:false", "mipmapLevels:4", "biomeBlendRadius:2", "resourcePacks:" + JSON.stringify(order)].join("\n") + "\n";
+  return [`renderDistance:${B("renderDistance", "12")}`, `simulationDistance:${B("simulationDistance", "8")}`, `maxFps:${B("maxFps", "120")}`, "enableVsync:false", "mipmapLevels:4", "biomeBlendRadius:2", "resourcePacks:" + JSON.stringify(order)].join("\n") + "\n";
 }
 export function packFiles() {
   const r = pack.resolve(); const files: Record<string, string> = {};
@@ -120,7 +120,8 @@ const safe = (n: string) => n.replace(/[^\w\- ]+/g, "").replace(/\s+/g, "-") || 
 export async function exportMrpack(name: string, server: boolean, st: Status) {
   const { r, all } = exportSet(server);
   const env = (s: string) => { const m = pack.BY[s]; const a = m ? m.ampel : "Y"; return { client: m?.cat === "S" ? "optional" : "required", server: a === "G" ? "unsupported" : a === "R" || m?.cat === "S" ? "required" : "optional" }; };
-  const files = all.map(s => { const f = pack.data.files[s]; return { path: pathOf(s), hashes: { sha1: f[2], sha512: f[3] }, env: env(s), downloads: [f[0]], fileSize: f[4] }; });
+  const valid = all.filter(s => !!pack.data.files[s]);
+  const files = valid.map(s => { const f = pack.data.files[s]; return { path: pathOf(s), hashes: { sha1: f[2], sha512: f[3] }, env: env(s), downloads: [f[0]], fileSize: f[4] }; });
   const zip = new JSZip(); zip.file("modrinth.index.json", JSON.stringify({ formatVersion: 1, game: "minecraft", versionId: "1.0.0", name: name + (server ? " Server" : ""), summary: "Erstellt mit dem Mod-Katalog 26.3", files, dependencies: { minecraft: "26.3", "fabric-loader": "0.20.1" } }, null, 2));
   if (!server) for (const [p, c] of Object.entries(packFiles())) zip.file("overrides/" + p, c);
   await save(await zip.generateAsync({ type: "blob", compression: "DEFLATE" }), safe(name) + (server ? "-Server" : "") + ".mrpack");
@@ -160,7 +161,7 @@ export async function exportPrism(name: string, st: Status) {
   zip.file("instance.cfg", `[General]\nConfigVersion=1.2\nInstanceType=OneSix\nname=${name}\nOverrideMemory=true\nMaxMemAlloc=${pack.ramGB(r) * 1024}\nMinMemAlloc=1024\nnotes=Erstellt mit dem Mod-Katalog 26.3\n`);
   zip.file("mmc-pack.json", JSON.stringify({ components: [{ uid: "net.minecraft", version: "26.3", important: true }, { uid: "net.fabricmc.fabric-loader", version: "0.20.1" }], formatVersion: 1 }, null, 1));
   for (const [p, c] of Object.entries(packFiles())) zip.file(".minecraft/" + p, c);
-  const list = [...all]; let done = 0; const fail: string[] = [];
+  const list = [...all].filter(s => !!pack.data.files[s]); let done = 0; const fail: string[] = [];
   const q = [...list]; await Promise.all(Array.from({ length: 6 }, async () => { while (q.length) { const s = q.shift()!; try { const res = await fetch(pack.data.files[s][0]); if (!res.ok) throw 0; zip.file(".minecraft/" + pathOf(s), await res.arrayBuffer()); } catch { fail.push(pack.name(s)); } st(`Lade Dateien: ${++done} von ${list.length} …`); } }));
   if (fail.length) { st(`${fail.length} Dateien nicht ladbar (${fail.slice(0, 4).join(", ")}). Nimm stattdessen die .mrpack-Datei.`); return; }
   st("Packe die Instanz …"); await save(await zip.generateAsync({ type: "blob", compression: "STORE" }), safe(name) + "-Prism.zip");

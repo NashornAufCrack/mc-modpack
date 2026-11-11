@@ -112,12 +112,11 @@ export function rpAuto(rps: string[]) {
     [sorted[ia], sorted[iw]] = [sorted[iw], sorted[ia]];
   }
   // Topologische Abhängigkeiten durchsetzen: Addons/Abhängige (a) MÜSSEN VOR ihren Eltern (dep) stehen
-  let changed = true;
   let passes = 0;
-  while (changed && passes < 25) {
-    changed = false;
+  while (passes < 20) {
+    let changed = false;
     passes++;
-    for (const a of sorted) {
+    for (const a of [...sorted]) {
       const deps = (pack.implicit(a) || []).concat(pack.data?.files?.[a]?.[5] || []).filter(d => sorted.includes(d));
       const ia = sorted.indexOf(a);
       for (const dep of deps) {
@@ -129,8 +128,8 @@ export function rpAuto(rps: string[]) {
           break;
         }
       }
-      if (changed) break;
     }
+    if (!changed) break;
   }
   return sorted;
 }
