@@ -6,7 +6,7 @@ hash = "9c2add2ebcc269ef72fbae37c3c56b3178d3d800b0b2301873ec829408526f9d"
 
 [[files]]
 file = "config/defaultoptions/options.txt"
-hash = "2e1d4bf74a6f83c6d0a4f52f1185b7c42afb3b0576b806271aa81969187db15a"
+hash = "b4c2b9ddcd9e104f7edf08681cf7f8cd970efa1f918203ed0cc2744e0d40a07a"
 
 [[files]]
 file = "mods/3dskinlayers.pw.toml"
@@ -319,6 +319,11 @@ hash = "2a6615d3cbc53dda79d62fab4a0b0c433eaa323b35efa00f3da893d65c5a03dd"
 metafile = true
 
 [[files]]
+file = "mods/packed-packs.pw.toml"
+hash = "c83b172bd86772707c7dc67b91050dac52c5b1f25893b00950845a5dcc47a787"
+metafile = true
+
+[[files]]
 file = "mods/packet-fixer.pw.toml"
 hash = "d0c4fe7c119ef7385e0454785af104323b557203f84ea0373bc712f090b19bd3"
 metafile = true
@@ -504,29 +509,33 @@ hash = "24243bf59fa8e8fd2755b3bd20b4b9ea102e6afd3c0adcf92368f0ec3224aed3"
 metafile = true
 
 [[files]]
-file = "resourcepacks/fluid-foolish.pw.toml"
+file = "resourcepacks/Modpack/fluid-foolish.pw.toml"
 hash = "34310e2f6a23826bbfd594f157ba8dfa2d9b2baeb1c1e85bf1f959ad0f559b7b"
 metafile = true
 
 [[files]]
-file = "resourcepacks/fresh-animations.pw.toml"
+file = "resourcepacks/Modpack/fresh-animations.pw.toml"
 hash = "817c682d213e4d8ef43a4b1c674c17970b2368dee45b793f53e009f4f4a95384"
 metafile = true
 
 [[files]]
-file = "resourcepacks/hyper-punchy.pw.toml"
+file = "resourcepacks/Modpack/hyper-punchy.pw.toml"
 hash = "6154dd5a5c1deabd6dee5097240c58412d1492191b492590c1094617e8947c73"
 metafile = true
 
 [[files]]
-file = "resourcepacks/low-on-fire.pw.toml"
-hash = "0ce41000cbbb72e9c03ae3738500aae1056f1102ddc4e5a46784ec18cabf6ca7"
+file = "resourcepacks/Modpack/low-on-fire.pw.toml"
+hash = "846cb5d73e9f297f2e98098569824e8317b043e747f8257650362f89794dd5ce"
 metafile = true
 
 [[files]]
-file = "resourcepacks/luminous-lanterns.pw.toml"
+file = "resourcepacks/Modpack/luminous-lanterns.pw.toml"
 hash = "dc517cb59e996ad76bc7b91128b2fb75508b4b4f02b76fd9ed4128f25d99e5c4"
 metafile = true
+
+[[files]]
+file = "resourcepacks/Modpack/packed_packs.folderpack.json"
+hash = "e0344902e9c5d8816be1bf8cdaf204ec86a28c0a8b486072a065a312d35fbd20"
 
 [[files]]
 file = "shaderpacks/photon-shader.pw.toml"

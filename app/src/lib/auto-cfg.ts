@@ -956,7 +956,7 @@ export function buildAutoConfigFiles(
       if (!rpo || !fn) continue;
       const d = JSON.parse(JSON.stringify(rpo.data));
       for (const [k, v] of changes) setDeep(d, k, v);
-      out["resourcepacks/" + fn + ".rpo"] = JSON.stringify(d, null, 2) + "\n";
+      out["resourcepacks/Modpack/" + fn + ".rpo"] = JSON.stringify(d, null, 2) + "\n";
       continue;
     }
     const raw = (TPL as Record<string, string>)[file];

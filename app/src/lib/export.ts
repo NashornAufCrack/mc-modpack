@@ -18,20 +18,31 @@ export function fname(s: string) {
   }
   return FN[s];
 }
+export function folderpackJson(rps: string[]) {
+  return JSON.stringify({
+    module: true,
+    packIds: rpTopDown(rps).map(s => "file/Modpack/" + fname(s))
+  }, null, 2) + "\n";
+}
 export function optionsTxt(mods: Set<string>) {
-  const B = (k: string) => pack.cv("_base", k); const rps = [...mods].filter(s => pack.BY[s].pt === "r");
-  const order = ["vanilla", ...rpTopDown(rps).reverse().map(s => "file/" + fname(s))];
+  const B = (k: string) => pack.cv("_base", k); const rps = [...mods].filter(s => pack.BY[s]?.pt === "r");
+  const order = ["vanilla", ...rpTopDown(rps).reverse().map(s => "file/Modpack/" + fname(s))];
   return [`renderDistance:${B("renderDistance")}`, `simulationDistance:${B("simulationDistance")}`, `maxFps:${B("maxFps")}`, "enableVsync:false", "mipmapLevels:4", "biomeBlendRadius:2", "resourcePacks:" + JSON.stringify(order)].join("\n") + "\n";
 }
 export function packFiles() {
   const r = pack.resolve(); const files: Record<string, string> = {};
   files["options.txt"] = optionsTxt(r.mods); files["config/defaultoptions/options.txt"] = files["options.txt"];
-  const sp = [...r.mods].find(s => pack.BY[s].pt === "s");
+  const rps = [...r.mods].filter(s => pack.BY[s]?.pt === "r");
+  if (rps.length > 0) {
+    files["resourcepacks/Modpack/packed_packs.folderpack.json"] = folderpackJson(rps);
+  }
+  const sp = [...r.mods].find(s => pack.BY[s]?.pt === "s");
   if (sp && r.mods.has("iris")) { files["config/iris.properties"] = "enableShaders=true\nshaderPack=" + fname(sp) + "\n";
   }
   Object.assign(files, buildAutoConfigFiles(r.mods, pack.data.x.rpo || {}, fname, (s, k) => pack.cv(s, k), pack.cfg._auto || {}));
   const manual = manualList(); const tips = pack.tips(r); const autos = pack.autos(r); const dp = [...r.mods].some(s => pack.typ(s) === "d");
   files["LIES-MICH.txt"] = `Erstellt mit dem Mod-Katalog 26.3 (${new Date().toLocaleDateString("de-DE")}).\nResource-Pack-Reihenfolge, Sichtweite und FPS-Limit sind schon gesetzt.\nArbeitsspeicher: ${pack.ramGB(r)} GB.\n`
+    + (rps.length ? "\nResource Packs sind über das Mod Packed Packs übersichtlich im Ordner „Modpack“ gebündelt und können im Menü mit einem Klick gemeinsam umgeschaltet werden.\n" : "")
     + (dp ? "\nDatapacks liegen im Ordner datapacks und werden von Global Packs in jede NEU erstellte Welt geladen.\n" : "")
     + (autos.length ? `\nAUTOMATISCH AUFEINANDER ABGESTIMMT (bereits in den Config-Dateien gesetzt):\n${autos.map(a => "- " + [a.slug, ...a.partners].map(x => pack.name(x)).join(" + ") + ": " + a.text).join("\n")}\n` : "")
     + (tips.length ? `\nNACH DEM ERSTEN START EINSTELLEN:\n${tips.map(t => "- " + t.mods.map(x => pack.name(x)).join(" + ") + ": " + t.text).join("\n")}\n` : "")
@@ -39,7 +50,7 @@ export function packFiles() {
   if (r.mods.has("spark")) files["TEST-ANLEITUNG.txt"] = "Test-Kit: " + KIT + "\nSeed: " + TESTSEED + "\n";
   return files;
 }
-const dirOf = (s: string) => { const t = pack.typ(s); return t === "r" ? "resourcepacks" : t === "s" ? "shaderpacks" : t === "d" ? "datapacks" : "mods"; };
+const dirOf = (s: string) => { const t = pack.typ(s); return t === "r" ? "resourcepacks/Modpack" : t === "s" ? "shaderpacks" : t === "d" ? "datapacks" : "mods"; };
 export const pathOf = (s: string) => dirOf(s) + "/" + fname(s);
 export function exportSet(server: boolean) {
   const r = pack.resolve(); let all = [...r.mods, ...r.libs];

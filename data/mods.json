@@ -682,7 +682,7 @@
     "cat": "P",
     "sub": "Basis & Werkzeuge",
     "ampel": "G",
-    "rolle": "O",
+    "rolle": "K",
     "downloadsK": 2805,
     "notiz": "Resource Packs in Ordnern/Profilen verwalten",
     "quellen": [
@@ -701,7 +701,8 @@
       "https://cdn.modrinth.com/data/8Pq6Exn2/images/b000060e53bc8bcac337c3cab62117a4f0ee9d2d_350.webp",
       "https://cdn.modrinth.com/data/8Pq6Exn2/images/54a685d8773fbb68a8e7f447d66265531958f035_350.webp"
     ],
-    "seite": "client"
+    "seite": "client",
+    "pflicht": true
   },
   {
     "slug": "iris",

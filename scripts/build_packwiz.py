@@ -7,8 +7,93 @@ D = lambda f: json.load(open(os.path.join(R, "data", f), encoding="utf8"))
 M = D("mods.json"); F = D("files.json"); DEC = D("decisions.json")
 BY = {m["slug"]: m for m in M}
 CHOICES = D("choices.json") if os.path.exists(os.path.join(R, "data", "choices.json")) else {}
-IMPLICIT = {"fresh-animations": ["entity-model-features", "entitytexturefeatures"], "fresh-animations-extensions": ["fresh-animations"], "hyper-punchy": ["punchy-fpa"], "punchymoves": ["fluid-foolish"], "fresh-food-for-hyper-punchy": ["hyper-punchy"], "connected-paths": ["continuity"], "new-glowing-ores": ["continuity"]}
-PRIO = [["fresh-flower-pots","round-trees"],["fresh-animations-objects","fresh-animations-extensions","fa-player-extension","fresh-animations-emissive","just-expressions"],["fresh-animations"],["fresh-food-for-hyper-punchy","hyper-punchy","fluid-foolish"]]
+IMPLICIT = {
+    "immersive-interfaces-mod-support-unofficial": ["shrimps-immersive-interfaces"],
+    "connected-rocks": ["continuity"],
+    "rainbows-foliage": ["polytone"],
+    "fresh-animations": ["entity-model-features", "entitytexturefeatures"],
+    "fresh-animations-extensions": ["fresh-animations"],
+    "fa-player-extension": ["fresh-animations"],
+    "just-expressions": ["entity-model-features"],
+    "hyper-punchy": ["punchy-fpa"],
+    "fresh-food-for-hyper-punchy": ["hyper-punchy"],
+    "punchymoves": ["fluid-foolish"],
+    "connected-paths": ["continuity"],
+    "new-glowing-ores": ["continuity"],
+    "detailed-animations": ["entity-model-features", "entitytexturefeatures"],
+    "als-piglins-revamped-x-fresh-animations": ["fresh-animations"],
+    "als-zombies-revamped-x-fresh-animations": ["fresh-animations"],
+    "als-enderman-revamped-x-fresh-animations": ["fresh-animations"],
+    "als-skeletons-revamped-x-fresh-animations": ["fresh-animations"],
+    "assorted-allays-x-fresh-animations": ["fresh-animations"],
+    "bare-bones-x-fresh-animations": ["fresh-animations"],
+    "fresh-skeleton-physics": ["fresh-animations"],
+    "brays-zombie-overhaul-fresh-animations": ["fresh-animations"],
+    "whimscape-x-fresh-animations": ["fresh-animations", "whimscape"],
+    "als-boss-rush-x-fresh-animations": ["fresh-animations"],
+    "fresh-animations-quivers": ["fresh-animations"],
+    "excalibur-fresh-animations": ["fresh-animations", "excal"],
+    "3d-harnesses-x-fresh-animations": ["fresh-animations"],
+    "fresh-flower-pots-rotated": ["fresh-flower-pots"],
+    "drigo-3d-lanterns-x-punchy": ["hyper-punchy"],
+    "3d-flint-steel-for-punchy": ["hyper-punchy"],
+    "animated-3d-wind-charge-compatible-with-punchy": ["hyper-punchy"]
+}
+
+PRIO = [
+    ["fresh-flower-pots-rotated", "fresh-flower-pots", "fresh-skeleton-physics", "als-creepers-revamped"],
+    [
+        "fresh-animations-extensions", "fa-player-extension", "just-expressions", "detailed-animations",
+        "als-piglins-revamped-x-fresh-animations", "als-zombies-revamped-x-fresh-animations",
+        "als-enderman-revamped-x-fresh-animations", "als-skeletons-revamped-x-fresh-animations",
+        "assorted-allays-x-fresh-animations", "bare-bones-x-fresh-animations",
+        "3d-harnesses-x-fresh-animations", "fresh-animations-quivers",
+        "brays-zombie-overhaul-fresh-animations", "whimscape-x-fresh-animations",
+        "als-boss-rush-x-fresh-animations", "excalibur-fresh-animations"
+    ],
+    ["fresh-animations"],
+    [
+        "fresh-food-for-hyper-punchy", "3d-flint-steel-for-punchy", "drigo-3d-lanterns-x-punchy",
+        "animated-3d-wind-charge-compatible-with-punchy", "hyper-punchy", "fluid-foolish",
+        "theones-eating-animation-pack"
+    ],
+    [
+        "brays-better-3d-bow", "amazing-mace-3d", "blockier-goat-horn", "animated-totem-of-undying",
+        "glowing-3d-totem", "small-shield-totem", "small-held-items", "low-shield-pack",
+        "fresh-food", "fresh-seeds", "fresh-flowers-and-plants", "fresh-ores-and-ingots",
+        "fresh-buckets", "fresh-music-discs", "just-3d-potions", "refined-buckets",
+        "findreks-3d-buckets-and-fish", "fyoncles-3d-trims", "glowing-3d-armor",
+        "luminous-lanterns", "tools-and-utils", "bray-cyber-3d-enchanted-books",
+        "nautilus3d", "animated-doors", "spooky-doors", "swinging-lanterns", "mob-crates"
+    ],
+    [
+        "fwa", "better-lanterns", "better-candles", "torches-reimagined", "weskersons-torches",
+        "rays-3d-rails", "minecarts-with-wheels", "3d-ladders", "rays-3d-ladders",
+        "3d-crops", "fancy-crops", "3d-bamboo-shoots", "fancy-beds", "dimanic-beds",
+        "renewed-bookshelf", "os-colorful-grasses", "connected-paths", "connected-rocks",
+        "borderless-glass", "simple-overlays", "fast-better-grass", "better-leaves",
+        "fancyfast-bushy-leaves", "cubic-leaves", "hanging-leaves", "bushier-bushes",
+        "better-moss", "nature-x", "fluffy-carpets", "rainbows-foliage", "3d-default",
+        "actually-3d-stuff", "animated-items", "xk-redstone-display", "excalibur-lootr-support",
+        "emissive-trims"
+    ],
+    [
+        "jutting-ores", "animated-ore", "subtly-glowing-ores", "new-glowing-ores",
+        "glowing-glints", "visual-enchantments", "even-better-enchants", "beautiful-enchanted-books",
+        "enchanted-books-re-covered", "visual-armor-trims", "better-flame-particles",
+        "enchanting-table-magic-circle", "eggs-n-eyes", "rethoughted-spawn-eggs",
+        "blinking-ender-eyes", "low-on-fire", "low-fire-pack", "visual-effects-plus",
+        "dramatic-skys", "sunbathing-godrays", "default-hd-sun-and-moon"
+    ],
+    [
+        "immersive-interfaces-mod-support-unofficial", "shrimps-immersive-interfaces",
+        "unique-dark", "cozyui-plus", "default-dark-mode", "recolourful-containers-gui",
+        "icons", "enhanced-boss-bars", "hardcore-hearts", "clearer-slot-highlight",
+        "no-pumpkin-blur", "redstone-tweaks", "translations-for-sodium"
+    ],
+    ["vvi", "enhanced-audio", "gentler-weather-sounds"],
+    ["vanilla-exp", "xalis-enhanced-vanilla", "faithful-32x", "faithful-64x"]
+]
 
 def status():
     s = {}
@@ -25,7 +110,7 @@ def selection(plus):
         if s not in F or st.get(s) == "weg": continue
         ok_cat = m["cat"] in ("P", "V") or (plus and m["cat"] in ("G", "T"))
         ok_srv = plus or m["ampel"] in ("G", "Y", "Q")
-        if ok_cat and ok_srv and (m["rolle"] == "K" or st.get(s) == "drin"): sel.add(s)
+        if ok_cat and ok_srv and (m["rolle"] == "K" or st.get(s) == "drin" or m.get("pflicht")): sel.add(s)
     out, stack = set(), list(sel)
     while stack:
         s = stack.pop()
@@ -45,19 +130,25 @@ def build(name, plus):
     sel = selection(plus)
     for s in sorted(sel):
         f = F[s]; pt = (BY[s]["pt"] if s in BY else f[8]) or "m"
-        folder = {"m": "mods", "r": "resourcepacks", "s": "shaderpacks"}[pt]
+        folder = {"m": "mods", "r": "resourcepacks/Modpack", "s": "shaderpacks"}[pt]
         m = re.search(r"/data/([^/]+)/versions/([^/]+)/", f[0])
         title = BY[s]["name"] if s in BY else (f[7] or s)
         toml = (f'name = {json.dumps(title, ensure_ascii=False)}\nfilename = {json.dumps(unquote(f[1]), ensure_ascii=False)}\nside = "{side(s) if pt=="m" else "client"}"\n\n'
                 f'[download]\nurl = "{f[0]}"\nhash-format = "sha512"\nhash = "{f[3]}"\n\n'
                 f'[update]\n[update.modrinth]\nmod-id = "{m.group(1)}"\nversion = "{m.group(2)}"\n')
         files[f"{folder}/{s}.pw.toml"] = (toml.encode(), True)
-    # Standard-Einstellungen (YOSBR) und Photon
+    # Standard-Einstellungen (DefaultOptions) und Photon
     rps = [s for s in sel if s in BY and BY[s]["pt"] == "r"]
     rank = lambda s: next((i for i, g in enumerate(PRIO) if s in g), len(PRIO))
-    order = ["vanilla"] + ["file/" + unquote(F[s][1]) for s in sorted(rps, key=rank, reverse=True)]
+    order = ["vanilla"] + ["file/Modpack/" + unquote(F[s][1]) for s in sorted(rps, key=rank, reverse=True)]
     opts = ["renderDistance:16", "simulationDistance:10", "maxFps:140", "enableVsync:false", 'renderClouds:"false"', "mipmapLevels:4", "biomeBlendRadius:2", "resourcePacks:" + json.dumps(order, ensure_ascii=False), "key_key.saveToolbarActivator:key.keyboard.unknown" if "zoomify" in sel else ""]
     files["config/defaultoptions/options.txt"] = ("\n".join(o for o in opts if o).encode() + b"\n", False)
+    if rps:
+        fp_json = json.dumps({
+            "module": True,
+            "packIds": ["file/Modpack/" + unquote(F[s][1]) for s in sorted(rps, key=rank)]
+        }, indent=2) + "\n"
+        files["resourcepacks/Modpack/packed_packs.folderpack.json"] = (fp_json.encode(), False)
     if "photon-shader" in sel:
         pf = unquote(F["photon-shader"][1])
         files["config/defaultoptions/extra/config/iris.properties"] = (f"enableShaders=true\nshaderPack={pf}\n".encode(), False)
