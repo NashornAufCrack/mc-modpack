@@ -17667,10 +17667,10 @@
     "name": "ClickOptimizer",
     "cat": "P",
     "sub": "Performance",
-    "ampel": "G",
-    "rolle": "K",
+    "ampel": "R",
+    "rolle": "O",
     "downloadsK": 6,
-    "notiz": "Weniger Eingabeverzögerung, keine verlorenen Klicks.",
+    "notiz": "Crash auf 26.3: NoSuchFieldError KEYSYM (vom Mod-Autor fälschlicherweise für 26.3 deklariert).",
     "quellen": [
       "AUTO"
     ],
@@ -17686,7 +17686,7 @@
       "https://cdn.modrinth.com/data/cTPK9sBU/images/e6709a181eb26ce19f4fca2280ce0fd365595540.png"
     ],
     "neu": true,
-    "want": true
+    "want": false
   },
   {
     "slug": "ancient-cities",
