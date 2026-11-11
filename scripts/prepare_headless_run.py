@@ -16,8 +16,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 RUN_DIR = BASE_DIR / "run"
 
-# Mods, die auf Headless-Cloud-Servern ohne physische Grafikkarte (Vulkan/Mesh-Shader)
-# übersprungen werden müssen (werden lokal auf der RTX 3080 getestet)
+# Mods, die auf Headless-Cloud-Servern ohne physische Grafikkarte / Bildschirm
+# (Vulkan, NVIDIA-Mesh-Shader, SDL3-Desktop-Windowing) übersprungen werden müssen
 GPU_EXCLUSIVE = {
     "voxy",
     "voxy-server-side",
@@ -25,6 +25,7 @@ GPU_EXCLUSIVE = {
     "voxy-extra",
     "voxy-worldgen",
     "nvidium",
+    "ixeris",
 }
 
 def load_data():
@@ -289,8 +290,9 @@ def main():
     # In Minecraft options.txt werden Resource Packs in umgekehrter Reihenfolge notiert
     rp_options_order = ["vanilla"] + [f"file/Modpack/{fn}" for fn in reversed(rp_filenames)]
     options_lines = [
-        "renderDistance:10",
-        "simulationDistance:8",
+        "fullscreen:false",
+        "renderDistance:8",
+        "simulationDistance:6",
         "maxFps:60",
         "enableVsync:false",
         "mipmapLevels:4",
