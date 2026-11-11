@@ -23,6 +23,8 @@ jobs:
         run: python3 scripts/check_github_releases.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: "Mixin-Kollisionsscan & Schutz (Bytecode-Ebene)"
+        run: python3 scripts/mixin_scan.py guard
       - name: "Resourcepack-Check"
         run: python3 scripts/rpcheck.py
       - name: "Start-Sicherheit & Kompatibilitätsprüfung aller Packs"
@@ -33,11 +35,11 @@ jobs:
           git config user.name "update-check"
           git config user.email "actions@users.noreply.github.com"
           for i in 1 2 3 4; do
-            git add data/updates.json data/updates.xml data/files.json data/app-data.json data/rp-check.json data/github-early-releases.json quelle/files.json UPDATES.md
+            git add data/updates.json data/updates.xml data/files.json data/app-data.json data/rp-check.json data/github-early-releases.json data/mixin-held.json data/mixin-index.json data/mixin-conflicts.json quelle/files.json UPDATES.md
             git diff --cached --quiet && break
             git commit -q -m "Update-Check $(date +%F)"
             git push -q && break
             # Inzwischen hat jemand gepusht: nichts überschreiben, sondern auf dem neuen Stand neu rechnen
             sleep $((i*7)); git fetch -q origin main && git reset -q --hard origin/main
-            node scripts/check-updates.mjs && python3 scripts/check_github_releases.py && python3 scripts/rpcheck.py && python3 scripts/solve_pack_compatibility.py
+            node scripts/check-updates.mjs && python3 scripts/check_github_releases.py && python3 scripts/mixin_scan.py guard && python3 scripts/rpcheck.py && python3 scripts/solve_pack_compatibility.py
           done

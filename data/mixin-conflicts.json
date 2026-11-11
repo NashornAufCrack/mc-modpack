@@ -1,0 +1,40 @@
+{
+  "kollisionen": [
+    {
+      "mods": [
+        "euphoria-patches",
+        "irissearch"
+      ],
+      "art": "redirect",
+      "stufe": "warnung",
+      "wo": "ShaderPackOptionList$HeaderEntry.method_25343 → III)V"
+    },
+    {
+      "mods": [
+        "lithium",
+        "slabbed"
+      ],
+      "art": "redirect",
+      "stufe": "absturz",
+      "wo": "ServerExplosion.getSeenPercent → "
+    },
+    {
+      "mods": [
+        "ferrite-core",
+        "lithium"
+      ],
+      "art": "overwrite",
+      "stufe": "absturz",
+      "wo": "PalettedContainer.acquire (beide definieren @Overwrite)"
+    },
+    {
+      "mods": [
+        "lithium",
+        "modernfix-mvus"
+      ],
+      "art": "overwrite",
+      "stufe": "absturz",
+      "wo": "Biome.getTemperature (beide definieren @Overwrite)"
+    }
+  ]
+}
