@@ -33,7 +33,11 @@ export const RPRANK: string[][] = [
     "luminous-lanterns", "tools-and-utils", "bray-cyber-3d-enchanted-books",
     "nautilus3d", "animated-doors", "spooky-doors", "swinging-lanterns", "mob-crates"
   ],
-  // 5: Spezifische 3D-Weltblöcke, Vegetation, Laub, Möbel & Wege (überschreiben generische 3D-Packs)
+  // 5: Spezifische Shader-, Polytone- & Partikel-Vegetation (höchste Priorität bei Laub & Natur)
+  [
+    "rainbows-foliage", "sunbathing-godrays", "visual-effects-plus"
+  ],
+  // 6: Spezifische 3D-Weltblöcke, Vegetation, Laub, Möbel & Wege (überschreiben generische 3D-Packs)
   [
     "fwa", "better-lanterns", "better-candles", "torches-reimagined", "weskersons-torches",
     "rays-3d-rails", "minecarts-with-wheels", "3d-ladders", "rays-3d-ladders",
@@ -41,32 +45,32 @@ export const RPRANK: string[][] = [
     "renewed-bookshelf", "os-colorful-grasses", "connected-paths", "connected-rocks",
     "borderless-glass", "simple-overlays", "fast-better-grass", "better-leaves",
     "fancyfast-bushy-leaves", "cubic-leaves", "hanging-leaves", "bushier-bushes",
-    "better-moss", "rainbows-foliage", "fluffy-carpets", "emissive-trims",
+    "better-moss", "fluffy-carpets", "emissive-trims",
     "animated-items", "xk-redstone-display", "excalibur-lootr-support"
   ],
-  // 6: Generische 3D-Welt & Block-Overhauls (Basis unter den spezifischen Packs)
+  // 7: Generische 3D-Welt & Block-Overhauls (Basis unter den spezifischen Packs)
   [
     "actually-3d-stuff", "nature-x", "3d-default"
   ],
-  // 7: Optische Effekte, Glühen, Partikel, Verzauberungen & Himmel
+  // 8: Optische Effekte, Glühen, Partikel, Verzauberungen & Himmel
   [
     "jutting-ores", "animated-ore", "subtly-glowing-ores", "new-glowing-ores",
     "glowing-glints", "visual-enchantments", "even-better-enchants", "beautiful-enchanted-books",
     "enchanted-books-re-covered", "visual-armor-trims", "better-flame-particles",
     "enchanting-table-magic-circle", "eggs-n-eyes", "rethoughted-spawn-eggs",
-    "blinking-ender-eyes", "low-on-fire", "low-fire-pack", "visual-effects-plus",
-    "dramatic-skys", "sunbathing-godrays", "default-hd-sun-and-moon"
+    "blinking-ender-eyes", "low-on-fire", "low-fire-pack",
+    "dramatic-skys", "default-hd-sun-and-moon"
   ],
-  // 8: GUI, HUD, Menüs, Icons & Übersetzungen (Icons oben, damit Fonts nicht überschrieben werden)
+  // 9: GUI, HUD, Menüs, Icons & Übersetzungen (Icons oben, damit Fonts nicht überschrieben werden)
   [
     "icons", "clearer-slot-highlight", "enhanced-boss-bars", "hardcore-hearts",
     "no-pumpkin-blur", "unique-dark", "cozyui-plus", "default-dark-mode",
     "recolourful-containers-gui", "redstone-tweaks", "translations-for-sodium",
     "shrimps-immersive-interfaces", "immersive-interfaces-mod-support-unofficial"
   ],
-  // 9: Audio & Geräusche
+  // 10: Audio & Geräusche
   ["vvi", "enhanced-audio", "gentler-weather-sounds"],
-  // 10: Basis-Texturen / Komplett-Overhauls
+  // 11: Basis-Texturen / Komplett-Overhauls
   ["vanilla-exp", "xalis-enhanced-vanilla", "faithful-32x", "faithful-64x"]
 ];
 
@@ -74,13 +78,14 @@ function fallbackRank(s: string): number {
   if (/fresh-animations|-fa-/.test(s)) return 1;
   if (/punchy/.test(s)) return 3;
   if (/3d|model|item|totem|bow|mace|sword|armor|tool/.test(s)) return 4;
-  if (/crop|leaf|leaves|grass|bush|tree|wood|rock|path|block|glass/.test(s)) return 5;
-  if (/nature-x|actually-3d/.test(s)) return 6;
-  if (/ore|glint|glow|enchant|flame|fire|sky|sun|moon|eye|effect/.test(s)) return 7;
-  if (/gui|ui|dark|icon|hud|bar|heart|menu|translat/.test(s)) return 8;
-  if (/sound|audio|weather|voice/.test(s)) return 9;
-  if (/vanilla|faithful|overhaul|pack/.test(s)) return 10;
-  return 7;
+  if (/rainbow|polytone|godray/.test(s)) return 5;
+  if (/crop|leaf|leaves|grass|bush|tree|wood|rock|path|block|glass/.test(s)) return 6;
+  if (/nature-x|actually-3d/.test(s)) return 7;
+  if (/ore|glint|glow|enchant|flame|fire|sky|sun|moon|eye|effect/.test(s)) return 8;
+  if (/gui|ui|dark|icon|hud|bar|heart|menu|translat/.test(s)) return 9;
+  if (/sound|audio|weather|voice/.test(s)) return 10;
+  if (/vanilla|faithful|overhaul|pack/.test(s)) return 11;
+  return 8;
 }
 
 export function rpAuto(rps: string[]) {

@@ -701,6 +701,22 @@ export const AUTO_RULES: AutoRule[] = [
       text: "Fresh Food liegt in options.txt über TheOne's Eating Animation (3D-Essensmodelle haben Vorrang)."
     }
   },
+  {
+    id: "rp-rainbows-foliage",
+    slug: "rainbows-foliage",
+    when: ["nature-x", "better-leaves", "bushier-bushes", "better-moss", "actually-3d-stuff"],
+    file: "options.txt",
+    fmt: "rp-order",
+    changes: [],
+    text: "rainbow's foliage (Polytone) liegt in options.txt über allgemeinen Laub- und Natur-Packs, damit bunte Biome-Blätter und Shader-Partikel voll zur Geltung kommen.",
+    alt: {
+      slug: "nature-x",
+      file: "options.txt",
+      fmt: "rp-order",
+      changes: [],
+      text: "Allgemeine Natur-/Laub-Packs liegen in options.txt über rainbow's foliage."
+    }
+  },
 
   // --- Resource Packs mit Respackopts (.rpo) ---
   {
