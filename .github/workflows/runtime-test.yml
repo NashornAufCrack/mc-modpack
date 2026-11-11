@@ -113,7 +113,7 @@ jobs:
           dummy-assets: true
           cache-mc: "github"
           xvfb: true
-          headlessmc-command: '-lwjgl --retries 1 --jvm "-Xmx3G -Djava.awt.headless=false -DMcRuntimeGameTest=false"'
+          headlessmc-command: '--retries 1 --jvm "-Xmx3G -Djava.awt.headless=false -DMcRuntimeGameTest=false"'
 
       - name: Test-Logs sichern (bei Fehler oder Abbruch)
         if: always()
