@@ -268,7 +268,7 @@
       </div>
     </div>
     <p class="small muted">
-      Prüft das Modpack auf einem 16 GB Linux-Runner in einer echten Minecraft-Testwelt (Chunk-Rundflug, Mobs für Fresh Animations, 3D-Items).
+      Prüft das Modpack auf einem 16 GB Linux-Runner in einer echten Minecraft-Testwelt (Chunk-Rundflug, Mobs für Fresh Animations, 3D-Items). ⏱️ <b>Dauer: ca. 2–5 Minuten</b> (je nach Pack-Größe).
     </p>
 
     {#if headlessTester.isBusy}
@@ -301,7 +301,7 @@
       onclick={() => headlessTester.runTest(selectedMods, selectedRps)}
     >
       {#if headlessTester.isBusy}
-        ⏳ Stresstest läuft...
+        ⏳ Stresstest läuft (ca. 2–5 Min)...
       {:else if isTested}
         🔄 Stresstest erneut ausführen
       {:else}

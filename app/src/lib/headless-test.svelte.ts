@@ -42,7 +42,7 @@ export class HeadlessTester {
     if (this.isBusy) return;
     const sig = this.getSignature(mods, resourcepacks);
     this.state = "dispatching";
-    this.progress = "Starte Cloud-Runner auf GitHub Actions (16 GB RAM)...";
+    this.progress = "Starte Cloud-Runner auf GitHub Actions (Dauer: ca. 2–5 Min)...";
     this.error = "";
     this.runUrl = "";
 
@@ -71,7 +71,7 @@ export class HeadlessTester {
       }
 
       this.state = "queued";
-      this.progress = "Test in Warteschlange... Warte auf Start des Runners...";
+      this.progress = "Test in Warteschlange... (Gesamtdauer ca. 2–5 Min)";
 
       // Run-ID finden durch Polling (bis zu 25 Versuche = 50s)
       const startTime = Date.now();
@@ -165,7 +165,7 @@ export class HeadlessTester {
             }
           } catch {}
 
-          this.progress = `⏳ ${timeStr} · ${stepText}`;
+          this.progress = `⏳ ${timeStr} (ca. 2–5 Min) · ${stepText}`;
         } else if (runData.status === "completed") {
           if (runData.conclusion === "success") {
             this.state = "success";
