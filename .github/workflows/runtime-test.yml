@@ -104,10 +104,11 @@ jobs:
           fi
 
       - name: Headless Minecraft Client starten (Xvfb + mc-runtime-test)
-        uses: headlesshq/mc-runtime-test@v4.5.2
+        uses: headlesshq/mc-runtime-test@5.0.0
         with:
           mc: "26.3"
           modloader: "fabric"
+          java: "21"
           mc-runtime-test: "fabric"
           dummy-assets: true
           cache-mc: "github"
