@@ -103,6 +103,13 @@ jobs:
             python3 scripts/prepare_headless_run.py --preset "plus"
           fi
 
+      - name: Mesa OpenGL / GLX Pakete installieren & Diagnose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mesa-utils libgl1-mesa-dri libglx-mesa0 libosmesa6 xvfb
+          echo "=== GLXINFO TEST IN XVFB ==="
+          xvfb-run -a -s "-screen 0 1920x1080x24 +extension GLX +render -noreset" glxinfo | head -n 40 || true
+
       - name: Headless Minecraft Client starten (Xvfb + mc-runtime-test)
         uses: headlesshq/mc-runtime-test@5.0.0
         env:
