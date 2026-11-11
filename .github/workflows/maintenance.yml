@@ -1,0 +1,118 @@
+name: Wartung
+# Tägliche konsolidierte Wartung:
+# 1. Kandidaten & Social-Hype erkunden (scripts/discover.mjs, scripts/discover_social.py)
+# 2. Katalog auto-erweitern (scripts/expand.mjs)
+# 3. Abhängigkeiten reparieren & JARs prüfen (scripts/fixdeps.mjs, scripts/inspect_jar_deps.py)
+# 4. Mod-Updates & Schutzprüfungen (scripts/check-updates.mjs, scripts/check_github_releases.py, scripts/mixin_scan.py guard, scripts/rpcheck.py, scripts/solve_pack_compatibility.py, qa/datacheck.py --ci)
+# 5. Medien & YouTube-Vorschaubilder aktualisieren (scripts/media.mjs, scripts/yt-thumbs.py, scripts/media-app.mjs)
+# 6. Optional: Hörproben aktualisieren (nur sonntags oder bei manuellem Start mit include_sounds)
+# 7. Einziger atomarer Git-Commit & Push (keine Kaskaden-Commits und Rennbedingungen mehr!)
+
+on:
+  schedule:
+    - cron: "0 4 * * *" # Täglich um 04:00 UTC
+  workflow_dispatch:
+    inputs:
+      include_sounds:
+        description: "Hörproben (sounds.py) ebenfalls ausführen?"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: maintenance
+  cancel-in-progress: false
+
+jobs:
+  maintenance:
+    name: "Tägliche Wartung & Updates"
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 20
+
+      - name: Node.js 22 einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Python 3.11 einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Python-Hilfspakete installieren
+        run: |
+          pip install -q yt-dlp pillow
+
+      - name: "1. Mod-Kandidaten & Social-Hype erkunden"
+        run: |
+          node scripts/discover.mjs | tee data/discover-log.txt || true
+          python3 scripts/discover_social.py || true
+        env:
+          CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
+
+      - name: "2. Katalog auto-erweitern"
+        run: |
+          node scripts/expand.mjs | tee data/expand-log.txt || true
+        env:
+          CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
+
+      - name: "3. Abhängigkeiten reparieren & JARs inspizieren"
+        run: |
+          node scripts/fixdeps.mjs || true
+          python3 scripts/inspect_jar_deps.py || true
+
+      - name: "4. Update-Check & Schutzprüfungen"
+        run: |
+          node scripts/check-updates.mjs
+          python3 scripts/check_github_releases.py
+          python3 scripts/mixin_scan.py guard
+          python3 scripts/rpcheck.py
+          python3 scripts/solve_pack_compatibility.py
+          python3 qa/datacheck.py --ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "5. Medien & YouTube-Vorschaubilder aktualisieren"
+        run: |
+          node scripts/media.mjs || true
+          python3 scripts/yt-thumbs.py || true
+          node scripts/media-app.mjs || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
+
+      - name: "6. Hörproben aktualisieren (sonntags oder bei Bedarf)"
+        if: github.event.inputs.include_sounds == 'true' || github.event.schedule == '0 4 * * 0'
+        run: |
+          sudo apt-get -qq install -y ffmpeg >/dev/null
+          python3 scripts/sounds.py || true
+
+      - name: "7. Atomarer Git-Commit & Push"
+        run: |
+          git config user.name "wartung"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/ quelle/files.json UPDATES.md cf media/yt sounds/
+          if git diff --cached --quiet; then
+            echo "Keine Datenänderungen vorhanden. Beende sauber."
+            exit 0
+          fi
+          git commit -m "Wartung & Updates $(date +%F)"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase -X theirs -q && git push -q; then
+              echo "Wartungs-Commit erfolgreich gepusht."
+              exit 0
+            fi
+            echo "Push-Konflikt, erneuter Versuch in $((i * 5))s..."
+            sleep $((i * 5))
+          done
+          echo "Push nach 5 Versuchen fehlgeschlagen."
+          exit 1

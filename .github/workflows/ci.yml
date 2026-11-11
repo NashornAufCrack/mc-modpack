@@ -1,63 +1,87 @@
-name: Prüfung
-# Prüft nach jeder Änderung an Website oder Katalogdaten und nach jedem Update-Check,
-# ob Daten stimmig sind, die Website baut und alle Abläufe inkl. Exporte funktionieren.
-# Veröffentlicht den geprüften Build aktuell auf der Vorschau-/Testseite (test/), damit neu/ bis zur Freigabe unverändert bleibt.
+name: CI / Qualitätsprüfung
+# Prüft nach jeder Änderung an Website, QA, Skripten oder Katalogdaten sowie nach dem täglichen Wartungslauf,
+# ob Daten stimmig sind, die Website baut und alle Abläufe inkl. Exporte & Barrierefreiheit funktionieren.
+# Veröffentlicht den geprüften Build auf der Vorschau-/Testseite (test/).
+
 on:
   push:
     paths:
       - "app/**"
       - "qa/**"
-      - "data/app-data.json"
-      - "data/media-app.json"
-      - "scripts/check-updates.mjs"
-      - ".github/workflows/pruefung.yml"
-  # Commits der Abläufe (GITHUB_TOKEN) lösen keinen push-Lauf aus, daher nach dem Update-Check eigens prüfen
+      - "data/**"
+      - "scripts/**"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    branches:
+      - main
   workflow_run:
-    workflows: ["Update-Check"]
+    workflows: ["Wartung"]
     types: [completed]
   workflow_dispatch:
+
 permissions:
   contents: write
+
 concurrency:
-  group: pruefung
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
+
 jobs:
   pruefen:
+    name: "Qualitätsprüfung, Build & E2E"
     runs-on: ubuntu-latest
     timeout-minutes: 20
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Repository auschecken
+        uses: actions/checkout@v4
         with:
           fetch-depth: 20
-      - uses: actions/setup-node@v4
+
+      - name: Node.js 22 einrichten
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: "Daten prüfen"
+
+      - name: Python 3.11 einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: "Daten prüfen (Katalog-Integrität)"
         run: python3 qa/datacheck.py --ci
+
       - name: "Website: Typprüfung und Build (Testseite)"
         working-directory: app
         run: |
           npm ci --no-audit --no-fund
           npm run check
           VITE_OUT=../test npm run build
-      - name: "Abläufe testen (Playwright, axe)"
+
+      - name: "Abläufe testen (Playwright, axe Barrierefreiheit)"
         run: |
           cd qa && npm ci --no-audit --no-fund && npx playwright install --with-deps chromium && cd ..
           mkdir -p qa/out
           python3 -m http.server 8765 >/dev/null 2>&1 &
           sleep 1
           BASE=http://localhost:8765/test/ node qa/e2e.js qa/out
-      - uses: actions/upload-artifact@v4
+
+      - name: Prüfbericht hochladen
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: pruefbericht
           path: qa/out/e2e-report.json
           if-no-files-found: ignore
-      - name: "Testseite veröffentlichen (nur wenn alles grün ist)"
+
+      - name: "Testseite veröffentlichen (nur wenn alle Tests grün sind)"
         if: success() && github.ref == 'refs/heads/main'
         run: |
           git add test
-          if git diff --cached --quiet; then echo "Testseite unverändert."; exit 0; fi
+          if git diff --cached --quiet; then
+            echo "Testseite unverändert.";
+            exit 0;
+          fi
           git -c user.name=website-build -c user.email=41898282+github-actions[bot]@users.noreply.github.com \
             commit -q -m "Testseite gebaut ($(git rev-parse --short HEAD))"
           for i in 1 2 3 4 5; do
@@ -71,4 +95,5 @@ jobs:
             git rebase origin/main || git rebase --abort
             sleep $((i * 5))
           done
-          echo "Veröffentlichen fehlgeschlagen"; exit 1
+          echo "Veröffentlichen fehlgeschlagen"
+          exit 1

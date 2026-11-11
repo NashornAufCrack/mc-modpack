@@ -13,7 +13,7 @@ Vollständige Durchsicht von Website-Code, Abläufen, Katalogdaten und Medien, m
 
 - 29 Fehler behoben, 8 davon schwer (Datapacks im Export, doppelte Dateinamen, Abhängigkeiten als Projekt-IDs, Update-Check verwarf neue Pflicht-Abhängigkeiten, Teilen-Links, Sackgasse bei Konflikten mit festen Mods, Shader-Ausschluss Pegasus/Photon).
 - 127 Beschreibungen übersetzt, Datenprüfung 0 Fehler, Browser-Tests 0 Fehler, axe 0 Verstöße, Typprüfung 0 Fehler.
-- Neu: Ablauf „Prüfung“ (.github/workflows/pruefung.yml) nach jeder Änderung und nach jedem Update-Check; Prüfwerkzeuge in `qa/` (datacheck.py, e2e.js).
+- Neu: Konsolidierter CI-Ablauf (.github/workflows/ci.yml) nach jeder Änderung und nach der täglichen Wartung (.github/workflows/maintenance.yml); Prüfwerkzeuge in `qa/` (datacheck.py, e2e.js).
 - Update-Check: lädt neue Pflicht-Abhängigkeiten nach oder hält das Update zurück, schreibt `quelle/files.json` mit, rechnet bei Push-Konflikt neu. `build.py` gleicht deshalb nicht mehr mit `data/files.json` ab.
 - Medien: schlanke `data/media-app.json` für die Website; vorübergehende Fehler werden bis zu 3-mal wiederholt.
 - Offen: 79 Einträge ohne HD-Medien, 409 Videos in Prüfung, 4 Fragen und 18 Feature-Ideen zum Entscheiden.
