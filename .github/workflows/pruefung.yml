@@ -60,14 +60,15 @@ jobs:
           if git diff --cached --quiet; then echo "Testseite unverändert."; exit 0; fi
           git -c user.name=website-build -c user.email=41898282+github-actions[bot]@users.noreply.github.com \
             commit -q -m "Testseite gebaut ($(git rev-parse --short HEAD))"
-          git reset --hard HEAD
-          git clean -fd
           for i in 1 2 3 4 5; do
-            git fetch -q origin main
-            if ! git diff --quiet HEAD~1 origin/main -- app; then echo "Neuere Quellen auf main – der nächste Lauf veröffentlicht."; exit 0; fi
-            if git diff --quiet HEAD origin/main -- test; then echo "Schon veröffentlicht."; exit 0; fi
-            if git rebase -q origin/main && git push -q origin HEAD:main; then echo "Testseite veröffentlicht."; exit 0; fi
-            git rebase --abort 2>/dev/null || true
+            if git push origin HEAD:main; then
+              echo "Testseite erfolgreich veröffentlicht."
+              exit 0
+            fi
+            echo "Push abgewiesen, hole neuesten Stand..."
+            git fetch origin main
+            git reset --hard HEAD
+            git rebase origin/main || git rebase --abort
             sleep $((i * 5))
           done
           echo "Veröffentlichen fehlgeschlagen"; exit 1
