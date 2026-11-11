@@ -73,6 +73,19 @@
         <li><b>Vorkonfiguriert:</b> Der empfohlene Arbeitsspeicher, Shader-Pfade und die richtige Resource-Pack-Reihenfolge sind bereits fest in der Instanz hinterlegt!</li>
         <li><b>Starten:</b> Doppelklick auf die Instanz in Prism – die Mods werden beim ersten Start blitzschnell geladen.</li>
       </ol>
+      <div class="pro-tip">
+        <div class="pt-head"><b>✦ Pro-Tipp: Automatische Updates vor jedem Spielstart (Packwiz)</b></div>
+        <p class="muted">Du möchtest dein Modpack nicht bei jedem Update neu als ZIP herunterladen? Prism kann neue Mod-Versionen vor dem Start vollautomatisch abgleichen:</p>
+        <ol class="pt-steps">
+          <li>Lade die Datei <a href="https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest" target="_blank" rel="noopener"><code>packwiz-installer-bootstrap.jar</code></a> herunter und lege sie direkt in den Hauptordner deiner Instanz (Rechtsklick auf die Instanz in Prism › <i>Ordner öffnen</i>).</li>
+          <li>Rechtsklick auf die Instanz › <i>Bearbeiten</i> › links auf <i>Eigene Befehle</i> klicken und oben den Haken bei <i>Befehle aktivieren</i> setzen.</li>
+          <li>Im Feld <b>Vor dem Start</b> folgenden Befehl einfügen:<br>
+            <code class="code-block">"$INST_JAVA" -jar packwiz-installer-bootstrap.jar https://nashornaufcrack.github.io/mc-modpack/packs/plus/pack.toml</code>
+            <span class="muted small">(Für das Visual-Pack am Ende <code>packs/visual/pack.toml</code> eintragen).</span>
+          </li>
+        </ol>
+        <p class="muted small pt-note"><i>Hinweis: Dieses Feature funktioniert nur mit Prism Launcher oder MultiMC. Die Modrinth App erlaubt aus Sandbox-Sicherheitsgründen keine benutzerdefinierten Start-Befehle – dort bleibt der Weg über den regulären <code>.mrpack</code>-Download.</i></p>
+      </div>
       <div class="placeholder-img" title="Bilder-Vorschau (kann später mit Screenshots ergänzt werden)">
         <span>🖼️ Screenshot-Bereich: Prism Launcher Import</span>
       </div>
@@ -117,5 +130,11 @@
   .lbadge.curseforge { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
   .steps { margin: 0; padding-left: 1.4rem; display: grid; gap: .5rem; font-size: .92rem; }
   .steps li code { font-family: var(--mono); font-size: .85em; background: var(--bg); padding: 2px 6px; border-radius: 4px; }
+  .pro-tip { border-radius: 8px; border: 1px solid color-mix(in srgb, #6366f1 35%, var(--line)); background: color-mix(in srgb, #6366f1 8%, var(--surface)); padding: .9rem 1rem; display: grid; gap: .5rem; font-size: .88rem; }
+  .pt-head { color: #818cf8; font-size: .92rem; }
+  .pt-steps { margin: 0; padding-left: 1.2rem; display: grid; gap: .4rem; }
+  .code-block { display: block; margin: .3rem 0 .2rem; padding: .4rem .6rem; border-radius: 6px; background: var(--bg); border: 1px solid var(--line); font-family: var(--mono); font-size: .82rem; word-break: break-all; }
+  .pt-note { margin: .2rem 0 0; }
+  .small { font-size: .8rem; }
   .placeholder-img { border: 1px dashed var(--line-2); border-radius: 8px; padding: 1rem; text-align: center; color: var(--muted); font-size: .85rem; background: var(--bg-2); }
 </style>

@@ -1,0 +1,41 @@
+# Auto-detect text files and normalize line endings to LF on commit
+* text=auto eol=lf
+
+# Packwiz metadata and config files (must strictly stay LF for SHA hash integrity)
+*.toml text eol=lf
+*.json text eol=lf
+*.json5 text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+*.properties text eol=lf
+*.cfg text eol=lf
+
+# Source code & workflows
+*.js text eol=lf
+*.ts text eol=lf
+*.mjs text eol=lf
+*.py text eol=lf
+*.svelte text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Windows scripts require CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binaries
+*.jar binary
+*.zip binary
+*.mrpack binary
+*.webp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.ogg binary
+*.mp3 binary
+*.wav binary
