@@ -87,12 +87,12 @@ PRIO = [
     ],
     [
          
-        "unique-dark", "cozyui-plus", "default-dark-mode", "recolourful-containers-gui",
+        "unique-dark", "cozyui-plus", "default-dark-mode", "dark-smooth-gui", "recolourful-containers-gui",
         "icons", "enhanced-boss-bars", "hardcore-hearts", "clearer-slot-highlight",
         "no-pumpkin-blur", "redstone-tweaks", "translations-for-sodium"
     ],
     ["vvi", "enhanced-audio", "gentler-weather-sounds"],
-    ["vanilla-exp", "xalis-enhanced-vanilla", "faithful-32x", "faithful-64x"]
+    ["vanilla-exp", "xalis-enhanced-vanilla", "faithful-32x", "faithful-64x", "festive-mash-up"]
 ]
 
 def status():

@@ -36,7 +36,7 @@ function keysHtml(){
 /* Resource-Pack-Reihenfolge (oben = höchste Priorität) */
 const RPRANK=[
   ["fresh-flower-pots-rotated","fresh-flower-pots","fresh-skeleton-physics","als-creepers-revamped"],
-  ["icons","clearer-slot-highlight","enhanced-boss-bars","hardcore-hearts","no-pumpkin-blur","unique-dark","cozyui-plus","default-dark-mode","recolourful-containers-gui","redstone-tweaks","translations-for-sodium",],
+  ["icons","clearer-slot-highlight","enhanced-boss-bars","hardcore-hearts","no-pumpkin-blur","unique-dark","cozyui-plus","default-dark-mode", "dark-smooth-gui","recolourful-containers-gui","redstone-tweaks","translations-for-sodium",],
   ["fresh-animations-extensions","fa-player-extension","just-expressions","detailed-animations","als-piglins-revamped-x-fresh-animations","als-zombies-revamped-x-fresh-animations","als-enderman-revamped-x-fresh-animations","als-skeletons-revamped-x-fresh-animations","assorted-allays-x-fresh-animations","bare-bones-x-fresh-animations","3d-harnesses-x-fresh-animations","fresh-animations-quivers","brays-zombie-overhaul-fresh-animations","whimscape-x-fresh-animations","als-boss-rush-x-fresh-animations","excalibur-fresh-animations"],
   ["fresh-animations"],
   ["fresh-food-for-hyper-punchy","3d-flint-steel-for-punchy","drigo-3d-lanterns-x-punchy","animated-3d-wind-charge-compatible-with-punchy","hyper-punchy","fluid-foolish","theones-eating-animation-pack"],
@@ -46,7 +46,7 @@ const RPRANK=[
   ["actually-3d-stuff","nature-x","3d-default"],
   ["jutting-ores","animated-ore","subtly-glowing-ores","new-glowing-ores","glowing-glints","visual-enchantments","even-better-enchants","beautiful-enchanted-books","enchanted-books-re-covered","visual-armor-trims","better-flame-particles","enchanting-table-magic-circle","eggs-n-eyes","rethoughted-spawn-eggs","blinking-ender-eyes","low-on-fire","low-fire-pack","dramatic-skys","default-hd-sun-and-moon"],
   ["vvi","enhanced-audio","gentler-weather-sounds"],
-  ["vanilla-exp","xalis-enhanced-vanilla","faithful-32x","faithful-64x"]
+  ["vanilla-exp","xalis-enhanced-vanilla","faithful-32x","faithful-64x", "festive-mash-up"]
 ];
 function rpAuto(rps){ const rank=s=>{ const i=RPRANK.findIndex(g=>g.includes(s)); return i<0?6:i; }; const flat=RPRANK.flat(); return [...rps].sort((a,b)=>rank(a)-rank(b)||flat.indexOf(a)-flat.indexOf(b)); }
 function rpTopDown(rps){ const auto=rpAuto(rps); const man=(cfg._rpord||[]).filter(s=>rps.includes(s)); if(!man.length) return auto; return [...man,...auto.filter(s=>!man.includes(s))]; }

@@ -40628,5 +40628,38 @@
       "wiki": null
     },
     "breite": 1280
+  },
+  "dark-smooth-gui": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/3BPM3cU5/images/742839765b97ff5af9ca5def93e3562c3ef1f956_350.webp",
+      "https://cdn.modrinth.com/data/3BPM3cU5/images/0c889b389d696571fe256e63083b0c7debdf53b6_350.webp",
+      "https://cdn.modrinth.com/data/3BPM3cU5/images/cc8733ccba1f0f47112833a6a0d0f6f1f27241d9_350.webp"
+    ],
+    "icon": "https://cdn.modrinth.com/data/3BPM3cU5/icon.png",
+    "videos": [],
+    "links": {
+      "source": "https://github.com/T0T0-O/Dark-Smooth-GUI",
+      "wiki": null
+    },
+    "hq": [
+      "https://cdn.modrinth.com/data/3BPM3cU5/images/742839765b97ff5af9ca5def93e3562c3ef1f956_350.webp"
+    ]
+  },
+  "festive-mash-up": {
+    "bilder": [
+      "https://cdn.modrinth.com/data/pE8Ji9UH/images/18f93a0335dd48d7c6d75617d85280153ffc9a84_350.webp",
+      "https://cdn.modrinth.com/data/pE8Ji9UH/images/73e277ef1487a6ff4e58b913236829a77fe94dde_350.webp",
+      "https://cdn.modrinth.com/data/pE8Ji9UH/images/974c745bdc1757fa845cdff840a50fe707e060b0_350.webp",
+      "https://cdn.modrinth.com/data/pE8Ji9UH/images/b4efc2338d34bc466c05a24aa982fec3390de5bf_350.webp"
+    ],
+    "icon": "https://cdn.modrinth.com/data/pE8Ji9UH/icon.png",
+    "videos": [],
+    "links": {
+      "source": null,
+      "wiki": null
+    },
+    "hq": [
+      "https://cdn.modrinth.com/data/pE8Ji9UH/images/18f93a0335dd48d7c6d75617d85280153ffc9a84_350.webp"
+    ]
   }
 }

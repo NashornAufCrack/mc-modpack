@@ -935,11 +935,11 @@
     "grund": ""
   },
   "dark-smooth-gui": {
-    "sha1": "cb5b323a5bc62f28dd0dbf1b05f5b82c66dee561",
     "ok": true,
-    "von": 97.1,
-    "bis": 97.1,
-    "grund": ""
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": "",
+    "sha1": "40d1d82f7b1b317be919a89e6df55ccbd0186cc7"
   },
   "armor-trim-compats": {
     "sha1": "975c2afed59aecc748dd313022087bea31f45500",
@@ -1369,11 +1369,11 @@
     "grund": ""
   },
   "festive-mash-up": {
-    "sha1": "ce09f3ade4fed96000e727c3bd5a4f1f8805cd42",
     "ok": true,
-    "von": 18.0,
+    "von": 15.0,
     "bis": 999.0,
-    "grund": ""
+    "grund": "",
+    "sha1": "ce09f3ade4fed96000e727c3bd5a4f1f8805cd42"
   },
   "rainbows-foliage": {
     "sha1": "bdf87562ae85617ae6f7cdfd41bc4d281ad36a7b",

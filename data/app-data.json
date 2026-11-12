@@ -18094,6 +18094,61 @@
         "https://gitlab.com/uploads/-/system/project/avatar/22760791/jump_over_fences_forge.png"
       ],
       "seite": "beide"
+    },
+    {
+      "slug": "dark-smooth-gui",
+      "name": "Dark Smooth GUI",
+      "cat": "V",
+      "sub": "Resource Packs",
+      "ampel": "G",
+      "rolle": "O",
+      "downloadsK": 891,
+      "notiz": "Dunkle, moderne und glatte Benutzeroberfläche mit Unterstützung für zahlreiche Mod-Menüs.",
+      "quellen": [
+        "DU"
+      ],
+      "mc": "26.3",
+      "loader": "",
+      "einstellungen": null,
+      "ueberschneidung": "",
+      "pt": "r",
+      "gal": 3,
+      "vn": "0.14.2-26.3.x",
+      "img": [
+        "https://cdn.modrinth.com/data/3BPM3cU5/images/742839765b97ff5af9ca5def93e3562c3ef1f956_350.webp",
+        "https://cdn.modrinth.com/data/3BPM3cU5/images/0c889b389d696571fe256e63083b0c7debdf53b6_350.webp",
+        "https://cdn.modrinth.com/data/3BPM3cU5/images/cc8733ccba1f0f47112833a6a0d0f6f1f27241d9_350.webp"
+      ],
+      "seite": "client",
+      "notiz_en": "Adds a dark smooth GUI to Minecraft, with support for many mods GUIs."
+    },
+    {
+      "slug": "festive-mash-up",
+      "name": "Festive Mash-up",
+      "cat": "V",
+      "sub": "Resource Packs",
+      "ampel": "G",
+      "rolle": "O",
+      "downloadsK": 508,
+      "notiz": "Weihnachtliches Festtags-Paket (Legacy Console Port) mit winterlicher Welt, Festtags-Musik und Texturen.",
+      "quellen": [
+        "DU"
+      ],
+      "mc": "26.3",
+      "loader": "",
+      "einstellungen": null,
+      "ueberschneidung": "",
+      "pt": "r",
+      "gal": 4,
+      "vn": "1.0.19",
+      "img": [
+        "https://cdn.modrinth.com/data/pE8Ji9UH/images/18f93a0335dd48d7c6d75617d85280153ffc9a84_350.webp",
+        "https://cdn.modrinth.com/data/pE8Ji9UH/images/73e277ef1487a6ff4e58b913236829a77fe94dde_350.webp",
+        "https://cdn.modrinth.com/data/pE8Ji9UH/images/974c745bdc1757fa845cdff840a50fe707e060b0_350.webp",
+        "https://cdn.modrinth.com/data/pE8Ji9UH/images/b4efc2338d34bc466c05a24aa982fec3390de5bf_350.webp"
+      ],
+      "seite": "client",
+      "notiz_en": "Wander through a winter wonderland! A port from Legacy Console Edition."
     }
   ],
   "files": {
@@ -29747,14 +29802,14 @@
       "r"
     ],
     "dark-smooth-gui": [
-      "https://cdn.modrinth.com/data/3BPM3cU5/versions/sNAf0sPk/Dark%20Smooth%20GUI%2026.3.x%20blue-3D94FF-5EA6FF-0049A3-00316E.zip",
-      "Dark Smooth GUI 26.3.x blue-3D94FF-5EA6FF-0049A3-00316E.zip",
-      "cb5b323a5bc62f28dd0dbf1b05f5b82c66dee561",
-      "593f8d5cf829a52da1772ce8805c57f56b57bebe928762ad20a11377b6caf963d6e1729234759cbf5dc9e749946a0c721e6534bf6e96ca320286e7fd7c37fbc7",
-      2160501,
+      "https://cdn.modrinth.com/data/3BPM3cU5/versions/WPpi8cqo/Dark%20Smooth%20GUI%2026.3.x.zip",
+      "Dark Smooth GUI 26.3.x.zip",
+      "40d1d82f7b1b317be919a89e6df55ccbd0186cc7",
+      "c59632f868cd43ab43d36fcf92a6af01bd8d1a5d392bb0e858339e82f6745408b22bd6837208acd09b9e5acb7d66c99d0800882e45f2a07f1bcc99c00e5a19cc",
+      2177772,
       [],
-      "0.14.2-26.3.x-blue",
-      "",
+      "0.14.2-26.3.x",
+      "Dark Smooth GUI",
       "r"
     ],
     "armor-trim-compats": [
@@ -30453,7 +30508,7 @@
       32321382,
       [],
       "1.0.19",
-      "",
+      "Festive Mash-up",
       "r"
     ],
     "makeup-ultra-fast-shaders": [
@@ -33358,7 +33413,8 @@
           "recolourful-containers-gui",
           "unique-dark",
           "cozyui-plus",
-          "mindful-darkness"
+          "mindful-darkness",
+          "dark-smooth-gui"
         ],
         "text": "Alle färben bzw. ersetzen die Menü-Texturen; zusammen überdecken sie sich."
       },
@@ -35547,6 +35603,12 @@
       },
       "jump-over-fences": {
         "txt": "Jump Over Fences\nDescription\nYou can jump over blocks, why not fences? Allows normal jumping over fences and walls without carpets or ladders.\nWorks on client and server sides seamlessly."
+      },
+      "dark-smooth-gui": {
+        "txt": "Dunkle, moderne und glatte Benutzeroberfläche mit breiter Unterstützung für Vanilla- und Mod-GUIs."
+      },
+      "festive-mash-up": {
+        "txt": "Ein winterliches Weihnachtswunderland als originalgetreuer Port des Konsolen-Klassikers mit festlichen Texturen und Musik."
       }
     },
     "rpo": {

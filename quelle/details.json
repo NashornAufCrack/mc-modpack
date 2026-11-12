@@ -1372,5 +1372,11 @@
   },
   "jump-over-fences": {
     "txt": "Jump Over Fences\nDescription\nYou can jump over blocks, why not fences? Allows normal jumping over fences and walls without carpets or ladders.\nWorks on client and server sides seamlessly."
+  },
+  "dark-smooth-gui": {
+    "txt": "Dunkle, moderne und glatte Benutzeroberfläche mit breiter Unterstützung für Vanilla- und Mod-GUIs."
+  },
+  "festive-mash-up": {
+    "txt": "Ein winterliches Weihnachtswunderland als originalgetreuer Port des Konsolen-Klassikers mit festlichen Texturen und Musik."
   }
 }

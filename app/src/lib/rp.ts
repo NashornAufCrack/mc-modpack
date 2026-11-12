@@ -8,7 +8,7 @@ export const RPRANK: string[][] = [
   // 1: GUI, Interface, HUD, Menüs, Icons & Übersetzungen (Ganz oben, damit keine Texturpakete wie Nature X oder Faithful Menüs/Fonts überschreiben)
   [
     "icons", "clearer-slot-highlight", "enhanced-boss-bars", "hardcore-hearts",
-    "no-pumpkin-blur", "unique-dark", "cozyui-plus", "default-dark-mode",
+    "no-pumpkin-blur", "unique-dark", "cozyui-plus", "default-dark-mode", "dark-smooth-gui",
     "recolourful-containers-gui", "redstone-tweaks", "translations-for-sodium",
      
   ],
@@ -71,7 +71,7 @@ export const RPRANK: string[][] = [
   // 10: Audio & Geräusche
   ["vvi", "enhanced-audio", "gentler-weather-sounds"],
   // 11: Basis-Texturen / Komplett-Overhauls
-  ["vanilla-exp", "xalis-enhanced-vanilla", "faithful-32x", "faithful-64x"]
+  ["vanilla-exp", "xalis-enhanced-vanilla", "faithful-32x", "faithful-64x", "festive-mash-up"]
 ];
 
 function fallbackRank(s: string): number {

@@ -18093,5 +18093,60 @@
       "https://gitlab.com/uploads/-/system/project/avatar/22760791/jump_over_fences_forge.png"
     ],
     "seite": "beide"
+  },
+  {
+    "slug": "dark-smooth-gui",
+    "name": "Dark Smooth GUI",
+    "cat": "V",
+    "sub": "Resource Packs",
+    "ampel": "G",
+    "rolle": "O",
+    "downloadsK": 891,
+    "notiz": "Dunkle, moderne und glatte Benutzeroberfläche mit Unterstützung für zahlreiche Mod-Menüs.",
+    "quellen": [
+      "DU"
+    ],
+    "mc": "26.3",
+    "loader": "",
+    "einstellungen": null,
+    "ueberschneidung": "",
+    "pt": "r",
+    "gal": 3,
+    "vn": "0.14.2-26.3.x",
+    "img": [
+      "https://cdn.modrinth.com/data/3BPM3cU5/images/742839765b97ff5af9ca5def93e3562c3ef1f956_350.webp",
+      "https://cdn.modrinth.com/data/3BPM3cU5/images/0c889b389d696571fe256e63083b0c7debdf53b6_350.webp",
+      "https://cdn.modrinth.com/data/3BPM3cU5/images/cc8733ccba1f0f47112833a6a0d0f6f1f27241d9_350.webp"
+    ],
+    "seite": "client",
+    "notiz_en": "Adds a dark smooth GUI to Minecraft, with support for many mods GUIs."
+  },
+  {
+    "slug": "festive-mash-up",
+    "name": "Festive Mash-up",
+    "cat": "V",
+    "sub": "Resource Packs",
+    "ampel": "G",
+    "rolle": "O",
+    "downloadsK": 508,
+    "notiz": "Weihnachtliches Festtags-Paket (Legacy Console Port) mit winterlicher Welt, Festtags-Musik und Texturen.",
+    "quellen": [
+      "DU"
+    ],
+    "mc": "26.3",
+    "loader": "",
+    "einstellungen": null,
+    "ueberschneidung": "",
+    "pt": "r",
+    "gal": 4,
+    "vn": "1.0.19",
+    "img": [
+      "https://cdn.modrinth.com/data/pE8Ji9UH/images/18f93a0335dd48d7c6d75617d85280153ffc9a84_350.webp",
+      "https://cdn.modrinth.com/data/pE8Ji9UH/images/73e277ef1487a6ff4e58b913236829a77fe94dde_350.webp",
+      "https://cdn.modrinth.com/data/pE8Ji9UH/images/974c745bdc1757fa845cdff840a50fe707e060b0_350.webp",
+      "https://cdn.modrinth.com/data/pE8Ji9UH/images/b4efc2338d34bc466c05a24aa982fec3390de5bf_350.webp"
+    ],
+    "seite": "client",
+    "notiz_en": "Wander through a winter wonderland! A port from Legacy Console Edition."
   }
 ]
