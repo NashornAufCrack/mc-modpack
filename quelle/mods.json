@@ -12767,34 +12767,6 @@
     "notiz_en": "Changes the beds to be more fancy and cute!"
   },
   {
-    "slug": "shrimps-immersive-interfaces",
-    "name": "Immersive Interfaces",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 1628,
-    "notiz": "Jedes Menü bekommt ein eigenes, passendes Aussehen statt grauer Kästen.",
-    "quellen": [
-      "DU"
-    ],
-    "mc": "26.3",
-    "loader": "",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 4,
-    "vn": "0.8.2",
-    "img": [
-      "https://cdn.modrinth.com/data/3sV1gvyJ/images/abed9b1f336d06deb0b05235c25e26230855ba29_350.webp",
-      "https://cdn.modrinth.com/data/3sV1gvyJ/images/fc9c0251490d70a002328e6927b4db6746d46e31.png",
-      "https://cdn.modrinth.com/data/3sV1gvyJ/images/1496070506b3c1b32547f4f3a0ce4f123a25016e_350.webp",
-      "https://cdn.modrinth.com/data/3sV1gvyJ/images/363cc731ec302c3a5d1e3a98a88479b3f74b0c51_350.webp"
-    ],
-    "seite": "client",
-    "notiz_en": "Shrimp's Immersive Interfaces is a complete graphical revamp of Minecraft's GUI,  brings variety and charm to the previously grey boxes."
-  },
-  {
     "slug": "3d-bamboo-shoots",
     "name": "3D Bamboo Shoots",
     "cat": "V",
@@ -17407,49 +17379,6 @@
     ],
     "neu": true,
     "want": false
-  },
-  {
-    "slug": "immersive-interfaces-mod-support-unofficial",
-    "name": "Immersive Interfaces - Mod Support Unofficial",
-    "cat": "V",
-    "sub": "Resource Packs",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 296,
-    "notiz": "Bringt den Immersive-Interfaces-Look auch in Menüs von Mods. Braucht Immersive Interfaces, das automatisch mitkommt.",
-    "quellen": [
-      "AUTO"
-    ],
-    "mc": "26.3",
-    "loader": "",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "r",
-    "gal": 19,
-    "vn": "2.1.2",
-    "img": [
-      "https://cdn.modrinth.com/data/zW0OkthM/images/673b5e34978f32d4718254f521320e3310ad7740.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/abca0185ff921c44acce0c8cf2db208c2800d754.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/2e51783d220f8e790b466b605c9b499a8ba48e87.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/1552d61a04de911a4226dbd83da55d7cc1252567.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/573453dfeba2b5c5c4520127c64596ee9cc80e37.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/fd00e4496741cb2ecf7ae10ce61018c67989715c.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/0eae206c0b071048820a5b606c9e30adf5b1f6a8_350.webp",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/7e0aa550187a736ed1a94412361fd775c5c0bd4e_350.webp",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/25720852a9748365f4a053cfa34ecc07c07b831b_350.webp",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/b167df83be0912c84f69d656a190f022420fa1b5_350.webp",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/d5bc93bac4af7ca07a57dcc57e28864aa01aff18_350.webp",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/ff2b20d877825dae75af7c81ade5f34f76e2ad23.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/b667412bf2bcb55359f06632f7c3cc7984ccb6a4.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/53192abe2b42f6d7ddd4cb006126b2aa672c960a.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/be7ba4016dc8838ce78ab620e592672c30becf0a.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/ec4f73d0149b3191dbbfaadd50ce5ea33eb1fd63.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/dd5c6b9b84a6bf909515272114457d40af987195.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/f438af05208c0d9ac602541b4327cc1ceb0577c4.png",
-      "https://cdn.modrinth.com/data/zW0OkthM/images/0cfe2d24fc80d6db3ac0ae1b07e93d91104fae2e.png"
-    ],
-    "neu": true,
-    "want": true
   },
   {
     "slug": "connected-rocks",

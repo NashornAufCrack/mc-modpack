@@ -10,7 +10,7 @@ export const RPRANK: string[][] = [
     "icons", "clearer-slot-highlight", "enhanced-boss-bars", "hardcore-hearts",
     "no-pumpkin-blur", "unique-dark", "cozyui-plus", "default-dark-mode",
     "recolourful-containers-gui", "redstone-tweaks", "translations-for-sodium",
-    "shrimps-immersive-interfaces", "immersive-interfaces-mod-support-unofficial"
+     
   ],
   // 2: Fresh Animations Addons & Extensions (müssen VOR Fresh Animations geladen werden)
   [

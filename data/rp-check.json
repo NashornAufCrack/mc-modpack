@@ -1,1476 +1,1462 @@
 {
-"fresh-animations": {
-"sha1": "8176a3c13963aac2adc1f12214ceabfc45127ab2",
-"ok": true,
-"von": 84.0,
-"bis": 999.0,
-"grund": ""
-},
-"fresh-animations-extensions": {
-"sha1": "33c6cc4d621ba7f27e2d5c45269ac28f2287deae",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"fa-player-extension": {
-"sha1": "122e397af111e3dc5fb6b60004aad9464980f13a",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"fresh-animations-emissive": {
-"sha1": "f7cf8c02f166611340d5f2a062a3ad2145365b21",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"low-on-fire": {
-"sha1": "96932a034fff4cd0cad08ba12db730450c4772da",
-"ok": true,
-"von": 15.0,
-"bis": 200.0,
-"grund": ""
-},
-"dramatic-skys": {
-"sha1": "8953223ba4d04261917b2e29bdcc1841297a5efa",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"glowing-glints": {
-"sha1": "8702b133610f4b0eca7a91c45beaae8db48d2a10",
-"ok": true,
-"von": 15.0,
-"bis": 128.0,
-"grund": ""
-},
-"recolourful-containers-gui": {
-"sha1": "802ca58c93fedc5ecbf83ba93df2dc50b6e79c41",
-"ok": true,
-"von": 0.0,
-"bis": 999.0,
-"grund": ""
-},
-"visual-armor-trims": {
-"sha1": "dfd16498105a4cbf1c4985e9f8d3af28ca5752be",
-"ok": true,
-"von": 97.0,
-"bis": 2147483647.0,
-"grund": ""
-},
-"fresh-flower-pots": {
-"sha1": "c441c973438f41dc5ba2493a211d1e40baf6c8c5",
-"ok": true,
-"von": 15.0,
-"bis": 97.0,
-"grund": ""
-},
-"better-lanterns": {
-"sha1": "43da6ce48bbaa61492d47d0e2b47768287ec69ad",
-"ok": true,
-"von": 88.0,
-"bis": 99.0,
-"grund": ""
-},
-"weskersons-torches": {
-"sha1": "0a9a020cb9e51151c40d86c2683ee104fa99ffc5",
-"ok": true,
-"von": 46.0,
-"bis": 128.0,
-"grund": ""
-},
-"theones-eating-animation-pack": {
-"sha1": "dcfee884979fa4b9a7d539dd594d38a76a4657c1",
-"ok": true,
-"von": 22.0,
-"bis": 97.0,
-"grund": ""
-},
-"vvi": {
-"sha1": "1f1022ee1a87b6524dce5fa7b6c51188ea161d38",
-"ok": true,
-"von": 3.0,
-"bis": 107.0,
-"grund": ""
-},
-"enhanced-audio": {
-"sha1": "2cd4bd529641bde061c2d2d4c44de3228fd6d767",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"gentler-weather-sounds": {
-"sha1": "33245e4e5b9c81651310a34453d63f92ad479c7d",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"enchanted-books-re-covered": {
-"sha1": "59571d3e7f626fe7ef00b39bfa32400fdff4d7e3",
-"ok": true,
-"von": 48.0,
-"bis": 120.0,
-"grund": ""
-},
-"rays-3d-rails": {
-"sha1": "ac30cf249fdecfff3000481f1d701bac5913fe63",
-"ok": true,
-"von": 1.0,
-"bis": 999.0,
-"grund": ""
-},
-"rays-3d-ladders": {
-"sha1": "12e023197352e919d776129330458d9f3b759706",
-"ok": true,
-"von": 1.0,
-"bis": 999.0,
-"grund": ""
-},
-"fancy-crops": {
-"sha1": "a247188ff93c19045cda4344d80e3cb6e1b00494",
-"ok": true,
-"von": 97.0,
-"bis": 1024.0,
-"grund": ""
-},
-"clearer-slot-highlight": {
-"sha1": "dd3bc0548a068a08760960fc9d1597c66c7ca2da",
-"ok": false,
-"von": 38.0,
-"bis": 38.0,
-"grund": "Pack-Format 38.0\u201338.0, 26.3 braucht 97.1"
-},
-"blinking-ender-eyes": {
-"sha1": "f0b2226223ad8e9aa58f27fcadb7eb6b0f43ce29",
-"ok": true,
-"von": 15.0,
-"bis": 97.1,
-"grund": ""
-},
-"round-trees": {
-"sha1": "877141b65aaa395cd4a4562f8aa548d5eec0d7fe",
-"ok": true,
-"von": 15.0,
-"bis": 255.0,
-"grund": ""
-},
-"new-glowing-ores": {
-"sha1": "40d8c6748585e4585c8d1e54a28b8ea51cad080d",
-"ok": false,
-"von": 8.0,
-"bis": 69.0,
-"grund": "Pack-Format 8.0\u201369.0, 26.3 braucht 97.1"
-},
-"fluid-foolish": {
-"sha1": "45a52f5456bc56686e1587dcc182c3e4601baec8",
-"ok": true,
-"von": 15.0,
-"bis": 97.1,
-"grund": ""
-},
-"hyper-punchy": {
-"sha1": "13086519e82092678ef150513ac55f3e72a19a68",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"fresh-food-for-hyper-punchy": {
-"sha1": "7bd6d573d183a2d2948e1052f43fff61c4ebff90",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"luminous-lanterns": {
-"sha1": "38ce9117596e3a676ac9be117a800dca2a1c0c62",
-"ok": true,
-"von": 15.0,
-"bis": 128.0,
-"grund": ""
-},
-"drigo-3d-lanterns-x-punchy": {
-"sha1": "be467ad8ed1d7823e13c3d61361aa70ff74dd6aa",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"just-3d-potions": {
-"sha1": "d88bddc0fab86bf3832a69bed243095029ad3a79",
-"ok": true,
-"von": 15.0,
-"bis": 99.0,
-"grund": ""
-},
-"glowing-3d-totem": {
-"sha1": "ffe36f6464045b09fefbe86cf71d1f425ba31245",
-"ok": true,
-"von": 46.0,
-"bis": 128.0,
-"grund": ""
-},
-"refined-buckets": {
-"sha1": "0e158332f123e4075662bab16c89a009cf39fbc0",
-"ok": true,
-"von": 15.0,
-"bis": 99.0,
-"grund": ""
-},
-"fyoncles-3d-trims": {
-"sha1": "b0ca2bd63b07687ea15601e9e343b99d746e610e",
-"ok": true,
-"von": 15.0,
-"bis": 99.0,
-"grund": ""
-},
-"3d-flint-steel-for-punchy": {
-"sha1": "2ce51c6020581aa2de43184734da1a7023ce6fb4",
-"ok": false,
-"von": 88.0,
-"bis": 88.0,
-"grund": "Pack-Format 88.0\u201388.0, 26.3 braucht 97.1"
-},
-"animated-3d-wind-charge-compatible-with-punchy": {
-"sha1": "35926aa3a41880344620b292975a50649db13bc3",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"fresh-animations-objects": {
-"sha1": "bea6b91e4234b7223010d7ac248123d0398e7aa2",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"fresh-food": {
-"sha1": "b47aed1d731eee68d7ef258c38d6c946801211ea",
-"ok": true,
-"von": 46.0,
-"bis": 128.0,
-"grund": ""
-},
-"fresh-flowers-and-plants": {
-"sha1": "d714d3b76c8ce5521774ab9fc66c0a872bf422e2",
-"ok": true,
-"von": 46.0,
-"bis": 128.0,
-"grund": ""
-},
-"fresh-ores-and-ingots": {
-"sha1": "1ade6dbd5ba0371b5f8de26d16be22476f10276a",
-"ok": true,
-"von": 46.0,
-"bis": 128.0,
-"grund": ""
-},
-"low-shield-pack": {
-"sha1": "4b843b57dd0883fae0cdfece453ad359e1088d68",
-"ok": true,
-"von": 46.0,
-"bis": 255.0,
-"grund": ""
-},
-"fast-better-grass": {
-"sha1": "ca670657742ed2f479877da9440547372e5f92b5",
-"ok": true,
-"von": 97.0,
-"bis": 999.0,
-"grund": ""
-},
-"os-colorful-grasses": {
-"sha1": "2cb8cece1ba69918cea5a26c61993a1aa72124d0",
-"ok": true,
-"von": 15.0,
-"bis": 1024.0,
-"grund": ""
-},
-"connected-paths": {
-"sha1": "2ac657c286ca64c792394dd9593f1971b68e6abd",
-"ok": true,
-"von": 88.0,
-"bis": 97.1,
-"grund": ""
-},
-"just-expressions": {
-"sha1": "4485a851140d337fa8ecca25939db3be50a3ba59",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"sunbathing-godrays": {
-"sha1": "bf4fe8d748b9945c548060acb1f04d91bade6cb2",
-"ok": true,
-"von": 34.0,
-"bis": 97.0,
-"grund": ""
-},
-"icons": {
-"sha1": "febb55bee872325eaeaa1d361c275d212762c902",
-"ok": true,
-"von": 15.0,
-"bis": 200.0,
-"grund": ""
-},
-"emissive-trims": {
-"sha1": "cf4ed9d992703fb2045d7882a9ab233e201ba3fd",
-"ok": true,
-"von": 15.0,
-"bis": 2147483647.0,
-"grund": ""
-},
-"fancyfast-bushy-leaves": {
-"sha1": "5595b4f3d1b4376f9fcd2530305dc772adc5fc81",
-"ok": true,
-"von": 34.0,
-"bis": 1000.0,
-"grund": ""
-},
-"beautiful-enchanted-books": {
-"sha1": "eb74711a2da2a8638fb882b337b6cf313a4195a0",
-"ok": false,
-"von": 16.0,
-"bis": 93.0,
-"grund": "Pack-Format 16.0\u201393.0, 26.3 braucht 97.1"
-},
-"glowing-3d-armor": {
-"sha1": "543e64622d4a4684da3efaf119417643c1459604",
-"ok": true,
-"von": 65.0,
-"bis": 128.0,
-"grund": ""
-},
-"findreks-3d-buckets-and-fish": {
-"sha1": "b5e86e9bae37b198c38f2524f0ce5917a7c049a4",
-"ok": true,
-"von": 89.0,
-"bis": 120.0,
-"grund": ""
-},
-"default-dark-mode": {
-"sha1": "fcc1fc604099baa78794ebfac2fd4b6b7a45aee4",
-"ok": true,
-"von": 93.0,
-"bis": 97.0,
-"grund": ""
-},
-"faithful-64x": {
-"sha1": "b0e02f10d2e45151832360557fc84ddcc2b052e9",
-"ok": true,
-"von": 79.0,
-"bis": 100.0,
-"grund": ""
-},
-"even-better-enchants": {
-"sha1": "903411efb598ede74f390d175ac012eb2f3d908f",
-"ok": true,
-"von": 32.0,
-"bis": 999.0,
-"grund": ""
-},
-"faithful-32x": {
-"sha1": "0f20dfdff314da4da3bdf365f66718e8c344075b",
-"ok": true,
-"von": 84.0,
-"bis": 97.0,
-"grund": ""
-},
-"detailed-animations": {
-"sha1": "c367de32eca661246f0b282090308b7438546e6f",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"3d-crops": {
-"sha1": "233e886a3aed43cb48d01f87b8d68f43eb66b970",
-"ok": false,
-"von": 55.0,
-"bis": 55.0,
-"grund": "Pack-Format 55.0\u201355.0, 26.3 braucht 97.1"
-},
-"als-creepers-revamped": {
-"sha1": "862d874e41dceaaaf7593d02dc0218b44d230376",
-"ok": true,
-"von": 55.0,
-"bis": 99.0,
-"grund": ""
-},
-"animated-items": {
-"sha1": "e1932eda40baedcab207975679ac161bd0168b9d",
-"ok": true,
-"von": 34.0,
-"bis": 97.1,
-"grund": ""
-},
-"fresh-animations-details": {
-"sha1": "b98a11e783b79851e6f3c72e4b1eaf9b401d7599",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"3d-ladders": {
-"sha1": "a055c6187bff48e16098b9be9735b69b28f64aab",
-"ok": true,
-"von": 97.0,
-"bis": 99.0,
-"grund": ""
-},
-"xalis-enhanced-vanilla": {
-"sha1": "4eabdbc6ee1c7f8f197d346438dc9dc48f34fe88",
-"ok": false,
-"von": 4.0,
-"bis": 34.0,
-"grund": "Pack-Format 4.0\u201334.0, 26.3 braucht 97.1"
-},
-"excalibur-lootr-support": {
-"sha1": "9a9b09afc6b3701bd8878336dad843fc4eaba25d",
-"ok": false,
-"von": 34.0,
-"bis": 34.0,
-"grund": "Pack-Format 34.0\u201334.0, 26.3 braucht 97.1"
-},
-"als-piglins-revamped-x-fresh-animations": {
-"sha1": "4fa893db916341bce3f0fec9f782af637004bbb6",
-"ok": true,
-"von": 55.0,
-"bis": 99.0,
-"grund": ""
-},
-"als-zombies-revamped-x-fresh-animations": {
-"sha1": "880efe33cf2c12a9b331f1334ca3f588fd8da7d5",
-"ok": true,
-"von": 55.0,
-"bis": 99.0,
-"grund": ""
-},
-"visual-effects-plus": {
-"sha1": "1276f91672f9f7f9a94b3a194c6edaeda54843e2",
-"ok": true,
-"von": 97.1,
-"bis": 97.1,
-"grund": ""
-},
-"tools-and-utils": {
-"sha1": "ce8cd9bc1633994f93b9d724e1ba557f5e630e9f",
-"ok": true,
-"von": 46.0,
-"bis": 128.0,
-"grund": ""
-},
-"nautilus3d": {
-"sha1": "032468b4e66cf2d41df70bc9c6ae26ef443588ea",
-"ok": false,
-"von": 84.0,
-"bis": 88.0,
-"grund": "Pack-Format 84.0\u201388.0, 26.3 braucht 97.1"
-},
-"als-enderman-revamped-x-fresh-animations": {
-"sha1": "7e7285a9af3ecf07969972c9d594990aabc54a9f",
-"ok": true,
-"von": 55.0,
-"bis": 99.0,
-"grund": ""
-},
-"vanilla-exp": {
-"sha1": "1e0261372bcd3ae294ea073f330302f824918786",
-"ok": true,
-"von": 75.0,
-"bis": 97.0,
-"grund": ""
-},
-"fancy-beds": {
-"sha1": "40e5ffd45f5c2865ef86760b137ea308ff1a7203",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"shrimps-immersive-interfaces": {
-"sha1": "176aa5cf21d2c6b6a24d11cf0e74aed4c4ca9621",
-"ok": true,
-"von": 15.0,
-"bis": 100.0,
-"grund": ""
-},
-"3d-bamboo-shoots": {
-"sha1": "36c82396bf6637a5ec3f94b4050a2cda755761a7",
-"ok": true,
-"von": 4.0,
-"bis": 99.0,
-"grund": ""
-},
-"fresh-skeleton-physics": {
-"sha1": "a6aef13b6c234622f9aff13da90ca971464f232d",
-"ok": true,
-"von": 84.0,
-"bis": 97.0,
-"grund": ""
-},
-"assorted-allays-x-fresh-animations": {
-"sha1": "7b665af2f9b7d7e9cc5666960ba94f861210d116",
-"ok": false,
-"von": 15.0,
-"bis": 88.0,
-"grund": "Pack-Format 15.0\u201388.0, 26.3 braucht 97.1"
-},
-"als-skeletons-revamped-x-fresh-animations": {
-"sha1": "af5b343e5c91632d65a77618d97f642e8cdf3e9c",
-"ok": true,
-"von": 55.0,
-"bis": 99.0,
-"grund": ""
-},
-"fresh-buckets": {
-"sha1": "df48c35512dbc9698abda0d85a21e7f425657fd9",
-"ok": true,
-"von": 46.0,
-"bis": 128.0,
-"grund": ""
-},
-"fresh-animations-spiders": {
-"sha1": "10d35fc5cc230c1496aff6e63d36994b97685cf3",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"xk-redstone-display": {
-"sha1": "8cd6766f06354086fc5d1656164d94cad91507b0",
-"ok": true,
-"von": 16.0,
-"bis": 999.0,
-"grund": ""
-},
-"fresh-animations-creepers": {
-"sha1": "c65e34ee299998d39bec9178f6793af1099733fa",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"bare-bones-x-fresh-animations": {
-"sha1": "ae9de15cdb4fadcce880661ed3850c0462aca05a",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"3d-default": {
-"sha1": "1653ce04cd71f0dc94c3b2c47013e5d3c6e76dc2",
-"ok": true,
-"von": 35.0,
-"bis": 97.114514,
-"grund": ""
-},
-"torches-reimagined": {
-"sha1": "ad11f146736e4cbecb427e87edb7770393382fc4",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"fresh-music-discs": {
-"sha1": "0099d91ad6195bc740d4d65d3985e6ac92fc1c32",
-"ok": true,
-"von": 46.0,
-"bis": 128.0,
-"grund": ""
-},
-"fresh-animations-quivers": {
-"sha1": "2c32000d720ad835ee4d8ff9b4af130dbe736d74",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"bray-cyber-3d-enchanted-books": {
-"sha1": "9ff8c89591a77c6ef4609ee8abd4ee2242fcf207",
-"ok": true,
-"von": 55.0,
-"bis": 999.0,
-"grund": ""
-},
-"better-leaves": {
-"sha1": "fa3a961b82a9f15a4e80b1f7f021bc121649f073",
-"ok": true,
-"von": 15.0,
-"bis": 255.0,
-"grund": ""
-},
-"translations-for-sodium": {
-"sha1": "ad9631dfbf5b23ad80604110e4a00215a7f44f1d",
-"ok": true,
-"von": 15.0,
-"bis": 97.0,
-"grund": ""
-},
-"chat-reporting-helper": {
-"sha1": "fe52ddaf19663c0cf6bf8bab12ff17abdf25622f",
-"ok": true,
-"von": 18.0,
-"bis": 97.0,
-"grund": ""
-},
-"fullbright-ub": {
-"sha1": "9551bb3f20c28875986464fc8ec3f7d806ba3f20",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"low-fire-pack": {
-"sha1": "0f8e2e5f6eb9f1e2fe35da7a7a0a355760998021",
-"ok": true,
-"von": 15.0,
-"bis": 255.0,
-"grund": ""
-},
-"programmer-art-fix": {
-"sha1": "8082cef3aa75a5d8302acffd676fde87d5ac2843",
-"ok": true,
-"von": 77.0,
-"bis": 99.0,
-"grund": ""
-},
-"enhanced-boss-bars": {
-"sha1": "3b060422bfaddbe8bf665403472b508ea3943413",
-"ok": true,
-"von": 84.0,
-"bis": 97.1,
-"grund": ""
-},
-"default-hd-128x": {
-"sha1": "b8aa449269237904c368619f25fad619d80b41fc",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"icon-fresh": {
-"sha1": "54c48029affc498a58f5c474a9f6b83b4ddf9c36",
-"ok": true,
-"von": 84.0,
-"bis": 99.0,
-"grund": ""
-},
-"unique-dark": {
-"sha1": "c6e5c35d47d9a0016fd3c878019ba6e07e1fa13e",
-"ok": true,
-"von": 18.0,
-"bis": 999.0,
-"grund": ""
-},
-"qraftys-capitalized-font": {
-"sha1": "26ec39bbd57936d7a1356218cff71b2eaef22b8e",
-"ok": true,
-"grund": "nicht pr\u00fcfbar: could not convert string to float: '97.1.3'",
-"versuche": 2
-},
-"night-vision": {
-"sha1": "3dd6355f3e58a99ee3dc74081693af036f526ee3",
-"ok": true,
-"von": 84.0,
-"bis": 97.1,
-"grund": ""
-},
-"patrix-32x": {
-"sha1": "c11d50686421335f1f54cae6c3878580faaf0360",
-"ok": true,
-"grund": "nicht pr\u00fcfbar: could not convert string to float: '97.1.0'",
-"versuche": 2
-},
-"ashen": {
-"sha1": "a3645a8233ee6acbb4206cba7a411af15867729b",
-"ok": true,
-"von": 22.0,
-"bis": 1000.0,
-"grund": ""
-},
-"cozyui-plus": {
-"sha1": "3f890594b4dba9c6493f3739a4969dd2cfc51d70",
-"ok": true,
-"von": 1.0,
-"bis": 9999.0,
-"grund": ""
-},
-"spunky-pvp-texture-pack": {
-"sha1": "02619691d4fc70698d98e47b8d54ad69bb12fd47",
-"ok": false,
-"von": 18.0,
-"bis": 18.0,
-"grund": "Pack-Format 18.0\u201318.0, 26.3 braucht 97.1"
-},
-"redstone-tweaks": {
-"sha1": "8963f38860e9c19753e543d096a9a0cb262a9dfd",
-"ok": true,
-"von": 84.0,
-"bis": 97.0,
-"grund": ""
-},
-"rotrblocks": {
-"sha1": "bd372caea207297c95e13b82026d38d41c47147d",
-"ok": true,
-"von": 4.0,
-"bis": 999.0,
-"grund": ""
-},
-"small-shield-totem": {
-"sha1": "72fdda7f485b5cfe3ebbc0a47af756ae093dd140",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"alacrity": {
-"sha1": "f50e9416c4176aef51fe0a181b8fd06c5ed20701",
-"ok": true,
-"von": 14.0,
-"bis": 999.0,
-"grund": ""
-},
-"clayful-512x": {
-"sha1": "bbd40b01502667553b15ab822d933c803b6796c4",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"blue-netherite": {
-"sha1": "99d7eb74f60053c835aa8a4ab9849f774f7c34ed",
-"ok": true,
-"von": 42.0,
-"bis": 320.0,
-"grund": ""
-},
-"fresh-flower-pots-rotated": {
-"sha1": "be59f8e6c29c31837e496ad5de413bdeccf2eb73",
-"ok": true,
-"von": 15.0,
-"bis": 97.0,
-"grund": ""
-},
-"skyblock-dark-ui": {
-"sha1": "c40a9ed43890406bd6e80713371f7bcb04b67df0",
-"ok": true,
-"von": 64.0,
-"bis": 150.0,
-"grund": ""
-},
-"teddy": {
-"sha1": "7bd91a3d9bd327d0a5959c5d8a545c4f44d88075",
-"ok": true,
-"von": 8.0,
-"bis": 255.0,
-"grund": ""
-},
-"eggs-n-eyes": {
-"sha1": "7bdbd56d7849ac0f46b4da95918b9a13cf50acd0",
-"ok": true,
-"von": 53.0,
-"bis": 97.1,
-"grund": ""
-},
-"enchantment-glows": {
-"sha1": "d9251675c9c84f144579ca6076b2ec373124d90a",
-"ok": true,
-"von": 34.0,
-"bis": 99.0,
-"grund": ""
-},
-"pvp-crosshair": {
-"sha1": "ae1f1ba942ca282505667786d68fd252a6fd263e",
-"ok": true,
-"von": 18.0,
-"bis": 690.0,
-"grund": ""
-},
-"mt-ct-d": {
-"sha1": "ccff4dd7354b7fdcc241e59ec770d194ccbd2ac7",
-"ok": true,
-"von": 9.0,
-"bis": 150.0,
-"grund": ""
-},
-"oct": {
-"sha1": "645e8e898db03a037ccc8c24e2dfb85cd1d96cec",
-"ok": true,
-"grund": "nicht pr\u00fcfbar: Extra data: line 8 column 1 (char 152)",
-"versuche": 2
-},
-"actually-3d-stuff": {
-"sha1": "f1a414190b379292602a3f01c0add6e733fe3849",
-"ok": true,
-"von": 65.0,
-"bis": 2077.0,
-"grund": ""
-},
-"dark-mode-skyblock": {
-"sha1": "5a302775f63e632729e85347e5a3ce2df1212c64",
-"ok": true,
-"von": 55.0,
-"bis": 150.0,
-"grund": ""
-},
-"golden-days": {
-"sha1": "c7b9eb8511c709d507edde681019664f7bd9a9f7",
-"ok": true,
-"von": 15.0,
-"bis": 420.0,
-"grund": ""
-},
-"no-pumpkin-blur": {
-"sha1": "079caf05c2fc2f68b9c4597ad907ebbedb11b052",
-"ok": true,
-"von": 42.0,
-"bis": 97.1,
-"grund": ""
-},
-"default-hd-512x": {
-"sha1": "adbc24be979da569f30bd2e63fb1530b727cc907",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"bushier-bushes": {
-"sha1": "13f42f424e52b1bac8d3473047b2d52ee9ed9bad",
-"ok": true,
-"von": 66.0,
-"bis": 100.0,
-"grund": ""
-},
-"sophies-enchants": {
-"sha1": "bb2e51eddc3ab1c0dc65001f33bdfc7c3ac60a7d",
-"ok": true,
-"von": 88.0,
-"bis": 900.0,
-"grund": ""
-},
-"subtly-glowing-ores": {
-"sha1": "2e754403693fc6fd74f15e4dbc5e11ab120c7974",
-"ok": true,
-"von": 65.0,
-"bis": 999.0,
-"grund": ""
-},
-"whimscape": {
-"sha1": "8d977c09a23590d3d00655e9c34944d12de93035",
-"ok": true,
-"von": 84.0,
-"bis": 102.0,
-"grund": ""
-},
-"primes-hd-textures": {
-"sha1": "f71e14fd4b803fc3a1ea00806ee91377a059b27e",
-"ok": true,
-"von": 64.0,
-"bis": 200.0,
-"grund": ""
-},
-"reimagined": {
-"sha1": "deafb64833017314e5563670924cd0de1fa6dad7",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"mini-items-pack": {
-"sha1": "bb58c266b87f03153ecfbb242c1835cd0063e324",
-"ok": true,
-"von": 69.0,
-"bis": 97.0,
-"grund": ""
-},
-"sparkles": {
-"sha1": "a897748140141b2a2b54f7f57193244aabbff620",
-"ok": true,
-"von": 15.0,
-"bis": 97.1,
-"grund": ""
-},
-"resprited": {
-"sha1": "9d1e6196e14ddc56725e6b180b50bbd16d9dd0a0",
-"ok": true,
-"von": 55.0,
-"bis": 97.0,
-"grund": ""
-},
-"better-flame-particles": {
-"sha1": "e1d8ca5cd2d2227d4f7c6e31f81b6f5e42ddbf9c",
-"ok": true,
-"von": 16.0,
-"bis": 2147483647.0,
-"grund": ""
-},
-"spbr": {
-"sha1": "22873c8603fd351dc9663884ad3b4e2c18411b6e",
-"ok": true,
-"von": 65.0,
-"bis": 120.0,
-"grund": ""
-},
-"excal": {
-"sha1": "97348d602be6def05fdfa9eee339ac64be5badd6",
-"ok": true,
-"von": 18.0,
-"bis": 999.0,
-"grund": ""
-},
-"modded-omelet": {
-"sha1": "1d4cff3fb277fb32af11d0b636e168523bdbd2c2",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"hyper-realistic-sky": {
-"sha1": "4e98551ff04530bb21ef9c8902b284b33e9efe36",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"dark-smooth-gui": {
-"sha1": "cb5b323a5bc62f28dd0dbf1b05f5b82c66dee561",
-"ok": true,
-"von": 97.1,
-"bis": 97.1,
-"grund": ""
-},
-"armor-trim-compats": {
-"sha1": "975c2afed59aecc748dd313022087bea31f45500",
-"ok": false,
-"von": 15.0,
-"bis": 15.0,
-"grund": "Pack-Format 15.0\u201315.0, 26.3 braucht 97.1"
-},
-"c418-songs-only": {
-"sha1": "1edd9216b9232705b911b4a9c6b63f3ba390056d",
-"ok": true,
-"von": 22.0,
-"bis": 97.1,
-"grund": ""
-},
-"clayful-256x": {
-"sha1": "f179d0259463152738132c60cf97f5a879325b2b",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"pacp": {
-"sha1": "5a1992338b6a94f6d1611b753449d4403b45b29c",
-"ok": true,
-"von": 15.0,
-"bis": 97.0,
-"grund": ""
-},
-"brays-zombie-overhaul-fresh-animations": {
-"sha1": "538a7c77b37c10dbc1f3816be7450fa84397b440",
-"ok": true,
-"von": 84.0,
-"bis": 999.0,
-"grund": ""
-},
-"pvp-zegarn": {
-"sha1": "f1a2efe9649611495d20e69c206fb5b3aa994525",
-"ok": true,
-"von": 69.0,
-"bis": 999.0,
-"grund": ""
-},
-"enchanting-table-magic-circle": {
-"sha1": "153b38b9aa9f47e2ad51ff51aa3898e61552951b",
-"ok": true,
-"von": 88.0,
-"bis": 97.1,
-"grund": ""
-},
-"small-held-items": {
-"sha1": "7e84b0d9eaafcf6d957ef2bbcec4a5a32a1e47b4",
-"ok": true,
-"von": 34.0,
-"bis": 1000.0,
-"grund": ""
-},
-"story-mode-clouds": {
-"sha1": "8926de559d7d7368e0f487d9ba3256a63009b7e7",
-"ok": true,
-"von": 20.0,
-"bis": 128.0,
-"grund": ""
-},
-"brays-better-3d-bow": {
-"sha1": "92f72ce6b855be931078c45116bb5ffb9f229a83",
-"ok": true,
-"von": 42.0,
-"bis": 999.0,
-"grund": ""
-},
-"short-pvp-swords": {
-"sha1": "02aa5e247cf3a909ed69aea588a51edb0f62cec5",
-"ok": false,
-"von": 69.0,
-"bis": 88.0,
-"grund": "Pack-Format 69.0\u201388.0, 26.3 braucht 97.1"
-},
-"minecarts-with-wheels": {
-"sha1": "b9f4ef3197508f9ee326f98c93bec30de1de966a",
-"ok": true,
-"von": 69.0,
-"bis": 97.0,
-"grund": ""
-},
-"plastic-texture-pack": {
-"sha1": "a79fa82d55202eec12d8d41fe2fde31ddda85706",
-"ok": true,
-"von": 18.0,
-"bis": 999.0,
-"grund": ""
-},
-"default-hd-sun-and-moon": {
-"sha1": "66db235a0d2f177421490e43935664065fc4bf5f",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"pixlli": {
-"sha1": "b438a3da9ebc03c5ea22058cde44243bf80d70a5",
-"ok": true,
-"von": 4.0,
-"bis": 999.0,
-"grund": ""
-},
-"3d-harnesses-x-fresh-animations": {
-"sha1": "8ee4545592efbb048336193c5e3403e7f63e4862",
-"ok": true,
-"von": 34.0,
-"bis": 999.0,
-"grund": ""
-},
-"mob-crates": {
-"sha1": "d84928add8bc414def88fa7b10759415940e2589",
-"ok": true,
-"von": 15.0,
-"bis": 97.1,
-"grund": ""
-},
-"modernarch": {
-"sha1": "31e41f10829296076cda7c5e30983068076aafe6",
-"ok": true,
-"von": 65.0,
-"bis": 99.0,
-"grund": ""
-},
-"better-animations": {
-"sha1": "be8ad12d8d477e0c068fee6af70eb1dc5723e664",
-"ok": true,
-"von": 42.0,
-"bis": 97.1,
-"grund": ""
-},
-"dimanic-beds": {
-"sha1": "6895a49b16c6a7e8a00efce8d33967559467198f",
-"ok": true,
-"von": 88.0,
-"bis": 999.999,
-"grund": ""
-},
-"re-ocd": {
-"sha1": "32ffe5a7e3c6c33f559f8653c76b533f5ae0b3de",
-"ok": true,
-"von": 97.1,
-"bis": 97.1,
-"grund": ""
-},
-"borderless-glass": {
-"sha1": "17d2d3230c9651ad0c55db951394215971c21891",
-"ok": true,
-"von": 97.0,
-"bis": 99.0,
-"grund": ""
-},
-"fresh-seeds": {
-"sha1": "8fbc665c342777d81d228d67d57201e00e4d8e74",
-"ok": true,
-"von": 55.0,
-"bis": 97.1,
-"grund": ""
-},
-"serified-font": {
-"sha1": "9c9d6510193d0868bde9301c5d04e15537d561d5",
-"ok": true,
-"von": 15.0,
-"bis": 1024.0,
-"grund": ""
-},
-"brush-and-juice": {
-"sha1": "53c15b40a5baf46dc5ca5ca5a0edead697eb917c",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"nature-x": {
-"sha1": "500bfa3ec2952e51c8d79be4b228942419037baa",
-"ok": true,
-"von": 97.1,
-"bis": 97.1,
-"grund": ""
-},
-"anti-xray-pack": {
-"sha1": "157bde48c0971ff80b03b53bae25661cdc5fded3",
-"ok": true,
-"von": 97.1,
-"bis": 9001.0,
-"grund": ""
-},
-"no-block-break-particles": {
-"sha1": "3cfe710ee334e7d4c1b54735ef01a3d51314ada6",
-"ok": true,
-"von": 97.0,
-"bis": 97.0,
-"grund": ""
-},
-"visual-enchantments": {
-"sha1": "6974aafa3716a3c843f4517c0978d9da4251f41b",
-"ok": true,
-"von": 84.0,
-"bis": 100.0,
-"grund": ""
-},
-"xekrsquarepattern": {
-"sha1": "ca0bfd45b2f7c08d434735929641e5f0ff002469",
-"ok": true,
-"von": 16.0,
-"bis": 999.0,
-"grund": ""
-},
-"fresh-weapons-and-tools": {
-"sha1": "0e0bec07d492cbc7ec6d96384468364d3782799b",
-"ok": true,
-"von": 15.0,
-"bis": 97.0,
-"grund": ""
-},
-"renewed-bookshelf": {
-"sha1": "5541931db2ebc839ddc5de64fdba5411803ac849",
-"ok": true,
-"von": 97.0,
-"bis": 99.0,
-"grund": ""
-},
-"shadify": {
-"sha1": "d9656443eab4ecdb51cc96088c4b716a9c9cdb3c",
-"ok": true,
-"von": 6.0,
-"bis": 9999.0,
-"grund": ""
-},
-"shaderless-fullbright": {
-"sha1": "75337db6f89f255ccc38e79fa0c9445fcd26d7d4",
-"ok": true,
-"von": 97.0,
-"bis": 97.0,
-"grund": ""
-},
-"transparent-gui-and-hud": {
-"sha1": "b68a269f560a361e3c4ff5f71cc178b353271f5f",
-"ok": false,
-"von": 84.0,
-"bis": 88.0,
-"grund": "Pack-Format 84.0\u201388.0, 26.3 braucht 97.1"
-},
-"trident-fusion": {
-"sha1": "9f52b8fb5efc4211cf860f3076fdb0f1fc7c521f",
-"ok": true,
-"von": 69.0,
-"bis": 97.1,
-"grund": ""
-},
-"reimaginedguidark": {
-"sha1": "7d5b75e8c1f91bbc1f7dbae2743a31256c478ab0",
-"ok": true,
-"von": 18.0,
-"bis": 999.0,
-"grund": ""
-},
-"clear-lava-and-water": {
-"sha1": "274852c7fee4eb6eff3b41edf1740770659717f7",
-"ok": true,
-"von": 97.0,
-"bis": 97.0,
-"grund": ""
-},
-"rethoughted-spawn-eggs": {
-"sha1": "e6bbb7ca9580c1df29dc5b013cc155da2fbe29fd",
-"ok": true,
-"von": 75.0,
-"bis": 97.0,
-"grund": ""
-},
-"no-enchant-glint": {
-"sha1": "7fbd466bc389cd6fc092aca31819b22b0a7dae42",
-"ok": true,
-"von": 97.1,
-"bis": 97.1,
-"grund": ""
-},
-"hypixel-skyblock-legacy": {
-"sha1": "3888862ea7263d9ad1fde3a9d15ab1bb3d5c3914",
-"ok": true,
-"von": 75.0,
-"bis": 97.1,
-"grund": ""
-},
-"mace-fusion": {
-"sha1": "5b6ed81eded1ecddb40868d7ad848a54abe17694",
-"ok": true,
-"von": 65.0,
-"bis": 32767.0,
-"grund": ""
-},
-"lower-fire": {
-"sha1": "6de4453cbbaeaa93ff3ac37591ebef533c95d7c3",
-"ok": true,
-"von": 97.1,
-"bis": 97.1,
-"grund": ""
-},
-"invisible-item-frames": {
-"sha1": "6e4d40356bc51adf6d67cdca60bea72e4a7467d2",
-"ok": false,
-"von": 0.0,
-"bis": 64.0,
-"grund": "Pack-Format 0.0\u201364.0, 26.3 braucht 97.1"
-},
-"halloween-mash-up": {
-"sha1": "22473f73016bf58950363d15fe6cb13a954e9255",
-"ok": true,
-"von": 18.0,
-"bis": 999.0,
-"grund": ""
-},
-"cubic-leaves": {
-"sha1": "041218e2c3d958cfd0aff9732685e832f3698ee8",
-"ok": true,
-"von": 16.0,
-"bis": 97.0,
-"grund": ""
-},
-"fluffy-carpets": {
-"sha1": "5914d8fe664f33b832b7181f84069e92f34dcf40",
-"ok": true,
-"von": 15.0,
-"bis": 1024.0,
-"grund": ""
-},
-"animated-totem-of-undying": {
-"sha1": "f6b6d8c52d6546aadc9934826c5db21b81eacafb",
-"ok": true,
-"von": 46.0,
-"bis": 128.0,
-"grund": ""
-},
-"natural-texture-pack": {
-"sha1": "26dcf7d163e17eb9372ddd117aa45b1f77230a5d",
-"ok": true,
-"von": 18.0,
-"bis": 999.0,
-"grund": ""
-},
-"golden-days-alpha": {
-"sha1": "9cfb945a734b0e93673c9059290604ff8848a2dd",
-"ok": true,
-"von": 15.0,
-"bis": 420.0,
-"grund": ""
-},
-"realiscraft-je-realistic-default-textures-1.1.0": {
-"sha1": "56a5e926649929400bcb2f8b45a4a3d395da10bb",
-"ok": true,
-"von": 65.0,
-"bis": 99.0,
-"grund": ""
-},
-"glowing-emissive-ores": {
-"sha1": "ae01792373ea89b6df00b342851ee9c06b405d86",
-"ok": true,
-"von": 15.0,
-"bis": 1000.0,
-"grund": ""
-},
-"amazing-mace-3d": {
-"sha1": "104bf43b1fe4c067a41bc0e38f3d4b4009401587",
-"ok": true,
-"von": 1.0,
-"bis": 999.0,
-"grund": ""
-},
-"glowing-ores": {
-"sha1": "aaa9b6d552b99db0b86028c49c20250b4828ea8c",
-"ok": false,
-"von": 65.0,
-"bis": 88.0,
-"grund": "Pack-Format 65.0\u201388.0, 26.3 braucht 97.1"
-},
-"animated-ore": {
-"sha1": "1ac12ac39222568b1bc3e89f7a686c8f71f56de9",
-"ok": true,
-"von": 15.0,
-"bis": 97.1,
-"grund": ""
-},
-"optimum-realism": {
-"sha1": "ba73a30de205621e72a24d550b907b44f1e85638",
-"ok": true,
-"von": 15.0,
-"bis": 130.114514,
-"grund": ""
-},
-"ore-outlines": {
-"sha1": "96d6cef08648fb32c65c66ab22112d02f24b1a81",
-"ok": true,
-"von": 22.0,
-"bis": 10000.0,
-"grund": ""
-},
-"blockier-goat-horn": {
-"sha1": "8b574c262d271c59c6489a4d25648ab6ef33ede3",
-"ok": true,
-"von": 15.0,
-"bis": 1024.0,
-"grund": ""
-},
-"rainbow-block-selection-outline": {
-"sha1": "f3e8c3eca77d0ca28ee31bb52d605d6b7d657ca9",
-"ok": true,
-"von": 16.0,
-"bis": 99.0,
-"grund": ""
-},
-"stained-glass-ultra": {
-"sha1": "a1eae8cc9158b7b77b95017e31bdb14baee3f77b",
-"ok": true,
-"von": 15.0,
-"bis": 97.0,
-"grund": ""
-},
-"hardcore-hearts": {
-"sha1": "255dbe30ac337ab1f572725c74834b796ba44135",
-"ok": true,
-"von": 89.0,
-"bis": 97.0,
-"grund": ""
-},
-"festive-mash-up": {
-"sha1": "ce09f3ade4fed96000e727c3bd5a4f1f8805cd42",
-"ok": true,
-"von": 18.0,
-"bis": 999.0,
-"grund": ""
-},
-"rainbows-foliage": {
-"sha1": "bdf87562ae85617ae6f7cdfd41bc4d281ad36a7b",
-"ok": true,
-"von": 15.0,
-"bis": 420.0,
-"grund": ""
-},
-"immersive-interfaces-mod-support-unofficial": {
-"sha1": "3b5a88c947fe299f20e9ae236e113355fadc89f5",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-},
-"connected-rocks": {
-"sha1": "e1fbf05a601b2be32c63e21f15e0f03f017bf784",
-"ok": true,
-"von": 88.0,
-"bis": 97.1,
-"grund": ""
-},
-"clean-connected-glass": {
-"sha1": "c9ba6b65d840057ddac7f3e8acb214ea5c318040",
-"ok": true,
-"von": 15.0,
-"bis": 102.0,
-"grund": ""
-},
-"better-candles": {
-"sha1": "1d7e96698cc7549eb857d534d0cd9c0d39b3a7bd",
-"ok": true,
-"von": 97.1,
-"bis": 97.1,
-"grund": ""
-},
-"better-moss": {
-"sha1": "966e03e34aeabbe551ae79603510f56422b04c25",
-"ok": true,
-"von": 97.1,
-"bis": 97.1,
-"grund": ""
-},
-"hanging-leaves": {
-"sha1": "c47f0efb70b34de164252682fc1b05bc6358e692",
-"ok": true,
-"von": 69.0,
-"bis": 1000.0,
-"grund": ""
-},
-"simple-overlays": {
-"sha1": "86faea776836d413d679439fa96a2f9a169e7a4f",
-"ok": true,
-"von": 65.0,
-"bis": 1024.0,
-"grund": ""
-},
-"jutting-ores": {
-"sha1": "f3c66f5ef9ef5b9a594347cadcc59afee5019a86",
-"ok": true,
-"von": 4.0,
-"bis": 420.0,
-"grund": ""
-},
-"gen-assets": {
-"sha1": "50c8c55bd3caa6594519558358bd89a8608227fa",
-"ok": false,
-"von": 42.0,
-"bis": 84.0,
-"grund": "Pack-Format 42.0\u201384.0, 26.3 braucht 97.1"
-},
-"whimscape-x-fresh-animations": {
-"sha1": "c9d90e197f031d6dd40de381335707142ffc4a60",
-"ok": true,
-"von": 84.0,
-"bis": 98.0,
-"grund": ""
-},
-"als-boss-rush-x-fresh-animations": {
-"sha1": "0c601a5c3daf7dfc7060865a1c3c2129ad94c3e2",
-"ok": true,
-"von": 84.0,
-"bis": 999.0,
-"grund": ""
-},
-"excalibur-fresh-animations": {
-"sha1": "0380c78d4e0086b6cade7597a4b57f14d06616ec",
-"ok": true,
-"von": 15.0,
-"bis": 999.0,
-"grund": ""
-}
+  "fresh-animations": {
+    "sha1": "8176a3c13963aac2adc1f12214ceabfc45127ab2",
+    "ok": true,
+    "von": 84.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "fresh-animations-extensions": {
+    "sha1": "33c6cc4d621ba7f27e2d5c45269ac28f2287deae",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "fa-player-extension": {
+    "sha1": "122e397af111e3dc5fb6b60004aad9464980f13a",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "fresh-animations-emissive": {
+    "sha1": "f7cf8c02f166611340d5f2a062a3ad2145365b21",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "low-on-fire": {
+    "sha1": "96932a034fff4cd0cad08ba12db730450c4772da",
+    "ok": true,
+    "von": 15.0,
+    "bis": 200.0,
+    "grund": ""
+  },
+  "dramatic-skys": {
+    "sha1": "8953223ba4d04261917b2e29bdcc1841297a5efa",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "glowing-glints": {
+    "sha1": "8702b133610f4b0eca7a91c45beaae8db48d2a10",
+    "ok": true,
+    "von": 15.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "recolourful-containers-gui": {
+    "sha1": "802ca58c93fedc5ecbf83ba93df2dc50b6e79c41",
+    "ok": true,
+    "von": 0.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "visual-armor-trims": {
+    "sha1": "dfd16498105a4cbf1c4985e9f8d3af28ca5752be",
+    "ok": true,
+    "von": 97.0,
+    "bis": 2147483647.0,
+    "grund": ""
+  },
+  "fresh-flower-pots": {
+    "sha1": "c441c973438f41dc5ba2493a211d1e40baf6c8c5",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "better-lanterns": {
+    "sha1": "43da6ce48bbaa61492d47d0e2b47768287ec69ad",
+    "ok": true,
+    "von": 88.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "weskersons-torches": {
+    "sha1": "0a9a020cb9e51151c40d86c2683ee104fa99ffc5",
+    "ok": true,
+    "von": 46.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "theones-eating-animation-pack": {
+    "sha1": "dcfee884979fa4b9a7d539dd594d38a76a4657c1",
+    "ok": true,
+    "von": 22.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "vvi": {
+    "sha1": "1f1022ee1a87b6524dce5fa7b6c51188ea161d38",
+    "ok": true,
+    "von": 3.0,
+    "bis": 107.0,
+    "grund": ""
+  },
+  "enhanced-audio": {
+    "sha1": "2cd4bd529641bde061c2d2d4c44de3228fd6d767",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "gentler-weather-sounds": {
+    "sha1": "33245e4e5b9c81651310a34453d63f92ad479c7d",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "enchanted-books-re-covered": {
+    "sha1": "59571d3e7f626fe7ef00b39bfa32400fdff4d7e3",
+    "ok": true,
+    "von": 48.0,
+    "bis": 120.0,
+    "grund": ""
+  },
+  "rays-3d-rails": {
+    "sha1": "ac30cf249fdecfff3000481f1d701bac5913fe63",
+    "ok": true,
+    "von": 1.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "rays-3d-ladders": {
+    "sha1": "12e023197352e919d776129330458d9f3b759706",
+    "ok": true,
+    "von": 1.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "fancy-crops": {
+    "sha1": "a247188ff93c19045cda4344d80e3cb6e1b00494",
+    "ok": true,
+    "von": 97.0,
+    "bis": 1024.0,
+    "grund": ""
+  },
+  "clearer-slot-highlight": {
+    "sha1": "dd3bc0548a068a08760960fc9d1597c66c7ca2da",
+    "ok": false,
+    "von": 38.0,
+    "bis": 38.0,
+    "grund": "Pack-Format 38.0–38.0, 26.3 braucht 97.1"
+  },
+  "blinking-ender-eyes": {
+    "sha1": "f0b2226223ad8e9aa58f27fcadb7eb6b0f43ce29",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "round-trees": {
+    "sha1": "877141b65aaa395cd4a4562f8aa548d5eec0d7fe",
+    "ok": true,
+    "von": 15.0,
+    "bis": 255.0,
+    "grund": ""
+  },
+  "new-glowing-ores": {
+    "sha1": "40d8c6748585e4585c8d1e54a28b8ea51cad080d",
+    "ok": false,
+    "von": 8.0,
+    "bis": 69.0,
+    "grund": "Pack-Format 8.0–69.0, 26.3 braucht 97.1"
+  },
+  "fluid-foolish": {
+    "sha1": "45a52f5456bc56686e1587dcc182c3e4601baec8",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "hyper-punchy": {
+    "sha1": "13086519e82092678ef150513ac55f3e72a19a68",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "fresh-food-for-hyper-punchy": {
+    "sha1": "7bd6d573d183a2d2948e1052f43fff61c4ebff90",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "luminous-lanterns": {
+    "sha1": "38ce9117596e3a676ac9be117a800dca2a1c0c62",
+    "ok": true,
+    "von": 15.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "drigo-3d-lanterns-x-punchy": {
+    "sha1": "be467ad8ed1d7823e13c3d61361aa70ff74dd6aa",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "just-3d-potions": {
+    "sha1": "d88bddc0fab86bf3832a69bed243095029ad3a79",
+    "ok": true,
+    "von": 15.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "glowing-3d-totem": {
+    "sha1": "ffe36f6464045b09fefbe86cf71d1f425ba31245",
+    "ok": true,
+    "von": 46.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "refined-buckets": {
+    "sha1": "0e158332f123e4075662bab16c89a009cf39fbc0",
+    "ok": true,
+    "von": 15.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "fyoncles-3d-trims": {
+    "sha1": "b0ca2bd63b07687ea15601e9e343b99d746e610e",
+    "ok": true,
+    "von": 15.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "3d-flint-steel-for-punchy": {
+    "sha1": "2ce51c6020581aa2de43184734da1a7023ce6fb4",
+    "ok": false,
+    "von": 88.0,
+    "bis": 88.0,
+    "grund": "Pack-Format 88.0–88.0, 26.3 braucht 97.1"
+  },
+  "animated-3d-wind-charge-compatible-with-punchy": {
+    "sha1": "35926aa3a41880344620b292975a50649db13bc3",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "fresh-animations-objects": {
+    "sha1": "bea6b91e4234b7223010d7ac248123d0398e7aa2",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "fresh-food": {
+    "sha1": "b47aed1d731eee68d7ef258c38d6c946801211ea",
+    "ok": true,
+    "von": 46.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "fresh-flowers-and-plants": {
+    "sha1": "d714d3b76c8ce5521774ab9fc66c0a872bf422e2",
+    "ok": true,
+    "von": 46.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "fresh-ores-and-ingots": {
+    "sha1": "1ade6dbd5ba0371b5f8de26d16be22476f10276a",
+    "ok": true,
+    "von": 46.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "low-shield-pack": {
+    "sha1": "4b843b57dd0883fae0cdfece453ad359e1088d68",
+    "ok": true,
+    "von": 46.0,
+    "bis": 255.0,
+    "grund": ""
+  },
+  "fast-better-grass": {
+    "sha1": "ca670657742ed2f479877da9440547372e5f92b5",
+    "ok": true,
+    "von": 97.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "os-colorful-grasses": {
+    "sha1": "2cb8cece1ba69918cea5a26c61993a1aa72124d0",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1024.0,
+    "grund": ""
+  },
+  "connected-paths": {
+    "sha1": "2ac657c286ca64c792394dd9593f1971b68e6abd",
+    "ok": true,
+    "von": 88.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "just-expressions": {
+    "sha1": "4485a851140d337fa8ecca25939db3be50a3ba59",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "sunbathing-godrays": {
+    "sha1": "bf4fe8d748b9945c548060acb1f04d91bade6cb2",
+    "ok": true,
+    "von": 34.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "icons": {
+    "sha1": "febb55bee872325eaeaa1d361c275d212762c902",
+    "ok": true,
+    "von": 15.0,
+    "bis": 200.0,
+    "grund": ""
+  },
+  "emissive-trims": {
+    "sha1": "cf4ed9d992703fb2045d7882a9ab233e201ba3fd",
+    "ok": true,
+    "von": 15.0,
+    "bis": 2147483647.0,
+    "grund": ""
+  },
+  "fancyfast-bushy-leaves": {
+    "sha1": "5595b4f3d1b4376f9fcd2530305dc772adc5fc81",
+    "ok": true,
+    "von": 34.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "beautiful-enchanted-books": {
+    "sha1": "eb74711a2da2a8638fb882b337b6cf313a4195a0",
+    "ok": false,
+    "von": 16.0,
+    "bis": 93.0,
+    "grund": "Pack-Format 16.0–93.0, 26.3 braucht 97.1"
+  },
+  "glowing-3d-armor": {
+    "sha1": "543e64622d4a4684da3efaf119417643c1459604",
+    "ok": true,
+    "von": 65.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "findreks-3d-buckets-and-fish": {
+    "sha1": "b5e86e9bae37b198c38f2524f0ce5917a7c049a4",
+    "ok": true,
+    "von": 89.0,
+    "bis": 120.0,
+    "grund": ""
+  },
+  "default-dark-mode": {
+    "sha1": "fcc1fc604099baa78794ebfac2fd4b6b7a45aee4",
+    "ok": true,
+    "von": 93.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "faithful-64x": {
+    "sha1": "b0e02f10d2e45151832360557fc84ddcc2b052e9",
+    "ok": true,
+    "von": 79.0,
+    "bis": 100.0,
+    "grund": ""
+  },
+  "even-better-enchants": {
+    "sha1": "903411efb598ede74f390d175ac012eb2f3d908f",
+    "ok": true,
+    "von": 32.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "faithful-32x": {
+    "sha1": "0f20dfdff314da4da3bdf365f66718e8c344075b",
+    "ok": true,
+    "von": 84.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "detailed-animations": {
+    "sha1": "c367de32eca661246f0b282090308b7438546e6f",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "3d-crops": {
+    "sha1": "233e886a3aed43cb48d01f87b8d68f43eb66b970",
+    "ok": false,
+    "von": 55.0,
+    "bis": 55.0,
+    "grund": "Pack-Format 55.0–55.0, 26.3 braucht 97.1"
+  },
+  "als-creepers-revamped": {
+    "sha1": "862d874e41dceaaaf7593d02dc0218b44d230376",
+    "ok": true,
+    "von": 55.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "animated-items": {
+    "sha1": "e1932eda40baedcab207975679ac161bd0168b9d",
+    "ok": true,
+    "von": 34.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "fresh-animations-details": {
+    "sha1": "b98a11e783b79851e6f3c72e4b1eaf9b401d7599",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "3d-ladders": {
+    "sha1": "a055c6187bff48e16098b9be9735b69b28f64aab",
+    "ok": true,
+    "von": 97.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "xalis-enhanced-vanilla": {
+    "sha1": "4eabdbc6ee1c7f8f197d346438dc9dc48f34fe88",
+    "ok": false,
+    "von": 4.0,
+    "bis": 34.0,
+    "grund": "Pack-Format 4.0–34.0, 26.3 braucht 97.1"
+  },
+  "excalibur-lootr-support": {
+    "sha1": "9a9b09afc6b3701bd8878336dad843fc4eaba25d",
+    "ok": false,
+    "von": 34.0,
+    "bis": 34.0,
+    "grund": "Pack-Format 34.0–34.0, 26.3 braucht 97.1"
+  },
+  "als-piglins-revamped-x-fresh-animations": {
+    "sha1": "4fa893db916341bce3f0fec9f782af637004bbb6",
+    "ok": true,
+    "von": 55.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "als-zombies-revamped-x-fresh-animations": {
+    "sha1": "880efe33cf2c12a9b331f1334ca3f588fd8da7d5",
+    "ok": true,
+    "von": 55.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "visual-effects-plus": {
+    "sha1": "1276f91672f9f7f9a94b3a194c6edaeda54843e2",
+    "ok": true,
+    "von": 97.1,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "tools-and-utils": {
+    "sha1": "ce8cd9bc1633994f93b9d724e1ba557f5e630e9f",
+    "ok": true,
+    "von": 46.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "nautilus3d": {
+    "sha1": "032468b4e66cf2d41df70bc9c6ae26ef443588ea",
+    "ok": false,
+    "von": 84.0,
+    "bis": 88.0,
+    "grund": "Pack-Format 84.0–88.0, 26.3 braucht 97.1"
+  },
+  "als-enderman-revamped-x-fresh-animations": {
+    "sha1": "7e7285a9af3ecf07969972c9d594990aabc54a9f",
+    "ok": true,
+    "von": 55.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "vanilla-exp": {
+    "sha1": "1e0261372bcd3ae294ea073f330302f824918786",
+    "ok": true,
+    "von": 75.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "fancy-beds": {
+    "sha1": "40e5ffd45f5c2865ef86760b137ea308ff1a7203",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "3d-bamboo-shoots": {
+    "sha1": "36c82396bf6637a5ec3f94b4050a2cda755761a7",
+    "ok": true,
+    "von": 4.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "fresh-skeleton-physics": {
+    "sha1": "a6aef13b6c234622f9aff13da90ca971464f232d",
+    "ok": true,
+    "von": 84.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "assorted-allays-x-fresh-animations": {
+    "sha1": "7b665af2f9b7d7e9cc5666960ba94f861210d116",
+    "ok": false,
+    "von": 15.0,
+    "bis": 88.0,
+    "grund": "Pack-Format 15.0–88.0, 26.3 braucht 97.1"
+  },
+  "als-skeletons-revamped-x-fresh-animations": {
+    "sha1": "af5b343e5c91632d65a77618d97f642e8cdf3e9c",
+    "ok": true,
+    "von": 55.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "fresh-buckets": {
+    "sha1": "df48c35512dbc9698abda0d85a21e7f425657fd9",
+    "ok": true,
+    "von": 46.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "fresh-animations-spiders": {
+    "sha1": "10d35fc5cc230c1496aff6e63d36994b97685cf3",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "xk-redstone-display": {
+    "sha1": "8cd6766f06354086fc5d1656164d94cad91507b0",
+    "ok": true,
+    "von": 16.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "fresh-animations-creepers": {
+    "sha1": "c65e34ee299998d39bec9178f6793af1099733fa",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "bare-bones-x-fresh-animations": {
+    "sha1": "ae9de15cdb4fadcce880661ed3850c0462aca05a",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "3d-default": {
+    "sha1": "1653ce04cd71f0dc94c3b2c47013e5d3c6e76dc2",
+    "ok": true,
+    "von": 35.0,
+    "bis": 97.114514,
+    "grund": ""
+  },
+  "torches-reimagined": {
+    "sha1": "ad11f146736e4cbecb427e87edb7770393382fc4",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "fresh-music-discs": {
+    "sha1": "0099d91ad6195bc740d4d65d3985e6ac92fc1c32",
+    "ok": true,
+    "von": 46.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "fresh-animations-quivers": {
+    "sha1": "2c32000d720ad835ee4d8ff9b4af130dbe736d74",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "bray-cyber-3d-enchanted-books": {
+    "sha1": "9ff8c89591a77c6ef4609ee8abd4ee2242fcf207",
+    "ok": true,
+    "von": 55.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "better-leaves": {
+    "sha1": "fa3a961b82a9f15a4e80b1f7f021bc121649f073",
+    "ok": true,
+    "von": 15.0,
+    "bis": 255.0,
+    "grund": ""
+  },
+  "translations-for-sodium": {
+    "sha1": "ad9631dfbf5b23ad80604110e4a00215a7f44f1d",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "chat-reporting-helper": {
+    "sha1": "fe52ddaf19663c0cf6bf8bab12ff17abdf25622f",
+    "ok": true,
+    "von": 18.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "fullbright-ub": {
+    "sha1": "9551bb3f20c28875986464fc8ec3f7d806ba3f20",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "low-fire-pack": {
+    "sha1": "0f8e2e5f6eb9f1e2fe35da7a7a0a355760998021",
+    "ok": true,
+    "von": 15.0,
+    "bis": 255.0,
+    "grund": ""
+  },
+  "programmer-art-fix": {
+    "sha1": "8082cef3aa75a5d8302acffd676fde87d5ac2843",
+    "ok": true,
+    "von": 77.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "enhanced-boss-bars": {
+    "sha1": "3b060422bfaddbe8bf665403472b508ea3943413",
+    "ok": true,
+    "von": 84.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "default-hd-128x": {
+    "sha1": "b8aa449269237904c368619f25fad619d80b41fc",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "icon-fresh": {
+    "sha1": "54c48029affc498a58f5c474a9f6b83b4ddf9c36",
+    "ok": true,
+    "von": 84.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "unique-dark": {
+    "sha1": "c6e5c35d47d9a0016fd3c878019ba6e07e1fa13e",
+    "ok": true,
+    "von": 18.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "qraftys-capitalized-font": {
+    "sha1": "26ec39bbd57936d7a1356218cff71b2eaef22b8e",
+    "ok": true,
+    "grund": "nicht prüfbar: could not convert string to float: '97.1.3'",
+    "versuche": 2
+  },
+  "night-vision": {
+    "sha1": "3dd6355f3e58a99ee3dc74081693af036f526ee3",
+    "ok": true,
+    "von": 84.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "patrix-32x": {
+    "sha1": "c11d50686421335f1f54cae6c3878580faaf0360",
+    "ok": true,
+    "grund": "nicht prüfbar: could not convert string to float: '97.1.0'",
+    "versuche": 2
+  },
+  "ashen": {
+    "sha1": "a3645a8233ee6acbb4206cba7a411af15867729b",
+    "ok": true,
+    "von": 22.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "cozyui-plus": {
+    "sha1": "3f890594b4dba9c6493f3739a4969dd2cfc51d70",
+    "ok": true,
+    "von": 1.0,
+    "bis": 9999.0,
+    "grund": ""
+  },
+  "spunky-pvp-texture-pack": {
+    "sha1": "02619691d4fc70698d98e47b8d54ad69bb12fd47",
+    "ok": false,
+    "von": 18.0,
+    "bis": 18.0,
+    "grund": "Pack-Format 18.0–18.0, 26.3 braucht 97.1"
+  },
+  "redstone-tweaks": {
+    "sha1": "8963f38860e9c19753e543d096a9a0cb262a9dfd",
+    "ok": true,
+    "von": 84.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "rotrblocks": {
+    "sha1": "bd372caea207297c95e13b82026d38d41c47147d",
+    "ok": true,
+    "von": 4.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "small-shield-totem": {
+    "sha1": "72fdda7f485b5cfe3ebbc0a47af756ae093dd140",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "alacrity": {
+    "sha1": "f50e9416c4176aef51fe0a181b8fd06c5ed20701",
+    "ok": true,
+    "von": 14.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "clayful-512x": {
+    "sha1": "bbd40b01502667553b15ab822d933c803b6796c4",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "blue-netherite": {
+    "sha1": "99d7eb74f60053c835aa8a4ab9849f774f7c34ed",
+    "ok": true,
+    "von": 42.0,
+    "bis": 320.0,
+    "grund": ""
+  },
+  "fresh-flower-pots-rotated": {
+    "sha1": "be59f8e6c29c31837e496ad5de413bdeccf2eb73",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "skyblock-dark-ui": {
+    "sha1": "c40a9ed43890406bd6e80713371f7bcb04b67df0",
+    "ok": true,
+    "von": 64.0,
+    "bis": 150.0,
+    "grund": ""
+  },
+  "teddy": {
+    "sha1": "7bd91a3d9bd327d0a5959c5d8a545c4f44d88075",
+    "ok": true,
+    "von": 8.0,
+    "bis": 255.0,
+    "grund": ""
+  },
+  "eggs-n-eyes": {
+    "sha1": "7bdbd56d7849ac0f46b4da95918b9a13cf50acd0",
+    "ok": true,
+    "von": 53.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "enchantment-glows": {
+    "sha1": "d9251675c9c84f144579ca6076b2ec373124d90a",
+    "ok": true,
+    "von": 34.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "pvp-crosshair": {
+    "sha1": "ae1f1ba942ca282505667786d68fd252a6fd263e",
+    "ok": true,
+    "von": 18.0,
+    "bis": 690.0,
+    "grund": ""
+  },
+  "mt-ct-d": {
+    "sha1": "ccff4dd7354b7fdcc241e59ec770d194ccbd2ac7",
+    "ok": true,
+    "von": 9.0,
+    "bis": 150.0,
+    "grund": ""
+  },
+  "oct": {
+    "sha1": "645e8e898db03a037ccc8c24e2dfb85cd1d96cec",
+    "ok": true,
+    "grund": "nicht prüfbar: Extra data: line 8 column 1 (char 152)",
+    "versuche": 2
+  },
+  "actually-3d-stuff": {
+    "sha1": "f1a414190b379292602a3f01c0add6e733fe3849",
+    "ok": true,
+    "von": 65.0,
+    "bis": 2077.0,
+    "grund": ""
+  },
+  "dark-mode-skyblock": {
+    "sha1": "5a302775f63e632729e85347e5a3ce2df1212c64",
+    "ok": true,
+    "von": 55.0,
+    "bis": 150.0,
+    "grund": ""
+  },
+  "golden-days": {
+    "sha1": "c7b9eb8511c709d507edde681019664f7bd9a9f7",
+    "ok": true,
+    "von": 15.0,
+    "bis": 420.0,
+    "grund": ""
+  },
+  "no-pumpkin-blur": {
+    "sha1": "079caf05c2fc2f68b9c4597ad907ebbedb11b052",
+    "ok": true,
+    "von": 42.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "default-hd-512x": {
+    "sha1": "adbc24be979da569f30bd2e63fb1530b727cc907",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "bushier-bushes": {
+    "sha1": "13f42f424e52b1bac8d3473047b2d52ee9ed9bad",
+    "ok": true,
+    "von": 66.0,
+    "bis": 100.0,
+    "grund": ""
+  },
+  "sophies-enchants": {
+    "sha1": "bb2e51eddc3ab1c0dc65001f33bdfc7c3ac60a7d",
+    "ok": true,
+    "von": 88.0,
+    "bis": 900.0,
+    "grund": ""
+  },
+  "subtly-glowing-ores": {
+    "sha1": "2e754403693fc6fd74f15e4dbc5e11ab120c7974",
+    "ok": true,
+    "von": 65.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "whimscape": {
+    "sha1": "8d977c09a23590d3d00655e9c34944d12de93035",
+    "ok": true,
+    "von": 84.0,
+    "bis": 102.0,
+    "grund": ""
+  },
+  "primes-hd-textures": {
+    "sha1": "f71e14fd4b803fc3a1ea00806ee91377a059b27e",
+    "ok": true,
+    "von": 64.0,
+    "bis": 200.0,
+    "grund": ""
+  },
+  "reimagined": {
+    "sha1": "deafb64833017314e5563670924cd0de1fa6dad7",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "mini-items-pack": {
+    "sha1": "bb58c266b87f03153ecfbb242c1835cd0063e324",
+    "ok": true,
+    "von": 69.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "sparkles": {
+    "sha1": "a897748140141b2a2b54f7f57193244aabbff620",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "resprited": {
+    "sha1": "9d1e6196e14ddc56725e6b180b50bbd16d9dd0a0",
+    "ok": true,
+    "von": 55.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "better-flame-particles": {
+    "sha1": "e1d8ca5cd2d2227d4f7c6e31f81b6f5e42ddbf9c",
+    "ok": true,
+    "von": 16.0,
+    "bis": 2147483647.0,
+    "grund": ""
+  },
+  "spbr": {
+    "sha1": "22873c8603fd351dc9663884ad3b4e2c18411b6e",
+    "ok": true,
+    "von": 65.0,
+    "bis": 120.0,
+    "grund": ""
+  },
+  "excal": {
+    "sha1": "97348d602be6def05fdfa9eee339ac64be5badd6",
+    "ok": true,
+    "von": 18.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "modded-omelet": {
+    "sha1": "1d4cff3fb277fb32af11d0b636e168523bdbd2c2",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "hyper-realistic-sky": {
+    "sha1": "4e98551ff04530bb21ef9c8902b284b33e9efe36",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "dark-smooth-gui": {
+    "sha1": "cb5b323a5bc62f28dd0dbf1b05f5b82c66dee561",
+    "ok": true,
+    "von": 97.1,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "armor-trim-compats": {
+    "sha1": "975c2afed59aecc748dd313022087bea31f45500",
+    "ok": false,
+    "von": 15.0,
+    "bis": 15.0,
+    "grund": "Pack-Format 15.0–15.0, 26.3 braucht 97.1"
+  },
+  "c418-songs-only": {
+    "sha1": "1edd9216b9232705b911b4a9c6b63f3ba390056d",
+    "ok": true,
+    "von": 22.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "clayful-256x": {
+    "sha1": "f179d0259463152738132c60cf97f5a879325b2b",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "pacp": {
+    "sha1": "5a1992338b6a94f6d1611b753449d4403b45b29c",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "brays-zombie-overhaul-fresh-animations": {
+    "sha1": "538a7c77b37c10dbc1f3816be7450fa84397b440",
+    "ok": true,
+    "von": 84.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "pvp-zegarn": {
+    "sha1": "f1a2efe9649611495d20e69c206fb5b3aa994525",
+    "ok": true,
+    "von": 69.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "enchanting-table-magic-circle": {
+    "sha1": "153b38b9aa9f47e2ad51ff51aa3898e61552951b",
+    "ok": true,
+    "von": 88.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "small-held-items": {
+    "sha1": "7e84b0d9eaafcf6d957ef2bbcec4a5a32a1e47b4",
+    "ok": true,
+    "von": 34.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "story-mode-clouds": {
+    "sha1": "8926de559d7d7368e0f487d9ba3256a63009b7e7",
+    "ok": true,
+    "von": 20.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "brays-better-3d-bow": {
+    "sha1": "92f72ce6b855be931078c45116bb5ffb9f229a83",
+    "ok": true,
+    "von": 42.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "short-pvp-swords": {
+    "sha1": "02aa5e247cf3a909ed69aea588a51edb0f62cec5",
+    "ok": false,
+    "von": 69.0,
+    "bis": 88.0,
+    "grund": "Pack-Format 69.0–88.0, 26.3 braucht 97.1"
+  },
+  "minecarts-with-wheels": {
+    "sha1": "b9f4ef3197508f9ee326f98c93bec30de1de966a",
+    "ok": true,
+    "von": 69.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "plastic-texture-pack": {
+    "sha1": "a79fa82d55202eec12d8d41fe2fde31ddda85706",
+    "ok": true,
+    "von": 18.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "default-hd-sun-and-moon": {
+    "sha1": "66db235a0d2f177421490e43935664065fc4bf5f",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "pixlli": {
+    "sha1": "b438a3da9ebc03c5ea22058cde44243bf80d70a5",
+    "ok": true,
+    "von": 4.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "3d-harnesses-x-fresh-animations": {
+    "sha1": "8ee4545592efbb048336193c5e3403e7f63e4862",
+    "ok": true,
+    "von": 34.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "mob-crates": {
+    "sha1": "d84928add8bc414def88fa7b10759415940e2589",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "modernarch": {
+    "sha1": "31e41f10829296076cda7c5e30983068076aafe6",
+    "ok": true,
+    "von": 65.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "better-animations": {
+    "sha1": "be8ad12d8d477e0c068fee6af70eb1dc5723e664",
+    "ok": true,
+    "von": 42.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "dimanic-beds": {
+    "sha1": "6895a49b16c6a7e8a00efce8d33967559467198f",
+    "ok": true,
+    "von": 88.0,
+    "bis": 999.999,
+    "grund": ""
+  },
+  "re-ocd": {
+    "sha1": "32ffe5a7e3c6c33f559f8653c76b533f5ae0b3de",
+    "ok": true,
+    "von": 97.1,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "borderless-glass": {
+    "sha1": "17d2d3230c9651ad0c55db951394215971c21891",
+    "ok": true,
+    "von": 97.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "fresh-seeds": {
+    "sha1": "8fbc665c342777d81d228d67d57201e00e4d8e74",
+    "ok": true,
+    "von": 55.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "serified-font": {
+    "sha1": "9c9d6510193d0868bde9301c5d04e15537d561d5",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1024.0,
+    "grund": ""
+  },
+  "brush-and-juice": {
+    "sha1": "53c15b40a5baf46dc5ca5ca5a0edead697eb917c",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "nature-x": {
+    "sha1": "500bfa3ec2952e51c8d79be4b228942419037baa",
+    "ok": true,
+    "von": 97.1,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "anti-xray-pack": {
+    "sha1": "157bde48c0971ff80b03b53bae25661cdc5fded3",
+    "ok": true,
+    "von": 97.1,
+    "bis": 9001.0,
+    "grund": ""
+  },
+  "no-block-break-particles": {
+    "sha1": "3cfe710ee334e7d4c1b54735ef01a3d51314ada6",
+    "ok": true,
+    "von": 97.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "visual-enchantments": {
+    "sha1": "6974aafa3716a3c843f4517c0978d9da4251f41b",
+    "ok": true,
+    "von": 84.0,
+    "bis": 100.0,
+    "grund": ""
+  },
+  "xekrsquarepattern": {
+    "sha1": "ca0bfd45b2f7c08d434735929641e5f0ff002469",
+    "ok": true,
+    "von": 16.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "fresh-weapons-and-tools": {
+    "sha1": "0e0bec07d492cbc7ec6d96384468364d3782799b",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "renewed-bookshelf": {
+    "sha1": "5541931db2ebc839ddc5de64fdba5411803ac849",
+    "ok": true,
+    "von": 97.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "shadify": {
+    "sha1": "d9656443eab4ecdb51cc96088c4b716a9c9cdb3c",
+    "ok": true,
+    "von": 6.0,
+    "bis": 9999.0,
+    "grund": ""
+  },
+  "shaderless-fullbright": {
+    "sha1": "75337db6f89f255ccc38e79fa0c9445fcd26d7d4",
+    "ok": true,
+    "von": 97.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "transparent-gui-and-hud": {
+    "sha1": "b68a269f560a361e3c4ff5f71cc178b353271f5f",
+    "ok": false,
+    "von": 84.0,
+    "bis": 88.0,
+    "grund": "Pack-Format 84.0–88.0, 26.3 braucht 97.1"
+  },
+  "trident-fusion": {
+    "sha1": "9f52b8fb5efc4211cf860f3076fdb0f1fc7c521f",
+    "ok": true,
+    "von": 69.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "reimaginedguidark": {
+    "sha1": "7d5b75e8c1f91bbc1f7dbae2743a31256c478ab0",
+    "ok": true,
+    "von": 18.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "clear-lava-and-water": {
+    "sha1": "274852c7fee4eb6eff3b41edf1740770659717f7",
+    "ok": true,
+    "von": 97.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "rethoughted-spawn-eggs": {
+    "sha1": "e6bbb7ca9580c1df29dc5b013cc155da2fbe29fd",
+    "ok": true,
+    "von": 75.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "no-enchant-glint": {
+    "sha1": "7fbd466bc389cd6fc092aca31819b22b0a7dae42",
+    "ok": true,
+    "von": 97.1,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "hypixel-skyblock-legacy": {
+    "sha1": "3888862ea7263d9ad1fde3a9d15ab1bb3d5c3914",
+    "ok": true,
+    "von": 75.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "mace-fusion": {
+    "sha1": "5b6ed81eded1ecddb40868d7ad848a54abe17694",
+    "ok": true,
+    "von": 65.0,
+    "bis": 32767.0,
+    "grund": ""
+  },
+  "lower-fire": {
+    "sha1": "6de4453cbbaeaa93ff3ac37591ebef533c95d7c3",
+    "ok": true,
+    "von": 97.1,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "invisible-item-frames": {
+    "sha1": "6e4d40356bc51adf6d67cdca60bea72e4a7467d2",
+    "ok": false,
+    "von": 0.0,
+    "bis": 64.0,
+    "grund": "Pack-Format 0.0–64.0, 26.3 braucht 97.1"
+  },
+  "halloween-mash-up": {
+    "sha1": "22473f73016bf58950363d15fe6cb13a954e9255",
+    "ok": true,
+    "von": 18.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "cubic-leaves": {
+    "sha1": "041218e2c3d958cfd0aff9732685e832f3698ee8",
+    "ok": true,
+    "von": 16.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "fluffy-carpets": {
+    "sha1": "5914d8fe664f33b832b7181f84069e92f34dcf40",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1024.0,
+    "grund": ""
+  },
+  "animated-totem-of-undying": {
+    "sha1": "f6b6d8c52d6546aadc9934826c5db21b81eacafb",
+    "ok": true,
+    "von": 46.0,
+    "bis": 128.0,
+    "grund": ""
+  },
+  "natural-texture-pack": {
+    "sha1": "26dcf7d163e17eb9372ddd117aa45b1f77230a5d",
+    "ok": true,
+    "von": 18.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "golden-days-alpha": {
+    "sha1": "9cfb945a734b0e93673c9059290604ff8848a2dd",
+    "ok": true,
+    "von": 15.0,
+    "bis": 420.0,
+    "grund": ""
+  },
+  "realiscraft-je-realistic-default-textures-1.1.0": {
+    "sha1": "56a5e926649929400bcb2f8b45a4a3d395da10bb",
+    "ok": true,
+    "von": 65.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "glowing-emissive-ores": {
+    "sha1": "ae01792373ea89b6df00b342851ee9c06b405d86",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "amazing-mace-3d": {
+    "sha1": "104bf43b1fe4c067a41bc0e38f3d4b4009401587",
+    "ok": true,
+    "von": 1.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "glowing-ores": {
+    "sha1": "aaa9b6d552b99db0b86028c49c20250b4828ea8c",
+    "ok": false,
+    "von": 65.0,
+    "bis": 88.0,
+    "grund": "Pack-Format 65.0–88.0, 26.3 braucht 97.1"
+  },
+  "animated-ore": {
+    "sha1": "1ac12ac39222568b1bc3e89f7a686c8f71f56de9",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "optimum-realism": {
+    "sha1": "ba73a30de205621e72a24d550b907b44f1e85638",
+    "ok": true,
+    "von": 15.0,
+    "bis": 130.114514,
+    "grund": ""
+  },
+  "ore-outlines": {
+    "sha1": "96d6cef08648fb32c65c66ab22112d02f24b1a81",
+    "ok": true,
+    "von": 22.0,
+    "bis": 10000.0,
+    "grund": ""
+  },
+  "blockier-goat-horn": {
+    "sha1": "8b574c262d271c59c6489a4d25648ab6ef33ede3",
+    "ok": true,
+    "von": 15.0,
+    "bis": 1024.0,
+    "grund": ""
+  },
+  "rainbow-block-selection-outline": {
+    "sha1": "f3e8c3eca77d0ca28ee31bb52d605d6b7d657ca9",
+    "ok": true,
+    "von": 16.0,
+    "bis": 99.0,
+    "grund": ""
+  },
+  "stained-glass-ultra": {
+    "sha1": "a1eae8cc9158b7b77b95017e31bdb14baee3f77b",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "hardcore-hearts": {
+    "sha1": "255dbe30ac337ab1f572725c74834b796ba44135",
+    "ok": true,
+    "von": 89.0,
+    "bis": 97.0,
+    "grund": ""
+  },
+  "festive-mash-up": {
+    "sha1": "ce09f3ade4fed96000e727c3bd5a4f1f8805cd42",
+    "ok": true,
+    "von": 18.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "rainbows-foliage": {
+    "sha1": "bdf87562ae85617ae6f7cdfd41bc4d281ad36a7b",
+    "ok": true,
+    "von": 15.0,
+    "bis": 420.0,
+    "grund": ""
+  },
+  "connected-rocks": {
+    "sha1": "e1fbf05a601b2be32c63e21f15e0f03f017bf784",
+    "ok": true,
+    "von": 88.0,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "clean-connected-glass": {
+    "sha1": "c9ba6b65d840057ddac7f3e8acb214ea5c318040",
+    "ok": true,
+    "von": 15.0,
+    "bis": 102.0,
+    "grund": ""
+  },
+  "better-candles": {
+    "sha1": "1d7e96698cc7549eb857d534d0cd9c0d39b3a7bd",
+    "ok": true,
+    "von": 97.1,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "better-moss": {
+    "sha1": "966e03e34aeabbe551ae79603510f56422b04c25",
+    "ok": true,
+    "von": 97.1,
+    "bis": 97.1,
+    "grund": ""
+  },
+  "hanging-leaves": {
+    "sha1": "c47f0efb70b34de164252682fc1b05bc6358e692",
+    "ok": true,
+    "von": 69.0,
+    "bis": 1000.0,
+    "grund": ""
+  },
+  "simple-overlays": {
+    "sha1": "86faea776836d413d679439fa96a2f9a169e7a4f",
+    "ok": true,
+    "von": 65.0,
+    "bis": 1024.0,
+    "grund": ""
+  },
+  "jutting-ores": {
+    "sha1": "f3c66f5ef9ef5b9a594347cadcc59afee5019a86",
+    "ok": true,
+    "von": 4.0,
+    "bis": 420.0,
+    "grund": ""
+  },
+  "gen-assets": {
+    "sha1": "50c8c55bd3caa6594519558358bd89a8608227fa",
+    "ok": false,
+    "von": 42.0,
+    "bis": 84.0,
+    "grund": "Pack-Format 42.0–84.0, 26.3 braucht 97.1"
+  },
+  "whimscape-x-fresh-animations": {
+    "sha1": "c9d90e197f031d6dd40de381335707142ffc4a60",
+    "ok": true,
+    "von": 84.0,
+    "bis": 98.0,
+    "grund": ""
+  },
+  "als-boss-rush-x-fresh-animations": {
+    "sha1": "0c601a5c3daf7dfc7060865a1c3c2129ad94c3e2",
+    "ok": true,
+    "von": 84.0,
+    "bis": 999.0,
+    "grund": ""
+  },
+  "excalibur-fresh-animations": {
+    "sha1": "0380c78d4e0086b6cade7597a4b57f14d06616ec",
+    "ok": true,
+    "von": 15.0,
+    "bis": 999.0,
+    "grund": ""
+  }
 }

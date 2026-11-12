@@ -36,7 +36,7 @@ function keysHtml(){
 /* Resource-Pack-Reihenfolge (oben = höchste Priorität) */
 const RPRANK=[
   ["fresh-flower-pots-rotated","fresh-flower-pots","fresh-skeleton-physics","als-creepers-revamped"],
-  ["icons","clearer-slot-highlight","enhanced-boss-bars","hardcore-hearts","no-pumpkin-blur","unique-dark","cozyui-plus","default-dark-mode","recolourful-containers-gui","redstone-tweaks","translations-for-sodium","shrimps-immersive-interfaces","immersive-interfaces-mod-support-unofficial"],
+  ["icons","clearer-slot-highlight","enhanced-boss-bars","hardcore-hearts","no-pumpkin-blur","unique-dark","cozyui-plus","default-dark-mode","recolourful-containers-gui","redstone-tweaks","translations-for-sodium",],
   ["fresh-animations-extensions","fa-player-extension","just-expressions","detailed-animations","als-piglins-revamped-x-fresh-animations","als-zombies-revamped-x-fresh-animations","als-enderman-revamped-x-fresh-animations","als-skeletons-revamped-x-fresh-animations","assorted-allays-x-fresh-animations","bare-bones-x-fresh-animations","3d-harnesses-x-fresh-animations","fresh-animations-quivers","brays-zombie-overhaul-fresh-animations","whimscape-x-fresh-animations","als-boss-rush-x-fresh-animations","excalibur-fresh-animations"],
   ["fresh-animations"],
   ["fresh-food-for-hyper-punchy","3d-flint-steel-for-punchy","drigo-3d-lanterns-x-punchy","animated-3d-wind-charge-compatible-with-punchy","hyper-punchy","fluid-foolish","theones-eating-animation-pack"],

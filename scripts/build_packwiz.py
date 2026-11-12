@@ -8,7 +8,7 @@ M = D("mods.json"); F = D("files.json"); DEC = D("decisions.json")
 BY = {m["slug"]: m for m in M}
 CHOICES = D("choices.json") if os.path.exists(os.path.join(R, "data", "choices.json")) else {}
 IMPLICIT = {
-    "immersive-interfaces-mod-support-unofficial": ["shrimps-immersive-interfaces"],
+    : [],
     "connected-rocks": ["continuity"],
     "rainbows-foliage": ["polytone"],
     "fresh-animations": ["entity-model-features", "entitytexturefeatures"],
@@ -86,7 +86,7 @@ PRIO = [
         "dramatic-skys", "sunbathing-godrays", "default-hd-sun-and-moon"
     ],
     [
-        "immersive-interfaces-mod-support-unofficial", "shrimps-immersive-interfaces",
+         
         "unique-dark", "cozyui-plus", "default-dark-mode", "recolourful-containers-gui",
         "icons", "enhanced-boss-bars", "hardcore-hearts", "clearer-slot-highlight",
         "no-pumpkin-blur", "redstone-tweaks", "translations-for-sodium"
