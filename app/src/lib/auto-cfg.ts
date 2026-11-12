@@ -30,7 +30,187 @@ export type AutoRule = {
   alt?: AutoAlt;
 };
 
+/** Standard-Shader-Einstellungen für LOD-Kompatibilität (Voxy / Distant Horizons):
+ * Atmospheric Fog und Border Fog standardmäßig deaktiviert, damit LODs nicht abgeschnitten oder vernebelt werden. */
+export const SHADER_LOD_FOG_DEFAULTS: Record<string, Record<string, string | boolean | number>> = {
+  "photon-shader": {
+    BORDER_FOG: false,
+    OVERWORLD_FOG_INTENSITY: "0.00",
+    AIR_FOG_RAYLEIGH_DENSITY: "0.000",
+    AIR_FOG_MIE_DENSITY_MORNING: "0.000",
+    AIR_FOG_MIE_DENSITY_NOON: "0.000",
+    AIR_FOG_MIE_DENSITY_EVENING: "0.000",
+    AIR_FOG_MIE_DENSITY_MIDNIGHT: "0.000"
+  },
+  "complementary-reimagined": {
+    BORDER_FOG: false,
+    ATM_FOG_MULT: "0.50",
+    ATM_FOG_DISTANCE: 300
+  },
+  "complementary-unbound": {
+    BORDER_FOG: false,
+    ATM_FOG_MULT: "0.50",
+    ATM_FOG_DISTANCE: 300
+  },
+  "bliss-shader": {
+    BorderFog: false,
+    Haze_amount: "0.0",
+    TOD_Fog_mult: "0.0"
+  },
+  "solas-shader": {
+    DISTANT_FADE: false,
+    FOG_DENSITY: "0.0"
+  },
+  "bsl-shaders": {
+    FAR_VANILLA_FOG: 0,
+    FOG_DENSITY: "0.00",
+    FOG_HEIGHT: false
+  },
+  "i-like-vanilla": {
+    BORDER_FOG_ENABLED: false,
+    DAY_ATMOSPHERIC_FOG_DENSITY: "0.0",
+    NIGHT_ATMOSPHERIC_FOG_DENSITY: "0.0",
+    SUNRISE_ATMOSPHERIC_FOG_DENSITY: "0.0"
+  },
+  "steadfast-shaders": {
+    BORDER_FOG: false,
+    ATMOSPHERE_FOG_STRENGTH_NOON: "0.0"
+  },
+  "pegasus": {
+    FOG: 0,
+    EXPONENTIAL_FOG_: 0,
+    BORDER_FOG_START: 100
+  },
+  "mellow": {
+    BORDER_FOG: false,
+    ATMOSPHERIC_FOG: false,
+    ATM_FOG_STRENGTH: "0.0"
+  },
+  "makeup-ultra-fast-shaders": {
+    FOG_ACTIVE: false,
+    FOG_ADJUST: "20.0"
+  },
+  "astralex": {
+    FOG: false,
+    OVERWORLD_FOG_DENSITY: "0.0",
+    BORDER_FOG: false
+  },
+  "noble": {
+    AIR_FOG: 0,
+    BORDER_FOG: false
+  },
+  "sildurs-vibrant-shaders": {
+    Fog: false,
+    wFogDensity: "0.00"
+  },
+  "lumenite-shaders": {
+    AERIAL_PERSPECTIVE: 0,
+    FOG: 0
+  },
+  "beautify-shaders": {
+    ATMOSPHERIC_FOG: false,
+    FOG_DENSITY: "0.0"
+  },
+  "lumarit": {
+    FOG: false,
+    FOG_DENSITY: "0.0"
+  },
+  "shiroi-visuals": {
+    VOLUMETRIC_FOG: false,
+    FOG_DENSITY_MUL: "0.0"
+  },
+  "komorebi-shaders": {
+    BORDER_FOG: false,
+    FOG_DENSITY: "0.0",
+    MORNING_FOG: false,
+    RAIN_FOG: false
+  }
+};
+
 export const AUTO_RULES: AutoRule[] = [
+  // --- Shader LOD-Kompatibilität (Atmospheric & Border Fog deaktiviert für Voxy / Distant Horizons) ---
+  {
+    id: "shader-fog-photon",
+    slug: "photon-shader",
+    when: ["voxy", "distanthorizons"],
+    file: "shader:photon-shader",
+    fmt: "shader",
+    changes: [
+      ["BORDER_FOG", false],
+      ["OVERWORLD_FOG_INTENSITY", "0.00"],
+      ["AIR_FOG_RAYLEIGH_DENSITY", "0.000"],
+      ["AIR_FOG_MIE_DENSITY_MORNING", "0.000"],
+      ["AIR_FOG_MIE_DENSITY_NOON", "0.000"],
+      ["AIR_FOG_MIE_DENSITY_EVENING", "0.000"],
+      ["AIR_FOG_MIE_DENSITY_MIDNIGHT", "0.000"]
+    ],
+    text: "Border Fog und Atmosphären-Nebel in Photon deaktiviert, damit Voxy und Distant Horizons LODs uneingeschränkt sichtbar sind."
+  },
+  {
+    id: "shader-fog-cr",
+    slug: "complementary-reimagined",
+    when: ["voxy", "distanthorizons"],
+    file: "shader:complementary-reimagined",
+    fmt: "shader",
+    changes: [
+      ["BORDER_FOG", false],
+      ["ATM_FOG_MULT", "0.50"],
+      ["ATM_FOG_DISTANCE", 300]
+    ],
+    text: "Border Fog und Atmosphären-Nebel in Complementary Reimagined deaktiviert, damit LODs nicht durch eine Nebelwand abgeschnitten werden."
+  },
+  {
+    id: "shader-fog-cu",
+    slug: "complementary-unbound",
+    when: ["voxy", "distanthorizons"],
+    file: "shader:complementary-unbound",
+    fmt: "shader",
+    changes: [
+      ["BORDER_FOG", false],
+      ["ATM_FOG_MULT", "0.50"],
+      ["ATM_FOG_DISTANCE", 300]
+    ],
+    text: "Border Fog und Atmosphären-Nebel in Complementary Unbound deaktiviert, damit LODs nicht durch eine Nebelwand abgeschnitten werden."
+  },
+  {
+    id: "shader-fog-bliss",
+    slug: "bliss-shader",
+    when: ["voxy", "distanthorizons"],
+    file: "shader:bliss-shader",
+    fmt: "shader",
+    changes: [
+      ["BorderFog", false],
+      ["Haze_amount", "0.0"],
+      ["TOD_Fog_mult", "0.0"]
+    ],
+    text: "Border Fog und Dunst-Nebel in Bliss deaktiviert, um freie Sicht auf die LOD-Landschaft zu gewährleisten."
+  },
+  {
+    id: "shader-fog-bsl",
+    slug: "bsl-shaders",
+    when: ["voxy", "distanthorizons"],
+    file: "shader:bsl-shaders",
+    fmt: "shader",
+    changes: [
+      ["FAR_VANILLA_FOG", 0],
+      ["FOG_DENSITY", "0.00"],
+      ["FOG_HEIGHT", false]
+    ],
+    text: "Far Vanilla Fog und Nebeldichte in BSL deaktiviert, damit Fernsicht-LODs sauber dargestellt werden."
+  },
+  {
+    id: "shader-fog-solas",
+    slug: "solas-shader",
+    when: ["voxy", "distanthorizons"],
+    file: "shader:solas-shader",
+    fmt: "shader",
+    changes: [
+      ["DISTANT_FADE", false],
+      ["FOG_DENSITY", "0.0"]
+    ],
+    text: "Distant Fade und Nebel in Solas deaktiviert, damit LODs nahtlos in die Ferne übergehen."
+  },
+
   // --- Shader + Mods ---
   {
     id: "photon-ldl",
@@ -980,13 +1160,14 @@ export function buildAutoConfigFiles(
 
   for (const [file, { fmt, slug, changes }] of byFile.entries()) {
     if (fmt === "shader") {
-      if (slug !== "photon-shader") continue;
-      const fn = fname("photon-shader");
+      const fn = fname(slug);
       if (!fn) continue;
-      const items = (SETDEF as any)["photon-shader"]?.items || [];
+      const items = (SETDEF as any)[slug]?.items || [];
       const map = new Map<string, string>();
+      const lodDefaults = SHADER_LOD_FOG_DEFAULTS[slug] || {};
+      for (const [k, v] of Object.entries(lodDefaults)) map.set(k, String(v));
       for (const i of items) {
-        const v = cv("photon-shader", i.k);
+        const v = cv(slug, i.k);
         map.set(i.k, String(i.f ? i.f(Number(v)) : v));
       }
       for (const [k, v] of changes) map.set(k, String(v));

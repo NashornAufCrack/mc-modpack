@@ -4,6 +4,27 @@ const BOOST=new Set(["sodium","lithium","ferrite-core","immediatelyfast","entity
 const cost=s=>BOOST.has(s)?0:(COST[s]??1);
 const LOCKED=new Set(MODS.filter(m=>m.cat==="P"&&m.rolle==="K").map(m=>m.slug));
 /* settings editors: verified keys (Photon source, Voxy source, options.txt) */
+const SHADER_LOD_FOG_DEFAULTS={
+  "photon-shader":{BORDER_FOG:false,OVERWORLD_FOG_INTENSITY:"0.00",AIR_FOG_RAYLEIGH_DENSITY:"0.000",AIR_FOG_MIE_DENSITY_MORNING:"0.000",AIR_FOG_MIE_DENSITY_NOON:"0.000",AIR_FOG_MIE_DENSITY_EVENING:"0.000",AIR_FOG_MIE_DENSITY_MIDNIGHT:"0.000"},
+  "complementary-reimagined":{BORDER_FOG:false,ATM_FOG_MULT:"0.50",ATM_FOG_DISTANCE:300},
+  "complementary-unbound":{BORDER_FOG:false,ATM_FOG_MULT:"0.50",ATM_FOG_DISTANCE:300},
+  "bliss-shader":{BorderFog:false,Haze_amount:"0.0",TOD_Fog_mult:"0.0"},
+  "solas-shader":{DISTANT_FADE:false,FOG_DENSITY:"0.0"},
+  "bsl-shaders":{FAR_VANILLA_FOG:0,FOG_DENSITY:"0.00",FOG_HEIGHT:false},
+  "i-like-vanilla":{BORDER_FOG_ENABLED:false,DAY_ATMOSPHERIC_FOG_DENSITY:"0.0",NIGHT_ATMOSPHERIC_FOG_DENSITY:"0.0",SUNRISE_ATMOSPHERIC_FOG_DENSITY:"0.0"},
+  "steadfast-shaders":{BORDER_FOG:false,ATMOSPHERE_FOG_STRENGTH_NOON:"0.0"},
+  "pegasus":{FOG:0,EXPONENTIAL_FOG_:0,BORDER_FOG_START:100},
+  "mellow":{BORDER_FOG:false,ATMOSPHERIC_FOG:false,ATM_FOG_STRENGTH:"0.0"},
+  "makeup-ultra-fast-shaders":{FOG_ACTIVE:false,FOG_ADJUST:"20.0"},
+  "astralex":{FOG:false,OVERWORLD_FOG_DENSITY:"0.0",BORDER_FOG:false},
+  "noble":{AIR_FOG:0,BORDER_FOG:false},
+  "sildurs-vibrant-shaders":{Fog:false,wFogDensity:"0.00"},
+  "lumenite-shaders":{AERIAL_PERSPECTIVE:0,FOG:0},
+  "beautify-shaders":{ATMOSPHERIC_FOG:false,FOG_DENSITY:"0.0"},
+  "lumarit":{FOG:false,FOG_DENSITY:"0.0"},
+  "shiroi-visuals":{VOLUMETRIC_FOG:false,FOG_DENSITY_MUL:"0.0"},
+  "komorebi-shaders":{BORDER_FOG:false,FOG_DENSITY:"0.0",MORNING_FOG:false,RAIN_FOG:false}
+};
 const SETDEF={
  "photon-shader":{file:"Photon-Shader-Datei",items:[
   {k:"COLORED_LIGHTS",t:"bool",d:true,l:"Farbiges Licht",h:"Fackeln, Lava und Redstone färben ihre Umgebung. Kostet etwas Leistung, sieht aber am meisten nach „Ultra“ aus."},
@@ -174,10 +195,15 @@ async function exportPack(server){
   if($("withcfg").checked&&!server){
     const rps=[...r.mods].filter(s=>BY[s].pt==="r"); const B=k=>cv("_base",k);
     zip.file("overrides/config/yosbr/options.txt",[`renderDistance:${B("renderDistance")}`,`simulationDistance:${B("simulationDistance")}`,`maxFps:${B("maxFps")}`,"enableVsync:false",'renderClouds:"false"',"mipmapLevels:4","biomeBlendRadius:2","resourcePacks:"+JSON.stringify(rpOrder(rps))].join("\n")+"\n");
-    if(r.mods.has("iris")&&r.mods.has("photon-shader")){
-      const pf=decodeURIComponent(FILES["photon-shader"][1]);
-      zip.file("overrides/config/yosbr/config/iris.properties","enableShaders=true\nshaderPack="+pf+"\n");
-      zip.file("overrides/shaderpacks/"+pf+".txt",SETDEF["photon-shader"].items.map(i=>{const v=cv("photon-shader",i.k); return i.k+"="+(i.f?i.f(Number(v)):v);}).join("\n")+"\n");
+    if(r.mods.has("iris")){
+      const sp=[...r.mods].find(s=>BY[s].pt==="s");
+      if(sp){
+        const pf=decodeURIComponent(FILES[sp][1]);
+        zip.file("overrides/config/yosbr/config/iris.properties","enableShaders=true\nshaderPack="+pf+"\n");
+        const sMap=new Map(); const sLOD=SHADER_LOD_FOG_DEFAULTS[sp]||{}; for(const [k,v] of Object.entries(sLOD)) sMap.set(k,String(v));
+        const sItems=(SETDEF[sp]&&SETDEF[sp].items)||[]; for(const i of sItems){ const v=cv(sp,i.k); sMap.set(i.k,String(i.f?i.f(Number(v)):v)); }
+        if(sMap.size>0) zip.file("overrides/shaderpacks/"+pf+".txt",[...sMap.entries()].map(([k,v])=>k+"="+v).join("\n")+"\n");
+      }
     }
     if(r.mods.has("voxy")) zip.file("overrides/config/yosbr/config/voxy-config.json",JSON.stringify({enabled:true,enable_rendering:true,ingest_enabled:true,section_render_distance:Number(cv("voxy","section_render_distance")),sub_division_size:Number(cv("voxy","sub_division_size")),dont_use_sodium_builder_threads:!cv("voxy","use_sodium")},null,2));
     zip.file("overrides/LIES-MICH.txt","Erstellt mit dem Mod-Katalog 26.3.\nStandard-Einstellungen liegen in config/yosbr/ und überschreiben nie deine eigenen.\nFeste Versionen: Sodium 0.9.2, Iris 1.11.7, Voxy 0.2.20-beta, Photon v1.4. Nur zusammen aktualisieren.\n");

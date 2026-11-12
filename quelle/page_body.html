@@ -250,6 +250,27 @@ const cost=s=>BOOST.has(s)?0:(COST[s]??1);
 const LOCKED=new Set(MODS.filter(m=>(m.cat==="P"&&m.rolle==="K")||m.pflicht).map(m=>m.slug));
 /* settings editors: verified keys (Photon source, Voxy source, options.txt) */
 const TPL=__TPL__;
+const SHADER_LOD_FOG_DEFAULTS={
+  "photon-shader":{BORDER_FOG:false,OVERWORLD_FOG_INTENSITY:"0.00",AIR_FOG_RAYLEIGH_DENSITY:"0.000",AIR_FOG_MIE_DENSITY_MORNING:"0.000",AIR_FOG_MIE_DENSITY_NOON:"0.000",AIR_FOG_MIE_DENSITY_EVENING:"0.000",AIR_FOG_MIE_DENSITY_MIDNIGHT:"0.000"},
+  "complementary-reimagined":{BORDER_FOG:false,ATM_FOG_MULT:"0.50",ATM_FOG_DISTANCE:300},
+  "complementary-unbound":{BORDER_FOG:false,ATM_FOG_MULT:"0.50",ATM_FOG_DISTANCE:300},
+  "bliss-shader":{BorderFog:false,Haze_amount:"0.0",TOD_Fog_mult:"0.0"},
+  "solas-shader":{DISTANT_FADE:false,FOG_DENSITY:"0.0"},
+  "bsl-shaders":{FAR_VANILLA_FOG:0,FOG_DENSITY:"0.00",FOG_HEIGHT:false},
+  "i-like-vanilla":{BORDER_FOG_ENABLED:false,DAY_ATMOSPHERIC_FOG_DENSITY:"0.0",NIGHT_ATMOSPHERIC_FOG_DENSITY:"0.0",SUNRISE_ATMOSPHERIC_FOG_DENSITY:"0.0"},
+  "steadfast-shaders":{BORDER_FOG:false,ATMOSPHERE_FOG_STRENGTH_NOON:"0.0"},
+  "pegasus":{FOG:0,EXPONENTIAL_FOG_:0,BORDER_FOG_START:100},
+  "mellow":{BORDER_FOG:false,ATMOSPHERIC_FOG:false,ATM_FOG_STRENGTH:"0.0"},
+  "makeup-ultra-fast-shaders":{FOG_ACTIVE:false,FOG_ADJUST:"20.0"},
+  "astralex":{FOG:false,OVERWORLD_FOG_DENSITY:"0.0",BORDER_FOG:false},
+  "noble":{AIR_FOG:0,BORDER_FOG:false},
+  "sildurs-vibrant-shaders":{Fog:false,wFogDensity:"0.00"},
+  "lumenite-shaders":{AERIAL_PERSPECTIVE:0,FOG:0},
+  "beautify-shaders":{ATMOSPHERIC_FOG:false,FOG_DENSITY:"0.0"},
+  "lumarit":{FOG:false,FOG_DENSITY:"0.0"},
+  "shiroi-visuals":{VOLUMETRIC_FOG:false,FOG_DENSITY_MUL:"0.0"},
+  "komorebi-shaders":{BORDER_FOG:false,FOG_DENSITY:"0.0",MORNING_FOG:false,RAIN_FOG:false}
+};
 const SETDEF={
  "photon-shader":{file:"Photon-Shader-Datei",items:[
   {k:"COLORED_LIGHTS",t:"bool",d:true,l:"Farbiges Licht",h:"Fackeln, Lava und Redstone färben ihre Umgebung. Kostet etwas Leistung, sieht aber am meisten nach „Ultra“ aus."},
@@ -557,7 +578,20 @@ function keysHtml(){
   return h;
 }
 /* Resource-Pack-Reihenfolge (oben = höchste Priorität) */
-const RPRANK=[["fresh-flower-pots","round-trees","fresh-skeleton-physics"],["fresh-animations-extensions","fa-player-extension","just-expressions","detailed-animations","als-piglins-revamped-x-fresh-animations","als-zombies-revamped-x-fresh-animations","als-enderman-revamped-x-fresh-animations","als-skeletons-revamped-x-fresh-animations","assorted-allays-x-fresh-animations","bare-bones-x-fresh-animations","als-creepers-revamped"],["fresh-animations"],["fresh-food-for-hyper-punchy","hyper-punchy","fluid-foolish","theones-eating-animation-pack"],["fresh-food","fresh-flowers-and-plants","fresh-ores-and-ingots","fresh-buckets","fresh-music-discs","just-3d-potions","glowing-3d-totem","refined-buckets","findreks-3d-buckets-and-fish","fyoncles-3d-trims","glowing-3d-armor","3d-flint-steel-for-punchy","animated-3d-wind-charge-compatible-with-punchy","luminous-lanterns","drigo-3d-lanterns-x-punchy","tools-and-utils","bray-cyber-3d-enchanted-books","nautilus3d"],["better-lanterns","torches-reimagined","weskersons-torches","rays-3d-rails","3d-ladders","rays-3d-ladders","3d-crops","fancy-crops","3d-bamboo-shoots","fancy-beds","os-colorful-grasses","connected-paths","fast-better-grass","better-leaves","fancyfast-bushy-leaves","3d-default","animated-items","xk-redstone-display","excalibur-lootr-support"],["even-better-enchants","beautiful-enchanted-books","enchanted-books-re-covered","visual-armor-trims","emissive-trims","glowing-glints","new-glowing-ores","low-on-fire","low-shield-pack","blinking-ender-eyes","dramatic-skys","sunbathing-godrays","visual-effects-plus"],["icons","recolourful-containers-gui","clearer-slot-highlight","shrimps-immersive-interfaces","default-dark-mode"],["vvi","enhanced-audio","gentler-weather-sounds"],["vanilla-exp","xalis-enhanced-vanilla","faithful-32x","faithful-64x"]];
+const RPRANK=[
+  ["fresh-flower-pots-rotated","fresh-flower-pots","fresh-skeleton-physics","als-creepers-revamped"],
+  ["icons","clearer-slot-highlight","enhanced-boss-bars","hardcore-hearts","no-pumpkin-blur","unique-dark","cozyui-plus","default-dark-mode","recolourful-containers-gui","redstone-tweaks","translations-for-sodium","shrimps-immersive-interfaces","immersive-interfaces-mod-support-unofficial"],
+  ["fresh-animations-extensions","fa-player-extension","just-expressions","detailed-animations","als-piglins-revamped-x-fresh-animations","als-zombies-revamped-x-fresh-animations","als-enderman-revamped-x-fresh-animations","als-skeletons-revamped-x-fresh-animations","assorted-allays-x-fresh-animations","bare-bones-x-fresh-animations","3d-harnesses-x-fresh-animations","fresh-animations-quivers","brays-zombie-overhaul-fresh-animations","whimscape-x-fresh-animations","als-boss-rush-x-fresh-animations","excalibur-fresh-animations"],
+  ["fresh-animations"],
+  ["fresh-food-for-hyper-punchy","3d-flint-steel-for-punchy","drigo-3d-lanterns-x-punchy","animated-3d-wind-charge-compatible-with-punchy","hyper-punchy","fluid-foolish","theones-eating-animation-pack"],
+  ["brays-better-3d-bow","amazing-mace-3d","blockier-goat-horn","animated-totem-of-undying","glowing-3d-totem","small-shield-totem","small-held-items","low-shield-pack","fresh-food","fresh-seeds","fresh-flowers-and-plants","fresh-ores-and-ingots","fresh-buckets","fresh-music-discs","just-3d-potions","refined-buckets","findreks-3d-buckets-and-fish","fyoncles-3d-trims","glowing-3d-armor","luminous-lanterns","tools-and-utils","bray-cyber-3d-enchanted-books","nautilus3d","animated-doors","spooky-doors","swinging-lanterns","mob-crates"],
+  ["rainbows-foliage","sunbathing-godrays","visual-effects-plus"],
+  ["fwa","better-lanterns","better-candles","torches-reimagined","weskersons-torches","rays-3d-rails","minecarts-with-wheels","3d-ladders","rays-3d-ladders","3d-crops","fancy-crops","3d-bamboo-shoots","fancy-beds","dimanic-beds","renewed-bookshelf","os-colorful-grasses","connected-paths","connected-rocks","borderless-glass","simple-overlays","fast-better-grass","better-leaves","fancyfast-bushy-leaves","cubic-leaves","hanging-leaves","bushier-bushes","better-moss","fluffy-carpets","emissive-trims","animated-items","xk-redstone-display","excalibur-lootr-support"],
+  ["actually-3d-stuff","nature-x","3d-default"],
+  ["jutting-ores","animated-ore","subtly-glowing-ores","new-glowing-ores","glowing-glints","visual-enchantments","even-better-enchants","beautiful-enchanted-books","enchanted-books-re-covered","visual-armor-trims","better-flame-particles","enchanting-table-magic-circle","eggs-n-eyes","rethoughted-spawn-eggs","blinking-ender-eyes","low-on-fire","low-fire-pack","dramatic-skys","default-hd-sun-and-moon"],
+  ["vvi","enhanced-audio","gentler-weather-sounds"],
+  ["vanilla-exp","xalis-enhanced-vanilla","faithful-32x","faithful-64x"]
+];
 function rpAuto(rps){ const rank=s=>{ const i=RPRANK.findIndex(g=>g.includes(s)); return i<0?6:i; }; const flat=RPRANK.flat(); return [...rps].sort((a,b)=>rank(a)-rank(b)||flat.indexOf(a)-flat.indexOf(b)); }
 function rpTopDown(rps){ const auto=rpAuto(rps); const man=(cfg._rpord||[]).filter(s=>rps.includes(s)); if(!man.length) return auto; return [...man,...auto.filter(s=>!man.includes(s))]; }
 function rpHtml(){
@@ -741,7 +775,9 @@ function packFiles(r,server){
   files["config/defaultoptions/options.txt"]=files["options.txt"];
   const kl2=keyLines(); if(kl2.length) files["config/defaultoptions/keybindings.txt"]=kl2.join("\n")+"\n";
   if(r.mods.has("iris")){ const sp=[...r.mods].find(s=>BY[s].pt==="s"); if(sp){ const pf=decodeURIComponent(FILES[sp][1]); files["config/iris.properties"]="enableShaders=true\nshaderPack="+pf+"\n";
-    if(sp==="photon-shader") files["shaderpacks/"+pf+".txt"]=SETDEF["photon-shader"].items.map(i=>{const v=cv("photon-shader",i.k); return i.k+"="+(i.f?i.f(Number(v)):v);}).join("\n")+"\n"; } }
+    const sMap=new Map(); const sLOD=SHADER_LOD_FOG_DEFAULTS[sp]||{}; for(const [k,v] of Object.entries(sLOD)) sMap.set(k,String(v));
+    const sItems=(SETDEF[sp]&&SETDEF[sp].items)||[]; for(const i of sItems){ const v=cv(sp,i.k); sMap.set(i.k,String(i.f?i.f(Number(v)):v)); }
+    if(sMap.size>0) files["shaderpacks/"+pf+".txt"]=[...sMap.entries()].map(([k,v])=>k+"="+v).join("\n")+"\n"; } }
   for(const s of r.mods) Object.assign(files,modFiles(s));
   files["LIES-MICH.txt"]=`Erstellt mit dem Mod-Katalog 26.3 (${new Date().toLocaleDateString("de-DE")}).\nEinstellungen und Tastenbelegung sind schon gesetzt. Zurück auf diese Werte: Default Options (config/defaultoptions).\nFeste Versionen: Sodium 0.9.2, Iris 1.11.7, Voxy 0.2.20-beta, Photon v1.4. Nur zusammen aktualisieren.\nArbeitsspeicher: ${ramGB(r)} GB.\n`;
   if(r.mods.has("spark")) files["TEST-ANLEITUNG.txt"]="Test-Kit: "+KIT+"\nSeed: "+TESTSEED+"\n";

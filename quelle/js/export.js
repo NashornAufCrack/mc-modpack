@@ -1,3 +1,24 @@
+const SHADER_LOD_FOG_DEFAULTS={
+  "photon-shader":{BORDER_FOG:false,OVERWORLD_FOG_INTENSITY:"0.00",AIR_FOG_RAYLEIGH_DENSITY:"0.000",AIR_FOG_MIE_DENSITY_MORNING:"0.000",AIR_FOG_MIE_DENSITY_NOON:"0.000",AIR_FOG_MIE_DENSITY_EVENING:"0.000",AIR_FOG_MIE_DENSITY_MIDNIGHT:"0.000"},
+  "complementary-reimagined":{BORDER_FOG:false,ATM_FOG_MULT:"0.50",ATM_FOG_DISTANCE:300},
+  "complementary-unbound":{BORDER_FOG:false,ATM_FOG_MULT:"0.50",ATM_FOG_DISTANCE:300},
+  "bliss-shader":{BorderFog:false,Haze_amount:"0.0",TOD_Fog_mult:"0.0"},
+  "solas-shader":{DISTANT_FADE:false,FOG_DENSITY:"0.0"},
+  "bsl-shaders":{FAR_VANILLA_FOG:0,FOG_DENSITY:"0.00",FOG_HEIGHT:false},
+  "i-like-vanilla":{BORDER_FOG_ENABLED:false,DAY_ATMOSPHERIC_FOG_DENSITY:"0.0",NIGHT_ATMOSPHERIC_FOG_DENSITY:"0.0",SUNRISE_ATMOSPHERIC_FOG_DENSITY:"0.0"},
+  "steadfast-shaders":{BORDER_FOG:false,ATMOSPHERE_FOG_STRENGTH_NOON:"0.0"},
+  "pegasus":{FOG:0,EXPONENTIAL_FOG_:0,BORDER_FOG_START:100},
+  "mellow":{BORDER_FOG:false,ATMOSPHERIC_FOG:false,ATM_FOG_STRENGTH:"0.0"},
+  "makeup-ultra-fast-shaders":{FOG_ACTIVE:false,FOG_ADJUST:"20.0"},
+  "astralex":{FOG:false,OVERWORLD_FOG_DENSITY:"0.0",BORDER_FOG:false},
+  "noble":{AIR_FOG:0,BORDER_FOG:false},
+  "sildurs-vibrant-shaders":{Fog:false,wFogDensity:"0.00"},
+  "lumenite-shaders":{AERIAL_PERSPECTIVE:0,FOG:0},
+  "beautify-shaders":{ATMOSPHERIC_FOG:false,FOG_DENSITY:"0.0"},
+  "lumarit":{FOG:false,FOG_DENSITY:"0.0"},
+  "shiroi-visuals":{VOLUMETRIC_FOG:false,FOG_DENSITY_MUL:"0.0"},
+  "komorebi-shaders":{BORDER_FOG:false,FOG_DENSITY:"0.0",MORNING_FOG:false,RAIN_FOG:false}
+};
 /* Export */
 function fmtVal(v,t,fmt,orig){ if(t==="bool"||typeof v==="boolean") return String(v===true||v==="true"); if(t==="num"||typeof v==="number"){ const s=String(Number(v)); return /^-?\d+\.\d+/.test(String(orig).trim())&&!s.includes(".")?s+".0":s; } return fmt==="props"?String(v):JSON.stringify(String(v)); }
 function patchText(t,fmt,k,val){
@@ -33,7 +54,9 @@ function packFiles(r,server){
   files["config/defaultoptions/options.txt"]=files["options.txt"];
   const kl2=keyLines(); if(kl2.length) files["config/defaultoptions/keybindings.txt"]=kl2.join("\n")+"\n";
   if(r.mods.has("iris")){ const sp=[...r.mods].find(s=>BY[s].pt==="s"); if(sp){ const pf=decodeURIComponent(FILES[sp][1]); files["config/iris.properties"]="enableShaders=true\nshaderPack="+pf+"\n";
-    if(sp==="photon-shader") files["shaderpacks/"+pf+".txt"]=SETDEF["photon-shader"].items.map(i=>{const v=cv("photon-shader",i.k); return i.k+"="+(i.f?i.f(Number(v)):v);}).join("\n")+"\n"; } }
+    const sMap=new Map(); const sLOD=SHADER_LOD_FOG_DEFAULTS[sp]||{}; for(const [k,v] of Object.entries(sLOD)) sMap.set(k,String(v));
+    const sItems=(SETDEF[sp]&&SETDEF[sp].items)||[]; for(const i of sItems){ const v=cv(sp,i.k); sMap.set(i.k,String(i.f?i.f(Number(v)):v)); }
+    if(sMap.size>0) files["shaderpacks/"+pf+".txt"]=[...sMap.entries()].map(([k,v])=>k+"="+v).join("\n")+"\n"; } }
   for(const s of r.mods) Object.assign(files,modFiles(s));
   files["LIES-MICH.txt"]=`Erstellt mit dem Mod-Katalog 26.3 (${new Date().toLocaleDateString("de-DE")}).\nEinstellungen und Tastenbelegung sind schon gesetzt. Zurück auf diese Werte: Default Options (config/defaultoptions).\nFeste Versionen: Sodium 0.9.2, Iris 1.11.7, Voxy 0.2.20-beta, Photon v1.4. Nur zusammen aktualisieren.\nArbeitsspeicher: ${ramGB(r)} GB.\n`;
   if(r.mods.has("spark")) files["TEST-ANLEITUNG.txt"]="Test-Kit: "+KIT+"\nSeed: "+TESTSEED+"\n";

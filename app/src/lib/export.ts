@@ -2,7 +2,8 @@
 import JSZip from "jszip";
 import { pack } from "./pack.svelte";
 import { rpTopDown } from "./rp";
-import { buildAutoConfigFiles } from "./auto-cfg";
+import { buildAutoConfigFiles, SHADER_LOD_FOG_DEFAULTS } from "./auto-cfg";
+import { SETDEF } from "./const";
 
 export const KIT = "https://nashornaufcrack.github.io/mc-modpack/downloads/Test-Kit.zip";
 export const TESTSEED = "-4172144997902289642";
@@ -37,7 +38,19 @@ export function packFiles() {
     files["resourcepacks/Modpack/packed_packs.folderpack.json"] = folderpackJson(rps);
   }
   const sp = [...r.mods].find(s => pack.BY[s]?.pt === "s");
-  if (sp && r.mods.has("iris")) { files["config/iris.properties"] = "enableShaders=true\nshaderPack=" + fname(sp) + "\n";
+  if (sp && r.mods.has("iris")) {
+    const sfn = fname(sp);
+    files["config/iris.properties"] = "enableShaders=true\nshaderPack=" + sfn + "\n";
+    const spKey = "shaderpacks/" + sfn + ".txt";
+    const map = new Map<string, string>();
+    const lodDefaults = SHADER_LOD_FOG_DEFAULTS[sp] || {};
+    for (const [k, v] of Object.entries(lodDefaults)) map.set(k, String(v));
+    const items = (SETDEF as any)[sp]?.items || [];
+    for (const i of items) {
+      const v = pack.cv(sp, i.k);
+      map.set(i.k, String(i.f ? i.f(Number(v)) : v));
+    }
+    if (map.size > 0) files[spKey] = [...map.entries()].map(([k, v]) => `${k}=${v}`).join("\n") + "\n";
   }
   Object.assign(files, buildAutoConfigFiles(r.mods, pack.data.x.rpo || {}, fname, (s, k) => pack.cv(s, k), pack.cfg._auto || {}));
   const manual = manualList(); const tips = pack.tips(r); const autos = pack.autos(r); const dp = [...r.mods].some(s => pack.typ(s) === "d");
