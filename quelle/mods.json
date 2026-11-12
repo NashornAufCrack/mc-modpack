@@ -7732,32 +7732,6 @@
     "notiz_en": "Customizable elytra mod with trims, banner patterns and more!"
   },
   {
-    "slug": "fpsdisplay",
-    "name": "FPS - Display",
-    "cat": "P",
-    "sub": "Basis & Werkzeuge",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 4900,
-    "notiz": "Zeigt die aktuellen FPS am Bildschirmrand.",
-    "quellen": [
-      "DU"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "m",
-    "gal": 2,
-    "vn": "5.2.0+26.3",
-    "img": [
-      "https://cdn.modrinth.com/data/DIlqwRFH/images/f5ac887c370b37431499a1d5caf25e704c219b73_350.webp",
-      "https://cdn.modrinth.com/data/DIlqwRFH/images/95eb1c450d4b1d0830f00397288e880d167a0b3c.png"
-    ],
-    "seite": "client",
-    "notiz_en": "A simple mod that displays the current FPS on screen"
-  },
-  {
     "slug": "snow",
     "name": "Snow",
     "cat": "T",

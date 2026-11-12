@@ -42132,33 +42132,6 @@
       }
     },
     {
-      "id": 440228,
-      "slug": "fpsdisplay",
-      "name": "FPS - Display",
-      "desc": "A Fabric mod that shows your ingame FPS on screen",
-      "dl": 1544764,
-      "url": "https://www.curseforge.com/minecraft/mc-mods/fpsdisplay",
-      "icon": "https://media.forgecdn.net/avatars/336/372/637472456792852267.png",
-      "bilder": [
-        "https://media.forgecdn.net/attachments/336/271/mod-preview.png"
-      ],
-      "verteilen": false,
-      "aufModrinth": true,
-      "datei": {
-        "id": 8893917,
-        "name": "fpsdisplay-5.2.0+26.3.jar",
-        "url": null,
-        "size": 143276,
-        "sha1": "f8a4e783d43eb4fc976de17af2a8a0245b8f2b20",
-        "deps": [],
-        "versionen": [
-          "Client",
-          "Fabric",
-          "26.3"
-        ]
-      }
-    },
-    {
       "id": 857801,
       "slug": "stackable127",
       "name": "Stackable127",

@@ -627,6 +627,15 @@ export const AUTO_RULES: AutoRule[] = [
     text: "Laub-Culling in More Culling deaktiviert ('DEFAULT'), damit 3D-Laub, Bushy Leaves und Texturpakete (z. B. Nature X, Bushier Bushes, Hanging Leaves) sauber ohne Löcher gerendert werden."
   },
   {
+    id: "sodium-extra-fps",
+    slug: "sodium-extra",
+    when: ["sodium"],
+    file: "sodium-extra-options.json",
+    fmt: "json",
+    changes: [["extra_settings.show_fps", true]],
+    text: "Eingebaute FPS-Anzeige in Sodium Extra aktiviert (macht separate FPS-Display-Mods überflüssig)."
+  },
+  {
     id: "paperdoll-punchy",
     slug: "paperdoll",
     when: ["punchymoves", "punchy-fpa"],

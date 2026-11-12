@@ -7732,32 +7732,6 @@
     "notiz_en": "Customizable elytra mod with trims, banner patterns and more!"
   },
   {
-    "slug": "fpsdisplay",
-    "name": "FPS - Display",
-    "cat": "P",
-    "sub": "Basis & Werkzeuge",
-    "ampel": "G",
-    "rolle": "O",
-    "downloadsK": 4900,
-    "notiz": "Zeigt die aktuellen FPS am Bildschirmrand.",
-    "quellen": [
-      "DU"
-    ],
-    "mc": "26.3",
-    "loader": "fabric",
-    "einstellungen": null,
-    "ueberschneidung": "",
-    "pt": "m",
-    "gal": 2,
-    "vn": "5.2.0+26.3",
-    "img": [
-      "https://cdn.modrinth.com/data/DIlqwRFH/images/f5ac887c370b37431499a1d5caf25e704c219b73_350.webp",
-      "https://cdn.modrinth.com/data/DIlqwRFH/images/95eb1c450d4b1d0830f00397288e880d167a0b3c.png"
-    ],
-    "seite": "client",
-    "notiz_en": "A simple mod that displays the current FPS on screen"
-  },
-  {
     "slug": "snow",
     "name": "Snow",
     "cat": "T",
@@ -10757,6 +10731,32 @@
     "notiz_en": "A performance mod that greatly optimizes particle rendering and particle limits."
   },
   {
+    "slug": "better-render-distance",
+    "name": "Better Render Distance",
+    "cat": "P",
+    "sub": "Performance",
+    "ampel": "G",
+    "rolle": "K",
+    "downloadsK": 458,
+    "notiz": "Rendert die Sichtweite als Kugel statt Würfel und lässt unsichtbare Ecken weg.",
+    "quellen": [
+      "DU"
+    ],
+    "mc": "26.3",
+    "loader": "fabric",
+    "einstellungen": null,
+    "ueberschneidung": "",
+    "pt": "m",
+    "gal": 2,
+    "vn": "1.2.2",
+    "img": [
+      "https://cdn.modrinth.com/data/iRXmuz7a/images/53d760a368b810b72e6605d902da309cd301577f_350.webp",
+      "https://cdn.modrinth.com/data/iRXmuz7a/images/4cb604aee85b6a9e531eea7ecd13bf40cecd0c21.png"
+    ],
+    "seite": "client",
+    "notiz_en": "Improves render distance by making it perfectly spherical, culling diagonal chunk sections and entities for better performance."
+  },
+  {
     "slug": "head-in-the-clouds",
     "name": "Head in the Clouds",
     "cat": "V",
@@ -12089,10 +12089,10 @@
     "name": "Wavify",
     "cat": "V",
     "sub": "Welt & Licht",
-    "ampel": "Y",
+    "ampel": "G",
     "rolle": "O",
     "downloadsK": 85,
-    "notiz": "Wellen an Stränden & Meeren. (⚠️ Experimentell: Kann mit Shadern Texturfehler & Flackern verursachen).",
+    "notiz": "Wellen an Stränden, Meeren und Flüssen.",
     "quellen": [
       "DU"
     ],
@@ -12771,10 +12771,10 @@
     "name": "Immersive Interfaces",
     "cat": "V",
     "sub": "Resource Packs",
-    "ampel": "R",
+    "ampel": "G",
     "rolle": "O",
     "downloadsK": 1628,
-    "notiz": "Jedes Menü bekommt ein eigenes Aussehen. (⚠️ Veraltet für 26.3: Core-Shader verkleinern das Inventar extrem).",
+    "notiz": "Jedes Menü bekommt ein eigenes, passendes Aussehen statt grauer Kästen.",
     "quellen": [
       "DU"
     ],
@@ -17413,10 +17413,10 @@
     "name": "Immersive Interfaces - Mod Support Unofficial",
     "cat": "V",
     "sub": "Resource Packs",
-    "ampel": "R",
+    "ampel": "G",
     "rolle": "O",
     "downloadsK": 296,
-    "notiz": "Erweitert Immersive Interfaces. (⚠️ Veraltet für 26.3).",
+    "notiz": "Bringt den Immersive-Interfaces-Look auch in Menüs von Mods. Braucht Immersive Interfaces, das automatisch mitkommt.",
     "quellen": [
       "AUTO"
     ],

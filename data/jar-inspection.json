@@ -4884,27 +4884,6 @@
     "suggests": {},
     "conflicts": {}
   },
-  "fpsdisplay": {
-    "sha1": "f8a4e783d43eb4fc976de17af2a8a0245b8f2b20",
-    "version": "5.2.0+26.3",
-    "mod_id": "fpsdisplay",
-    "depends": {
-      "fabricloader": ">=0.19.0",
-      "minecraft": [
-        "~26.3"
-      ],
-      "fabric-key-mapping-api-v1": "*",
-      "fabric-lifecycle-events-v1": "*"
-    },
-    "breaks": {},
-    "recommends": {},
-    "suggests": {
-      "cloth-config": "*",
-      "modmenu": "*",
-      "yet_another_config_lib_v3": "*"
-    },
-    "conflicts": {}
-  },
   "snow": {
     "sha1": "6277a94da51891c6f4d2a194df1b970720f965d5",
     "version": "3.0.1+26.3-fabric",
