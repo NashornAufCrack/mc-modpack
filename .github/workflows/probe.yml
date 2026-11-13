@@ -7,12 +7,13 @@ on:
       urls:
         description: "URLs, durch Leerzeichen getrennt"
         required: true
-permissions:
-  contents: write
+permissions: {}
 concurrency: probe
 jobs:
   probe:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - env:
@@ -20,10 +21,15 @@ jobs:
         run: |
           rm -rf probe && mkdir -p probe
           i=0
+          HTTPS_RE='^https://[^[:space:]]+$'
           for u in $URLS; do
+            if ! [[ "$u" =~ $HTTPS_RE ]]; then
+              echo "Nur https://-URLs erlaubt: $u" >&2
+              exit 1
+            fi
             i=$((i+1))
-            echo "$u" > "probe/$i.url"
-            curl -sSL --max-time 60 -A "NashornAufCrack/mc-modpack probe (github.com/NashornAufCrack/mc-modpack)" "$u" -o "probe/$i.txt" || echo "FEHLER" > "probe/$i.txt"
+            printf '%s\n' "$u" > "probe/$i.url"
+            curl -sSL --max-time 60 -A "NashornAufCrack/mc-modpack probe (github.com/NashornAufCrack/mc-modpack)" -- "$u" -o "probe/$i.txt" || echo "FEHLER" > "probe/$i.txt"
           done
       - run: |
           git config user.name "abfrage"

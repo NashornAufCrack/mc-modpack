@@ -6,28 +6,38 @@ on:
       ids:
         description: "YouTube-IDs, durch Komma getrennt"
         required: true
-permissions:
-  contents: write
+permissions: {}
 concurrency: videocheck
 jobs:
   check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - run: pip install -q yt-dlp && sudo apt-get -qq install -y ffmpeg >/dev/null
-      - run: |
+      - env:
+          IDS: ${{ inputs.ids }}
+        run: |
           mkdir -p review tmp
-          for id in $(echo "${{ inputs.ids }}" | tr ',' ' '); do
-            yt-dlp -q --no-warnings -f "worst[height>=240]/worst" --download-sections "*0-150" -o "tmp/$id.%(ext)s" --write-auto-subs --sub-langs "en.*,de.*" --convert-subs srt "https://www.youtube.com/watch?v=$id" 2>&1 | tail -2 || true
-            f=$(ls tmp/$id.* 2>/dev/null | grep -v srt | head -1)
+          IFS=',' read -r -a id_list <<< "$IDS"
+          for raw_id in "${id_list[@]}"; do
+            id="${raw_id// /}"
+            [ -n "$id" ] || continue
+            if ! [[ "$id" =~ ^[A-Za-z0-9_-]{11}$ ]]; then
+              echo "Ungueltige YouTube-ID uebersprungen: $id" >&2
+              exit 1
+            fi
+            yt-dlp -q --no-warnings -f "worst[height>=240]/worst" --download-sections "*0-150" -o "tmp/$id.%(ext)s" --write-auto-subs --sub-langs "en.*,de.*" --convert-subs srt -- "https://www.youtube.com/watch?v=$id" 2>&1 | tail -2 || true
+            f=$(ls "tmp/$id."* 2>/dev/null | grep -v srt | head -1)
             if [ -n "$f" ]; then
               ffmpeg -loglevel error -y -i "$f" -vf "select='gt(scene,0.25)+not(mod(n\,300))',scale=320:-1,tile=4x4" -frames:v 1 -vsync vfr "review/$id.jpg"
-              s=$(ls tmp/$id*.srt 2>/dev/null | head -1); [ -n "$s" ] && grep -v -- '-->' "$s" | grep -v '^[0-9]*$' | awk '!seen[$0]++' | head -c 3000 > "review/$id.txt"
+              s=$(ls "tmp/$id"*.srt 2>/dev/null | head -1); [ -n "$s" ] && grep -v -- '-->' "$s" | grep -v '^[0-9]*$' | awk '!seen[$0]++' | head -c 3000 > "review/$id.txt"
               echo "$id ok"
             else
               # YouTube sperrt Downloads von Cloud-Servern: öffentliche Vorschau-Bilder (Titelbild + 25/50/75 %) als Kontaktbogen
-              n=0; for k in maxresdefault hq1 hq2 hq3; do curl -sf -o "tmp/$id-$k.jpg" "https://i.ytimg.com/vi/$id/$k.jpg" && n=$((n+1)); done
-              if [ $n -gt 0 ]; then ffmpeg -loglevel error -y $(for k in maxresdefault hq1 hq2 hq3; do [ -f tmp/$id-$k.jpg ] && echo "-i tmp/$id-$k.jpg"; done) -filter_complex "$(i=0; for k in maxresdefault hq1 hq2 hq3; do [ -f tmp/$id-$k.jpg ] && { printf '[%d]scale=480:270,setsar=1[v%d];' $i $i; i=$((i+1)); }; done; for j in $(seq 0 $((i-1))); do printf '[v%d]' $j; done; printf 'xstack=inputs=%d:layout=%s' $i "$( [ $i -eq 4 ] && echo '0_0|w0_0|0_h0|w0_h0' || [ $i -eq 3 ] && echo '0_0|w0_0|0_h0' || [ $i -eq 2 ] && echo '0_0|w0_0' || echo '0_0')")" "review/$id.jpg" && echo "$id bilder"; else echo "$id FEHLT"; fi
+              n=0; for k in maxresdefault hq1 hq2 hq3; do curl -sf -o "tmp/$id-$k.jpg" -- "https://i.ytimg.com/vi/$id/$k.jpg" && n=$((n+1)); done
+              if [ $n -gt 0 ]; then ffmpeg -loglevel error -y $(for k in maxresdefault hq1 hq2 hq3; do [ -f "tmp/$id-$k.jpg" ] && echo "-i tmp/$id-$k.jpg"; done) -filter_complex "$(i=0; for k in maxresdefault hq1 hq2 hq3; do [ -f "tmp/$id-$k.jpg" ] && { printf '[%d]scale=480:270,setsar=1[v%d];' $i $i; i=$((i+1)); }; done; for j in $(seq 0 $((i-1))); do printf '[v%d]' $j; done; printf 'xstack=inputs=%d:layout=%s' $i "$( [ $i -eq 4 ] && echo '0_0|w0_0|0_h0|w0_h0' || [ $i -eq 3 ] && echo '0_0|w0_0|0_h0' || [ $i -eq 2 ] && echo '0_0|w0_0' || echo '0_0')")" "review/$id.jpg" && echo "$id bilder"; else echo "$id FEHLT"; fi
             fi
           done
       - run: |

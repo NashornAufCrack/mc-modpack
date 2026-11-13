@@ -26,6 +26,7 @@
   const isTested = $derived(!isCustom || headlessTester.isTested(selectedMods, selectedRps));
   let name = $state(pack.cfg._name || "Mein Pack"); let st = $state(""); let busy = $state(false);
   let showDiff = $state(false);
+  let ghPat = $state("");
   // Start-Check: läuft bei jeder Änderung der Auswahl/Einstellungen und nochmal direkt vor dem Export
   const check = $derived((pack.sel, pack.cfg, startCheck()));
   let force = $state(false);
@@ -295,19 +296,38 @@
       </div>
     {/if}
 
-    <button
-      class="btn test-btn {isTested ? 'ghost' : 'primary'}"
-      disabled={headlessTester.isBusy || !check.ok}
-      onclick={() => headlessTester.runTest(selectedMods, selectedRps)}
-    >
-      {#if headlessTester.isBusy}
-        ⏳ Stresstest läuft (ca. 2–5 Min)...
-      {:else if isTested}
-        🔄 Stresstest erneut ausführen
+    {#if headlessTester.hasToken}
+      <button
+        class="btn test-btn {isTested ? 'ghost' : 'primary'}"
+        disabled={headlessTester.isBusy || !check.ok}
+        onclick={() => headlessTester.runTest(selectedMods, selectedRps)}
+      >
+        {#if headlessTester.isBusy}
+          ⏳ Stresstest läuft (ca. 2–5 Min)...
+        {:else if isTested}
+          🔄 Stresstest erneut ausführen
+        {:else}
+          🧪 Pack im Cloud-Runner testen
+        {/if}
+      </button>
+    {:else if !isCustom}
+      <p class="small muted">Vorlagen werden automatisch bei jeder Änderung auf GitHub Actions im echten Minecraft-Client getestet.</p>
+    {:else}
+      <p class="small muted">Für eigene Zusammenstellungen kann ein eigener GitHub-Token (Actions: write) genutzt werden, um den Cloud-Test auf GitHub Actions zu starten.</p>
+    {/if}
+
+    <details class="srv">
+      <summary>{headlessTester.hasToken ? "GitHub-Token hinterlegt" : "Eigenen GitHub-Token setzen (optional)"}</summary>
+      {#if headlessTester.hasToken}
+        <p class="small muted">Token liegt nur lokal in deinem Browser (localStorage).</p>
+        <button class="btn sm ghost danger" onclick={() => { headlessTester.setToken(""); ghPat = ""; }}>Token entfernen</button>
       {:else}
-        🧪 Pack im Cloud-Runner testen
+        <div style="display:flex;gap:.35rem;margin-top:.4rem;">
+          <input class="field" style="flex:1;min-width:0;" type="password" placeholder="github_pat_..." bind:value={ghPat} aria-label="GitHub Personal Access Token" />
+          <button class="btn sm" onclick={() => { headlessTester.setToken(ghPat); ghPat = ""; }} disabled={!ghPat.trim()}>Speichern</button>
+        </div>
       {/if}
-    </button>
+    </details>
   </div>
 
   <label class="lbl">Name<input class="field" bind:value={name} /></label>

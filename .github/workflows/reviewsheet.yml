@@ -1,12 +1,13 @@
 name: Prüfbögen
 on:
   workflow_dispatch:
-permissions:
-  contents: write
+permissions: {}
 concurrency: reviewsheet
 jobs:
   sheets:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - run: pip install -q pillow && rm -f review/sheet-* && python3 scripts/reviewsheet.py

@@ -19,8 +19,7 @@ on:
     types: [completed]
   workflow_dispatch:
 
-permissions:
-  contents: write
+permissions: {}
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -30,6 +29,8 @@ jobs:
   pruefen:
     name: "Qualitätsprüfung, Build & E2E"
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     timeout-minutes: 20
 
     steps:

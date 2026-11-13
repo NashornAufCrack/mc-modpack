@@ -18,8 +18,7 @@ on:
         type: boolean
         default: false
 
-permissions:
-  contents: write
+permissions: {}
 
 concurrency:
   group: maintenance
@@ -29,6 +28,8 @@ jobs:
   maintenance:
     name: "Tägliche Wartung & Updates"
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     timeout-minutes: 40
 
     steps:

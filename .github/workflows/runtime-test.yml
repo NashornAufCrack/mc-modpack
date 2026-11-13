@@ -35,6 +35,8 @@ on:
         default: ""
         type: string
 
+permissions: {}
+
 concurrency:
   group: runtime-test-${{ github.ref }}-${{ github.event_name }}
   cancel-in-progress: true
@@ -43,10 +45,14 @@ jobs:
   static-precheck:
     name: "1. Statischer Kompatibilitäts- & Mixin-Precheck"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     timeout-minutes: 3
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Python 3.11 einrichten
         uses: actions/setup-python@v5
@@ -60,11 +66,15 @@ jobs:
     name: "2. Headless Client-Stresstest (Welt-Flug & Resource Packs)"
     needs: static-precheck
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     timeout-minutes: 10
 
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Python 3.11 einrichten
         uses: actions/setup-python@v5
@@ -94,11 +104,29 @@ jobs:
             mc-rps-26-3-
 
       - name: Test-Umgebung vorbereiten (Mods, Resource Packs, options.txt & Stress-Datapack)
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PRESET: ${{ inputs.preset }}
+          MODS: ${{ inputs.mods }}
+          RESOURCEPACKS: ${{ inputs.resourcepacks }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.preset }}" = "custom" ]; then
-            python3 scripts/prepare_headless_run.py --mods "${{ inputs.mods }}" --resourcepacks "${{ inputs.resourcepacks }}"
-          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            python3 scripts/prepare_headless_run.py --preset "${{ inputs.preset }}"
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$PRESET" = "custom" ]; then
+            if [ ${#MODS} -gt 16384 ] || [ ${#RESOURCEPACKS} -gt 16384 ]; then
+              echo "Eingabeliste zu lang" >&2
+              exit 1
+            fi
+            MODS_RE='^[A-Za-z0-9_.," \[\]-]*$'
+            if ! [[ "$MODS" =~ $MODS_RE ]] || ! [[ "$RESOURCEPACKS" =~ $MODS_RE ]]; then
+              echo "Ungueltige Zeichen in mods/resourcepacks" >&2
+              exit 1
+            fi
+            python3 scripts/prepare_headless_run.py --mods="$MODS" --resourcepacks="$RESOURCEPACKS"
+          elif [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            if ! [[ "$PRESET" =~ ^(perf|visual|plus)$ ]]; then
+              echo "Ungueltiges Preset: $PRESET" >&2
+              exit 1
+            fi
+            python3 scripts/prepare_headless_run.py --preset="$PRESET"
           else
             python3 scripts/prepare_headless_run.py --preset "plus"
           fi

@@ -2,12 +2,13 @@ name: Prüfseite
 # Bildbögen und Daten für die Video-Prüfseite (Artifact). Danach veröffentlicht Claude die Seite neu.
 on:
   workflow_dispatch:
-permissions:
-  contents: write
+permissions: {}
 concurrency: pruefseite
 jobs:
   boegen:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - run: pip install -q pillow && python3 scripts/pruefseite.py
