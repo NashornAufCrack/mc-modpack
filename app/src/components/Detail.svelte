@@ -5,8 +5,6 @@
   import { AUTO_RULES, type AutoMode } from "../lib/auto-cfg";
   import { ui } from "../lib/ui.svelte";
   const ART: Record<string, [string, string]> = { K: ["Konflikt", "bad"], D: ["Nur eins", "warn"], T: ["Testen", "info"], A: ["Gehört zusammen", "ok"], S: ["Passt gut", "ok"] };
-  let open = $state(false);
-  $effect(() => { open = !!ui.detail; });
   const s = $derived(ui.detail || ""); const m = $derived(pack.BY[s]);
   const gal = $derived(m ? pack.gallery(s) : []); const imgs = $derived(gal.map(g => g.thumb)); const vids = $derived(m ? pack.videos(s) : []);
   const bl = $derived(pack.BLOCKED.get(s));
@@ -29,7 +27,7 @@
   const fmtK = (k: number) => (k >= 1000 ? (k / 1000).toFixed(k >= 10000 ? 0 : 1).replace(".", ",") + " Mio" : k + " Tsd");
 </script>
 
-<Modal bind:open title={m?.name || ""} width="980px" onclose={() => (ui.detail = null)}>
+<Modal bind:open={() => !!ui.detail, (v) => { if (!v) ui.detail = null; }} title={m?.name || ""} width="980px" onclose={() => (ui.detail = null)}>
   {#if m}
     <div class="top">
       <div class="media">
@@ -82,13 +80,13 @@
     </div>
     {#if pack.proben(s).length}
       <h3>Hörproben</h3>
-      <ul class="snd">{#each pack.proben(s) as p}<li><span>{p.titel}</span><audio controls preload="none" src={SOUNDBASE + p.datei}></audio></li>{/each}</ul>
+      <ul class="snd">{#each pack.proben(s) as p (p.datei)}<li><span>{p.titel}</span><audio controls preload="none" src={SOUNDBASE + p.datei}></audio></li>{/each}</ul>
       <p class="small muted">Direkt aus den Dateien der Mod bzw. des Packs.</p>
     {/if}
     {#if vids.length}
       <h3>Videos</h3>
       <div class="vids">
-        {#each vids as v}
+        {#each vids as v (v.id)}
           {#if play === v.id}<iframe class="yt" src="https://www.youtube-nocookie.com/embed/{v.id}?autoplay=1" referrerpolicy="strict-origin-when-cross-origin" title={v.titel || m.name} allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
           {:else}<button class="vcard" onclick={() => (play = v.id)}><img referrerpolicy="no-referrer" src={thumb(v)} alt="" loading="lazy" /><span class="pl">▶</span><span class="vt">{v.titel || "Video ansehen"}</span></button>{/if}
         {/each}
@@ -105,7 +103,7 @@
       <h3>Automatische Feinabstimmung (Teil-Überschneidungen)</h3>
       <p class="small muted">Wenn du diese Mods/Packs kombinierst, werden beide geladen. Du kannst festlegen, welcher Mod den doppelten Effekt übernimmt, oder beide anlassen:</p>
       <ul class="rel">
-        {#each autos as a}
+        {#each autos as a (a.id)}
           <li>
             <div>
               <span class="badge {a.active ? 'ok' : 'info'}">{a.active ? "Aktiv im Pack" : "Automatisch"}</span>

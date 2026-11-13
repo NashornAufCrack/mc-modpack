@@ -18,7 +18,7 @@ export type AppData = {
   mods: Mod[]; files: Record<string, any[]>; dec: { gruppen: Gruppe[]; beziehungen: Beziehung[]; entscheidungen: any[] }; settings: any;
   x: { details: Record<string, { txt?: string; yt?: string[] }>;
        rpo: Record<string, { fn: string; data: any }>; rpbad?: string[]; basisfehlt?: Record<string, string[]> };
-  jar_rules?: Record<string, { id: string; mc?: string; breaks?: Record<string, any>; conflicts?: Record<string, any> }>;
+  jar_rules?: Record<string, { id: string; ver?: string; mc?: string; breaks?: Record<string, any>; conflicts?: Record<string, any> }>;
 };
 export const ARTIFACT = import.meta.env.MODE === "artifact";
 const DATA = (import.meta.env.VITE_DATA as string) || "data/";

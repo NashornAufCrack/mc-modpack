@@ -1,0 +1,7 @@
+{
+  "minecraftVersion": "26.3",
+  "loader": "fabric-loader",
+  "loaderVersion": "0.20.1",
+  "packFormat": "packwiz:1.1.0",
+  "rpFormat": "97.1"
+}

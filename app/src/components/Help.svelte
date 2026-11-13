@@ -15,10 +15,6 @@
     ["Arbeitsspeicher (RAM)", "So viel Speicher bekommt Minecraft. Zu wenig führt zu Rucklern, zu viel bringt nichts."],
     ["FPS, 1 %-Tief", "Bilder pro Sekunde. Das 1 %-Tief zeigt die schlechtesten Momente, also wie stark es ruckelt."],
   ];
-  const INST = [
-    ["Prism Launcher", "„Für Prism herunterladen“ → in Prism auf „Instanz hinzufügen“ → „Importieren“ → die ZIP wählen → starten."],
-    ["Modrinth App", "„.mrpack“ herunterladen → Datei in die Modrinth App ziehen → bei der Instanz unter Einstellungen › Java den Arbeitsspeicher einstellen."],
-  ];
 </script>
 
 <section class="wrap">

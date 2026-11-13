@@ -10,6 +10,7 @@ on:
       - "qa/**"
       - "data/**"
       - "scripts/**"
+      - "config/project.json"
       - ".github/workflows/ci.yml"
   pull_request:
     branches:
@@ -51,6 +52,11 @@ jobs:
 
       - name: "Daten prüfen (Katalog-Integrität)"
         run: python3 qa/datacheck.py --ci
+
+      - name: "Unit-Tests ausführen (Python & Fabric SemVer)"
+        run: |
+          python3 qa/test_unit.py
+          node --experimental-strip-types --test qa/test_fabric_semver.mjs
 
       - name: "Website: Typprüfung und Build (Testseite)"
         working-directory: app

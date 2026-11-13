@@ -14,14 +14,14 @@ export class HeadlessTester {
 
   constructor() {
     try {
-      this.hasToken = !!localStorage.getItem("mk_gh_pat")?.trim();
+      this.hasToken = !!sessionStorage.getItem("mk_gh_pat")?.trim();
     } catch {}
   }
 
-  // Eigenes GitHub-PAT nur lokal im Browser des Nutzers (kein Token im Bundle!)
+  // Eigenes GitHub-PAT nur für diese Sitzung im Browser des Nutzers (kein Token im Bundle!)
   private get token(): string {
     try {
-      const custom = localStorage.getItem("mk_gh_pat");
+      const custom = sessionStorage.getItem("mk_gh_pat");
       return custom ? custom.trim() : "";
     } catch {
       return "";
@@ -31,8 +31,8 @@ export class HeadlessTester {
   setToken(raw: string) {
     const val = raw.trim();
     try {
-      if (val) localStorage.setItem("mk_gh_pat", val);
-      else localStorage.removeItem("mk_gh_pat");
+      if (val) sessionStorage.setItem("mk_gh_pat", val);
+      else sessionStorage.removeItem("mk_gh_pat");
     } catch {}
     this.hasToken = !!val;
     this.error = "";

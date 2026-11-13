@@ -3,7 +3,11 @@ import type { AppData, Media, Mod, Gruppe, Video } from "./data";
 import { thumb } from "./data";
 import { COST, BOOST, SETDEF, BASE } from "./const";
 import { activeAutos, rulesForSlug, buildAutoConfigFiles, type AutoMode } from "./auto-cfg";
+import { matchesPredicate, parseSemVer } from "./fabric-semver";
+import projectConfig from "../../../config/project.json";
 import LZString from "lz-string";
+
+const MC_VERSION = projectConfig.minecraftVersion;
 
 export const IMPLICIT: Record<string, string[]> = {"sunbathing-godrays":["polytone"],"visual-effects-plus":["polytone"],"connected-rocks":["continuity"],"rainbows-foliage":["polytone"],"fresh-animations":["entity-model-features","entitytexturefeatures"],"fresh-animations-extensions":["fresh-animations"],"fa-player-extension":["fresh-animations"],"just-expressions":["entity-model-features"],"hyper-punchy":["punchy-fpa"],"fresh-food-for-hyper-punchy":["hyper-punchy"],"punchymoves":["fluid-foolish"],"connected-paths":["continuity"],"new-glowing-ores":["continuity"],"detailed-animations":["entity-model-features","entitytexturefeatures"],"als-piglins-revamped-x-fresh-animations":["fresh-animations"],"als-zombies-revamped-x-fresh-animations":["fresh-animations"],"als-enderman-revamped-x-fresh-animations":["fresh-animations"],"als-skeletons-revamped-x-fresh-animations":["fresh-animations"],"assorted-allays-x-fresh-animations":["fresh-animations"],"bare-bones-x-fresh-animations":["fresh-animations"],"fresh-skeleton-physics":["fresh-animations"],"brays-zombie-overhaul-fresh-animations":["fresh-animations"],"whimscape-x-fresh-animations":["fresh-animations","whimscape"],"als-boss-rush-x-fresh-animations":["fresh-animations"],"fresh-animations-quivers":["fresh-animations"],"excalibur-fresh-animations":["fresh-animations","excal"],"3d-harnesses-x-fresh-animations":["fresh-animations"],"fresh-flower-pots-rotated":["fresh-flower-pots"],"drigo-3d-lanterns-x-punchy":["hyper-punchy"],"3d-flint-steel-for-punchy":["hyper-punchy"],"animated-3d-wind-charge-compatible-with-punchy":["hyper-punchy"]};
 /** Abhängigkeiten aus den Modrinth-Angaben, die für Fabric 26.3 keine Rolle spielen (Quilt, Forge-Brücke, Backports) */
@@ -45,8 +49,8 @@ export const normQ = (s: string) => String(s || "").toLowerCase().normalize("NFK
 const PERF_SET = ["dynamic-fps","entityculling","moreculling","immediatelyfast","modernfix-mvus","badoptimizations","lithium","ferrite-core","c2me-fabric","scalablelux","sodium-extra","reeses-sodium-options"];
 
 class Pack {
-  data!: AppData; media: Record<string, Media> = $state({});
-  sounds: Record<string, { proben: { datei: string; titel: string }[] }> = $state({});
+  data!: AppData; media: Record<string, Media> = $state.raw({});
+  sounds: Record<string, { proben: { datei: string; titel: string }[] }> = $state.raw({});
   proben(s: string) { return this.sounds[s]?.proben || []; }
   outdated: string[] = [];
   /** ausgeblendet, weil eine Pflicht-Abhängigkeit für 26.3 fehlt (z. B. Addon ohne Basis-Pack) */
@@ -293,82 +297,17 @@ class Pack {
       activeModIds.set(mid, s);
       activeModIds.set(s, s);
     }
-    const cleanVer = (v: string): number[] => {
-      let s = String(v || "").trim();
-      s = s.replace(/^[vV]\.?/, "");
-      const sub = s.replace(/^(?:mc\d+(?:\.\d+)*[_-]|fabric-\d+(?:\.\d+)*[_-]|fabric-)/i, "");
-      if (sub) s = sub;
-      s = s.split("+")[0].split("-")[0];
-      const parts = s.match(/\d+/g);
-      return parts && parts.length ? parts.map(Number) : [0];
-    };
-    const cmpVer = (v1: number[], v2: number[]): number => {
-      const l = Math.max(v1.length, v2.length);
-      const a = v1.concat(new Array(l - v1.length).fill(0));
-      const b = v2.concat(new Array(l - v2.length).fill(0));
-      for (let i = 0; i < l; i++) {
-        if (a[i] < b[i]) return -1;
-        if (a[i] > b[i]) return 1;
-      }
-      return 0;
-    };
-    const isMc26Compatible = (constraint: any): boolean => {
-      if (Array.isArray(constraint)) return constraint.some(c => isMc26Compatible(c));
-      const c = String(constraint || "").trim();
-      if (!c || c === "*") return true;
-      if (c.startsWith("26.3") || c.includes("26.*") || c.startsWith("^26") || c.startsWith("~26")) return true;
-      const act = [26, 3];
-      const rm = c.match(/^(>=|>)\s*([0-9a-zA-Z._-]+)\s*(<=|<)\s*([0-9a-zA-Z._-]+)$/);
-      if (rm) {
-        const [, op1, low, op2, high] = rm;
-        const l = cleanVer(low), h = cleanVer(high);
-        const ok1 = op1 === ">=" ? cmpVer(act, l) >= 0 : cmpVer(act, l) > 0;
-        const ok2 = op2 === "<=" ? cmpVer(act, h) <= 0 : cmpVer(act, h) < 0;
-        return ok1 && ok2;
-      }
-      const mLow = c.match(/^(>=|>)\s*([0-9a-zA-Z._-]+)$/);
-      if (mLow) {
-        const [, op, low] = mLow;
-        const l = cleanVer(low);
-        return op === ">=" ? cmpVer(act, l) >= 0 : cmpVer(act, l) > 0;
-      }
-      const mHi = c.match(/^(<=|<|=|==)?\s*([0-9a-zA-Z._-]+)$/);
-      if (mHi) {
-        const [, op = "=", hi = ""] = mHi;
-        const h = cleanVer(hi);
-        const cVal = cmpVer(act, h);
-        if (op === "<=") return cVal <= 0;
-        if (op === "<") return cVal < 0;
-        if (op === "=" || op === "==") return cVal === 0;
-      }
-      return false;
-    };
-    const matchVer = (actual: string, constraint: any): boolean => {
-      if (Array.isArray(constraint)) return constraint.some(c => matchVer(actual, c));
-      const c = String(constraint || "").trim();
-      if (!c || c === "*") return true;
-      const act = cleanVer(actual);
-      const rangeM = c.match(/^>=\s*([0-9.]+)\s*<\s*([0-9.]+)$/);
-      if (rangeM) {
-        const low = cleanVer(rangeM[1]), high = cleanVer(rangeM[2]);
-        return cmpVer(act, low) >= 0 && cmpVer(act, high) < 0;
-      }
-      const m = c.match(/^(<=|<|>=|>|=|~|\^)?\s*([0-9a-zA-Z._-]+)$/);
-      if (!m) return true;
-      const op = m[1] || "=", req = cleanVer(m[2]);
-      const cmp = cmpVer(act, req);
-      if (op === "~" || op === "^") return cmp === 0;
-      if (op === "<=") return cmp <= 0;
-      if (op === "<") return cmp < 0;
-      if (op === ">=") return cmp >= 0;
-      if (op === ">") return cmp > 0;
-      return cmp === 0;
+    const normTargetVer = (raw: string): string => {
+      if (!raw || parseSemVer(raw)) return raw;
+      let s = raw.trim().replace(/^(?:mc\d+(?:\.\d+)*[_-]|fabric-\d+(?:\.\d+)*[_-]|fabric-|v\.?)/i, "");
+      s = s.replace(/-fabric$/i, "");
+      return s || raw;
     };
     for (const s of all) {
       const rule = jarRules[s];
       if (!rule) continue;
-      if (rule.mc && !isMc26Compatible(rule.mc)) {
-        const msg = `Mod „${this.name(s)}“ erfordert Minecraft ${rule.mc}, ist aber inkompatibel mit 26.3!`;
+      if (rule.mc && !matchesPredicate(MC_VERSION, rule.mc)) {
+        const msg = `Mod „${this.name(s)}“ erfordert Minecraft ${rule.mc}, ist aber inkompatibel mit ${MC_VERSION}!`;
         errors.push(msg);
         const k = "mc-" + s;
         if (!seenIssueKeys.has(k)) {
@@ -376,7 +315,7 @@ class Pack {
           issues.push({
             id: k,
             type: "mc_incompatible",
-            title: `„${this.name(s)}“ ist inkompatibel mit Minecraft 26.3`,
+            title: `„${this.name(s)}“ ist inkompatibel mit Minecraft ${MC_VERSION}`,
             detail: `Das Mod-Manifest setzt Minecraft ${rule.mc} voraus.`,
             modA: s,
             isLockedA: this.LOCKED.has(s),
@@ -390,8 +329,9 @@ class Pack {
             const targetSlug = activeModIds.get(targetMid)!;
             if (targetSlug === s) continue;
             const targetFile = this.data.files[targetSlug];
-            const targetVer = targetFile?.[6] || "";
-            if (constraint === "*" || matchVer(targetVer, constraint)) {
+            const targetVer = jarRules[targetSlug]?.ver || targetFile?.[6] || "";
+            const normVer = normTargetVer(targetVer);
+            if (constraint === "*" || matchesPredicate(normVer, constraint)) {
               const msg = `Inkompatibilität: „${this.name(s)}“ schließt „${this.name(targetSlug)}“ (Version ${targetVer || constraint}) aus!`;
               errors.push(msg);
               const pairKey = [s, targetSlug].sort().join("|");
@@ -420,24 +360,29 @@ class Pack {
           if (activeModIds.has(targetMid)) {
             const targetSlug = activeModIds.get(targetMid)!;
             if (targetSlug === s) continue;
-            const msg = `Kollision: „${this.name(s)}“ hat einen unlösbaren Konflikt mit „${this.name(targetSlug)}“!`;
-            errors.push(msg);
-            const pairKey = [s, targetSlug].sort().join("|");
-            const k = "conflict-" + [s, targetSlug].sort().join("-");
-            if (!seenConflictPairs.has(pairKey)) {
-              seenConflictPairs.add(pairKey);
-              issues.push({
-                id: k,
-                type: "conflict",
-                title: `Kollision: „${this.name(s)}“ vs. „${this.name(targetSlug)}“`,
-                detail: `Die Mods können laut JAR-Manifest nicht gleichzeitig ausgeführt werden.`,
-                modA: s,
-                modB: targetSlug,
-                isLockedA: this.LOCKED.has(s),
-                isLockedB: this.LOCKED.has(targetSlug),
-                cascadeA: this.cascadeDependentsOf(s),
-                cascadeB: this.cascadeDependentsOf(targetSlug)
-              });
+            const targetFile = this.data.files[targetSlug];
+            const targetVer = jarRules[targetSlug]?.ver || targetFile?.[6] || "";
+            const normVer = normTargetVer(targetVer);
+            if (constraint === "*" || matchesPredicate(normVer, constraint)) {
+              const msg = `Kollision: „${this.name(s)}“ hat einen unlösbaren Konflikt mit „${this.name(targetSlug)}“!`;
+              errors.push(msg);
+              const pairKey = [s, targetSlug].sort().join("|");
+              const k = "conflict-" + [s, targetSlug].sort().join("-");
+              if (!seenConflictPairs.has(pairKey)) {
+                seenConflictPairs.add(pairKey);
+                issues.push({
+                  id: k,
+                  type: "conflict",
+                  title: `Kollision: „${this.name(s)}“ vs. „${this.name(targetSlug)}“`,
+                  detail: `Die Mods können laut JAR-Manifest nicht gleichzeitig ausgeführt werden.`,
+                  modA: s,
+                  modB: targetSlug,
+                  isLockedA: this.LOCKED.has(s),
+                  isLockedB: this.LOCKED.has(targetSlug),
+                  cascadeA: this.cascadeDependentsOf(s),
+                  cascadeB: this.cascadeDependentsOf(targetSlug)
+                });
+              }
             }
           }
         }

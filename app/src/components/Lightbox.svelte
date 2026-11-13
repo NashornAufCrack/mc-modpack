@@ -4,8 +4,6 @@
   import { thumb } from "../lib/data";
   import { ui } from "../lib/ui.svelte";
 
-  let open = $state(false);
-  $effect(() => { open = !!ui.lightbox; });
   const lb = $derived(ui.lightbox);
   const gal = $derived(lb ? pack.gallery(lb.slug) : []);
   const imgs = $derived(gal.map(g => g.full));
@@ -40,7 +38,7 @@
 </script>
 
 <svelte:window onkeydown={key} />
-<Modal bind:open title={lb ? `${pack.name(lb.slug)} · ${curVid ? "Video" : cmp ? `Vergleich Bild ${lb.i + 1} vs. ${cmpB + 1}` : imgs.length ? `Bild ${lb.i + 1} von ${imgs.length}` : "Vorschau"}` : ""} width="1400px" onclose={() => (ui.lightbox = null)}>
+<Modal bind:open={() => !!ui.lightbox, (v) => { if (!v) ui.lightbox = null; }} title={lb ? `${pack.name(lb.slug)} · ${curVid ? "Video" : cmp ? `Vergleich Bild ${lb.i + 1} vs. ${cmpB + 1}` : imgs.length ? `Bild ${lb.i + 1} von ${imgs.length}` : "Vorschau"}` : ""} width="1400px" onclose={() => (ui.lightbox = null)}>
   {#if lb}
     {#if curVid}
       <div class="vid-wrap">
@@ -78,7 +76,7 @@
         <button class="btn sm ghost" aria-pressed={cmp} onclick={() => { cmp = !cmp; if (cmp && cmpB === lb.i) cmpB = (lb.i + 1) % imgs.length; }}>⇄ {cmp ? "Einzelbild" : "Bilder vergleichen"}</button>
       {/if}
       <div class="thumbs">
-        {#each vids as v}
+        {#each vids as v (v.id)}
           <button class="vthumb" class:on={curVid === v.id} onclick={() => { curVid = v.id; cmp = false; }} aria-label="Video abspielen">
             <img referrerpolicy="no-referrer" src={thumb(v)} alt="" loading="lazy" />
             <span class="vtag">▶ Video</span>

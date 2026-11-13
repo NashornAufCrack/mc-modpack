@@ -4,8 +4,6 @@
   import { ui } from "../lib/ui.svelte";
   import { plan, applyPlan, shaderChoices } from "../lib/wizard";
   import { detectGpu, weakGpu, type Gpu } from "../lib/gpu";
-  let open = $state(false);
-  $effect(() => { open = ui.wizard; });
   let w: Record<string, any> = $state({});
   let step = $state(0);
   // Fortschritt bleibt erhalten, wenn der Dialog versehentlich geschlossen wird; neu ab Schritt 1 erst nach „Übernehmen“
@@ -35,7 +33,7 @@
   function finish() { started = false; const p = applyPlan(w); ui.wizard = false; ui.filters = new Set(["sug"]); ui.say(`Fertig: ${p.add.length} Vorschläge übernommen, FPS-Limit ${p.fps}`, true); }
 </script>
 
-<Modal bind:open title="Assistent" width="720px" onclose={() => (ui.wizard = false)}>
+<Modal bind:open={() => ui.wizard, (v) => { ui.wizard = v; }} title="Assistent" width="720px" onclose={() => (ui.wizard = false)}>
   <div class="prog" role="progressbar" aria-label="Fortschritt" aria-valuemin="0" aria-valuemax={N} aria-valuenow={Math.min(step, N)}><span style="width:{(Math.min(step, N) / N) * 100}%"></span></div>
   <p class="stepno muted">{step < N ? `Schritt ${step + 1} von ${N}` : "Vorschau"}</p>
   {#if step < N}
@@ -49,10 +47,10 @@
         <label>Hz<input class="field" inputmode="numeric" bind:value={w.hz} /></label>
       </div>
       <p class="small muted">Typisch: 1920×1080, 2560×1440, 3440×1440, 3840×2160 · 60, 144, 165, 240 Hz</p>
-      <div class="opts">{#each [["yes", "G-Sync / FreeSync vorhanden"], ["no", "Kein G-Sync / weiß nicht"]] as [v, l]}<button class="opt" aria-pressed={w.sync === v} onclick={() => (w.sync = v)}><b>{l}</b></button>{/each}</div>
+      <div class="opts">{#each [["yes", "G-Sync / FreeSync vorhanden"], ["no", "Kein G-Sync / weiß nicht"]] as [v, l] (v)}<button class="opt" aria-pressed={w.sync === v} onclick={() => (w.sync = v)}><b>{l}</b></button>{/each}</div>
     {:else}
       <div class="opts" role="radiogroup" aria-label={q.t}>
-        {#each q.o! as [v, l, d]}<button class="opt" role="radio" aria-checked={w[q.k] === v} onclick={() => choose(q.k, v)}><b>{l}</b>{#if d}<span class="muted">{d}</span>{/if}</button>{/each}
+        {#each q.o! as [v, l, d] (v)}<button class="opt" role="radio" aria-checked={w[q.k] === v} onclick={() => choose(q.k, v)}><b>{l}</b>{#if d}<span class="muted">{d}</span>{/if}</button>{/each}
       </div>
       {#if q.k === "vendor" && gpu.name}<p class="small muted detect">Dein Browser meldet: <b>{gpu.name}</b>{gpu.vendor ? " (vorausgewählt)" : ""}. Bei Laptops mit zwei Grafikchips ist das oft der schwächere; dann selbst wählen.</p>{/if}
       {#if (q.k === "shader" || q.k === "lod") && weak}
@@ -61,7 +59,7 @@
       {#if q.k === "shader" && w.shader === "yes"}
         <h4>Welcher Shader? <span class="muted">passend zu deinem PC sortiert{w.lod === "voxy" ? ", nur mit Fernsicht-Unterstützung" : ""}</span></h4>
         <div class="opts">
-          {#each shaderChoices(w) as [s, n, t], i}<button class="opt" aria-pressed={w.shaderpack === s} onclick={() => (w.shaderpack = s)}><b>{n} {#if i === 0}<span class="badge ok">empfohlen</span>{/if}</b><span class="muted">{t}</span></button>{/each}
+          {#each shaderChoices(w) as [s, n, t], i (s)}<button class="opt" aria-pressed={w.shaderpack === s} onclick={() => (w.shaderpack = s)}><b>{n} {#if i === 0}<span class="badge ok">empfohlen</span>{/if}</b><span class="muted">{t}</span></button>{/each}
         </div>
       {/if}
     {/if}
@@ -80,7 +78,7 @@
         <button class="btn sm" onclick={light}>Leichte Vorlage nehmen</button>
       </div>
     {/if}
-    <details><summary>Alle {preview.add.length} Vorschläge ansehen</summary><ul class="list">{#each preview.add as s}<li>{pack.name(s)} <span class="muted">– {preview.why[s]}</span></li>{/each}</ul></details>
+    <details><summary>Alle {preview.add.length} Vorschläge ansehen</summary><ul class="list">{#each preview.add as s (s)}<li>{pack.name(s)} <span class="muted">– {preview.why[s]}</span></li>{/each}</ul></details>
   {/if}
   {#snippet foot()}
     {#if step > 0}<button class="btn ghost" onclick={() => step--}>Zurück</button>{/if}

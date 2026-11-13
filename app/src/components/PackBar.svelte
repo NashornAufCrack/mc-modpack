@@ -4,12 +4,13 @@
   import { exportMrpack, exportPackwiz, exportPrism, exportSet, manualList, startCheck } from "../lib/export";
   import { AUTO_RULES, type AutoMode } from "../lib/auto-cfg";
   import { headlessTester } from "../lib/headless-test.svelte";
+  import projectCfg from "../../../config/project.json";
 
   const r = $derived(pack.resolve());
-  const cnt = (t: string) => [...r.mods].filter(s => (pack.BY[s].pt || "m") === t).length;
+  const cnt = (t: string) => [...r.mods].filter(s => (pack.BY[s]?.pt || "m") === t).length;
   const load = $derived(pack.load_());
   const size = $derived([...r.mods, ...r.libs].reduce((a, s) => a + (pack.data.files[s]?.[4] || 0), 0));
-  const red = $derived([...r.mods].filter(s => pack.BY[s].ampel === "R" && pack.BY[s].cat !== "S"));
+  const red = $derived([...r.mods].filter(s => pack.BY[s]?.ampel === "R" && pack.BY[s]?.cat !== "S"));
   const probs = $derived(pack.problems());
   const tips = $derived(pack.tips(r));
   const autos = $derived(pack.autos(r));
@@ -62,7 +63,7 @@
   </div>
   {#if r.libs.size}<details class="libs"><summary>{r.libs.size} Bibliotheken kommen automatisch mit</summary><p>Hilfs-Mods, die andere Mods zum Laufen brauchen. Du musst nichts tun.</p><ul>{#each [...r.libs].sort() as l}<li>{pack.BY[l]?.name || pack.data.files[l]?.[7] || l}</li>{/each}</ul></details>{/if}
   <div class="meter"><span>Leistungsbedarf</span><div class="track"><i class={load.t} style="width:{Math.min(100, (load.c / 45) * 100)}%"></i></div><b class={load.t}>{load.l}</b></div>
-  <p class="small muted">{(size / 1048576).toFixed(0)} MB · {pack.ramGB(r)} GB Arbeitsspeicher · MC 26.3 Fabric</p>
+  <p class="small muted">{(size / 1048576).toFixed(0)} MB · {pack.ramGB(r)} GB Arbeitsspeicher · MC {projectCfg.minecraftVersion} Fabric</p>
   <p class="state {red.length ? 'bad' : 'ok'}">{red.length ? `${red.length} Mods brauchen einen eigenen Server` : "Läuft auf jedem Vanilla-Server"}</p>
   {#if probs.length}
     <div class="warnbox"><b>{probs.length} {probs.length === 1 ? 'Konflikt' : 'Konflikte'} gefunden</b>
@@ -319,7 +320,7 @@
     <details class="srv">
       <summary>{headlessTester.hasToken ? "GitHub-Token hinterlegt" : "Eigenen GitHub-Token setzen (optional)"}</summary>
       {#if headlessTester.hasToken}
-        <p class="small muted">Token liegt nur lokal in deinem Browser (localStorage).</p>
+        <p class="small muted">Token liegt nur für diese Sitzung im Browser (sessionStorage).</p>
         <button class="btn sm ghost danger" onclick={() => { headlessTester.setToken(""); ghPat = ""; }}>Token entfernen</button>
       {:else}
         <div style="display:flex;gap:.35rem;margin-top:.4rem;">
@@ -350,7 +351,7 @@
       {/each}
     </ul>
   </details>
-  <button class="btn sm ghost" disabled={busy} onclick={() => go("packwiz")}>packwiz-Ordner (.zip)</button>
+  <button class="btn sm ghost" disabled={busy || !check.ok} onclick={() => go("packwiz")}>packwiz-Ordner (.zip)</button>
   <p class="hint">Für Server-Admins: das Pack als Textdateien zum Hochladen; Server und Spieler holen Updates dann automatisch.</p>
   {#if st}<p class="small" role="status">{st}</p>{/if}
   {#if manual.length}<div class="warnbox" style="border-color:var(--warn);background:var(--warn-soft)"><b>Selbst herunterladen ({manual.length})</b>{#each manual as s}<a href={pack.BY[s].cf} target="_blank" rel="noopener">{pack.name(s)} ↗</a>{/each}<span class="small">Diese CurseForge-Autoren erlauben keinen automatischen Download. Datei laden und in den Ordner mods legen.</span></div>{/if}

@@ -1,0 +1,385 @@
+{
+  "description": "Fabric SemVer & VersionPredicateParser edge-case fixtures",
+  "predicateCases": [
+    {
+      "name": "wildcard matches SemVer",
+      "version": "26.3",
+      "predicate": "*",
+      "expected": true
+    },
+    {
+      "name": "wildcard matches non-SemVer",
+      "version": "mc26.3-0.9.2-fabric",
+      "predicate": "*",
+      "expected": true
+    },
+    {
+      "name": "standalone lowercase x wildcard matches SemVer",
+      "version": "26.3",
+      "predicate": "x",
+      "expected": true
+    },
+    {
+      "name": "standalone uppercase X wildcard matches non-SemVer",
+      "version": "r5.9.3",
+      "predicate": "X",
+      "expected": true
+    },
+    {
+      "name": "whitespace after operator normalized (>= 26.3)",
+      "version": "26.3",
+      "predicate": ">= 26.3",
+      "expected": true
+    },
+    {
+      "name": "whitespace after operators in AND range (>= 26.3 < 27)",
+      "version": "26.3",
+      "predicate": ">= 26.3 < 27",
+      "expected": true
+    },
+    {
+      "name": "exact bare version match",
+      "version": "26.3",
+      "predicate": "26.3",
+      "expected": true
+    },
+    {
+      "name": "exact missing trailing zero treated as 0",
+      "version": "26.3.0",
+      "predicate": "26.3",
+      "expected": true
+    },
+    {
+      "name": "exact equals operator match with trailing zero",
+      "version": "26.3",
+      "predicate": "=26.3.0",
+      "expected": true
+    },
+    {
+      "name": "exact mismatch",
+      "version": "26.3",
+      "predicate": "26.4",
+      "expected": false
+    },
+    {
+      "name": "4-component Fabric SemVer exact match",
+      "version": "1.21.1.2",
+      "predicate": ">=1.21.1.2",
+      "expected": true
+    },
+    {
+      "name": "4-component Fabric SemVer missing 4th component defaults to 0",
+      "version": "1.21.1",
+      "predicate": ">=1.21.1.2",
+      "expected": false
+    },
+    {
+      "name": "caret 0.x has NO npm special-casing (0.5.0 satisfies ^0.2.3)",
+      "version": "0.5.0",
+      "predicate": "^0.2.3",
+      "expected": true
+    },
+    {
+      "name": "caret 0.x includes lower bound",
+      "version": "0.2.3",
+      "predicate": "^0.2.3",
+      "expected": true
+    },
+    {
+      "name": "caret 0.x rejects below lower bound",
+      "version": "0.2.2",
+      "predicate": "^0.2.3",
+      "expected": false
+    },
+    {
+      "name": "caret 0.x rejects next major release",
+      "version": "1.0.0",
+      "predicate": "^0.2.3",
+      "expected": false
+    },
+    {
+      "name": "caret 0.x rejects next major pre-release (<1.0.0-)",
+      "version": "1.0.0-alpha.1",
+      "predicate": "^0.2.3",
+      "expected": false
+    },
+    {
+      "name": "caret 1-component ^26 matches 26.3",
+      "version": "26.3",
+      "predicate": "^26",
+      "expected": true
+    },
+    {
+      "name": "caret 2-component ^26.3 matches 26.9.1",
+      "version": "26.9.1",
+      "predicate": "^26.3",
+      "expected": true
+    },
+    {
+      "name": "caret ^26.3 rejects 27.0.0-rc.1",
+      "version": "27.0.0-rc.1",
+      "predicate": "^26.3",
+      "expected": false
+    },
+    {
+      "name": "tilde ~26.1.0 rejects 26.3 (minor mismatch)",
+      "version": "26.3",
+      "predicate": "~26.1.0",
+      "expected": false
+    },
+    {
+      "name": "tilde ~26.3 matches patch bump 26.3.5",
+      "version": "26.3.5",
+      "predicate": "~26.3",
+      "expected": true
+    },
+    {
+      "name": "tilde ~26.3 rejects next minor pre-release 26.4.0-alpha",
+      "version": "26.4.0-alpha",
+      "predicate": "~26.3",
+      "expected": false
+    },
+    {
+      "name": "tilde ~26.3- includes pre-releases of 26.3",
+      "version": "26.3-alpha.1",
+      "predicate": "~26.3-",
+      "expected": true
+    },
+    {
+      "name": "tilde ~26.3 excludes pre-releases of 26.3",
+      "version": "26.3-alpha.1",
+      "predicate": "~26.3",
+      "expected": false
+    },
+    {
+      "name": "tilde 1-component ~26 matches 26.0.5",
+      "version": "26.0.5",
+      "predicate": "~26",
+      "expected": true
+    },
+    {
+      "name": "tilde 1-component ~26 rejects 26.1.0",
+      "version": "26.1.0",
+      "predicate": "~26",
+      "expected": false
+    },
+    {
+      "name": "X-range 26.* matches 26.3",
+      "version": "26.3",
+      "predicate": "26.*",
+      "expected": true
+    },
+    {
+      "name": "X-range 26.* rejects 27.0.0-alpha",
+      "version": "27.0.0-alpha",
+      "predicate": "26.*",
+      "expected": false
+    },
+    {
+      "name": "X-range 26.* rejects 25.9",
+      "version": "25.9",
+      "predicate": "26.*",
+      "expected": false
+    },
+    {
+      "name": "X-range 1.x matches 1.99.0",
+      "version": "1.99.0",
+      "predicate": "1.x",
+      "expected": true
+    },
+    {
+      "name": "X-range 1.X matches 1.0.0-rc.1",
+      "version": "1.0.0-rc.1",
+      "predicate": "1.X",
+      "expected": true
+    },
+    {
+      "name": "X-range 1.x rejects 2.0.0",
+      "version": "2.0.0",
+      "predicate": "1.x",
+      "expected": false
+    },
+    {
+      "name": "X-range 26.3.x matches 26.3.4",
+      "version": "26.3.4",
+      "predicate": "26.3.x",
+      "expected": true
+    },
+    {
+      "name": "X-range 26.3.x rejects 26.4.0",
+      "version": "26.4.0",
+      "predicate": "26.3.x",
+      "expected": false
+    },
+    {
+      "name": "empty pre-release 1.2- sorts earlier than 1.2-alpha",
+      "version": "1.2-",
+      "predicate": "<1.2-alpha",
+      "expected": true
+    },
+    {
+      "name": "1.2-alpha satisfies >=1.2-",
+      "version": "1.2-alpha",
+      "predicate": ">=1.2-",
+      "expected": true
+    },
+    {
+      "name": "1.2-alpha does NOT satisfy <1.2-",
+      "version": "1.2-alpha",
+      "predicate": "<1.2-",
+      "expected": false
+    },
+    {
+      "name": "pre-release sorts earlier than release",
+      "version": "26.3-rc.1",
+      "predicate": "<26.3",
+      "expected": true
+    },
+    {
+      "name": "space-separated AND range matches in-bounds",
+      "version": "26.3",
+      "predicate": ">=26.3- <26.4-",
+      "expected": true
+    },
+    {
+      "name": "space-separated AND range rejects upper pre-release",
+      "version": "26.4-alpha.1",
+      "predicate": ">=26.3- <26.4-",
+      "expected": false
+    },
+    {
+      "name": "space-separated AND range rejects strict lower bound",
+      "version": "26.2",
+      "predicate": ">26.2 <=26.3",
+      "expected": false
+    },
+    {
+      "name": "array OR rejects version in middle gap",
+      "version": "0.9.5",
+      "predicate": ["<0.9.2", ">=0.10"],
+      "expected": false
+    },
+    {
+      "name": "array OR matches second branch",
+      "version": "0.10.1",
+      "predicate": ["<0.9.2", ">=0.10"],
+      "expected": true
+    },
+    {
+      "name": "array OR containing space-separated AND ranges",
+      "version": "26.3",
+      "predicate": [">=26.1 <26.2", ">=26.3- <=26.3"],
+      "expected": true
+    },
+    {
+      "name": "+build metadata ignored in exact comparison",
+      "version": "0.4.11+build.25",
+      "predicate": "0.4.11+build.99",
+      "expected": true
+    },
+    {
+      "name": "+build metadata ignored in relational comparison (<)",
+      "version": "0.160.5+26.4",
+      "predicate": "<0.160.5+26.3",
+      "expected": false
+    },
+    {
+      "name": "+build metadata ignored in relational comparison (>=)",
+      "version": "0.160.5",
+      "predicate": ">=0.160.5+26.3",
+      "expected": true
+    },
+    {
+      "name": "non-SemVer exact fallback match",
+      "version": "r5.9.3",
+      "predicate": "r5.9.3",
+      "expected": true
+    },
+    {
+      "name": "non-SemVer exact fallback match with =",
+      "version": "r5.9.3",
+      "predicate": "=r5.9.3",
+      "expected": true
+    },
+    {
+      "name": "non-SemVer exact mismatch",
+      "version": "r5.9.3",
+      "predicate": "r5.9.4",
+      "expected": false
+    },
+    {
+      "name": "non-SemVer with relational operator returns false",
+      "version": "r5.9.3",
+      "predicate": ">=r5.9.0",
+      "expected": false
+    },
+    {
+      "name": "non-SemVer version against SemVer range returns false",
+      "version": "mc26.3-0.9.2-fabric",
+      "predicate": "<=0.6.6",
+      "expected": false
+    },
+    {
+      "name": "leading zero in core component is non-SemVer",
+      "version": "2.02",
+      "predicate": ">=2.0.0",
+      "expected": false
+    }
+  ],
+  "compareCases": [
+    {
+      "name": "empty pre-release < numeric pre-release",
+      "a": "1.2-",
+      "b": "1.2-0",
+      "expected": -1
+    },
+    {
+      "name": "empty pre-release < alpha pre-release",
+      "a": "1.2-",
+      "b": "1.2-alpha",
+      "expected": -1
+    },
+    {
+      "name": "numeric pre-release < alpha pre-release",
+      "a": "1.2-1",
+      "b": "1.2-alpha",
+      "expected": -1
+    },
+    {
+      "name": "numeric pre-release segment comparison (2 < 10)",
+      "a": "1.2-alpha.2",
+      "b": "1.2-alpha.10",
+      "expected": -1
+    },
+    {
+      "name": "shorter pre-release < longer pre-release",
+      "a": "1.2-alpha",
+      "b": "1.2-alpha.1",
+      "expected": -1
+    },
+    {
+      "name": "pre-release < release",
+      "a": "1.2-rc.1",
+      "b": "1.2",
+      "expected": -1
+    },
+    {
+      "name": "missing trailing components equal 0",
+      "a": "26.3",
+      "b": "26.3.0.0",
+      "expected": 0
+    },
+    {
+      "name": "4th numeric component orders properly",
+      "a": "1.21.1.2",
+      "b": "1.21.1",
+      "expected": 1
+    },
+    {
+      "name": "build metadata ignored in equality",
+      "a": "1.2.0+build.1",
+      "b": "1.2+build.999",
+      "expected": 0
+    }
+  ]
+}

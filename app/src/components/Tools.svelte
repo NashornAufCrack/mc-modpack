@@ -4,8 +4,6 @@
   import { ui } from "../lib/ui.svelte";
   import { rpTopDown } from "../lib/rp";
   import { aiParse, aiApply } from "../lib/ai";
-  let open = $state(false);
-  $effect(() => { open = !!ui.tool; });
   const T: Record<string, string> = { rp: "Resource-Pack-Reihenfolge", base: "Grundeinstellungen", ai: "KI-Antwort übernehmen" };
   const rps = $derived([...pack.resolve().mods].filter(s => pack.BY[s].pt === "r"));
   const order = $derived(rpTopDown(rps));
@@ -14,7 +12,7 @@
   let raw = $state(""); const plan = $derived(raw ? aiParse(raw) : null);
 </script>
 
-<Modal bind:open title={ui.tool ? T[ui.tool] : ""} width="760px" onclose={() => (ui.tool = null)}>
+<Modal bind:open={() => !!ui.tool, (v) => { if (!v) ui.tool = null; }} title={ui.tool ? T[ui.tool] : ""} width="760px" onclose={() => (ui.tool = null)}>
   {#if ui.tool === "rp"}
     <p class="muted">Oben gewinnt: Ändern zwei Packs dieselbe Datei, zählt das obere. Die Website sortiert nach den Regeln der Pack-Autoren (Erweiterungen über ihrem Basis-Pack, Komplett-Texturen ganz unten). Die Reihenfolge landet beim Export direkt in der options.txt.</p>
     {#if order.length}

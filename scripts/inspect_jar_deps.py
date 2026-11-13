@@ -88,6 +88,7 @@ for slug, f in mods_to_inspect:
             cache[slug] = {
                 "sha1": sha1,
                 "version": ver,
+                "jar_version": fmj_content.get("version"),
                 "mod_id": mod_id,
                 "depends": depends,
                 "breaks": breaks,

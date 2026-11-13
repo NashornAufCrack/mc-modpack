@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-REPO_DIR = Path("a:/Claude Projekt 1/mc-modpack")
+REPO_DIR = Path(__file__).resolve().parent.parent
 APP_PATH = REPO_DIR / "data" / "app-data.json"
 INSP_PATH = REPO_DIR / "data" / "jar-inspection.json"
 FILES_PATH = REPO_DIR / "data" / "files.json"
@@ -28,12 +28,15 @@ for slug, item in files.items():
     mid = info.get("mod_id", slug)
     
     if breaks or conflicts or mc:
-        jar_rules[slug] = {
+        rule = {
             "id": mid,
             "mc": mc,
             "breaks": breaks,
             "conflicts": conflicts
         }
+        if info.get("jar_version"):
+            rule["ver"] = info["jar_version"]
+        jar_rules[slug] = rule
 
 app_data["jar_rules"] = jar_rules
 

@@ -24,15 +24,18 @@
     d: "Datapacks ändern Welt-Generierung oder Spielregeln und wirken nur in neuen Welten.",
   };
 
+  const baseMatch = (m: Mod, allowLocked = false) =>
+    !!(pack.data.files[m.slug] || m.cf) &&
+    (m.pt || "m") === ui.tab &&
+    (ui.tab !== "m" || !ui.sub || m.cat === ui.sub) &&
+    (!ui.sub2 || m.sub === ui.sub2) &&
+    (allowLocked || !pack.LOCKED.has(m.slug));
+
   const items = $derived.by(() => {
     const q = normQ(ui.q.trim());
     const f = ui.filters;
     return pack.data.mods.filter(m =>
-      (pack.data.files[m.slug] || m.cf) &&
-      (m.pt || "m") === ui.tab &&
-      (ui.tab !== "m" || !ui.sub || m.cat === ui.sub) &&
-      (!ui.sub2 || m.sub === ui.sub2) &&
-      (!!q || !pack.LOCKED.has(m.slug)) &&
+      baseMatch(m, !!q) &&
       pack.matches(m.slug, q) &&
       (!f.has("sel") || pack.sel.has(m.slug)) &&
       (!f.has("rec") || m.rolle === "K") &&
@@ -57,13 +60,7 @@
 
   // Dynamische Anzahl der Einträge je Filter für den aktuellen Tab
   const filterCounts = $derived.by(() => {
-    const list = pack.data.mods.filter(m =>
-      (pack.data.files[m.slug] || m.cf) &&
-      (m.pt || "m") === ui.tab &&
-      (ui.tab !== "m" || !ui.sub || m.cat === ui.sub) &&
-      (!ui.sub2 || m.sub === ui.sub2) &&
-      !pack.LOCKED.has(m.slug)
-    );
+    const list = pack.data.mods.filter(m => baseMatch(m));
     return {
       sel: list.filter(m => pack.sel.has(m.slug)).length,
       rec: list.filter(m => m.rolle === "K").length,
@@ -130,7 +127,37 @@
     window.scrollTo({ top: y, behavior: "instant" as ScrollBehavior });
   }
 
+  const TAB_KEYS = Object.keys(PT_T);
+  let tabBtns: Record<string, HTMLButtonElement | undefined> = {};
+  async function onTabKey(e: KeyboardEvent, k: string) {
+    const idx = TAB_KEYS.indexOf(k);
+    if (idx < 0) return;
+    let nextIdx = -1;
+    if (e.key === "ArrowRight") nextIdx = (idx + 1) % TAB_KEYS.length;
+    else if (e.key === "ArrowLeft") nextIdx = (idx - 1 + TAB_KEYS.length) % TAB_KEYS.length;
+    else if (e.key === "Home") nextIdx = 0;
+    else if (e.key === "End") nextIdx = TAB_KEYS.length - 1;
+    if (nextIdx < 0) return;
+    e.preventDefault();
+    const nextKey = TAB_KEYS[nextIdx];
+    if (nextKey !== k) await selectTab(nextKey);
+    tabBtns[nextKey]?.focus({ preventScroll: true });
+  }
+
   let search: HTMLInputElement | null = $state(null);
+  let qInput = $state(ui.q);
+  let qTimer: ReturnType<typeof setTimeout> | undefined;
+  $effect(() => {
+    const v = ui.q;
+    clearTimeout(qTimer);
+    qInput = v;
+  });
+  $effect(() => () => clearTimeout(qTimer));
+  function onSearchInput(e: Event) {
+    qInput = (e.currentTarget as HTMLInputElement).value;
+    clearTimeout(qTimer);
+    qTimer = setTimeout(() => { ui.q = qInput; }, 150);
+  }
   function hotkey(e: KeyboardEvent) {
     const t = e.target as HTMLElement; const typing = t?.closest?.("input, textarea, select, [contenteditable]");
     if ((e.key === "/" && !typing) || (e.key.toLowerCase() === "k" && (e.ctrlKey || e.metaKey))) {
@@ -144,7 +171,7 @@
   const nProb = $derived(pack.problems().length);
   function toPack() { const el = document.getElementById("pack"); el?.focus({ preventScroll: true }); el?.scrollIntoView({ block: "start" }); }
   function toggleF(k: string) { const n = new Set(ui.filters); n.has(k) ? n.delete(k) : n.add(k); ui.filters = n; }
-  function resetFilters() { ui.filters = new Set(); ui.q = ""; ui.sub = null; ui.sub2 = null; }
+  function resetFilters() { clearTimeout(qTimer); qInput = ""; ui.filters = new Set(); ui.q = ""; ui.sub = null; ui.sub2 = null; }
 </script>
 
 <svelte:window onkeydown={hotkey} />
@@ -156,7 +183,7 @@
     <div class="row"><button class="btn primary" onclick={() => (ui.wizard = true)}>✦ Assistent starten</button></div>
   </div>
   <div class="presets" role="group" aria-label="Vorlagen">
-    {#each PRESETS as p}
+    {#each PRESETS as p (p.id)}
       {@const on = pack.preset?.id === p.id}
       <button class="preset" class:on aria-pressed={on} onclick={() => { pack.applyPreset(p.id); ui.say(`Vorlage „${p.name}“ geladen`, true); }}>
         <span class="pname">{p.name}{#if on}<span class="badge preset">aktiv</span>{/if}</span>
@@ -169,25 +196,25 @@
 <div class="layout">
   <div class="main">
     <div class="tabs" role="tablist" aria-label="Art" bind:this={tabsEl}>
-      {#each Object.entries(PT_T) as [k, l]}
+      {#each Object.entries(PT_T) as [k, l] (k)}
         {@const [s, n] = counts[k]}
-        <button role="tab" aria-selected={ui.tab === k} class="tab" title={ui.tab === k ? "Nochmal klicken: nach oben" : ""} onclick={() => selectTab(k)}>{l}<span>{s}/{n}</span></button>
+        <button bind:this={tabBtns[k]} role="tab" aria-selected={ui.tab === k} tabindex={ui.tab === k ? 0 : -1} class="tab" title={ui.tab === k ? "Nochmal klicken: nach oben" : ""} onclick={() => selectTab(k)} onkeydown={(e) => onTabKey(e, k)}>{l}<span>{s}/{n}</span></button>
       {/each}
     </div>
     <div class="filters">
       <div class="search-row">
-        <input class="field search" type="search" placeholder="Suchen: Name, Funktion, Tags (/ oder Strg+K) …" bind:this={search} bind:value={ui.q} aria-label="Suchen" aria-keyshortcuts="/ Control+K" />
-        {#if ui.q || ui.filters.size || ui.sub || ui.sub2}
+        <input class="field search" type="search" placeholder="Suchen: Name, Funktion, Tags (/ oder Strg+K) …" bind:this={search} value={qInput} oninput={onSearchInput} aria-label="Suchen" aria-keyshortcuts="/ Control+K" />
+        {#if qInput || ui.q || ui.filters.size || ui.sub || ui.sub2}
           <button class="btn sm ghost reset-btn" onclick={resetFilters}>✕ Filter zurücksetzen</button>
         {/if}
       </div>
       <div class="chips">
         {#if ui.tab === "m"}
           <button class="chip" aria-pressed={!ui.sub} onclick={() => { ui.sub = null; ui.sub2 = null; }}>Alle</button>
-          {#each Object.entries(CATS) as [k, c]}<button class="chip" aria-pressed={ui.sub === k} onclick={() => { ui.sub = ui.sub === k ? null : k; ui.sub2 = null; }}>{c.t}</button>{/each}
+          {#each Object.entries(CATS) as [k, c] (k)}<button class="chip" aria-pressed={ui.sub === k} onclick={() => { ui.sub = ui.sub === k ? null : k; ui.sub2 = null; }}>{c.t}</button>{/each}
           <span class="sep"></span>
         {/if}
-        {#each XF as [k, l]}
+        {#each XF as [k, l] (k)}
           {@const cnt = filterCounts[k] ?? 0}
           {#if k !== "sug" || pack.sug.size}
             <button class="chip" class:sugchip={k === "sug"} aria-pressed={ui.filters.has(k)} onclick={() => toggleF(k)}>
@@ -198,7 +225,7 @@
       </div>
       {#if ui.tab === "m" && ui.sub && subs.length > 1}
         <div class="chips sub2" role="group" aria-label="Unterbereich">
-          {#each subs as [sb, n]}
+          {#each subs as [sb, n] (sb)}
             <button class="chip sm" aria-pressed={ui.sub2 === sb} onclick={() => (ui.sub2 = ui.sub2 === sb ? null : sb)}>{sb} <span class="muted">{n}</span></button>
           {/each}
         </div>
@@ -216,7 +243,7 @@
       <div class="dgrid">{#each groups as g (g.id)}<Decision {g} {itemSet} />{/each}</div>
     {/if}
 
-    {#each sections as s, i (s.title)}
+    {#each sections as s (s.title)}
       <h2 class="sec">{s.title} <span class="muted">{s.list.length}</span></h2>
       <div class="grid">{#each s.list as m (m.slug)}<ModCard {m} />{/each}</div>
     {/each}
@@ -242,8 +269,8 @@
   .pname { font-weight: 650; display: flex; gap: .4rem; align-items: center; }
   .ptext { font-size: .82rem; color: var(--muted); }
   .layout { display: grid; grid-template-columns: minmax(0, 1fr) 21rem; gap: 1.5rem; align-items: start; }
-  .tabs { --tabs-h: 2.75rem; position: sticky; top: var(--top-h, 3.6rem); z-index: 12; height: var(--tabs-h); background: var(--bg); display: flex; gap: .35rem; border-bottom: 1px solid var(--line); overflow-x: auto; overflow-y: hidden; }
-  .tab { display: flex; gap: .5rem; align-items: baseline; padding: .6rem .9rem; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--muted); font: 600 .95rem var(--font); cursor: pointer; white-space: nowrap; }
+  .tabs { --tabs-h: 2.75rem; position: sticky; top: var(--top-h, 3.6rem); z-index: 12; height: var(--tabs-h); background: var(--bg); display: flex; gap: .35rem; border-bottom: 1px solid var(--line); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; scroll-padding-inline: 1rem; padding-inline: 6px 16px; -webkit-mask-image: linear-gradient(to right, transparent, #000 6px, #000 calc(100% - 16px), transparent); mask-image: linear-gradient(to right, transparent, #000 6px, #000 calc(100% - 16px), transparent); }
+  .tab { display: flex; gap: .5rem; align-items: baseline; min-height: 2.25rem; min-width: 24px; padding: .6rem .9rem; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--muted); font: 600 .95rem var(--font); cursor: pointer; white-space: nowrap; }
   .tab span { font: 500 .72rem var(--mono); }
   .tab[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
   .filters { position: sticky; top: calc(var(--top-h, 3.6rem) + 2.75rem); z-index: 10; background: var(--bg); padding: .8rem 0 .4rem; display: grid; gap: .55rem; }
@@ -257,9 +284,9 @@
   .note { margin: 0; font-size: .85rem; }
   .sec { font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; font-weight: 650; margin: 1.6rem 0 .6rem; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr)); gap: .75rem; }
-  .grid :global(.card) { content-visibility: auto; contain-intrinsic-size: auto none auto 290px; }
+  .grid :global(.card) { content-visibility: auto; contain-intrinsic-size: auto 290px; }
   .dgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr)); gap: .75rem; }
-  .dgrid :global(.dec) { content-visibility: auto; contain-intrinsic-size: auto none auto 340px; }
+  .dgrid :global(.dec) { content-visibility: auto; contain-intrinsic-size: auto 340px; }
   .empty { padding: 3rem 0; text-align: center; }
   .mobilebar { display: none; }
   @media (max-width: 1100px) { .layout { grid-template-columns: minmax(0, 1fr); } .hero { grid-template-columns: minmax(0, 1fr); }

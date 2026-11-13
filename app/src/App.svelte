@@ -13,6 +13,7 @@
   import Help from "./components/Help.svelte";
   import UpdatesView from "./components/Updates.svelte";
   import CrashHelp from "./components/CrashHelp.svelte";
+  import projectCfg from "../../config/project.json";
 
   let err = $state("");
   onMount(async () => {
@@ -53,10 +54,10 @@
 <div class="shell">
   <header class="top" bind:this={topEl}>
     <a class="brand" href="#bauen" title="Neu laden und nach oben" onclick={reloadTop}>
-      <span class="logo" aria-hidden="true"></span><span><b>Mod-Katalog</b> <span class="muted">26.3</span></span>
+      <span class="logo" aria-hidden="true"></span><span><b>Mod-Katalog</b> <span class="muted">{projectCfg.minecraftVersion}</span></span>
     </a>
     <nav aria-label="Bereiche">
-      {#each NAV as [k, l, x]}
+      {#each NAV as [k, l, x] (k)}
         <a href="#{k}" aria-current={ui.view === k ? "page" : undefined} onclick={() => (ui.view = k)}>{l}{#if x}<span class="long">{x}</span>{/if}</a>
       {/each}
     </nav>
@@ -87,8 +88,8 @@
   .brand { display: flex; align-items: center; gap: .6rem; color: var(--fg); text-decoration: none; font-size: 1.02rem; }
   .logo { width: 26px; height: 26px; border-radius: 6px; background:
     linear-gradient(var(--accent) 0 0) 0 0/50% 50% no-repeat, linear-gradient(color-mix(in srgb, var(--accent) 60%, #6b4a2b) 0 0) 100% 100%/50% 50% no-repeat, color-mix(in srgb, var(--accent) 35%, #3b2a1a); image-rendering: pixelated; }
-  nav { display: flex; gap: .25rem; flex: 1; overflow-x: auto; }
-  nav a { padding: .45rem .8rem; border-radius: 8px; color: var(--muted); text-decoration: none; font-weight: 500; white-space: nowrap; }
+  nav { display: flex; gap: .25rem; flex: 1; overflow-x: auto; scrollbar-width: none; scroll-padding-inline: 1rem; padding-inline: 6px 14px; -webkit-mask-image: linear-gradient(to right, transparent, #000 6px, #000 calc(100% - 14px), transparent); mask-image: linear-gradient(to right, transparent, #000 6px, #000 calc(100% - 14px), transparent); }
+  nav a { display: inline-flex; align-items: center; min-height: 2.25rem; min-width: 24px; padding: .45rem .8rem; border-radius: 8px; color: var(--muted); text-decoration: none; font-weight: 500; white-space: nowrap; }
   nav a:hover { color: var(--fg); background: var(--surface-2); }
   nav a[aria-current="page"] { color: var(--fg); background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
   .loading { display: flex; gap: .7rem; align-items: center; padding: 4rem 0; color: var(--muted); justify-content: center; }

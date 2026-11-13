@@ -3,6 +3,7 @@ qa/out/
 __pycache__/
 *.pyc
 run/
-config/
+config/*
+!config/project.json
 options.txt
 

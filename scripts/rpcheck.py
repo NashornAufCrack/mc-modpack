@@ -1,8 +1,14 @@
 # Resource Packs: pack.mcmeta jeder Datei prüfen, ob sie 26.3 (Pack-Format 97.1) wirklich unterstützt.
 # Ergebnis data/rp-check.json {slug: {sha1, ok, grund}}; die Website blendet nicht passende Packs aus (app-data.x.rpbad).
 import json, io, zipfile, urllib.request, re
-FMT = 97.1
-files = json.load(open("data/files.json")); app = json.load(open("data/app-data.json"))
+with open("config/project.json", encoding="utf-8") as _pf:
+    _proj = json.load(_pf)
+FMT = float(_proj["rpFormat"])
+MC_VERSION = _proj["minecraftVersion"]
+with open("data/files.json", encoding="utf-8") as _ff:
+    files = json.load(_ff)
+with open("data/app-data.json", encoding="utf-8") as _af:
+    app = json.load(_af)
 try: old = json.load(open("data/rp-check.json"))
 except Exception: old = {}
 def num(v):
@@ -33,8 +39,8 @@ for s, f in files.items():
         for e in m.get("overlays", {}).get("entries", []):
             try: l2, h2 = rng({"pack": e}); hi = max(hi, h2)
             except Exception: pass
-        ok = lo <= FMT + 0.0001 and hi >= 97
-        out[s] = {"sha1": f[2], "ok": ok, "von": lo, "bis": hi, "grund": "" if ok else f"Pack-Format {lo}–{hi}, 26.3 braucht {FMT}"}
+        ok = lo <= FMT + 0.0001 and hi >= int(FMT)
+        out[s] = {"sha1": f[2], "ok": ok, "von": lo, "bis": hi, "grund": "" if ok else f"Pack-Format {lo}–{hi}, {MC_VERSION} braucht {FMT}"}
     except Exception as e:
         n = old.get(s, {}).get("versuche", 0) + 1 if old.get(s, {}).get("sha1") == f[2] else 1
         out[s] = {"sha1": f[2], "ok": True, "grund": "nicht prüfbar: " + str(e)[:80], "versuche": n}

@@ -10,6 +10,7 @@ const OUT = process.argv[2] || '.';
 if (!fs.existsSync(OUT)) fs.mkdirSync(OUT, { recursive: true });
 const BASE = process.env.BASE || 'http://localhost:8765/neu/';
 const REPO = process.env.REPO || path.resolve(__dirname, '..');
+const PROJECT = JSON.parse(fs.readFileSync(path.join(REPO, 'config/project.json'), 'utf8'));
 const DATA = JSON.parse(fs.readFileSync(path.join(REPO, 'data/app-data.json'), 'utf8'));
 const BY = Object.fromEntries(DATA.mods.map(m => [m.slug, m]));
 const ALLOWED = ['cdn.modrinth.com', 'github.com', 'raw.githubusercontent.com', 'gitlab.com'];
@@ -50,7 +51,7 @@ async function validateMrpack(buf, label, { server = false, allow = [] } = {}) {
   const idx = JSON.parse(await z.file('modrinth.index.json').async('string'));
   const info = { files: idx.files.length, overrides: Object.keys(z.files).filter(f => f.startsWith('overrides/') && !z.files[f].dir) };
   if (idx.formatVersion !== 1 || idx.game !== 'minecraft') fail(label + ' Kopf', idx);
-  if (idx.dependencies?.minecraft !== '26.3' || !idx.dependencies['fabric-loader']) fail(label + ' dependencies', idx.dependencies);
+  if (idx.dependencies?.minecraft !== PROJECT.minecraftVersion || !idx.dependencies[PROJECT.loader]) fail(label + ' dependencies', idx.dependencies);
   const paths = new Set(); const slugsByPath = {};
   for (const f of idx.files) {
     if (paths.has(f.path)) fail(label + ' doppelter Pfad', f.path); paths.add(f.path);
@@ -103,7 +104,7 @@ async function validatePackwiz(buf, label) {
   const packT = await z.file(pt).async('string'); const index = await z.file(root + 'index.toml')?.async('string');
   if (index == null) { fail(label + ' index.toml fehlt'); return { meta: 0 }; }
   const ih = packT.match(/\[index\][\s\S]*?hash = "([0-9a-f]{64})"/); if (!ih || ih[1] !== sha(index)) fail(label + ' Index-Hash in pack.toml');
-  if (!/minecraft = "26\.3"/.test(packT) || !/fabric = "\d/.test(packT)) fail(label + ' Versionen in pack.toml');
+  if (!new RegExp('minecraft = "' + esc(PROJECT.minecraftVersion) + '"').test(packT) || !/fabric = "\d/.test(packT)) fail(label + ' Versionen in pack.toml');
   const entries = [...index.matchAll(/\[\[files\]\]\nfile = "([^"]+)"\nhash = "([0-9a-f]{64})"/g)]; let meta = 0;
   for (const [, f, h] of entries) {
     const c = await z.file(root + f)?.async('string'); if (c == null) { fail(label + ' Datei aus dem Index fehlt', f); continue; }

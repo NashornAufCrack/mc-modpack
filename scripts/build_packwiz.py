@@ -3,12 +3,15 @@ Prism lädt sie über packwiz-installer-bootstrap bei jedem Start automatisch na
 import json, hashlib, os, shutil, re
 from urllib.parse import unquote
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-D = lambda f: json.load(open(os.path.join(R, "data", f), encoding="utf8"))
+def D(f):
+    with open(os.path.join(R, "data", f), encoding="utf8") as fp:
+        return json.load(fp)
 M = D("mods.json"); F = D("files.json"); DEC = D("decisions.json")
 BY = {m["slug"]: m for m in M}
 CHOICES = D("choices.json") if os.path.exists(os.path.join(R, "data", "choices.json")) else {}
+with open(os.path.join(R, "config", "project.json"), encoding="utf8") as _pf:
+    PROJECT = json.load(_pf)
 IMPLICIT = {
-    : [],
     "connected-rocks": ["continuity"],
     "rainbows-foliage": ["polytone"],
     "fresh-animations": ["entity-model-features", "entitytexturefeatures"],
@@ -154,12 +157,16 @@ def build(name, plus):
         files["config/defaultoptions/extra/config/iris.properties"] = (f"enableShaders=true\nshaderPack={pf}\n".encode(), False)
         files[f"shaderpacks/{pf}.txt"] = ("COLORED_LIGHTS=true\nWATER_CAUSTICS=true\nshadowMapResolution=2048\nshadowDistance=160.0\nBLOOM_INTENSITY=0.80\nAURORA_NORMAL=AURORA_RARELY\nHANDHELD_LIGHTING=false\nDESERT_SANDSTORM=false\n".encode(), False)
     for p, (b, meta) in files.items():
-        os.makedirs(os.path.dirname(os.path.join(d, p)), exist_ok=True); open(os.path.join(d, p), "wb").write(b)
+        os.makedirs(os.path.dirname(os.path.join(d, p)), exist_ok=True)
+        with open(os.path.join(d, p), "wb") as fp:
+            fp.write(b)
     idx = 'hash-format = "sha256"\n' + "".join(f'\n[[files]]\nfile = "{p}"\nhash = "{sha(b)}"\n' + ("metafile = true\n" if meta else "") for p, (b, meta) in sorted(files.items()))
-    open(os.path.join(d, "index.toml"), "w").write(idx)
-    pack = (f'name = "{ "Vanilla Plus" if plus else "Vanilla Visual" }"\nauthor = "NashornAufCrack"\nversion = "1.0.0"\npack-format = "packwiz:1.1.0"\n\n'
-            f'[index]\nfile = "index.toml"\nhash-format = "sha256"\nhash = "{sha(idx.encode())}"\n\n[versions]\nminecraft = "26.3"\nfabric = "0.20.1"\n')
-    open(os.path.join(d, "pack.toml"), "w").write(pack)
+    with open(os.path.join(d, "index.toml"), "w", encoding="utf8", newline="\n") as fp:
+        fp.write(idx)
+    pack = (f'name = "{ "Vanilla Plus" if plus else "Vanilla Visual" }"\nauthor = "NashornAufCrack"\nversion = "1.0.0"\npack-format = "{PROJECT["packFormat"]}"\n\n'
+            f'[index]\nfile = "index.toml"\nhash-format = "sha256"\nhash = "{sha(idx.encode())}"\n\n[versions]\nminecraft = "{PROJECT["minecraftVersion"]}"\nfabric = "{PROJECT["loaderVersion"]}"\n')
+    with open(os.path.join(d, "pack.toml"), "w", encoding="utf8", newline="\n") as fp:
+        fp.write(pack)
     return len(sel)
 
 if __name__ == "__main__":

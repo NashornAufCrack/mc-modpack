@@ -2,18 +2,16 @@
   import Modal from "./Modal.svelte";
   import { pack } from "../lib/pack.svelte";
   import { ui } from "../lib/ui.svelte";
-  let open = $state(false);
-  $effect(() => { open = !!ui.conflict; });
   const c = $derived(ui.conflict);
   const ys = $derived(c ? [...new Set(c.cl.map(k => k.y))] : []);
   const texts = $derived(c ? [...new Set(c.cl.map(k => k.text))] : []);
 </script>
 
-<Modal bind:open title={c ? "Nur eins geht: " + [c.x, ...ys].map(s => pack.name(s)).join(" oder ") : ""} width="900px" onclose={() => ui.conflict && ui.resolveConflict(false)}>
+<Modal bind:open={() => !!ui.conflict, (v) => { if (!v && ui.conflict) ui.resolveConflict(false); }} title={c ? "Nur eins geht: " + [c.x, ...ys].map(s => pack.name(s)).join(" oder ") : ""} width="900px" onclose={() => ui.conflict && ui.resolveConflict(false)}>
   {#if c}
     <p class="muted">{texts.join(" ")}</p>
     <div class="cmp">
-      {#each [c.x, ...ys] as s, i}
+      {#each [c.x, ...ys] as s, i (s)}
         {@const m = pack.BY[s]}{@const im = pack.img(s).slice(0, 2)}
         <div class="opt" class:new={i === 0}>
           <div class="im">{#each im as u, j}<button class="z" onclick={() => (ui.lightbox = { slug: s, i: j })} aria-label="Bild vergrößern"><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" /></button>{:else}<span class="muted">kein Bild</span>{/each}</div>
