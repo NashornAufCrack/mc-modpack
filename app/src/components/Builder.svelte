@@ -156,7 +156,7 @@
   function onSearchInput(e: Event) {
     qInput = (e.currentTarget as HTMLInputElement).value;
     clearTimeout(qTimer);
-    qTimer = setTimeout(() => { ui.q = qInput; }, 150);
+    qTimer = setTimeout(() => { ui.q = qInput; }, 80);
   }
   function hotkey(e: KeyboardEvent) {
     const t = e.target as HTMLElement; const typing = t?.closest?.("input, textarea, select, [contenteditable]");

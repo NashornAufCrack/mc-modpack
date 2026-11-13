@@ -142,7 +142,7 @@ async function download(p, buttonText) {
       const ts = Date.now(); await p.fill('input[type=search]', 'sodium'); await p.waitForTimeout(50); await p.evaluate(() => new Promise(r => requestAnimationFrame(() => r())));
       R.perf.searchMs = Date.now() - ts;
       R.info.searchSodium = await p.locator('.card h3').allTextContents();
-      await p.fill('input[type=search]', 'xyzunbekannt'); await p.waitForTimeout(200);
+      await p.fill('input[type=search]', 'xyzunbekannt'); await p.waitForTimeout(250);
       if (!(await p.locator('.empty').count())) fail('Leere Suche zeigt keinen Hinweis');
       await p.fill('input[type=search]', '');
       // Tabs zählen

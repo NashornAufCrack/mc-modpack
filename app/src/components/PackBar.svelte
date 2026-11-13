@@ -317,7 +317,7 @@
       <p class="small muted">Für eigene Zusammenstellungen kann ein eigener GitHub-Token (Actions: write) genutzt werden, um den Cloud-Test auf GitHub Actions zu starten.</p>
     {/if}
 
-    <details class="srv">
+    <details class="patbox">
       <summary>{headlessTester.hasToken ? "GitHub-Token hinterlegt" : "Eigenen GitHub-Token setzen (optional)"}</summary>
       {#if headlessTester.hasToken}
         <p class="small muted">Token liegt nur für diese Sitzung im Browser (sessionStorage).</p>
@@ -367,8 +367,8 @@
   .link { background: none; border: 0; padding: 0; color: var(--preset); font: 500 .84rem var(--font); cursor: pointer; }
   .diff { list-style: none; margin: 0; padding: 0; font-size: .8rem; max-height: 9rem; overflow: auto; width: 100%; } .diff .p { color: var(--ok); } .diff .m { color: var(--bad); text-decoration: line-through; }
   .stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); text-align: center; }
-  .srv { border: 1px solid var(--line-2); border-radius: 10px; padding: .5rem .7rem; font-size: .84rem; }
-  .srv summary { cursor: pointer; }
+  .patbox, .srv { border: 1px solid var(--line-2); border-radius: 10px; padding: .5rem .7rem; font-size: .84rem; }
+  .patbox summary, .srv summary { cursor: pointer; }
   .srv ul { list-style: none; margin: .4rem 0 0; padding: 0; display: grid; gap: .45rem; max-height: 16rem; overflow: auto; }
   .srv li { display: grid; gap: .1rem; }
   .srv label { display: flex; gap: .45rem; align-items: center; cursor: pointer; }
