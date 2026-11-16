@@ -153,7 +153,7 @@ function match(m,ms){
   if(st.core && m.rolle!=="K") return false;
   if(st.vanilla && !(m.ampel==="G"||m.ampel==="Y")) return false;
   if(st.hide && ms[m.slug]&&ms[m.slug].state==="weg") return false;
-  if(st.q){ const q=st.q.toLowerCase(); if(!(m.name+" "+m.notiz+" "+m.sub).toLowerCase().includes(q)) return false; }
+  if(st.q){ const q=st.q.toLowerCase(); if(!(m.name+" "+m.notiz+" "+m.sub+" "+(m.tags||[]).join(" ")).toLowerCase().includes(q)) return false; }
   return true;
 }
 function renderSummary(){
@@ -471,7 +471,7 @@ function renderBuild(){
   $("btabs").innerHTML=Object.entries(PT_T).map(([k,l])=>{ const n=MODS.filter(m=>(m.pt||"m")===k&&FILES[m.slug]).length; const s=MODS.filter(m=>(m.pt||"m")===k&&sel.has(m.slug)).length; return `<button class="btab" data-bt="${k}" aria-pressed="${bt===k}">${l}<small>${s} von ${n}</small></button>`; }).join("");
   $("fg").innerHTML=(bt==="m"?`<button class="chip" data-sub="" aria-pressed="${!bsub}">Alle</button>`+SUBS.map(([k,l])=>`<button class="chip" data-sub="${k}" aria-pressed="${bsub===k}">${l}</button>`).join("")+`<span class="sep"></span>`:"")+XF.map(([k,l])=>k==="sug"&&!wizSug.size?"":`<button class="chip" data-filter="${k}" aria-pressed="${bst.f.has(k)}">${l}</button>`).join("");
   $("tabnote").textContent=bt==="m"&&bsub?CATS[bsub].n:TABNOTE[bt];
-  const q=bst.q.toLowerCase(); const list=MODS.filter(m=>FILES[m.slug]&&matchF(m)&&(!q||(m.name+" "+m.sub+" "+m.notiz+" "+m.slug).toLowerCase().includes(q)));
+  const q=bst.q.toLowerCase(); const list=MODS.filter(m=>FILES[m.slug]&&matchF(m)&&(!q||(m.name+" "+m.sub+" "+m.notiz+" "+m.slug+" "+(m.tags||[]).join(" ")).toLowerCase().includes(q)));
   const ids=new Set(list.map(m=>m.slug)); let h="";
   const gs=GROUPS.filter(g=>g.mods.some(s=>ids.has(s))); const inG=new Set(gs.flatMap(g=>g.mods));
   if(gs.length) h+=`<h3>Nur eins wählbar <small>Vergleich nebeneinander</small></h3>`+gs.map(g=>`<div class="grp"><div class="ghead"><b>${esc(g.titel)}</b><span>${esc(g.text)}</span></div><div class="cards">${g.mods.filter(s=>BY[s]&&FILES[s]).map(s=>card(BY[s])).join("")}</div></div>`).join("");

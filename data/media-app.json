@@ -15946,5 +15946,53 @@
         "titel": "Minecraft Tutorial how to jump over fences"
       }
     ]
+  },
+  "profets-timber": {
+    "bilder": [
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/banner.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_oak_chops.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_oak.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_birch.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_cherry.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_spruce.webp"
+    ],
+    "hq": [
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/banner.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_oak_chops.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_oak.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_birch.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_cherry.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_spruce.webp"
+    ],
+    "icon": "https://media.forgecdn.net/avatars/2098/897/639269479294806095.webp",
+    "videos": [
+      {
+        "id": "0Weoh9g9vsg",
+        "titel": "Timber: One Chop, Whole Tree | Minecraft Tree Capitator Mod (26.3)"
+      }
+    ]
+  },
+  "profets-veinminer": {
+    "bilder": [
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/banner.webp",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/veinminer_diamond.webp",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/veinminer_copper.webp",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/settings-screen.png",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/block-picker.png"
+    ],
+    "hq": [
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/banner.webp",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/veinminer_diamond.webp",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/veinminer_copper.webp",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/settings-screen.png",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/block-picker.png"
+    ],
+    "icon": "https://media.forgecdn.net/avatars/2099/4/639269534237128443.webp",
+    "videos": [
+      {
+        "id": "RdPigQOQUng",
+        "titel": "Veinminer: One Swing, Whole Vein | Minecraft Vein Miner Mod (26.2 & 26.3)"
+      }
+    ]
   }
 }

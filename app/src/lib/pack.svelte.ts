@@ -127,6 +127,7 @@ class Pack {
         vids.length ? "video videos clip youtube yt showcase trailer" : "",
         m.rolle === "K" ? "empfohlen recommended tipp top must-have" : "",
         m.ampel !== "R" && m.cat !== "S" ? "vanilla client-only" : "server",
+        (m.tags || []).join(" "),
         (data.x.details[s]?.txt || "").slice(0, 200)
       ];
       this.#SEARCH[s] = normQ(searchParts.filter(Boolean).join(" "));

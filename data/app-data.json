@@ -18149,6 +18149,88 @@
       ],
       "seite": "client",
       "notiz_en": "Wander through a winter wonderland! A port from Legacy Console Edition."
+    },
+    {
+      "slug": "profets-timber",
+      "name": "Profet's Timber",
+      "cat": "G",
+      "sub": "Komfort",
+      "ampel": "R",
+      "rolle": "O",
+      "downloadsK": 28,
+      "notiz": "Ganze Bäume mit flüssiger Kipp-Animation auf einen Schlag fällen (schont Bauwerke, nutzt Axt-Haltbarkeit, replant optional).",
+      "notiz_en": "Chop one log and the whole tree comes down with a smooth cartoon fall animation.",
+      "quellen": [
+        "CF"
+      ],
+      "mc": "26.3",
+      "loader": "fabric",
+      "einstellungen": null,
+      "ueberschneidung": "",
+      "pt": "m",
+      "gal": 6,
+      "vn": "2.1.5+26.3-fabric",
+      "img": [
+        "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/banner.webp",
+        "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_oak_chops.webp",
+        "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_oak.webp",
+        "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_birch.webp",
+        "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_cherry.webp",
+        "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_spruce.webp"
+      ],
+      "cf": "https://www.curseforge.com/minecraft/mc-mods/profets-timber",
+      "neu": true,
+      "cfVerteilen": true,
+      "seite": "beide",
+      "tags": [
+        "Bäume fällen",
+        "Animation",
+        "Tree Capitator",
+        "Holz & Äxte",
+        "Profits Timber",
+        "Profet"
+      ]
+    },
+    {
+      "slug": "profets-veinminer",
+      "name": "Profet's Veinminer",
+      "cat": "G",
+      "sub": "Komfort",
+      "ampel": "R",
+      "rolle": "O",
+      "downloadsK": 18,
+      "notiz": "Schleichen und ganze Erzadern per Kettenreaktion abbauen – mit Einstellungen im Spiel, unterstützt auch Erde, Sand, Kies & Ton.",
+      "notiz_en": "Sneak, mine one ore, and the whole vein pops out in a chain reaction with an in-game settings screen.",
+      "quellen": [
+        "CF"
+      ],
+      "mc": "26.3",
+      "loader": "fabric",
+      "einstellungen": null,
+      "ueberschneidung": "",
+      "pt": "m",
+      "gal": 5,
+      "vn": "2.1.0+26.3-fabric",
+      "img": [
+        "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/banner.webp",
+        "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/veinminer_diamond.webp",
+        "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/veinminer_copper.webp",
+        "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/settings-screen.png",
+        "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/block-picker.png"
+      ],
+      "cf": "https://www.curseforge.com/minecraft/mc-mods/profets-veinminer",
+      "neu": true,
+      "cfVerteilen": true,
+      "seite": "beide",
+      "tags": [
+        "Erzadern abbauen",
+        "Kettenreaktion",
+        "Veinminer",
+        "Spitzhacke & Schaufel",
+        "Profits Veinminder",
+        "Profits Veinminer",
+        "Profet"
+      ]
     }
   ],
   "files": {
@@ -32048,6 +32130,32 @@
       "1.14.1",
       "Jump Over Fences",
       "m"
+    ],
+    "profets-timber": [
+      "https://raw.githubusercontent.com/NashornAufCrack/mc-modpack/main/cf/vanilla_timber-2.1.5-26.3-fabric.jar",
+      "vanilla_timber-2.1.5-26.3-fabric.jar",
+      "49978b79426bbbfd91fd800e386feaf775c91d05",
+      "3f7c0ecafe4a58390054aeb21f4f50e2a59838ecf703c29844081afb517ddf4b9d32a8caf41f9d09710e36e2e75732a87db7121666a497a81164abd38f3c1a1d",
+      486928,
+      [
+        "fabric-api"
+      ],
+      "2.1.5+26.3-fabric",
+      "",
+      "m"
+    ],
+    "profets-veinminer": [
+      "https://raw.githubusercontent.com/NashornAufCrack/mc-modpack/main/cf/veinminer-2.1.0-26.3-fabric.jar",
+      "veinminer-2.1.0-26.3-fabric.jar",
+      "19672c45538a4944c060ad464caf245aa6281fa7",
+      "f83ed1883829ce0ec04c4f0c8b07c08fd214ff31a66570ca8a1d85f6ebf7331d8e61a260971c70bb160461b6cd67d19b559993ef313a0bdbc0dbe12eb81137d1",
+      285021,
+      [
+        "fabric-api"
+      ],
+      "2.1.0+26.3-fabric",
+      "",
+      "m"
     ]
   },
   "dec": {
@@ -33248,6 +33356,14 @@
           "better-capes"
         ],
         "text": "Punchy! Moves und Better Capes greifen beide per Mixin-Redirect auf das Rendern von Umhängen (CapeLayer.submit) zu und führen gemeinsam zu einem Absturz beim Rendern."
+      },
+      {
+        "art": "S",
+        "mods": [
+          "profets-timber",
+          "profets-veinminer"
+        ],
+        "text": "Vom selben Entwickler (Profet) und im selben Stil: Timber fällt ganze Bäume animiert, Veinminer baut Erzadern in einer Kettenreaktion ab."
       }
     ],
     "gruppen": [
@@ -33469,10 +33585,11 @@
         "id": "treefell",
         "titel": "Bäume fällen",
         "mods": [
+          "profets-timber",
           "fallingtree",
           "timber-tales-dynamic-tree-system"
         ],
-        "text": "Beide fällen ganze Bäume. Timber Tales lässt sie zusätzlich animiert umfallen."
+        "text": "Alle fällen ganze Bäume auf einmal. Profet's Timber und Timber Tales lassen den Baum dabei animiert umfallen."
       },
       {
         "id": "placement",
@@ -35609,6 +35726,18 @@
       },
       "festive-mash-up": {
         "txt": "Ein winterliches Weihnachtswunderland als originalgetreuer Port des Konsolen-Klassikers mit festlichen Texturen und Musik."
+      },
+      "profets-timber": {
+        "txt": "Profet's Timber (auch gesucht als Profits Timber)\n\nFällt mit einem Axthieb ganze Bäume samt flüssiger Cartoon-Kipp-Animation: Der Stamm wackelt, knarrt, kippt um, lässt Laub zerplatzen und zerfällt in seine Drops.\n\nFunktionen:\n- Funktioniert mit allen Overworld-Bäumen (inkl. 2×2-Riesenbäumen), Nether-Pilzen, Riesenpilzen und vielen Mod-Bäumen\n- Ignoriert selbst platzierte Stämme zuverlässig (schützt Gebäude) sowie beim Schleichen optional einzelne Blöcke\n- Verrechnet Axt-Haltbarkeit sauber inkl. Haltbarkeit (Unbreaking) und optionalem Auto-Nachpflanzen\n- Nur auf dem Server nötig; mit Client-Mod noch geschmeidigere Biome-Laub-Animation und Shader-Unterstützung\n\nQuelle & Lizenz: Profet (https://github.com/ProfetGit/timber)",
+        "yt": [
+          "0Weoh9g9vsg"
+        ]
+      },
+      "profets-veinminer": {
+        "txt": "Profet's Veinminer (auch gesucht als Profits Veinminder / Profits Veinminer)\n\nBeim Schleichen reicht ein Spitzhackenschlag auf ein Erz, um die gesamte Erzader in einer schnellen, animierten Kettenreaktion abzubauen – die Drops fliegen direkt in Richtung Spieler.\n\nFunktionen:\n- Unterstützt alle Vanilla- und Mod-Erze (#c:ores) sowie konfigurierbar auch Erde, Sand, Kies und Ton mit Schaufeln\n- Beachtet Glück (Fortune), Behutsamkeit (Silk Touch), Werkzeugstufe, XP und schützt Werkzeuge vor dem Zerbrechen\n- Eigenes Ingame-Einstellungsmenü samt Block-Auswahl und Tag-Suche (ab v2.1)\n- Server-sicher inkl. Claim-Schutz und Lag-Schutz; auch für unmodifizierte Clients auf dem Server nutzbar\n\nQuelle & Lizenz: Profet (https://github.com/ProfetGit/veinminer)",
+        "yt": [
+          "RdPigQOQUng"
+        ]
       }
     },
     "rpo": {
@@ -40938,6 +41067,20 @@
       "mc": ">=26.1 <27",
       "breaks": {},
       "conflicts": {}
+    },
+    "profets-timber": {
+      "id": "vanilla_timber",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {},
+      "ver": "2.1.5+26.3-fabric"
+    },
+    "profets-veinminer": {
+      "id": "veinminer",
+      "mc": "~26.3",
+      "breaks": {},
+      "conflicts": {},
+      "ver": "2.1.0+26.3-fabric"
     }
   }
 }

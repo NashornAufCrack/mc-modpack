@@ -18148,5 +18148,87 @@
     ],
     "seite": "client",
     "notiz_en": "Wander through a winter wonderland! A port from Legacy Console Edition."
+  },
+  {
+    "slug": "profets-timber",
+    "name": "Profet's Timber",
+    "cat": "G",
+    "sub": "Komfort",
+    "ampel": "R",
+    "rolle": "O",
+    "downloadsK": 28,
+    "notiz": "Ganze Bäume mit flüssiger Kipp-Animation auf einen Schlag fällen (schont Bauwerke, nutzt Axt-Haltbarkeit, replant optional).",
+    "notiz_en": "Chop one log and the whole tree comes down with a smooth cartoon fall animation.",
+    "quellen": [
+      "CF"
+    ],
+    "mc": "26.3",
+    "loader": "fabric",
+    "einstellungen": null,
+    "ueberschneidung": "",
+    "pt": "m",
+    "gal": 6,
+    "vn": "2.1.5+26.3-fabric",
+    "img": [
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/banner.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_oak_chops.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_oak.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_birch.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_cherry.webp",
+      "https://raw.githubusercontent.com/ProfetGit/timber/main/docs/showcase/timber_spruce.webp"
+    ],
+    "cf": "https://www.curseforge.com/minecraft/mc-mods/profets-timber",
+    "neu": true,
+    "cfVerteilen": true,
+    "seite": "beide",
+    "tags": [
+      "Bäume fällen",
+      "Animation",
+      "Tree Capitator",
+      "Holz & Äxte",
+      "Profits Timber",
+      "Profet"
+    ]
+  },
+  {
+    "slug": "profets-veinminer",
+    "name": "Profet's Veinminer",
+    "cat": "G",
+    "sub": "Komfort",
+    "ampel": "R",
+    "rolle": "O",
+    "downloadsK": 18,
+    "notiz": "Schleichen und ganze Erzadern per Kettenreaktion abbauen – mit Einstellungen im Spiel, unterstützt auch Erde, Sand, Kies & Ton.",
+    "notiz_en": "Sneak, mine one ore, and the whole vein pops out in a chain reaction with an in-game settings screen.",
+    "quellen": [
+      "CF"
+    ],
+    "mc": "26.3",
+    "loader": "fabric",
+    "einstellungen": null,
+    "ueberschneidung": "",
+    "pt": "m",
+    "gal": 5,
+    "vn": "2.1.0+26.3-fabric",
+    "img": [
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/banner.webp",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/veinminer_diamond.webp",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/veinminer_copper.webp",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/settings-screen.png",
+      "https://raw.githubusercontent.com/ProfetGit/veinminer/main/docs/showcase/block-picker.png"
+    ],
+    "cf": "https://www.curseforge.com/minecraft/mc-mods/profets-veinminer",
+    "neu": true,
+    "cfVerteilen": true,
+    "seite": "beide",
+    "tags": [
+      "Erzadern abbauen",
+      "Kettenreaktion",
+      "Veinminer",
+      "Spitzhacke & Schaufel",
+      "Profits Veinminder",
+      "Profits Veinminer",
+      "Profet"
+    ]
   }
 ]

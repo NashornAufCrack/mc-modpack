@@ -63,7 +63,8 @@
       <div class="facts">
         <p class="lead">{m.notiz}</p>
         <div class="tags"><span class="badge plain">{PT_1[m.pt || "m"]}</span><span class="badge plain">{CATS[m.cat].t}</span><span class="badge plain">{m.sub}</span>
-          <span class="badge {m.ampel === 'R' ? 'bad' : m.ampel === 'Y' ? 'warn' : 'ok'}">{m.ampel === "R" ? "Server nötig" : m.ampel === "Y" ? "Server optional" : "Nur Client"}</span></div>
+          <span class="badge {m.ampel === 'R' ? 'bad' : m.ampel === 'Y' ? 'warn' : 'ok'}">{m.ampel === "R" ? "Server nötig" : m.ampel === "Y" ? "Server optional" : "Nur Client"}</span>
+          {#if m.tags?.length}{#each m.tags as tag (tag)}<span class="badge plain">{tag}</span>{/each}{/if}</div>
         <p class="small muted">Version {pack.data.files[s]?.[6] || "–"}{m.downloadsK ? ` · ${fmtK(m.downloadsK)} Downloads` : ""}</p>
         {#if m.cf && !pack.data.files[s]}<p class="small warn">Der Autor erlaubt keinen automatischen Download. Die Datei musst du einmal selbst von CurseForge laden und in den mods-Ordner legen. Die Website erinnert dich beim Export daran.</p>{/if}
         {#if m.pt === "s" && m.voxy}<p class="small {m.voxy.s === 'ja' ? 'muted' : 'warn'}"><b>Fernsicht (Voxy):</b> {m.voxy.t}</p>{/if}

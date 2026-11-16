@@ -13188,5 +13188,37 @@
     "recommends": {},
     "suggests": {},
     "conflicts": {}
+  },
+  "profets-timber": {
+    "sha1": "49978b79426bbbfd91fd800e386feaf775c91d05",
+    "version": "2.1.5+26.3-fabric",
+    "jar_version": "2.1.5+26.3-fabric",
+    "mod_id": "vanilla_timber",
+    "depends": {
+      "fabricloader": ">=0.19.5",
+      "fabric-api": "*",
+      "minecraft": "~26.3",
+      "java": ">=25"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {},
+    "conflicts": {}
+  },
+  "profets-veinminer": {
+    "sha1": "19672c45538a4944c060ad464caf245aa6281fa7",
+    "version": "2.1.0+26.3-fabric",
+    "jar_version": "2.1.0+26.3-fabric",
+    "mod_id": "veinminer",
+    "depends": {
+      "fabricloader": ">=0.19.5",
+      "fabric-api": "*",
+      "minecraft": "~26.3",
+      "java": ">=25"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {},
+    "conflicts": {}
   }
 }

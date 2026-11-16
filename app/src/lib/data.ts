@@ -7,6 +7,7 @@ export type Mod = {
   nichtAuto?: string;
   /** nur Shader: funktioniert er mit der Fernsicht-Mod Voxy? */
   voxy?: { s: "ja" | "nein" | "?"; t: string };
+  tags?: string[];
 };
 export type Gruppe = { id: string; titel: string; mods: string[]; text: string };
 export type Beziehung = { art: "K" | "D" | "T" | "A" | "S"; mods: string[]; text: string; erledigt?: boolean };

@@ -1378,5 +1378,17 @@
   },
   "festive-mash-up": {
     "txt": "Ein winterliches Weihnachtswunderland als originalgetreuer Port des Konsolen-Klassikers mit festlichen Texturen und Musik."
+  },
+  "profets-timber": {
+    "txt": "Profet's Timber (auch gesucht als Profits Timber)\n\nFällt mit einem Axthieb ganze Bäume samt flüssiger Cartoon-Kipp-Animation: Der Stamm wackelt, knarrt, kippt um, lässt Laub zerplatzen und zerfällt in seine Drops.\n\nFunktionen:\n- Funktioniert mit allen Overworld-Bäumen (inkl. 2×2-Riesenbäumen), Nether-Pilzen, Riesenpilzen und vielen Mod-Bäumen\n- Ignoriert selbst platzierte Stämme zuverlässig (schützt Gebäude) sowie beim Schleichen optional einzelne Blöcke\n- Verrechnet Axt-Haltbarkeit sauber inkl. Haltbarkeit (Unbreaking) und optionalem Auto-Nachpflanzen\n- Nur auf dem Server nötig; mit Client-Mod noch geschmeidigere Biome-Laub-Animation und Shader-Unterstützung\n\nQuelle & Lizenz: Profet (https://github.com/ProfetGit/timber)",
+    "yt": [
+      "0Weoh9g9vsg"
+    ]
+  },
+  "profets-veinminer": {
+    "txt": "Profet's Veinminer (auch gesucht als Profits Veinminder / Profits Veinminer)\n\nBeim Schleichen reicht ein Spitzhackenschlag auf ein Erz, um die gesamte Erzader in einer schnellen, animierten Kettenreaktion abzubauen – die Drops fliegen direkt in Richtung Spieler.\n\nFunktionen:\n- Unterstützt alle Vanilla- und Mod-Erze (#c:ores) sowie konfigurierbar auch Erde, Sand, Kies und Ton mit Schaufeln\n- Beachtet Glück (Fortune), Behutsamkeit (Silk Touch), Werkzeugstufe, XP und schützt Werkzeuge vor dem Zerbrechen\n- Eigenes Ingame-Einstellungsmenü samt Block-Auswahl und Tag-Suche (ab v2.1)\n- Server-sicher inkl. Claim-Schutz und Lag-Schutz; auch für unmodifizierte Clients auf dem Server nutzbar\n\nQuelle & Lizenz: Profet (https://github.com/ProfetGit/veinminer)",
+    "yt": [
+      "RdPigQOQUng"
+    ]
   }
 }
