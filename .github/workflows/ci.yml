@@ -29,6 +29,7 @@ concurrency:
 jobs:
   pruefen:
     name: "Qualitätsprüfung, Build & E2E"
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -86,8 +87,8 @@ jobs:
         run: |
           git add test
           if git diff --cached --quiet; then
-            echo "Testseite unverändert.";
-            exit 0;
+            echo "Testseite unverändert."
+            exit 0
           fi
           git -c user.name=website-build -c user.email=41898282+github-actions[bot]@users.noreply.github.com \
             commit -q -m "Testseite gebaut ($(git rev-parse --short HEAD))"
@@ -98,8 +99,21 @@ jobs:
             fi
             echo "Push abgewiesen, hole neuesten Stand..."
             git fetch origin main
-            git reset --hard HEAD
-            git rebase origin/main || git rebase --abort
+            CHANGED_NON_TEST=$(git diff --name-only HEAD origin/main -- ':!test/')
+            if [ -n "$CHANGED_NON_TEST" ]; then
+              echo "origin/main hat Nicht-test/-Änderungen seit dem Testlauf; breche ab, damit CI den neuen Stand prüft:"
+              echo "$CHANGED_NON_TEST"
+              exit 1
+            fi
+            git reset --hard origin/main
+            VITE_OUT=../test npm --prefix app run build
+            git add test
+            if git diff --cached --quiet; then
+              echo "Testseite unverändert."
+              exit 0
+            fi
+            git -c user.name=website-build -c user.email=41898282+github-actions[bot]@users.noreply.github.com \
+              commit -q -m "Testseite gebaut ($(git rev-parse --short HEAD))"
             sleep $((i * 5))
           done
           echo "Veröffentlichen fehlgeschlagen"

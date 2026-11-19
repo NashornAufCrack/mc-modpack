@@ -46,7 +46,7 @@ const RPRANK=[
   ["actually-3d-stuff","nature-x","3d-default"],
   ["jutting-ores","animated-ore","subtly-glowing-ores","new-glowing-ores","glowing-glints","visual-enchantments","even-better-enchants","beautiful-enchanted-books","enchanted-books-re-covered","visual-armor-trims","better-flame-particles","enchanting-table-magic-circle","eggs-n-eyes","rethoughted-spawn-eggs","blinking-ender-eyes","low-on-fire","low-fire-pack","dramatic-skys","default-hd-sun-and-moon"],
   ["vvi","enhanced-audio","gentler-weather-sounds"],
-  ["vanilla-exp","xalis-enhanced-vanilla","faithful-32x","faithful-64x", "festive-mash-up"]
+  ["vanilla-exp","xalis-enhanced-vanilla","faithful-32x","faithful-64x", "festive-mash-up", "default-style-christmas-pack"]
 ];
 function rpAuto(rps){ const rank=s=>{ const i=RPRANK.findIndex(g=>g.includes(s)); return i<0?6:i; }; const flat=RPRANK.flat(); return [...rps].sort((a,b)=>rank(a)-rank(b)||flat.indexOf(a)-flat.indexOf(b)); }
 function rpTopDown(rps){ const auto=rpAuto(rps); const man=(cfg._rpord||[]).filter(s=>rps.includes(s)); if(!man.length) return auto; return [...man,...auto.filter(s=>!man.includes(s))]; }

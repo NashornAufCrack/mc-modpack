@@ -57,21 +57,60 @@ for b in D['beziehungen']:
         err['Konflikt mit festem Leistungspaket (Eintrag entfernen)'].append(' + '.join(b['mods']))
 
 # 2c JAR-Inspektion: Breaks gegen das feste Leistungspaket und Minecraft Kompatibilität
+_KNOWN_MOD_ID_ALIASES = {
+    'ferritecore': 'ferrite-core',
+    'modernfix': 'modernfix-mvus',
+    'c2me': 'c2me-fabric',
+    'dynamic_fps': 'dynamic-fps',
+    'shieldfixes': 'complete-shield-fixes',
+    'stfu': 'shuttfup',
+    'rpc': 'resourcepackcached',
+    'packed_packs': 'packed-packs',
+    'languagereload': 'language-reload',
+    'betterrenderdistance': 'better-render-distance',
+    'fastipping': 'fast-ip-ping',
+    'xxlpackets': 'xxl-packets',
+    'defaultoptions': 'default-options',
+    'fullscreenfix': 'borderless-fullscreen',
+    'cwb': 'cubes-without-borders',
+    'nochatreports': 'no-chat-reports',
+    'sodiumextrainformation': 'sodium-extra-information',
+    'better_end_sky': 'better-end-sky',
+    'subtle_effects': 'subtle-effects',
+    'crash_assistant': 'crash-assistant',
+    'hold_that_chunk_2': 'hold-that-chunk-v2',
+    'smart_particles': 'smart-particles',
+    'structure_layout_optimizer': 'structure-layout-optimizer',
+}
 if os.path.exists('data/jar-inspection.json'):
     with open('data/jar-inspection.json', encoding='utf-8') as f_insp:
         INSP = json.load(f_insp)
+    id_to_slug = {}
+    for s, f in F.items():
+        if len(f) > 8 and f[8] != 'm': continue
+        id_to_slug[s] = s
+        info = INSP.get(s, {})
+        if info.get('sha1') == f[2] and info.get('mod_id'):
+            id_to_slug[info['mod_id']] = s
+    for mid, slug in _KNOWN_MOD_ID_ALIASES.items():
+        if slug in F:
+            id_to_slug.setdefault(mid, slug)
     for s, f in F.items():
         if len(f) > 8 and f[8] != 'm': continue
         info = INSP.get(s, {})
+        if not info or info.get('sha1') != f[2]: continue
         mc = info.get('depends', {}).get('minecraft')
         if mc and not matches_predicate(MC_VERSION, mc):
             err[f'Mod inkompatibel mit Minecraft {MC_VERSION} (fabric.mod.json)'].append(f"{s}: erfordert {mc}")
-        breaks = info.get('breaks', {})
-        for target, constraint in breaks.items():
-            if target in LOCKED and target in F:
-                t_ver = INSP.get(target, {}).get('jar_version') or F[target][6]
-                if constraint == '*' or matches_predicate(normalize_target_version(t_ver), constraint):
-                    err['Mod kollidiert mit festem Leistungspaket (breaks in JAR)'].append(f"{s} schließt {target} ({constraint}) aus")
+        for kind, err_title in (('breaks', 'Mod kollidiert mit festem Leistungspaket (breaks in JAR)'),
+                                ('conflicts', 'Mod kollidiert mit festem Leistungspaket (conflicts in JAR)')):
+            for target, constraint in (info.get(kind) or {}).items():
+                target_slug = id_to_slug.get(target, target)
+                if target_slug in LOCKED and target_slug in F and target_slug != s:
+                    t_info = INSP.get(target_slug, {})
+                    t_ver = (t_info.get('jar_version') if t_info.get('sha1') == F[target_slug][2] else None) or F[target_slug][6]
+                    if constraint == '*' or matches_predicate(normalize_target_version(t_ver), constraint):
+                        err[err_title].append(f"{s} schließt {target_slug} ({constraint}) aus")
 # 3 Gruppen und Beziehungen
 for g in D['gruppen']:
     for s in g['mods']:

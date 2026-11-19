@@ -1458,5 +1458,12 @@
     "von": 15.0,
     "bis": 999.0,
     "grund": ""
+  },
+  "default-style-christmas-pack": {
+    "sha1": "c97758352caa5134e7aa73becc01107a02c4e32e",
+    "ok": true,
+    "von": 15.0,
+    "bis": 97.1,
+    "grund": ""
   }
 }

@@ -4,7 +4,7 @@
 import fs from "node:fs";
 import { writeRss } from "./rss.mjs";
 const A = "https://api.modrinth.com/v2";
-const MC = "26.3";
+const MC = JSON.parse(fs.readFileSync("config/project.json", "utf8")).minecraftVersion;
 const UA = { "User-Agent": "NashornAufCrack/mc-modpack update-check (github.com/NashornAufCrack/mc-modpack)" };
 const files = JSON.parse(fs.readFileSync("data/files.json", "utf8"));
 const app = JSON.parse(fs.readFileSync("data/app-data.json", "utf8"));
@@ -76,7 +76,7 @@ for (const u of [...updates]) {
   if (fehlt.length) {
     files[u.slug] = u.alt; stand[u.slug] = u.altStand || { version: u.von, seit: null }; updates.splice(updates.indexOf(u), 1);
     verfuegbar.push({ slug: u.slug, name: u.name, typ: u.typ, aktuell: u.von, neu: u.auf, art: u.art, grund: "Abhängigkeit fehlt für " + MC + ": " + fehlt.join(", ") });
-  } else { const d = ps.map(p => p.slug).filter(x => !IGNORE.has(x) && files[x]); if (d.length) files[u.slug][5] = [...new Set([...files[u.slug][5], ...d])]; }
+  } else { const d = ps.map(p => p.slug).filter(x => !IGNORE.has(x) && files[x]); files[u.slug][5] = [...new Set(d)]; }
   delete u.deps; delete u.alt; delete u.altStand;
 }
 

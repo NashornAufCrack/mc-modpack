@@ -139,7 +139,7 @@ async function download(p, buttonText) {
       for (let i = 0; i < 4; i++) { const t = await p.evaluate(() => performance.now()); await hit.click(); const t2 = await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(() => r(performance.now()))))); lat.push(Math.round(t2 - t)); }
       R.perf.clickToPaintMs = lat;
       // Suche tippen (Reaktion)
-      const ts = Date.now(); await p.fill('input[type=search]', 'sodium'); await p.waitForTimeout(50); await p.evaluate(() => new Promise(r => requestAnimationFrame(() => r())));
+      const ts = Date.now(); await p.fill('input[type=search]', 'sodium'); await p.waitForTimeout(120); await p.evaluate(() => new Promise(r => requestAnimationFrame(() => r())));
       R.perf.searchMs = Date.now() - ts;
       R.info.searchSodium = await p.locator('.card h3').allTextContents();
       await p.fill('input[type=search]', 'xyzunbekannt'); await p.waitForTimeout(250);
@@ -296,7 +296,7 @@ async function download(p, buttonText) {
     {
       const { ctx, p } = await newPage(browser, { viewport: { width: 1440, height: 1000 } });
       await ready(p);
-      for (const v of ['testen', 'updates', 'hilfe']) {
+      for (const v of ['testen', 'updates', 'hilfe', 'crash']) {
         await p.goto(BASE + '#' + v); await p.waitForTimeout(600);
         const h = await p.locator('main h1, main h2').first().textContent().catch(() => '');
         R.info['Ansicht ' + v] = h;
@@ -412,7 +412,7 @@ async function download(p, buttonText) {
       const { ctx, p } = await newPage(browser, { ...devices['iPhone 13'] });
       await ready(p);
       const ov = {};
-      for (const v of ['bauen', 'testen', 'updates', 'hilfe']) { await p.goto(BASE + '#' + v); await p.waitForTimeout(500); ov[v] = await p.evaluate(() => document.documentElement.scrollWidth - window.innerWidth); if (ov[v] > 1) fail('Handy: waagrechtes Scrollen', `${v}: ${ov[v]}px`); }
+      for (const v of ['bauen', 'testen', 'updates', 'hilfe', 'crash']) { await p.goto(BASE + '#' + v); await p.waitForTimeout(500); ov[v] = await p.evaluate(() => document.documentElement.scrollWidth - window.innerWidth); if (ov[v] > 1) fail('Handy: waagrechtes Scrollen', `${v}: ${ov[v]}px`); }
       await p.goto(BASE + '#bauen'); await p.waitForTimeout(300);
       await p.getByRole('button', { name: /Assistent starten/ }).click(); await p.waitForSelector('dialog[open]');
       const fit = await p.evaluate(() => { const d = document.querySelector('dialog[open]').getBoundingClientRect(); return { w: Math.round(d.width), vw: innerWidth, h: Math.round(d.height), vh: innerHeight }; });

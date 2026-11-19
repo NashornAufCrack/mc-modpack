@@ -12,6 +12,8 @@ CHOICES = D("choices.json") if os.path.exists(os.path.join(R, "data", "choices.j
 with open(os.path.join(R, "config", "project.json"), encoding="utf8") as _pf:
     PROJECT = json.load(_pf)
 IMPLICIT = {
+    "sunbathing-godrays": ["polytone"],
+    "visual-effects-plus": ["polytone"],
     "connected-rocks": ["continuity"],
     "rainbows-foliage": ["polytone"],
     "fresh-animations": ["entity-model-features", "entitytexturefeatures"],
@@ -40,11 +42,21 @@ IMPLICIT = {
     "fresh-flower-pots-rotated": ["fresh-flower-pots"],
     "drigo-3d-lanterns-x-punchy": ["hyper-punchy"],
     "3d-flint-steel-for-punchy": ["hyper-punchy"],
-    "animated-3d-wind-charge-compatible-with-punchy": ["hyper-punchy"]
+    "animated-3d-wind-charge-compatible-with-punchy": ["hyper-punchy"],
+    "touch-and-motion": ["entity-model-features", "emf-compat-core"]
+}
+ONE_OF = {
+    "euphoria-patches": ["complementary-reimagined", "complementary-unbound"],
+    "touch-and-motion": ["fa-player-extension", "just-expressions", "detailed-animations"],
 }
 
 PRIO = [
     ["fresh-flower-pots-rotated", "fresh-flower-pots", "fresh-skeleton-physics", "als-creepers-revamped"],
+    [
+        "icons", "clearer-slot-highlight", "enhanced-boss-bars", "hardcore-hearts",
+        "no-pumpkin-blur", "unique-dark", "cozyui-plus", "default-dark-mode", "dark-smooth-gui",
+        "recolourful-containers-gui", "redstone-tweaks", "translations-for-sodium"
+    ],
     [
         "fresh-animations-extensions", "fa-player-extension", "just-expressions", "detailed-animations",
         "als-piglins-revamped-x-fresh-animations", "als-zombies-revamped-x-fresh-animations",
@@ -69,6 +81,7 @@ PRIO = [
         "luminous-lanterns", "tools-and-utils", "bray-cyber-3d-enchanted-books",
         "nautilus3d", "animated-doors", "spooky-doors", "swinging-lanterns", "mob-crates"
     ],
+    ["rainbows-foliage", "sunbathing-godrays", "visual-effects-plus"],
     [
         "fwa", "better-lanterns", "better-candles", "torches-reimagined", "weskersons-torches",
         "rays-3d-rails", "minecarts-with-wheels", "3d-ladders", "rays-3d-ladders",
@@ -76,26 +89,20 @@ PRIO = [
         "renewed-bookshelf", "os-colorful-grasses", "connected-paths", "connected-rocks",
         "borderless-glass", "simple-overlays", "fast-better-grass", "better-leaves",
         "fancyfast-bushy-leaves", "cubic-leaves", "hanging-leaves", "bushier-bushes",
-        "better-moss", "nature-x", "fluffy-carpets", "rainbows-foliage", "3d-default",
-        "actually-3d-stuff", "animated-items", "xk-redstone-display", "excalibur-lootr-support",
-        "emissive-trims"
+        "better-moss", "fluffy-carpets", "emissive-trims",
+        "animated-items", "xk-redstone-display", "excalibur-lootr-support"
     ],
+    ["actually-3d-stuff", "nature-x", "3d-default"],
     [
         "jutting-ores", "animated-ore", "subtly-glowing-ores", "new-glowing-ores",
         "glowing-glints", "visual-enchantments", "even-better-enchants", "beautiful-enchanted-books",
         "enchanted-books-re-covered", "visual-armor-trims", "better-flame-particles",
         "enchanting-table-magic-circle", "eggs-n-eyes", "rethoughted-spawn-eggs",
-        "blinking-ender-eyes", "low-on-fire", "low-fire-pack", "visual-effects-plus",
-        "dramatic-skys", "sunbathing-godrays", "default-hd-sun-and-moon"
-    ],
-    [
-         
-        "unique-dark", "cozyui-plus", "default-dark-mode", "dark-smooth-gui", "recolourful-containers-gui",
-        "icons", "enhanced-boss-bars", "hardcore-hearts", "clearer-slot-highlight",
-        "no-pumpkin-blur", "redstone-tweaks", "translations-for-sodium"
+        "blinking-ender-eyes", "low-on-fire", "low-fire-pack",
+        "dramatic-skys", "default-hd-sun-and-moon"
     ],
     ["vvi", "enhanced-audio", "gentler-weather-sounds"],
-    ["vanilla-exp", "xalis-enhanced-vanilla", "faithful-32x", "faithful-64x", "festive-mash-up"]
+    ["vanilla-exp", "xalis-enhanced-vanilla", "faithful-32x", "faithful-64x", "festive-mash-up", "default-style-christmas-pack"]
 ]
 
 def status():
@@ -118,12 +125,16 @@ def selection(plus):
     while stack:
         s = stack.pop()
         if s in out or s not in F: continue
-        out.add(s); stack += F[s][5] + IMPLICIT.get(s, []) + (["iris"] if BY.get(s, {}).get("pt") == "s" else [])
+        out.add(s)
+        alt = ONE_OF.get(s)
+        alt_dep = ([alt[0]] if alt and not any(a in sel for a in alt) else [])
+        carry_dep = (["dont-punch-my-tacz"] if s in ("carry-on", "punchy-fpa") and "carry-on" in sel and "punchy-fpa" in sel else [])
+        stack += F[s][5] + IMPLICIT.get(s, []) + alt_dep + carry_dep + (["iris"] if BY.get(s, {}).get("pt") == "s" else ["globalpacks"] if BY.get(s, {}).get("pt") == "d" else [])
     return out
 
 def side(s):
     a = BY[s]["ampel"] if s in BY else "Y"
-    return "client" if a in ("G", "Q") else "server" if False else "both"
+    return "client" if a in ("G", "Q") else "both"
 
 def sha(b, alg="sha256"): return hashlib.new(alg, b).hexdigest()
 
@@ -133,17 +144,22 @@ def build(name, plus):
     sel = selection(plus)
     for s in sorted(sel):
         f = F[s]; pt = (BY[s]["pt"] if s in BY else f[8]) or "m"
-        folder = {"m": "mods", "r": "resourcepacks/Modpack", "s": "shaderpacks"}[pt]
+        folder = {"m": "mods", "r": "resourcepacks/Modpack", "s": "shaderpacks", "d": "datapacks"}[pt]
         m = re.search(r"/data/([^/]+)/versions/([^/]+)/", f[0])
         title = BY[s]["name"] if s in BY else (f[7] or s)
-        toml = (f'name = {json.dumps(title, ensure_ascii=False)}\nfilename = {json.dumps(unquote(f[1]), ensure_ascii=False)}\nside = "{side(s) if pt=="m" else "client"}"\n\n'
-                f'[download]\nurl = "{f[0]}"\nhash-format = "sha512"\nhash = "{f[3]}"\n\n'
-                f'[update]\n[update.modrinth]\nmod-id = "{m.group(1)}"\nversion = "{m.group(2)}"\n')
+        pw_side = side(s) if pt == "m" else ("both" if pt == "d" else "client")
+        toml = (f'name = {json.dumps(title, ensure_ascii=False)}\nfilename = {json.dumps(unquote(f[1]), ensure_ascii=False)}\nside = "{pw_side}"\n\n'
+                f'[download]\nurl = "{f[0]}"\nhash-format = "sha512"\nhash = "{f[3]}"\n')
+        if m:
+            toml += f'\n[update]\n[update.modrinth]\nmod-id = "{m.group(1)}"\nversion = "{m.group(2)}"\n'
         files[f"{folder}/{s}.pw.toml"] = (toml.encode(), True)
     # Standard-Einstellungen (DefaultOptions) und Photon
     rps = [s for s in sel if s in BY and BY[s]["pt"] == "r"]
-    rank = lambda s: next((i for i, g in enumerate(PRIO) if s in g), len(PRIO))
-    order = ["vanilla"] + ["file/Modpack/" + unquote(F[s][1]) for s in sorted(rps, key=rank, reverse=True)]
+    flat = [x for g in PRIO for x in g]
+    def rank(s):
+        gi = next((i for i, g in enumerate(PRIO) if s in g), len(PRIO))
+        return (gi, flat.index(s) if s in flat else len(flat), s)
+    order = ["vanilla"] + ["file/Modpack/" + unquote(F[s][1]) for s in reversed(sorted(rps, key=rank))]
     opts = ["renderDistance:16", "simulationDistance:10", "maxFps:140", "enableVsync:false", 'renderClouds:"false"', "mipmapLevels:4", "biomeBlendRadius:2", "resourcePacks:" + json.dumps(order, ensure_ascii=False), "key_key.saveToolbarActivator:key.keyboard.unknown" if "zoomify" in sel else ""]
     files["config/defaultoptions/options.txt"] = ("\n".join(o for o in opts if o).encode() + b"\n", False)
     if rps:

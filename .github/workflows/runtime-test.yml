@@ -115,7 +115,7 @@ jobs:
               echo "Eingabeliste zu lang" >&2
               exit 1
             fi
-            MODS_RE='^[A-Za-z0-9_.," \[\]-]*$'
+            MODS_RE='^[]A-Za-z0-9_.," [-]*$'
             if ! [[ "$MODS" =~ $MODS_RE ]] || ! [[ "$RESOURCEPACKS" =~ $MODS_RE ]]; then
               echo "Ungueltige Zeichen in mods/resourcepacks" >&2
               exit 1

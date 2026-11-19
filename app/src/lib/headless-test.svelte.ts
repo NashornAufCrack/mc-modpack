@@ -1,8 +1,10 @@
 // Headless-Test Runner: Triggert den GitHub Actions Workflow via API
 // und fragt den Live-Status (Queued -> Running -> Success/Failed) ab.
 
+export type TestState = "idle" | "dispatching" | "queued" | "running" | "success" | "failed" | "timed_out";
+
 export class HeadlessTester {
-  state = $state<"idle" | "dispatching" | "queued" | "running" | "success" | "failed">("idle");
+  state = $state<TestState>("idle");
   progress = $state<string>("");
   runUrl = $state<string>("");
   lastTestedSignature = $state<string>("");
@@ -118,7 +120,7 @@ export class HeadlessTester {
       if (!runId) {
         this.progress = "Test gestartet! Bitte prüfe den Live-Status direkt auf GitHub Actions.";
         this.runUrl = `https://github.com/${this.repo}/actions/workflows/${this.workflow}`;
-        this.state = "running";
+        this.state = "timed_out";
         return;
       }
 
@@ -129,6 +131,13 @@ export class HeadlessTester {
       while (true) {
         await new Promise(r => setTimeout(r, 3500));
         pollCount++;
+
+        // Timeout nach 10 Minuten
+        if (pollCount > 150) {
+          this.state = "failed";
+          this.error = "Zeitüberschreitung (10 Min) beim Warten auf das Testergebnis.";
+          break;
+        }
 
         const elapsedSec = Math.floor((Date.now() - startTime) / 1000);
         const m = Math.floor(elapsedSec / 60);
@@ -192,13 +201,6 @@ export class HeadlessTester {
             this.state = "failed";
             this.error = "Der Stresstest hat einen Fehler gemeldet. Bitte prüfe das GitHub-Log.";
           }
-          break;
-        }
-
-        // Timeout nach 10 Minuten
-        if (pollCount > 150) {
-          this.state = "failed";
-          this.error = "Zeitüberschreitung (10 Min) beim Warten auf das Testergebnis.";
           break;
         }
       }

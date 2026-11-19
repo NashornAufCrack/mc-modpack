@@ -50,7 +50,7 @@ for slug, info in media.items():
     src = info.get("links", {}).get("source") or ""
     m = re.match(r'https?://github\.com/([a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+?)(?:/|$)', src)
     if m:
-        repo = m.group(1).rstrip(".git")
+        repo = m.group(1).removesuffix(".git")
         if slug not in all_repos:
             all_repos[slug] = repo
 
@@ -68,18 +68,18 @@ for slug, repo in list(all_repos.items())[:30]:
         with urllib.request.urlopen(req, timeout=5) as resp:
             releases = json.load(resp)
         for r in releases:
-            tag = r.get("tag_name", "")
-            name = r.get("name", "")
-            body = r.get("body", "")
-            date = r.get("published_at", "")[:10]
-            assets = r.get("assets", [])
+            tag = r.get("tag_name") or ""
+            name = r.get("name") or ""
+            body = r.get("body") or ""
+            date = (r.get("published_at") or "")[:10]
+            assets = r.get("assets") or []
             
             # Relevanz für 26.3
-            is_26_3 = any("26.3" in x for x in [tag, name, body] + [a.get("name", "") for a in assets])
+            is_26_3 = any("26.3" in x for x in [tag, name, body] + [a.get("name") or "" for a in assets])
             
             # Prüfe, ob das Release neuer als die Modrinth-Version ist
             if is_26_3:
-                jar_assets = [a for a in assets if a.get("name", "").endswith(".jar")]
+                jar_assets = [a for a in assets if (a.get("name") or "").endswith(".jar")]
                 early_releases.append({
                     "slug": slug,
                     "repo": repo,

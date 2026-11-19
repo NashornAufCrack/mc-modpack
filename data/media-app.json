@@ -8246,16 +8246,16 @@
   "obe": {
     "icon": "https://cdn.modrinth.com/data/AtOSAunf/69b47bd32742ce09ef7a03ccc2fc5876aff60413_96.webp",
     "hq": [
-      "https://cdn.modrinth.com/data/cached_images/6a8cc4f821534d1fa6acae0d24c4626db12fbc3e.png",
-      "https://cdn.modrinth.com/data/cached_images/16b9fa3f8a2de7cc2f588c624f04c20816f0ce90.png",
-      "https://cdn.modrinth.com/data/cached_images/1ccae3753f9912e1fecbdf26d9990bd986c19000.png",
+      "https://cdn.modrinth.com/data/AtOSAunf/images/f445cfa68cc62ae9b25e932c8b6c91935c6f3a44.png",
+      "https://cdn.modrinth.com/data/AtOSAunf/images/3ac7d38635a952fcd9605791ec59f5ae7a33e5ad.png",
+      "https://cdn.modrinth.com/data/AtOSAunf/images/3725a0c6e101d32aa784d9931996b6b6f43a435c.png",
       "https://cdn.modrinth.com/data/AtOSAunf/images/69b47bd32742ce09ef7a03ccc2fc5876aff60413.png"
     ],
     "bilder": [
-      "https://cdn.modrinth.com/data/AtOSAunf/images/69b47bd32742ce09ef7a03ccc2fc5876aff60413_350.webp",
-      "https://cdn.modrinth.com/data/cached_images/6a8cc4f821534d1fa6acae0d24c4626db12fbc3e.png",
-      "https://cdn.modrinth.com/data/cached_images/16b9fa3f8a2de7cc2f588c624f04c20816f0ce90.png",
-      "https://cdn.modrinth.com/data/cached_images/1ccae3753f9912e1fecbdf26d9990bd986c19000.png"
+      "https://cdn.modrinth.com/data/AtOSAunf/images/f445cfa68cc62ae9b25e932c8b6c91935c6f3a44_350.webp",
+      "https://cdn.modrinth.com/data/AtOSAunf/images/3ac7d38635a952fcd9605791ec59f5ae7a33e5ad_350.webp",
+      "https://cdn.modrinth.com/data/AtOSAunf/images/3725a0c6e101d32aa784d9931996b6b6f43a435c_350.webp",
+      "https://cdn.modrinth.com/data/AtOSAunf/images/69b47bd32742ce09ef7a03ccc2fc5876aff60413_350.webp"
     ]
   },
   "voxy-worldgen": {
@@ -15992,6 +15992,150 @@
       {
         "id": "RdPigQOQUng",
         "titel": "Veinminer: One Swing, Whole Vein | Minecraft Vein Miner Mod (26.2 & 26.3)"
+      }
+    ]
+  },
+  "snappy-blocks": {
+    "icon": "https://media.forgecdn.net/avatars/2168/591/639292209497912841.webp",
+    "hq": [
+      "https://raw.githubusercontent.com/ProfetGit/snappy-blocks/main/docs/banner.webp",
+      "https://raw.githubusercontent.com/ProfetGit/snappy-blocks/main/docs/clips/ore-crack-open.webp",
+      "https://raw.githubusercontent.com/ProfetGit/snappy-blocks/main/docs/clips/bridging-run.webp",
+      "https://raw.githubusercontent.com/ProfetGit/snappy-blocks/main/docs/clips/chest-break-fan.webp",
+      "https://raw.githubusercontent.com/ProfetGit/snappy-blocks/main/docs/clips/pickup-hotbar.webp"
+    ],
+    "bilder": [
+      "https://raw.githubusercontent.com/ProfetGit/snappy-blocks/main/docs/banner.webp",
+      "https://raw.githubusercontent.com/ProfetGit/snappy-blocks/main/docs/clips/ore-crack-open.webp",
+      "https://raw.githubusercontent.com/ProfetGit/snappy-blocks/main/docs/clips/bridging-run.webp",
+      "https://raw.githubusercontent.com/ProfetGit/snappy-blocks/main/docs/clips/chest-break-fan.webp",
+      "https://raw.githubusercontent.com/ProfetGit/snappy-blocks/main/docs/clips/pickup-hotbar.webp"
+    ]
+  },
+  "irenehotwire": {
+    "icon": "https://cdn.modrinth.com/data/6CCeZxnF/7980f34fd7cd80b8d8801bc8c2cfbdf2a1afd059_96.webp",
+    "hq": [
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/1f8ddf26dbf107364b06890d23e5c3f85f5dca7a.png",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/9d6378594b79395e8ab6a597e6b20c2d9174be4b.png",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/a3d931df90f8dfddcdd0b2fe9ec035a6513943ad.png",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/9e5aa72105f34bbb464def23b901aad0664c8bc2.png",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/fb6c2c13bb7d3a7874e31e52f3e92b04f60a14f8.png",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/79424be0dbcfa1b3e48fa1ea6e1c9548a416b0f2.png",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/8d983ba74eca70f81e50f35e6f93c3bcc0380d10.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/e2b5314fc0ace36be7da5587a04f4320da96968a.png",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/084a652a37a67a69458198da3ff54ed4b143bdcf.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/9da56b7156fe6e0ce361e8f3383b254e5f78ce9b.png",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/450df83142c32963e154a1145c13ae9badc57983.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/9eca7eedb0f40aa3e573a5308be496559659c554.png"
+    ],
+    "bilder": [
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/1f8ddf26dbf107364b06890d23e5c3f85f5dca7a.png",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/9d6378594b79395e8ab6a597e6b20c2d9174be4b_350.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/a3d931df90f8dfddcdd0b2fe9ec035a6513943ad_350.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/9e5aa72105f34bbb464def23b901aad0664c8bc2_350.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/fb6c2c13bb7d3a7874e31e52f3e92b04f60a14f8_350.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/79424be0dbcfa1b3e48fa1ea6e1c9548a416b0f2_350.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/8d983ba74eca70f81e50f35e6f93c3bcc0380d10.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/e2b5314fc0ace36be7da5587a04f4320da96968a_350.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/084a652a37a67a69458198da3ff54ed4b143bdcf.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/9da56b7156fe6e0ce361e8f3383b254e5f78ce9b.png",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/450df83142c32963e154a1145c13ae9badc57983.webp",
+      "https://cdn.modrinth.com/data/6CCeZxnF/images/9eca7eedb0f40aa3e573a5308be496559659c554.png"
+    ]
+  },
+  "jacaranda": {
+    "icon": "https://cdn.modrinth.com/data/yLDE8hgv/34e0841e5324e5a30e4d68b6b093e7c7b5142052_96.webp",
+    "hq": [
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/10c310a14bb0dcd7ca119f49b4230a478ad1523f.png",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/212024c8f83e2c0cd72105af8c9700f8b03d2d3f.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/89ff8b8b57e88b9778aadb53bc68d8d958010817.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/c8463229fd61e36cd51a9bb33e75cf1c0f0c347d.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/b3654371c34dddf93c8417bd1132529ecff82524.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/253dd894e3afc40eb32cd80ff905f7165561b99b.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/79c69b30fd2ba0bd77d6b71ae788b1b1f2b7220d.webp"
+    ],
+    "bilder": [
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/10c310a14bb0dcd7ca119f49b4230a478ad1523f_350.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/212024c8f83e2c0cd72105af8c9700f8b03d2d3f_350.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/89ff8b8b57e88b9778aadb53bc68d8d958010817_350.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/c8463229fd61e36cd51a9bb33e75cf1c0f0c347d_350.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/b3654371c34dddf93c8417bd1132529ecff82524_350.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/253dd894e3afc40eb32cd80ff905f7165561b99b_350.webp",
+      "https://cdn.modrinth.com/data/yLDE8hgv/images/79c69b30fd2ba0bd77d6b71ae788b1b1f2b7220d_350.webp"
+    ]
+  },
+  "having-a-blast": {
+    "icon": "https://media.forgecdn.net/avatars/2099/33/639269543707156221.webp",
+    "hq": [
+      "https://raw.githubusercontent.com/ProfetGit/having-a-blast/main/docs/banner.webp",
+      "https://raw.githubusercontent.com/ProfetGit/having-a-blast/main/docs/clips/boom.webp",
+      "https://raw.githubusercontent.com/ProfetGit/having-a-blast/main/docs/clips/repair.webp"
+    ],
+    "bilder": [
+      "https://raw.githubusercontent.com/ProfetGit/having-a-blast/main/docs/banner.webp",
+      "https://raw.githubusercontent.com/ProfetGit/having-a-blast/main/docs/clips/boom.webp",
+      "https://raw.githubusercontent.com/ProfetGit/having-a-blast/main/docs/clips/repair.webp"
+    ]
+  },
+  "touch-and-motion": {
+    "icon": "https://media.forgecdn.net/avatars/thumbnails/2102/977/256/256/639270972748022861.png",
+    "hq": [
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_lever.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_fence.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_lean.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_plant_reach.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_lead_and_shear.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_fishing.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_boat.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_fear.webp"
+    ],
+    "bilder": [
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_lever.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_fence.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_lean.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_plant_reach.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_lead_and_shear.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_fishing.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_boat.webp",
+      "https://raw.githubusercontent.com/victorkozhokin/emf-compat/main/resources/previews/touch_and_motion/touch_and_motion_fear.webp"
+    ],
+    "videos": [
+      {
+        "id": "VnWE4WEgwZQ",
+        "titel": "One of The Most Immersive Minecraft Mods You'll Ever See"
+      },
+      {
+        "id": "LGJz0XE9_Sw",
+        "titel": "Make Your Minecraft Character Feel Alive with Touch'n Motion"
+      }
+    ]
+  },
+  "default-style-christmas-pack": {
+    "icon": "https://cdn.modrinth.com/data/GVW3MpmB/48f6e8eb8e9a008966fdfcf848e75b522cf0a0a4_96.webp",
+    "hq": [
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/4ea2c77cb70ac5972cdb96fec0fe176c6a2f922d.png",
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/f826c4f22e24494e0e07346ac69c3676bce1ea78.png",
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/625128b8e11eef7d882d0078c014cc9171252e80.png",
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/2e0bbb3cbe783845b6148a9d23e12804a29d8384.png",
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/c6f6db07b219a5bf5e4e4299e2ffcecb6380c062.jpeg",
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/d2f905a2fc7ce04421d0edde09a784e185b8effe.jpeg"
+    ],
+    "bilder": [
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/8562a0aecfb25b9a9269c212800f9b5427d20737_350.webp",
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/f826c4f22e24494e0e07346ac69c3676bce1ea78_350.webp",
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/625128b8e11eef7d882d0078c014cc9171252e80_350.webp",
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/2e0bbb3cbe783845b6148a9d23e12804a29d8384_350.webp",
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/c6f6db07b219a5bf5e4e4299e2ffcecb6380c062_350.webp",
+      "https://cdn.modrinth.com/data/GVW3MpmB/images/d2f905a2fc7ce04421d0edde09a784e185b8effe_350.webp"
+    ],
+    "videos": [
+      {
+        "id": "HJImK_i3wYU",
+        "titel": "Vanilla vs Default-Style Christmas Pack | Texture Comparison"
+      },
+      {
+        "id": "GJvI2AOwNoI",
+        "titel": "Default-Style Christmas Pack: Best Christmas Minecraft Texture Pack #minecraft #texturepack #shorts"
       }
     ]
   }

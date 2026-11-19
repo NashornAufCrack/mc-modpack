@@ -93,6 +93,9 @@ def setup_stress_test_datapack(world_dir: Path):
     mcmeta = {
         "pack": {
             "pack_format": 55,
+            "min_format": 15,
+            "max_format": [97, 1],
+            "supported_formats": [15, 97],
             "description": "Headless Client Stress Test Datapack"
         }
     }
@@ -332,7 +335,7 @@ def main():
         if not entry:
             print(f"  ⚠️ Warnung: Slug '{slug}' nicht in files.json gefunden!")
             continue
-        url, raw_fname, _, sha1 = entry[0], entry[1], entry[2], entry[3]
+        url, raw_fname, sha1 = entry[0], entry[1], entry[2]
         if not raw_fname.endswith(".jar"):
             continue
         safe_fname = sanitize_filename(raw_fname)
@@ -359,7 +362,7 @@ def main():
         entry = files.get(slug)
         if not entry:
             continue
-        url, raw_fname, _, sha1 = entry[0], entry[1], entry[2], entry[3]
+        url, raw_fname, sha1 = entry[0], entry[1], entry[2]
         safe_fname = sanitize_filename(raw_fname)
         dest = rp_folder / safe_fname
         if download_file(url, dest, sha1):
@@ -415,7 +418,7 @@ def main():
     setup_stress_test_datapack(RUN_DIR / "saves" / "test_world")
     setup_stress_test_datapack(RUN_DIR / "saves" / "New World")
     setup_stress_test_datapack(RUN_DIR / "saves" / "world")
-    setup_stress_test_datapack(RUN_DIR / "datapacks" / "modpack_stress_test")
+    setup_stress_test_datapack(RUN_DIR)
 
     print("\n🚀 Headless-Vorbereitung erfolgreich abgeschlossen!")
 

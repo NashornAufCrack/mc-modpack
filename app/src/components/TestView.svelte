@@ -19,7 +19,7 @@
     hist = [{ at: new Date().toISOString(), link, note, n: pack.resolve().mods.size, ...fps }, ...hist].slice(0, 20);
     try { localStorage.setItem("mk-tests", JSON.stringify(hist)); } catch {} msg = "Gespeichert.";
   }
-  function gen() { txt = prompt(fps || hist[0] || null, link, note); navigator.clipboard?.writeText(txt).then(() => ui.say("Text kopiert – in den Chat oder deine KI einfügen")); }
+  function gen() { txt = prompt(fps || hist[0] || null, link, note); navigator.clipboard?.writeText(txt).then(() => ui.say("Text kopiert – in den Chat oder deine KI einfügen")).catch(() => {}); }
   const STEPS = [
     ["Test-Kit laden", "Benchmark-Datapack, FPS-Messung.bat und Anleitung in einer ZIP. Dein Pack braucht dafür die Mod spark (siehe unten)."],
     ["Einmal starten", "Pack importieren und Minecraft einmal bis ins Hauptmenü starten."],

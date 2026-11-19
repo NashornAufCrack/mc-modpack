@@ -13,7 +13,10 @@ export const IMPLICIT: Record<string, string[]> = {"sunbathing-godrays":["polyto
 /** Abhängigkeiten aus den Modrinth-Angaben, die für Fabric 26.3 keine Rolle spielen (Quilt, Forge-Brücke, Backports) */
 export const DEP_IGNORE = new Set(["qsl", "quilted-fabric-api", "connector", "modefite-item-definition-backport"]);
 /** Eine dieser Alternativen reicht: kommt nur dazu, wenn keine davon gewählt ist (Euphoria Patches läuft mit Reimagined oder Unbound) */
-export const ONE_OF: Record<string, string[]> = { "euphoria-patches": ["complementary-reimagined", "complementary-unbound"] };
+export const ONE_OF: Record<string, string[]> = {
+  "euphoria-patches": ["complementary-reimagined", "complementary-unbound"],
+  "touch-and-motion": ["fa-player-extension", "just-expressions", "detailed-animations"]
+};
 export const PT_T: Record<string, string> = { m: "Mods", s: "Shader", r: "Resource Packs", d: "Datapacks" };
 export const PT_1: Record<string, string> = { m: "Mod", s: "Shader", r: "Resource Pack", d: "Datapack" };
 export const CATS: Record<string, { t: string; n: string }> = {
@@ -79,7 +82,13 @@ class Pack {
     for (const m of data.mods) { if (m.cat === "V" && (m.sub === "HUD & Bedienung" || m.sub === "Komfort")) { m.cat = "B"; m.sub = m.sub === "Komfort" ? "Komfort (QoL)" : "Anzeigen & Menüs"; } else if (SUBN[m.sub]) m.sub = SUBN[m.sub]; }
     // Fehlt eine Pflicht-Abhängigkeit (auch indirekt), wäre das Pack kaputt: Eintrag ausblenden und auf der Update-Seite nennen
     const PT: Record<string, string> = Object.fromEntries(data.mods.map(m => [m.slug, m.pt || "m"]));
-    const extra = (x: string) => (IMPLICIT[x] || []).concat(PT[x] === "s" ? ["iris"] : PT[x] === "d" ? ["globalpacks"] : []).concat(data.x.rpo[x] ? ["respackopts"] : []);
+    const extra = (x: string) => {
+      const alt = ONE_OF[x];
+      const base = alt ? (alt.some(a => data.files[a]) ? [] : [alt[0]]) : (IMPLICIT[x] || []);
+      return base
+        .concat(PT[x] === "s" ? ["iris"] : PT[x] === "d" ? ["globalpacks"] : [])
+        .concat(data.x.rpo[x] ? ["respackopts"] : []);
+    };
     const missing = (s: string) => { const out: string[] = [], seen = new Set<string>(), st = [s]; while (st.length) { const x = st.pop()!; if (seen.has(x) || DEP_IGNORE.has(x)) continue; seen.add(x); const f = data.files[x]; if (!f) { out.push(x); continue; } st.push(...f[5], ...extra(x)); } return out; };
     const bf: Record<string, string[]> = { ...(data.x.basisfehlt || {}) };
     for (const m of data.mods) if (data.files[m.slug] && !bf[m.slug]) { const f = missing(m.slug); if (f.length) bf[m.slug] = f; }
@@ -159,11 +168,11 @@ class Pack {
   cost = (s: string) => (BOOST.has(s) ? 0 : ((COST as any)[s] ?? 1));
   /** Typ eines Eintrags (auch für Bibliotheken ohne Katalogeintrag) */
   typ(s: string) { return this.BY[s]?.pt || this.data.files[s]?.[8] || "m"; }
-  implicit(s: string) {
+  implicit(s: string, sel: Set<string> = this.sel) {
     const t = this.typ(s);
     const alt = ONE_OF[s];
-    let base = alt ? (alt.some(a => this.sel.has(a)) ? [] : [alt[0]]) : (IMPLICIT[s] || []);
-    if ((s === "carry-on" || s === "punchy-fpa") && this.sel.has("carry-on") && this.sel.has("punchy-fpa")) {
+    let base = alt ? (alt.some(a => sel.has(a)) ? [] : [alt[0]]) : (IMPLICIT[s] || []);
+    if ((s === "carry-on" || s === "punchy-fpa") && sel.has("carry-on") && sel.has("punchy-fpa")) {
       base = base.concat(["dont-punch-my-tacz"]);
     }
     return base.concat(t === "s" ? ["iris"] : []).concat(t === "d" ? ["globalpacks"] : []).concat(this.data.x.rpo[s] ? ["respackopts"] : []);
@@ -189,7 +198,7 @@ class Pack {
   autoRules(s: string, r = this.resolve()) { return rulesForSlug(s, r.mods, this.cfg._auto || {}); }
   resolve(sel: Set<string> = this.sel) {
     const mods = new Set<string>(), libs = new Set<string>(); const stack = [...sel];
-    while (stack.length) { const s = stack.pop()!; if (mods.has(s) || libs.has(s) || DEP_IGNORE.has(s)) continue; const f = this.data.files[s]; if (!f) continue; (this.BY[s] ? mods : libs).add(s); for (const d of f[5].concat(this.implicit(s))) stack.push(d); }
+    while (stack.length) { const s = stack.pop()!; if (mods.has(s) || libs.has(s) || DEP_IGNORE.has(s)) continue; const f = this.data.files[s]; if (!f) continue; (this.BY[s] ? mods : libs).add(s); for (const d of f[5].concat(this.implicit(s, sel))) stack.push(d); }
     return { mods, libs };
   }
   /** Vorab-Start-Check: Prüft das fertige Modpack auf fehlende Abhängigkeiten, Konflikte, doppelte Dateien und kaputte Configs */
@@ -222,7 +231,7 @@ class Pack {
         errors.push(msg);
         issues.push({ id: `size-${s}`, type: "other", title: `Dateigröße 0: „${this.name(s)}“`, detail: msg, modA: s, isLockedA: this.LOCKED.has(s) });
       }
-      const deps = f[5].concat(this.implicit(s));
+      const deps = f[5].concat(this.implicit(s, r.mods));
       for (const d of deps) {
         if (DEP_IGNORE.has(d)) continue;
         checkedDeps++;
@@ -463,19 +472,26 @@ class Pack {
     const c = { ...this.cfg }; if (h.base) c._base = h.base; else delete c._base; this.cfg = c; this.save(); return true;
   }
   cascadeDependentsOf(targetSlug: string, inSel: Set<string> = this.sel): string[] {
+    const r = this.resolve(inSel);
+    const pool = new Set<string>([...inSel, ...r.mods, ...r.libs]);
     const cascade = new Set<string>();
+    const rem = new Set<string>(inSel);
+    rem.delete(targetSlug);
     const queue = [targetSlug];
     while (queue.length > 0) {
       const cur = queue.shift()!;
-      for (const s of inSel) {
-        if (s === cur || cascade.has(s) || s === targetSlug) continue;
+      const newlyAdded: string[] = [];
+      for (const s of pool) {
+        if (s === cur || cascade.has(s) || s === targetSlug || this.LOCKED.has(s)) continue;
         const f = this.data.files[s];
-        const deps = (f ? f[5] : []).concat(this.implicit(s));
+        const deps = (f ? f[5] : []).concat(this.implicit(s, rem));
         if (deps.includes(cur)) {
           cascade.add(s);
+          newlyAdded.push(s);
           queue.push(s);
         }
       }
+      for (const s of newlyAdded) rem.delete(s);
     }
     return [...cascade];
   }

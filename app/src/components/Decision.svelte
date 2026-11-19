@@ -6,15 +6,15 @@
   const allOpts = $derived(g.mods.filter(s => pack.BY[s] && (pack.data.files[s] || pack.BY[s].cf)));
   const opts = $derived(itemSet ? allOpts.filter(s => itemSet.has(s)) : allOpts);
   const mixedPt = $derived(new Set(opts.map(s => pack.BY[s].pt || "m")).size > 1);
-  const chosen = $derived(opts.find(s => pack.sel.has(s)) || null);
+  const chosen = $derived(allOpts.find(s => pack.sel.has(s)) || null);
   /** Option wählen: Konflikte außerhalb der Gruppe laufen über denselben Dialog wie bei den Kacheln */
   function choose(s: string | null) {
     if (s === chosen) return;
-    if (!s) { pack.snapshot(); const n = new Set(pack.sel); opts.forEach(o => { if (!pack.LOCKED.has(o)) n.delete(o); }); pack.sel = n; pack.save(); ui.say(`${g.titel}: keins`, true); return; }
+    if (!s) { pack.snapshot(); const n = new Set(pack.sel); allOpts.forEach(o => { if (!pack.LOCKED.has(o)) n.delete(o); }); pack.sel = n; pack.save(); ui.say(`${g.titel}: keins`, true); return; }
     const bl = pack.BLOCKED.get(s); if (bl) { ui.pick(s, true); return; }
     const all = pack.clashes(s); const outside = all.filter(c => !(c.grp && c.grp.id === g.id));
     if (outside.length) { ui.conflict = { x: s, cl: all }; return; }
-    pack.set(s, true, opts.filter(o => o !== s)); ui.say(`${g.titel}: ${pack.name(s)}`, true);
+    pack.set(s, true, allOpts.filter(o => o !== s)); ui.say(`${g.titel}: ${pack.name(s)}`, true);
   }
 </script>
 
@@ -22,12 +22,12 @@
   <header><h3>{g.titel}</h3><span class="badge {chosen ? 'ok' : 'warn'}">{chosen ? "entschieden" : "offen"}</span></header>
   <p class="muted">{g.text}</p>
   <div class="opts" role="radiogroup" aria-label={g.titel}>
-    {#each opts as s}
+    {#each opts as s (s)}
       {@const m = pack.BY[s]}{@const img = pack.img(s)[0] || pack.icon(s)}{@const hasVid = pack.videos(s).length > 0}
       <div class="opt" class:on={chosen === s}>
         <button class="pick" role="radio" aria-checked={chosen === s} onclick={() => choose(s)}>
           <span class="im">
-            {#if img}<img referrerpolicy="no-referrer" src={img} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).remove()} />{/if}
+            {#if img}{#key img}<img referrerpolicy="no-referrer" src={img} alt="" loading="lazy" onerror={(e) => { (e.currentTarget as HTMLElement).hidden = true; }} />{/key}{/if}
             <span class="ph" aria-hidden="true">{pack.proben(s).length ? "♪" : m.name.slice(0, 1)}</span>
             {#if hasVid}<span class="vtag-chip" aria-hidden="true">▶ Video</span>{/if}
           </span>

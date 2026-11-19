@@ -71,7 +71,7 @@ export const RPRANK: string[][] = [
   // 10: Audio & Geräusche
   ["vvi", "enhanced-audio", "gentler-weather-sounds"],
   // 11: Basis-Texturen / Komplett-Overhauls
-  ["vanilla-exp", "xalis-enhanced-vanilla", "faithful-32x", "faithful-64x", "festive-mash-up"]
+  ["vanilla-exp", "xalis-enhanced-vanilla", "faithful-32x", "faithful-64x", "festive-mash-up", "default-style-christmas-pack"]
 ];
 
 function fallbackRank(s: string): number {

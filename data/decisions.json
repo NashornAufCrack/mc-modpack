@@ -1204,6 +1204,38 @@
     "profets-veinminer"
    ],
    "text": "Vom selben Entwickler (Profet) und im selben Stil: Timber fällt ganze Bäume animiert, Veinminer baut Erzadern in einer Kettenreaktion ab."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "jacaranda",
+    "glowing-glints"
+   ],
+   "text": "Beide geben verzauberten Items eine leuchtende Umrandung. Kombinierbar, die Konturen können sich aber überlagern."
+  },
+  {
+   "art": "T",
+   "mods": [
+    "having-a-blast",
+    "explosive-enhancement"
+   ],
+   "text": "Beide verändern Explosionen. Laut Having a Blast kompatibel: Explosive Enhancement liefert den Feuerball, Having a Blast die fliegenden Blöcke und optionale Reparatur."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "touch-and-motion",
+    "fa-player-extension"
+   ],
+   "text": "Touch'n Motion ist speziell für Fresh Animations: Player Extension entwickelt und baut seine Hand-, Fuß- und Körper-Interaktionen nahtlos darauf auf."
+  },
+  {
+   "art": "S",
+   "mods": [
+    "touch-and-motion",
+    "not-enough-animations"
+   ],
+   "text": "Kompatibel: Touch'n Motion übernimmt bei Bedarf automatisch die Ruder- und Reit-Animationen von Not Enough Animations, ohne dass sich beide stören."
   }
  ],
  "gruppen": [
@@ -1628,10 +1660,11 @@
    "id": "placeanim",
    "titel": "Block-Platzier-Animation",
    "mods": [
+    "snappy-blocks",
     "stupid-block-animations",
     "fresh-block-animations"
    ],
-   "text": "Beide animieren das Setzen von Blöcken. Deine Wahl war SBA."
+   "text": "Alle drei animieren das Setzen von Blöcken (Snappy Blocks und SBA zusätzlich auch Abbau und Drops)."
   },
   {
    "id": "endover",
@@ -1771,6 +1804,15 @@
     "configured-defaults",
     "configmanager"
    ]
+  },
+  {
+   "id": "christmas",
+   "titel": "Weihnachts-Texturen",
+   "mods": [
+    "default-style-christmas-pack",
+    "festive-mash-up"
+   ],
+   "text": "Beide tauschen fast alle Texturen im Weihnachtsstil aus; nur das oberste Pack wäre sichtbar."
   }
  ]
 }

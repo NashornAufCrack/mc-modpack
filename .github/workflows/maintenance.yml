@@ -2,8 +2,8 @@ name: Wartung
 # Tägliche konsolidierte Wartung:
 # 1. Kandidaten & Social-Hype erkunden (scripts/discover.mjs, scripts/discover_social.py)
 # 2. Katalog auto-erweitern (scripts/expand.mjs)
-# 3. Abhängigkeiten reparieren & JARs prüfen (scripts/fixdeps.mjs, scripts/inspect_jar_deps.py)
-# 4. Mod-Updates & Schutzprüfungen (scripts/check-updates.mjs, scripts/check_github_releases.py, scripts/mixin_scan.py guard, scripts/rpcheck.py, scripts/solve_pack_compatibility.py, qa/datacheck.py --ci)
+# 3. Abhängigkeiten reparieren (scripts/fixdeps.mjs)
+# 4. Mod-Updates, JAR-Inspektion & Schutzprüfungen (scripts/check-updates.mjs, scripts/check_github_releases.py, scripts/mixin_scan.py guard, scripts/rpcheck.py, scripts/inspect_jar_deps.py, scripts/embed_jar_rules.py, scripts/solve_pack_compatibility.py, qa/datacheck.py --ci)
 # 5. Medien & YouTube-Vorschaubilder aktualisieren (scripts/media.mjs, scripts/yt-thumbs.py, scripts/media-app.mjs)
 # 6. Optional: Hörproben aktualisieren (nur sonntags oder bei manuellem Start mit include_sounds)
 # 7. Einziger atomarer Git-Commit & Push (keine Kaskaden-Commits und Rennbedingungen mehr!)
@@ -65,10 +65,9 @@ jobs:
         env:
           CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
 
-      - name: "3. Abhängigkeiten reparieren & JARs inspizieren"
+      - name: "3. Abhängigkeiten reparieren"
         run: |
           node scripts/fixdeps.mjs || true
-          python3 scripts/inspect_jar_deps.py || true
 
       - name: "4. Update-Check & Schutzprüfungen"
         run: |
@@ -76,6 +75,8 @@ jobs:
           python3 scripts/check_github_releases.py
           python3 scripts/mixin_scan.py guard
           python3 scripts/rpcheck.py
+          python3 scripts/inspect_jar_deps.py
+          python3 scripts/embed_jar_rules.py
           python3 scripts/solve_pack_compatibility.py
           python3 qa/datacheck.py --ci
         env:
@@ -92,26 +93,33 @@ jobs:
           CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
 
       - name: "6. Hörproben aktualisieren (sonntags oder bei Bedarf)"
-        if: github.event.inputs.include_sounds == 'true' || github.event.schedule == '0 4 * * 0'
+        env:
+          INCLUDE_SOUNDS: ${{ inputs.include_sounds }}
         run: |
-          sudo apt-get -qq install -y ffmpeg >/dev/null
-          python3 scripts/sounds.py || true
+          if [ "$(date -u +%u)" = "7" ] || [ "$INCLUDE_SOUNDS" = "true" ]; then
+            sudo apt-get update -qq && sudo apt-get -qq install -y ffmpeg >/dev/null
+            python3 scripts/sounds.py || true
+          else
+            echo "Nicht Sonntag und include_sounds != true – überspringe Hörproben."
+          fi
 
       - name: "7. Atomarer Git-Commit & Push"
         run: |
           git config user.name "wartung"
           git config user.email "actions@users.noreply.github.com"
-          git add data/ quelle/files.json UPDATES.md cf media/yt sounds/
+          git add data/ quelle/files.json UPDATES.md cf media/yt sounds/ pruefung/daten-embed.js
+          git status --short
           if git diff --cached --quiet; then
             echo "Keine Datenänderungen vorhanden. Beende sauber."
             exit 0
           fi
           git commit -m "Wartung & Updates $(date +%F)"
           for i in 1 2 3 4 5; do
-            if git pull --rebase -X theirs -q && git push -q; then
+            if git pull --rebase --autostash origin main && git push; then
               echo "Wartungs-Commit erfolgreich gepusht."
               exit 0
             fi
+            git rebase --abort || true
             echo "Push-Konflikt, erneuter Versuch in $((i * 5))s..."
             sleep $((i * 5))
           done

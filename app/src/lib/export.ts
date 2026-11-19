@@ -47,20 +47,22 @@ export function packFiles() {
   if (rps.length > 0) {
     files["resourcepacks/Modpack/packed_packs.folderpack.json"] = folderpackJson(rps);
   }
-  const sp = [...r.mods].find(s => pack.BY[s]?.pt === "s");
-  if (sp && r.mods.has("iris")) {
-    const sfn = fname(sp);
-    files["config/iris.properties"] = "enableShaders=true\nshaderPack=" + sfn + "\n";
-    const spKey = "shaderpacks/" + sfn + ".txt";
-    const map = new Map<string, string>();
-    const lodDefaults = SHADER_LOD_FOG_DEFAULTS[sp] || {};
-    for (const [k, v] of Object.entries(lodDefaults)) map.set(k, String(v));
-    const items = (SETDEF as any)[sp]?.items || [];
-    for (const i of items) {
-      const v = pack.cv(sp, i.k);
-      map.set(i.k, String(i.f ? i.f(Number(v)) : v));
+  const shaders = [...r.mods].filter(s => pack.BY[s]?.pt === "s");
+  if (shaders.length > 0 && r.mods.has("iris")) {
+    files["config/iris.properties"] = "enableShaders=true\nshaderPack=" + fname(shaders[0]) + "\n";
+    for (const sp of shaders) {
+      const sfn = fname(sp);
+      const spKey = "shaderpacks/" + sfn + ".txt";
+      const map = new Map<string, string>();
+      const lodDefaults = SHADER_LOD_FOG_DEFAULTS[sp] || {};
+      for (const [k, v] of Object.entries(lodDefaults)) map.set(k, String(v));
+      const items = (SETDEF as any)[sp]?.items || [];
+      for (const i of items) {
+        const v = pack.cv(sp, i.k);
+        map.set(i.k, String(i.f ? i.f(Number(v)) : v));
+      }
+      if (map.size > 0) files[spKey] = [...map.entries()].map(([k, v]) => `${k}=${v}`).join("\n") + "\n";
     }
-    if (map.size > 0) files[spKey] = [...map.entries()].map(([k, v]) => `${k}=${v}`).join("\n") + "\n";
   }
   Object.assign(files, buildAutoConfigFiles(r.mods, pack.data.x.rpo || {}, fname, (s, k) => pack.cv(s, k), pack.cfg._auto || {}));
   const manual = manualList(); const tips = pack.tips(r); const autos = pack.autos(r); const dp = [...r.mods].some(s => pack.typ(s) === "d");
@@ -79,8 +81,9 @@ export function exportSet(server: boolean) {
   const r = pack.resolve(); let all = [...r.mods, ...r.libs];
   if (server) { // nur was der Server braucht: Mods/Datapacks mit Server-Teil + die gewählten Server-Werkzeuge (pack.srvOn)
     const keep = new Set<string>(); const stack = [...r.mods].filter(s => pack.BY[s].cat !== "S" && (pack.BY[s].ampel === "R" || pack.BY[s].ampel === "Y")).concat(pack.srvTools(r).filter(m => pack.srvOn(m.slug, r)).map(m => m.slug));
+    const serverMods = new Set([...r.mods].filter(x => pack.typ(x) !== "m" || pack.BY[x]?.ampel !== "G"));
     // reine Client-Mods (z. B. Litematica als Modrinth-Abhängigkeit von Litematica Server Paster) gehören nicht auf den Server
-    while (stack.length) { const s = stack.pop()!; if (keep.has(s) || !pack.data.files[s]) continue; const t = pack.typ(s); if (t !== "m" && t !== "d") continue; if (t === "m" && pack.BY[s]?.ampel === "G") continue; keep.add(s); pack.data.files[s][5].concat(pack.implicit(s)).forEach((d: string) => stack.push(d)); }
+    while (stack.length) { const s = stack.pop()!; if (keep.has(s) || !pack.data.files[s]) continue; const t = pack.typ(s); if (t !== "m" && t !== "d") continue; if (t === "m" && pack.BY[s]?.ampel === "G") continue; keep.add(s); pack.data.files[s][5].concat(pack.implicit(s, serverMods)).forEach((d: string) => stack.push(d)); }
     all = [...keep]; }
   return { r, all };
 }

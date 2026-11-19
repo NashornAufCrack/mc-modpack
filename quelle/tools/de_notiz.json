@@ -408,5 +408,11 @@
 "no-pumpkin-blur":"Entfernt das Kürbis-Overlay, wenn du einen geschnitzten Kürbis aufsetzt.",
 "grim-kingdoms-lost-structures-ruins-vanilla-edition":"Neue Ruinen und verlorene Bauwerke in der Welt. Vanilla-Fassung ohne versteckte Sonder-Items.",
 "profets-timber":"Ganze Bäume mit flüssiger Kipp-Animation auf einen Schlag fällen (schont Bauwerke, nutzt Axt-Haltbarkeit, replant optional).",
-"profets-veinminer":"Schleichen und ganze Erzadern per Kettenreaktion abbauen – mit Einstellungen im Spiel, unterstützt auch Erde, Sand, Kies & Ton."
+"profets-veinminer":"Schleichen und ganze Erzadern per Kettenreaktion abbauen – mit Einstellungen im Spiel, unterstützt auch Erde, Sand, Kies & Ton.",
+"snappy-blocks":"Flüssige Pop- und Aufprall-Animationen beim Platzieren, Abbauen und Einsammeln von Blöcken und Drops (ohne plötzliches Aufploppen).",
+"irenehotwire":"Mods im laufenden Spiel ohne Neustart ein- und ausschalten, aktualisieren oder direkt über den integrierten Modrinth-Browser hinzufügen.",
+"jacaranda":"Verleiht verzauberten Items und Rüstungen anpassbare leuchtende Umrandungen, Schimmer-Effekte, Partikel und farbiges Licht.",
+"having-a-blast":"Macht Explosionen zu einer Cartoon-Physikshow mit fliegenden, abprallenden Blöcken; optionale Selbstreparatur für Creeper- und TNT-Krater.",
+"touch-and-motion":"Prozedurale Spieler-Animationen über EMF: Füße auf Stufen und Treppen, Hände an Hebeln, Türen und Zäunen, Rumpfbeugung und Reaktionen auf Geräusche.",
+"default-style-christmas-pack":"Weihnachtliches Resource Pack im klassischen Vanilla-Stil mit Lichterketten, Lebkuchen-Creepern, Zuckerstangen und winterlicher Welt."
 }

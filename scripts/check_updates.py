@@ -23,7 +23,8 @@ REPO = Path(__file__).resolve().parent.parent
 os.chdir(REPO)
 
 A = "https://api.modrinth.com/v2"
-MC = "26.3"
+with open("config/project.json", "r", encoding="utf-8") as f:
+    MC = json.load(f)["minecraftVersion"]
 UA = {"User-Agent": "NashornAufCrack/mc-modpack update-check (github.com/NashornAufCrack/mc-modpack)"}
 
 with open("data/files.json", "r", encoding="utf-8") as f:
@@ -261,8 +262,7 @@ for u in updates:
         })
     else:
         d = [p["slug"] for p in res["ps"] if p["slug"] not in IGNORE and p["slug"] in files]
-        if d:
-            files[u["slug"]][5] = sorted(list(set(files[u["slug"]][5] + d)))
+        files[u["slug"]][5] = list(dict.fromkeys(d))
         to_keep.append(u)
 
 updates = to_keep

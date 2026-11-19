@@ -11,7 +11,22 @@ Analysiert Resource Packs auf:
 import sys, os, io, re, json, zipfile, argparse, collections
 from pathlib import Path
 
-FMT_CURRENT = 97.1
+try:
+    from scripts.rpcheck import parse_fmt as _parse_fmt, rng as _pack_format_range
+except ImportError:
+    from rpcheck import parse_fmt as _parse_fmt, rng as _pack_format_range
+
+def _load_target_fmt():
+    proj = Path(__file__).resolve().parent.parent / "config" / "project.json"
+    if proj.is_file():
+        try:
+            with open(proj, "r", encoding="utf-8") as f:
+                return _parse_fmt(json.load(f).get("rpFormat", "97.1"), is_max=False)
+        except Exception:
+            pass
+    return (97, 1)
+
+FMT_CURRENT = _load_target_fmt()
 
 def inspect_pack(zip_path: Path):
     res = {
@@ -38,24 +53,15 @@ def inspect_pack(zip_path: Path):
                     raw = re.sub(r"^\ufeff", "", z.read(meta_name).decode("utf-8", "replace"))
                     m = json.loads(raw)
                     p = m.get("pack", {})
-                    fmt = p.get("pack_format")
-                    sf = p.get("supported_formats")
-                    res["format"] = fmt
-                    res["supported_formats"] = sf
+                    res["format"] = p.get("pack_format")
+                    res["supported_formats"] = p.get("supported_formats")
+                    res["min_format"] = p.get("min_format")
+                    res["max_format"] = p.get("max_format")
 
-                    # Formate ermitteln
-                    hi = fmt if isinstance(fmt, (int, float)) else 0
-                    if isinstance(sf, list) and len(sf) == 2:
-                        hi = max(hi, sf[1])
-                    elif isinstance(sf, dict):
-                        hi = max(hi, sf.get("max_inclusive", 0))
-                    for ov in m.get("overlays", {}).get("entries", []):
-                        osf = ov.get("formats", ov.get("pack", {}).get("supported_formats"))
-                        if isinstance(osf, list) and len(osf) == 2:
-                            hi = max(hi, osf[1])
+                    lo, hi = _pack_format_range(m)
 
                     # 26.3 braucht Format 97.1
-                    if hi < 97:
+                    if not (lo <= FMT_CURRENT <= hi):
                         res["is_outdated_26_3"] = True
                 except Exception as e:
                     res["mcmeta_error"] = str(e)
@@ -187,7 +193,7 @@ def print_report(res):
         print("\n⚠️ VERALTETE PACKS (nicht für 26.3 / Format 97 ausgelegt):")
         for fn in outdated:
             p = res["packs"][fn]
-            print(f"  • {fn} (Format {p['format']}, supported: {p['supported_formats']})")
+            print(f"  • {fn} (Format {p['format']}, supported: {p['supported_formats']}, min/max: {p.get('min_format')}..{p.get('max_format')})")
 
     # Packs mit Core-Shadern
     shaders = [fn for fn, d in res["packs"].items() if d["has_core_shaders"]]
@@ -246,7 +252,7 @@ def main():
 
     if args.json:
         with open(args.json, "w", encoding="utf-8") as f:
-            json.dump(result, f, indent=2)
+            json.dump(result, f, ensure_ascii=False, indent=2)
         print(f"💾 Bericht gespeichert: {args.json}")
 
 if __name__ == "__main__":

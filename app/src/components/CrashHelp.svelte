@@ -12,9 +12,34 @@
     type: "ram" | "dep" | "mixin" | "shader" | "java" | "dup" | "other";
   } | null>(null);
 
+  let reqId = 0;
+  let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+  $effect(() => () => clearTimeout(debounceTimer));
+
+  function onInput() {
+    clearTimeout(debounceTimer);
+    reqId++;
+    loading = false;
+    if (!input.trim()) {
+      result = null;
+      return;
+    }
+    debounceTimer = setTimeout(() => { analyze(); }, 300);
+  }
+
+  function clearInput() {
+    clearTimeout(debounceTimer);
+    reqId++;
+    loading = false;
+    input = "";
+    result = null;
+  }
+
   async function analyze() {
+    clearTimeout(debounceTimer);
+    const id = ++reqId;
     let raw = input.trim();
-    if (!raw) { result = null; return; }
+    if (!raw) { loading = false; result = null; return; }
 
     // mclo.gs Link eingegeben? Automatisch das echte Log laden
     const mclMatch = raw.match(/mclo\.gs\/([A-Za-z0-9]+)/);
@@ -22,10 +47,15 @@
       loading = true;
       try {
         const res = await fetch(`https://api.mclo.gs/1/raw/${mclMatch[1]}`);
+        if (id !== reqId) return;
         if (res.ok) raw = await res.text();
-      } catch {}
-      loading = false;
+        if (id !== reqId) return;
+      } catch {
+        if (id !== reqId) return;
+      }
     }
+    loading = false;
+    if (id !== reqId) return;
 
     result = parseLog(raw);
   }
@@ -43,7 +73,7 @@
     }
 
     // 2. Falsche Java-Version
-    if (/has been compiled by a more recent version of the Java Runtime \(class file version 6[789]|Java 2[56]/i.test(t)) {
+    if (/UnsupportedClassVersionError|has been compiled by a more recent version of the Java Runtime.*class file version (?:6[789]|70)|requires.*Java 2[56]|java\s*>=\s*25/i.test(t)) {
       return {
         ok: false,
         type: "java" as const,
@@ -69,10 +99,11 @@
     }
 
     // 4. Fehlende Abhängigkeiten (Fabric Loader dependency error)
-    if (/Unmet dependency|requires|needs/i.test(t) && /Mod ['"]?([a-z0-9_-]+)['"]? requires ['"]?([a-z0-9_-]+)['"]?/i.test(t)) {
-      const depM = t.match(/Mod ['"]?([a-z0-9_-]+)['"]? requires (?:version .+ of )?['"]?([a-z0-9_-]+)['"]?/i);
-      const modA = depM ? pack.name(depM[1]) : "Eine Mod";
-      const modB = depM ? pack.name(depM[2]) : "eine andere Mod";
+    const depRe = /Mod (?:['"][^'"]+['"] \(([a-z0-9_-]+)\)|['"]?([a-z0-9_-]+)['"]?)(?: [0-9]\S*)? requires (?:(?:any )?version (?:of |.+? of ))?(?:mod )?(?:['"][^'"]+['"] \(([a-z0-9_-]+)\)|['"]?([a-z0-9_-]+)['"]?(?: \(([a-z0-9_-]+)\))?)/i;
+    const depM = t.match(depRe);
+    if (depM) {
+      const modA = pack.name(depM[1] || depM[2]);
+      const modB = pack.name(depM[3] || depM[5] || depM[4]);
       return {
         ok: false,
         type: "dep" as const,
@@ -144,7 +175,7 @@
 
 <section class="crash-wrap">
   <div class="head">
-    <h2>Absturz-Hilfe &amp; Log-Analyse</h2>
+    <h1>Absturz-Hilfe &amp; Log-Analyse</h1>
     <p class="muted">Minecraft startet nicht oder schließt sich mit einem Fehler? Füge hier dein Absturz-Log (aus <code>crash-reports/</code> oder <code>logs/latest.log</code>) oder einen <code>mclo.gs</code>-Link ein. Wir sagen dir direkt auf Deutsch, welche Mod schuld ist und wie du es behebst.</p>
   </div>
 
@@ -152,16 +183,17 @@
     <textarea
       class="field log-input"
       rows="7"
+      aria-label="Absturzbericht oder mclo.gs-Link"
       placeholder="Absturzbericht (Crash Report), latest.log oder mclo.gs-Link hier hineinkopieren …"
       bind:value={input}
-      oninput={analyze}
+      oninput={onInput}
     ></textarea>
     <div class="bar-acts">
       <button class="btn primary sm" disabled={loading || !input.trim()} onclick={analyze}>
         {#if loading}Lade von mclo.gs …{:else}Log analysieren{/if}
       </button>
       {#if input}
-        <button class="btn ghost sm" onclick={() => { input = ""; result = null; }}>Leeren</button>
+        <button class="btn ghost sm" onclick={clearInput}>Leeren</button>
       {/if}
       <span class="samples muted small">Beispiele testen:
         <button class="link-btn" onclick={() => sample('ram')}>RAM voll</button> ·
@@ -175,7 +207,7 @@
     <div class="res-box" class:bad={!result.ok} class:ok={result.ok}>
       <div class="res-head">
         <span class="badge {result.ok ? 'ok' : 'bad'}">{result.ok ? 'Hinweis' : 'Ursache gefunden'}</span>
-        <h3>{result.title}</h3>
+        <h2>{result.title}</h2>
       </div>
       <p class="res-det">{result.details}</p>
       <div class="res-sol">
@@ -186,7 +218,7 @@
   {/if}
 
   <div class="info-card">
-    <h4>Wo finde ich den Absturzbericht?</h4>
+    <h2>Wo finde ich den Absturzbericht?</h2>
     <ul>
       <li><b>Prism Launcher:</b> Klicke links in Prism auf deine Instanz und dann rechts auf <b>„Protokoll ansehen“</b>.</li>
       <li><b>Modrinth App:</b> Klicke bei deiner Instanz auf <b>„Logs“</b>.</li>
@@ -197,7 +229,7 @@
 
 <style>
   .crash-wrap { display: flex; flex-direction: column; gap: 1rem; max-width: 880px; padding: 1.5rem 0; }
-  .head h2 { margin: 0 0 .3rem; font-size: 1.35rem; }
+  .head h1 { margin: 0 0 .3rem; font-size: 1.35rem; }
   .head p { margin: 0; font-size: .9rem; max-width: 65ch; }
   .input-box { display: flex; flex-direction: column; gap: .5rem; }
   .log-input { width: 100%; font: .82rem var(--mono); padding: .75rem; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); color: var(--fg); resize: vertical; }
@@ -208,13 +240,13 @@
   .res-box.bad { background: var(--bad-soft); border-color: var(--bad); }
   .res-box.ok { background: var(--accent-soft); border-color: var(--accent); }
   .res-head { display: flex; align-items: center; gap: .6rem; }
-  .res-head h3 { margin: 0; font-size: 1.08rem; }
+  .res-head h2 { margin: 0; font-size: 1.08rem; }
   .res-det { margin: 0; font-size: .88rem; }
   .res-sol { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .75rem .85rem; font-size: .85rem; }
   .res-sol b { display: block; margin-bottom: .25rem; color: var(--fg); }
   .res-sol p { margin: 0; white-space: pre-line; color: var(--muted); }
   .info-card { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 1rem; }
-  .info-card h4 { margin: 0 0 .5rem; font-size: .92rem; }
+  .info-card h2 { margin: 0 0 .5rem; font-size: .92rem; }
   .info-card ul { margin: 0; padding-left: 1.2rem; display: grid; gap: .35rem; font-size: .85rem; color: var(--muted); }
   code, kbd { font: .82rem var(--mono); background: var(--bg-2); padding: .1rem .3rem; border-radius: 4px; border: 1px solid var(--line); }
 </style>

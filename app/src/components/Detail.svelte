@@ -52,9 +52,9 @@
               {#if cmp}<span class="small muted">Schieberegler ziehen · Klick unten wechselt das Vergleichsbild</span>{/if}
             </div>
             <div class="strip">
-              {#each imgs.slice(cmp ? 0 : 1, 9) as u, idx}
+              {#each imgs.slice(cmp ? 0 : 1, 9) as u, idx (s + ":" + idx + ":" + u)}
                 {@const realIdx = cmp ? idx : idx + 1}
-                <button class:selA={cmp && realIdx === cmpA} class:selB={cmp && realIdx === cmpB} onclick={() => pickThumb(realIdx)} aria-label={cmp ? `Bild ${realIdx + 1} für Vergleich wählen` : `Bild ${realIdx + 1} von ${m.name} vergrößern`}><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" onerror={(e) => (e.currentTarget as HTMLElement).parentElement!.remove()} /></button>
+                <button class:selA={cmp && realIdx === cmpA} class:selB={cmp && realIdx === cmpB} onclick={() => pickThumb(realIdx)} aria-label={cmp ? `Bild ${realIdx + 1} für Vergleich wählen` : `Bild ${realIdx + 1} von ${m.name} vergrößern`}><img referrerpolicy="no-referrer" src={u} alt="" loading="lazy" onerror={(e) => { const p = (e.currentTarget as HTMLElement).parentElement; if (p) p.hidden = true; }} /></button>
               {/each}
             </div>
           {/if}

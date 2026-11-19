@@ -1,4 +1,4 @@
-import json, os
+import json, os, sys
 from pathlib import Path
 
 QUELLE = Path(__file__).resolve().parent
@@ -44,5 +44,10 @@ L = lambda f: json.load(open(f, encoding='utf-8'))
 app = {'mods': L('mods.json'), 'files': L('files.json'), 'dec': L('decisions.json'), 'settings': L('settings.json'),
  'x': {'details': L('details.json'), 'rpo': L('rpo.json'), 'basisfehlt': BASISFEHLT,
       'rpbad': sorted(k for k, v in (json.load(open(_R + 'rp-check.json', encoding='utf-8')) if os.path.exists(_R + 'rp-check.json') else {}).items() if not v['ok'])}}
+_insp = json.load(open(_R + 'jar-inspection.json', encoding='utf-8')) if os.path.exists(_R + 'jar-inspection.json') else {}
+if str(REPO / 'scripts') not in sys.path:
+    sys.path.insert(0, str(REPO / 'scripts'))
+from embed_jar_rules import build_jar_rules
+app['jar_rules'] = build_jar_rules(app, _insp, app['files'])
 open(str(REPO / 'data' / 'app-data.json'), 'w', encoding='utf-8').write(json.dumps(app, ensure_ascii=False, separators=(',', ':')))
 print('app-data', os.path.getsize(str(REPO / 'data' / 'app-data.json')))

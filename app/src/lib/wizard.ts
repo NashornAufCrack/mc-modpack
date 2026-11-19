@@ -12,7 +12,8 @@ export function shaderChoices(w: Record<string, any>) { const sc = gpuScore(w); 
 export function plan(w: Record<string, any>) {
   const sc = gpuScore(w), hz = Number(w.hz || 144), fpsHigh = (w.fps || "hz") === "hz";
   const P = [{ sm: 1024, sd: 96, cl: false, wc: false, taau: true, vx: 8, rd: 10 }, { sm: 2048, sd: 128, cl: false, wc: true, taau: false, vx: 12, rd: 12 }, { sm: 2048, sd: 160, cl: true, wc: true, taau: false, vx: 16, rd: 16 }, { sm: 3072, sd: 192, cl: true, wc: true, taau: false, vx: 24, rd: 16 }][sc];
-  const fps = fpsHigh ? (w.sync === "yes" ? Math.max(60, hz - 4) : hz) : 60;
+  const rawFps = fpsHigh ? (w.sync === "yes" ? Math.max(60, hz - 4) : hz) : 60;
+  const fps = Math.max(30, Math.min(260, Math.round(Number.isFinite(rawFps) ? rawFps : 60)));
   const add = new Set<string>(), why: Record<string, string> = {};
   for (const m of pack.data.mods) {
     if (pack.LOCKED.has(m.slug) || m.cat === "S" || m.cat === "P" || m.pt === "s" || m.rolle !== "K") continue;

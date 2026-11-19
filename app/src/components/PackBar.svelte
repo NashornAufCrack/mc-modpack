@@ -284,8 +284,15 @@
     {:else if isTested}
       <div class="tp-status ok">
         <span class="small">✓ 100 % fehlerfrei in Testwelt gestartet & verifiziert!</span>
-        {#if headlessTester.runUrl}
+        {#if isCustom && headlessTester.state === "success" && headlessTester.runUrl}
           <a class="small link" href={headlessTester.runUrl} target="_blank" rel="noopener">GitHub Run ↗</a>
+        {/if}
+      </div>
+    {:else if headlessTester.state === "timed_out"}
+      <div class="tp-status running">
+        <span class="small">⏳ {headlessTester.progress}</span>
+        {#if headlessTester.runUrl}
+          <a class="small link" href={headlessTester.runUrl} target="_blank" rel="noopener">GitHub Actions ansehen ↗</a>
         {/if}
       </div>
     {:else if headlessTester.state === "failed"}

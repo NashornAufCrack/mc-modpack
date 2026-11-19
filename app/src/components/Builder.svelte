@@ -60,15 +60,17 @@
 
   // Dynamische Anzahl der Einträge je Filter für den aktuellen Tab
   const filterCounts = $derived.by(() => {
-    const list = pack.data.mods.filter(m => baseMatch(m));
-    return {
-      sel: list.filter(m => pack.sel.has(m.slug)).length,
-      rec: list.filter(m => m.rolle === "K").length,
-      van: list.filter(m => m.ampel !== "R" && m.cat !== "S").length,
-      vid: list.filter(m => pack.videos(m.slug).length > 0).length,
-      snd: list.filter(m => pack.proben(m.slug).length > 0).length,
-      sug: list.filter(m => pack.sug.has(m.slug)).length
-    };
+    const out = { sel: 0, rec: 0, van: 0, vid: 0, snd: 0, sug: 0 };
+    for (const m of pack.data.mods) {
+      if (!baseMatch(m)) continue;
+      if (pack.sel.has(m.slug)) out.sel++;
+      if (m.rolle === "K") out.rec++;
+      if (m.ampel !== "R" && m.cat !== "S") out.van++;
+      if (pack.videos(m.slug).length > 0) out.vid++;
+      if (pack.proben(m.slug).length > 0) out.snd++;
+      if (pack.sug.has(m.slug)) out.sug++;
+    }
+    return out;
   });
 
   // Gruppen mit einem fest eingebauten Mitglied sind keine echte Wahl

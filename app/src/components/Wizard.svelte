@@ -28,7 +28,14 @@
   const q = $derived(Qs[step]);
   const answered = $derived(step >= N || (q.k === "mon" ? Number(w.w) > 0 && Number(w.h) > 0 && Number(w.hz) > 0 && !!w.sync : !!w[q.k] && (q.k !== "shader" || w.shader === "no" || !!w.shaderpack)));
   const preview = $derived(step >= N ? plan(w) : null);
-  function choose(k: string, v: string) { w[k] = v; if (w.shader === "yes" && (k === "shader" || k === "lod")) { const c = shaderChoices(w); if (!c.some(x => x[0] === w.shaderpack)) w.shaderpack = c[0][0]; } }
+  $effect(() => {
+    if (w.shader === "yes") {
+      void [w.gpu, w.vendor, w.fps, w.lod, w.w, w.h, w.hz];
+      const c = shaderChoices(w);
+      if (c.length && (!w.shaderpack || !c.some(x => x[0] === w.shaderpack))) w.shaderpack = c[0][0];
+    }
+  });
+  function choose(k: string, v: string) { w[k] = v; }
   function light() { started = false; pack.applyPreset("perf"); ui.wizard = false; ui.say("Vorlage „Nur Performance“ übernommen. Ergänze nur, was du wirklich willst.", true); }
   function finish() { started = false; const p = applyPlan(w); ui.wizard = false; ui.filters = new Set(["sug"]); ui.say(`Fertig: ${p.add.length} Vorschläge übernommen, FPS-Limit ${p.fps}`, true); }
 </script>
