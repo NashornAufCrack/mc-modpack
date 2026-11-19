@@ -18,6 +18,14 @@ ALLOWED = {'cdn.modrinth.com', 'github.com', 'raw.githubusercontent.com', 'gitla
 ALLOWED_MR_GROUPS = {'playeranim', 'guitex', 'bettergrass', 'grasslook'}
 err, note = collections.defaultdict(list), collections.defaultdict(list)
 LOCKED = {m['slug'] for m in M if (m['cat'] == 'P' and m.get('rolle') == 'K') or m.get('pflicht')}
+CORE = set()
+_st = [s for s in LOCKED if s in F]
+while _st:
+    _y = _st.pop()
+    if _y in CORE or _y in IGNORE or _y not in F: continue
+    CORE.add(_y)
+    _t = F[_y][8] if len(F[_y]) > 8 else 'm'
+    _st += F[_y][5] + (['iris'] if _t == 's' else []) + (['globalpacks'] if _t == 'd' else [])
 vis = [m for m in M if (m['slug'] in F or m.get('cf')) and m['slug'] not in rpbad and m['slug'] not in basis]
 
 def missing(s):
@@ -102,15 +110,26 @@ if os.path.exists('data/jar-inspection.json'):
         mc = info.get('depends', {}).get('minecraft')
         if mc and not matches_predicate(MC_VERSION, mc):
             err[f'Mod inkompatibel mit Minecraft {MC_VERSION} (fabric.mod.json)'].append(f"{s}: erfordert {mc}")
+        if s in CORE:
+            for dep_id, constraint in (info.get('depends') or {}).items():
+                if dep_id in ('minecraft', 'fabricloader', 'fabric-loader', 'java', 'fabric'): continue
+                if dep_id.startswith('fabric-') and dep_id != 'fabric-api' and dep_id not in id_to_slug: continue
+                target_slug = 'fabric-api' if dep_id == 'fabric-api' else id_to_slug.get(dep_id)
+                if target_slug and target_slug in CORE and target_slug in F and target_slug != s:
+                    t_info = INSP.get(target_slug, {})
+                    t_ver = (t_info.get('jar_version') if t_info.get('sha1') == F[target_slug][2] else None) or F[target_slug][6]
+                    if constraint != '*' and not matches_predicate(normalize_target_version(t_ver), constraint):
+                        err['Core-Modpack-Abhängigkeit inkompatibel (depends in JAR)'].append(f"{s} erfordert {target_slug} ({constraint}), vorhanden ist {t_ver}")
         for kind, err_title in (('breaks', 'Mod kollidiert mit festem Leistungspaket (breaks in JAR)'),
                                 ('conflicts', 'Mod kollidiert mit festem Leistungspaket (conflicts in JAR)')):
             for target, constraint in (info.get(kind) or {}).items():
                 target_slug = id_to_slug.get(target, target)
-                if target_slug in LOCKED and target_slug in F and target_slug != s:
+                if target_slug in CORE and target_slug in F and target_slug != s:
                     t_info = INSP.get(target_slug, {})
                     t_ver = (t_info.get('jar_version') if t_info.get('sha1') == F[target_slug][2] else None) or F[target_slug][6]
                     if constraint == '*' or matches_predicate(normalize_target_version(t_ver), constraint):
-                        err[err_title].append(f"{s} schließt {target_slug} ({constraint}) aus")
+                        bag = err if s in CORE else note
+                        bag[err_title].append(f"{s} schließt {target_slug} ({constraint}) aus")
 # 3 Gruppen und Beziehungen
 for g in D['gruppen']:
     for s in g['mods']:

@@ -11,6 +11,15 @@
     },
     {
       "mods": [
+        "e4mc",
+        "krypton"
+      ],
+      "art": "redirect",
+      "stufe": "absturz",
+      "wo": "ServerLoginPacketListenerImpl.handleKey → "
+    },
+    {
+      "mods": [
         "lithium",
         "slabbed"
       ],
@@ -20,8 +29,80 @@
     },
     {
       "mods": [
+        "better-capes",
+        "punchymoves"
+      ],
+      "art": "redirect",
+      "stufe": "warnung",
+      "wo": "CapeLayer.submit → "
+    },
+    {
+      "mods": [
+        "no-resource-pack-warnings",
+        "shuttfup"
+      ],
+      "art": "redirect",
+      "stufe": "absturz",
+      "wo": "TransferableSelectionList$PackEntry.handlePackSelection → isCompatible()Z"
+    },
+    {
+      "mods": [
+        "vmp-fabric",
+        "voxy-worldgen"
+      ],
+      "art": "redirect",
+      "stufe": "absturz",
+      "wo": "ChunkMap$TrackedEntity.updatePlayer → II)Z"
+    },
+    {
+      "mods": [
+        "ggtu",
+        "superresolution"
+      ],
+      "art": "redirect",
+      "stufe": "absturz",
+      "wo": "Minecraft.renderFrame → )V"
+    },
+    {
+      "mods": [
+        "ijm-tweaks",
+        "noxesium"
+      ],
+      "art": "redirect",
+      "stufe": "absturz",
+      "wo": "EntityHitboxDebugRenderer.emitGizmos → isInvisible()Z"
+    },
+    {
+      "mods": [
+        "camera-utils",
+        "shoulder-surfing-reloaded"
+      ],
+      "art": "redirect",
+      "stufe": "absturz",
+      "wo": "Camera.alignWithEntity → move(FFF)V"
+    },
+    {
+      "mods": [
         "ferrite-core",
         "lithium"
+      ],
+      "art": "overwrite",
+      "stufe": "absturz",
+      "wo": "PalettedContainer.acquire (beide definieren @Overwrite)"
+    },
+    {
+      "mods": [
+        "ferrite-core",
+        "vmp-fabric"
+      ],
+      "art": "overwrite",
+      "stufe": "absturz",
+      "wo": "PalettedContainer.acquire (beide definieren @Overwrite)"
+    },
+    {
+      "mods": [
+        "lithium",
+        "vmp-fabric"
       ],
       "art": "overwrite",
       "stufe": "absturz",

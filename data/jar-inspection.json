@@ -90,8 +90,9 @@
     "conflicts": {}
   },
   "entityculling": {
-    "sha1": "45f47f7a067f5efd733a32767dc3d1d770678b2a",
-    "version": "1.11.3",
+    "sha1": "de9005580599906b55ff241bdf8cb27da999939a",
+    "version": "1.12.1",
+    "jar_version": "1.12.1",
     "mod_id": "entityculling",
     "depends": {
       "minecraft": "~26.3",
@@ -190,8 +191,9 @@
     "conflicts": {}
   },
   "c2me-fabric": {
-    "sha1": "a1a40e938200dea3872a18bf5f46bad9bfab5c65",
-    "version": "0.4.2-alpha.0.116+26.3",
+    "sha1": "134b7cdfab4e0d46cd57c052dc8d2fdc365bcc44",
+    "version": "0.4.2-alpha.0.121+26.3",
+    "jar_version": "0.4.2-alpha.0.121+26.3",
     "mod_id": "c2me",
     "depends": {
       "fabricloader": ">=0.18.3",
@@ -244,8 +246,9 @@
     "conflicts": {}
   },
   "rsls": {
-    "sha1": "60a95072fa946fa23eec1927b8370593e89d1fd8",
-    "version": "1.4.0",
+    "sha1": "dca6a82c641c4f03d4ec64b453fc730c8cde4315",
+    "version": "1.4.1",
+    "jar_version": "1.4.1",
     "mod_id": "rsls",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -258,8 +261,9 @@
     "conflicts": {}
   },
   "fabric-api": {
-    "sha1": "7f16cfcd4ef3d225a21417907634957787b31a5f",
-    "version": "0.166.0+26.3",
+    "sha1": "65636253571429971f25f5619692e6c1a6362028",
+    "version": "0.166.2+26.3",
+    "jar_version": "0.166.2+26.3",
     "mod_id": "fabric-api",
     "depends": {
       "fabricloader": ">=0.19.3",
@@ -272,8 +276,9 @@
     "conflicts": {}
   },
   "modmenu": {
-    "sha1": "66ec40f1cd0c037ddca2b5fc6b4b976d479c18e8",
-    "version": "21.0.0",
+    "sha1": "884ab621735264187ccbfc87017cf55bb54d47ee",
+    "version": "21.0.1",
+    "jar_version": "21.0.1",
     "mod_id": "modmenu",
     "depends": {
       "fabric-resource-loader-v1": "*",
@@ -506,8 +511,9 @@
     "conflicts": {}
   },
   "no-chat-reports": {
-    "sha1": "ed49e6780f20fcad080a211f8163c9d130ebdd34",
-    "version": "Fabric-26.3-v2.21.0",
+    "sha1": "44808babe03b08c4d8290c7e743b8d84e46396ff",
+    "version": "Fabric-MC26.3-v2.21.1",
+    "jar_version": "MC26.3-v2.21.1",
     "mod_id": "nochatreports",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -523,8 +529,9 @@
     "conflicts": {}
   },
   "packed-packs": {
-    "sha1": "58ea9fda3282c920796cc4d1f1dd8775fcabd9f5",
-    "version": "2.3.1+26.3",
+    "sha1": "799a16e0b4bc9bc229cfe7958fb673ba66a55ca8",
+    "version": "2.4.0+26.3",
+    "jar_version": "2.4.0+26.3",
     "mod_id": "packed_packs",
     "depends": {
       "fabricloader": "*",
@@ -717,8 +724,9 @@
     "conflicts": {}
   },
   "subtle-effects": {
-    "sha1": "ae6b7673be9b98c2c663794386d3fc339da9bd24",
-    "version": "1.15.1-hotfix.1",
+    "sha1": "d7edf939fcc721f88f2058062c8e67d67e475dbd",
+    "version": "1.15.3",
+    "jar_version": "1.15.3",
     "mod_id": "subtle_effects",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -847,8 +855,9 @@
     "conflicts": {}
   },
   "better-clouds": {
-    "sha1": "b75fff9b6466e100c07ef2d94ad78d79b5d0cb61",
-    "version": "1.15.0",
+    "sha1": "bd8b631d44c8a2523969b654045f1020d9d94091",
+    "version": "1.15.1",
+    "jar_version": "1.15.1+26.3-fabric",
     "mod_id": "betterclouds",
     "depends": {
       "fabricloader": ">=0.17.2",
@@ -904,8 +913,9 @@
     "conflicts": {}
   },
   "fwa": {
-    "sha1": "7ffbd3b0e9105a777f33127d61107fdb1ed8d514",
-    "version": "1.3.4",
+    "sha1": "6d090bdc105fef8c8192587a1935e21fd624abea",
+    "version": "1.3.7",
+    "jar_version": "1.3.7",
     "mod_id": "fwa",
     "depends": {
       "fabricloader": ">=0.18.2",
@@ -915,9 +925,7 @@
     },
     "breaks": {},
     "recommends": {},
-    "suggests": {
-      "another-mod": "*"
-    },
+    "suggests": {},
     "conflicts": {}
   },
   "snow-imprints": {
@@ -1050,8 +1058,9 @@
     "conflicts": {}
   },
   "elytra-contrails-mod": {
-    "sha1": "2bc8ea6094851951ce0aced326ebcbc43b09405b",
-    "version": "1.6.9-26.3",
+    "sha1": "0465210ba2392aec4f8c7697531644aff0aa59cd",
+    "version": "1.6.10-26.3",
+    "jar_version": "1.6.10-26.3",
     "mod_id": "elytratrails",
     "depends": {
       "fabricloader": ">=0.18.4",
@@ -1064,8 +1073,9 @@
     "conflicts": {}
   },
   "streams-reflowing": {
-    "sha1": "e794cd9cf8f623fb44c07572d74899838649c316",
-    "version": "2.17.1",
+    "sha1": "236caa43200af0bb37891b6599e31e9db27d8b52",
+    "version": "2.17.5",
+    "jar_version": "2.17.5",
     "mod_id": "streamsreflowing",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -1196,8 +1206,9 @@
     "conflicts": {}
   },
   "punchy-fpa": {
-    "sha1": "88b1c00d2bacfbe2dcd0e2badbd1a1785c26ba6d",
-    "version": "3.2a",
+    "sha1": "0b2856ce0b550391a1ce04186cee4f08a90e32ed",
+    "version": "3.2b",
+    "jar_version": "3.2b",
     "mod_id": "punchy",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -1326,8 +1337,9 @@
     "conflicts": {}
   },
   "cinematic-respawn": {
-    "sha1": "79c76b5eb6b9189d03098458aa300d2024657d5a",
-    "version": "26.3-fabric-1.4.3",
+    "sha1": "6fad159c7c2ac3b7b622d58ce32c0a309da41fdd",
+    "version": "26.3-fabric-1.5.0",
+    "jar_version": "1.5.0",
     "mod_id": "cinematic_respawn",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -1723,8 +1735,9 @@
     "conflicts": {}
   },
   "smooth-loading-screen": {
-    "sha1": "a736a428359597179e80680e1a6871f7b9fa9e22",
-    "version": "1.0.10+26.3",
+    "sha1": "f8f8ee67795370e7089fd22c8fee56454297ab30",
+    "version": "1.0.12+26.3",
+    "jar_version": "1.0.12+26.3",
     "mod_id": "smoothloadingscreen",
     "depends": {
       "fabricloader": ">=0.19.3",
@@ -1811,8 +1824,9 @@
     "conflicts": {}
   },
   "rightclickharvest": {
-    "sha1": "980234046f202dc3890c499f1c7378714c3ff511",
-    "version": "4.6.2+26.3.x",
+    "sha1": "cad0c0723bf4e52ddaf0abab680d16756714fadd",
+    "version": "4.7.1+26.3.x",
+    "jar_version": "4.7.1+26.3.x",
     "mod_id": "rightclickharvest",
     "depends": {
       "fabric-api": ">=0.160.7+26.3",
@@ -1825,8 +1839,9 @@
     "conflicts": {}
   },
   "fallingtree": {
-    "sha1": "8be6192279838fd6d319e4ec1acbfe45aba6e7c4",
-    "version": "26.3-26.3.0.4",
+    "sha1": "11bcce6062aff1880db3caab87db9b778907dca5",
+    "version": "26.3-26.3.0.5",
+    "jar_version": "25",
     "mod_id": "fallingtree",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -1890,15 +1905,16 @@
     "conflicts": {}
   },
   "easy-magic": {
-    "sha1": "619dfae70685c1d5e9acd5fa4a1fbd8114d3aaec",
-    "version": "26.3.0",
+    "sha1": "0671ac037931177f2cf626530d2f266ddf732d5d",
+    "version": "26.3.1",
+    "jar_version": "26.3.1",
     "mod_id": "easymagic",
     "depends": {
       "minecraft": "~26.3-",
-      "fabricloader": ">=0.19.5",
-      "fabric-api": ">=0.160.6",
+      "fabricloader": ">=0.20.0",
+      "fabric-api": ">=0.163.0",
       "forgeconfigapiport": "*",
-      "puzzleslib": ">=26.3.4"
+      "puzzleslib": ">=26.3.16"
     },
     "breaks": {},
     "recommends": {},
@@ -2195,8 +2211,9 @@
     "conflicts": {}
   },
   "friends-and-foes": {
-    "sha1": "1bb4a963fef24178292514499fc4c5e96d30e864",
-    "version": "fabric-5.0.4+mc26.3",
+    "sha1": "8f4c2dd568ddc3dc2875bb7222322b2c93de3dae",
+    "version": "fabric-5.0.5+mc26.3",
+    "jar_version": "5.0.5",
     "mod_id": "friendsandfoes",
     "depends": {
       "minecraft": ">=26.3",
@@ -2213,8 +2230,9 @@
     "conflicts": {}
   },
   "variants-and-ventures": {
-    "sha1": "e6cc4fcc1288635216bb0ba0f869e46a826a6326",
-    "version": "fabric-1.0.29+mc26.3",
+    "sha1": "1a0803061d7f6a2cab0764c61088664bd54f5cc9",
+    "version": "fabric-1.0.30+mc26.3",
+    "jar_version": "1.0.30",
     "mod_id": "variantsandventures",
     "depends": {
       "minecraft": ">=26.3",
@@ -2298,8 +2316,9 @@
     "conflicts": {}
   },
   "waystones": {
-    "sha1": "9a9e59e4da88c70a2065953c15fa7c30dbc8e565",
-    "version": "26.3.0.2+fabric-26.3",
+    "sha1": "606b37a18939e59bf0a3fbcb48db5d27ebd7f7ae",
+    "version": "26.3.0.3+fabric-26.3",
+    "jar_version": "26.3.0.3",
     "mod_id": "waystones",
     "depends": {
       "java": ">=25",
@@ -2368,8 +2387,9 @@
     "conflicts": {}
   },
   "clifftree": {
-    "sha1": "5cca110dd3454b696b0a4d0d20b691b4b04ec44a",
-    "version": "4.0.1-fabric-26.3",
+    "sha1": "f78dacefda432f108a65ed994029bfd5b71849af",
+    "version": "4.0.2-fabric-26.3",
+    "jar_version": "4.0.2",
     "mod_id": "clifftree",
     "depends": {
       "fabricloader": ">=0.18",
@@ -2437,8 +2457,9 @@
     "conflicts": {}
   },
   "snow-under-trees": {
-    "sha1": "e2de49a134251d36176b99b1b7997e950ccbfa8d",
-    "version": "v1.6.1",
+    "sha1": "28fca2f6163281fcd40f8321fbf3b9adb749f6d4",
+    "version": "v1.7",
+    "jar_version": "1.7",
     "mod_id": "snowundertrees",
     "depends": {
       "fabric-api": "*",
@@ -2505,8 +2526,9 @@
     "conflicts": {}
   },
   "dungeons-and-taverns": {
-    "sha1": "4e720945fda993b5f8da5c206dd1d5e8a46aecb8",
-    "version": "6.1.0+mod",
+    "sha1": "217ef7708dfb5c32f10021ddde2dd723c1ed2cbe",
+    "version": "6.2.0+mod",
+    "jar_version": "6.2.0",
     "mod_id": "mr_dungeons_andtaverns",
     "depends": {
       "fabric-resource-loader-v0": "*"
@@ -2694,8 +2716,9 @@
     "conflicts": {}
   },
   "punchymoves": {
-    "sha1": "48eaa3745662097b86c2f2e45ce4a0742362bc6e",
-    "version": "1.0.8",
+    "sha1": "342c8c479934bb6fffbb9cc200046f362af91621",
+    "version": "1.0.9",
+    "jar_version": "1.0.9",
     "mod_id": "punchy_moves",
     "depends": {
       "mixinextras": ">=0.5.5",
@@ -2705,17 +2728,15 @@
       "fabric-api": "*",
       "punchy_expressions": ">=1.0.3"
     },
-    "breaks": {
-      "bettercapes": "*",
-      "better-capes": "*"
-    },
+    "breaks": {},
     "recommends": {},
     "suggests": {},
     "conflicts": {}
   },
   "enchanted-fishing-line": {
-    "sha1": "19c9cf41c96837d7756760c9c92557bbd75b9a46",
-    "version": "1.0.1",
+    "sha1": "bd52c669205a8e0635a6dc51a8615835d4a7b542",
+    "version": "1.1.1",
+    "jar_version": "1.1.1",
     "mod_id": "enchanted_fishing_line",
     "depends": {
       "fabricloader": ">=0.19.3",
@@ -2765,8 +2786,9 @@
     "conflicts": {}
   },
   "diorama-map": {
-    "sha1": "5627714a359e51c18992cb63e6b70b92c1795c13",
-    "version": "0.8.1+26.3",
+    "sha1": "b477feea16d4e1ae1a33f7ae73e14a8bfb68946f",
+    "version": "0.10.2+26.3",
+    "jar_version": "0.10.2+26.3",
     "mod_id": "diorama",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -2814,8 +2836,9 @@
     "conflicts": {}
   },
   "enderscape": {
-    "sha1": "d6e080075cd91e868e45cc6394f3e3271ef36e5b",
-    "version": "3.0.5+mc26.3",
+    "sha1": "4b18a324e9c911c8c23faccd172b0d88f0d9ab9d",
+    "version": "3.0.6+mc26.3",
+    "jar_version": "3.0.6",
     "mod_id": "enderscape",
     "depends": {
       "minecraft": "~26.3-",
@@ -3044,8 +3067,9 @@
     "conflicts": {}
   },
   "collective": {
-    "sha1": "045608f49a49d4baa395afc9a4212ac190db894b",
-    "version": "26.3.0-8.85-fabric+forge+neo",
+    "sha1": "9f67f1e2e3a13dcdeb62ea1f4935528124766a19",
+    "version": "26.3.0-8.87-fabric+forge+neo",
+    "jar_version": "8.87",
     "mod_id": "collective",
     "depends": {
       "fabricloader": ">=0.19.0",
@@ -3059,12 +3083,13 @@
     "conflicts": {}
   },
   "puzzles-lib": {
-    "sha1": "dcdade799c41a96019723b7a8ae9becc1d256d22",
-    "version": "26.3.17",
+    "sha1": "3819387e2da9c584b5e34df6c31d903b3deb21ba",
+    "version": "26.3.18",
+    "jar_version": "26.3.18",
     "mod_id": "puzzleslib",
     "depends": {
       "minecraft": "~26.3-",
-      "fabricloader": ">=0.19.5",
+      "fabricloader": ">=0.20.0",
       "fabric-api": ">=0.163.0",
       "forgeconfigapiport": "*"
     },
@@ -3090,8 +3115,9 @@
     "conflicts": {}
   },
   "architectury-api": {
-    "sha1": "8c5f566e32bd47fbb80be4932b9be1cfa97c4e3a",
-    "version": "22.0.5+fabric",
+    "sha1": "045bb291a25967e82770308d77fd9dbbdefd54d6",
+    "version": "22.0.6+fabric",
+    "jar_version": "22.0.6",
     "mod_id": "architectury",
     "depends": {
       "minecraft": ">=26.3",
@@ -3233,8 +3259,9 @@
     "conflicts": {}
   },
   "creativecore": {
-    "sha1": "d4e8c3ab82a2d44d0de89fda635677b402eaebc3",
-    "version": "2.14.24",
+    "sha1": "4d28a1ccab6a6d6709472ee3fb23c6e06f291830",
+    "version": "2.14.25",
+    "jar_version": "2.14.25",
     "mod_id": "creativecore",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -3262,8 +3289,9 @@
     "conflicts": {}
   },
   "modonomicon": {
-    "sha1": "488147a1246d2b2ae69f5f55f926f0318bf1c3d6",
-    "version": "26.3-2.20.1",
+    "sha1": "6cd1d2996d2a6d235a0f8c88a39dd5f8ad248bd9",
+    "version": "26.3-2.20.2",
+    "jar_version": "2.20.2",
     "mod_id": "modonomicon",
     "depends": {
       "fabricloader": ">=0.14",
@@ -3296,8 +3324,9 @@
     "conflicts": {}
   },
   "shatterbyte-lib": {
-    "sha1": "0ae1e0a0b293e53413068bf6581fa3d9dfd5463e",
-    "version": "0.7.0-beta.4+26.3",
+    "sha1": "aa8f665090411c55be93d86af5ed87eba78d9771",
+    "version": "0.7.0-beta.5+26.3",
+    "jar_version": "0.7.0-beta.5+26.3",
     "mod_id": "shatterlib",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -3313,8 +3342,9 @@
     "conflicts": {}
   },
   "jamlib": {
-    "sha1": "e618db246e40fb685b237a613b58c68481f138f3",
-    "version": "2.3.1+26.3.x",
+    "sha1": "3a54c1f53842ff332056f49f0c9e948d136dedd7",
+    "version": "2.3.3+26.3.x",
+    "jar_version": "2.3.3+26.3.x",
     "mod_id": "jamlib",
     "depends": {
       "fabric-api": ">=0.160.7+26.3",
@@ -3736,8 +3766,9 @@
     "conflicts": {}
   },
   "afk-cinematics": {
-    "sha1": "16b39e1e5001e09c108ddce2c5e02e6dc225a169",
-    "version": "1.11.26+mc26.3",
+    "sha1": "46c6dde997ee07342f377921a19cdd599cf22d99",
+    "version": "2.11.26+mc26.3",
+    "jar_version": "2.11.26+mc26.3",
     "mod_id": "afkcinematics",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -3874,8 +3905,9 @@
     "conflicts": {}
   },
   "my_totem_doll": {
-    "sha1": "f87d4964f644089198d92518216d234664590b3e",
-    "version": "2.7.0+26.3+fabric",
+    "sha1": "1ccef93138a1856d9b4eef49128d372e777d7578",
+    "version": "2.7.1+26.3+fabric",
+    "jar_version": "2.7.1+26.3+fabric",
     "mod_id": "my_totem_doll",
     "depends": {
       "fabricloader": ">=0.19.3",
@@ -4006,8 +4038,9 @@
     "conflicts": {}
   },
   "particular-reforged": {
-    "sha1": "9ce277e691b7dfc23d5c0ff561e1163c55d9fc1a",
-    "version": "1.5.7",
+    "sha1": "e55f73a0ed9f0c54a6470f117b4202ffb2c1bbfd",
+    "version": "1.6.1",
+    "jar_version": "1.6.1",
     "mod_id": "particular",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -4551,11 +4584,12 @@
     "conflicts": {}
   },
   "zfastnoise": {
-    "sha1": "e8a325192fbe976e04795f45d7062f1241648a5e",
-    "version": "1.1.2+26.3",
+    "sha1": "6952f99e597dfc670bd35fde4d3e85dc1638bbfa",
+    "version": "1.1.3+26.3",
+    "jar_version": "1.1.3+26.3",
     "mod_id": "zfastnoise",
     "depends": {
-      "fabricloader": ">=0.19.5",
+      "fabricloader": ">=0.20.1",
       "minecraft": "~26.3",
       "java": ">=25",
       "zconfig": ">=1.0.0+26.x"
@@ -4600,8 +4634,9 @@
     "conflicts": {}
   },
   "notenoughrecipebook": {
-    "sha1": "3800129adfad608f449b45aec18b4ed752fc6e01",
-    "version": "0.6.1+26.3",
+    "sha1": "a417327f1956c76ae8747c0fb3d5c1d7063f154c",
+    "version": "0.6.2+26.3",
+    "jar_version": "0.6.2+26.3",
     "mod_id": "nerb",
     "depends": {
       "fabricloader": ">=0.20.0",
@@ -4616,8 +4651,9 @@
     "conflicts": {}
   },
   "structure-layout-optimizer": {
-    "sha1": "ce6a03a927297a5441dfa239bf2d6d804931530a",
-    "version": "1.1.4+26.3-fabric",
+    "sha1": "281bb7a953fe41c5ed06380e75da98409ce27f90",
+    "version": "1.1.5+26.3-fabric",
+    "jar_version": "1.1.5+26.3-fabric",
     "mod_id": "structure_layout_optimizer",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -4697,8 +4733,9 @@
     "conflicts": {}
   },
   "configmanager": {
-    "sha1": "ce2d31f3cb6815fe83c742326430af8dd9f6a479",
-    "version": "1.1.3",
+    "sha1": "13fe50ecc8aba1e684e5d30c0287bfb868d135c0",
+    "version": "1.1.4",
+    "jar_version": "1.1.4",
     "mod_id": "config_manager",
     "depends": {
       "minecraft": ">=26.1"
@@ -4870,8 +4907,9 @@
     "conflicts": {}
   },
   "elytra-trims": {
-    "sha1": "fa188b5ae3b6d384533f8045a865fca6e5751a48",
-    "version": "4.9.2",
+    "sha1": "3501b9f67ed8c1fb68576a7b9842f745ce5ba5d8",
+    "version": "4.9.4",
+    "jar_version": "4.9.4",
     "mod_id": "elytratrims",
     "depends": {
       "fabricloader": ">=0.19.0",
@@ -5085,8 +5123,9 @@
     "conflicts": {}
   },
   "tooltip-scroll": {
-    "sha1": "b615a94913ab26a2ad78ccc9750cd258429373bb",
-    "version": "1.5.2+26.3",
+    "sha1": "75d309a89c2830fdc9168f1548f5bfb1a1df2d6b",
+    "version": "1.5.3+26.3",
+    "jar_version": "1.5.3+26.3",
     "mod_id": "tooltipscroll",
     "depends": {
       "fabricloader": ">=0.15.0",
@@ -5608,8 +5647,9 @@
     "conflicts": {}
   },
   "carpet-tis-addition": {
-    "sha1": "9d3b1e683e070c88a434bff1a4ea70bba1ba973a",
-    "version": "v1.83.2-mc26.3",
+    "sha1": "1569475f58f7cc36de3585cef58d180e92118d1c",
+    "version": "v1.83.3-mc26.3",
+    "jar_version": "1.83.3",
     "mod_id": "carpet-tis-addition",
     "depends": {
       "fabricloader": ">=0.14.25",
@@ -5652,15 +5692,16 @@
     "conflicts": {}
   },
   "crashpatch": {
-    "sha1": "201cf2bf98a5971cfc5db5ed4cad622b99ddc828",
-    "version": "v2.2.3",
+    "sha1": "534506d0f938bb4a17334ecb22d23502d2df574e",
+    "version": "v2.2.5",
+    "jar_version": "2.2.5",
     "mod_id": "crashpatch",
     "depends": {
       "minecraft": "~26.3",
       "fabricloader": ">=0.19.5",
       "fabric-language-kotlin": "*",
       "notenoughcrashes": ">=4.5.0",
-      "oneconfigv1": ">=1.6.0"
+      "oneconfigv1": ">=1.8.0"
     },
     "breaks": {},
     "recommends": {},
@@ -5668,22 +5709,23 @@
     "conflicts": {}
   },
   "oneconfig": {
-    "sha1": "41f7ae9b6108ac0dc5fb57e5c51f85e4c998acda",
-    "version": "v1.6.2",
+    "sha1": "6cbe2ea51ea9b8ee4a01ef3fb701127ed50d177c",
+    "version": "v1.8.0",
+    "jar_version": "1.8.0",
     "mod_id": "oneconfig",
     "depends": {
       "fabricloader": ">=0.19.5",
       "minecraft": "26.3.x",
-      "oneconfigv1": "1.6.2",
-      "compose-multiplatform": ">=2.1.0",
-      "fabric-language-kotlin": ">=1.14.1+kotlin.2.4.20"
+      "fabric-api": "*",
+      "fabric-language-kotlin": ">=1.14.1+kotlin.2.4.20",
+      "compose-multiplatform": ">=2.1.0"
     },
     "breaks": {
       "chattweaks": "<1.2.3",
       "crashpatch": "<2.2.3",
       "evergreenhud": "<3.9.13",
       "polydium": "<1.2.0",
-      "polyplus": "<1.4.0"
+      "polyplus": "<2.0.0"
     },
     "recommends": {},
     "suggests": {},
@@ -6226,8 +6268,9 @@
     "conflicts": {}
   },
   "reconnectible-chains": {
-    "sha1": "e35c97378f7b82af95e5e588bee72b7ce8e85ee6",
-    "version": "2.5.0+26.3-fabric",
+    "sha1": "d9cb1acee613b3425a26a1a8d1976a4beaaecf3e",
+    "version": "2.6.0+26.3-fabric",
+    "jar_version": "2.6.0+26.3",
     "mod_id": "connectiblechains",
     "depends": {
       "fabricloader": ">=0.19.3",
@@ -6426,8 +6469,9 @@
     "conflicts": {}
   },
   "heart-crystals": {
-    "sha1": "161034848cdacec56a8293b62f2f5d7e680847e5",
-    "version": "1.0.1-26.3",
+    "sha1": "d86544a6c525cd7d33967b8f2d3dd26874ad473c",
+    "version": "1.0.4-26.3",
+    "jar_version": "unspecified",
     "mod_id": "heart_crystals",
     "depends": {
       "fabric-api": "*",
@@ -6512,8 +6556,9 @@
     "conflicts": {}
   },
   "swinging-lanterns": {
-    "sha1": "93739293bf370aad059f43bd76fcdbc60f6847c6",
-    "version": "26.3-2.1.0",
+    "sha1": "d2856a36f94fef6164e497d481b6b4d151c388d2",
+    "version": "26.3-2.1.1",
+    "jar_version": "26.3-2.1.1",
     "mod_id": "swinginglanterns",
     "depends": {
       "fabricloader": ">=0.18.0",
@@ -6562,13 +6607,14 @@
     "conflicts": {}
   },
   "overflowparticles": {
-    "sha1": "136283039ddbba45ac46bac3865eddb3d8afaad4",
-    "version": "v1.2.5",
+    "sha1": "4de5a60fc71231d957d7776e689c3e6fb0621ebf",
+    "version": "v1.2.6",
+    "jar_version": "1.2.6",
     "mod_id": "overflowparticles",
     "depends": {
       "minecraft": "~26.3",
       "fabricloader": ">=0.19.3",
-      "oneconfigv1": ">=1.4.0",
+      "oneconfigv1": ">=1.8.0",
       "fabric-language-kotlin": ">=1.13.8+kotlin.2.3.0"
     },
     "breaks": {},
@@ -6732,8 +6778,9 @@
     "conflicts": {}
   },
   "tt20": {
-    "sha1": "8c6f9b3f3d0887ebd81a0c13a83bfc0d624527a2",
-    "version": "0.8.5",
+    "sha1": "39c1c55091bf8d34e14da7a8202f8acb0d7c6ac0",
+    "version": "0.9.3",
+    "jar_version": "0.9.3",
     "mod_id": "tt20",
     "depends": {
       "minecraft": ">=26.3",
@@ -7078,8 +7125,9 @@
     "conflicts": {}
   },
   "countereds-terrain-slabs": {
-    "sha1": "97ca04959fc7efb462446eaa201d6a907cecdde0",
-    "version": "3.4.5",
+    "sha1": "f512e871fd1d61a402f512256154bfc560bb1b5b",
+    "version": "3.5.0",
+    "jar_version": "3.5.0",
     "mod_id": "terrain_slabs",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -7178,8 +7226,9 @@
     "conflicts": {}
   },
   "better-render-distance": {
-    "sha1": "d02535e3ad5d1df5a6019dbc4aaf97ada723ef76",
-    "version": "1.2.2",
+    "sha1": "c9bffa73ac0199bf8239c1a578319506ed296ec0",
+    "version": "1.2.3",
+    "jar_version": "1.2.3",
     "mod_id": "betterrenderdistance",
     "depends": {
       "fabricloader": ">=0.18.1",
@@ -7280,8 +7329,9 @@
     "conflicts": {}
   },
   "mob-heads": {
-    "sha1": "f6597462a4329878675b625537dec8f80ac25445",
-    "version": "v5.3.1+mod",
+    "sha1": "f73f78bda0b60934e24363e37ee4081d22d12097",
+    "version": "v4.5.0.1+mod",
+    "jar_version": "1-v4.5.0.1",
     "mod_id": "mob_heads",
     "depends": {
       "fabric-resource-loader-v0": "*"
@@ -7292,8 +7342,9 @@
     "conflicts": {}
   },
   "lib-5555ff": {
-    "sha1": "29db120d965e1c8a4fb6d3d112668c78b0fcf016",
-    "version": "v1.3.3.0+mod",
+    "sha1": "012d6424934ae2d87f2706e87987647afc2ded7a",
+    "version": "v1.3.4+mod",
+    "jar_version": "1-v1.3.4",
     "mod_id": "lib_5555ff",
     "depends": {
       "fabric-resource-loader-v0": "*"
@@ -7304,8 +7355,9 @@
     "conflicts": {}
   },
   "lanterns-bow": {
-    "sha1": "296825d2abf0f32d078765fe15e2cf110b289b9c",
-    "version": "3.5.0+26.3-fabric",
+    "sha1": "c6a800235890536029759844d5f9e0989e2af852",
+    "version": "3.5.1+26.3-fabric",
+    "jar_version": "3.5.1",
     "mod_id": "walllanterns",
     "depends": {
       "fabricloader": ">=0.18.4",
@@ -7363,8 +7415,9 @@
     "conflicts": {}
   },
   "voxy-server-side": {
-    "sha1": "7246316f8496aa0da8afbd86fee30cbe9d94f60f",
-    "version": "0.20.0",
+    "sha1": "efb045d353a6b47d0c8ad759f56876925485aada",
+    "version": "0.22.0",
+    "jar_version": "0.22.0",
     "mod_id": "lss",
     "depends": {
       "minecraft": ">=26.3 <26.4-",
@@ -8038,12 +8091,13 @@
     "conflicts": {}
   },
   "smartsearch": {
-    "sha1": "885697e6481cbe19e49de5ed537baab7ec54863c",
-    "version": "v1.2.1",
+    "sha1": "89c4960683113beb7c806315bc05ea4f40f2be31",
+    "version": "v1.2.2",
+    "jar_version": "1.2.2+fabric",
     "mod_id": "smartsearch",
     "depends": {
       "java": ">=21",
-      "oneconfigv1": ">=1.1.7"
+      "oneconfigv1": ">=1.5.0"
     },
     "breaks": {},
     "recommends": {},
@@ -8151,8 +8205,9 @@
     "conflicts": {}
   },
   "wavify": {
-    "sha1": "a44703289ff41dae0f5f1fb63971a8ae0809cb03",
-    "version": "1.2.1",
+    "sha1": "4ba51fd65742146d6062ec0d04be458c829ea665",
+    "version": "1.5.0",
+    "jar_version": "1.5.0",
     "mod_id": "wavify",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -8250,8 +8305,9 @@
     "conflicts": {}
   },
   "veinminer-client": {
-    "sha1": "ccae2a6cf2a341d137ced24156ff07f93a0fdaaf",
-    "version": "2.13.0",
+    "sha1": "dee956b857717a22a480bfaae06c9ae4174f8661",
+    "version": "2.14.0",
+    "jar_version": "2.14.0",
     "mod_id": "veinminer_client",
     "depends": {
       "fabricloader": ">=0.19.0",
@@ -8480,8 +8536,9 @@
     "conflicts": {}
   },
   "travelersbackpack": {
-    "sha1": "7eb196418633af415bab24ea46b124b0505aec82",
-    "version": "26.3-11.4.3",
+    "sha1": "02ad5297d333cf7fd8b773392e46a3568c4c2514",
+    "version": "26.3-11.4.6",
+    "jar_version": "11.4.6",
     "mod_id": "travelersbackpack",
     "depends": {
       "fabricloader": ">=0.15.11",
@@ -8618,8 +8675,9 @@
     "conflicts": {}
   },
   "globalpacks": {
-    "sha1": "19a15c1024381b2ff4ae6645c11ccc49c0368956",
-    "version": "26.3.1",
+    "sha1": "1c8af320c820eb9034641196e7e8b50182beb204",
+    "version": "26.3.3",
+    "jar_version": "26.3.3",
     "mod_id": "globalpacks",
     "depends": {
       "minecraft": ">=26.3",
@@ -8691,8 +8749,9 @@
     "conflicts": {}
   },
   "imblocker-original": {
-    "sha1": "168f32a66651246bb701422fac569384fd029bea",
-    "version": "7.3.2",
+    "sha1": "e268f2b7dc13be3484735c405b73cf745709d0d8",
+    "version": "7.3.3",
+    "jar_version": "7.3.3",
     "mod_id": "imblocker",
     "depends": {
       "fabricloader": "*",
@@ -8787,8 +8846,9 @@
     "conflicts": {}
   },
   "shoulder-surfing-reloaded": {
-    "sha1": "33605e87e205a223dae9eb311eb2e0f04f93edf5",
-    "version": "26.3-5.3.0+fabric",
+    "sha1": "e985bc7235a9854e3bb179299b53241ecdbbe396",
+    "version": "26.3-5.3.1+fabric",
+    "jar_version": "5.3.1",
     "mod_id": "shouldersurfing",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -8886,8 +8946,9 @@
     "conflicts": {}
   },
   "macaws-windows": {
-    "sha1": "d0982e89cf577682361f1e43435be4605c198894",
-    "version": "2.4.2",
+    "sha1": "10559e8c0f07d392ac08f5f32f3b270f2094e95b",
+    "version": "2.4.3",
+    "jar_version": "2.4.3",
     "mod_id": "mcwwindows",
     "depends": {
       "fabricloader": ">=0.19.3",
@@ -9009,8 +9070,9 @@
     "conflicts": {}
   },
   "beautify-refabricated": {
-    "sha1": "cc30aaf5bcd5fb9ef983a4bf1bc1d4a4b9e748e4",
-    "version": "3.6.6-fabric+26.3",
+    "sha1": "6079f254819f77484fc936ac563021f9f1a92b2b",
+    "version": "3.7.0-fabric+26.3",
+    "jar_version": "3.7.0",
     "mod_id": "beautify",
     "depends": {
       "cloth-config": "*",
@@ -9043,15 +9105,16 @@
     "conflicts": {}
   },
   "stoneworks": {
-    "sha1": "7235318dc92e679c871f2700ae029242058f57ae",
-    "version": "26.3.1",
+    "sha1": "83411568a0aa45f3b2cb03b2d07829474f4af0a5",
+    "version": "26.3.4",
+    "jar_version": "26.3.4",
     "mod_id": "stoneworks",
     "depends": {
       "minecraft": "~26.3-",
-      "fabricloader": ">=0.19.5",
-      "fabric-api": ">=0.160.6",
+      "fabricloader": ">=0.20.0",
+      "fabric-api": ">=0.163.0",
       "forgeconfigapiport": "*",
-      "puzzleslib": ">=26.3.6"
+      "puzzleslib": ">=26.3.18"
     },
     "breaks": {},
     "recommends": {},
@@ -9296,8 +9359,9 @@
     "conflicts": {}
   },
   "tslatentitystatus": {
-    "sha1": "2ac4c07fc3f8e90e744ce0be62d523977751735a",
-    "version": "1.10.2",
+    "sha1": "3455772b376c2d69a1731329509a74126e59b9ee",
+    "version": "1.10.3",
+    "jar_version": "1.10.3",
     "mod_id": "tslatentitystatus",
     "depends": {
       "fabricloader": ">=0.19",
@@ -9329,15 +9393,16 @@
     "conflicts": {}
   },
   "enchanting-infuser": {
-    "sha1": "44c6638d1407727614a0257a056955c51003a95e",
-    "version": "26.3.0",
+    "sha1": "287e681f40d64d73d899d0eca1e1e2e11a871404",
+    "version": "26.3.1",
+    "jar_version": "26.3.1",
     "mod_id": "enchantinginfuser",
     "depends": {
       "minecraft": "~26.3-",
-      "fabricloader": ">=0.19.4",
-      "fabric-api": ">=0.160.6",
+      "fabricloader": ">=0.20.0",
+      "fabric-api": ">=0.163.0",
       "forgeconfigapiport": "*",
-      "puzzleslib": ">=26.3.3"
+      "puzzleslib": ">=26.3.16"
     },
     "breaks": {},
     "recommends": {},
@@ -10021,8 +10086,9 @@
     "conflicts": {}
   },
   "gnetum": {
-    "sha1": "f79bcb4bf3fa0f4950352b60ad8888bcb15f22f8",
-    "version": "4.6.4+26.3-fabric",
+    "sha1": "53cb0e86ea664c24ae0388ce3476c8dae23dc9b7",
+    "version": "4.6.5+26.3-fabric",
+    "jar_version": "4.6.5+26.3-fabric",
     "mod_id": "gnetum",
     "depends": {
       "minecraft": ">=26.3",
@@ -10523,8 +10589,9 @@
     "conflicts": {}
   },
   "no-chat-restrictions": {
-    "sha1": "26baec9303152b126bd01469955efb6fb7bdc22f",
-    "version": "Fabric-MC26.3-v1.3.0",
+    "sha1": "b51227b9e5e3e5702a7280c164d3fcf3e9a6ab91",
+    "version": "Fabric-MC26.3-v1.4.0",
+    "jar_version": "Fabric-MC26.3-v1.4.0",
     "mod_id": "nochatrestrictions",
     "depends": {
       "fabricloader": ">=0.16",
@@ -10582,8 +10649,9 @@
     "conflicts": {}
   },
   "seasonhud-fabric": {
-    "sha1": "053fefea38be01e41010ecfe8f9a75b38f4349c0",
-    "version": "26.3-2.0.11",
+    "sha1": "debf96f6266b1791fa24e0d19e4eb00b08b3074f",
+    "version": "26.3-2.0.12",
+    "jar_version": "2.0.12",
     "mod_id": "seasonhud",
     "depends": {
       "fabric-api": "*",
@@ -10634,8 +10702,9 @@
     }
   },
   "talkbubbles": {
-    "sha1": "e79604a5eed3f0424263038dac230efc5d800119",
-    "version": "1.0.8+26.3",
+    "sha1": "16f2797c0dd8886f505cca3bcdb792fcb904c72b",
+    "version": "1.1.0+26.3-fabric",
+    "jar_version": "1.1.0+26.3",
     "mod_id": "talkbubbles",
     "depends": {
       "java": ">=25",
@@ -10646,9 +10715,7 @@
     },
     "breaks": {},
     "recommends": {},
-    "suggests": {
-      "another-mod": "*"
-    },
+    "suggests": {},
     "conflicts": {}
   },
   "dismount-entity": {
@@ -10864,8 +10931,9 @@
     "conflicts": {}
   },
   "herdspanic": {
-    "sha1": "6ea251dc50ebf527b536b6b6988a3d65c84371f1",
-    "version": "1.0.8+26.3",
+    "sha1": "d7fd9ce65bdee8c0cfdae850fe2eb86ac83570c9",
+    "version": "1.1.0+26.3-fabric",
+    "jar_version": "1.1.0+26.3",
     "mod_id": "herdspanic",
     "depends": {
       "java": ">=25",
@@ -10876,9 +10944,7 @@
     },
     "breaks": {},
     "recommends": {},
-    "suggests": {
-      "another-mod": "*"
-    },
+    "suggests": {},
     "conflicts": {}
   },
   "attributes": {
@@ -11403,8 +11469,9 @@
     "conflicts": {}
   },
   "tax-free-levels": {
-    "sha1": "efc12f2bf580b2e82872787ea273423473b2c747",
-    "version": "1.5.4",
+    "sha1": "e08c1db60005d976ce0f4bba9c8a2198032a0c18",
+    "version": "1.5.5",
+    "jar_version": "1.5.5",
     "mod_id": "taxfreelevels",
     "depends": {
       "fabricloader": ">=0.18.5",
@@ -11550,14 +11617,15 @@
     "conflicts": {}
   },
   "crosshair-addons-public": {
-    "sha1": "4828fb5e8a38902d555286475950da76e0ddd82a",
-    "version": "2.2.0+26.3",
+    "sha1": "7d415fa039ecfc5f9855a8d671db60c1f861150e",
+    "version": "2.2.2+26.3",
+    "jar_version": "2.2.2+26.3",
     "mod_id": "crosshairaddons",
     "depends": {
       "minecraft": "26.3",
       "java": ">=25",
       "fabric-api": "*",
-      "walksylib": ">=2.0.0"
+      "walksylib": ">=2.0.1"
     },
     "breaks": {},
     "recommends": {},
@@ -12044,13 +12112,14 @@
     "conflicts": {}
   },
   "chatting": {
-    "sha1": "bb99cb0b219573a326a32d3a58bbafef4cdb3e57",
-    "version": "v3.2.5",
+    "sha1": "91ac7bbaa7028d1ca0f5b47e418faf01910a1659",
+    "version": "v3.2.7",
+    "jar_version": "3.2.7",
     "mod_id": "chatting",
     "depends": {
       "minecraft": "~26.3",
       "fabricloader": ">=0.19.3",
-      "oneconfigv1": ">=1.5.0",
+      "oneconfigv1": ">=1.8.0",
       "fabric-language-kotlin": ">=1.14.1+kotlin.2.4.20"
     },
     "breaks": {
@@ -12682,8 +12751,9 @@
     "conflicts": {}
   },
   "slabbed": {
-    "sha1": "67cb08daf72ea5583efb8a0b9030a7ff22f203e2",
-    "version": "0.6.11-alpha+26.2-26.3",
+    "sha1": "9cffd8bd16e3f10cf96de6f539fb0c2333d0142b",
+    "version": "0.7.1-alpha+26.2-26.3",
+    "jar_version": "0.7.1-alpha+26.2-26.3",
     "mod_id": "slabbed",
     "depends": {
       "fabricloader": "*",
@@ -12785,8 +12855,9 @@
     "conflicts": {}
   },
   "dynamicsurroundingsfabric": {
-    "sha1": "5103921c0d10eff46d4c19dfba3e55edad3b6a91",
-    "version": "5.1.0",
+    "sha1": "45c2cf9ef1460a668e54df199c4deb99f1d8336f",
+    "version": "5.2.0",
+    "jar_version": "5.2.0",
     "mod_id": "dsurround",
     "depends": {
       "fabricloader": ">=0.20.1",
@@ -12901,8 +12972,9 @@
     "conflicts": {}
   },
   "olafs-relatively-placed-blocks": {
-    "sha1": "f1834c529dcad2e7402e4f00a77726759fddcf3f",
-    "version": "2.0.1",
+    "sha1": "684e016793e46255d3ca065f527415cd069e8bf8",
+    "version": "2.0.2",
+    "jar_version": "2.0.2",
     "mod_id": "relativeblocks",
     "depends": {
       "fabricloader": ">=0.19.5",
@@ -12992,8 +13064,9 @@
     "conflicts": {}
   },
   "euphoria-patches": {
-    "sha1": "3e2d5b02476337413fb1afba9bf74f9383338daf",
-    "version": "1.10.5-r5.9.3-fabric",
+    "sha1": "506d8ce57e944a1231b200dbc42998fd2b5f04f0",
+    "version": "1.11.1-r5.10-fabric",
+    "jar_version": "1.11.1-r5.10-fabric",
     "mod_id": "euphoria_patcher",
     "depends": {
       "fabricloader": ">=0.15.0",
@@ -13073,8 +13146,9 @@
     "conflicts": {}
   },
   "spatial-gui": {
-    "sha1": "1b56341807fb27033aad417ef00850b859fe40d0",
-    "version": "1.11.0-fabric+26.3",
+    "sha1": "ca3f84a500295c007777e80be283c2b252e72ce7",
+    "version": "1.11.1-fabric+26.3",
+    "jar_version": "1.11.1",
     "mod_id": "spatial_gui",
     "depends": {
       "fabricloader": ">=0.19.3",
@@ -13311,6 +13385,36 @@
       "iris": "*",
       "lambdynlights": "*"
     },
+    "conflicts": {}
+  },
+  "packet-fixer": {
+    "sha1": "a71fcdee677e23583da12b9237ab165ae7a0c8b0",
+    "version": "3.3.6",
+    "jar_version": "3.3.6",
+    "mod_id": "packetfixer",
+    "depends": {
+      "minecraft": ">=26.3"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {},
+    "conflicts": {}
+  },
+  "jump-over-fences": {
+    "sha1": "5d89bf0c295581da9028d153496c8f0d141394fa",
+    "version": "1.14.1",
+    "jar_version": "1.14.1",
+    "mod_id": "jumpoverfences",
+    "depends": {
+      "fabricloader": ">=0.20.1",
+      "minecraft": "~26.3",
+      "java": ">=25",
+      "fabric-api": "*",
+      "cloth-config": ">=26.3"
+    },
+    "breaks": {},
+    "recommends": {},
+    "suggests": {},
     "conflicts": {}
   }
 }

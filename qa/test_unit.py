@@ -1,5 +1,6 @@
 import hashlib
 import importlib.util
+import io
 import json
 import os
 import re
@@ -8,12 +9,15 @@ import sys
 import tempfile
 import tomllib
 import unittest
+import zipfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
 from scripts.fabric_semver import compare_sem_ver, matches_predicate, normalize_target_version, parse_sem_ver
+from scripts.inspect_jar_deps import inspect_jar_bytes, run_inspection
+from scripts.mixin_scan import INDEX_VERSION, check_core_jar_compatibility, core_pack, guard_updates
 
 
 def load_json(rel_path):
@@ -195,6 +199,230 @@ class TestFabricSemverPython(unittest.TestCase):
         self.assertFalse(matches_predicate("26.3", []))
         self.assertTrue(matches_predicate("", "x"))
         self.assertTrue(matches_predicate("", "X"))
+
+
+class TestCoreModpackGuardAndJijInspection(unittest.TestCase):
+    @staticmethod
+    def _build_jar(fmj: dict, nested_jars: dict | None = None) -> bytes:
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+            zf.writestr("fabric.mod.json", json.dumps(fmj))
+            for path, n_bytes in (nested_jars or {}).items():
+                zf.writestr(path, n_bytes)
+        return buf.getvalue()
+
+    def test_nested_jij_jar_inspection_flags_incompatible_subjar(self):
+        nested_bytes = self._build_jar(
+            {
+                "schemaVersion": 1,
+                "id": "wanderingtraveler_sub",
+                "version": "1.6.0",
+                "depends": {"minecraft": ">=1.20 <1.20.2"},
+            }
+        )
+        outer_bytes = self._build_jar(
+            {
+                "schemaVersion": 1,
+                "id": "wandering_traveler",
+                "version": "1.6.0+fabric",
+                "depends": {"fabricloader": ">=0.15.0"},
+                "jars": [{"file": "META-INF/monolith/jars/wanderingtraveler-fabric-1.20.1-1.6.0.jar"}],
+            },
+            {"META-INF/monolith/jars/wanderingtraveler-fabric-1.20.1-1.6.0.jar": nested_bytes},
+        )
+        sha1 = hashlib.sha1(outer_bytes).hexdigest()
+        res = inspect_jar_bytes(outer_bytes, sha1, "1.6.0+fabric", mc_version="26.3")
+        self.assertEqual(res["mod_id"], "wandering_traveler")
+        self.assertEqual(res["depends"].get("minecraft"), ">=1.20 <1.20.2")
+        self.assertEqual(res.get("broken_jij"), "META-INF/monolith/jars/wanderingtraveler-fabric-1.20.1-1.6.0.jar")
+
+        files = {
+            "wandering-traveler": [
+                "https://cdn.modrinth.com/data/test/wandering-traveler.jar",
+                "wandering-traveler.jar",
+                sha1,
+                "a" * 128,
+                len(outer_bytes),
+                [],
+                "1.6.0+fabric",
+                "Wandering Traveler",
+                "m",
+            ]
+        }
+        cache = run_inspection(files=files, cache={}, save=False, mc_version="26.3", fetcher=lambda _u, _s: outer_bytes)
+        self.assertIn("wandering-traveler", cache)
+        self.assertFalse(matches_predicate("26.3", cache["wandering-traveler"]["depends"]["minecraft"]))
+
+    def test_optional_vs_optional_mixin_collision_is_not_held_back(self):
+        old_files = {
+            "sodium": ["https://cdn.modrinth.com/sodium.jar", "sodium.jar", "1" * 40, "1" * 128, 100, [], "0.9.2", "Sodium", "m"],
+            "opt-a": ["https://cdn.modrinth.com/opt-a-1.jar", "opt-a.jar", "2" * 40, "2" * 128, 100, [], "1.0.0", "Opt A", "m"],
+            "opt-b": ["https://cdn.modrinth.com/opt-b-1.jar", "opt-b.jar", "3" * 40, "3" * 128, 100, [], "1.0.0", "Opt B", "m"],
+        }
+        files = {
+            **old_files,
+            "opt-b": ["https://cdn.modrinth.com/opt-b-2.jar", "opt-b.jar", "4" * 40, "4" * 128, 100, [], "2.0.0", "Opt B", "m"],
+        }
+        app = {
+            "mods": [
+                {"slug": "sodium", "name": "Sodium", "cat": "P", "rolle": "K"},
+                {"slug": "opt-a", "name": "Opt A", "cat": "V", "rolle": "O"},
+                {"slug": "opt-b", "name": "Opt B", "cat": "V", "rolle": "O"},
+            ],
+            "files": dict(files),
+            "dec": {"beziehungen": [], "gruppen": []},
+        }
+        redirect_hit = ["net/minecraft/client/Camera", "align", "(F)V", "Lnet/minecraft/client/Camera;move(FFF)V", 1]
+        index = {
+            "_v": INDEX_VERSION,
+            "sodium": {"id": "sodium", "disabled_mixins": [], "redirects": [], "overwrites": [], "sha1": "1" * 40},
+            "opt-a": {"id": "opta", "disabled_mixins": [], "redirects": [redirect_hit + ["opta/CameraMixin.class"]], "overwrites": [], "sha1": "2" * 40},
+            "opt-b": {"id": "optb", "disabled_mixins": [], "redirects": [redirect_hit + ["optb/CameraMixin.class"]], "overwrites": [], "sha1": "4" * 40},
+        }
+        insp = {
+            "sodium": {"sha1": "1" * 40, "mod_id": "sodium", "jar_version": "0.9.2", "depends": {"minecraft": "26.3"}},
+            "opt-a": {"sha1": "2" * 40, "mod_id": "opta", "jar_version": "1.0.0", "depends": {"minecraft": "26.3"}},
+            "opt-b": {"sha1": "4" * 40, "mod_id": "optb", "jar_version": "2.0.0", "depends": {"minecraft": "26.3"}},
+        }
+        upd = {"updates": [{"slug": "opt-b", "name": "Opt B", "von": "1.0.0", "auf": "2.0.0", "art": "release"}]}
+        held, _, _, _ = guard_updates(files, old_files, app, app, index, insp=insp, upd=upd, proj={"minecraftVersion": "26.3"}, fetch_missing=False)
+        self.assertEqual(held, [])
+        self.assertEqual(files["opt-b"][6], "2.0.0")
+
+    def test_core_vs_core_mixin_collision_is_held_back(self):
+        old_files = {
+            "core-a": ["https://cdn.modrinth.com/core-a.jar", "core-a.jar", "1" * 40, "1" * 128, 100, [], "1.0.0", "Core A", "m"],
+            "core-b": ["https://cdn.modrinth.com/core-b-1.jar", "core-b.jar", "2" * 40, "2" * 128, 100, [], "1.0.0", "Core B", "m"],
+        }
+        files = {
+            **old_files,
+            "core-b": ["https://cdn.modrinth.com/core-b-2.jar", "core-b.jar", "3" * 40, "3" * 128, 100, [], "2.0.0", "Core B", "m"],
+        }
+        app = {
+            "mods": [
+                {"slug": "core-a", "name": "Core A", "cat": "P", "rolle": "K"},
+                {"slug": "core-b", "name": "Core B", "cat": "P", "rolle": "K"},
+            ],
+            "files": dict(files),
+            "dec": {"beziehungen": [], "gruppen": []},
+        }
+        ow_hit = ["net/minecraft/world/level/chunk/PalettedContainer", "acquire", "()V"]
+        index = {
+            "_v": INDEX_VERSION,
+            "core-a": {"id": "corea", "disabled_mixins": [], "redirects": [], "overwrites": [ow_hit + ["corea/Mixin.class"]], "sha1": "1" * 40},
+            "core-b": {"id": "coreb", "disabled_mixins": [], "redirects": [], "overwrites": [ow_hit + ["coreb/Mixin.class"]], "sha1": "3" * 40},
+        }
+        insp = {
+            "core-a": {"sha1": "1" * 40, "mod_id": "corea", "jar_version": "1.0.0", "depends": {"minecraft": "26.3"}},
+            "core-b": {"sha1": "3" * 40, "mod_id": "coreb", "jar_version": "2.0.0", "depends": {"minecraft": "26.3"}},
+        }
+        upd = {"updates": [{"slug": "core-b", "name": "Core B", "von": "1.0.0", "auf": "2.0.0", "art": "release"}], "verlauf": []}
+        held, _, _, _ = guard_updates(files, old_files, app, app, index, insp=insp, upd=upd, proj={"minecraftVersion": "26.3"}, fetch_missing=False)
+        self.assertEqual(len(held), 1)
+        self.assertEqual(held[0]["slug"], "core-b")
+        self.assertEqual(files["core-b"][6], "1.0.0")
+        self.assertTrue(any(v["slug"] == "core-b" for v in upd.get("verfuegbar", [])))
+
+    def test_core_vs_core_fabric_mod_json_depends_and_breaks_are_held_back(self):
+        # Reverse dependency check: sodium updates to 0.10.0 while iris in CORE requires sodium ~0.9.0
+        old_files = {
+            "sodium": ["https://cdn.modrinth.com/sodium-092.jar", "sodium.jar", "1" * 40, "1" * 128, 100, [], "mc26.3-0.9.2-fabric", "Sodium", "m"],
+            "iris": ["https://cdn.modrinth.com/iris.jar", "iris.jar", "2" * 40, "2" * 128, 100, ["sodium"], "1.11.4+26.3", "Iris", "m"],
+        }
+        files = {
+            **old_files,
+            "sodium": ["https://cdn.modrinth.com/sodium-010.jar", "sodium.jar", "9" * 40, "9" * 128, 100, [], "mc26.3-0.10.0-fabric", "Sodium", "m"],
+        }
+        app = {
+            "mods": [
+                {"slug": "sodium", "name": "Sodium", "cat": "P", "rolle": "K"},
+                {"slug": "iris", "name": "Iris", "cat": "P", "rolle": "K"},
+            ],
+            "files": dict(files),
+            "dec": {"beziehungen": [], "gruppen": []},
+        }
+        index = {
+            "_v": INDEX_VERSION,
+            "sodium": {"id": "sodium", "disabled_mixins": [], "redirects": [], "overwrites": [], "sha1": "9" * 40},
+            "iris": {"id": "iris", "disabled_mixins": [], "redirects": [], "overwrites": [], "sha1": "2" * 40},
+        }
+        insp = {
+            "sodium": {"sha1": "9" * 40, "mod_id": "sodium", "jar_version": "0.10.0", "depends": {"minecraft": "26.3"}, "breaks": {}},
+            "iris": {"sha1": "2" * 40, "mod_id": "iris", "jar_version": "1.11.4", "depends": {"minecraft": "26.3", "sodium": "0.9.x"}, "breaks": {}},
+        }
+        upd = {"updates": [{"slug": "sodium", "name": "Sodium", "von": "mc26.3-0.9.2-fabric", "auf": "mc26.3-0.10.0-fabric", "art": "release"}], "verlauf": []}
+        held, _, _, _ = guard_updates(files, old_files, app, app, index, insp=insp, upd=upd, proj={"minecraftVersion": "26.3"}, fetch_missing=False)
+        self.assertEqual(len(held), 1)
+        self.assertEqual(held[0]["slug"], "sodium")
+        self.assertEqual(files["sodium"][6], "mc26.3-0.9.2-fabric")
+        self.assertIn("iris erfordert sodium", held[0]["grund"])
+
+        # Forward breaks check: core mod update adds breaks against another core mod
+        files2 = {
+            **old_files,
+            "sodium": ["https://cdn.modrinth.com/sodium-093.jar", "sodium.jar", "8" * 40, "8" * 128, 100, [], "mc26.3-0.9.3-fabric", "Sodium", "m"],
+        }
+        app2 = {**app, "files": dict(files2)}
+        insp2 = {
+            "sodium": {"sha1": "8" * 40, "mod_id": "sodium", "jar_version": "0.9.3", "depends": {"minecraft": "26.3"}, "breaks": {"iris": "<=1.11.4"}},
+            "iris": {"sha1": "2" * 40, "mod_id": "iris", "jar_version": "1.11.4", "depends": {"minecraft": "26.3", "sodium": "0.9.x"}, "breaks": {}},
+        }
+        index2 = {
+            "_v": INDEX_VERSION,
+            "sodium": {"id": "sodium", "disabled_mixins": [], "redirects": [], "overwrites": [], "sha1": "8" * 40},
+            "iris": {"id": "iris", "disabled_mixins": [], "redirects": [], "overwrites": [], "sha1": "2" * 40},
+        }
+        upd2 = {"updates": [{"slug": "sodium", "name": "Sodium", "von": "mc26.3-0.9.2-fabric", "auf": "mc26.3-0.9.3-fabric", "art": "release"}], "verlauf": []}
+        held2, _, _, _ = guard_updates(files2, old_files, app2, app2, index2, insp=insp2, upd=upd2, proj={"minecraftVersion": "26.3"}, fetch_missing=False)
+        self.assertEqual(len(held2), 1)
+        self.assertEqual(held2[0]["slug"], "sodium")
+        self.assertEqual(files2["sodium"][6], "mc26.3-0.9.2-fabric")
+
+    def test_optional_mod_with_broken_mc_version_is_held_back(self):
+        old_files = {
+            "wandering-traveler": ["https://cdn.modrinth.com/wt-1.jar", "wt.jar", "1" * 40, "1" * 128, 100, [], "1.5.0", "Wandering Traveler", "m"],
+        }
+        files = {
+            "wandering-traveler": ["https://cdn.modrinth.com/wt-2.jar", "wt.jar", "2" * 40, "2" * 128, 100, [], "1.6.0+fabric", "Wandering Traveler", "m"],
+        }
+        app = {
+            "mods": [{"slug": "wandering-traveler", "name": "Wandering Traveler", "cat": "G", "rolle": "O"}],
+            "files": dict(files),
+            "dec": {"beziehungen": [], "gruppen": []},
+        }
+        index = {
+            "_v": INDEX_VERSION,
+            "wandering-traveler": {"id": "wandering_traveler", "disabled_mixins": [], "redirects": [], "overwrites": [], "sha1": "2" * 40},
+        }
+        insp = {
+            "wandering-traveler": {
+                "sha1": "2" * 40,
+                "mod_id": "wandering_traveler",
+                "jar_version": "1.6.0+fabric",
+                "depends": {"minecraft": ">=1.20 <1.20.2"},
+                "broken_jij": "META-INF/monolith/jars/wanderingtraveler-fabric-1.20.1-1.6.0.jar",
+            }
+        }
+        upd = {
+            "updates": [{"slug": "wandering-traveler", "name": "Wandering Traveler", "von": "1.5.0", "auf": "1.6.0+fabric", "art": "release"}],
+            "verlauf": [],
+            "stand": {"wandering-traveler": {"version": "1.6.0+fabric", "seit": "2026-11-19"}},
+        }
+        held, _, _, _ = guard_updates(files, old_files, app, app, index, insp=insp, upd=upd, proj={"minecraftVersion": "26.3"}, fetch_missing=False)
+        self.assertEqual(len(held), 1)
+        self.assertEqual(held[0]["slug"], "wandering-traveler")
+        self.assertEqual(files["wandering-traveler"][6], "1.5.0")
+        self.assertEqual(upd["stand"]["wandering-traveler"]["version"], "1.5.0")
+        self.assertIn("inkompatibel mit Minecraft 26.3", held[0]["grund"])
+
+    def test_pin_is_empty_in_update_scripts(self):
+        with open(os.path.join(ROOT, "scripts", "check-updates.mjs"), encoding="utf-8") as fp:
+            mjs_src = fp.read()
+        self.assertIn("const PIN = new Set();", mjs_src)
+
+        with open(os.path.join(ROOT, "scripts", "check_updates.py"), encoding="utf-8") as fp:
+            py_src = fp.read()
+        self.assertIn("PIN = set()", py_src)
 
 
 if __name__ == "__main__":

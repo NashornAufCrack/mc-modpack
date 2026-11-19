@@ -3,7 +3,7 @@ name: Wartung
 # 1. Kandidaten & Social-Hype erkunden (scripts/discover.mjs, scripts/discover_social.py)
 # 2. Katalog auto-erweitern (scripts/expand.mjs)
 # 3. Abhängigkeiten reparieren (scripts/fixdeps.mjs)
-# 4. Mod-Updates, JAR-Inspektion & Schutzprüfungen (scripts/check-updates.mjs, scripts/check_github_releases.py, scripts/mixin_scan.py guard, scripts/rpcheck.py, scripts/inspect_jar_deps.py, scripts/embed_jar_rules.py, scripts/solve_pack_compatibility.py, qa/datacheck.py --ci)
+# 4. Mod-Updates, JAR-Inspektion & Schutzprüfungen (scripts/check-updates.mjs, scripts/check_github_releases.py, scripts/inspect_jar_deps.py, scripts/mixin_scan.py guard, scripts/rpcheck.py, scripts/embed_jar_rules.py, scripts/solve_pack_compatibility.py, qa/datacheck.py --ci)
 # 5. Medien & YouTube-Vorschaubilder aktualisieren (scripts/media.mjs, scripts/yt-thumbs.py, scripts/media-app.mjs)
 # 6. Optional: Hörproben aktualisieren (nur sonntags oder bei manuellem Start mit include_sounds)
 # 7. Einziger atomarer Git-Commit & Push (keine Kaskaden-Commits und Rennbedingungen mehr!)
@@ -73,9 +73,9 @@ jobs:
         run: |
           node scripts/check-updates.mjs
           python3 scripts/check_github_releases.py
+          python3 scripts/inspect_jar_deps.py
           python3 scripts/mixin_scan.py guard
           python3 scripts/rpcheck.py
-          python3 scripts/inspect_jar_deps.py
           python3 scripts/embed_jar_rules.py
           python3 scripts/solve_pack_compatibility.py
           python3 qa/datacheck.py --ci

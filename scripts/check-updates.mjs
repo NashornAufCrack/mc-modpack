@@ -16,8 +16,9 @@ const get = async url => { const r = await fetch(url, { headers: UA }); if (!r.o
 const LOADERS = { m: ["fabric"], r: ["minecraft"], s: ["iris", "optifine"], d: ["datapack"] };
 const isMR = s => String(files[s][0]).startsWith("https://cdn.modrinth.com/");
 const today = new Date().toISOString().slice(0, 10);
-// Vom Nutzer festgelegte Versionen: nie automatisch ändern, nur melden
-const PIN = new Set(["sodium", "iris", "voxy", "photon-shader", "moreculling", "wandering-traveler"]);
+// Keine statische Versions-Sperre mehr für Core-Modpack-Mods (sodium, iris, voxy, photon-shader, moreculling usw.):
+// Alle Mods werden auf neue stabile 26.3-Releases geprüft; Core-Modpack-Kompatibilität erzwingen inspect_jar_deps.py + mixin_scan.py guard automatisch.
+const PIN = new Set();
 const isPre = v => /alpha|beta|pre|rc|snapshot/i.test(String(v));
 const verfuegbar = [];
 

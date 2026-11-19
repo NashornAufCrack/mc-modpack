@@ -67,7 +67,9 @@ LOADERS = {
 is_mr = lambda s: str(files[s][0]).startswith("https://cdn.modrinth.com/")
 today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
 
-PIN = {"sodium", "iris", "voxy", "photon-shader", "moreculling", "wandering-traveler"}
+# Keine statische Versions-Sperre mehr für Core-Modpack-Mods (sodium, iris, voxy, photon-shader, moreculling usw.):
+# Alle Mods werden auf neue stabile 26.3-Releases geprüft; Core-Modpack-Kompatibilität erzwingen inspect_jar_deps.py + mixin_scan.py guard automatisch.
+PIN = set()
 is_pre = lambda v: bool(re.search(r"alpha|beta|pre|rc|snapshot", str(v), re.IGNORECASE))
 
 verfuegbar = []
